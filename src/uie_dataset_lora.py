@@ -78,7 +78,11 @@ class UIEConfig(datasets.BuilderConfig):
             **kwargs
     ):
         super().__init__(*args, **kwargs)
+        # Persist raw config kwargs so `datasets` can override the default config
+        # instance via setattr(...) on newer releases.
         self.data_dir = data_dir
+        self.instruction_file = instruction_file
+        self.task_config_dir = task_config_dir
         self.num_examples = num_examples
         self.over_sampling = over_sampling
         self.instructions = self._parse_instruction(instruction_file)
@@ -87,6 +91,12 @@ class UIEConfig(datasets.BuilderConfig):
         self.max_num_instances_per_task = max_num_instances_per_task
         self.max_num_instances_per_eval_task = max_num_instances_per_eval_task
 
+    def __setattr__(self, name, value):
+        super().__setattr__(name, value)
+        if name == "instruction_file":
+            super().__setattr__("instructions", self._parse_instruction(value))
+        elif name == "task_config_dir":
+            super().__setattr__("task_configs", self._parse_task_config(value))
 
     def _parse_instruction(self, instruction_file):
         """
@@ -204,32 +214,48 @@ class UIEInstructions(datasets.GeneratorBasedBuilder):
         split_dir = self.config.data_dir
         task_configs = self.config.task_configs
 
-        return [
-            datasets.SplitGenerator(
-                name=datasets.Split.TRAIN,
-                gen_kwargs={
-                    "path": split_dir,
-                    "task_config": task_configs['train'],
-                    "max_num_instances_per_task": self.config.max_num_instances_per_task,
-                    "subset": "train"
-                }),
-            datasets.SplitGenerator(
-                name=datasets.Split.VALIDATION,
-                gen_kwargs={
-                    "path": split_dir,
-                    "task_config": task_configs['dev'],
-                    "max_num_instances_per_task": self.config.max_num_instances_per_eval_task,
-                    "subset": "dev"
-                }),
-            datasets.SplitGenerator(
-                name=datasets.Split.TEST,
-                gen_kwargs={
-                    "path": split_dir,
-                    "task_config": task_configs['test'],
-                    "max_num_instances_per_task": None,  # default load total test samples to test
-                    "subset": "test"
-                }),
-        ]
+        split_generators = []
+
+        if any(task_configs["train"].values()):
+            split_generators.append(
+                datasets.SplitGenerator(
+                    name=datasets.Split.TRAIN,
+                    gen_kwargs={
+                        "path": split_dir,
+                        "task_config": task_configs["train"],
+                        "max_num_instances_per_task": self.config.max_num_instances_per_task,
+                        "subset": "train",
+                    },
+                )
+            )
+
+        if any(task_configs["dev"].values()):
+            split_generators.append(
+                datasets.SplitGenerator(
+                    name=datasets.Split.VALIDATION,
+                    gen_kwargs={
+                        "path": split_dir,
+                        "task_config": task_configs["dev"],
+                        "max_num_instances_per_task": self.config.max_num_instances_per_eval_task,
+                        "subset": "dev",
+                    },
+                )
+            )
+
+        if any(task_configs["test"].values()):
+            split_generators.append(
+                datasets.SplitGenerator(
+                    name=datasets.Split.TEST,
+                    gen_kwargs={
+                        "path": split_dir,
+                        "task_config": task_configs["test"],
+                        "max_num_instances_per_task": None,  # default load total test samples to test
+                        "subset": "test",
+                    },
+                )
+            )
+
+        return split_generators
 
 
     def _load_dataset(self, dataset_path, labels_path):

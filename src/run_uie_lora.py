@@ -16,21 +16,31 @@
 """
 Fine-tuning the library models for sequence to sequence.
 """
-# You can also adapt this script on your own sequence to sequence task. Pointers for this are left as comments.
+import os
+os.environ['WANDB_DISABLED'] = "True"
+os.environ['ABSL_LOG_LEVEL'] = '3'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+from absl import logging
+logging.set_verbosity(logging.ERROR)
+
+
+# You can also adapt this script on your own sequence to sequence task. Pointers for this are left as comments.
+from torch.nn import Linear
 import logging
 import os
 import sys
 import json
 import time
+import inspect
 from dataclasses import dataclass, field
 from typing import Optional
-
+import torch
 import datasets
 import nltk  # Here to have a nice missing dependency error message early on
 import numpy as np
 from datasets import load_dataset
-
+import gc
 import transformers
 from filelock import FileLock
 from transformers import (
@@ -44,19 +54,25 @@ from transformers import (
     set_seed, )
 from transformers.file_utils import is_offline_mode
 from transformers.trainer_utils import get_last_checkpoint
-from peft import get_peft_config, get_peft_model, LoraConfig, TaskType, PeftModel, PeftConfig # add
+from peft import get_peft_config, get_peft_model, LoraConfig, TaskType, PeftModel, PeftConfig  # add
 
 from uie_collator import DataCollatorForUIE
 from uie_dataset_lora import gen_cache_path
 
 from uie_trainer_lora import UIETrainer, DenserEvalCallback, skip_instructions
 from compute_metrics import compute_metrics, compute_grouped_metrics
+from sklearn.metrics import f1_score ,accuracy_score
 from model.llama import LlamaForCausalLM_with_lossmask
+
+
+
+
 
 # off wandb
 os.environ['WANDB_DISABLED'] = "True"
 # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 logger = logging.getLogger(__name__)
+
 CURRENT_DIR = os.path.dirname(__file__)
 
 try:
@@ -77,7 +93,8 @@ class ModelArguments:
     """
 
     model_name_or_path: str = field(
-        metadata={"help": "Path to pretrained model or model identifier from huggingface.co/models"}
+        metadata={
+            "help": "Path to pretrained model or model identifier from huggingface.co/models"}
     )
     config_name: Optional[str] = field(
         default=None, metadata={"help": "Pretrained config name or path if not the same as model_name"}
@@ -87,15 +104,18 @@ class ModelArguments:
     )
     cache_dir: Optional[str] = field(
         default=None,
-        metadata={"help": "Where to store the pretrained models downloaded from huggingface.co"},
+        metadata={
+            "help": "Where to store the pretrained models downloaded from huggingface.co"},
     )
     use_fast_tokenizer: bool = field(
         default=True,
-        metadata={"help": "Whether to use one of the fast tokenizer (backed by the tokenizers library) or not."},
+        metadata={
+            "help": "Whether to use one of the fast tokenizer (backed by the tokenizers library) or not."},
     )
     model_revision: str = field(
         default="main",
-        metadata={"help": "The specific model version to use (can be a branch name, tag name or commit id)."},
+        metadata={
+            "help": "The specific model version to use (can be a branch name, tag name or commit id)."},
     )
     use_auth_token: bool = field(
         default=False,
@@ -125,13 +145,15 @@ class DataTrainingArguments:
     """
     Arguments pertaining to what data we are going to input our model for training and eval.
     """
-    lang: str = field(default=None, metadata={"help": "Language id for multilingual model."})
+    lang: str = field(default=None, metadata={
+                      "help": "Language id for multilingual model."})
     data_dir: str = field(
         default=None, metadata={"help": "The directory for saving the UIE train/dev/test splits."}
     )
     task_config_dir: str = field(
         default=None, metadata={"help": "The json file for config training and testing tasks"}
     )
+    # full_test_task_config_dir: Optional[str] = None  # NEW
     instruction_file: str = field(
         default=None, metadata={"help": "The instruction file for different tasks."}
     )
@@ -183,7 +205,8 @@ class DataTrainingArguments:
     )
     max_num_instances_per_eval_task: int = field(
         default=200,
-        metadata={"help": "The maximum number of instances we will consider for each validation/test task."}
+        metadata={
+            "help": "The maximum number of instances we will consider for each validation/test task."}
     )
     max_train_samples: Optional[int] = field(
         default=None,
@@ -206,6 +229,13 @@ class DataTrainingArguments:
                     "value if set."
         },
     )
+    max_flat_samples: Optional[int] = field(
+        default=None,
+        metadata={
+            "help": "For debugging purposes or quicker training, truncate the number of prediction examples to this "
+                    "value if set."
+        },
+    )
     num_examples: Optional[int] = field(
         default=0,
         metadata={"help": "number of in-context positive examples."}
@@ -222,7 +252,8 @@ class DataTrainingArguments:
     )
     add_dataset_name: Optional[bool] = field(
         default=False,
-        metadata={"help": "whether to preappend dataset name before the task input."}
+        metadata={
+            "help": "whether to preappend dataset name before the task input."}
     )
 
 
@@ -234,11 +265,133 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
     )
     denser_evaluation: Optional[bool] = field(
         default=False,
-        metadata={"help": "If specifid, the model will do more evaluation at the beginning of training."}
+        metadata={
+            "help": "If specifid, the model will do more evaluation at the beginning of training."}
     )
-    do_demo: bool = field(default=False, metadata={"help": "Whether to run the model as a demo in the terminal."})
-    lamda_1: float = field(default = 0.5)
-    lamda_2: float = field(default = 0)
+    do_demo: bool = field(default=False, metadata={
+                          "help": "Whether to run the model as a demo in the terminal."})
+    olora_lamda_1: float = field(default=0.5)
+    olora_lamda_2: float = field(default=0)
+    train_method: str = field(default="finetune") #  use_probe, finetune,Cl
+    finetune_strategy: str = field(default="full")  # 'full', 'ewc', 'er'
+    lora_strategy: str = field(default="lora")  # 'lora', 'Nlora', 'er'
+    # optimizer_type: str = field(default="sam-adam")  # 'sgd' 或 'sam'
+    # momentum: float = field(default=0)          # 仅用于 sgd 或 sam
+    sam_rho: float = field(default=0.05)              # sam 特有超参数
+    do_flatminal: bool = field(default=False)  
+    flat_part: str = field(default="trained_lora")  # "trained_lora" "trained_whole"
+
+    optimizer_type: str = field(default="adamw_hf", metadata={
+                                "help": "Custom optimizer type, supports sam variants."})
+
+     # ===== GAM optimizer hyperparameters =====
+    gam_adaptive: bool = field(
+        default=False,
+        metadata={"help": "Whether to use adaptive GAM perturbations (element-wise |w|^2 scaling)."},
+    )
+    gam_grad_reduce: str = field(
+        default="mean",
+        metadata={"help": "Gradient reduction across workers for GAM: 'mean' or 'sum'."},
+    )
+    gam_perturb_eps: float = field(
+        default=1e-12,
+        metadata={"help": "Numerical epsilon to stabilize GAM norm divisions."},
+    )
+    gam_grad_rho: float = field(
+        default=0.2,
+        metadata={"help": "Perturbation radius for loss-gradient ascent step in GAM."},
+    )
+    gam_grad_norm_rho: float = field(
+        default=0.2,
+        metadata={"help": "Perturbation radius for gradient-norm ascent step in GAM."},
+    )
+    gam_grad_beta_1: float = field(
+        default=1.0,
+        metadata={"help": "GAM gradient decomposition weight beta_1."},
+    )
+    gam_grad_beta_2: float = field(
+        default=1.0,
+        metadata={"help": "GAM gradient decomposition weight beta_2."},
+    )
+    gam_grad_beta_3: float = field(
+        default=1.0,
+        metadata={"help": "GAM gradient decomposition weight beta_3."},
+    )
+    gam_grad_gamma: float = field(
+        default=0.1,
+        metadata={"help": "GAM gradient decomposition weight gamma (vertical component coefficient)."},
+    )
+
+    # ✅ 线性探针相关参数  training_args.train_method 参数设置为 use_probe':
+    probe_num_classes: int = field(
+        default=14,
+        metadata={"help": "Number of classes for the linear probe head."},
+    )
+    probe_feature_mode: str = field(
+        default="cls",  # 支持 cls, eos, mean
+        metadata={"help": "Feature pooling strategy for probe. Options: [cls, eos, mean]."},
+    )
+    # use_probe: bool = field(default=False)
+    zero_shot: bool = field(default=False)
+
+    # rwp相关超参数 rwp_type   rwp_a rwp_b
+    
+    rwp_type: Optional[str] = field(
+        default="", metadata={
+            "help": "rwp-lora, rwp-full"
+        }
+    )
+
+    rwp_a: Optional[float] = field(
+        default=1,
+        metadata={
+            "help": "没有扰动的权重"
+        },
+    )
+
+    rwp_b: Optional[float] = field(
+        default=1,
+        metadata={
+            "help": "有扰动的权重"
+        },
+    )
+    rwp_noise_type: Optional[str] = field(
+        default='', metadata={
+            "help": "# one of: standard, matrix, element, filter, fisherl"
+        }
+    )
+    noise_std: Optional[float] = field(
+        default=1,
+        metadata={
+            "help": "noise_std"
+        },
+    )
+    rwp_fisher_cal_scaler: Optional[float] = field(
+        default=0.99,
+        metadata={
+            "help": "noise_std"
+        },
+    )
+    rwp_fisher_app_scaler: Optional[float] = field(
+        default=0,
+        metadata={
+            "help": "noise_std"
+        },
+    )
+    
+    fisher_load_path: Optional[str] = field(
+        default='', metadata={
+            "help": "# Root to "
+        }
+    )
+
+    rwp_range: Optional[str] = field(
+        default="lora", metadata={
+            "help": "Which parameters to perturb in RWP: 'lora' (requires_grad only) or 'all'."
+        }
+    )
+
+
 
 
 def main():
@@ -246,11 +399,13 @@ def main():
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
 
-    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, UIETrainingArguments))
+    parser = HfArgumentParser(
+        (ModelArguments, DataTrainingArguments, UIETrainingArguments))
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script and it's the path to a json file,
         # let's parse it to get our arguments.
-        model_args, data_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
+        model_args, data_args, training_args = parser.parse_json_file(
+            json_file=os.path.abspath(sys.argv[1]))
     else:
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
@@ -260,7 +415,8 @@ def main():
         datefmt="%m/%d/%Y %H:%M:%S",
         handlers=[logging.StreamHandler(sys.stdout)],
     )
-    log_level = training_args.get_process_log_level()
+    # training_args.get_process_log_level()
+    log_level = 20
     logger.setLevel(log_level)
     datasets.utils.logging.set_verbosity(log_level)
     transformers.utils.logging.set_verbosity(log_level)
@@ -272,6 +428,8 @@ def main():
         f"Process rank: {training_args.local_rank}, device: {training_args.device}, n_gpu: {training_args.n_gpu}"
         + f"distributed training: {bool(training_args.local_rank != -1)}, 16-bits training: {training_args.fp16}"
     )
+    logger.info(f"model_args {model_args}")
+    logger.info(f"data_args parameters {data_args}")
     logger.info(f"Training/evaluation parameters {training_args}")
 
     # Detecting last checkpoint.
@@ -289,13 +447,37 @@ def main():
                 "the `--output_dir` or add `--overwrite_output_dir` to train from scratch."
             )
 
-    # Set seed before initializing model.
+    # Set seed before initializing model. For redo the experiment
     set_seed(training_args.seed)
-    data_cache_dir = gen_cache_path(training_args.output_dir, data_args)
+
+
+
+    # data_cache_dir = gen_cache_path('logs_and_outputs/order_1', data_args)
+    # if getattr(training_args, "use_probe", False):
+    # 这个设定下 训练集和测试集都只有一个  /data/140-0/users/liying/O-LoRA/src
+    # 当进行flat 的评估的时候，应该也只在训练集上可视化 计算 lossland 信息
+    # zero-shot 的时候，评估也是在所有测试集上的
+    if training_args.train_method.lower() == 'use_probe' or training_args.do_flatminal :
+        data_cache_dir = gen_cache_path('/data/140-0/users/liying/O-LoRA/data_cache/eval_one_task/order_1', data_args)
+    else:
+        data_cache_dir = gen_cache_path('/data/140-0/users/liying/O-LoRA/data_cache/eval_all_task/order_1', data_args)
 
     # Get the UIE dataset
-    raw_datasets = load_dataset(
-        os.path.join(CURRENT_DIR, "uie_dataset_lora.py"),
+    # 输出所有传入参数信息
+    logger.info("Loading dataset with the following parameters:")
+    logger.info(
+        f"Dataset script path: {os.path.join(CURRENT_DIR, 'uie_dataset_lora.py')}")
+    logger.info(f"data_dir: {data_args.data_dir}")
+    logger.info(f"task_config_dir: {data_args.task_config_dir}")
+    logger.info(f"instruction_file: {data_args.instruction_file}")
+    logger.info(f"instruction_strategy: {data_args.instruction_strategy}")
+    logger.info(f"cache_dir: {data_cache_dir}")
+    logger.info(
+        f"max_num_instances_per_task: {data_args.max_num_instances_per_task}")
+    logger.info(
+        f"max_num_instances_per_eval_task: {data_args.max_num_instances_per_eval_task}")
+    logger.info(f"num_examples: {data_args.num_examples}")
+    dataset_kwargs = dict(
         data_dir=data_args.data_dir,
         task_config_dir=data_args.task_config_dir,
         instruction_file=data_args.instruction_file,
@@ -303,19 +485,240 @@ def main():
         cache_dir=data_cache_dir,  # for debug, change dataset size, otherwise open it
         max_num_instances_per_task=data_args.max_num_instances_per_task,
         max_num_instances_per_eval_task=data_args.max_num_instances_per_eval_task,
-        num_examples=data_args.num_examples
+        num_examples=data_args.num_examples,
     )
-    raw_datasets.cleanup_cache_files()
+    if "trust_remote_code" in inspect.signature(load_dataset).parameters:
+        dataset_kwargs["trust_remote_code"] = True
+
+    raw_datasets = load_dataset(
+        os.path.join(CURRENT_DIR, "uie_dataset_lora.py"),
+        **dataset_kwargs,
+    )
+
+    # if getattr(training_args, "use_probe", False):
+    if training_args.train_method.lower() == 'use_probe':
+        # --- 自动构建 label2id ---
+        all_labels = set()
+        for split in raw_datasets.keys():
+            for example in raw_datasets[split]:
+                all_labels.add(example["Instance"]["label"])
+        label2id = {label: idx for idx, label in enumerate(sorted(all_labels))}
+
+        logger.info(f"Label2id mapping: {label2id}")
+
+        # --- 给每个 split 添加 class_label 字段 ---
+        def encode_class_label(example):
+            example["class_label"] = label2id[example["Instance"]["label"]]
+            return example
+
+        for split in raw_datasets.keys():
+            raw_datasets[split] = raw_datasets[split].map(encode_class_label)
+
+    # raw_datasets.cleanup_cache_files()
+
+    # Load full test dataset for evaluation
+    # full_test_datasets = None
+    # if data_args.full_test_task_config_dir is not None:
+    #     full_test_datasets = load_dataset(
+    #         os.path.join(CURRENT_DIR, "uie_dataset_lora.py"),
+    #         data_dir=data_args.data_dir,
+    #         task_config_dir=data_args.full_test_task_config_dir,
+    #         instruction_file=data_args.instruction_file,
+    #         instruction_strategy=data_args.instruction_strategy,
+    #         cache_dir=data_cache_dir,
+    #         max_num_instances_per_task=data_args.max_num_instances_per_task,
+    #         max_num_instances_per_eval_task=data_args.max_num_instances_per_eval_task,
+    #         num_examples=data_args.num_examples,
+    #     )
 
     # Load pretrained model and tokenizer
     #
     # Distributed training:
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
-    if 'adapter' in model_args.model_name_or_path: # load lora-config
-        config = PeftConfig.from_pretrained(model_args.model_name_or_path)
+    compare_lossland_betweenModel = False
+    if  False:
+        if 'adapter' in model_args.model_name_or_path:  # load lora-config
+            logger.info(f'***1***-adapter  if {model_args.model_name_or_path}')
+            # 这里在记载的时候，如果是IinCloRA 就加载合并后的结果了
+            config = PeftConfig.from_pretrained(model_args.model_name_or_path)
+            logger.info(f'***1***-adapter  config: {config}')
+            if 'llama' in model_args.model_name_or_path.lower():
+                tokenizer = transformers.LlamaTokenizer.from_pretrained(
+                    config.base_model_name_or_path)
+                config.bos_token_id = 1
+                config.eos_token_id = 2
+                config.pad_token_id = 1
+                tokenizer.bos_token_id = 1
+                tokenizer.eos_token_id = 2
+                tokenizer.pad_token_id = 1
+            else:
+                tokenizer = AutoTokenizer.from_pretrained(
+                    config.base_model_name_or_path)
+        elif 'llama' in model_args.model_name_or_path.lower():
+            logger.info(f'***1***1-llama  {model_args.model_name_or_path.lower()}')
+            config = AutoConfig.from_pretrained(
+                model_args.model_name_or_path,
+                cache_dir=model_args.cache_dir,
+                revision=model_args.model_revision,
+                use_auth_token=True if model_args.use_auth_token else None,
+            )
+            config.bos_token_id = 1
+            config.eos_token_id = 2
+            config.pad_token_id = 1
+            logger.info(f'***1***1-llama  config: {config}')
+            tokenizer = transformers.LlamaTokenizer.from_pretrained(
+                model_args.model_name_or_path,
+                cache_dir=model_args.cache_dir,
+                use_fast=model_args.use_fast_tokenizer,
+                revision=model_args.model_revision,
+                use_auth_token=True if model_args.use_auth_token else None,
+            )
+            tokenizer.bos_token_id = 1
+            tokenizer.eos_token_id = 2
+            tokenizer.pad_token_id = 1
+        else:  # load original config
+            logger.info(f'***1***--1-else  {model_args.model_name_or_path}')
+            config = AutoConfig.from_pretrained(
+                model_args.config_name if model_args.config_name else model_args.model_name_or_path,
+                cache_dir=model_args.cache_dir,
+                revision=model_args.model_revision,
+                use_auth_token=True if model_args.use_auth_token else None,
+            )
+            tokenizer = AutoTokenizer.from_pretrained(
+                model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
+                cache_dir=model_args.cache_dir,
+                use_fast=model_args.use_fast_tokenizer,
+                revision=model_args.model_revision,
+                use_auth_token=True if model_args.use_auth_token else None,
+            )
+
+        logger.info('*****2***Load model_class**')
+        if 'llama' in model_args.model_name_or_path.lower():  # add llama
+            logger.info(
+                f'***2***--2-llama  {model_args.model_name_or_path.lower()}')
+            model_class = LlamaForCausalLM_with_lossmask
+            tokenizer.padding_side = 'left'
+        else:
+            logger.info(
+                f'***2***--2-else  {model_args.model_name_or_path.lower()}')
+            model_class = AutoModelForSeq2SeqLM
+
+        if 'adapter' in model_args.model_name_or_path:  # add lora-adapter to the original model
+            logger.info(f'***3***--3-adapter  {model_args.model_name_or_path}')
+            model = model_class.from_pretrained(config.base_model_name_or_path)
+
+            # === 🔥 这里就直接加 probe_head ===
+            # if getattr(training_args, "use_probe", False):
+            if training_args.train_method.lower() == 'use_probe':
+                logger.info(f"Adding probe head in MAIN function (not only in Trainer)")
+                hidden_size = model.config.hidden_size
+                num_probe_classes = training_args.probe_num_classes
+                model.probe_head = Linear(hidden_size, num_probe_classes)
+                model.probe_head.to(training_args.device)  # 注意迁移到 GPU
+
+                # 只冻结其他参数
+                for name, param in model.named_parameters():
+                    if name.find("probe_head")!= -1:
+                        param.requires_grad = True
+                    else:
+                        param.requires_grad = False
+
+        
+            model = PeftModel.from_pretrained(model, model_args.model_name_or_path)
+        elif 'llama' in model_args.model_name_or_path.lower():
+            logger.info(
+                f'***3***--3-llama  {model_args.model_name_or_path.lower()}')
+            model = model_class.from_pretrained(
+                model_args.model_name_or_path,
+                from_tf=bool(".ckpt" in model_args.model_name_or_path),
+                config=config,
+                cache_dir=model_args.cache_dir,
+                revision=model_args.model_revision,
+                use_auth_token=True if model_args.use_auth_token else None
+            )
+
+            # === 🔥 这里就直接加 probe_head ===
+            # if getattr(training_args, "use_probe", False):
+            if training_args.train_method.lower() == 'use_probe':
+                logger.info(f"Adding probe head in MAIN function (not only in Trainer)")
+                hidden_size = model.config.hidden_size
+                num_probe_classes = training_args.probe_num_classes
+                model.probe_head = Linear(hidden_size, num_probe_classes)
+                model.probe_head.to(training_args.device)  # 注意迁移到 GPU
+
+                # 只冻结其他参数
+                for name, param in model.named_parameters():
+                    if name.find("probe_head")!= -1:
+                        param.requires_grad = True
+                    else:
+                        param.requires_grad = False
+
+
+            peft_config = LoraConfig(
+                task_type=TaskType.CAUSAL_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
+            )
+            model = get_peft_model(model, peft_config)
+        else:
+            logger.info(f'***3***--3-else  {model_args.model_name_or_path}')
+            logger.info(f'***3***--3-else  config:{config}')
+            model = model_class.from_pretrained(
+                model_args.model_name_or_path,
+                from_tf=bool(".ckpt" in model_args.model_name_or_path),
+                config=config,
+                cache_dir=model_args.cache_dir,
+                revision=model_args.model_revision,
+                use_auth_token=True if model_args.use_auth_token else None,
+            )
+
+            # === 🔥 这里就直接加 probe_head ===
+            # if getattr(training_args, "use_probe", False):
+            if training_args.train_method.lower() == 'use_probe':
+                logger.info(f"Adding probe head in MAIN function (not only in Trainer)")
+                hidden_size = model.config.hidden_size
+                num_probe_classes = training_args.probe_num_classes
+                model.probe_head = Linear(hidden_size, num_probe_classes)
+                model.probe_head.to(training_args.device)  # 注意迁移到 GPU
+
+                # 只冻结其他参数
+                for name, param in model.named_parameters():
+                    if name.find("probe_head")!= -1:
+                        param.requires_grad = True
+                    else:
+                        param.requires_grad = False
+                    
+            logger.info(
+                f'***3***--3- LoraConfig** task_type:{TaskType.SEQ_2_SEQ_LM},  ')
+            peft_config = LoraConfig(
+                task_type=TaskType.SEQ_2_SEQ_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
+            )
+            logger.info(f'***3***--3- LoraConfig** peft_config:{peft_config},  ')
+
+            # logger.info(f'***3***--3- isinstance(peft_config, PromptLearningConfig):{isinstance(peft_config, PromptLearningConfig)},  ')
+
+            model = get_peft_model(model, peft_config)
+
+        model.resize_token_embeddings(len(tokenizer))
+
         if 'llama' in model_args.model_name_or_path.lower():
-            tokenizer = transformers.LlamaTokenizer.from_pretrained(config.base_model_name_or_path)
+            model.generation_config.bos_token_id = 1
+            model.generation_config.eos_token_id = 2
+            model.generation_config.pad_token_id = 1
+
+        
+
+
+
+####################################原有部分，进行保存#############
+###################################################################################
+
+    if 'adapter' in model_args.model_name_or_path:  # load lora-config
+        logger.info(f'***1***-adapter  if {model_args.model_name_or_path}')
+        config = PeftConfig.from_pretrained(model_args.model_name_or_path)
+        logger.info(f'***1***-adapter  config: {config}')
+        if 'llama' in model_args.model_name_or_path.lower():
+            tokenizer = transformers.LlamaTokenizer.from_pretrained(
+                config.base_model_name_or_path)
             config.bos_token_id = 1
             config.eos_token_id = 2
             config.pad_token_id = 1
@@ -323,8 +726,10 @@ def main():
             tokenizer.eos_token_id = 2
             tokenizer.pad_token_id = 1
         else:
-            tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
+            tokenizer = AutoTokenizer.from_pretrained(
+                config.base_model_name_or_path)
     elif 'llama' in model_args.model_name_or_path.lower():
+        logger.info(f'***1***1-llama  {model_args.model_name_or_path.lower()}')
         config = AutoConfig.from_pretrained(
             model_args.model_name_or_path,
             cache_dir=model_args.cache_dir,
@@ -334,17 +739,19 @@ def main():
         config.bos_token_id = 1
         config.eos_token_id = 2
         config.pad_token_id = 1
+        logger.info(f'***1***1-llama  config: {config}')
         tokenizer = transformers.LlamaTokenizer.from_pretrained(
             model_args.model_name_or_path,
-            cache_dir = model_args.cache_dir,
-            use_fast = model_args.use_fast_tokenizer,
-            revision = model_args.model_revision,
-            use_auth_token = True if model_args.use_auth_token else None,
+            cache_dir=model_args.cache_dir,
+            use_fast=model_args.use_fast_tokenizer,
+            revision=model_args.model_revision,
+            use_auth_token=True if model_args.use_auth_token else None,
         )
         tokenizer.bos_token_id = 1
         tokenizer.eos_token_id = 2
         tokenizer.pad_token_id = 1
-    else: # load original config
+    else:  # load original config
+        logger.info(f'***1***--1-else  {model_args.model_name_or_path}')
         config = AutoConfig.from_pretrained(
             model_args.config_name if model_args.config_name else model_args.model_name_or_path,
             cache_dir=model_args.cache_dir,
@@ -359,16 +766,40 @@ def main():
             use_auth_token=True if model_args.use_auth_token else None,
         )
 
+    logger.info('*****2***Load model_class**')
     if 'llama' in model_args.model_name_or_path.lower():  # add llama
+        logger.info(f'***2***--2-llama  {model_args.model_name_or_path.lower()}')
         model_class = LlamaForCausalLM_with_lossmask
         tokenizer.padding_side = 'left'
-    else: 
+    else:
+        logger.info(f'***2***--2-else  {model_args.model_name_or_path.lower()}')
         model_class = AutoModelForSeq2SeqLM
 
-    if 'adapter' in model_args.model_name_or_path: # add lora-adapter to the original model
+    if 'adapter' in model_args.model_name_or_path:  # add lora-adapter to the original model
+        logger.info(f'***3***--3-adapter  {model_args.model_name_or_path}')
         model = model_class.from_pretrained(config.base_model_name_or_path)
+
+        
+        # if getattr(training_args, "use_probe", False):
+        if training_args.train_method.lower() == 'use_probe':
+            logger.info(f"Adding probe head in MAIN function (not only in Trainer)")
+            hidden_size = model.config.hidden_size
+            num_probe_classes = training_args.probe_num_classes
+            model.probe_head = Linear(hidden_size, num_probe_classes)
+            model.probe_head.to(training_args.device)  
+
+            # 
+            for name, param in model.named_parameters():
+                if name.find("probe_head")!= -1:
+                    param.requires_grad = True
+                else:
+                    param.requires_grad = False
+
+    
         model = PeftModel.from_pretrained(model, model_args.model_name_or_path)
     elif 'llama' in model_args.model_name_or_path.lower():
+        logger.info(
+            f'***3***--3-llama  {model_args.model_name_or_path.lower()}')
         model = model_class.from_pretrained(
             model_args.model_name_or_path,
             from_tf=bool(".ckpt" in model_args.model_name_or_path),
@@ -377,11 +808,31 @@ def main():
             revision=model_args.model_revision,
             use_auth_token=True if model_args.use_auth_token else None
         )
+
+        
+        # if getattr(training_args, "use_probe", False):
+        if training_args.train_method.lower() == 'use_probe':
+            logger.info(f"Adding probe head in MAIN function (not only in Trainer)")
+            hidden_size = model.config.hidden_size
+            num_probe_classes = training_args.probe_num_classes
+            model.probe_head = Linear(hidden_size, num_probe_classes)
+            model.probe_head.to(training_args.device)  # 注意迁移到 GPU
+
+            # 只冻结其他参数
+            for name, param in model.named_parameters():
+                if name.find("probe_head")!= -1:
+                    param.requires_grad = True
+                else:
+                    param.requires_grad = False
+
+
         peft_config = LoraConfig(
             task_type=TaskType.CAUSAL_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
         )
         model = get_peft_model(model, peft_config)
     else:
+        logger.info(f'***3***--3-else  {model_args.model_name_or_path}')
+        logger.info(f'***3***--3-else  config:{config}')
         model = model_class.from_pretrained(
             model_args.model_name_or_path,
             from_tf=bool(".ckpt" in model_args.model_name_or_path),
@@ -390,9 +841,32 @@ def main():
             revision=model_args.model_revision,
             use_auth_token=True if model_args.use_auth_token else None,
         )
+
+        
+        # if getattr(training_args, "use_probe", False):
+        if training_args.train_method.lower() == 'use_probe':
+            logger.info(f"Adding probe head in MAIN function (not only in Trainer)")
+            hidden_size = model.config.hidden_size
+            num_probe_classes = training_args.probe_num_classes
+            model.probe_head = Linear(hidden_size, num_probe_classes)
+            model.probe_head.to(training_args.device)  
+
+           
+            for name, param in model.named_parameters():
+                if name.find("probe_head")!= -1:
+                    param.requires_grad = True
+                else:
+                    param.requires_grad = False
+                
+        logger.info(
+            f'***3***--3- LoraConfig** task_type:{TaskType.SEQ_2_SEQ_LM},  ')
         peft_config = LoraConfig(
             task_type=TaskType.SEQ_2_SEQ_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
         )
+        logger.info(f'***3***--3- LoraConfig** peft_config:{peft_config},  ')
+
+        # logger.info(f'***3***--3- isinstance(peft_config, PromptLearningConfig):{isinstance(peft_config, PromptLearningConfig)},  ')
+
         model = get_peft_model(model, peft_config)
 
     model.resize_token_embeddings(len(tokenizer))
@@ -401,20 +875,97 @@ def main():
         model.generation_config.bos_token_id = 1
         model.generation_config.eos_token_id = 2
         model.generation_config.pad_token_id = 1
-        
+
+
+    
+
+    
+
     # fix lora_A/B (bases of previous LoRA parameters, loaded in "load_adapter"[peft_momdel.py])
     # fine-tune loranew_A/B (initialized in "update_layer"[lora.py])
     # optional: lora_A/B is trainable but should not move too far from lorapre_A/B
     # (constrained in "training_step"[uie_trainer_lora.py])
-    for name, param in model.named_parameters():
-        if name.find("loranew_") != -1:
-            param.requires_grad = True
-        elif name.find("lora_") != -1:
-            param.requires_grad = False
-        # this module should always be frozen because we change the vocabulary
-        elif name.find("shared") != -1:
-            param.requires_grad = False
+    if training_args.do_train:
+        if training_args.train_method.lower() == 'lora':
+            if training_args.lora_strategy.lower() == 'olora':
+                logger.debug(f'---set paramter:olora---')
+                for name, param in model.named_parameters():
+                    if name.find("loranew_") != -1:
+                        param.requires_grad = True
+                    elif name.find("lora_") != -1:
+                        param.requires_grad = False
+                    # this module should always be frozen because we change the vocabulary
+                    elif name.find("shared") != -1:
+                        param.requires_grad = False
+                    
+                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+            elif training_args.lora_strategy.lower() == 'nlora':
+                logger.debug(f'---set paramter:nlora---')
+                for name, param in model.named_parameters():
+                    if name.find("loranew_") != -1:
+                        param.requires_grad = True
+                    elif name.find("lora_") != -1:
+                        param.requires_grad = False
+                    # this module should always be frozen because we change the vocabulary
+                    elif name.find("shared") != -1:
+                        param.requires_grad = False
+                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+            elif training_args.lora_strategy.lower() == 'inclora':
+                logger.debug(f'---set paramter:inclora---')
+                for name, param in model.named_parameters():
+                    if name.find("loranew_") != -1:
+                        param.requires_grad = True
+                    elif name.find("lora_") != -1:
+                        param.requires_grad = False
+                    # this module should always be frozen because we change the vocabulary
+                    elif name.find("shared") != -1:
+                        param.requires_grad = False
+                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+            elif training_args.lora_strategy.lower() == 'seqlora':
+                logger.debug(f'---set paramter:seqlora---')
+                for name, param in model.named_parameters():
+                    if name.find("loranew_") != -1:
+                        param.requires_grad = False
+                    elif name.find("lora_") != -1:
+                        param.requires_grad = True
+                    # this module should always be frozen because we change the vocabulary
+                    elif name.find("shared") != -1:
+                        param.requires_grad = False
+                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
 
+        # 添加线性探针之后的表现
+        elif training_args.train_method.lower() == 'use_probe':
+            logger.debug(f'---set paramter:use_probe---')
+            for name, param in model.named_parameters():
+                if name.find("probe_head")!= -1:
+                    param.requires_grad = True
+                elif name.find("loranew_") != -1:
+                    param.requires_grad = False
+                elif name.find("lora_") != -1:
+                    param.requires_grad = False
+                # this module should always be frozen because we change the vocabulary
+                elif name.find("shared") != -1:
+                    param.requires_grad = False
+
+                logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+
+    
+
+        elif training_args.train_method.lower() == 'finetune':
+            logger.debug(f'---set paramter:finetune---')
+            for name, param in model.named_parameters():
+                param.requires_grad = False
+                if name.find("loranew_") != -1:
+                    param.requires_grad = False
+                elif name.find("lora_") != -1:
+                    param.requires_grad = False
+                # this module should always be 
+                else:
+                    param.requires_grad = True
+                logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+
+    
+    
     if (
             hasattr(model.config, "max_position_embeddings")
             and model.config.max_position_embeddings < data_args.max_source_length
@@ -438,25 +989,50 @@ def main():
         if "train" not in raw_datasets:
             raise ValueError("--do_train requires a train dataset")
         train_dataset = raw_datasets["train"]
+
+        logger.info(f"Loaded train dataset with {len(train_dataset)} samples from: {data_args.data_dir}")
+
         if data_args.max_train_samples is not None:
-            train_dataset = train_dataset.select(range(data_args.max_train_samples))
+            train_dataset = train_dataset.select(
+                range(data_args.max_train_samples))
+            
+            logger.info(f"Train dataset truncated to {len(train_dataset)} samples (max_train_samples={data_args.max_train_samples})")
+        
 
     if training_args.do_eval:
         if "validation" not in raw_datasets:
             raise ValueError("--do_eval requires a validation dataset")
         eval_dataset = raw_datasets["validation"]
         if data_args.max_eval_samples is not None:
-            eval_dataset = eval_dataset.select(range(data_args.max_eval_samples))
+            eval_dataset = eval_dataset.select(
+                range(data_args.max_eval_samples))
 
-    if training_args.do_predict:
+    if training_args.do_predict :
         if "test" not in raw_datasets:
             raise ValueError("--do_predict requires a test dataset")
         predict_dataset = raw_datasets["test"]
+        logger.info(f"Loaded test dataset with {len(predict_dataset)} samples from: {data_args.data_dir}")
         if data_args.max_predict_samples is not None:
-            predict_dataset = predict_dataset.select(range(data_args.max_predict_samples))
+            predict_dataset = predict_dataset.select(
+                range(data_args.max_predict_samples))
+            logger.info(f"Loaded {data_args.max_predict_samples} rather than {len(predict_dataset)} samples from the test dataset")
+
+    if training_args.do_flatminal:
+        if "test" not in raw_datasets:
+            raise ValueError("--do_predict requires a test dataset")
+        flatminal_dataset = raw_datasets["test"]
+        logger.info(f"Loaded test dataset with {len(flatminal_dataset)} samples from: {data_args.data_dir}")
+        if data_args.max_predict_samples is not None:
+            flatminal_dataset = flatminal_dataset.select(
+                range(data_args.max_predict_samples))
+            logger.info(f"Loaded {data_args.max_predict_samples} rather than {len(flatminal_dataset)} samples from the test dataset")
+
+            
+    
 
     # Data collator
-    label_pad_token_id = -100 if data_args.ignore_pad_token_for_loss else tokenizer.pad_token_id
+    label_pad_token_id = - \
+        100 if data_args.ignore_pad_token_for_loss else tokenizer.pad_token_id
     data_collator = DataCollatorForUIE(
         tokenizer,
         model=model,
@@ -464,12 +1040,32 @@ def main():
         max_source_length=data_args.max_source_length,
         max_target_length=data_args.max_target_length,
         label_pad_token_id=label_pad_token_id,
-        pad_to_multiple_of=8 if training_args.fp16 else None,
+        # pad_to_multiple_of=8 if training_args.fp16 else None,
+        pad_to_multiple_of=None,
         add_task_name=data_args.add_task_name,
         add_dataset_name=data_args.add_dataset_name,
         num_examples=data_args.num_examples,
-        input_record_file=data_args.input_record_file
+        input_record_file=data_args.input_record_file,
+        use_probe=getattr(training_args, "use_probe", False), #   # 兼容旧版 training_args
     )
+
+    # Log a few random samples from the training set
+    if training_args.do_predict:
+        sample = predict_dataset[0]
+        batch = data_collator([sample])
+        logger.info(f"Sample batch keys: {batch.keys()}")
+        logger.info(
+            f"Sample input_ids decoded: {tokenizer.decode(batch['input_ids'][0])}")
+
+    
+
+    if training_args.do_train:
+        sample = train_dataset[0]
+        batch = data_collator([sample])
+        logger.info(f"Sample batch keys: {batch.keys()}")
+        logger.info(
+            f"Sample input_ids decoded: {tokenizer.decode(batch['input_ids'][0])}")
+
     # we don't want to remove unused columns because we will prepare each batch during training,
     # and some of the information will also be used in evaluation.
     training_args.remove_unused_columns = False
@@ -478,7 +1074,8 @@ def main():
     def compute_rouge_metrics(dataset, preds, save_prefix=None):
         decoded_preds = skip_instructions(model, preds, tokenizer)
         references = [e["Instance"]["label"] for e in dataset]
-        result = compute_metrics(predictions=decoded_preds, references=references)
+        result = compute_metrics(
+            predictions=decoded_preds, references=references)
         result_per_task = compute_grouped_metrics(predictions=decoded_preds, references=references,
                                                   groups=dataset["Task"])
         result.update(result_per_task)
@@ -486,7 +1083,8 @@ def main():
         result_per_category = compute_grouped_metrics(predictions=decoded_preds, references=references,
                                                       groups=categories)
         result.update(result_per_category)
-        prediction_lens = [np.count_nonzero(pred != tokenizer.pad_token_id) for pred in preds]
+        prediction_lens = [np.count_nonzero(
+            pred != tokenizer.pad_token_id) for pred in preds]
         result["gen_len"] = np.mean(prediction_lens)
         result = {k: round(v, 4) for k, v in result.items()}
         if save_prefix is not None:
@@ -499,11 +1097,101 @@ def main():
                         "Prediction": pred
                     }) + "\n")
         return result
+    
+    def compute_probe_metrics(dataset, preds, save_prefix=None):
+        """
+        计算 Linear Probe 的分类任务指标，包括 Accuracy、Macro-F1、Micro-F1。
+        同时按 Task 和 Dataset 进行细粒度统计。
+        
+        参数：
+            dataset: hf Dataset对象，包含每条样本的 Task, Dataset, Instance(label)
+            preds: 预测 logits，(N, num_classes) numpy array
+            save_prefix: 保存预测文件前缀（可选）
+        返回：
+            metrics: 包含总体指标和分组指标的字典
+        """
+        # --- 预测类别 ---
+        if isinstance(preds, torch.Tensor):
+            preds = preds.cpu().numpy()
 
-    print(f"-----Gradient checkpointing: {training_args.gradient_checkpointing} -----")
+        pred_labels = np.argmax(preds, axis=-1)
+
+        # --- 真实标签 ---
+        references = []
+        for example in dataset:
+            references.append(example["Instance"]["label"])
+
+        # 将 ground truth 转为索引
+        # 注意：这里需要传入 label2id 字典，如果你的 label 本身就是int就不用转
+        if isinstance(references[0], str):
+            # 默认假设label是str，需要建立label2id
+            unique_labels = sorted(list(set(references)))
+            label2id = {label: idx for idx, label in enumerate(unique_labels)}
+            references = [label2id[label] for label in references]
+
+        references = np.array(references)
+
+        # --- 计算总体指标 ---
+        acc = accuracy_score(references, pred_labels)
+        macro_f1 = f1_score(references, pred_labels, average='macro')
+        micro_f1 = f1_score(references, pred_labels, average='micro')
+
+        result = {
+            "accuracy": acc,
+            "macro_f1": macro_f1,
+            "micro_f1": micro_f1
+        }
+
+        # --- 按 Task 分组 ---
+        groups = [example["Task"] for example in dataset]
+        result_per_task = {}
+        for task in set(groups):
+            task_mask = [g == task for g in groups]
+            task_preds = pred_labels[task_mask]
+            task_refs = references[task_mask]
+            result_per_task[f"task_{task}_acc"] = accuracy_score(task_refs, task_preds)
+            result_per_task[f"task_{task}_macro_f1"] = f1_score(task_refs, task_preds, average='macro')
+
+        result.update(result_per_task)
+
+        # --- 按 Dataset 分组 ---
+        categories = [example["Dataset"] for example in dataset]
+        result_per_category = {}
+        for cat in set(categories):
+            cat_mask = [g == cat for g in categories]
+            cat_preds = pred_labels[cat_mask]
+            cat_refs = references[cat_mask]
+            result_per_category[f"dataset_{cat}_acc"] = accuracy_score(cat_refs, cat_preds)
+            result_per_category[f"dataset_{cat}_macro_f1"] = f1_score(cat_refs, cat_preds, average='macro')
+
+        result.update(result_per_category)
+
+        # --- 可选：保存每条预测 ---
+        if save_prefix is not None:
+            output_dir = os.path.join(training_args.output_dir, f"{save_prefix}_probe_predictions.jsonl")
+            with open(output_dir, "w", encoding="utf-8") as fout:
+                for example, pred_idx in zip(dataset, pred_labels):
+                    fout.write(json.dumps({
+                        "Task": example["Task"],
+                        "Dataset": example["Dataset"],
+                        "Instance": example["Instance"],
+                        "Prediction": int(pred_idx)
+                    }) + "\n")
+
+        return {k: round(v, 4) for k, v in result.items()}
+
+    print(
+        f"-----Gradient checkpointing: {training_args.gradient_checkpointing} -----")
     if training_args.gradient_checkpointing:
         model.gradient_checkpointing_enable()
 
+
+    if getattr(training_args, "use_probe", False):
+        compute_metrics_fn = compute_probe_metrics
+    else:
+        compute_metrics_fn = compute_rouge_metrics
+
+    
     trainer = UIETrainer(
         model=model,
         args=training_args,
@@ -511,28 +1199,81 @@ def main():
         eval_dataset=eval_dataset if training_args.do_eval else None,
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=compute_rouge_metrics,
-        callbacks=[DenserEvalCallback] if training_args.denser_evaluation else None
+        compute_metrics=compute_metrics_fn,
+        callbacks=[
+            DenserEvalCallback] if training_args.denser_evaluation else None
     )
 
     all_metrics = {"run_name": training_args.run_name}
 
     # Training
+
     if training_args.do_train:
+
+        # 保存未经训练的初始模型
+        # if training_args.train_method.lower() == 'lora':
+        #     peft_model_id = training_args.output_dir + "/adapter_inital_withoutTraining"
+        #     trainer.model.save_pretrained(peft_model_id)
+        #     tokenizer.save_pretrained(peft_model_id)
+
+
+
+
+
+    
         checkpoint = None
         if training_args.resume_from_checkpoint is not None:
             checkpoint = training_args.resume_from_checkpoint
         elif last_checkpoint is not None:
             checkpoint = last_checkpoint
+
+        logger.debug("Start TRAINGININININININ")
+
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
 
-        peft_model_id = training_args.output_dir + "/adapter"
-        trainer.model.save_pretrained(peft_model_id)  
-        tokenizer.save_pretrained(peft_model_id)
+        # 默认只保存 adapter
+        if training_args.train_method.lower() == 'seqlora':
+            peft_model_id = training_args.output_dir + "/Seq_adapter"
+            trainer.model.save_pretrained(peft_model_id)
+            tokenizer.save_pretrained(peft_model_id)
+        elif training_args.train_method.lower() == 'lora':
+            peft_model_id = training_args.output_dir + "/adapter"
+            trainer.model.save_pretrained(peft_model_id)
+            tokenizer.save_pretrained(peft_model_id)
+        
+
+        # 修改保存新的模型 
+        # 保存base模型权重
+        if training_args.train_method.lower() == 'finetune':
+            base_model_dir=training_args.output_dir + "/finetune_baseModel"
+            trainer.model.base_model.save_pretrained(base_model_dir)
+            tokenizer.save_pretrained(base_model_dir)
+
+
+        # === 添加：保存 probe_head 权重 ===
+        # if getattr(training_args, "use_probe", False):
+        if training_args.train_method.lower() == 'use_probe':
+            probe_save_dir = os.path.join(training_args.output_dir, "probe_head")
+            os.makedirs(probe_save_dir, exist_ok=True)
+
+            torch.save({
+                "state_dict": {
+                    "weight": trainer.model.probe_head.weight.detach().cpu(),
+                    "bias": trainer.model.probe_head.bias.detach().cpu()
+                },
+                "config": {
+                    "in_features": trainer.model.probe_head.in_features,
+                    "out_features": trainer.model.probe_head.out_features
+                }
+            }, os.path.join(probe_save_dir, "probe_head.bin"))
+
+            logger.info(f"Saved probe head to {probe_save_dir}/probe_head.bin")
+
 
         metrics = train_result.metrics
         max_train_samples = (
-            data_args.max_train_samples if data_args.max_train_samples is not None else len(train_dataset)
+            data_args.max_train_samples if data_args.max_train_samples is not None else len(
+                train_dataset)
         )
         metrics["train_samples"] = min(max_train_samples, len(train_dataset))
 
@@ -541,6 +1282,19 @@ def main():
         trainer.save_state()
         logger.info(f"Metrics {metrics}")
         all_metrics.update(metrics)
+
+        # 清空 GPU 缓存，释放显存
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            # logger.info("GPU 缓存已清空")
+
+        del train_dataset
+        if training_args.do_eval:
+            del eval_dataset
+        gc.collect()
+        # logger.info("删除训练数据")
+
+
 
     # Evaluation
     results = {}
@@ -554,12 +1308,20 @@ def main():
     num_beams = data_args.num_beams if data_args.num_beams is not None else training_args.generation_num_beams
     repetition_penalty = data_args.repetition_penalty
 
-    if training_args.do_predict:
+    if training_args.do_predict : # 
         logger.info("*** Prediction ***")
-        logger.info("*** Loading CheckPoint ***")
+        # logger.info("*** Loading CheckPoint ***")
 
+        if (not training_args.do_train):
+            # 即使不进行训练，输出结果也是training_args.output_dir
+            trainer.args.output_dir = training_args.output_dir
+
+        # predict_dataset = full_test_datasets["test"]
         if data_args.max_predict_samples is not None:
-            predict_dataset = predict_dataset.select(range(data_args.max_predict_samples))
+            predict_dataset = predict_dataset.select(
+                range(data_args.max_predict_samples))
+
+        print(f"-------[DEBUG] Predict dataset size: {len(predict_dataset)}")
 
         predict_results = trainer.predict(
             predict_dataset,
@@ -569,18 +1331,235 @@ def main():
             repetition_penalty=repetition_penalty,
             pad_token_id=tokenizer.pad_token_id
         )
+
         metrics = predict_results.metrics
         max_predict_samples = (
-            data_args.max_predict_samples if data_args.max_predict_samples is not None else len(predict_dataset)
+            data_args.max_predict_samples if data_args.max_predict_samples is not None else len(
+                predict_dataset)
         )
-        metrics["predict_samples"] = min(max_predict_samples, len(predict_dataset))
+        metrics["predict_samples"] = min(
+            max_predict_samples, len(predict_dataset))
 
         trainer.log(metrics)
         trainer.log_metrics("predict", metrics)
         trainer.save_metrics("predict", metrics)
         all_metrics.update(metrics)
 
-    return results
+        # 清空 GPU 缓存，释放显存
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            # logger.info("GPU 缓存已清空")
+
+    # if training_args.do_flatminal:
+    if False:
+        # pass
+        # 
+        analyse_result_pth = training_args.output_dir
+        logger.debug(f"*** do_flatminal  save result in {analyse_result_pth} ***")
+
+        # Debug 查看模型的参数到底是啥样子的，然后后面设置对哪些参数进行扰动,默认是对全模型进行扰动
+        # 不需要进行反向传播， 冻结所有参数
+
+        logger.debug(f'***5***--5-1 begin analyse_flat_minima  :{data_args.max_flat_samples} ')
+        # predict_dataset = full_test_datasets["test"]
+        if data_args.max_flat_samples is not None:
+            logger.info(f"Loaded test dataset with {len(flatminal_dataset)} samples from: {data_args.data_dir}")
+            flatminal_dataset = flatminal_dataset.select(
+                range(data_args.max_flat_samples))
+            logger.info(f"Loaded {data_args.max_flat_samples} rather than {len(flatminal_dataset)} samples from the test dataset")
+
+        print(f"-------[DEBUG] Predict dataset size: {len(flatminal_dataset)}")
+        
+
+
+        # **1. 直接使用 trainer.model（已包含 LoRA 适配器）**
+        # **3. 计算损失景观**
+        logger.debug( f'***5***--5-2 compute_loss_landscape output_dir={analyse_result_pth}  ')
+
+
+        # 计算Hessian 矩阵，需要计算梯度，所以模型应该能够进行反向传播
+        # 我们这里只关注，加载的模型，其中由于是调用了PEFT模型会自动添加lora_new模块 新添加的lora_new模块，我们应当忽略掉
+        # logger.debug("check before eval_flatminal")
+
+
+        #------------------- # 评估全部信息,使用Hessien 矩阵和Expected Sharpness Measure
+        # eval-full
+        for name, param in model.named_parameters():
+            # if training_args.flat_part == "trained_whole":
+            param.requires_grad = True
+            logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+                
+        
+        # 计算自定义指标
+        # logger.debug("expected_sharpness")
+        # trainer.compute_task_aware_expected_sharpness(flatminal_dataset, analyse_result_pth,"eval-full")
+
+        # trainer.compute_hessian_max_eigenvalue(flatminal_dataset, analyse_result_pth,"eval-full")
+        trainer.compute_loss_landscape_easy_1d(flatminal_dataset, analyse_result_pth, "lossland_all",(-1, 1),100)
+
+
+
+            
+
+        # 清空 GPU 缓存，释放显存
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            logger.info("GPU 缓存已清空")
+    # #------------------- # 评估局部信息
+
+        for name, param in model.named_parameters():
+            param.requires_grad = False
+            if (training_args.lora_strategy != "seqlora") and("lora_" in name) and  ("loranew_"  not in name) : # 只有之前训练的lora部分能够计算梯度
+                param.requires_grad = True
+            elif (training_args.lora_strategy == "seqlora") and ("lora_" in name) :
+                param.requires_grad = True
+            logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+
+        trainer.compute_loss_landscape_easy_1d(flatminal_dataset, analyse_result_pth, "lossland_lora",(-1, 1),100)
+
+
+        # logger.debug("hessian_max_eigenvalue")
+        # trainer.compute_hessian_max_eigenvalue(flatminal_dataset, analyse_result_pth, "trained_lora")
+
+        # # 评估局部信息
+        # trainer.compute_task_aware_expected_sharpness(flatminal_dataset, analyse_result_pth,"trained_lora")
+
+
+        # 清空 GPU 缓存，释放显存
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            logger.info("GPU 缓存已清空")
+        
+
+#     if training_args.do_flatminal:
+#     # if False:
+#         # pass
+#         # 
+#         analyse_result_pth = training_args.output_dir
+#         logger.debug(f"*** do_flatminal  save result in {analyse_result_pth} ***")
+
+#         # Debug 查看模型的参数到底是啥样子的，然后后面设置对哪些参数进行扰动,默认是对全模型进行扰动
+#         # 不需要进行反向传播， 冻结所有参数
+
+#         logger.debug(f'***5***--5-1 begin analyse_flat_minima  :{data_args.max_flat_samples} ')
+#         # predict_dataset = full_test_datasets["test"]
+#         if data_args.max_flat_samples is not None:
+#             logger.info(f"Loaded test dataset with {len(flatminal_dataset)} samples from: {data_args.data_dir}")
+#             flatminal_dataset = flatminal_dataset.select(
+#                 range(data_args.max_flat_samples))
+#             logger.info(f"Loaded {data_args.max_flat_samples} rather than {len(flatminal_dataset)} samples from the test dataset")
+
+#         print(f"-------[DEBUG] Predict dataset size: {len(flatminal_dataset)}")
+        
+
+
+#         # **1. 直接使用 trainer.model（已包含 LoRA 适配器）**
+#         # **3. 计算损失景观**
+#         logger.debug( f'***5***--5-2 compute_loss_landscape output_dir={analyse_result_pth}  ')
+#         # trainer.compute_loss_landscape(flatminal_dataset, analyse_result_pth,"trainedLoRA")
+#         # trainer.compute_loss_landscape(flatminal_dataset, analyse_result_pth,"originModel")
+
+
+#         # 计算Hessian 矩阵，需要计算梯度，所以模型应该能够进行反向传播
+#         # 我们这里只关注，加载的模型，其中由于是调用了PEFT模型会自动添加lora_new模块 新添加的lora_new模块，我们应当忽略掉
+#         logger.debug("check before eval_flatminal")
+
+        
+
+#         # 首先判断 是那种方法训练出来的结果 主要有两种 seqLoRA 和  IncLoRA,从加载的路径中判断 
+#         # 其实不影响 
+#         # 其次判断，要评估的是哪一部分，
+#         # 主要有三种 训练的lora 训练的lora加初始模型 finetune后的模型，
+#         # 根据参数判断 trained_lora trained_whole trained_fientune
+
+
+
+#         #设置为lora部分能够计算梯度，用来评估lora部分的Hessien矩阵
+#         # --------------------
+#         # for name, param in model.named_parameters():
+#         #     if training_args.flat_part == "trained_whole":
+#         #     # # 如果是整个已经训练的模型： 原始模型加训练后保存的lora部分 和第三种情况  trained_fientune
+#         #         param.requires_grad = True
+#         #         if  ("loranew_" in name) : # 除了新添加的new_lora 都可以计算梯度
+#         #             param.requires_grad = False
+#         #     # 如果是只有已经训练的模型不包括原始模型： 训练后保存的lora部分
+#         #     elif training_args.flat_part == "trained_lora" :
+#         #         param.requires_grad = False
+#         #         if ("lora" in name) and  ("loranew_"  not in name): # 只有之前训练的lora部分能够计算梯度
+#         #             param.requires_grad = True
+#         #     elif training_args.flat_part == "origin":
+#         #         param.requires_grad = False
+#         #         if ("lora_" not in name) and  ("loranew_"  not in name): # 只有最原始的模型，不添加任何lora部分
+#         #             param.requires_grad = True
+
+#         # --------------------
+            
+            
+#             # logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+
+
+#         # sharpness_value=trainer.compute_fisher_sharpness_measure(flatminal_dataset, analyse_result_pth)
+#         # trainer.compute_hessian_version1(flatminal_dataset, analyse_result_pth)
+
+# #------------------- # 评估全部信息
+#         # 计算自定义指标
+#         # logger.debug("expected_sharpness")
+#         # trainer.compute_task_aware_expected_sharpness(flatminal_dataset, analyse_result_pth,"eval-full")
+
+
+#         # # # 保留可视化数据  全局信息
+#         # logger.debug("loss_landscape")
+#         # trainer.compute_loss_landscape_easy(flatminal_dataset, analyse_result_pth, training_args.flat_part)
+        # trainer.compute_loss_landscape_easy_1d(flatminal_dataset, analyse_result_pth, "lossland_all",(-0.4, 0.4),80)
+
+        
+#         # # # 下面的定义与梯度有关 只计算能够更新梯度的部分
+#         # # # 计算fisher信息矩阵
+#         # logger.debug("fisher_sharpness")
+#         # trainer.compute_fisher_sharpness_measure(flatminal_dataset, analyse_result_pth,training_args.flat_part)
+        
+# # 计算Hessien 
+#         # 两个的区别可能是用来评估的模型的数量不一样，这里函数自己就写好了
+#         # 注意Hessien 矩阵只能用来评估lora部分
+
+
+# #------------------- # 评估局部信息
+
+#         for name, param in model.named_parameters():
+#             # if training_args.flat_part == "trained_whole":
+#             # # # 如果是整个已经训练的模型： 原始模型加训练后保存的lora部分 和第三种情况  trained_fientune
+#             #     param.requires_grad = True
+#             #     if  ("loranew_" in name) : # 除了新添加的new_lora 都可以计算梯度
+#             #         param.requires_grad = False
+#             # 如果是只有已经训练的模型不包括原始模型： 训练后保存的lora部分
+#             if training_args.flat_part == "trained_lora" :
+#                 param.requires_grad = False
+#                 if (training_args.lora_strategy != "seqlora") and("lora_" in name) and  ("loranew_"  not in name) : # 只有之前训练的lora部分能够计算梯度
+#                     param.requires_grad = True
+#                 elif (training_args.lora_strategy == "seqlora") and ("lora_" in name) :
+#                     param.requires_grad = True
+#                 logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+
+# #         # logger.debug("hessian_max_eigenvalue")
+# #         # trainer.compute_hessian_max_eigenvalue(flatminal_dataset, analyse_result_pth, training_args.flat_part)
+
+# #         # 评估局部信息
+# #         trainer.compute_task_aware_expected_sharpness(flatminal_dataset, analyse_result_pth,"trained_lora")
+
+#         trainer.compute_loss_landscape_easy_1d(flatminal_dataset, analyse_result_pth, "lossland_lora",(-0.4, 0.4),80)
+
+        
+        
+
+
+#         # 清空 GPU 缓存，释放显存
+#         if torch.cuda.is_available():
+#             torch.cuda.empty_cache()
+#             logger.info("GPU 缓存已清空")
+
+        
+
+    # return results
 
 
 if __name__ == "__main__":

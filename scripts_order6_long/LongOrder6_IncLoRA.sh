@@ -1,0 +1,593 @@
+#!/bin/bash
+set -x
+
+export CUDA_DEVICE_ORDER="PCI_BUS_ID"
+export TRANSFORMERS_CACHE=/disk0/users/liying/.cache/huggingface
+
+port=$(shuf -i25000-30000 -n1)
+gpu_ids=0,1,2,3,4,5,6,7  # 直接指定使用0和1号GPU
+
+# bash scripts/order_1.sh> logs_and_outputs/order_1/logs/train_and_infer.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/Sharing/Models/google-t5/t5-large \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/yelp \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/1-yelp \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+
+sleep 3
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/1-yelp/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/amazon \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/2-amazon \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/2-amazon/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/MNLI \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/3-MNLI \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round3 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/3-MNLI/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/CB \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/4-CB \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/4-CB/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/COPA \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/5-COPA \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+#--------------------------5 个任务---------------------------------
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/5-COPA/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/QQP \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/6-QQP \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/6-QQP/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/RTE \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/7-RTE \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/7-RTE/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/IMDB \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/8-IMDB \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/8-IMDB/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/SST-2 \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/9-SST-2 \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/9-SST-2/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/dbpedia \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/10-dbpedia \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+#--------------------------10 个任务---------------------------------
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/10-dbpedia/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/agnews \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/11-agnews \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/11-agnews/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/yahoo \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/12-yahoo \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/12-yahoo/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/MultiRC \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/13-MultiRC \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/13-MultiRC/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/BoolQA \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/14-BoolQA \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy Inclora \
+   --lora_dim 8 \
+   --optimizer_type adamw_hf \
+   --learning_rate 1e-03 \
+   --do_predict \
+   --predict_with_generate \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/14-BoolQA/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/WiC \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order6_train/Order6_IncLoRA_GPU4_T5large_torch_AdamwHF_E1_Lora8_LR-e3/15-WiC \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order6_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 3

@@ -2,9 +2,10 @@ import logging
 
 import torch
 from transformers.data.data_collator import *
-
+import os
 
 logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.DEBUG)
 
 SUPPORTED_DECODER_MODELS = ['codegen', 'bloomz', 'gpt-neox', 'llama']
 SUPPORTED_SEQ2SEQ_MODELS = ['t5', 'flan-t5']
@@ -34,6 +35,59 @@ class DataCollatorForUIE:
     text_only: bool = False
     num_examples: int = 0
     input_record_file: str = None
+    use_probe: bool = False
+
+    def __init__(
+        self,
+        tokenizer: PreTrainedTokenizerBase,
+        model: Optional[Any] = None,
+        padding: Union[bool, str, PaddingStrategy] = True,
+        max_source_length: Optional[int] = None,
+        max_target_length: Optional[int] = None,
+        pad_to_multiple_of: Optional[int] = None,
+        label_pad_token_id: int = -100,
+        return_tensors: str = "pt",
+        add_task_name: bool = False,
+        add_dataset_name: bool = False,
+        common_dataset_name: Optional[str] = None,
+        text_only: bool = False,
+        num_examples: int = 0,
+        input_record_file: Optional[str] = None,
+        use_probe: bool = False
+    ):
+        self.tokenizer = tokenizer
+        self.model = model
+        self.padding = padding
+        self.max_source_length = max_source_length
+        self.max_target_length = max_target_length
+        self.pad_to_multiple_of = pad_to_multiple_of
+        self.label_pad_token_id = label_pad_token_id
+        self.return_tensors = return_tensors
+        self.add_task_name = add_task_name
+        self.add_dataset_name = add_dataset_name
+        self.common_dataset_name = common_dataset_name
+        self.text_only = text_only
+        self.num_examples = num_examples
+        self.input_record_file = input_record_file
+        self.use_probe = use_probe
+
+
+    # def __post_init__(self):
+    #     logger.info("Initialized DataCollatorForUIE with the following parameters:")
+    #     logger.info(f"  tokenizer: {self.tokenizer.__class__.__name__}")
+    #     logger.info(f"  model: {self.model.__class__.__name__ if self.model else 'None'}")
+    #     logger.info(f"  padding: {self.padding}")
+    #     logger.info(f"  max_source_length: {self.max_source_length}")
+    #     logger.info(f"  max_target_length: {self.max_target_length}")
+    #     logger.info(f"  pad_to_multiple_of: {self.pad_to_multiple_of}")
+    #     logger.info(f"  label_pad_token_id: {self.label_pad_token_id}")
+    #     logger.info(f"  return_tensors: {self.return_tensors}")
+    #     logger.info(f"  add_task_name: {self.add_task_name}")
+    #     logger.info(f"  add_dataset_name: {self.add_dataset_name}")
+    #     logger.info(f"  common_dataset_name: {self.common_dataset_name}")
+    #     logger.info(f"  text_only: {self.text_only}")
+    #     logger.info(f"  num_examples: {self.num_examples}")
+    #     logger.info(f"  input_record_file: {self.input_record_file}")
 
     def __call__(self, batch, return_tensors=None):
         if return_tensors is None:
@@ -41,7 +95,21 @@ class DataCollatorForUIE:
 
         model_name = self.model.config._name_or_path
         # print(model_name)
-        if check_model(model_name, SUPPORTED_DECODER_MODELS):
+        # logger.info("Model name: {}".format(model_name))
+        if "/" in model_name or "\\" in model_name or "finetune" in model_name:
+            # 优先用 model_type 字段（如果有）
+            model_type = getattr(self.model.config, "model_type", None)
+            if model_type is not None:
+                model_name = model_type
+            else:
+                # 否则用 basename 兜底
+                model_name = os.path.basename(model_name)
+
+
+
+
+        # 根据使用的模型不同进行判断
+        if check_model(model_name, SUPPORTED_DECODER_MODELS): 
             model_inputs = self.decoder_call(batch, return_tensors)
         elif check_model(model_name, SUPPORTED_SEQ2SEQ_MODELS):
             model_inputs = self.seq2seq_call(batch, return_tensors)
@@ -49,6 +117,21 @@ class DataCollatorForUIE:
             raise ValueError('Unsupport model {}!'.format(model_name))
 
         return model_inputs
+
+    def _tokenize_labels(self, labels, return_tensors):
+        label_kwargs = dict(
+            max_length=self.max_target_length,
+            padding=self.padding,
+            return_tensors=return_tensors,
+            truncation=True,
+            pad_to_multiple_of=self.pad_to_multiple_of,
+        )
+
+        try:
+            return self.tokenizer(text_target=labels, **label_kwargs)
+        except TypeError:
+            with self.tokenizer.as_target_tokenizer():
+                return self.tokenizer(labels, **label_kwargs)
 
     def get_instruction(self, instance):
         # "instructions \n options \n {0} \n Answer: "
@@ -108,18 +191,17 @@ class DataCollatorForUIE:
                 truncation=True,
                 pad_to_multiple_of=self.pad_to_multiple_of
             )
-            with self.tokenizer.as_target_tokenizer():
-                labels = self.tokenizer(
-                    labels,
-                    max_length=self.max_target_length,
-                    padding=self.padding,
-                    return_tensors=return_tensors,
-                    truncation=True,
-                    pad_to_multiple_of=self.pad_to_multiple_of
-                )
+
+            labels = self._tokenize_labels(labels, return_tensors)
             label_mask = labels["attention_mask"].bool()
             model_inputs["labels"] = labels["input_ids"].masked_fill(~label_mask, self.label_pad_token_id)
 
+            # --- ✨新增 --- 把 class_labels 加入 batch
+            if self.use_probe:
+                model_inputs["class_labels"] = torch.tensor(
+                [instance["class_label"] for instance in batch], dtype=torch.long
+            )
+                
             # prepare decoder_input_ids
             if self.model is not None:
                 decoder_input_ids = self.model.prepare_decoder_input_ids_from_labels(labels=model_inputs["labels"])
@@ -201,6 +283,13 @@ class DataCollatorForUIE:
             for k, label_len in enumerate(label_lens):
                 loss_mask[k, : max_len - label_len - 1] = 0
             model_inputs['loss_mask'] = loss_mask.masked_fill(~label_mask, 0)
+
+
+            # --- ✨新增 --- 把 class_labels 加入 batch
+            if self.use_probe:
+                model_inputs["class_labels"] = torch.tensor(
+                [instance["class_label"] for instance in batch], dtype=torch.long
+            )
 
             self._save_samples(model_inputs, sources, labels)
 

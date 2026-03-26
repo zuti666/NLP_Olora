@@ -1,0 +1,607 @@
+#!/bin/bash
+set -x
+
+export CUDA_DEVICE_ORDER="PCI_BUS_ID"
+export TRANSFORMERS_CACHE=/disk0/users/liying/.cache/huggingface
+
+port=$(shuf -i25000-30000 -n1)
+gpu_ids=0,1,2,3,4,5,6,7  # 直接指定使用0和1号GPU
+
+# bash scripts/order_1.sh> logs_and_outputs/order_1/logs/train_and_infer.log 2>&1 &
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/Sharing/Models/google-t5/t5-large \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/MNLI \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/1-MNLI \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+
+sleep 10
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/1-MNLI/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/CB \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/2-CB \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/2-CB/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/WiC \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/3-WiC \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round6 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/3-WiC/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/COPA \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/4-COPA \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/4-COPA/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/QQP \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/5-QQP \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+#--------------------------5 个任务---------------------------------
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/5-QQP/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/BoolQA \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/6-BoolQA \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/6-BoolQA/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/RTE \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/7-RTE \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/7-RTE/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/IMDB \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/8-IMDB \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/8-IMDB/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/yelp \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/9-yelp \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/9-yelp/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/amazon \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/10-amazon \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+#--------------------------10 个任务---------------------------------
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/10-amazon/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/SST-2 \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/11-SST-2 \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/11-SST-2/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/dbpedia \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/12-dbpedia \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/12-dbpedia/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/agnews \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/13-agnews \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/13-agnews/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/MultiRC \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/14-MultiRC \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
+sleep 10
+
+
+
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=8 --master_port=$port src/run_uie_lora.py \
+   --do_train \
+   --bf16 True \
+   --train_method lora \
+   --lora_strategy olora \
+   --olora_lamda_1 0.5 \
+   --olora_lamda_2 0 \
+   --lora_dim 8 \
+   --optimizer_type sam-adamw_hf \
+   --sam_rho 0.05 \
+   --learning_rate 1e-03 \
+   --model_name_or_path /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/14-MultiRC/adapter \
+   --data_dir /disk0/users/liying/O-LoRA/CL_Benchmark \
+   --task_config_dir /disk0/users/liying/O-LoRA/configs/long_configs/yahoo \
+   --instruction_file /disk0/users/liying/O-LoRA/configs/instruction_config.json \
+   --instruction_strategy single \
+   --output_dir /disk0/users/liying/O-LoRA/Logs_Scripts_Long_Paper/Order4_train/Order4_OLoRASAM_T5large_E1000_torch_AdamwHFSAM_E1_Lora8_LR-3_SAMRho-3/15-yahoo \
+   --per_device_train_batch_size 8 \
+   --per_device_eval_batch_size 64 \
+   --gradient_accumulation_steps 1 \
+   --num_train_epochs 1 \
+   --run_name order4_round1 \
+   --max_source_length 512 \
+   --max_target_length 50 \
+   --generation_max_length 50 \
+   --add_task_name True \
+   --add_dataset_name True \
+   --overwrite_output_dir \
+   --overwrite_cache \
+   --lr_scheduler_type constant \
+   --warmup_steps 0 \
+   --logging_strategy steps \
+   --logging_steps 10 \
+   --save_strategy no \
+   --save_steps 1500 
+
