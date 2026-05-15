@@ -38,17 +38,17 @@ run_eval_scripts() {
 
         # "Logs_Short_Paper/Order-2_8/SeqLoRA_T5large_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
         # "Logs_Short_Paper/Order-2_8/SeqLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
-        # "Logs_Short_Paper/Order-2_8/IncLoRA_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
-        # "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
-        # "Logs_Short_Paper/Order-2_8/IncLoRA_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1"
-        # "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1"
-        "Logs_Short_Paper/Order-2_8/IncLoRA_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed2048"
-        "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed2048"
-        "Logs_Short_Paper/Order-2_8/IncLoRA_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed1993"
-        "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed1993"
+        # "Logs_Short_Paper/Order-2_8/IncLoRA_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-2_8/IncLoRA_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1"
+        # "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1"
+        "Logs_Short_Paper/Order-2_8/IncLoRA_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed2048"
+        "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed2048"
+        "Logs_Short_Paper/Order-2_8/IncLoRA_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed1993"
+        "Logs_Short_Paper/Order-2_8/IncLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_redo1_seed1993"
         #olora
-        # "Logs_Short_Paper/Order-2_8/OLoRA_T5large_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
-        # "Logs_Short_Paper/Order-2_8/OLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-2_8/OLoRA_T5small_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-2_8/OLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
     
     )
 
@@ -114,6 +114,5 @@ run_eval_scripts
 #     fi
 #     sleep 1800
 # done
-
 
 

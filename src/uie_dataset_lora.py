@@ -30,10 +30,36 @@ SINGLE_QUOTES_SUBSTITUTE = "#$%#"
 AUX_PROB = 0.3
 
 
+def _read_file_for_cache_hash(file_path):
+    if not file_path:
+        return ""
+
+    if not os.path.exists(file_path):
+        return f"<missing:{file_path}>"
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        return f.read()
+
+
 def gen_cache_path(cache_dir, data_args):
-    hash_str = data_args.data_dir + data_args.task_config_dir + \
-               data_args.instruction_file + data_args.instruction_strategy + \
-               str(data_args.max_num_instances_per_task) + str(data_args.max_num_instances_per_eval_task)
+    task_config_dir = data_args.task_config_dir or ""
+    task_config_contents = []
+    for split_name in ("train", "dev", "test"):
+        config_filename = TASK_CONFIG_FILES[split_name]
+        config_path = os.path.join(task_config_dir, config_filename) if task_config_dir else ""
+        task_config_contents.append(
+            f"{split_name}:{config_filename}:{_read_file_for_cache_hash(config_path)}"
+        )
+
+    hash_str = (
+        (data_args.data_dir or "")
+        + task_config_dir
+        + "".join(task_config_contents)
+        + (data_args.instruction_file or "")
+        + (data_args.instruction_strategy or "")
+        + str(data_args.max_num_instances_per_task)
+        + str(data_args.max_num_instances_per_eval_task)
+    )
     hash_obj = md5(hash_str.encode("utf-8"))
     hash_id = hash_obj.hexdigest()
     cache_path = os.path.join(cache_dir, str(hash_id))

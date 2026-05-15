@@ -12,7 +12,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port $port src/run_uie_l
    --do_train \
    --do_predict \
    --predict_with_generate \
-   --model_name_or_path initial_model/llama \
+   --model_name_or_path /data/140-0/users/liying/Sharing/Models/meta-llama/Llama-2-7b-hf \
    --data_dir CL_Benchmark \
    --task_config_dir configs/order2_configs/dbpedia \
    --instruction_file configs/instruction_config.json \
@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port $port src/run_uie_l
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage2_llama.config \
    --run_name order2_round1 \
-   --max_source_length 512 \
+   --max_source_length 256 \
    --max_target_length 50 \
    --generation_max_length 50 \
    --add_task_name True \
@@ -61,7 +61,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port $port src/run_uie_l
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage2_llama.config \
    --run_name order2_round2 \
-   --max_source_length 512 \
+   --max_source_length 256 \
    --max_target_length 50 \
    --generation_max_length 50 \
    --add_task_name True \
@@ -97,7 +97,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port $port src/run_uie_l
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage2_llama.config \
    --run_name order2_round3 \
-   --max_source_length 512 \
+   --max_source_length 256 \
    --max_target_length 50 \
    --generation_max_length 50 \
    --add_task_name True \
@@ -133,7 +133,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 deepspeed --master_port $port src/run_uie_l
    --num_train_epochs 1 \
    --deepspeed configs/ds_configs/stage2_llama.config \
    --run_name order2_round4 \
-   --max_source_length 512 \
+   --max_source_length 256 \
    --max_target_length 50 \
    --generation_max_length 50 \
    --add_task_name True \

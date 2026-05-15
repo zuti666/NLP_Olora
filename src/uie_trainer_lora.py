@@ -7,6 +7,7 @@ from absl import logging
 logging.set_verbosity(logging.ERROR)
 
 import logging
+from contextlib import nullcontext
 import torch
 from transformers import GenerationConfig
 from transformers.trainer_seq2seq import Seq2SeqTrainer
@@ -18,7 +19,7 @@ from types import SimpleNamespace
 from uie_collator import SUPPORTED_DECODER_MODELS, check_model
 from uie_dataset_lora import ANSWER_PREFIX
 
-from optimer_sam import SAM, enable_running_stats
+from optimer_sam import SAM, disable_running_stats, enable_running_stats
 from optimer_gam import GAM
 from optimer_rwp import RWP, RWPAdamW, generate_pertubation
 # disable_running_stats
@@ -762,6 +763,15 @@ class UIETrainer(Seq2SeqTrainer):
                     _ = list(train_dataloader.sampler)
 
         total_batched_samples = 0
+        optimizer_type_name = str(getattr(self.args, "optimizer_type", "")).lower()
+        sam_optimizer_active = "sam" in optimizer_type_name
+        gam_optimizer_active = "gam" in optimizer_type_name
+        sam_accumulated_inputs = []
+        gam_accumulated_inputs = []
+        if sam_optimizer_active and self.deepspeed:
+            raise NotImplementedError("Accumulation-aware SAM currently supports the standard/DDP path only, not DeepSpeed.")
+        if gam_optimizer_active and self.deepspeed:
+            raise NotImplementedError("Accumulation-aware GAM currently supports the standard/DDP path only, not DeepSpeed.")
         for epoch in range(epochs_trained, num_train_epochs):
             if isinstance(train_dataloader, DataLoader) and isinstance(train_dataloader.sampler, DistributedSampler):
                 train_dataloader.sampler.set_epoch(epoch)
@@ -817,6 +827,14 @@ class UIETrainer(Seq2SeqTrainer):
 
                 if step % args.gradient_accumulation_steps == 0:
                     self.control = self.callback_handler.on_step_begin(args, self.state, self.control)
+
+                if sam_optimizer_active:
+                    # Keep one accumulation window so SAM can replay the exact same micro-batches on w + e(w).
+                    sam_accumulated_inputs.append(inputs)
+
+                if gam_optimizer_active:
+                    # GAM needs the whole accumulation window so each closure replay sees the same effective batch.
+                    gam_accumulated_inputs.append(inputs)
 
 
 
@@ -927,7 +945,9 @@ class UIETrainer(Seq2SeqTrainer):
                                 ######################################################################
                                 logger.debug(f"no_sync:sum_loss: {loss.item():.4f}")
 
-                                if self.do_grad_scaling:
+                                if gam_optimizer_active:
+                                    logger.debug("GAM active: skip immediate backward and defer to optimizer replay.")
+                                elif self.do_grad_scaling:
                                     self.scaler.scale(loss).backward()
                                     logger.debug(f"梯度缩放")
                                 elif self.use_apex:
@@ -1086,7 +1106,9 @@ class UIETrainer(Seq2SeqTrainer):
                             # 为后续优化器更新参数（如 optimizer.step()）提供梯度信息
                             
                             logger.debug(f"sync: sum_loss: {loss.item():.4f}")
-                            if self.do_grad_scaling:
+                            if gam_optimizer_active:
+                                logger.debug("GAM active: skip immediate backward and defer to optimizer replay.")
+                            elif self.do_grad_scaling:
                                 self.scaler.scale(loss).backward()
                                 logger.debug(f"梯度缩放")
                             elif self.use_apex:
@@ -1109,23 +1131,15 @@ class UIETrainer(Seq2SeqTrainer):
 
 
 
-                            # 这里已经完成了 损失函数和梯度的计算,相当于完成了g0的计算
-                            # 这里累积的是lora 部分的梯度信息,因为其他部分都被fixed住了,实际上没有梯度
-                            g0 = self._gather_grad_vector(model)
-
-
-                            # g0_norm = torch.norm(g0)
-                            # logger.info(f"[RWP] ||g0 (clean)|| = {g0_norm.item():.4f}")
-
-                            # 保存clean分支所有参数的快照
-                            p_data_g0 = {n: p.data.clone() for n, p in model.named_parameters()}
-
-                                
                             # ------------------- 
                             # -------------------
                             # 如果使用 rwp 来进行 更新梯度,在这一步要计算扰动损失 也就是g1
                             # 并且扰动损失要和原来的损失要进行混合
                             if self.args.rwp_type != "":
+                                # 这里只在 RWP 分支需要 clean 梯度与参数快照。
+                                g0 = self._gather_grad_vector(model)
+                                p_data_g0 = {n: p.data.clone() for n, p in model.named_parameters()}
+
                                 # pass
                                 # 这里是 RWP 的损失计算过程 
                                 # g0 = self._gather_grad_vector(model)
@@ -1458,37 +1472,8 @@ class UIETrainer(Seq2SeqTrainer):
 
                     # Gradient clipping
                     # 进行梯度裁剪
-                    if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed:
-                        # logger.debug(f'args.max_grad_norm: {args.max_grad_norm}')
-                        # deepspeed does its own clipping
-                        
-                        if self.do_grad_scaling:
-                            # Reduce gradients first for XLA
-                            if is_torch_tpu_available():
-                                logger.debug('[Gradient Clipping] TPU gradient scaling and reduction applied')
-                                gradients = xm._fetch_gradients(self.optimizer)
-                                xm.all_reduce("sum", gradients, scale=1.0 / xm.xrt_world_size())
-                            # AMP: gradients need unscaling
-                            self.scaler.unscale_(self.optimizer)
-                            logger.debug('[Gradient Clipping] AMP unscaled gradients')
-                        if is_sagemaker_mp_enabled() and args.fp16:
-                            logger.debug('[Gradient Clipping] Using Sagemaker clip_master_grads')
-                            self.optimizer.clip_master_grads(args.max_grad_norm)
-                        elif hasattr(self.optimizer, "clip_grad_norm"):
-                            logger.debug('[Gradient Clipping] Using optimizer.clip_grad_norm')
-                            # Some optimizers (like the sharded optimizer) have a specific way to do gradient clipping
-                            self.optimizer.clip_grad_norm(args.max_grad_norm)
-                        elif hasattr(model, "clip_grad_norm_"):
-                            logger.debug('[Gradient Clipping] Using model.clip_grad_norm_')
-                            # Some models (like FullyShardedDDP) have a specific way to do gradient clipping
-                            model.clip_grad_norm_(args.max_grad_norm)
-                        else:
-                            # Revert to normal clipping otherwise, handling Apex or full precision
-                            # logger.debug('[Gradient Clipping] Using default nn.utils.clip_grad_norm_')
-                            nn.utils.clip_grad_norm_(
-                                amp.master_params(self.optimizer) if self.use_apex else model.parameters(),
-                                args.max_grad_norm,
-                            )
+                    if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed and not gam_optimizer_active:
+                        self._clip_gradients_for_step(model)
 
                     
                     
@@ -1523,143 +1508,26 @@ class UIETrainer(Seq2SeqTrainer):
                     elif 'sam' in self.args.optimizer_type:
                         # === For SAM Optimizer: first_step-second_step two phases ===
                         logger.debug(f"SAM优化器训练步骤开始,参数 rho={self.args.sam_rho}")
+                        if not sam_accumulated_inputs:
+                            raise RuntimeError("SAM accumulation window is empty before first_step().")
 
-                        # # 保存原始参数副本用于对比
-                        # original_params = {name: param.data.clone() for name, param in model.named_parameters()}
-    
-                  
-                        
-                        # first forward-backward
+                        # First pass gradients were accumulated across the full window above.
                         logger.debug("执行SAM优化器的first_step()")
                         self.optimizer.first_step(zero_grad=True)
 
+                        second_loss = self._run_sam_second_pass(model, sam_accumulated_inputs)
+                        if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed:
+                            self._clip_gradients_for_step(model)
+                        if second_loss is not None:
+                            logger.debug(f'SAM accumulation second_loss_sum: {second_loss.item():.4f}')
 
-
-                        # 检查参数是否因rho=0而未变化
-                        # unchanged_params = []
-                        # changed_params = []
-                        # for name, param in model.named_parameters():
-                        #     if param.grad is not None:
-                        #         if torch.allclose(param.data, original_params[name]):
-                        #             unchanged_params.append(name)
-                        #         else:
-                        #             changed_params.append(name)
-                        # logger.debug(f"first_step后参数状态: 未变化参数 {len(unchanged_params)} 个, 变化参数 {len(changed_params)} 个")
-                        # if len(changed_params) > 0:
-                        #     logger.warning(f"检测到rho=0时参数发生变化,首个变化参数: {changed_params[0]}")
-
-                        # second forward-backward
-                        # 第二次计算loss,这里计算loss是只根据一个batch来计算loss
-                        # logger.debug("不禁用BN层的running stats")
-                        # disable_running_stats(model)
-
-                        logger.debug("执行第二次前向传播计算损失")
-
-                        with self.compute_loss_context_manager():
-                            second_loss = self.compute_loss(model, inputs)
-
-                        # logger.debug(f"原始second_loss: {second_loss.item():.6f}")
-
-                        if self.args.n_gpu > 1:
-                            second_loss = second_loss.mean()
-                            logger.info(f"多GPU训练,对损失取平均后: {second_loss.item():.6f}")
-
-
-                        if self.args.gradient_accumulation_steps > 1 and not self.deepspeed:
-                            second_loss = second_loss / self.args.gradient_accumulation_steps
-                            logger.debug(f"梯度累积步数>1,调整损失为: {second_loss.item():.6f}")
-
-                        ########################### Regularization ##########################
-                        # logger.debug(f"应用 {self.args.lora_strategy} 正则化策略")
-                        if self.args.lora_strategy.lower() == "olora":
-                            orthogonal_loss = 0.
-                            for name, param in model.named_parameters():
-                                if "lora_A" in name:
-                                    for name_, param_ in model.named_parameters():
-                                        if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
-                                            orthogonal_loss += torch.abs(
-                                                torch.mm(param, param_.T)).sum()
-                                            break
-
-                            l2_loss = 0.
-                            for name, param in model.named_parameters():
-                                if "loranew_" in name:
-                                    l2_loss += torch.norm(param, p=2)
-
-                            lamda_1 = self.args.olora_lamda_1
-                            lamda_2 = self.args.olora_lamda_2
-
-                            logger.info(
-                                f"orthogonal_loss: {orthogonal_loss.item():.4f}; l2_loss: {l2_loss.item():.4f}; accuracy_loss: {second_loss.item():.4f}; λ1: {lamda_1}; λ2: {lamda_2}")
-
-                            second_loss = second_loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
-                        elif self.args.lora_strategy.lower() == "nlora":
-                            l1_loss = 0.
-                            loranew_A_params = {}
-                            loranew_B_params = {}
-                            for name, param in self.model.named_parameters():
-                                if "loranew_A" in name:
-                                    loranew_A_params[name.split("loranew_A")[0]] = param
-                                elif "loranew_B" in name:
-                                    loranew_B_params[name.split("loranew_B")[0]] = param
-
-                            for key in loranew_A_params:
-                                if key in loranew_B_params:
-                                    l1_loss += torch.norm(
-                                        torch.mm(loranew_A_params[key], loranew_B_params[key]), p=1)
-
-                            lamda_1 = self.args.olora_lamda_1
-
-                            logger.info(f"Nlora_loss: {l1_loss.item():.4f};   accuracy_loss: {second_loss.item():.4f}; λ1: {lamda_1};")
-
-                            second_loss = second_loss + l1_loss * lamda_1
-                        elif self.args.lora_strategy.lower() == "inclora":
-                            logger.debug(f"inclora accuracy_loss: {second_loss.item():.4f}")
-                        elif self.args.lora_strategy.lower() == "seqlora":
-                            logger.debug(f"no_sync:seqLora accuracy_loss: {loss.item():.4f}")
-                        elif self.args.lora_strategy.lower() == "lora_l2":
-                            l2_loss = 0.
-                            for name, param in model.named_parameters():
-                                if "loranew_" in name:
-                                    l2_loss += torch.norm(param, p=2)
-
-                            logger.debug(f" l2_loss: {l2_loss.item():.4f}; accuracy_loss: {second_loss.item():.4f};  λ2: {lamda_2}")
-                            lamda_2 = self.args.olora_lamda_2
-                            second_loss = second_loss + l2_loss * lamda_2
-                        ######################################################################
-                        logger.debug(f'SAM training_step second_loss_sum: {second_loss.item():.4f}')
-                        ######################################################################
-
-                        # 第二次反向传播, 
-                        # logger.debug("执行第二次反向传播")
-                        if self.do_grad_scaling:
-                            logger.debug("使用梯度缩放")
-                            self.scaler.scale(second_loss).backward()
-                            self.scaler.unscale_(self.optimizer)
-                        elif self.use_apex:
-                            logger.debug("使用APEX混合精度")
-                            with amp.scale_loss(second_loss, self.optimizer) as scaled_loss:
-                                scaled_loss.backward()
-                        elif self.deepspeed:
-                            logger.debug("使用DeepSpeed优化")
-                            # loss gets scaled under gradient_accumulation_steps in deepspeed
-                            second_loss = self.deepspeed.backward(second_loss)
-                        else:
-                            logger.debug("标准反向传播")
-                            second_loss.backward()
-
-                        # 检查梯度是否存在异常
-                        has_nan_grad = False
-                        for name, param in model.named_parameters():
-                            if param.grad is not None and torch.isnan(param.grad).any():
-                                has_nan_grad = True
-                                logger.error(f"发现NaN梯度: {name}")
-                                break
-                        if has_nan_grad:
+                        if self._has_nan_gradients(model):
                             logger.error("检测到NaN梯度,这可能导致训练不稳定")
-                        
+
                         logger.debug("执行SAM优化器的second_step()")
                         self.optimizer.second_step(zero_grad=True)
+                        enable_running_stats(model)
+                        sam_accumulated_inputs.clear()
 
                         # # 计算参数更新量
                         # update_norms = {}
@@ -1680,81 +1548,24 @@ class UIETrainer(Seq2SeqTrainer):
                     elif 'gam' in self.args.optimizer_type:
                         # === GAM Optimizer: multi-step closure-based update ===
                         logger.debug("GAM优化器训练步骤开始")
+                        if not gam_accumulated_inputs:
+                            raise RuntimeError("GAM accumulation window is empty before optimizer replay.")
 
                         def gam_closure():
-                            # 重新计算一次带 LoRA 正则的 loss, 并回传梯度
                             self.optimizer.zero_grad()
-                            model.train()
-                            local_inputs = self._prepare_inputs(inputs)
-                            with self.compute_loss_context_manager():
-                                loss = self.compute_loss(model, local_inputs)
+                            total_gam_loss = self._run_gam_replay_pass(model, gam_accumulated_inputs)
+                            return None, total_gam_loss
 
-                            logger.debug(f"GAM closure compute_loss: {loss.item():.6f}")
-
-                            if self.args.n_gpu > 1:
-                                loss = loss.mean()
-
-                            if self.args.gradient_accumulation_steps > 1 and not self.deepspeed:
-                                loss = loss / self.args.gradient_accumulation_steps
-
-                            # 复用与 SAM 分支相同的 LoRA 正则逻辑, 保持目标一致
-                            if self.args.lora_strategy.lower() == "olora":
-                                orthogonal_loss = 0.
-                                for name, param in model.named_parameters():
-                                    if "lora_A" in name:
-                                        for name_, param_ in model.named_parameters():
-                                            if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
-                                                orthogonal_loss += torch.abs(
-                                                    torch.mm(param, param_.T)).sum()
-                                                break
-
-                                l2_loss = 0.
-                                for name, param in model.named_parameters():
-                                    if "loranew_" in name:
-                                        l2_loss += torch.norm(param, p=2)
-
-                                lamda_1 = self.args.olora_lamda_1
-                                lamda_2 = self.args.olora_lamda_2
-                                logger.info(
-                                    f"GAM orthogonal_loss: {orthogonal_loss.item():.4f}; l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; λ1: {lamda_1}; λ2: {lamda_2}")
-                                loss = loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
-                            elif self.args.lora_strategy.lower() == "nlora":
-                                l1_loss = 0.
-                                loranew_A_params = {}
-                                loranew_B_params = {}
-                                for name, param in self.model.named_parameters():
-                                    if "loranew_A" in name:
-                                        loranew_A_params[name.split("loranew_A")[0]] = param
-                                    elif "loranew_B" in name:
-                                        loranew_B_params[name.split("loranew_B")[0]] = param
-
-                                for key in loranew_A_params:
-                                    if key in loranew_B_params:
-                                        l1_loss += torch.norm(
-                                            torch.mm(loranew_A_params[key], loranew_B_params[key]), p=1)
-
-                                lamda_1 = self.args.olora_lamda_1
-                                logger.info(f"GAM Nlora_loss: {l1_loss.item():.4f};   accuracy_loss: {loss.item():.4f}; λ1: {lamda_1};")
-                                loss = loss + l1_loss * lamda_1
-                            elif self.args.lora_strategy.lower() == "inclora":
-                                logger.info(f"GAM inclora accuracy_loss: {loss.item():.4f}")
-                            elif self.args.lora_strategy.lower() == "seqlora":
-                                logger.debug(f"GAM seqLora accuracy_loss: {loss.item():.4f}")
-                            elif self.args.lora_strategy.lower() == "lora_l2":
-                                l2_loss = 0.
-                                for name, param in model.named_parameters():
-                                    if "loranew_" in name:
-                                        l2_loss += torch.norm(param, p=2)
-
-                                lamda_2 = self.args.olora_lamda_2
-                                logger.info(f"GAM lora_l2 l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f};  λ2: {lamda_2}")
-                                loss = loss + l2_loss * lamda_2
-
-                            loss.backward()
-                            return None, loss.detach()
-
-                        _, gam_loss_value = self.optimizer.step(closure=gam_closure)
+                        _, gam_loss_value = self.optimizer.step(
+                            closure=gam_closure,
+                            clip_grad_norm=(
+                                args.max_grad_norm
+                                if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed
+                                else None
+                            ),
+                        )
                         logger.debug(f"GAM step finished, loss={gam_loss_value.item() if torch.is_tensor(gam_loss_value) else gam_loss_value}")
+                        gam_accumulated_inputs.clear()
 
 
 
@@ -2148,6 +1959,170 @@ class UIETrainer(Seq2SeqTrainer):
             self.lr_scheduler = get_constant_schedule(self.optimizer)
 
             # self.lr_scheduler = LambdaLR(self.optimizer, lr_lambda=lambda epoch: 1.0)
+    def _apply_train_regularization(self, model, loss, log_prefix=""):
+        if self.args.train_method.lower() != "lora":
+            return loss
+
+        strategy = self.args.lora_strategy.lower()
+        if strategy == "olora":
+            orthogonal_loss = 0.
+            for name, param in model.named_parameters():
+                if "lora_A" in name:
+                    for name_, param_ in model.named_parameters():
+                        if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
+                            orthogonal_loss += torch.abs(torch.mm(param, param_.T)).sum()
+                            break
+
+            l2_loss = 0.
+            for name, param in model.named_parameters():
+                if "loranew_" in name:
+                    l2_loss += torch.norm(param, p=2)
+
+            lamda_1 = self.args.olora_lamda_1
+            lamda_2 = self.args.olora_lamda_2
+            logger.info(
+                f"{log_prefix}orthogonal_loss: {orthogonal_loss.item():.4f}; "
+                f"l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; "
+                f"λ1: {lamda_1}; λ2: {lamda_2}"
+            )
+            loss = loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
+        elif strategy == "nlora":
+            l1_loss = 0.
+            loranew_A_params = {}
+            loranew_B_params = {}
+            for name, param in self.model.named_parameters():
+                if "loranew_A" in name:
+                    loranew_A_params[name.split("loranew_A")[0]] = param
+                elif "loranew_B" in name:
+                    loranew_B_params[name.split("loranew_B")[0]] = param
+
+            for key in loranew_A_params:
+                if key in loranew_B_params:
+                    l1_loss += torch.norm(torch.mm(loranew_A_params[key], loranew_B_params[key]), p=1)
+
+            lamda_1 = self.args.olora_lamda_1
+            logger.info(f"{log_prefix}Nlora_loss: {l1_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; λ1: {lamda_1};")
+            loss = loss + l1_loss * lamda_1
+        elif strategy == "inclora":
+            logger.debug(f"{log_prefix}inclora accuracy_loss: {loss.item():.4f}")
+        elif strategy == "seqlora":
+            logger.debug(f"{log_prefix}seqLora accuracy_loss: {loss.item():.4f}")
+        elif strategy == "lora_l2":
+            l2_loss = 0.
+            for name, param in model.named_parameters():
+                if "loranew_" in name:
+                    l2_loss += torch.norm(param, p=2)
+
+            lamda_2 = self.args.olora_lamda_2
+            logger.info(f"{log_prefix}lora_l2 l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; λ2: {lamda_2}")
+            loss = loss + l2_loss * lamda_2
+        return loss
+
+    def _compute_micro_batch_loss(self, model, inputs, log_prefix=""):
+        model.train()
+        local_inputs = self._prepare_inputs(inputs)
+        with self.compute_loss_context_manager():
+            loss = self.compute_loss(model, local_inputs)
+
+        if self.args.n_gpu > 1:
+            loss = loss.mean()
+
+        if self.args.gradient_accumulation_steps > 1 and not self.deepspeed:
+            loss = loss / self.args.gradient_accumulation_steps
+
+        loss = self._apply_train_regularization(model, loss, log_prefix=log_prefix)
+        return loss, local_inputs
+
+    def _backward_loss(self, loss):
+        if self.do_grad_scaling:
+            self.scaler.scale(loss).backward()
+        elif self.use_apex:
+            with amp.scale_loss(loss, self.optimizer) as scaled_loss:
+                scaled_loss.backward()
+        elif self.deepspeed:
+            self.deepspeed.backward(loss)
+        else:
+            loss.backward()
+
+    def _clip_gradients_for_step(self, model):
+        args = self.args
+        if args.max_grad_norm is None or args.max_grad_norm <= 0 or self.deepspeed:
+            return
+
+        if self.do_grad_scaling:
+            if is_torch_tpu_available():
+                logger.debug('[Gradient Clipping] TPU gradient scaling and reduction applied')
+                gradients = xm._fetch_gradients(self.optimizer)
+                xm.all_reduce("sum", gradients, scale=1.0 / xm.xrt_world_size())
+            self.scaler.unscale_(self.optimizer)
+            logger.debug('[Gradient Clipping] AMP unscaled gradients')
+
+        if is_sagemaker_mp_enabled() and args.fp16:
+            logger.debug('[Gradient Clipping] Using Sagemaker clip_master_grads')
+            self.optimizer.clip_master_grads(args.max_grad_norm)
+        elif hasattr(self.optimizer, "clip_grad_norm"):
+            logger.debug('[Gradient Clipping] Using optimizer.clip_grad_norm')
+            self.optimizer.clip_grad_norm(args.max_grad_norm)
+        elif hasattr(model, "clip_grad_norm_"):
+            logger.debug('[Gradient Clipping] Using model.clip_grad_norm_')
+            model.clip_grad_norm_(args.max_grad_norm)
+        else:
+            nn.utils.clip_grad_norm_(
+                amp.master_params(self.optimizer) if self.use_apex else model.parameters(),
+                args.max_grad_norm,
+            )
+
+    def _has_nan_gradients(self, model):
+        for name, param in model.named_parameters():
+            if param.grad is not None and torch.isnan(param.grad).any():
+                logger.error(f"发现NaN梯度: {name}")
+                return True
+        return False
+
+    def _run_sam_second_pass(self, model, sam_micro_batches):
+        if not sam_micro_batches:
+            raise RuntimeError("SAM second pass requires the cached micro-batches from the current accumulation window.")
+
+        use_no_sync = (
+            self.args.local_rank != -1
+            and self.args._no_sync_in_gradient_accumulation
+            and hasattr(model, "no_sync")
+        )
+        total_second_loss = None
+        disable_running_stats(model)
+
+        for micro_step, micro_inputs in enumerate(sam_micro_batches):
+            should_sync = (not use_no_sync) or (micro_step == len(sam_micro_batches) - 1)
+            sync_context = nullcontext() if should_sync else model.no_sync()
+            with sync_context:
+                second_loss, local_inputs = self._compute_micro_batch_loss(
+                    model,
+                    micro_inputs,
+                    log_prefix="sam-second: ",
+                )
+                total_second_loss = second_loss.detach() if total_second_loss is None else total_second_loss + second_loss.detach()
+                self._backward_loss(second_loss)
+                self.current_flos += float(self.floating_point_ops(local_inputs))
+
+        return total_second_loss
+
+    def _run_gam_replay_pass(self, model, gam_micro_batches):
+        if not gam_micro_batches:
+            raise RuntimeError("GAM replay requires the cached micro-batches from the current accumulation window.")
+
+        total_gam_loss = None
+        for micro_inputs in gam_micro_batches:
+            micro_loss, local_inputs = self._compute_micro_batch_loss(
+                model,
+                micro_inputs,
+                log_prefix="gam-replay: ",
+            )
+            total_gam_loss = micro_loss.detach() if total_gam_loss is None else total_gam_loss + micro_loss.detach()
+            self._backward_loss(micro_loss)
+            self.current_flos += float(self.floating_point_ops(local_inputs))
+
+        return total_gam_loss
+
     def print_trainable_parameters(self,model):
         total_params = 0
         trainable_params = 0
@@ -5208,10 +5183,5 @@ class UIETrainer(Seq2SeqTrainer):
 
 
     
-
-
-
-
-
 
 

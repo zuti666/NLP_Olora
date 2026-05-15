@@ -7,6 +7,7 @@ export TRANSFORMERS_CACHE=/data/140-0/users/liying/.cache/huggingface
 port=$(shuf -i25000-30000 -n1)
 gpu_ids=${1:-4,5,6,7}
 seed=${2:-1993}
+train_bs=16
 # world size must match the number of visible GPUs
 IFS=',' read -ra _gpu_array <<< "$gpu_ids"
 num_procs=${#_gpu_array[@]}
@@ -29,7 +30,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/OLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/1-dbpedia \
-   --per_device_train_batch_size 8 \
+   --per_device_train_batch_size ${train_bs} \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
    --num_train_epochs 1 \
@@ -69,7 +70,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir  /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/OLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/2-amazon \
-   --per_device_train_batch_size 8 \
+   --per_device_train_batch_size ${train_bs} \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
    --num_train_epochs 1 \
@@ -108,7 +109,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/OLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/3-yahoo \
-   --per_device_train_batch_size 8 \
+   --per_device_train_batch_size ${train_bs} \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
    --num_train_epochs 1 \
@@ -148,7 +149,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
    --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/OLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/4-agnews \
-   --per_device_train_batch_size 8 \
+   --per_device_train_batch_size ${train_bs} \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
    --num_train_epochs 1 \

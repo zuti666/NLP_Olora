@@ -12,7 +12,7 @@ IFS=',' read -ra _gpu_array <<< "$gpu_ids"
 num_procs=${#_gpu_array[@]}
 
 
-CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=29501 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=$port src/run_uie_lora.py \
    --seed ${seed} --data_seed ${seed} \
    --do_train True\
    --bf16 True \
@@ -20,7 +20,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --lora_strategy Inclora \
    --lora_dim 8 \
    --optimizer_type gam-adamw_hf \
-   --gam_grad_rho 0.05  \
+   --gam_grad_rho 0.02  \
    --gam_grad_norm_rho 0.2 \
    --gam_adaptive false \
    --gam_grad_beta_1 1 \
@@ -28,12 +28,12 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --gam_grad_beta_3 1.0 \
    --gam_grad_gamma 0.03 \
    --learning_rate 1e-03 \
-   --model_name_or_path /data/140-0/users/liying/Sharing/Models/google-t5/t5-large \
+   --model_name_or_path /data/140-0/users/liying/Sharing/Models/google-t5/t5-small \
    --data_dir CL_Benchmark \
    --task_config_dir configs/order1_configs/dbpedia \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
-   --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/1-dbpedia \
+   --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/1-dbpedia \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
@@ -58,7 +58,7 @@ sleep 3
 
 
 
-CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=29502 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=$port src/run_uie_lora.py \
    --seed ${seed} --data_seed ${seed} \
    --do_train True\
    --bf16 True \
@@ -66,7 +66,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --lora_strategy Inclora \
    --lora_dim 8 \
    --optimizer_type gam-adamw_hf \
-   --gam_grad_rho 0.05  \
+   --gam_grad_rho 0.02  \
    --gam_grad_norm_rho 0.2 \
    --gam_adaptive false \
    --gam_grad_beta_1 1 \
@@ -74,12 +74,12 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --gam_grad_beta_3 1.0 \
    --gam_grad_gamma 0.03 \
    --learning_rate 1e-03 \
-   --model_name_or_path /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/1-dbpedia/adapter \
+   --model_name_or_path /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/1-dbpedia/adapter \
    --data_dir CL_Benchmark \
    --task_config_dir configs/order1_configs/amazon \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
-   --output_dir  /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/2-amazon \
+   --output_dir  /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/2-amazon \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
@@ -103,7 +103,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
 sleep 3
 
 
-CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=29503 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=$port src/run_uie_lora.py \
    --seed ${seed} --data_seed ${seed} \
    --do_train True\
    --bf16 True \
@@ -111,7 +111,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --lora_strategy Inclora \
    --lora_dim 8 \
    --optimizer_type gam-adamw_hf \
-   --gam_grad_rho 0.05  \
+   --gam_grad_rho 0.02  \
    --gam_grad_norm_rho 0.2 \
    --gam_adaptive false \
    --gam_grad_beta_1 1 \
@@ -119,12 +119,12 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --gam_grad_beta_3 1.0 \
    --gam_grad_gamma 0.03 \
    --learning_rate 1e-03 \
-   --model_name_or_path /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/2-amazon/adapter \
+   --model_name_or_path /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/2-amazon/adapter \
    --data_dir CL_Benchmark \
    --task_config_dir configs/order1_configs/yahoo \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
-   --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/3-yahoo \
+   --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/3-yahoo \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \
@@ -149,7 +149,7 @@ sleep 3
 
 
 
-CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=29504 src/run_uie_lora.py \
+CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port=$port src/run_uie_lora.py \
    --seed ${seed} --data_seed ${seed} \
    --do_train True\
    --bf16 True \
@@ -157,7 +157,7 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --lora_strategy Inclora \
    --lora_dim 8 \
    --optimizer_type gam-adamw_hf \
-   --gam_grad_rho 0.05  \
+   --gam_grad_rho 0.02  \
    --gam_grad_norm_rho 0.2 \
    --gam_adaptive false \
    --gam_grad_beta_1 1 \
@@ -165,12 +165,12 @@ CUDA_VISIBLE_DEVICES=$gpu_ids torchrun --nproc_per_node=$num_procs --master_port
    --gam_grad_beta_3 1.0 \
    --gam_grad_gamma 0.03 \
    --learning_rate 1e-03 \
-   --model_name_or_path /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/3-yahoo/adapter \
+   --model_name_or_path /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/3-yahoo/adapter \
    --data_dir CL_Benchmark \
    --task_config_dir configs/order1_configs/agnews \
    --instruction_file configs/instruction_config.json \
    --instruction_strategy single \
-   --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/4-agnews \
+   --output_dir /data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/IncLoRA-GAM_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}/4-agnews \
    --per_device_train_batch_size 8 \
    --per_device_eval_batch_size 16 \
    --gradient_accumulation_steps 1 \

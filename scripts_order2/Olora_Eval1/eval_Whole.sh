@@ -2,7 +2,7 @@
 set -x
 
 export CUDA_DEVICE_ORDER="PCI_BUS_ID"
-export TRANSFORMERS_CACHE=/disk0/users/liying/.cache/huggingface
+export TRANSFORMERS_CACHE=/data/140-0/users/liying/.cache/huggingface
 
 
 

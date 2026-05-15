@@ -8,7 +8,7 @@ port=$(shuf -i25000-30000 -n1)
 gpu_ids=${1:-4,5,6,7}
 seed=${2:-1993}
 train_bs=16
-output_root=/data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/OLoRA-RWP_lora_Gauss_std0p05_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}
+output_root=/data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-1_8/OLoRA-RWP_lora_Gauss_std0p05_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-${seed}
 
 IFS=',' read -ra _gpu_array <<< "$gpu_ids"
 num_procs=${#_gpu_array[@]}
@@ -60,7 +60,7 @@ train_round() {
     --save_steps 1500
 }
 
-train_round /data/140-0/users/liying/Sharing/Models/google-t5/t5-large configs/order1_configs/dbpedia 1-dbpedia OLoRA_RWPlora_order1_round1
+train_round /data/140-0/users/liying/Sharing/Models/google-t5/t5-small configs/order1_configs/dbpedia 1-dbpedia OLoRA_RWPlora_order1_round1
 sleep 4
 train_round "${output_root}/1-dbpedia/adapter" configs/order1_configs/amazon 2-amazon OLoRA_RWPlora_order1_round2
 sleep 4

@@ -238,7 +238,7 @@ class GAM(torch.optim.Optimizer):
 
         self.forward_backward_func = get_grad
 
-    def step(self, closure=None):
+    def step(self, closure=None, clip_grad_norm=None):
 
         if closure:
             get_grad = closure
@@ -277,6 +277,15 @@ class GAM(torch.optim.Optimizer):
 
         # synchronize gradients across workers
         self._sync_grad()
+
+        if clip_grad_norm is not None and clip_grad_norm > 0:
+            params_with_grad = []
+            for group in self.param_groups:
+                for p in group["params"]:
+                    if p.grad is not None:
+                        params_with_grad.append(p)
+            if params_with_grad:
+                torch.nn.utils.clip_grad_norm_(params_with_grad, clip_grad_norm)
 
         # update with new directions
         self.base_optimizer.step()

@@ -242,6 +242,148 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
     lamda_2: float = field(default = 0)
 
 
+def _hf_pretrained_kwargs(model_args):
+    return {
+        "cache_dir": model_args.cache_dir,
+        "revision": model_args.model_revision,
+        "use_auth_token": True if model_args.use_auth_token else None,
+    }
+
+
+def _read_tokenizer_config(tokenizer_source):
+    if not tokenizer_source or not os.path.isdir(tokenizer_source):
+        return {}
+
+    tokenizer_config_path = os.path.join(tokenizer_source, "tokenizer_config.json")
+    if not os.path.exists(tokenizer_config_path):
+        return {}
+
+    try:
+        with open(tokenizer_config_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def _should_use_legacy_llama_tokenizer(tokenizer_source):
+    if not tokenizer_source:
+        return False
+
+    source_lower = tokenizer_source.lower()
+    if "llama-3" in source_lower or "llama3" in source_lower:
+        return False
+
+    if not os.path.isdir(tokenizer_source):
+        return True
+
+    tokenizer_config = _read_tokenizer_config(tokenizer_source)
+    tokenizer_class = tokenizer_config.get("tokenizer_class")
+    tokenizer_model_path = os.path.join(tokenizer_source, "tokenizer.model")
+
+    if tokenizer_class in {"PreTrainedTokenizerFast", "LlamaTokenizerFast"}:
+        return False
+
+    if tokenizer_class in {None, "LlamaTokenizer", "CodeLlamaTokenizer"}:
+        return os.path.exists(tokenizer_model_path)
+
+    return os.path.exists(tokenizer_model_path) and "Fast" not in tokenizer_class
+
+
+def _sync_special_token_ids(target, tokenizer):
+    if target is None or tokenizer is None:
+        return
+
+    for attr in ("bos_token_id", "eos_token_id", "pad_token_id"):
+        token_id = getattr(tokenizer, attr, None)
+        if token_id is not None:
+            setattr(target, attr, token_id)
+
+
+def _load_llama_tokenizer(tokenizer_source, model_args):
+    pretrained_kwargs = _hf_pretrained_kwargs(model_args)
+    use_legacy_tokenizer = _should_use_legacy_llama_tokenizer(tokenizer_source)
+
+    if use_legacy_tokenizer:
+        tokenizer = transformers.LlamaTokenizer.from_pretrained(
+            tokenizer_source,
+            **pretrained_kwargs,
+        )
+        if tokenizer.pad_token is None and tokenizer.bos_token is not None:
+            tokenizer.pad_token = tokenizer.bos_token
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(
+            tokenizer_source,
+            use_fast=model_args.use_fast_tokenizer,
+            **pretrained_kwargs,
+        )
+        if tokenizer.pad_token is None:
+            if tokenizer.eos_token is not None:
+                tokenizer.pad_token = tokenizer.eos_token
+            elif tokenizer.bos_token is not None:
+                tokenizer.pad_token = tokenizer.bos_token
+
+    tokenizer.padding_side = "left"
+    logger.info(
+        "Loaded llama tokenizer %s from %s (legacy_sentencepiece=%s, bos=%s, eos=%s, pad=%s)",
+        tokenizer.__class__.__name__,
+        tokenizer_source,
+        use_legacy_tokenizer,
+        tokenizer.bos_token_id,
+        tokenizer.eos_token_id,
+        tokenizer.pad_token_id,
+    )
+    return tokenizer
+
+
+def _load_model_config_and_tokenizer(model_args):
+    pretrained_kwargs = _hf_pretrained_kwargs(model_args)
+    is_adapter = "adapter" in model_args.model_name_or_path
+    resolved_model_source = model_args.model_name_or_path
+    config = None
+
+    if is_adapter:
+        config = PeftConfig.from_pretrained(model_args.model_name_or_path)
+        resolved_model_source = config.base_model_name_or_path
+
+    is_llama_model = "llama" in resolved_model_source.lower()
+
+    if is_adapter:
+        if is_llama_model:
+            tokenizer = _load_llama_tokenizer(
+                model_args.tokenizer_name if model_args.tokenizer_name else resolved_model_source,
+                model_args,
+            )
+            _sync_special_token_ids(config, tokenizer)
+        else:
+            tokenizer = AutoTokenizer.from_pretrained(
+                model_args.tokenizer_name if model_args.tokenizer_name else resolved_model_source,
+                use_fast=model_args.use_fast_tokenizer,
+                **pretrained_kwargs,
+            )
+    elif is_llama_model:
+        config = AutoConfig.from_pretrained(
+            resolved_model_source,
+            **pretrained_kwargs,
+        )
+        tokenizer = _load_llama_tokenizer(
+            model_args.tokenizer_name if model_args.tokenizer_name else resolved_model_source,
+            model_args,
+        )
+        _sync_special_token_ids(config, tokenizer)
+    else:
+        config = AutoConfig.from_pretrained(
+            model_args.config_name if model_args.config_name else resolved_model_source,
+            **pretrained_kwargs,
+        )
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_args.tokenizer_name if model_args.tokenizer_name else resolved_model_source,
+            use_fast=model_args.use_fast_tokenizer,
+            **pretrained_kwargs,
+        )
+
+    return config, tokenizer, resolved_model_source, is_adapter, is_llama_model
+
+
 def main():
     # See all possible arguments in src/transformers/training_args.py
     # or by passing the --help flag to this script.
@@ -319,66 +461,23 @@ def main():
     # Distributed training:
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
-    if 'adapter' in model_args.model_name_or_path: # load lora-config
-        config = PeftConfig.from_pretrained(model_args.model_name_or_path)
-        if 'llama' in model_args.model_name_or_path.lower():
-            tokenizer = transformers.LlamaTokenizer.from_pretrained(config.base_model_name_or_path)
-            config.bos_token_id = 1
-            config.eos_token_id = 2
-            config.pad_token_id = 1
-            tokenizer.bos_token_id = 1
-            tokenizer.eos_token_id = 2
-            tokenizer.pad_token_id = 1
-        else:
-            tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
-    elif 'llama' in model_args.model_name_or_path.lower():
-        config = AutoConfig.from_pretrained(
-            model_args.model_name_or_path,
-            cache_dir=model_args.cache_dir,
-            revision=model_args.model_revision,
-            use_auth_token=True if model_args.use_auth_token else None,
-        )
-        config.bos_token_id = 1
-        config.eos_token_id = 2
-        config.pad_token_id = 1
-        tokenizer = transformers.LlamaTokenizer.from_pretrained(
-            model_args.model_name_or_path,
-            cache_dir = model_args.cache_dir,
-            use_fast = model_args.use_fast_tokenizer,
-            revision = model_args.model_revision,
-            use_auth_token = True if model_args.use_auth_token else None,
-        )
-        tokenizer.bos_token_id = 1
-        tokenizer.eos_token_id = 2
-        tokenizer.pad_token_id = 1
-    else: # load original config
-        config = AutoConfig.from_pretrained(
-            model_args.config_name if model_args.config_name else model_args.model_name_or_path,
-            cache_dir=model_args.cache_dir,
-            revision=model_args.model_revision,
-            use_auth_token=True if model_args.use_auth_token else None,
-        )
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
-            cache_dir=model_args.cache_dir,
-            use_fast=model_args.use_fast_tokenizer,
-            revision=model_args.model_revision,
-            use_auth_token=True if model_args.use_auth_token else None,
-        )
+    config, tokenizer, resolved_model_source, is_adapter_model, is_llama_model = _load_model_config_and_tokenizer(
+        model_args
+    )
 
-    if 'llama' in model_args.model_name_or_path.lower():  # add llama
+    if is_llama_model:
         model_class = LlamaForCausalLM_with_lossmask
-        tokenizer.padding_side = 'left'
-    else: 
+        tokenizer.padding_side = "left"
+    else:
         model_class = AutoModelForSeq2SeqLM
 
-    if 'adapter' in model_args.model_name_or_path: # add lora-adapter to the original model
-        model = model_class.from_pretrained(config.base_model_name_or_path)
+    if is_adapter_model:
+        model = model_class.from_pretrained(resolved_model_source)
         model = PeftModel.from_pretrained(model, model_args.model_name_or_path)
-    elif 'llama' in model_args.model_name_or_path.lower():
+    elif is_llama_model:
         model = model_class.from_pretrained(
-            model_args.model_name_or_path,
-            from_tf=bool(".ckpt" in model_args.model_name_or_path),
+            resolved_model_source,
+            from_tf=bool(".ckpt" in resolved_model_source),
             config=config,
             cache_dir=model_args.cache_dir,
             revision=model_args.model_revision,
@@ -390,8 +489,8 @@ def main():
         model = get_peft_model(model, peft_config)
     else:
         model = model_class.from_pretrained(
-            model_args.model_name_or_path,
-            from_tf=bool(".ckpt" in model_args.model_name_or_path),
+            resolved_model_source,
+            from_tf=bool(".ckpt" in resolved_model_source),
             config=config,
             cache_dir=model_args.cache_dir,
             revision=model_args.model_revision,
@@ -404,10 +503,8 @@ def main():
 
     model.resize_token_embeddings(len(tokenizer))
 
-    if 'llama' in model_args.model_name_or_path.lower():
-        model.generation_config.bos_token_id = 1
-        model.generation_config.eos_token_id = 2
-        model.generation_config.pad_token_id = 1
+    if is_llama_model:
+        _sync_special_token_ids(model.generation_config, tokenizer)
         
     # fix lora_A/B (bases of previous LoRA parameters, loaded in "load_adapter"[peft_momdel.py])
     # fine-tune loranew_A/B (initialized in "update_layer"[lora.py])
@@ -509,6 +606,14 @@ def main():
 
     print(f"-----Gradient checkpointing: {training_args.gradient_checkpointing} -----")
     if training_args.gradient_checkpointing:
+        # Keep the graph connected when only LoRA weights are trainable.
+        if hasattr(model, "enable_input_require_grads"):
+            model.enable_input_require_grads()
+        else:
+            def make_inputs_require_grad(module, inputs, output):
+                output.requires_grad_(True)
+
+            model.get_input_embeddings().register_forward_hook(make_inputs_require_grad)
         model.gradient_checkpointing_enable()
 
     trainer = UIETrainer(

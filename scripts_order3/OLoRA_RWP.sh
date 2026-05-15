@@ -2,7 +2,7 @@
 set -x
 
 export CUDA_DEVICE_ORDER="PCI_BUS_ID"
-export TRANSFORMERS_CACHE=/disk0/users/liying/.cache/huggingface
+export TRANSFORMERS_CACHE=/data/140-0/users/liying/.cache/huggingface
 
 port=$(shuf -i25000-30000 -n1)
 gpu_ids=${1:-2,3}
@@ -10,7 +10,7 @@ seed=${2:-1993}
 
 IFS=',' read -ra _gpu_array <<< "$gpu_ids"
 num_procs=${#_gpu_array[@]}
-output_root=/disk0/users/liying/O-LoRA/Logs_Short_Paper/Order-3_8/OLoRA-RWP_lora_Gauss_std0p05_T5large_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3_seed-${seed}
+output_root=/data/140-0/users/liying/O-LoRA/Logs_Short_Paper/Order-3_8/OLoRA-RWP_lora_Gauss_std0p05_T5small_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3_seed-${seed}
 
 train_round() {
   local model_path="$1"
@@ -61,7 +61,7 @@ train_round() {
     --save_steps 1500
 }
 
-train_round /disk0/users/liying/Sharing/Models/google-t5/t5-large configs/order3_configs/yahoo 1-yahoo OLoRA_RWP_order3_round1
+train_round /data/140-0/users/liying/Sharing/Models/google-t5/t5-small configs/order3_configs/yahoo 1-yahoo OLoRA_RWP_order3_round1
 sleep 4
 train_round "${output_root}/1-yahoo/adapter" configs/order3_configs/amazon 2-amazon OLoRA_RWP_order3_round2 --predict_with_generate
 sleep 4

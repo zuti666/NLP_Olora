@@ -36,16 +36,18 @@ run_eval_scripts() {
 
     MODELS_PATHS=(
 
-        "Logs_Short_Paper/Order-3_8/SeqLoRA_T5large_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
-        "Logs_Short_Paper/Order-3_8/SeqLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
-        #inclora
-        # "Logs_Short_Paper/Order-3_8/IncLoRA_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-3_8/SeqLoRA_T5large_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-3_8/SeqLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        "Logs_Short_Paper/Order-3_8/SeqLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3_seed-1993"
+        
+        # inclora
+        # "Logs_Short_Paper/Order-3_8/IncLoRA_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
 
-        # "Logs_Short_Paper/Order-3_8/IncLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-3_8/IncLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
         #olora
-        # "Logs_Short_Paper/Order-3_8/OLoRA_T5large_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-3_8/OLoRA_T5small_torch_AdamwHF_Lora8_Ba8-1_E1_LRe3"
 
-        # "Logs_Short_Paper/Order-3_8/OLoRA-SAM-005_T5large_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
+        # "Logs_Short_Paper/Order-3_8/OLoRA-SAM-005_T5small_torch_AdamwHF_Lora8_Ba16-1_E1_LRe3"
         
 
         )
@@ -112,6 +114,5 @@ run_eval_scripts
 #     fi
 #     sleep 1800
 # done
-
 
 
