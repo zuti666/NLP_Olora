@@ -76,6 +76,7 @@ class DenserEvalCallback(TrainerCallback):
 
 
 class UIETrainer(Seq2SeqTrainer):
+    EWCLORA_STRATEGIES = {"ewclora", "ewclora_gam", "ewclora-gam"}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -165,6 +166,279 @@ class UIETrainer(Seq2SeqTrainer):
             probe_num_classes = getattr(self.args, "probe_num_classes", "")
             probe_feature_mode = getattr(self.args, "probe_feature_model", "")
             logger.info(f"use_probe, probe_num_classes: {probe_num_classes}; probe_feature_mode:{probe_feature_mode}")
+
+        self.ewclora_omega = {}
+        self.ewclora_count_updates = 0
+        self._last_ewclora_fisher_info = ""
+        if self._is_ewclora_strategy():
+            self._load_ewclora_state()
+
+    def _lora_strategy(self):
+        return str(getattr(self.args, "lora_strategy", "")).lower()
+
+    def _is_ewclora_strategy(self):
+        return self._lora_strategy() in self.EWCLORA_STRATEGIES
+
+    def _is_ewclora_gam_strategy(self):
+        return self._lora_strategy() in {"ewclora_gam", "ewclora-gam"}
+
+    @staticmethod
+    def _resolve_ewclora_state_file(path):
+        if not path:
+            return None
+        return os.path.join(path, "ewclora_fisher.pt") if os.path.isdir(path) else path
+
+    @staticmethod
+    def _normalize_lora_prefix(prefix):
+        # DDP/DataParallel can prepend "module."; store Fisher keys without it.
+        while prefix.startswith("module."):
+            prefix = prefix[len("module."):]
+        return prefix
+
+    def _load_ewclora_state(self):
+        state_file = self._resolve_ewclora_state_file(getattr(self.args, "ewclora_fisher_path", ""))
+        if not state_file or not os.path.isfile(state_file):
+            logger.info("EWCLoRA starts without previous full-Delta-W Fisher.")
+            return
+
+        payload = torch.load(state_file, map_location="cpu")
+        omega = payload.get("omega", payload)
+        if isinstance(omega, list):
+            names = payload.get("names", [str(i) for i in range(len(omega))])
+            omega = dict(zip(names, omega))
+        self.ewclora_omega = {
+            self._normalize_lora_prefix(str(k)): v.detach().cpu().float()
+            for k, v in omega.items()
+        }
+        self.ewclora_count_updates = int(payload.get("count_updates", 0))
+        logger.info(
+            "Loaded EWCLoRA Fisher from %s with %d Delta-W blocks.",
+            state_file,
+            len(self.ewclora_omega),
+        )
+
+    def _iter_loranew_pairs(self, model):
+        a_params = {}
+        b_params = {}
+        a_order = []
+        for name, param in model.named_parameters():
+            if "loranew_A" in name:
+                prefix = self._normalize_lora_prefix(name.split("loranew_A")[0])
+                a_params[prefix] = param
+                a_order.append(prefix)
+            elif "loranew_B" in name:
+                b_params[self._normalize_lora_prefix(name.split("loranew_B")[0])] = param
+
+        for prefix in a_order:
+            if prefix in b_params:
+                yield prefix, a_params[prefix], b_params[prefix]
+
+    def _iter_loranew_modules(self, model):
+        for module_name, module in model.named_modules():
+            if hasattr(module, "loranew_A") and hasattr(module, "loranew_B"):
+                active_adapter = getattr(module, "active_adapter", "default")
+                if active_adapter in module.loranew_A and active_adapter in module.loranew_B:
+                    yield self._normalize_lora_prefix(f"{module_name}."), module
+
+    def _empty_ewclora_scalar(self, model):
+        try:
+            device = next(model.parameters()).device
+        except StopIteration:
+            device = self.args.device
+        return torch.zeros((), device=device)
+
+    def _compute_ewclora_loss(self, model):
+        if not self.ewclora_omega:
+            return self._empty_ewclora_scalar(model)
+
+        penalty = None
+        for prefix, p_a, p_b in self._iter_loranew_pairs(model):
+            fisher = self.ewclora_omega.get(prefix)
+            if fisher is None:
+                continue
+            delta_w = p_b @ p_a
+            fisher = fisher.to(device=delta_w.device, dtype=delta_w.dtype)
+            term = (fisher * delta_w.pow(2)).sum()
+            penalty = term if penalty is None else penalty + term
+
+        if penalty is None:
+            return self._empty_ewclora_scalar(model)
+        return 0.5 * float(getattr(self.args, "ewclora_lambda", 1.0)) * penalty
+
+    def _set_ewclora_delta_hooks(self, model, enabled):
+        for _, module in self._iter_loranew_modules(model):
+            module.ewclora_register_hook = enabled
+            module.ewclora_delta_grad = None
+
+    @staticmethod
+    def _infer_batch_size(inputs):
+        if isinstance(inputs, dict):
+            values = inputs.values()
+        elif isinstance(inputs, (list, tuple)):
+            values = inputs
+        else:
+            values = [inputs]
+        for value in values:
+            if torch.is_tensor(value) and value.dim() > 0:
+                return int(value.size(0))
+        return 1
+
+    def _distributed_average_fisher(self, fisher_sums, sample_count):
+        if not (torch.distributed.is_available() and torch.distributed.is_initialized()):
+            denom = max(float(sample_count), 1.0)
+            return {k: (v / denom).detach().cpu() for k, v in fisher_sums.items()}
+
+        device = next(iter(fisher_sums.values())).device if fisher_sums else self.args.device
+        count_tensor = torch.tensor(float(sample_count), device=device)
+        torch.distributed.all_reduce(count_tensor, op=torch.distributed.ReduceOp.SUM)
+        for tensor in fisher_sums.values():
+            torch.distributed.all_reduce(tensor, op=torch.distributed.ReduceOp.SUM)
+        denom = max(float(count_tensor.item()), 1.0)
+        return {k: (v / denom).detach().cpu() for k, v in fisher_sums.items()}
+
+    def _compute_ewclora_fisher(self, model, max_batches=None):
+        modules = list(self._iter_loranew_modules(model))
+        fisher_sums = {}
+        for prefix, module in modules:
+            active_adapter = getattr(module, "active_adapter", "default")
+            delta_w = module.loranew_B[active_adapter].weight @ module.loranew_A[active_adapter].weight
+            fisher_sums[prefix] = torch.zeros_like(delta_w, dtype=torch.float32, device=delta_w.device)
+
+        if not fisher_sums:
+            logger.warning("EWCLoRA Fisher skipped because no loranew modules were found.")
+            return {}
+
+        max_batches = None if max_batches in (None, 0) else int(max_batches)
+        sample_count = 0
+        was_training = model.training
+        model.eval()
+        self._set_ewclora_delta_hooks(model, True)
+        dataloader = self.get_train_dataloader()
+        try:
+            for step, inputs in enumerate(dataloader):
+                if max_batches is not None and step >= max_batches:
+                    break
+                local_inputs = self._prepare_inputs(inputs)
+                batch_size = self._infer_batch_size(local_inputs)
+                model.zero_grad()
+                for _, module in modules:
+                    module.ewclora_delta_grad = None
+
+                with self.compute_loss_context_manager():
+                    # Match the reference implementation: Fisher is empirical
+                    # mean of (d CE / d Delta-W_new)^2, without EWC/GAM terms.
+                    loss = self.compute_loss(model, local_inputs)
+                if self.args.n_gpu > 1:
+                    loss = loss.mean()
+                loss.backward()
+
+                for prefix, module in modules:
+                    grad = getattr(module, "ewclora_delta_grad", None)
+                    if grad is not None:
+                        fisher_sums[prefix] += grad.detach().float().pow(2) * batch_size
+                sample_count += batch_size
+                model.zero_grad()
+        finally:
+            self._set_ewclora_delta_hooks(model, False)
+            if was_training:
+                model.train()
+
+        return self._distributed_average_fisher(fisher_sums, sample_count)
+
+    def maybe_update_ewclora_fisher(self):
+        if not self._is_ewclora_strategy():
+            return
+        logger.info("Computing post-task EWCLoRA full-Delta-W Fisher.")
+        fisher_current = self._compute_ewclora_fisher(
+            self.model,
+            max_batches=getattr(self.args, "ewclora_fisher_max_batches", None),
+        )
+        gamma = float(getattr(self.args, "ewclora_gamma", 1.0))
+        updated = {}
+        for prefix, fisher in fisher_current.items():
+            old = self.ewclora_omega.get(prefix)
+            updated[prefix] = fisher if old is None else gamma * old + fisher
+        self.ewclora_omega = updated
+        self.ewclora_count_updates += 1
+        if updated:
+            means = [v.float().mean().item() for v in updated.values()]
+            maxs = [v.float().max().item() for v in updated.values()]
+            self._last_ewclora_fisher_info = (
+                f"blocks={len(updated)}, mean={sum(means) / len(means):.3e}, max={max(maxs):.3e}"
+            )
+            logger.info("EWCLoRA Fisher updated: %s", self._last_ewclora_fisher_info)
+
+    def save_ewclora_state(self, save_directory):
+        if not self._is_ewclora_strategy() or not self.ewclora_omega:
+            return
+        if not self.is_world_process_zero():
+            return
+        os.makedirs(save_directory, exist_ok=True)
+        state_file = os.path.join(save_directory, "ewclora_fisher.pt")
+        torch.save(
+            {
+                "omega": {k: v.detach().cpu() for k, v in self.ewclora_omega.items()},
+                "count_updates": self.ewclora_count_updates,
+                "lambda": float(getattr(self.args, "ewclora_lambda", 1.0)),
+                "gamma": float(getattr(self.args, "ewclora_gamma", 1.0)),
+                "format": "full_delta_w_fisher_v1",
+            },
+            state_file,
+        )
+        logger.info("Saved EWCLoRA Fisher state to %s", state_file)
+
+    @staticmethod
+    def _flatten_optimizer_params(optimizer):
+        params = []
+        seen = set()
+        for group in optimizer.param_groups:
+            for param in group["params"]:
+                if not getattr(param, "requires_grad", False):
+                    continue
+                pid = id(param)
+                if pid in seen:
+                    continue
+                seen.add(pid)
+                params.append(param)
+        return params
+
+    def _compute_ewclora_grad_cache(self, model, params):
+        if not self.ewclora_omega:
+            return {}
+        with torch.enable_grad():
+            ewc_loss = self._compute_ewclora_loss(model)
+        if not ewc_loss.requires_grad:
+            return {}
+        grads = torch.autograd.grad(
+            ewc_loss,
+            params,
+            allow_unused=True,
+            retain_graph=False,
+        )
+        return {
+            id(param): grad.detach().clone()
+            for param, grad in zip(params, grads)
+            if grad is not None
+        }
+
+    def _build_ewclora_gam_projector(self, ewc_grad_cache):
+        eps = float(getattr(self.args, "ewclora_project_eps", 1e-12))
+
+        def projector(param_groups):
+            for group in param_groups:
+                for param in group["params"]:
+                    if param.grad is None:
+                        continue
+                    g_ewc = ewc_grad_cache.get(id(param))
+                    if g_ewc is None:
+                        continue
+                    g_gam = param.grad.detach()
+                    denom = torch.sum(g_ewc * g_ewc) + eps
+                    coeff = torch.sum(g_gam * g_ewc) / denom
+                    # Reference projected GAM: project GAM away from EWC, then add EWC back.
+                    param.grad.data.copy_(g_gam - coeff * g_ewc + g_ewc)
+
+        return projector
 
     def _is_deepspeed_enabled_compat(self, args):
         return bool(getattr(self, "is_deepspeed_enabled", False) or getattr(args, "deepspeed", None))
@@ -930,6 +1204,8 @@ class UIETrainer(Seq2SeqTrainer):
                                     loss = loss + l1_loss * lamda_1
                                 elif self.args.lora_strategy.lower() == "inclora":
                                     logger.debug(f"no_sync:inclora accuracy_loss: {loss.item():.4f}")
+                                elif self.args.lora_strategy.lower() in self.EWCLORA_STRATEGIES:
+                                    loss = self._apply_train_regularization(model, loss, log_prefix="no_sync:")
                                 elif self.args.lora_strategy.lower() == "seqlora":
                                     logger.debug(f"no_sync:seqLora accuracy_loss: {loss.item():.4f}")
                                 
@@ -1087,6 +1363,8 @@ class UIETrainer(Seq2SeqTrainer):
                                 loss = loss + l1_loss * lamda_1
                             elif self.args.lora_strategy.lower() == "inclora":
                                 logger.debug(f"sync:inclora accuracy_loss: {loss.item():.4f}")
+                            elif self.args.lora_strategy.lower() in self.EWCLORA_STRATEGIES:
+                                loss = self._apply_train_regularization(model, loss, log_prefix="sync:")
                             elif self.args.lora_strategy.lower() == "seqlora":
                                     logger.debug(f"no_sync:seqLora accuracy_loss: {loss.item():.4f}")
                             elif self.args.lora_strategy.lower() == "lora_l2":
@@ -1556,14 +1834,24 @@ class UIETrainer(Seq2SeqTrainer):
                             total_gam_loss = self._run_gam_replay_pass(model, gam_accumulated_inputs)
                             return None, total_gam_loss
 
-                        _, gam_loss_value = self.optimizer.step(
-                            closure=gam_closure,
-                            clip_grad_norm=(
-                                args.max_grad_norm
-                                if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed
-                                else None
-                            ),
-                        )
+                        if self._is_ewclora_gam_strategy():
+                            params = self._flatten_optimizer_params(self.optimizer)
+                            ewc_grad_cache = self._compute_ewclora_grad_cache(model, params)
+                            self.optimizer.set_direction_projector(
+                                self._build_ewclora_gam_projector(ewc_grad_cache)
+                            )
+                        try:
+                            _, gam_loss_value = self.optimizer.step(
+                                closure=gam_closure,
+                                clip_grad_norm=(
+                                    args.max_grad_norm
+                                    if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed
+                                    else None
+                                ),
+                            )
+                        finally:
+                            if hasattr(self.optimizer, "set_direction_projector"):
+                                self.optimizer.set_direction_projector(None)
                         logger.debug(f"GAM step finished, loss={gam_loss_value.item() if torch.is_tensor(gam_loss_value) else gam_loss_value}")
                         gam_accumulated_inputs.clear()
 
@@ -2005,6 +2293,16 @@ class UIETrainer(Seq2SeqTrainer):
             loss = loss + l1_loss * lamda_1
         elif strategy == "inclora":
             logger.debug(f"{log_prefix}inclora accuracy_loss: {loss.item():.4f}")
+        elif strategy in self.EWCLORA_STRATEGIES:
+            if self._is_ewclora_gam_strategy() and "gam" in str(getattr(self.args, "optimizer_type", "")).lower():
+                logger.debug(f"{log_prefix}ewclora_gam uses projected EWC gradient outside the GAM CE closure.")
+            else:
+                ewc_loss = self._compute_ewclora_loss(model)
+                logger.info(
+                    f"{log_prefix}EWCLoRA ewc_loss: {ewc_loss.item():.4f}; "
+                    f"accuracy_loss: {loss.item():.4f}; lambda: {self.args.ewclora_lambda}"
+                )
+                loss = loss + ewc_loss
         elif strategy == "seqlora":
             logger.debug(f"{log_prefix}seqLora accuracy_loss: {loss.item():.4f}")
         elif strategy == "lora_l2":
@@ -5183,5 +5481,3 @@ class UIETrainer(Seq2SeqTrainer):
 
 
     
-
-

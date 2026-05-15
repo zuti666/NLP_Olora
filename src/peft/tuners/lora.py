@@ -444,6 +444,13 @@ class LoraLayer:
         self.disable_adapters = False
         self.in_features = in_features
         self.out_features = out_features
+        # EWCLoRA Fisher needs gradients w.r.t. the full Delta-W = B_new @ A_new.
+        # The flag keeps normal training on the cheap low-rank path.
+        self.ewclora_register_hook = False
+        self.ewclora_delta_grad = None
+
+    def _save_ewclora_delta_grad(self, grad):
+        self.ewclora_delta_grad = grad.detach()
 
     def update_layer(self, adapter_name, r, lora_alpha, lora_dropout, init_lora_weights, r_sum): # modified 
         self.r[adapter_name] = r
@@ -590,12 +597,20 @@ class Linear(nn.Linear, LoraLayer):
             )
 
             # modified
-            result += (
-                self.loranew_B[self.active_adapter](
-                    self.loranew_A[self.active_adapter](x)
+            if getattr(self, "ewclora_register_hook", False):
+                delta_w_new = (
+                    self.loranew_B[self.active_adapter].weight
+                    @ self.loranew_A[self.active_adapter].weight
                 )
-                * self.scaling[self.active_adapter] 
-            )
+                delta_w_new.register_hook(self._save_ewclora_delta_grad)
+                result += F.linear(x, delta_w_new) * self.scaling[self.active_adapter]
+            else:
+                result += (
+                    self.loranew_B[self.active_adapter](
+                        self.loranew_A[self.active_adapter](x)
+                    )
+                    * self.scaling[self.active_adapter]
+                )
             
         else:
             result = F.linear(x, transpose(self.weight, self.fan_in_fan_out), bias=self.bias)

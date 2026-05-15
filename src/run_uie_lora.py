@@ -275,6 +275,26 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
     train_method: str = field(default="finetune") #  use_probe, finetune,Cl
     finetune_strategy: str = field(default="full")  # 'full', 'ewc', 'er'
     lora_strategy: str = field(default="lora")  # 'lora', 'Nlora', 'er'
+    ewclora_lambda: float = field(
+        default=1.0,
+        metadata={"help": "EWC penalty weight for lora_strategy=ewclora/ewclora_gam."},
+    )
+    ewclora_gamma: float = field(
+        default=1.0,
+        metadata={"help": "Decay applied to the previous full-Delta-W Fisher when updating EWCLoRA omega."},
+    )
+    ewclora_fisher_path: str = field(
+        default="",
+        metadata={"help": "Optional path or adapter directory containing ewclora_fisher.pt to warm-start EWCLoRA."},
+    )
+    ewclora_fisher_max_batches: Optional[int] = field(
+        default=None,
+        metadata={"help": "Optional max train batches for post-task EWCLoRA Fisher. None/0 means full train loader."},
+    )
+    ewclora_project_eps: float = field(
+        default=1e-12,
+        metadata={"help": "Numerical epsilon for EWCLoRA+GAM gradient projection."},
+    )
     # optimizer_type: str = field(default="sam-adam")  # 'sgd' 或 'sam'
     # momentum: float = field(default=0)          # 仅用于 sgd 或 sam
     sam_rho: float = field(default=0.05)              # sam 特有超参数
@@ -578,6 +598,14 @@ def main():
     logger.info(f"model_args {model_args}")
     logger.info(f"data_args parameters {data_args}")
     logger.info(f"Training/evaluation parameters {training_args}")
+    if (
+        training_args.lora_strategy.lower() in {"ewclora", "ewclora_gam", "ewclora-gam"}
+        and not training_args.ewclora_fisher_path
+        and "adapter" in model_args.model_name_or_path
+    ):
+        # Keep EWCLoRA scripts compatible with the existing chained adapter layout:
+        # round N+1 automatically reads omega from round N's adapter directory.
+        training_args.ewclora_fisher_path = model_args.model_name_or_path
 
     # Detecting last checkpoint.
     last_checkpoint = None
@@ -1014,6 +1042,16 @@ def main():
                     elif name.find("shared") != -1:
                         param.requires_grad = False
                     logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+            elif training_args.lora_strategy.lower() in {'ewclora', 'ewclora_gam', 'ewclora-gam'}:
+                logger.debug(f'---set paramter:ewclora---')
+                for name, param in model.named_parameters():
+                    if name.find("loranew_") != -1:
+                        param.requires_grad = True
+                    elif name.find("lora_") != -1:
+                        param.requires_grad = False
+                    elif name.find("shared") != -1:
+                        param.requires_grad = False
+                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
             elif training_args.lora_strategy.lower() == 'seqlora':
                 logger.debug(f'---set paramter:seqlora---')
                 for name, param in model.named_parameters():
@@ -1332,6 +1370,8 @@ def main():
         logger.debug("Start TRAINGININININININ")
 
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
+        if training_args.train_method.lower() == 'lora':
+            trainer.maybe_update_ewclora_fisher()
 
         # 默认只保存 adapter
         if training_args.train_method.lower() == 'seqlora':
@@ -1342,6 +1382,7 @@ def main():
             peft_model_id = training_args.output_dir + "/adapter"
             trainer.model.save_pretrained(peft_model_id)
             tokenizer.save_pretrained(peft_model_id)
+            trainer.save_ewclora_state(peft_model_id)
         
 
         # 修改保存新的模型 

@@ -48,10 +48,15 @@ class GAM(torch.optim.Optimizer):
 
         self.adaptive = adaptive
         self.args = args
+        self.direction_projector = None
 
         self.grad_rho_scheduler = grad_rho_scheduler
         self.grad_norm_rho_scheduler = grad_norm_rho_scheduler
         self.update_rho_t()
+
+    def set_direction_projector(self, projector):
+        """Optionally rewrite the final GAM gradient before the base optimizer step."""
+        self.direction_projector = projector
 
     def get_grad_reduce(self, grad_reduce: str):
         if grad_reduce.lower() == 'mean':
@@ -271,6 +276,8 @@ class GAM(torch.optim.Optimizer):
 
             # decompose and get new update direction
             self.gradient_decompose(args=self.args)
+            if self.direction_projector is not None:
+                self.direction_projector(self.param_groups)
 
             # unperturb
             self.unperturb(perturb_key="e_w_1_2")
