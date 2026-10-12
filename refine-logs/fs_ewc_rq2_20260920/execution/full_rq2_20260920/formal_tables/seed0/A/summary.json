@@ -1,0 +1,151 @@
+{
+  "D0": {
+    "test": -0.0009387205502817686,
+    "train": 0.007938527639461193
+  },
+  "D0_subset": 0.015979101916357763,
+  "a11_current_minus_historical_pp": -0.003583061889244732,
+  "a11_historical_inherited": 87.3,
+  "accuracy_CIL": {
+    "a11": 87.29641693811075,
+    "a11_source": "current full-FP32 anchor, matched to continuation task0_local_metrics.jsonl",
+    "a21": 83.06,
+    "a21_a22_source": "current continuation CNN class-incremental matrix",
+    "a22": 76.38,
+    "definition": "CNN class-incremental accuracy (%), classifier covers all classes seen at that stage"
+  },
+  "accuracy_CIL_inherited_matrix": {
+    "a11": 87.3,
+    "a21": 83.06,
+    "a22": 76.38,
+    "definition": "CNN class-incremental accuracy (%), classifier covers all classes seen at that stage"
+  },
+  "anchor": {
+    "fisher": {
+      "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+      "estimator": "mean per-example CE gradient outer product",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "normalized": false,
+      "q": {},
+      "raw_trace": 1499.9142375239746,
+      "regularizer": null,
+      "samples": 256,
+      "samples_per_second": 126.15969465700512,
+      "seconds": 2.029174219991546,
+      "subset_loss": 0.10754220944508575
+    },
+    "metrics": {
+      "test": {
+        "accuracy": 87.29641693811075,
+        "loss": 0.4104792336183417,
+        "samples": 307
+      },
+      "train": {
+        "accuracy": 97.61715647339157,
+        "loss": 0.09609712585271754,
+        "samples": 1259
+      }
+    },
+    "provenance": {
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/task_00.pt",
+      "reused": false,
+      "sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229"
+    }
+  },
+  "checkpoints": {
+    "0": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/task_00.pt",
+    "1": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/checkpoints/task_01.pt"
+  },
+  "conversion_checks": {
+    "anchor": 0.0,
+    "task1_endpoint": 0.0
+  },
+  "current_anchor_training_metrics": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/task0_local_metrics.jsonl",
+    "sha256": "1ff716bcf8c1846a0548c81bac6d1e558b72445e71080981e607503cac4dfb72",
+    "test": {
+      "local_accuracy": 87.29641693811075,
+      "local_ce": 0.4104792336183417,
+      "n": 307,
+      "seen_accuracy": 87.29641693811075,
+      "seen_ce": 0.4104792336183417
+    }
+  },
+  "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+  "delta_sha256": "271d77b652c8088cad3d55e15bb8cb231467c29cef5bed417c1d0f1e42235d1e",
+  "effective_weight_drift": 0.38129095597362905,
+  "endpoint": {
+    "fisher": {
+      "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+      "estimator": "mean per-example CE gradient outer product",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "normalized": false,
+      "q": {},
+      "raw_trace": 1954.358426508156,
+      "regularizer": null,
+      "samples": 256,
+      "samples_per_second": 85.83200831724317,
+      "seconds": 2.982570314023178,
+      "subset_loss": 0.12352131136144351
+    },
+    "metrics": {
+      "test": {
+        "accuracy": 87.29641693811075,
+        "loss": 0.40954051306805994,
+        "samples": 307
+      },
+      "train": {
+        "accuracy": 97.14058776806989,
+        "loss": 0.10403565349217873,
+        "samples": 1259
+      }
+    },
+    "provenance": {
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/checkpoints/task_01.pt",
+      "reused": false,
+      "sha256": "50f74b733e76de664f384b725fd0f9ef2edc8935018d6beeb7b72b896d215652"
+    }
+  },
+  "ewc_lambda": 0.0,
+  "future_optimizer": "sgd",
+  "method": "sgd",
+  "metrics_json": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/B3_A_sgd_lam0_seed0/imageneta/0/B3_A_sgd_lam0_seed0/exp_run/20/B3_A_sgd_lam0_seed0_vit_base_patch16_224_cl_metrics.json",
+  "nonlora_backbone_exactly_unchanged": true,
+  "old_task_head_exactly_unchanged": true,
+  "old_task_loss_definition": "CE on fixed Task0 head, 20 logits; deterministic eval transforms for train and test",
+  "production_precision": "full FP32; inherited training-matrix a11 retained separately",
+  "retention_scope": "Shared future SGD without protection; inherited Fisher is inactive.",
+  "run_name": "B3_A_sgd_lam0_seed0",
+  "sanity": {
+    "common_code_sha256": "ae1c253e79bcfc884b27e160069d5cc40cfcb269685e103dca280a18413e0b7f",
+    "fixed_old_head_equal": true,
+    "frozen_backbone_equal": true,
+    "raw_empirical_fisher_finite_positive": true
+  },
+  "seconds_new_endpoint": 18.92808789096307,
+  "seed": 0,
+  "shaping_in_task1": false,
+  "signature": {
+    "checkpoint_sha256": {
+      "0": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229",
+      "1": "50f74b733e76de664f384b725fd0f9ef2edc8935018d6beeb7b72b896d215652"
+    },
+    "code_sha256": "65fff6634c6d7635435e3e9e2fe5ef19b8b96037e486fa70b23609ead35c3850",
+    "common_code_sha256": "ae1c253e79bcfc884b27e160069d5cc40cfcb269685e103dca280a18413e0b7f",
+    "config_sha256": "0b2bdbb0d79e4b10c0d3ab4be36fc7d8918bb7336810b1704c43bedeeec1ea4c",
+    "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+    "method": "sgd",
+    "metrics_sha256": "597a35a6c83f0fe0ce14b928a5bed49c211cf46f20dbacba7885980fef937b4b",
+    "training_complete_sha256": "9f54d1105eeccb249eaf65770f1c7433bcced876ea0b313e6d3e80d4ee4ea5d5",
+    "training_manifest_sha256": "6b490cbab272fcd1314e3f74527bb754ee83e98841cf8faaa8211e67a2339292"
+  },
+  "signature_sha256": "5937dfa8c9577e2da5a437dff2983ae4b2670925a6301e603f233f8db7d4dcc3",
+  "source_to_effective_max_logit_error": 0.0,
+  "status": "complete",
+  "task0_shaping": false,
+  "training_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/run_manifest.json",
+  "training_mode": "continuation",
+  "training_rng_protocol": "rq2_shared_task_rng_v1"
+}

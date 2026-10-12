@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "review_kind": "independent_read_only_math_and_plan_review",
+  "reviewer": "/root/radius_coupling_math_review",
+  "created_utc": "2026-10-09T19:41:47.901488+00:00",
+  "checks": {
+    "original_methods_preserved_and_no_new_execution": true,
+    "three_new_current_g2_arms_and_one_reused_original": true,
+    "inner_fixed_radius_point_and_base_outer_origin_defined": true,
+    "original_fusion_parameter_correction_eta_squared_Hg_limited_to_nohistory": true,
+    "current_g2_parameter_correction_eta_squared_H_squared_g_correct": true,
+    "fixed_outer_parameter_correction_eta_R_H_squared_g_correct": true,
+    "inner_radius_normalization_cancellation_nonzero_local_assumptions": true,
+    "history_fixed_q_over_ell_can_amplify_crossbatch_terms": true,
+    "late_FP32_noise_not_claimed_as_confirmed": true,
+    "zero_gradient_nearzero_Hg_and_nonlocal_radius_risks_reported": true,
+    "CL10_seed2_fixed_training_and_primary_AAA": true,
+    "proposal_configs_preserve_other_scientific_fields": true,
+    "original_trainer_source_explicitly_rejects_proposal_mode": true,
+    "original_step_source_explicitly_rejects_proposal_mode": true
+  },
+  "config_reviews": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/configs/currentg2_fixedboth_cl10_s2.json",
+      "sha256": "e2bb5c9353b500a96b3f41f4bca89c5d918cb6a3ce986e0c52f6c77985b60383",
+      "changed_keys": [
+        "draft_status",
+        "inner_probe_radius",
+        "inner_probe_radius_mode",
+        "original_response_method_preserved",
+        "outer_probe_radius",
+        "outer_probe_radius_mode",
+        "outputs_root",
+        "prefix",
+        "response_algorithm_family",
+        "response_probe_variant",
+        "response_radius_mode"
+      ],
+      "unexpected_nonradius_scientific_changes": [],
+      "proposal_radius_mode": "independent_inner_outer_proposal_v1",
+      "status": "pass"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/configs/currentg2_fixedinner_cl10_s2.json",
+      "sha256": "1dc38078f8a46b3e25ae28a3caca25eb8f248ede680737021da0ac07b2c4989b",
+      "changed_keys": [
+        "draft_status",
+        "inner_probe_radius",
+        "inner_probe_radius_mode",
+        "original_response_method_preserved",
+        "outer_probe_radius_mode",
+        "outputs_root",
+        "prefix",
+        "response_algorithm_family",
+        "response_probe_variant",
+        "response_radius_mode"
+      ],
+      "unexpected_nonradius_scientific_changes": [],
+      "proposal_radius_mode": "independent_inner_outer_proposal_v1",
+      "status": "pass"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/configs/currentg2_fixedouter_cl10_s2.json",
+      "sha256": "7a878f2cfbc400879e6a4e8cbce3646ec739c8478786e1c8c735a1d20af528d1",
+      "changed_keys": [
+        "draft_status",
+        "inner_probe_radius_mode",
+        "original_response_method_preserved",
+        "outer_probe_radius",
+        "outer_probe_radius_mode",
+        "outputs_root",
+        "prefix",
+        "response_algorithm_family",
+        "response_probe_variant",
+        "response_radius_mode"
+      ],
+      "unexpected_nonradius_scientific_changes": [],
+      "proposal_radius_mode": "independent_inner_outer_proposal_v1",
+      "status": "pass"
+    }
+  ],
+  "file_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/DERIVATION_PACKAGE.md": "cdb33ceeda7c4adf2701243657414e6012081e81f39d009b8f27e29583228da7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/EXPERIMENT_PLAN.md": "40b5038174d5751df05518e369aa4633f70f95384396677ce2a9eb1341bb4bb8",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/EXPERIMENT_SETTINGS.json": "24d554c9266fa29f299de8b9caf38049bbf96054b3de2359c2fe5411b3ad1ec8",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_step.py": "fe5b2056df14ba10eb8a00722b126986fc83b19cd66905b5bfe7dcfd30eb2e70",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py": "7310bdcf28a391b3ed4c6b358b5c386adc04e2470b794c0d7cb2c4a09aba0c05"
+  },
+  "execution_claims": {
+    "original_source_guards_inspected": true,
+    "new_mode_CLI_execution_not_performed_by_this_reviewer": true,
+    "new_implementation_exists": false,
+    "new_jobs_registered": 0,
+    "new_training_launched": false
+  },
+  "nonblocking_implementation_constraints": [
+    "Three-gradient budget describes normal nonfallback steps; record actual counts for fallbacks.",
+    "Fixed-inner mode must test validity of N(g0), its independent actual FP32 probe displacement q, and bitwise distinguishability, rather than using original h<=eps as its inner-probe size criterion."
+  ],
+  "conclusion": "The proposal is coherent as an exploratory Current-G2 2x2 comparison; it does not establish independent radii improve performance or prove a Hessian mechanism."
+}

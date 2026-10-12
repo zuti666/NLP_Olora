@@ -1,0 +1,249 @@
+{
+  "status": "first_three_formal_training_verified",
+  "at": "2026-10-03T19:10:26.534695+00:00",
+  "controller": {
+    "pid": 3366664,
+    "proc_starttime": "150914228",
+    "hostname": "cudahpc40.cvc.uab.es",
+    "boot_id": "6b600899-05dd-45f1-9704-ca38d94ab716",
+    "pid_namespace": "pid:[4026531836]"
+  },
+  "allowed_gpus": [
+    1,
+    2,
+    3
+  ],
+  "gpu_snapshot": {
+    "0": {
+      "index": 0,
+      "uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "memory_used_mb": 2,
+      "utilization_percent": 0
+    },
+    "1": {
+      "index": 1,
+      "uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "memory_used_mb": 14244,
+      "utilization_percent": 28
+    },
+    "2": {
+      "index": 2,
+      "uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "memory_used_mb": 14244,
+      "utilization_percent": 99
+    },
+    "3": {
+      "index": 3,
+      "uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "memory_used_mb": 14244,
+      "utilization_percent": 100
+    },
+    "4": {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 2,
+      "utilization_percent": 0
+    },
+    "5": {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 2,
+      "utilization_percent": 0
+    },
+    "6": {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mb": 2,
+      "utilization_percent": 0
+    }
+  },
+  "completed_smokes": 7,
+  "pairing_passed": true,
+  "pairing_checks": {
+    "task0_initial_parameters": true,
+    "inherited_fc_rows": true,
+    "frozen_origin": true,
+    "new_classifier_rows": true,
+    "task_class_slices": true,
+    "actual_input_sequence": true,
+    "task0_probe_tensors": true,
+    "task0_rng0": true,
+    "task0_rng1": true,
+    "all_smoke_replay_gates_passed": true,
+    "all_whole_task_invariants_passed": true,
+    "no_later_trained_parameter_equality_required": true
+  },
+  "formal_observations": [
+    {
+      "run_id": "OE01_SAM_s2",
+      "gpu": 1,
+      "gpu_uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "worker": {
+        "pid": 3404095,
+        "proc_starttime": "150929444",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6b600899-05dd-45f1-9704-ca38d94ab716",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "observed_steps": 24,
+      "last_step": {
+        "task": 0,
+        "epoch": 3,
+        "batch": 3,
+        "rho": 0.05,
+        "direction": "g1_plus",
+        "loss0": 1.0301443338394165,
+        "loss1_plus": 1.1413586139678955,
+        "loss1_minus": 0.9270607233047485,
+        "norms": {
+          "g0": 2.145867053339156,
+          "g1_plus": 2.303917662756464,
+          "g1_minus": 1.9822357654805371,
+          "s": 0.21748904214834514,
+          "e": 0.04197120009635704,
+          "correction": 0.23054384755419835,
+          "U": 2.303917662756464
+        },
+        "s_over_g0": 0.10135252405772849,
+        "e_over_g0": 0.01955908686469026,
+        "e_over_s": 0.19298075747437565,
+        "sgd_updates": 1,
+        "ordinary_gradient_calls": 3
+      },
+      "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE01_SAM_s2/step_trace.jsonl"
+    },
+    {
+      "run_id": "OE02_Backward_s2",
+      "gpu": 2,
+      "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "worker": {
+        "pid": 3404101,
+        "proc_starttime": "150929471",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6b600899-05dd-45f1-9704-ca38d94ab716",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "observed_steps": 23,
+      "last_step": {
+        "task": 0,
+        "epoch": 3,
+        "batch": 2,
+        "rho": 0.05,
+        "direction": "backward_reflected",
+        "loss0": 1.1948672533035278,
+        "loss1_plus": 1.322080373764038,
+        "loss1_minus": 1.0763059854507446,
+        "norms": {
+          "g0": 2.4608651238910735,
+          "g1_plus": 2.6294969079637074,
+          "g1_minus": 2.284779304678516,
+          "s": 0.23673421913154225,
+          "e": 0.020866274815768856,
+          "correction": 0.24651160793333607,
+          "U": 2.648213319856187
+        },
+        "s_over_g0": 0.09619959128728127,
+        "e_over_g0": 0.00847924358518561,
+        "e_over_s": 0.08814219968802352,
+        "sgd_updates": 1,
+        "ordinary_gradient_calls": 3
+      },
+      "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE02_Backward_s2/step_trace.jsonl"
+    },
+    {
+      "run_id": "OE03_Central_s2",
+      "gpu": 3,
+      "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "worker": {
+        "pid": 3404114,
+        "proc_starttime": "150929499",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6b600899-05dd-45f1-9704-ca38d94ab716",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "observed_steps": 24,
+      "last_step": {
+        "task": 0,
+        "epoch": 3,
+        "batch": 3,
+        "rho": 0.05,
+        "direction": "central",
+        "loss0": 1.0296311378479004,
+        "loss1_plus": 1.1408605575561523,
+        "loss1_minus": 0.9265923500061035,
+        "norms": {
+          "g0": 2.1462284858750924,
+          "g1_plus": 2.3046475371294997,
+          "g1_minus": 1.9810135135832725,
+          "s": 0.21737790173995142,
+          "e": 0.056156390668068115,
+          "correction": 0.23423898293635342,
+          "U": 2.313331781950328
+        },
+        "s_over_g0": 0.10128367187858732,
+        "e_over_g0": 0.02616515018676822,
+        "e_over_s": 0.2583353239603422,
+        "sgd_updates": 1,
+        "ordinary_gradient_calls": 3
+      },
+      "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE03_Central_s2/step_trace.jsonl"
+    }
+  ],
+  "later_formal_pending": [
+    "OE04_CE_s2",
+    "OE05_Negative_s2",
+    "OE06_Average_s2",
+    "OE07_ReflectedAverage_s2"
+  ],
+  "old_artifacts_unchanged": true,
+  "old_artifact_count": 89,
+  "formal_results_complete": false
+}

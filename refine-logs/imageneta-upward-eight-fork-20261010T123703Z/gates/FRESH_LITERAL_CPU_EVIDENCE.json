@@ -1,0 +1,219 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-10T12:56:32.031677+00:00",
+  "hostname": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "literal_run_md_sha256": "af20d6b13bfcbec5807b7fe501325a8d6a31fa70ae951b069a601323fd15cbd3",
+  "environment_overrides": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "commands": [
+    {
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python trainer/test_upward_residual_cpu.py",
+      "argv": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "trainer/test_upward_residual_cpu.py"
+      ],
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z",
+      "returncode": 0,
+      "elapsed_seconds": 1.8420190899632871,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/gates/FRESH_LITERAL_CPU_0.log",
+      "log_sha256": "c1ac4139bacd89be5d80811a300bfd07ba876fd9942398d58329fa4f54e410ec",
+      "gpu_visible": false,
+      "unittest_passed": true
+    },
+    {
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python trainer/test_upward_local_audit_cpu.py",
+      "argv": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "trainer/test_upward_local_audit_cpu.py"
+      ],
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z",
+      "returncode": 0,
+      "elapsed_seconds": 1.9929181390325539,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/gates/FRESH_LITERAL_CPU_1.log",
+      "log_sha256": "faa130aeee7cc89f0c0a8039164734b1e4dd67c0ed84d19d0c38af632d00edc7",
+      "gpu_visible": false,
+      "unittest_passed": true
+    },
+    {
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python trainer/upward_fork_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config configs/formal_task1_g2_s2.json --output-dir /data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g2_s2 --dry-run",
+      "argv": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "trainer/upward_fork_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "configs/formal_task1_g2_s2.json",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g2_s2",
+        "--dry-run"
+      ],
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z",
+      "returncode": 0,
+      "elapsed_seconds": 1.1337254190002568,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/gates/FRESH_LITERAL_CPU_2.log",
+      "log_sha256": "38c686563d34fb471aee3b94e37c8687e7bf816d00ca76f4fab046b936a708e3",
+      "gpu_visible": false,
+      "payload": {
+        "status": "valid",
+        "protocol": "upward_eight_shared_sgd_parent_exact_restore_native_skip_v1",
+        "task": 1,
+        "training_tasks_this_job": 1,
+        "epochs": 50,
+        "smoke": false,
+        "parent_retraining_per_branch": false,
+        "selection_rule": "fixed epoch50 currenttask train-only dev CE",
+        "study_condition_id": "upward_g2",
+        "study_role": "branch",
+        "upward_direction": "g2",
+        "probe_variant": "upward_g2",
+        "fork_method": "g2",
+        "response_probe_variant": "upward_g2",
+        "radius_variant": "upward_fixed_l2",
+        "probe_mode": "upward_fixed_l2",
+        "inner_probe_radius_mode": "fixed_l2",
+        "outer_probe_radius_mode": "fixed_l2",
+        "inner_rho": 0.05,
+        "outer_R": 1.0,
+        "normal_gradient_calls": 3,
+        "gradient_formula": "g2",
+        "native_probe_skipping": true,
+        "gam_radii_active": true,
+        "probe_radius_coordinates": "global trainable LoRA+FC parameter L2",
+        "dev_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a"
+      }
+    },
+    {
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python trainer/upward_single_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config configs/formal_single200_g2_s2.json --output-dir /data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_single200_g2_s2 --dry-run",
+      "argv": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "trainer/upward_single_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "configs/formal_single200_g2_s2.json",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_single200_g2_s2",
+        "--dry-run"
+      ],
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z",
+      "returncode": 0,
+      "elapsed_seconds": 1.1285601499839686,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/gates/FRESH_LITERAL_CPU_3.log",
+      "log_sha256": "5ffe4b2d2f2666ffbff7a70eebc931a21fc2ccf1e75c62226a3c066a061161da",
+      "gpu_visible": false,
+      "payload": {
+        "status": "valid",
+        "protocol": "upward_six_single200_full_original_train_exact_restore_native_skip_v1",
+        "seed": 2,
+        "response_layout": "single200",
+        "classes": 200,
+        "full_train_samples": 5981,
+        "full_test_samples": 1519,
+        "epochs": 50,
+        "upward_direction": "g2",
+        "gradient_formula": "g2",
+        "native_probe_skipping": true,
+        "normal_gradient_calls": 3,
+        "probe_family": "upward_sam_response_outer_point",
+        "inner_rho": 0.05,
+        "outer_R": 1.0,
+        "gam_radii_active": true,
+        "probe_radius_coordinates": "global trainable LoRA+FC parameter L2"
+      }
+    },
+    {
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python trainer/upward_local_audit.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --suite suite.json --output-dir /data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_local_upward_s2 --seed 2 --dry-run",
+      "argv": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "trainer/upward_local_audit.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--suite",
+        "suite.json",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_local_upward_s2",
+        "--seed",
+        "2",
+        "--dry-run"
+      ],
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z",
+      "returncode": 0,
+      "elapsed_seconds": 1.1167260960210115,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/gates/FRESH_LITERAL_CPU_4.log",
+      "log_sha256": "64b8b18ae702d06d1e2323c48e61c4f8fe9ce7b97c36c26e258722e998e87cac",
+      "gpu_visible": false,
+      "payload": {
+        "status": "valid",
+        "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "dev_split": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/dev_split.json",
+        "seed": 2,
+        "trajectories": [
+          {
+            "direction": "g0",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g0_s2"
+          },
+          {
+            "direction": "g1",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g1_s2"
+          },
+          {
+            "direction": "g2",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g2_s2"
+          }
+        ],
+        "epochs": [
+          1,
+          10,
+          50
+        ],
+        "candidates": [
+          "g0",
+          "g1",
+          "g2_minus_s",
+          "g2",
+          "g2_plus_s",
+          "g0_plus_d",
+          "g1_plus_d",
+          "g3"
+        ],
+        "fixed_train_probe_batches": 2,
+        "fixed_current_holdout_batches": 1,
+        "fixed_old_train_holdout_batches": 1,
+        "virtual_update_modes": [
+          "native",
+          "nominal_parameter_length_match"
+        ],
+        "batch_size": 128,
+        "rho": 0.05,
+        "radius": 1.0,
+        "gradient_reads_per_probe_batch": 20,
+        "loss_reads_per_probe_batch": 68,
+        "committed_training_updates": 0,
+        "benchmark": {
+          "warmup": 3,
+          "timed": 5,
+          "verification": 2,
+          "native_reads": {
+            "g0": 1,
+            "g1": 2,
+            "g2_minus_s": 3,
+            "g2": 3,
+            "g2_plus_s": 3,
+            "g0_plus_d": 4,
+            "g1_plus_d": 4,
+            "g3": 4
+          }
+        },
+        "old_data_gradient_reads": 0
+      }
+    }
+  ],
+  "gpu_training_or_admission_performed": false,
+  "queue_dry_run_status": "Deferred until root seals RUN_PINS and CPU_IMPLEMENTATION_ACCEPTED; no queue command executed by this reviewer"
+}

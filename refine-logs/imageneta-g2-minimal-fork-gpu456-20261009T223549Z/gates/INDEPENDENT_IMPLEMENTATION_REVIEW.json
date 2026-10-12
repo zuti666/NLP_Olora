@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "scope": "CPU and source review: trainer, data isolation, independent radius core, complete parent restore, offline diagnostic; runtime queue excluded",
+  "native_gpu_pairing_required_before_formal_admission": true,
+  "reviewed_files_sha256": {
+    "trainer/probe_study_train.py": "7278c8d974e5c851e2e39bd14edd12cc0644fb123236a927b031596d015c619e",
+    "trainer/probe_study_data.py": "4f941df406ca7dcd88f87d9fa343a044b1080d4118d205071ac18c6c2a71d473",
+    "trainer/local_probe_audit.py": "1301e8c4883dd9064d6c8032d2e6101b715adf4e122ce8e01253e57b362aa3e5",
+    "trainer/test_probe_study_cpu.py": "4eb9423f5db83406d72c141cf1171a5ab938db03cab3997890ddc198e85e5037",
+    "trainer/test_local_probe_audit_cpu.py": "0fd8880d21a07fba5dd2e3df9a0a1f9d8954108b2576c6dcb9c2cb1525d5efec",
+    "trainer/response_step.py": "fe5b2056df14ba10eb8a00722b126986fc83b19cd66905b5bfe7dcfd30eb2e70",
+    "trainer/independent_response_step.py": "59d5b622c861043ef0c3b9e552993ec4ca4bd30077a7004803d3a86de9ffe18a",
+    "trainer/response_train.py": "8c46880b596b276500b9af043a24470dfb5a8ccd46a2136aa5ea47e90858fa7f",
+    "trainer/layout_lifecycle.py": "7035b192aea68782b10e84df983deea15227c132312fee6b3e9138425d17d103",
+    "trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "gates/INDEPENDENT_CORE_QUADRATIC_ORACLE.json": "67174ec98f6b47b12d2956f28bea1daaa4eb56d0cf2a248be6d2e17446e5c59b",
+    "gates/DESIGN_REVIEW.md": "9502cc703419ab12faf1645144b5c8a1245109e6d2b7e34d99fc0dbd1b1c59c2",
+    "gates/DESIGN_REVIEW.json": "1d62cfb93731adf93498f841a1494c58276722855460fd2eff793ee0e6f7a4b6",
+    "gates/INDEPENDENT_IMPLEMENTATION_REVIEW.md": "55577407247f7d59d6722fd437537e2970f14d850bfe184f3850dfaa467471ee"
+  },
+  "checks": {
+    "registered_six_branches": true,
+    "fresh_shared_sgd_parent": true,
+    "parent_summary_and_checkpoint_binding": true,
+    "complete_params_grads_modes_caches_rng_snapshot": true,
+    "train_only_split_disjoint_reproducible": true,
+    "dev_fixed_endpoint_no_test_selection": true,
+    "descend_inner_base_origin_outer_g2_only": true,
+    "no_history_fisher_merge_hvp_training_projection": true,
+    "natural_sgd_coefficient_one": true,
+    "independent_closed_form_core_oracle": true,
+    "fixed_both_probe_eta_invariance": true,
+    "frozen_response_direction_outer_scan": true,
+    "offline_zero_committed_updates": true,
+    "same_radius_direction_controls": true,
+    "actual_fp32_step_matching_diagnostic_only": true,
+    "explicit_measured_and_unavailable_half_pairs": true,
+    "same_R0_all_offline_reads": true,
+    "original_response_core_unchanged": true
+  },
+  "tests": {
+    "reviewer_rerun_new_cpu_tests": 15,
+    "passed": 15,
+    "oracle_g2_arms": 5,
+    "max_closed_form_error_below": 8.7e-07
+  },
+  "offline_budget": {
+    "smoke_snapshots": 1,
+    "smoke_batches": 1,
+    "smoke_gradient_reads": 8,
+    "formal_snapshots": 5,
+    "formal_batches_per_snapshot": 4,
+    "formal_gradient_reads": 400,
+    "real_updates": 0
+  },
+  "caveats": [
+    "GPU native fork pairing still required; not claimed here",
+    "two-task single-seed mechanism screening, not CL10 confirmation",
+    "natural-step comparisons include magnitude and compute effects",
+    "fixed versus h policies can differ in initial scale",
+    "fixed-distance diagnostic unit-vector operation order may differ slightly from formal FP32 raw-vector alpha placement",
+    "missing h/2 and a025/2 half checks explicitly unavailable",
+    "two-task BWT also includes common classifier-head expansion",
+    "offline loss is not trained performance or model selection"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "OE07_ReflectedAverage_s2",
+  "kind": "training",
+  "phase": "formal",
+  "branch": "local_symmetric",
+  "direction": "even_reflected",
+  "mode": "natural",
+  "backend": "math",
+  "smoke": false,
+  "gpu_required": true,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/trainer/odd_even_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/configs/OE07_ReflectedAverage_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE07_ReflectedAverage_s2"
+  ],
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/configs/OE07_ReflectedAverage_s2.json",
+  "config_sha256": "0e59fa5262991bdc4804fb3cf287beb8481179ccf255bf6cc78c575a69e6b4dc",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE07_ReflectedAverage_s2",
+  "depends_on": [
+    "seven_way_smoke_pairing",
+    "OE01_SAM_s2",
+    "OE02_Backward_s2",
+    "OE03_Central_s2"
+  ],
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "expected_training_ce": 7650,
+  "expected_isolated_replay_ce": 60,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/runtime/jobs/OE07_ReflectedAverage_s2/cuda_witness.json"
+}

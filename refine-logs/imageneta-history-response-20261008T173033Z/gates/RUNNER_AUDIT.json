@@ -1,0 +1,84 @@
+{
+  "status": "read_only_audit_completed",
+  "checked_at_utc": "2026-10-08T17:33:01.126445+00:00",
+  "execution_template": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z",
+  "reusable_files": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/state_transaction.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/native_lifecycle.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/effective_step.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/audit_core.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/cuda_witness.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/task0_trainer_base_v2.py"
+  ],
+  "queue_files": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/run_queue.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/job_worker.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/environment_spec.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/source_manifest.json"
+  ],
+  "frozen_source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "canonical_environment_sha256": "4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+  "environment_ledger": "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md",
+  "actual_host": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "gpu_lock_dir": "/tmp/olora_gamfs_gpu_locks",
+  "allowed_gpus": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "excluded_gpus": [
+    0,
+    1
+  ],
+  "idle_gate": "memory<500MiB and utilization<5% and no compute PID, double check after index+UUID locks",
+  "physical_gpu_snapshot_utc": "2026-10-08T17:31:39.947192+00:00",
+  "idle_allowed_at_snapshot": [
+    6
+  ],
+  "current_midpoint_active_gpus": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "new_wrapper_changes": [
+    "Inherit native.Controller lifecycle; replace optimizer builder and batch method with history_response stepper.",
+    "Use exact two ordinary CE gradient calls, R0 replay, complete base restoration, commit one natural SGD, RNG advance only g0 R1.",
+    "Construct predictor by base.add(g,alpha=-eta) matching actual SGD FP32 rounding.",
+    "Capture previous raw base gradient and actual rounded committed displacement, never U or predictor displacement.",
+    "Clear history when each task optimizer/expanded head is built, preserve within task across epochs.",
+    "Add raw same-batch same-R0 post-update CE forward as a transaction around committed model; zero extra gradients, restore all committed state and R1.",
+    "Extend checkpoint and observation states with algorithm cache/layout/history-valid; hash the training state file.",
+    "Derive dedicated validator and common config/suite contract instead of editing any frozen existing queue."
+  ],
+  "minimum_config": {
+    "algorithm": "history_response | future_mirror",
+    "history_weight": 0.5,
+    "response_lambda_mode": "sgd_prediction_distance",
+    "prediction_step_mode": "sgd",
+    "history_reset": "task",
+    "post_update_loss": true,
+    "ordinary_gradient_calls": 2,
+    "post_update_diagnostic_forward_calls": 1,
+    "r_and_rho": "Reference metadata only: neither controls main algorithm probe distance",
+    "ewc_lambda": 0.0,
+    "ewc_skip_task_fisher": true,
+    "in_task_weight_merge": false,
+    "task_endpoint_weight_merge": false,
+    "approximate_fisher_in_task": false
+  },
+  "validator_contract": [
+    "10 complete task rows,500 epochs,2550 SGD updates; task0 500,subsequent400,400,250,200,150,150,150,200,150.",
+    "Every trace: base restored exact before SGD; predictor actual displacement matches -eta*g; update exact base.add(U,alpha=-eta); two gradient calls,one actualSGD,one observationalforward.",
+    "First step of all ten tasks history invalid; later history geometry/layout/rank/shape valid, cacherawgradient/actualdisplacement verified.",
+    "No Fisher,merge,projection,HVP,create_graph,replay,hidden gradient work.",
+    "Paired methods share initialparameter/input/target/index/epochseed andLR traces; intentionally different model trajectories after first historical step.",
+    "Rawmatrix recompute FAA,AAA,BWT,LA,forgetting and hash all receipts.",
+    "Per assigned worker seeded CUDA matmul/backward witness passes physical leased UUID andpinnedruntime."
+  ],
+  "stochastic_scope": "Cached prior base gradient originates previous minibatch; historical response includes minibatch/augmentation variation and is not a pure same-loss Hessian secant."
+}

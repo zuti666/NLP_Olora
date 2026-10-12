@@ -1,0 +1,175 @@
+{
+  "snapshot_utc": "2026-09-20T21:00:05.391473+00:00",
+  "snapshot_madrid": "2026-09-20T23:00:05.391473+02:00",
+  "counts": {
+    "complete": 59,
+    "running": 7,
+    "queued": 22
+  },
+  "dense": {
+    "sgd_seed0_dense": {
+      "status": "running",
+      "states_complete": 342,
+      "states_total": 8001,
+      "states_remaining": 7659,
+      "recent_mean_seconds": 3.4140983866207533,
+      "recent_minmax_seconds": [
+        3.3642981100128964,
+        3.436893611040432
+      ]
+    },
+    "gam_seed0_dense": {
+      "status": "running",
+      "states_complete": 636,
+      "states_total": 8001,
+      "states_remaining": 7365,
+      "recent_mean_seconds": 3.3251173229480626,
+      "recent_minmax_seconds": [
+        3.2913228379911743,
+        3.3510736700263806
+      ]
+    },
+    "sgd_seed1_dense": {
+      "status": "running",
+      "states_complete": 626,
+      "states_total": 8001,
+      "states_remaining": 7375,
+      "recent_mean_seconds": 3.3259803384105906,
+      "recent_minmax_seconds": [
+        3.287833796988707,
+        3.357187702029478
+      ]
+    },
+    "gam_seed1_dense": {
+      "status": "running",
+      "states_complete": 616,
+      "states_total": 8001,
+      "states_remaining": 7385,
+      "recent_mean_seconds": 3.2135369066311976,
+      "recent_minmax_seconds": [
+        3.179262951016426,
+        3.246715210028924
+      ]
+    },
+    "sgd_seed2_dense": {
+      "status": "queued",
+      "states_complete": 0,
+      "states_total": 8001,
+      "states_remaining": 8001,
+      "recent_mean_seconds": null,
+      "recent_minmax_seconds": null
+    },
+    "gam_seed2_dense": {
+      "status": "queued",
+      "states_complete": 0,
+      "states_total": 8001,
+      "states_remaining": 8001,
+      "recent_mean_seconds": null,
+      "recent_minmax_seconds": null
+    }
+  },
+  "gam_sequences": {
+    "sequence_gam_seed0": {
+      "task": 4,
+      "epoch": 40,
+      "batch_seconds_from_completed_t2_t3": 3.590652569293976,
+      "future_task_samples": {
+        "5": 260,
+        "6": 357,
+        "7": 317,
+        "8": 398,
+        "9": 378
+      },
+      "remaining_batch_updates": 840,
+      "nominal_remaining_seconds": 3171.1481582069396
+    },
+    "sequence_gam_seed1": {
+      "task": 4,
+      "epoch": 33,
+      "batch_seconds_from_completed_t2_t3": 3.418679178893566,
+      "future_task_samples": {
+        "5": 260,
+        "6": 357,
+        "7": 317,
+        "8": 398,
+        "9": 378
+      },
+      "remaining_batch_updates": 868,
+      "nominal_remaining_seconds": 3122.4135272796157
+    },
+    "sequence_gam_seed2": {
+      "task": 4,
+      "epoch": 14,
+      "batch_seconds_from_completed_t2_t3": 3.28477277058363,
+      "future_task_samples": {
+        "5": 260,
+        "6": 357,
+        "7": 317,
+        "8": 398,
+        "9": 378
+      },
+      "remaining_batch_updates": 944,
+      "nominal_remaining_seconds": 3255.825495430947
+    }
+  },
+  "nominal_seconds_per_dense_state": 3.319683238652651,
+  "simulations": [
+    {
+      "factor": 0.9,
+      "seconds_to_completion": 31953.882307247688,
+      "hours_to_completion": 8.876078418679914,
+      "completion_madrid": "2026-09-21T07:52:39.273780+02:00",
+      "pending_dense": {
+        "sgd_seed2_dense": {
+          "start_seconds": 7685.604502697616,
+          "end_seconds": 31610.31153591149
+        },
+        "gam_seed2_dense": {
+          "start_seconds": 7729.175274033814,
+          "end_seconds": 31653.882307247688
+        }
+      }
+    },
+    {
+      "factor": 1.0,
+      "seconds_to_completion": 35468.75811916409,
+      "hours_to_completion": 9.852432810878915,
+      "completion_madrid": "2026-09-21T08:51:14.149592+02:00",
+      "pending_dense": {
+        "sgd_seed2_dense": {
+          "start_seconds": 8539.560558552907,
+          "end_seconds": 35120.34615101277
+        },
+        "gam_seed2_dense": {
+          "start_seconds": 8587.972526704238,
+          "end_seconds": 35168.75811916409
+        }
+      }
+    },
+    {
+      "factor": 1.15,
+      "seconds_to_completion": 40741.071837038704,
+      "hours_to_completion": 11.316964399177417,
+      "completion_madrid": "2026-09-21T10:19:06.463310+02:00",
+      "pending_dense": {
+        "sgd_seed2_dense": {
+          "start_seconds": 9820.494642335841,
+          "end_seconds": 40385.39807366468
+        },
+        "gam_seed2_dense": {
+          "start_seconds": 9876.168405709872,
+          "end_seconds": 40441.071837038704
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "No failure/retry/extra mandatory experiments",
+    "No shared-GPU preemption or large throughput change",
+    "No dense sharding or modification of frozen scheduler/code",
+    "Exact future GPU assignment/races approximated by available 7 slots and frozen stage ordering",
+    "Bridge maximum 715 states per method: 1 + 7 radii*102; measured future drifts may remove duplicate radii",
+    "report CPU allowance 300 seconds",
+    "Future path quadrature assumed generally convergent at9 nodes;17/33 nodes add minutes, not hours"
+  ]
+}

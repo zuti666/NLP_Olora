@@ -1,0 +1,141 @@
+{
+  "checks": {
+    "cuda_peak_memory_bytes": 1491516928,
+    "direct_endpoint_metrics": {
+      "test": {
+        "accuracy": 80.13029315960912,
+        "loss": 0.7025542332494623,
+        "samples": 307
+      },
+      "train": {
+        "accuracy": 91.81890389197775,
+        "loss": 0.24699142788162853,
+        "samples": 1259
+      }
+    },
+    "direction_finite_difference": [
+      {
+        "approx": [
+          0.00013010576367378235,
+          -0.038186321035027504
+        ],
+        "epsilon": 0.01,
+        "expected": [
+          0.00021855290651813495,
+          -0.03821741185254766
+        ],
+        "max_absolute_error": 8.84471428443526e-05
+      },
+      {
+        "approx": [
+          0.0002010725438594818,
+          -0.0381925143301487
+        ],
+        "epsilon": 0.005,
+        "expected": [
+          0.00021855290651813495,
+          -0.03821741185254766
+        ],
+        "max_absolute_error": 2.4897522398960314e-05
+      },
+      {
+        "approx": [
+          0.00011827796697616577,
+          -0.03822753205895424
+        ],
+        "epsilon": 0.001,
+        "expected": [
+          0.00021855290651813495,
+          -0.03821741185254766
+        ],
+        "max_absolute_error": 0.00010027493954196918
+      }
+    ],
+    "estimated_seconds_per_state": 4.455476708011702,
+    "historical_TF32_t0_reference": {
+      "accuracy": 85.34201954397395,
+      "accuracy_difference_pp": 0.0,
+      "loss": 0.4422417883839438,
+      "loss_difference": 1.6014503579908634e-06,
+      "passed": true,
+      "precision": "reference only: TF32-rounded patch-convolution operands, FP32 accumulation; no Fisher measured",
+      "samples": 307,
+      "weights_restored_exactly": true
+    },
+    "historical_TF32_t9_reference": {
+      "accuracy": 80.13029315960912,
+      "accuracy_difference_pp": 0.0,
+      "loss": 0.7025830293501529,
+      "loss_difference": 3.2211591627362424e-07,
+      "passed": true,
+      "precision": "reference only: TF32-rounded patch-convolution operands, FP32 accumulation; no Fisher measured",
+      "samples": 307,
+      "weights_restored_exactly": true
+    },
+    "native_FP32_vs_historical_t0": {
+      "accuracy_difference_pp": 0.3257328990227961,
+      "interpretation": "Historical endpoints are reproduced by TF32 patch-convolution operand rounding; current production remains full FP32.",
+      "loss_difference": 0.00018351771410402007
+    },
+    "native_FP32_vs_historical_t9": {
+      "accuracy_difference_pp": 0.0,
+      "interpretation": "Historical endpoints are reproduced by TF32 patch-convolution operand rounding; current production remains full FP32.",
+      "loss_difference": -2.8473984774346484e-05
+    },
+    "per_example_direction_dot_absolute_errors": {
+      "gam": [
+        1.1841223933025183e-08,
+        2.021929717405113e-09
+      ],
+      "sgd": [
+        2.8353479314294043e-09,
+        2.931326727947936e-07
+      ]
+    },
+    "per_example_trace_relative_errors": [
+      1.5156461154158419e-05,
+      2.4912967910040256e-06
+    ],
+    "r0_exact": true,
+    "random_direction": {
+      "index": 0,
+      "norm": 1.0000000138407907,
+      "realized_radius2": 2.0000000276928147,
+      "seed": 20260920,
+      "sha256": "900eea0a06ec4063f522ff3b1e93f3bad01173772c1b35606595c56c554e1c8d"
+    },
+    "repeat_test_loss_difference": 0.0,
+    "s1_direct_endpoint_max_logit_error": 9.775161743164062e-06,
+    "s1_loss_errors": {
+      "test": -1.1454585169268228e-08,
+      "train": 4.981404916337695e-08
+    },
+    "source_to_effective_max_logit_error": 0.0,
+    "throughput_256": {
+      "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+      "estimator": "mean per-example CE gradient outer product",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "normalized": false,
+      "q": {
+        "gam": 0.03494642388902996,
+        "sgd": 0.09010010385085218
+      },
+      "raw_trace": 1465.4969269027679,
+      "regularizer": null,
+      "samples": 256,
+      "samples_per_second": 185.1357739943016,
+      "seconds": 1.382768951007165,
+      "subset_loss": 0.1057742255649714
+    }
+  },
+  "historical_precision_reference_passed": true,
+  "job": "sanity",
+  "measurement_checks_passed": true,
+  "method": "sgd",
+  "native_FP32_claimed_identical_to_historical": false,
+  "passed": true,
+  "protocol_sha256": "5505af1ffdb44457054696438baa4b834576c36550a9db1d9649c71212826a31",
+  "states_completed": 1,
+  "status": "complete"
+}

@@ -1,0 +1,37 @@
+--- /data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/models_LoRAbasedCL/baseLoRA.py
++++ /data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/baseLoRA.py
+@@ -335,6 +335,10 @@
+             fisher_state["last_task_new_fisher_stats"] = dict(getattr(self, "_last_task_new_fisher_stats", {}))
+         if hasattr(self, "_fisher_new_task_raw_trace"):
+             fisher_state["fisher_new_task_raw_trace"] = float(self._fisher_new_task_raw_trace)
++        extra_fisher_state = self._extra_fisher_checkpoint_state()
++        if set(extra_fisher_state) & set(fisher_state):
++            raise ValueError("Extra Fisher checkpoint state may not overwrite base keys")
++        fisher_state.update(extra_fisher_state)
+         require_fisher = str(
+             self.args.get("checkpoint_require_nonempty_fisher", False)
+         ).strip().lower() in {"1", "true", "yes", "y", "on"}
+@@ -420,6 +424,15 @@
+         torch.save(manifest, os.path.join(ckpt_dir, f"task_{task_idx:02d}.pt"))
+         self._save_experiment_identity(ckpt_dir, task_idx, fisher_state)
+         self._log(f"[TaskCheckpoint] Saved staged checkpoint to {ckpt_dir}")
++
++    def _extra_fisher_checkpoint_state(self) -> dict:
++        """Extend the hashed Fisher sidecar for structured importance models."""
++        return {}
++
++    def _restore_extra_fisher_checkpoint_state(self, state: dict) -> None:
++        """Restore learner-specific state from the same hashed sidecar."""
++        if "kfac_ewc_state" in state:
++            raise ValueError("KFAC EWC checkpoints require a KFAC EWC learner")
+ 
+     def _save_experiment_identity(self, ckpt_dir: str, task_idx: int, fisher_state) -> None:
+         fisher = fisher_state.get("fisher_past_delta", {}) if isinstance(fisher_state, dict) else {}
+@@ -753,6 +766,7 @@
+             self._last_task_new_fisher_stats = dict(state["last_task_new_fisher_stats"])
+         if "fisher_new_task_raw_trace" in state:
+             self._fisher_new_task_raw_trace = float(state["fisher_new_task_raw_trace"])
++        self._restore_extra_fisher_checkpoint_state(state)
+         self._log(f"[Resume] Loaded Fisher state from {fisher_path}")
+ 
+     def _validate_fisher_checkpoint_state(

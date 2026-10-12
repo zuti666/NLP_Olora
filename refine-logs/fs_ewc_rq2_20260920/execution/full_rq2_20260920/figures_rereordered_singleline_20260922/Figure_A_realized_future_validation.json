@@ -1,0 +1,155 @@
+{
+  "source_files": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_titled_20260922/B2_trajectory_seed_data.csv",
+      "sha256": "f4ce3227a49b638868396a057456c67d442402c86e04bf816841282558a4149f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_titled_20260922/B2_path_seed_data.csv",
+      "sha256": "d1301a87a819b4d28e5df7eed84ab6a262121e229187d177f4135accb883ece3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_titled_20260922/B2_mean_sd.csv",
+      "sha256": "f51318ce1c995ccf3ec4da878f446e1b41948c42e9f7f7e3335eee2bfc3eac3a"
+    }
+  ],
+  "previous_figure": "B2",
+  "display_task_mapping": "displayed t = source task + 1 = source T",
+  "anchor": "displayed Task 1 corresponds to original Task0; same samples/head/checkpoint",
+  "drift_definition": "d_t = ||Delta w_t||_2; Delta w_t = w_t - w_1 in effective Q/V coordinates",
+  "path_definition": "Sbar_F,1^path(t) = integral_0^1 v_t^T F_1,train^emp(w_1+s Delta w_t) v_t ds; v_t=Delta w_t/d_t",
+  "aggregation": "mean over three seeds of each seed own integral/drift^2",
+  "statistics_scope": "three independent training seeds; means shown; sample SD retained, no bands",
+  "all_78_mean_sd_groups_unchanged": true,
+  "all_54_path_ratios_checked": true,
+  "path_undefined_at_displayed_task_1": true,
+  "path_legend": "upper left",
+  "font": {
+    "path": "/home-local/liying/.fonts/times.ttf",
+    "sha256": "f2cb777422a10368904d3f691e650e39da862fe723389056324927df540a35ec",
+    "family": "Times New Roman"
+  },
+  "figure_inches": [
+    7.6,
+    1.65
+  ],
+  "wspace": 0.38,
+  "title_fontsize": 9.5,
+  "xlabel_fontsize": 9.0,
+  "single_line_titles": true,
+  "no_new_model_evaluations": true,
+  "uncertainty_bands_drawn": false,
+  "scripts": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_rereordered_singleline_20260922/plot_figure_a.py",
+      "sha256": "4b9f9ee87ac341c65a840963560098c1401815cb203617db52ebd837d9b7f900"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_rereordered_singleline_20260922/plot_style.py",
+      "sha256": "091a4044005f9903fa938254b1dea85edc0b8e51de0ca021fd031994a76f3bba"
+    }
+  ],
+  "axes": [
+    {
+      "title": "Weight Drift",
+      "ylabel": "Effective-weight drift $d_t$",
+      "xlabel": "Number of learned tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "ylim": [
+        0.0,
+        1.6
+      ],
+      "position": [
+        0.067,
+        0.28500000000000003,
+        0.17976653696498052,
+        0.575
+      ]
+    },
+    {
+      "title": "Task-1 Loss Change",
+      "ylabel": "$D_{1,t}^{\\mathrm{test}}$",
+      "xlabel": "Number of learned tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "ylim": [
+        -0.05,
+        0.3
+      ],
+      "position": [
+        0.31507782101167314,
+        0.28500000000000003,
+        0.17976653696498052,
+        0.575
+      ]
+    },
+    {
+      "title": "Task-1 Accuracy",
+      "ylabel": "$A_{1,t}^{\\mathrm{test}}$ (%)",
+      "xlabel": "Number of learned tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "ylim": [
+        75.0,
+        95.0
+      ],
+      "position": [
+        0.5631556420233463,
+        0.28500000000000003,
+        0.17976653696498035,
+        0.575
+      ]
+    },
+    {
+      "title": "Path Fisher",
+      "ylabel": "Path Fisher sensitivity",
+      "xlabel": "Number of learned tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "ylim": [
+        0.0,
+        0.3
+      ],
+      "position": [
+        0.8112334630350193,
+        0.28500000000000003,
+        0.17976653696498057,
+        0.575
+      ]
+    }
+  ],
+  "status": "passed",
+  "outputs": {
+    "pdf": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_rereordered_singleline_20260922/Figure_A_realized_future.pdf",
+      "sha256": "05506ef567cf6831c82da9c668b89ad4974bd49f71668556b0ac313230c5fdaa"
+    },
+    "png": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_rereordered_singleline_20260922/Figure_A_realized_future.png",
+      "sha256": "fad94b8ed42fa2bbb34c50669b26f93b4f281a77b88e859e1e3c30e4335e2144"
+    }
+  },
+  "embedded_fonts": [
+    "BDLDRW+TimesNewRomanPSMT",
+    "TDEVYI+TimesNewRomanPS-ItalicMT"
+  ],
+  "statistics": "three independent training seeds; means shown; sample SD retained, no bands",
+  "no_test_neighborhood_damage_curve": true,
+  "rendered_visual_review": "passed: root and independent gpt-5.6-sol xhigh",
+  "source_files_unchanged": true,
+  "independent_review": {
+    "task": "/root/review_singleline_pair",
+    "result": "PASS",
+    "blocking_fixes": []
+  },
+  "plot_values_byte_identical_to_previous": true
+}

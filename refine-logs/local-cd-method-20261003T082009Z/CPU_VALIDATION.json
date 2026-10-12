@@ -1,0 +1,214 @@
+{
+  "device": "cpu",
+  "dtype": "float64",
+  "torch_version": "2.4.1+cu121",
+  "tests": {
+    "raw_contracts": {
+      "passed": true,
+      "measurements": {
+        "exact_identities": 3,
+        "independent_radius_strength_cases": 6,
+        "invalid_inputs_rejected": 11,
+        "stationary_gradient_calls": 3
+      }
+    },
+    "quadratic": {
+      "passed": true,
+      "measurements": {
+        "maximum_error": 8.12125297496603e-16,
+        "cases": 12,
+        "three_gradients_per_case": true
+      }
+    },
+    "finite_difference_order": {
+      "passed": true,
+      "measurements": {
+        "forward": {
+          "errors": [
+            0.0580925108653036,
+            0.028962711119026156,
+            0.014460470076165206
+          ],
+          "halving_ratios": [
+            2.005769094839382,
+            2.0028886313152845
+          ]
+        },
+        "backward": {
+          "errors": [
+            0.057424194796561745,
+            0.028795632067090883,
+            0.014418700311154078
+          ],
+          "halving_ratios": [
+            1.9941981013915318,
+            1.9971031678087545
+          ]
+        },
+        "central": {
+          "errors": [
+            0.0003343682333564611,
+            8.359207445450229e-05,
+            2.0898019548397927e-05
+          ],
+          "halving_ratios": [
+            3.999999228855744,
+            3.999999821079246
+          ]
+        }
+      }
+    },
+    "independent_hessian": {
+      "passed": true,
+      "measurements": {
+        "B_zero": {
+          "explicit_hessian_error": 3.5003498976364333e-09,
+          "gradient_calls": 3
+        },
+        "B_nonzero": {
+          "explicit_hessian_error": 4.255580915205552e-09,
+          "gradient_calls": 3
+        }
+      }
+    },
+    "transaction": {
+      "passed": true,
+      "measurements": {
+        "replayed_streams": [
+          "python",
+          "numpy",
+          "torch"
+        ],
+        "same_point_gate_calls": 2,
+        "ordinary_calls": 3,
+        "failed_probe_calls": 2,
+        "recovery_updates": 1,
+        "restoration": {
+          "trainable_parameters_exact": true,
+          "frozen_versions_exact": true,
+          "gradients_exact": true,
+          "buffers_exact": true,
+          "modes_exact": true,
+          "controls_caches_exact": true,
+          "rng_exact": true
+        }
+      }
+    },
+    "updates_and_matching": {
+      "passed": true,
+      "measurements": {
+        "cases": [
+          {
+            "method": "ce",
+            "lambda": 0.0,
+            "h": 0.02,
+            "B_zero": false,
+            "matched": false,
+            "optimizer_calls": 1,
+            "actual": {
+              "joint_norm": 0.009532254782455138,
+              "lora_norm": 0.0018675056372200749,
+              "fc_norm": 0.009347529295626203
+            },
+            "reference": {
+              "joint_norm": 0.009532254782455138,
+              "lora_norm": 0.0018675056372200749,
+              "fc_norm": 0.009347529295626203
+            },
+            "scale": 0.04
+          },
+          {
+            "method": "central",
+            "lambda": 0.0,
+            "h": 0.02,
+            "B_zero": true,
+            "matched": false,
+            "optimizer_calls": 0,
+            "actual": {
+              "joint_norm": 0.00920711908172481,
+              "lora_norm": 0.001091596419503642,
+              "fc_norm": 0.009142180212727594
+            },
+            "reference": {
+              "joint_norm": 0.00920711908172481,
+              "lora_norm": 0.001091596419503642,
+              "fc_norm": 0.009142180212727594
+            },
+            "scale": 0.04
+          },
+          {
+            "method": "central",
+            "lambda": 0.11,
+            "h": 0.02,
+            "B_zero": false,
+            "matched": true,
+            "optimizer_calls": 1,
+            "actual": {
+              "joint_norm": 0.010671993586956785,
+              "lora_norm": 0.002207367214628001,
+              "fc_norm": 0.010441215307608219
+            },
+            "reference": {
+              "joint_norm": 0.010671993587617768,
+              "lora_norm": 0.002209599217467671,
+              "fc_norm": 0.010440743193485844
+            },
+            "scale": 0.039997623116505565
+          },
+          {
+            "method": "backward",
+            "lambda": 0.09,
+            "h": 0.02,
+            "B_zero": true,
+            "matched": true,
+            "optimizer_calls": 0,
+            "actual": {
+              "joint_norm": 0.010018047290188499,
+              "lora_norm": 0.001116732960267455,
+              "fc_norm": 0.009955610428492339
+            },
+            "reference": {
+              "joint_norm": 0.010018047290208845,
+              "lora_norm": 0.0011166300954976705,
+              "fc_norm": 0.009955621966441355
+            },
+            "scale": 0.03998764268999366
+          },
+          {
+            "method": "forward",
+            "lambda": 0.02,
+            "h": 0.02,
+            "B_zero": false,
+            "matched": true,
+            "optimizer_calls": 0,
+            "actual": {
+              "joint_norm": 0.009730968779061658,
+              "lora_norm": 0.001928077499425166,
+              "fc_norm": 0.00953804332844442
+            },
+            "reference": {
+              "joint_norm": 0.009730968779061658,
+              "lora_norm": 0.001928077499425166,
+              "fc_norm": 0.00953804332844442
+            },
+            "scale": 0.04
+          }
+        ],
+        "failed_matching_full_rollback": true,
+        "recovered_update": true
+      }
+    },
+    "nonmonotone_root": {
+      "passed": true,
+      "measurements": {
+        "smallest_root": 0.20000000001164153,
+        "analytic_root": 0.2,
+        "stationary_points": [
+          0.5,
+          1.0
+        ]
+      }
+    }
+  },
+  "passed": true
+}

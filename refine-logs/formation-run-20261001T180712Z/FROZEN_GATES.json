@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "status": "frozen_before_new_training",
+  "created_at_utc": "2026-10-01T18:14:39.606486+00:00",
+  "user_plan_sha256": "6cff1af4fe60ed501104a3f18c33de29543c7daf9c7dbcd5add6aac3d9d30383",
+  "phase1_arms": [
+    "S",
+    "S1.5",
+    "S2",
+    "Sum",
+    "Mean2",
+    "Graw",
+    "Gmatch",
+    "G025"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "class_shuffle": false,
+  "formation_epochs": 50,
+  "checkpoint_epochs": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "reference": "same_seed_completed_S_actual_per_step_effective_delta",
+  "forbid_G_current_g1_target": true,
+  "matching_max_relative_error": 0.001,
+  "zero_target_requires_no_update": false,
+  "split": {
+    "task0_expected_full_n": 307,
+    "selection_target_n": 102,
+    "reporting_target_n": 205,
+    "same_across_seeds": true,
+    "selection_rule": "class-stratified canonical-id hash; deterministic largest remainder; preserve both sides for n>=2",
+    "legacy_seed2_exposure": "exploratory; split not historically untouched",
+    "task1_expected_full_n": 254,
+    "task1_diagnostic_n": 84,
+    "task1_reporting_n": 170,
+    "singleton_classes_reporting_only": [
+      34
+    ]
+  },
+  "matched_acquisition": {
+    "S_epoch": 50,
+    "G_candidate_epochs": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "selection_metric": "pre_expansion_Task0_CE",
+    "max_CE_difference": 0.01,
+    "max_correct_count_difference": 1,
+    "tie_break": [
+      "CE_difference",
+      "correct_count_difference",
+      "distance_to_epoch50",
+      "epoch"
+    ],
+    "missing_match": "no_matched_acquisition; never widen posthoc"
+  },
+  "future_probe": {
+    "steps": 100,
+    "K": [
+      0,
+      1,
+      10,
+      50,
+      100
+    ],
+    "independent_checkpoint_forks": true,
+    "K0": "post_head_expansion",
+    "future_rule": "native_GAM_g1_rho0.05",
+    "T_max_epochs": 50,
+    "core_trajectory_count": 72,
+    "scale_control_endpoint_trajectory_count": 6,
+    "same_future_batches_across_formation_epochs": true,
+    "pathwise_I_plus": "exact_only_if_every_update_evaluated_on_fixed_set; otherwise_coarse_lower_bound"
+  },
+  "suggested_phase1_science_gate": {
+    "status": "frozen pilot decision rule; not a significance test",
+    "primary": "Gmatch_minus_S_Task0_allseen_CE_increase_at_formation50_future100",
+    "new_seed_signs": "both seed0 and seed1 negative",
+    "three_seed_mean_CE_max": -0.01,
+    "matched_acquisition": "new seeds0/1 both admissible and same negative susceptibility direction",
+    "new_task_progress": "exclude slower-acquisition explanation using frozen selection-only progress matching"
+  },
+  "phase2_conditional": true,
+  "phase3_conditional": true,
+  "auto_add_more_seeds": false,
+  "next_review_files": [
+    "trainer/formation_task0.py",
+    "trainer/future_probe.py"
+  ],
+  "gpu_executed_by_reviewer": false,
+  "frozen_by": "root",
+  "zero_target_policy": "invalid target: fail closed; never count as matched",
+  "selection_split_sha256": "2fe30b80153d88d8f1eac24570708f7ad42455ae377628ce2e4c1015e19aca30"
+}

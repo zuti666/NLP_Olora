@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "smoke_count": 7,
+  "formal_count": 0,
+  "checks": {
+    "shared_accepted_SGD_parent": true,
+    "same_expanded_complete_initial_model": true,
+    "same_augmentation_data_order_and_LR": true,
+    "same_first_base_gradient": true,
+    "fixed_inner_pair_g1_identity": true,
+    "natural_inner_pair_g1_identity": true,
+    "SGD_one_gradient_no_extra_probe": true,
+    "G2_three_gradients_unscaled_from_base": true,
+    "no_task0_retraining_in_branches": true,
+    "strict_zero_history_Fisher_fusion_projection": true,
+    "real_native_offline_zero_update_smoke": true
+  },
+  "evidence": [
+    {
+      "job": "smoke_parent_sgd_s2",
+      "summary_sha256": "b08db09f38f26e94d4e012c931cf48d7f8877d6bf37b179e62634e431be27070",
+      "trace_sha256": "65e7b42c39fc0f2806efb3118c42dea72d0d0abf5f02b2f148db07a7ca5d4177",
+      "updates": 2,
+      "tasks": 1,
+      "trained_task_ids": [
+        0
+      ],
+      "shared_parent_verified": false,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    },
+    {
+      "job": "smoke_task1_B0_s2",
+      "summary_sha256": "35d8208cbe25b710f09f91af59048a59a3f0757e4819a76c3daea51a912266ab",
+      "trace_sha256": "bb5df3004354347163f0c4ce8775f9f2064df952f1b9f6d3bbf394a8d01a8525",
+      "updates": 2,
+      "tasks": 2,
+      "trained_task_ids": [
+        1
+      ],
+      "shared_parent_verified": true,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    },
+    {
+      "job": "smoke_task1_R25_s2",
+      "summary_sha256": "a4181ed7471423e2d26587cca57afb974df28c74982ef31e66d6c13a98e6fa64",
+      "trace_sha256": "a9bfe03b0d826fbfd673e079da92580340a6ed7cb6039d60f6880e96789574ff",
+      "updates": 2,
+      "tasks": 2,
+      "trained_task_ids": [
+        1
+      ],
+      "shared_parent_verified": true,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    },
+    {
+      "job": "smoke_task1_S_F_s2",
+      "summary_sha256": "5909a5becd87ec215558fba42168f71efc036e64e996664a02991215087f55e4",
+      "trace_sha256": "e1ebfe2fcf01766661b4b1f123ef328d7e08435239b4891a51ffcda120efd322",
+      "updates": 2,
+      "tasks": 2,
+      "trained_task_ids": [
+        1
+      ],
+      "shared_parent_verified": true,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    },
+    {
+      "job": "smoke_task1_F_S_s2",
+      "summary_sha256": "340ee526b1351f6eda466c3e3c35ed44260222a608cfcc59ed1106a9a1ce4791",
+      "trace_sha256": "3f51bf7627117573ead8601b1f95063c6708c9b0b4d332dded9c9b87b005e5d8",
+      "updates": 2,
+      "tasks": 2,
+      "trained_task_ids": [
+        1
+      ],
+      "shared_parent_verified": true,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    },
+    {
+      "job": "smoke_task1_S_S_s2",
+      "summary_sha256": "bdbc4a5a82397220e3f4405f376455c0dc8e1daf7c15dc2af3fa8d8b50f65741",
+      "trace_sha256": "9c587113acd2b7241ad6dddb34f08ca381fd853f3df73999ce959d8c3b6c4141",
+      "updates": 2,
+      "tasks": 2,
+      "trained_task_ids": [
+        1
+      ],
+      "shared_parent_verified": true,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    },
+    {
+      "job": "smoke_task1_R100_s2",
+      "summary_sha256": "43c552be8dd9f9c2253fdcad2aae7eaad127362f8e043bc2f69befd255c00da7",
+      "trace_sha256": "243aff66d787dbd73333175b2dcafe15d3216085a986e6ed120a542b1e386e59",
+      "updates": 2,
+      "tasks": 2,
+      "trained_task_ids": [
+        1
+      ],
+      "shared_parent_verified": true,
+      "metric_recomputation": true,
+      "full_formal_training": false
+    }
+  ],
+  "offline_evidence": {
+    "summary_sha256": "5895f589e316ef72f8c438ca14c0ac9eefaff429c7305901de2bb5da339d3eb3",
+    "gradient_reads": 8,
+    "committed_updates": 0,
+    "passive_diagnostic": true,
+    "full_formal_training": false
+  },
+  "limitation": "One epoch and two minibatches each; no accuracy ranking"
+}

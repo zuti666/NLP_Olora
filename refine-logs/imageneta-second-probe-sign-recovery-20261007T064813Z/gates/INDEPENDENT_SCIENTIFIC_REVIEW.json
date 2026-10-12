@@ -1,0 +1,77 @@
+{
+  "status": "passed_scientific_code_cpu_and_helper_review",
+  "reviewed_at_utc": "2026-10-07T06:56:53.217363+00:00",
+  "reviewer": "second_probe_execution_review",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z",
+  "original_run": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-plan-20261006T185119Z",
+  "documented_cpu_command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -m unittest discover -s /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z/tests -p test_second_probe_cpu.py -v",
+  "cpu_exit_code": 0,
+  "cpu_tests": 13,
+  "cpu_failures": 0,
+  "cpu_errors": 0,
+  "helper_command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z/tests/queue_helpers_check.py",
+  "helper_exit_code": 0,
+  "helper_checks": 14,
+  "helper_artifact_written_by_script": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z/gates/QUEUE_HELPERS_CPU.json",
+  "training_compute_apply_AST_unchanged": {
+    "__init__": true,
+    "_geometry_order": true,
+    "_validate": true,
+    "_set_point": true,
+    "_restore": true,
+    "_evaluate": true,
+    "_point": true,
+    "_third_probe_audit": true,
+    "compute": true,
+    "discard": true,
+    "apply_update": true
+  },
+  "support_files_bytes_unchanged": {
+    "state_transaction.py": true,
+    "audit_core.py": true,
+    "effective_step.py": true,
+    "native_lifecycle.py": true,
+    "task0_trainer_base_v2.py": true,
+    "cuda_witness.py": true
+  },
+  "only_engine_method_changed": [
+    "diagnose_sides"
+  ],
+  "checks": {
+    "four_training_ce_and_natural_U_unchanged": true,
+    "same_theta2_and_original_g2_for_opposite_probe": true,
+    "one_new_opposite_gradient_replays_original_R0": true,
+    "selected_loss_and_residual_reused_from_actual_training_measurement": true,
+    "measurement_sources_and_reuse_vs_new_count_explicit": true,
+    "selected_clone_exact_kind_disclaims_independent_replay": true,
+    "pending_U_parameter_buffer_cache_modes_grad_R1_restore": true,
+    "diagnostic_exception_restores_pending_update": true,
+    "original_B1_two_radii_fp32_stochastic_equivalence": true,
+    "snapshot_contains_actual_training_g012_and_points_hashes": true,
+    "strict_cross_gpu_pairing_not_loosened": true,
+    "snapshot_tampering_rejected_and_source_hash_verified": true,
+    "one_CE_both_sign_provenance_wrong_count_rejected": true,
+    "queue_cpu_helper_fixtures_not_real_gpu_acceptance": true
+  },
+  "substantive_failures": [],
+  "resolved_review_finding": "Old helper synthetic fixture used 2 diagnostic CE and was updated before independent rerun; new helper 14 checks pass.",
+  "limitations": [
+    "No new GPU witness/model smoke performed by this reviewer; all actual short tests remain required before formal launch.",
+    "Final frozen queue/pins documented host dry-run is a separate fresh-agent acceptance, not certified here.",
+    "Original failure had no numerical discrepancy trace, so the cause of torch.equal mismatch is not quantified by this recovery.",
+    "Selected-side_exact legacy flag means exact training reference clone only, as explicitly indicated by selected_side_exact_kind; it does not prove repeated CUDA backward equality.",
+    "Natural-step single seed results still mix direction and update magnitude."
+  ],
+  "files_sha256": {
+    "trainer/direction_step.py": "7518e3f59fc4a997fb02c6335744a1b3574a2f235bf9147559bc730fd1ccc93d",
+    "trainer/four_probe_train.py": "ddd16749281cd3c1ebd34b795ac41c521872e2b1ec74188a8012a75481a21689",
+    "tests/test_second_probe_cpu.py": "5d7693793e6859ad5ef72189c362032f33689d1f8bed837f656dd37d2cfe07ac",
+    "validate_job.py": "d711f7b2ca28983df6cfb1d7b88352e1772d9a8d17c1636ad893bf5350d93853",
+    "smoke_pairing.py": "3776218b8dbb450587f34058193f2ad0a25a9c179c4dac8e070fcea11a04c472",
+    "tests/queue_helpers_check.py": "94ccaf22bb8ca0a90cb03d99bb334b551ddb21fa41dc584c64c4db068957b4d1",
+    "ENVIRONMENT.md": "623bb6849bd447f6d8eabfd7d02fb75f9cc861f3f06d041310ba421abd9bfdd3"
+  },
+  "CPU_GATE_not_written_by_reviewer": true,
+  "GPU_or_queue_launches": 0,
+  "source_edits": 0
+}

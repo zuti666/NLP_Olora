@@ -1,0 +1,37 @@
+{
+  "status": "PASS_CPU_AND_STATIC",
+  "scope": "Independent read-only review of frozen trainer update path; no GPU launch or full ViT claim.",
+  "files_sha256": {
+    "trainer/component_horizon.py": "0eb1a4b2040e118f346c56224d8d69d17e581382391c50a2bbf8a7fae60c128c",
+    "trainer/hvp_helpers.py": "5bf68aa266104580cb8514461bb1476b0f86c81ee139242d865f666139aeb46d",
+    "validate_job.py": "528c66c4694aa5bae06c060422acee8ce288afb3db0a6cfb978cf251aa8375d4"
+  },
+  "checks": {
+    "actual_closure0_or_closure2_state_capture": true,
+    "post_closure_live_state_restored_after_HVP": true,
+    "fixed_native_normalized_detached_direction": true,
+    "rho_005_multiplication_before_lambda_and_selection": true,
+    "math_context_covers_clean_plus_all_native_closures_and_HVP": true,
+    "first_HVP_changes_outer_displacement_and_retains_actual_g1": true,
+    "selected_projected_actual_SGD_hash_chain": true,
+    "same_candidate_post_native_unperturb_projected_g1_effective_reference": true,
+    "positive_scalar_zero_momentum_SGD_with_actual_norm_check": true,
+    "native5_and_HVP_extra_budgets_separate": true,
+    "frozen_source_unchanged": true,
+    "global_math_context_covers_native_initialization_training_evaluation": true,
+    "main_context_restores_flags_on_success_and_exception": true,
+    "canonical_seen_groups_only_future_present_requires_NaN": true
+  },
+  "evidence": [
+    "review/FDHVP_VALIDATOR_CPU.json",
+    "review/FDHVP_TRAINER_CPU_INDEPENDENT.json",
+    "review/MAIN_BACKEND_CPU_INDEPENDENT.json",
+    "review/SEEN_EVALUATION_CPU_INDEPENDENT.json",
+    "review/COMPONENT_CPU_INDEPENDENT.json"
+  ],
+  "limitations": [
+    "GPU math-attention double-backward and native ViT full-data loading require the separately authorized smoke.",
+    "HVP is in trainable A/B+FC parameter coordinates; norm matching is in effective BA+FC coordinates.",
+    "rho-scaled local HVP need not equal finite-rho gradient difference, so scientific low alignment is not an implementation failure."
+  ]
+}

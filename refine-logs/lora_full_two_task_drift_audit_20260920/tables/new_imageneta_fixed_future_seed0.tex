@@ -1,0 +1,28 @@
+% Requires \usepackage{booktabs,caption,amsmath}.
+\begin{table*}[t]
+\centering
+\captionsetup{font=footnotesize,labelfont=bf}
+\caption{Preliminary two-task ImageNet-A results with fixed future SGD+EWC
+(seed 0; LoRA rank 10; $\lambda=2000$; 50 continuation epochs; learning rate
+$0.02$). Each branch restores its own Task-1 model and protection buffer.
+Task-1 accuracies are re-evaluated in the current FP32 protocol rather than
+copied from historical mixed-precision records.
+$D_{0,\mathrm{local}}$ is the old-task test cross-entropy increment using
+the fixed old 20-class head; accuracies use the classes seen at each endpoint.
+$r_{QV}$ is the effective shared-backbone displacement, excluding classifiers.
+Dedicated endpoint raw Fisher measurements are not yet available in this
+snapshot. BWT uses unrounded within-run accuracies.}
+\label{tab:two_task_imageneta_fixed_future_preliminary}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccc@{}}
+\toprule
+Task 1 update & Task 2 update
+& $a_{11}\uparrow$ & $a_{21}\uparrow$ & $a_{22}\uparrow$
+& BWT$\uparrow$ & $D_{0,\mathrm{local}}$ & $r_{QV}$ \\
+\midrule
+SGD & SGD+EWC & $85.67$ & $84.36$ & $74.80$ & $-1.30$ & $-0.019246$ & $0.374950$ \\
+GAM & SGD+EWC & $87.62$ & $84.04$ & $72.05$ & $-3.58$ & $-0.013388$ & $0.349876$ \\
+\bottomrule
+\end{tabular*}
+\end{table*}

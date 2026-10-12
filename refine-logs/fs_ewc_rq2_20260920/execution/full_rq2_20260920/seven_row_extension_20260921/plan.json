@@ -1,0 +1,860 @@
+{
+  "version": 2,
+  "gpu_poll_seconds": 900,
+  "purpose": "Authorized seven-row ImageNet-A table supplement: two missing future-GAM arms, seeds0/1/2",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 6,
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/campaign",
+  "gpu_lock_dir": "/data/140-1/users/liying/O-LoRA/.cache/gpu_locks",
+  "start_after": {
+    "gpu_uuids": {
+      "0": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "1": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "2": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "3": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "4": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "5": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "6": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    }
+  },
+  "code_files": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/campaign_runner.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/train.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/endpoint.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/diagnostic_full.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/report.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/build_plan.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source_frozen.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/rq2_common.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/base_vit.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/cllora_aligned.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/cllora_archived_vit.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/linears.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/lora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/lora_upload.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/net_ewclora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/prompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/resnet.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_adapter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_coda_promtpt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_dualprompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_ease.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_ewclora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_inflora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_l2p.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_lae.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_memo.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_mos.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_ssf.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_tuna.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vpt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/config_Expand/sgd_gam_s1c/base_s1c_normaccum_e50_initlr004_lr002.yaml",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/eval_flat_feature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/eval_flatness_weight_Loss.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/param_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation/metrics.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation/probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_attention/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_attention/attention_probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_feature/eval_flat_feature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_feature/feature_drift.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_ood/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_ood/ood_eval.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/eval_ood.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/metrics.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/attn_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/curv_localization.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/eval_flatness_weight_Loss.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/eval_flatness_weight_Loss_save.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/eval_flatness_weight_Loss_upload.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/io_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/lanczos_iter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/loss_landscape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/loss_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/param_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/power_iter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/curvature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/drift.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/landscape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/visualize_attention.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/gpu_matmul.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWC.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWCon.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWConProbe_FisherShape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWConProbe_FisherShapeFactored.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWConProbe_GAMFactored.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWCon_Probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/FisherSAM-EWC-lambda-KFACFisherSAM.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/FisherSAM-EWC-lambda.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/as1_normfisher_gam_intask_damp.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/baseLearner.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/coda_prompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/coda_prompt.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/coda_prompt_cub200.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/coda_prompt_inr.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/coda_prompt_pets.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/dualprompt.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/dualprompt_cub200.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/dualprompt_inr.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/dualprompt_pets.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/ewc.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/ewc_cub200.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/ewc_pets.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/finetune.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/finetune_cub200.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/finetune_inr.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/finetune_pets.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/l2p.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/l2p_cub200.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/l2p_inr.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/config_FullModel/l2p_pets.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/dualprompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_merged_intask_euc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_mergedintask_multifisher_norm.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_mergedintask_multifisher_norm_weightmergethenfisher.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_projected.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/finetune.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/finetune1.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/finetune_origin.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/l2p.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_KFACFisherSAM.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_NCL-KFAC.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_NCL.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_norm.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_origin.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/NCL-KFA.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_central.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_complementarity.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_decoupled.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_efficient.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge_factor.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_kfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_multidirectional.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_richardson.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher-project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_euc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_lambda_project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_sam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/baseLoRA.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/cllora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/cllora_aligned.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/eflora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/inclora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/olora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/sdlora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/seqlora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/ARWP_cos.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/c_flat.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/ekfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_central.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_efficient.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_multidirectional.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_richardson.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/gam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/kfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/kfac_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/natural_gradient.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/ogd_projected.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_fishersam_diagonal.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_fishersam_kfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_gam_filiter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_sam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_sam_filiter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/util.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/parse_eval_table.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/sharpness_evaluation_core/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/sharpness_evaluation_core/curvature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/__main__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/main.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/trainer.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/trainer_allData.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/aggregate_multiseed_results.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/analyze_cl_logs.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/collect_imageneta_factorfs_excel.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/collect_imagenetr_factorfs_excel.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/config.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/data.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/data_manager.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/endpoint_region.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/endpoint_region_protocol.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/export_task0_trajectory.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/extract_cnn_accuracy_matrices.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/extract_fisher_compare.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/factory.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/fisher_complementarity.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/inc_net.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/kfac_ewc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/lora_anchor_average.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/mechanism_eval.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/metrics_book.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_endpoint_sample_fisher_pareto.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_ewc_drift_analysis.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_ewc_lambda_sweep.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_fqa_linear_pdf.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_r_sweep.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_task0_trajectory.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/random_reproduce.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_cl_metrics.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_ewc_lambda_sweep.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_fqa_validity.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_stage2_T.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/toolkit.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/configs/seed0.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/configs/seed1.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/configs/seed2.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/report.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/validate_smokes.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/build_plan.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/campaign_runner.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/six_row_imageneta_20260921/build_table.py"
+  ],
+  "stages": [
+    {
+      "id": "smoke_shaping_only_seed0",
+      "depends_on": [],
+      "jobs": [
+        {
+          "id": "smoke_shaping_only_seed0",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "shaping_only",
+            "--anchor-method",
+            "gam",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "0",
+            "--ewc-lambda",
+            "0",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs",
+            "--run-name",
+            "shaping_only_seed0",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last",
+            "--smoke"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/training/shaping_only_seed0/SMOKE_COMPLETE.json",
+          "receipt_require": {
+            "status": "smoke_complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/smoke_shaping_only_seed0.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke_task2_shaping_seed0",
+      "depends_on": [],
+      "jobs": [
+        {
+          "id": "smoke_task2_shaping_seed0",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "task2_shaping",
+            "--anchor-method",
+            "sgd",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "0",
+            "--ewc-lambda",
+            "2000",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/trainer_outputs",
+            "--run-name",
+            "task2_shaping_seed0",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last",
+            "--smoke"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/training/task2_shaping_seed0/SMOKE_COMPLETE.json",
+          "receipt_require": {
+            "status": "smoke_complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/smoke_task2_shaping_seed0.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke_validation",
+      "depends_on": [
+        "smoke_shaping_only_seed0",
+        "smoke_task2_shaping_seed0"
+      ],
+      "jobs": [
+        {
+          "id": "smoke_validation",
+          "gpu": null,
+          "gpu_pool": [],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/validate_smokes.py"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/VALIDATED.json",
+          "receipt_require": {
+            "status": "passed",
+            "validated_smokes": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "shaping_only_seed0",
+      "depends_on": [
+        "smoke_validation"
+      ],
+      "jobs": [
+        {
+          "id": "shaping_only_seed0",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "shaping_only",
+            "--anchor-method",
+            "gam",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "0",
+            "--ewc-lambda",
+            "0",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs",
+            "--run-name",
+            "shaping_only_seed0",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training/shaping_only_seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/shaping_only_seed0.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task2_shaping_seed0",
+      "depends_on": [
+        "smoke_validation"
+      ],
+      "jobs": [
+        {
+          "id": "task2_shaping_seed0",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "task2_shaping",
+            "--anchor-method",
+            "sgd",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "0",
+            "--ewc-lambda",
+            "2000",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/trainer_outputs",
+            "--run-name",
+            "task2_shaping_seed0",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training/task2_shaping_seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/task2_shaping_seed0.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shaping_only_seed1",
+      "depends_on": [
+        "smoke_validation"
+      ],
+      "jobs": [
+        {
+          "id": "shaping_only_seed1",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "shaping_only",
+            "--anchor-method",
+            "gam",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "1",
+            "--ewc-lambda",
+            "0",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs",
+            "--run-name",
+            "shaping_only_seed1",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training/shaping_only_seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/shaping_only_seed1.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task2_shaping_seed1",
+      "depends_on": [
+        "smoke_validation"
+      ],
+      "jobs": [
+        {
+          "id": "task2_shaping_seed1",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "task2_shaping",
+            "--anchor-method",
+            "sgd",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "1",
+            "--ewc-lambda",
+            "2000",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/trainer_outputs",
+            "--run-name",
+            "task2_shaping_seed1",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training/task2_shaping_seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/task2_shaping_seed1.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shaping_only_seed2",
+      "depends_on": [
+        "smoke_validation"
+      ],
+      "jobs": [
+        {
+          "id": "shaping_only_seed2",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "shaping_only",
+            "--anchor-method",
+            "gam",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "2",
+            "--ewc-lambda",
+            "0",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs",
+            "--run-name",
+            "shaping_only_seed2",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training/shaping_only_seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/shaping_only_seed2.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task2_shaping_seed2",
+      "depends_on": [
+        "smoke_validation"
+      ],
+      "jobs": [
+        {
+          "id": "task2_shaping_seed2",
+          "gpu": 0,
+          "gpu_pool": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+            "--arm",
+            "task2_shaping",
+            "--anchor-method",
+            "sgd",
+            "--future-optimizer",
+            "gam",
+            "--seed",
+            "2",
+            "--ewc-lambda",
+            "2000",
+            "--anchor-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/checkpoints",
+            "--anchor-metrics",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/trainer_outputs",
+            "--run-name",
+            "task2_shaping_seed2",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training",
+            "--workers",
+            "4",
+            "--gpu",
+            "{gpu}",
+            "--resume-last"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/training/task2_shaping_seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/task2_shaping_seed2.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seven_row_report",
+      "depends_on": [
+        "shaping_only_seed0",
+        "task2_shaping_seed0",
+        "shaping_only_seed1",
+        "task2_shaping_seed1",
+        "shaping_only_seed2",
+        "task2_shaping_seed2"
+      ],
+      "jobs": [
+        {
+          "id": "seven_row_report",
+          "gpu": null,
+          "gpu_pool": [],
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/report.py",
+            "--extension-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+            "--output-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/final_report"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/final_report/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          }
+        }
+      ]
+    }
+  ],
+  "workload": {
+    "smoke_training_jobs": 2,
+    "smoke_validation_jobs": 1,
+    "formal_training_jobs": 6,
+    "formal_new_task_segments": 6,
+    "formal_epochs_per_segment": 50,
+    "report_jobs": 1,
+    "total_jobs": 10
+  },
+  "resource_policy": "Claim only GPU0-6 with memory<500MiB, utilization<5%, no compute process and shared UUID lock; retry availability every900s; no preemption.",
+  "failure_policy": "Any nonzero exit or invalid receipt prevents subsequent launches; active jobs drain; no automatic batch/protocol changes.",
+  "scientific_scope": "Seven rows =21 seed cells; reuse15 completed, train6 new. Not the full8-cell factorial."
+}

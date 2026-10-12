@@ -1,0 +1,1326 @@
+{
+  "scope": "Independent CPU read-only verification of four completed ordinary stage2 formal jobs; no queue or original evidence modified",
+  "pins": {
+    "files": 32,
+    "passed": true,
+    "failures": []
+  },
+  "source": {
+    "files": 190,
+    "passed": true,
+    "failures": []
+  },
+  "jobs": {
+    "S2-05_Residual_natural_s2": {
+      "status": "verified_completed",
+      "validation": {
+        "summary_sha256": "bb0aab6a958a20b92f1893acef280f8c6bfb3e19ec62f9b3d2e8c52b914d004c",
+        "trace_sha256": "b0218b4c7c73067d5436cc2fc18c95521e7060780603aae07c33636bfd695622",
+        "matrix_sha256": "52b9e89d41b42a056d90c13246aaf8c4c4d03bd81088a740169ab17a4e48fa80",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "completed_at": "2026-10-03T09:36:36.942460+00:00",
+      "exit_returncode": 0,
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix_metrics_recomputed": {
+        "AAA": 31.822875793650795,
+        "FAA": 0.33399999999999996,
+        "LA": 18.603,
+        "BWT": -20.29888888888889,
+        "forgetting": 20.825555555555557
+      },
+      "matrix_metrics_agree": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "source_paths": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2",
+        "task_matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/task_matrix.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/step_trace.jsonl",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-05_Residual_natural_s2.json"
+      },
+      "first_task_accuracy": 74.92,
+      "last_task_fresh_accuracy": 0.0,
+      "final_task_accuracies": [
+        0.0,
+        0.0,
+        1.16,
+        0.0,
+        0.98,
+        0.0,
+        1.2,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sample_weighted_FAA": 0.33,
+      "sample_weighted_AAA": 35.91400000000001,
+      "train_ce": {
+        "min": 0.9121284484863281,
+        "max": 73.24128723144531,
+        "mean": 2.6919579525788624,
+        "median": 2.5477075576782227
+      },
+      "norm_U": {
+        "min": 0.3553556318923532,
+        "max": 210.7936905902095,
+        "mean": 2.10012624259607,
+        "median": 1.0406480811004426
+      },
+      "norm_g0": {
+        "min": 1.838206011354649,
+        "max": 268.47227060063886,
+        "mean": 4.277193919703261,
+        "median": 3.1006093635507748
+      },
+      "scale_over_lr": {
+        "min": 1.0,
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0
+      },
+      "update_cosine_U_g0": {
+        "min": -0.8274842986812437,
+        "max": 0.610644140631484,
+        "mean": 0.17860609049247403,
+        "median": 0.22830279747507679
+      },
+      "effective_norm_over_g1_reference": {
+        "min": 0.09161753630830928,
+        "max": 2.200545068192357,
+        "mean": 0.33622473073785797,
+        "median": 0.3016446159024184
+      },
+      "actual_match_relative_error": {
+        "min": 0.0034403910201561035,
+        "max": 1.2005450681923573,
+        "mean": 0.6677332028930822,
+        "median": 0.6991177136692335
+      },
+      "task_macro_accuracy_curve": [
+        74.92,
+        56.61,
+        44.52666666666667,
+        36.4375,
+        31.702,
+        24.393333333333334,
+        22.384285714285713,
+        14.41875,
+        12.502222222222223,
+        0.33399999999999996
+      ],
+      "checkpoints": [
+        {
+          "task": 0,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 1,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 2,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 3,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 4,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 5,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 6,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 7,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 8,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 9,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        }
+      ],
+      "observations_12_file_hashes_valid": true,
+      "learning_accuracy_curve": [
+        74.92,
+        44.49,
+        24.42,
+        23.64,
+        8.82,
+        2.82,
+        2.41,
+        1.18,
+        3.33,
+        0.0
+      ],
+      "U_dot_g0_negative_steps": 503,
+      "final_epoch_train_by_task": [
+        {
+          "task": 0,
+          "train_ce": 1.2040295629296822,
+          "train_accuracy_local": 66.71961874503575
+        },
+        {
+          "task": 1,
+          "train_ce": 1.6200379407035193,
+          "train_accuracy_local": 56.67001003009027
+        },
+        {
+          "task": 2,
+          "train_ce": 2.0936661424473573,
+          "train_accuracy_local": 39.57703927492447
+        },
+        {
+          "task": 3,
+          "train_ce": 2.2668560079280162,
+          "train_accuracy_local": 34.395973154362416
+        },
+        {
+          "task": 4,
+          "train_ce": 2.72163686617999,
+          "train_accuracy_local": 22.535211267605632
+        },
+        {
+          "task": 5,
+          "train_ce": 2.8221231387211727,
+          "train_accuracy_local": 18.076923076923077
+        },
+        {
+          "task": 6,
+          "train_ce": 3.1624684106735956,
+          "train_accuracy_local": 12.324929971988796
+        },
+        {
+          "task": 7,
+          "train_ce": 4.452311025432984,
+          "train_accuracy_local": 2.8391167192429023
+        },
+        {
+          "task": 8,
+          "train_ce": 3.0125294881849434,
+          "train_accuracy_local": 12.56281407035176
+        },
+        {
+          "task": 9,
+          "train_ce": 4.119654907751336,
+          "train_accuracy_local": 8.994708994708995
+        }
+      ]
+    },
+    "S2-06_Residual_matched_s2": {
+      "status": "verified_completed",
+      "validation": {
+        "summary_sha256": "16db421d0101c257060f416a039c4cf4d910acb7fef236d88b4ec7c1aedc434a",
+        "trace_sha256": "66e93647dc8c79a2be5581209bc1de083ae1be22817d988a44fdb7073c32fa8e",
+        "matrix_sha256": "566e6892b297b2dfac66deaf12ae2c22958b8a920b1a73461e08a5cc68441e6e",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "completed_at": "2026-10-03T09:48:12.737611+00:00",
+      "exit_returncode": 0,
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix_metrics_recomputed": {
+        "AAA": 19.04020515873016,
+        "FAA": 0.6739999999999999,
+        "LA": 14.376,
+        "BWT": -15.224444444444444,
+        "forgetting": 16.176666666666666
+      },
+      "matrix_metrics_agree": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "source_paths": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2",
+        "task_matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/task_matrix.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/step_trace.jsonl",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-06_Residual_matched_s2.json"
+      },
+      "first_task_accuracy": 83.71,
+      "last_task_fresh_accuracy": 0.0,
+      "final_task_accuracies": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.18,
+        5.56,
+        0.0
+      ],
+      "sample_weighted_FAA": 0.39,
+      "sample_weighted_AAA": 19.342999999999996,
+      "train_ce": {
+        "min": 0.625684916973114,
+        "max": 25.816696166992188,
+        "mean": 2.765964378749623,
+        "median": 2.877814769744873
+      },
+      "norm_U": {
+        "min": 0.3834452667670634,
+        "max": 148.5437401842874,
+        "mean": 4.772935317718482,
+        "median": 2.1528296245817886
+      },
+      "norm_g0": {
+        "min": 1.2340694075560328,
+        "max": 158.4455196345301,
+        "mean": 5.20083215934361,
+        "median": 3.0630465896742525
+      },
+      "scale_over_lr": {
+        "min": 0.10505347983269826,
+        "max": 10.863331135624321,
+        "mean": 2.0799261169299905,
+        "median": 1.6751705303055489
+      },
+      "update_cosine_U_g0": {
+        "min": -0.9431624112519222,
+        "max": 0.8012167387221087,
+        "mean": 0.10249385797190293,
+        "median": 0.10414437618851982
+      },
+      "effective_norm_over_g1_reference": {
+        "min": 0.9999964576589382,
+        "max": 1.0000025864340827,
+        "mean": 0.9999999949045816,
+        "median": 0.9999999988420538
+      },
+      "actual_match_relative_error": {
+        "min": 1.1854503704787953e-11,
+        "max": 3.542341061761051e-06,
+        "mean": 7.565909202864426e-08,
+        "median": 3.583135755308423e-08
+      },
+      "task_macro_accuracy_curve": [
+        83.71,
+        62.480000000000004,
+        33.56,
+        1.3800000000000001,
+        5.132,
+        1.5316666666666667,
+        0.40285714285714286,
+        0.54375,
+        0.9877777777777779,
+        0.6739999999999999
+      ],
+      "checkpoints": [
+        {
+          "task": 0,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 1,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 2,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 3,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 4,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 5,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 6,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 7,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 8,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 9,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        }
+      ],
+      "observations_12_file_hashes_valid": true,
+      "learning_accuracy_curve": [
+        83.71,
+        46.46,
+        0.78,
+        0.0,
+        3.92,
+        0.0,
+        0.0,
+        0.0,
+        8.89,
+        0.0
+      ],
+      "U_dot_g0_negative_steps": 794,
+      "final_epoch_train_by_task": [
+        {
+          "task": 0,
+          "train_ce": 0.8733561762369654,
+          "train_accuracy_local": 76.48927720413026
+        },
+        {
+          "task": 1,
+          "train_ce": 1.480415295215404,
+          "train_accuracy_local": 60.28084252758275
+        },
+        {
+          "task": 2,
+          "train_ce": 3.721382473170577,
+          "train_accuracy_local": 6.445115810674723
+        },
+        {
+          "task": 3,
+          "train_ce": 2.797566548289869,
+          "train_accuracy_local": 11.409395973154362
+        },
+        {
+          "task": 4,
+          "train_ce": 2.7327938079833984,
+          "train_accuracy_local": 16.197183098591548
+        },
+        {
+          "task": 5,
+          "train_ce": 3.1260154504042403,
+          "train_accuracy_local": 7.3076923076923075
+        },
+        {
+          "task": 6,
+          "train_ce": 4.463478411613059,
+          "train_accuracy_local": 1.9607843137254901
+        },
+        {
+          "task": 7,
+          "train_ce": 3.1047436792391707,
+          "train_accuracy_local": 8.201892744479496
+        },
+        {
+          "task": 8,
+          "train_ce": 8.302886622634965,
+          "train_accuracy_local": 3.0150753768844223
+        },
+        {
+          "task": 9,
+          "train_ce": 2.761689193665035,
+          "train_accuracy_local": 20.8994708994709
+        }
+      ]
+    },
+    "S2-B01_Sec_math_natural_s2": {
+      "status": "verified_completed",
+      "validation": {
+        "summary_sha256": "c1c6799214195c3ddd2912a5cd3ad6202b334e9bd34c7903785b189d3b30cfbe",
+        "trace_sha256": "4ebd8062cea3c185fc001b4b984cc4768cbf16f35c569d6a1ea658cae596fb20",
+        "matrix_sha256": "36f58a4b1b729d88db2dc5ea66e8d935a1f409d50b20ca23ab2bc39d5ad841d6",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "completed_at": "2026-10-03T09:42:55.006465+00:00",
+      "exit_returncode": 0,
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix_metrics_recomputed": {
+        "AAA": 66.03902301587301,
+        "FAA": 49.315,
+        "LA": 55.515,
+        "BWT": -6.888888888888889,
+        "forgetting": 7.146666666666667
+      },
+      "matrix_metrics_agree": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "source_paths": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2",
+        "task_matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/task_matrix.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/step_trace.jsonl",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-B01_Sec_math_natural_s2.json"
+      },
+      "first_task_accuracy": 86.32,
+      "last_task_fresh_accuracy": 37.5,
+      "final_task_accuracies": [
+        74.27,
+        69.69,
+        62.02,
+        61.21,
+        41.18,
+        43.66,
+        37.35,
+        32.94,
+        33.33,
+        37.5
+      ],
+      "sample_weighted_FAA": 57.08,
+      "sample_weighted_AAA": 69.759,
+      "train_ce": {
+        "min": 0.025212043896317482,
+        "max": 4.634063720703125,
+        "mean": 0.7729955791411739,
+        "median": 0.6146894097328186
+      },
+      "norm_U": {
+        "min": 1.2853712632963816,
+        "max": 22.353742710203594,
+        "mean": 2.6403891202724785,
+        "median": 2.157212296926743
+      },
+      "norm_g0": {
+        "min": 0.4778406169160701,
+        "max": 17.507051750811023,
+        "mean": 1.9020276230221635,
+        "median": 1.5478456693619862
+      },
+      "scale_over_lr": {
+        "min": 1.0,
+        "max": 1.0,
+        "mean": 1.0,
+        "median": 1.0
+      },
+      "update_cosine_U_g0": {
+        "min": 0.46737359759321917,
+        "max": 0.9911651683433643,
+        "mean": 0.9160863294158813,
+        "median": 0.9223411086603869
+      },
+      "effective_norm_over_g1_reference": {
+        "min": 0.6862725535044395,
+        "max": 8.273374648734988,
+        "mean": 1.2829513137549897,
+        "median": 1.2677313319799641
+      },
+      "actual_match_relative_error": {
+        "min": 0.0006417848700956243,
+        "max": 7.273374648734987,
+        "mean": 0.28359561347809664,
+        "median": 0.2677788699524082
+      },
+      "task_macro_accuracy_curve": [
+        86.32,
+        81.295,
+        77.21,
+        74.005,
+        66.974,
+        62.09666666666667,
+        58.09428571428571,
+        54.5425,
+        50.53777777777778,
+        49.315
+      ],
+      "checkpoints": [
+        {
+          "task": 0,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 1,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 2,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 3,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 4,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 5,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 6,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 7,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 8,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 9,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        }
+      ],
+      "observations_12_file_hashes_valid": true,
+      "learning_accuracy_curve": [
+        86.32,
+        79.53,
+        70.54,
+        72.73,
+        52.94,
+        50.7,
+        38.55,
+        34.12,
+        32.22,
+        37.5
+      ],
+      "U_dot_g0_negative_steps": 0,
+      "final_epoch_train_by_task": [
+        {
+          "task": 0,
+          "train_ce": 0.4250489969969364,
+          "train_accuracy_local": 86.57664813343924
+        },
+        {
+          "task": 1,
+          "train_ce": 0.42707830709344524,
+          "train_accuracy_local": 88.0641925777332
+        },
+        {
+          "task": 2,
+          "train_ce": 0.5917071508016711,
+          "train_accuracy_local": 81.57099697885197
+        },
+        {
+          "task": 3,
+          "train_ce": 0.4288738755971793,
+          "train_accuracy_local": 87.58389261744966
+        },
+        {
+          "task": 4,
+          "train_ce": 0.5593338854995692,
+          "train_accuracy_local": 85.21126760563381
+        },
+        {
+          "task": 5,
+          "train_ce": 0.7183338541250962,
+          "train_accuracy_local": 83.46153846153847
+        },
+        {
+          "task": 6,
+          "train_ce": 0.7013333598438766,
+          "train_accuracy_local": 83.4733893557423
+        },
+        {
+          "task": 7,
+          "train_ce": 0.5037123768675591,
+          "train_accuracy_local": 89.27444794952682
+        },
+        {
+          "task": 8,
+          "train_ce": 0.5811854374768147,
+          "train_accuracy_local": 86.4321608040201
+        },
+        {
+          "task": 9,
+          "train_ce": 0.4417453931752967,
+          "train_accuracy_local": 90.47619047619048
+        }
+      ]
+    },
+    "S2-B02_Sec_math_matched_s2": {
+      "status": "verified_completed",
+      "validation": {
+        "summary_sha256": "034e29211ec1a9e57c8dd8ce9d320d6a2e3f7573ad4db51b335e2d52cdac1d5e",
+        "trace_sha256": "12c16490f63a235d484a94621bddde2117db969c59ce73727586e3dde09bbc5e",
+        "matrix_sha256": "7bad927eb18d1d793fb1701364b98a2328ac4841b0d8aa8de4e92399d8df6f24",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "completed_at": "2026-10-03T09:54:00.587641+00:00",
+      "exit_returncode": 0,
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix_metrics_recomputed": {
+        "AAA": 65.14472222222221,
+        "FAA": 47.525,
+        "LA": 54.208,
+        "BWT": -7.425555555555556,
+        "forgetting": 7.6433333333333335
+      },
+      "matrix_metrics_agree": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "source_paths": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2",
+        "task_matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/task_matrix.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/step_trace.jsonl",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-B02_Sec_math_matched_s2.json"
+      },
+      "first_task_accuracy": 85.99,
+      "last_task_fresh_accuracy": 33.65,
+      "final_task_accuracies": [
+        75.24,
+        68.5,
+        60.85,
+        58.18,
+        40.2,
+        40.85,
+        33.73,
+        32.94,
+        31.11,
+        33.65
+      ],
+      "sample_weighted_FAA": 55.76,
+      "sample_weighted_AAA": 69.102,
+      "train_ce": {
+        "min": 0.03236229717731476,
+        "max": 4.645277976989746,
+        "mean": 0.831538401099981,
+        "median": 0.6746608912944794
+      },
+      "norm_U": {
+        "min": 1.4058580381908985,
+        "max": 24.208764523234613,
+        "mean": 2.796035020939174,
+        "median": 2.283765951508471
+      },
+      "norm_g0": {
+        "min": 0.6267498894508059,
+        "max": 18.0928883597496,
+        "mean": 2.038851479649949,
+        "median": 1.6643701139584448
+      },
+      "scale_over_lr": {
+        "min": 0.11905591171310197,
+        "max": 1.3256464119089664,
+        "mean": 0.8008142608889247,
+        "median": 0.8000249891988193
+      },
+      "update_cosine_U_g0": {
+        "min": 0.696957308826298,
+        "max": 0.9919114018894547,
+        "mean": 0.914963521804416,
+        "median": 0.9218905382691516
+      },
+      "effective_norm_over_g1_reference": {
+        "min": 0.9999992701371081,
+        "max": 1.000000798359108,
+        "mean": 0.9999999993837351,
+        "median": 0.9999999989178261
+      },
+      "actual_match_relative_error": {
+        "min": 9.622378332657772e-11,
+        "max": 7.983591080325796e-07,
+        "mean": 7.285564195679506e-08,
+        "median": 3.852056201871885e-08
+      },
+      "task_macro_accuracy_curve": [
+        85.99,
+        80.28,
+        77.49,
+        73.8825,
+        66.27,
+        60.72833333333333,
+        56.9,
+        52.8925,
+        49.48888888888889,
+        47.525
+      ],
+      "checkpoints": [
+        {
+          "task": 0,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 1,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 2,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 3,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 4,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 5,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 6,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 7,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 8,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        },
+        {
+          "task": 9,
+          "manifest_valid": true,
+          "file_hashes_valid": true,
+          "lora_meta_24_modules_valid": true
+        }
+      ],
+      "observations_12_file_hashes_valid": true,
+      "learning_accuracy_curve": [
+        85.99,
+        77.17,
+        70.93,
+        72.12,
+        50.98,
+        46.48,
+        36.14,
+        35.29,
+        33.33,
+        33.65
+      ],
+      "U_dot_g0_negative_steps": 0,
+      "final_epoch_train_by_task": [
+        {
+          "task": 0,
+          "train_ce": 0.4532641316568028,
+          "train_accuracy_local": 85.54408260524225
+        },
+        {
+          "task": 1,
+          "train_ce": 0.46981874362396503,
+          "train_accuracy_local": 87.16148445336007
+        },
+        {
+          "task": 2,
+          "train_ce": 0.6433328306086714,
+          "train_accuracy_local": 80.26183282980865
+        },
+        {
+          "task": 3,
+          "train_ce": 0.4771956561395786,
+          "train_accuracy_local": 86.57718120805369
+        },
+        {
+          "task": 4,
+          "train_ce": 0.6170750957139781,
+          "train_accuracy_local": 82.86384976525821
+        },
+        {
+          "task": 5,
+          "train_ce": 0.7411590424867777,
+          "train_accuracy_local": 82.6923076923077
+        },
+        {
+          "task": 6,
+          "train_ce": 0.7703936933135452,
+          "train_accuracy_local": 80.3921568627451
+        },
+        {
+          "task": 7,
+          "train_ce": 0.5524969295560374,
+          "train_accuracy_local": 88.01261829652996
+        },
+        {
+          "task": 8,
+          "train_ce": 0.631198715324977,
+          "train_accuracy_local": 84.67336683417085
+        },
+        {
+          "task": 9,
+          "train_ce": 0.5419467693914182,
+          "train_accuracy_local": 88.35978835978835
+        }
+      ]
+    }
+  },
+  "cross_arm_pairing": {
+    "S2-05_Residual_natural_s2 versus S2-06_Residual_matched_s2": {
+      "initial_task0_model_exact": true,
+      "all10_new_FC_rows_exact": true,
+      "frozen_origin_exact": true,
+      "all2550_batch_identity_exact": {
+        "input_sha256": true,
+        "target_sha256": true,
+        "indices_sha256": true,
+        "data_seed": true
+      },
+      "all500_sampler_order_exact": true,
+      "effective_config_differences": {
+        "feature_flat_save_path": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-05_Residual_natural_s2/exp_run/checkpoints",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-06_Residual_matched_s2/exp_run/checkpoints"
+        ],
+        "filepath": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-05_Residual_natural_s2/exp_run/checkpoints/",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-06_Residual_matched_s2/exp_run/checkpoints/"
+        ],
+        "prefix": [
+          "S2-05_Residual_natural_s2",
+          "S2-06_Residual_matched_s2"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native"
+        ],
+        "component_scale": [
+          "natural",
+          "matched"
+        ],
+        "step_mode": [
+          "natural",
+          "matched"
+        ]
+      }
+    },
+    "S2-05_Residual_natural_s2 versus S2-B01_Sec_math_natural_s2": {
+      "initial_task0_model_exact": true,
+      "all10_new_FC_rows_exact": true,
+      "frozen_origin_exact": true,
+      "all2550_batch_identity_exact": {
+        "input_sha256": true,
+        "target_sha256": true,
+        "indices_sha256": true,
+        "data_seed": true
+      },
+      "all500_sampler_order_exact": true,
+      "effective_config_differences": {
+        "feature_flat_save_path": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-05_Residual_natural_s2/exp_run/checkpoints",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B01_Sec_math_natural_s2/exp_run/checkpoints"
+        ],
+        "filepath": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-05_Residual_natural_s2/exp_run/checkpoints/",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B01_Sec_math_natural_s2/exp_run/checkpoints/"
+        ],
+        "prefix": [
+          "S2-05_Residual_natural_s2",
+          "S2-B01_Sec_math_natural_s2"
+        ],
+        "component_rule": [
+          "P_residual_only",
+          "P_A"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native"
+        ],
+        "update_direction": [
+          "residual_only",
+          "A"
+        ]
+      }
+    },
+    "S2-05_Residual_natural_s2 versus S2-B02_Sec_math_matched_s2": {
+      "initial_task0_model_exact": true,
+      "all10_new_FC_rows_exact": true,
+      "frozen_origin_exact": true,
+      "all2550_batch_identity_exact": {
+        "input_sha256": true,
+        "target_sha256": true,
+        "indices_sha256": true,
+        "data_seed": true
+      },
+      "all500_sampler_order_exact": true,
+      "effective_config_differences": {
+        "feature_flat_save_path": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-05_Residual_natural_s2/exp_run/checkpoints",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B02_Sec_math_matched_s2/exp_run/checkpoints"
+        ],
+        "filepath": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-05_Residual_natural_s2/exp_run/checkpoints/",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B02_Sec_math_matched_s2/exp_run/checkpoints/"
+        ],
+        "prefix": [
+          "S2-05_Residual_natural_s2",
+          "S2-B02_Sec_math_matched_s2"
+        ],
+        "component_rule": [
+          "P_residual_only",
+          "P_A"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/native",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native"
+        ],
+        "update_direction": [
+          "residual_only",
+          "A"
+        ],
+        "component_scale": [
+          "natural",
+          "matched"
+        ],
+        "step_mode": [
+          "natural",
+          "matched"
+        ]
+      }
+    },
+    "S2-06_Residual_matched_s2 versus S2-B01_Sec_math_natural_s2": {
+      "initial_task0_model_exact": true,
+      "all10_new_FC_rows_exact": true,
+      "frozen_origin_exact": true,
+      "all2550_batch_identity_exact": {
+        "input_sha256": true,
+        "target_sha256": true,
+        "indices_sha256": true,
+        "data_seed": true
+      },
+      "all500_sampler_order_exact": true,
+      "effective_config_differences": {
+        "feature_flat_save_path": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-06_Residual_matched_s2/exp_run/checkpoints",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B01_Sec_math_natural_s2/exp_run/checkpoints"
+        ],
+        "filepath": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-06_Residual_matched_s2/exp_run/checkpoints/",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B01_Sec_math_natural_s2/exp_run/checkpoints/"
+        ],
+        "prefix": [
+          "S2-06_Residual_matched_s2",
+          "S2-B01_Sec_math_natural_s2"
+        ],
+        "component_rule": [
+          "P_residual_only",
+          "P_A"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native"
+        ],
+        "update_direction": [
+          "residual_only",
+          "A"
+        ],
+        "component_scale": [
+          "matched",
+          "natural"
+        ],
+        "step_mode": [
+          "matched",
+          "natural"
+        ]
+      }
+    },
+    "S2-06_Residual_matched_s2 versus S2-B02_Sec_math_matched_s2": {
+      "initial_task0_model_exact": true,
+      "all10_new_FC_rows_exact": true,
+      "frozen_origin_exact": true,
+      "all2550_batch_identity_exact": {
+        "input_sha256": true,
+        "target_sha256": true,
+        "indices_sha256": true,
+        "data_seed": true
+      },
+      "all500_sampler_order_exact": true,
+      "effective_config_differences": {
+        "feature_flat_save_path": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-06_Residual_matched_s2/exp_run/checkpoints",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B02_Sec_math_matched_s2/exp_run/checkpoints"
+        ],
+        "filepath": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-06_Residual_matched_s2/exp_run/checkpoints/",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B02_Sec_math_matched_s2/exp_run/checkpoints/"
+        ],
+        "prefix": [
+          "S2-06_Residual_matched_s2",
+          "S2-B02_Sec_math_matched_s2"
+        ],
+        "component_rule": [
+          "P_residual_only",
+          "P_A"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/native",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native"
+        ],
+        "update_direction": [
+          "residual_only",
+          "A"
+        ]
+      }
+    },
+    "S2-B01_Sec_math_natural_s2 versus S2-B02_Sec_math_matched_s2": {
+      "initial_task0_model_exact": true,
+      "all10_new_FC_rows_exact": true,
+      "frozen_origin_exact": true,
+      "all2550_batch_identity_exact": {
+        "input_sha256": true,
+        "target_sha256": true,
+        "indices_sha256": true,
+        "data_seed": true
+      },
+      "all500_sampler_order_exact": true,
+      "effective_config_differences": {
+        "feature_flat_save_path": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B01_Sec_math_natural_s2/exp_run/checkpoints",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B02_Sec_math_matched_s2/exp_run/checkpoints"
+        ],
+        "filepath": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B01_Sec_math_natural_s2/exp_run/checkpoints/",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native/logs_inc_lora/ewclora_normfisher_gam_intask_damp/g012_four_probe_v1/imageneta/2/S2-B02_Sec_math_matched_s2/exp_run/checkpoints/"
+        ],
+        "prefix": [
+          "S2-B01_Sec_math_natural_s2",
+          "S2-B02_Sec_math_matched_s2"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/native",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/native"
+        ],
+        "component_scale": [
+          "natural",
+          "matched"
+        ],
+        "step_mode": [
+          "natural",
+          "matched"
+        ]
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "comparison": "Sec minus residual_only",
+      "mode": "natural",
+      "delta_percentage_points": {
+        "AAA": 34.21614722222222,
+        "FAA": 48.980999999999995,
+        "LA": 36.912,
+        "BWT": 13.41,
+        "forgetting": -13.678888888888888
+      }
+    },
+    {
+      "comparison": "Sec minus residual_only",
+      "mode": "matched",
+      "delta_percentage_points": {
+        "AAA": 46.104517063492054,
+        "FAA": 46.851,
+        "LA": 39.832,
+        "BWT": 7.798888888888888,
+        "forgetting": -8.533333333333331
+      }
+    },
+    {
+      "comparison": "matched minus natural",
+      "direction": "A",
+      "delta_percentage_points": {
+        "AAA": -0.8943007936507996,
+        "FAA": -1.7899999999999991,
+        "LA": -1.3070000000000022,
+        "BWT": -0.5366666666666671,
+        "forgetting": 0.49666666666666615
+      }
+    },
+    {
+      "comparison": "matched minus natural",
+      "direction": "residual_only",
+      "delta_percentage_points": {
+        "AAA": -12.782670634920635,
+        "FAA": 0.33999999999999997,
+        "LA": -4.227000000000002,
+        "BWT": 5.074444444444445,
+        "forgetting": -4.648888888888891
+      }
+    }
+  ],
+  "limitations": [
+    "One seed only: no variability/significance estimate.",
+    "All four current runs use math backend; native historical runs are not strict matched baselines.",
+    "Residual-only is a positive-step descent on c21, not an additional g0 term. Very low final accuracy is finite output, not NaN or rejected matching.",
+    "Train traces verify parameter/state restoration and sampled/input identities; no independent GPU rerun or inference was performed.",
+    "These results do not validate Hessian approximations or unblock HVP training arms."
+  ]
+}

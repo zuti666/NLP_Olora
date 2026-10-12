@@ -1,0 +1,611 @@
+--- /data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/baseLoRA.py
++++ /data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/baseLoRA.py
+@@ -1,3 +1,5 @@
++import hashlib
++import json
+ import logging
+ import os
+ from typing import Optional
+@@ -12,6 +14,10 @@
+ from models_CL.baseLearner import BaseLearner
+ from optimer_PerturabtionType.util import generate_pertubation
+ from backbone.lora import _LoRA_qkv_timm_train
++from utils.endpoint_region import (
++    task_resume_artifact_sha256,
++    validate_task_resume_sidecars,
++)
+ 
+ 
+ class LoraBaseLearner(BaseLearner):
+@@ -50,6 +56,21 @@
+         if isinstance(self._network, (nn.DataParallel, nn.parallel.DistributedDataParallel)):
+             return self._network.module
+         return self._network
++
++    @staticmethod
++    def _file_sha256(path: str) -> str:
++        digest = hashlib.sha256()
++        with open(path, "rb") as handle:
++            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
++                digest.update(chunk)
++        return digest.hexdigest()
++
++    @staticmethod
++    def _canonical_sha256(value) -> str:
++        payload = json.dumps(
++            value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
++        ).encode("utf-8")
++        return hashlib.sha256(payload).hexdigest()
+ 
+     def _apply_parallel_wrapper(self) -> None:
+         """Apply DataParallel/DDP wrapping according to current context."""
+@@ -241,6 +262,8 @@
+         if task_idx < 0:
+             raise ValueError(f"resume task_idx must be non-negative, got {task_idx}")
+ 
++        self._validate_resume_experiment_identity(checkpoint_dir, task_idx)
++
+         _, task_end = data_manager.get_task_class_range(task_idx)
+         self._cur_task = task_idx
+         self._known_classes = int(task_end)
+@@ -258,9 +281,560 @@
+ 
+         self._network = network
+         self._prepare_network()
++        self._load_auxiliary_task_state(checkpoint_dir, task_idx)
+         self._log(
+             f"[Resume] Restored task {task_idx} checkpoint from {checkpoint_dir}; "
+             f"next task will be {task_idx + 1}"
++        )
++
++    def save_task_checkpoint(self, ckpt_dir: str, task_idx: int) -> None:
++        """Save a staged LoRA checkpoint plus optional EWC/Fisher state.
++
++        The resume path uses the side-car LoRA/FC/Fisher files.  The compact
++        ``task_XX.pt`` manifest is kept for external analysis scripts that load
++        a full ``network_state`` directly.
++        """
++        ckpt_dir = os.path.abspath(os.path.expanduser(str(ckpt_dir)))
++        os.makedirs(ckpt_dir, exist_ok=True)
++        task_idx = int(task_idx)
++
++        base_net = self._unwrap_network()
++        backbone = getattr(base_net, "backbone", None)
++        w_as = getattr(backbone, "w_As", None)
++        w_bs = getattr(backbone, "w_Bs", None)
++        if w_as is not None:
++            torch.save(
++                [
++                    layer.weight.detach().cpu().clone()
++                    if hasattr(layer, "weight") else layer.detach().cpu().clone()
++                    for layer in w_as
++                ],
++                os.path.join(ckpt_dir, f"lora_w_a_{task_idx}.pt"),
++            )
++        if w_bs is not None:
++            torch.save(
++                [
++                    layer.weight.detach().cpu().clone()
++                    if hasattr(layer, "weight") else layer.detach().cpu().clone()
++                    for layer in w_bs
++                ],
++                os.path.join(ckpt_dir, f"lora_w_b_{task_idx}.pt"),
++            )
++        if hasattr(base_net, "save_fc"):
++            base_net.save_fc(ckpt_dir, task_idx)
++
++        fisher_state = {}
++        if hasattr(self, "_fisher_past_delta"):
++            fisher_state["fisher_past_delta"] = {
++                key: value.detach().cpu().clone()
++                for key, value in getattr(self, "_fisher_past_delta", {}).items()
++            }
++        if hasattr(self, "_fisher_past_trace_mass"):
++            fisher_state["fisher_past_trace_mass"] = float(getattr(self, "_fisher_past_trace_mass", 0.0))
++        if hasattr(self, "_last_task_new_fisher_stats"):
++            fisher_state["last_task_new_fisher_stats"] = dict(getattr(self, "_last_task_new_fisher_stats", {}))
++        if hasattr(self, "_fisher_new_task_raw_trace"):
++            fisher_state["fisher_new_task_raw_trace"] = float(self._fisher_new_task_raw_trace)
++        extra_fisher_state = self._extra_fisher_checkpoint_state()
++        if set(extra_fisher_state) & set(fisher_state):
++            raise ValueError("Extra Fisher checkpoint state may not overwrite base keys")
++        fisher_state.update(extra_fisher_state)
++        require_fisher = str(
++            self.args.get("checkpoint_require_nonempty_fisher", False)
++        ).strip().lower() in {"1", "true", "yes", "y", "on"}
++        if require_fisher:
++            self._validate_fisher_checkpoint_state(
++                fisher_state,
++                source=f"in-memory task {task_idx} Fisher",
++                require_shape_match=True,
++            )
++        fisher_state_path = os.path.join(ckpt_dir, f"fisher_state_{task_idx}.pt")
++        if fisher_state:
++            torch.save(fisher_state, fisher_state_path)
++
++        producer_receipt = dict(getattr(self, "_task_producer_receipt", {}) or {})
++        split_info = dict(getattr(self, "_current_fisher_split_info", {}) or {})
++        train_source_indices = [
++            int(value) for value in split_info.get("train_source_indices", [])
++        ]
++        diagnostic_source_indices = [
++            int(value) for value in split_info.get("val_source_indices", [])
++        ]
++        if split_info:
++            producer_receipt.update(
++                {
++                    "split_seed": int(split_info.get("seed", -1)),
++                    "fit_samples": int(split_info.get("train_samples", 0)),
++                    "diagnostic_samples": int(split_info.get("val_samples", 0)),
++                    "fit_source_indices_sha256": self._canonical_sha256(
++                        train_source_indices
++                    ),
++                    "diagnostic_source_indices_sha256": self._canonical_sha256(
++                        diagnostic_source_indices
++                    ),
++                    "fit_diagnostic_disjoint": bool(
++                        set(train_source_indices).isdisjoint(diagnostic_source_indices)
++                    ),
++                }
++            )
++        producer_receipt.update(
++            {
++                "fisher_source": str(
++                    self.args.get("ewc_fisher_source", "heldout")
++                ).lower(),
++                "fisher_sidecar_sha256": (
++                    self._file_sha256(fisher_state_path)
++                    if os.path.isfile(fisher_state_path)
++                    else ""
++                ),
++            }
++        )
++
++        manifest = {
++            "cur_task": int(task_idx),
++            "known_classes": int(getattr(self, "_known_classes", 0)),
++            "total_classes": int(getattr(self, "_total_classes", 0)),
++            "model_name": self.args.get("model_name", ""),
++            "optimizer_type": self.args.get("optimizer_type", ""),
++            "experiment_identity": {
++                "fs_direction_mode": self.args.get("fs_direction_mode", ""),
++                "fs_base_optimizer": self.args.get("fs_base_optimizer", ""),
++                "fs_alpha_mode": self.args.get("fs_alpha_mode", ""),
++                "fs_alpha": self.args.get("fs_alpha", ""),
++                "fs_rho": self.args.get("fs_rho", ""),
++                "fs_preserve_probe_rng": self.args.get("fs_preserve_probe_rng", ""),
++                "fisher_mode": self.args.get("fisher_mode", ""),
++                "fisher_source": self.args.get("ewc_fisher_source", "heldout"),
++                "ewc_normalize_fisher": self.args.get("ewc_normalize_fisher", ""),
++                "ewc_normalize_accumulated_fisher": self.args.get(
++                    "ewc_normalize_accumulated_fisher", ""
++                ),
++                "ewc_fisher_damping_beta": self.args.get(
++                    "ewc_fisher_damping_beta", ""
++                ),
++                "ewc_gamma": self.args.get("ewc_gamma", ""),
++            },
++            "network_state": {
++                key: value.detach().cpu().clone()
++                for key, value in base_net.state_dict().items()
++            },
++            "has_fisher_state": bool(fisher_state),
++            "producer_receipt": producer_receipt,
++        }
++        torch.save(manifest, os.path.join(ckpt_dir, f"task_{task_idx:02d}.pt"))
++        self._save_experiment_identity(ckpt_dir, task_idx, fisher_state)
++        self._log(f"[TaskCheckpoint] Saved staged checkpoint to {ckpt_dir}")
++
++    def _extra_fisher_checkpoint_state(self) -> dict:
++        """Extend the hashed Fisher sidecar for structured importance models."""
++        return {}
++
++    def _restore_extra_fisher_checkpoint_state(self, state: dict) -> None:
++        """Restore learner-specific state from the same hashed sidecar."""
++        if "kfac_ewc_state" in state:
++            raise ValueError("KFAC EWC checkpoints require a KFAC EWC learner")
++
++    def _save_experiment_identity(self, ckpt_dir: str, task_idx: int, fisher_state) -> None:
++        fisher = fisher_state.get("fisher_past_delta", {}) if isinstance(fisher_state, dict) else {}
++        fisher_trace = float(
++            sum(value.detach().float().sum().item() for value in fisher.values())
++        ) if fisher else 0.0
++        seed = self.args.get("seed", "")
++        if isinstance(seed, (list, tuple)) and len(seed) == 1:
++            seed = seed[0]
++        identity = {
++            "status": "complete",
++            "task": int(task_idx),
++            "dataset": self.args.get("dataset", ""),
++            "backbone_type": self.args.get("backbone_type", ""),
++            "lora_rank": int(self.args.get("lora_rank", getattr(self, "_rank", 0))),
++            "seed": seed,
++            "class_shuffle": self.args.get("class_shuffle", ""),
++            "init_cls": int(self.args.get("init_cls", 0)),
++            "increment": int(self.args.get("increment", 0)),
++            "batch_size": int(self.args.get("batch_size", 0)),
++            "epochs": int(self.args.get("init_epoch", self.args.get("epochs", 0))),
++            "lr": float(self.args.get("init_lr", self.args.get("lrate", 0.0))),
++            "scheduler": self.args.get("scheduler", ""),
++            "momentum": float(self.args.get("init_momentum", self.args.get("momentum", 0.0))),
++            "weight_decay": float(
++                self.args.get("init_weight_decay", self.args.get("weight_decay", 0.0))
++            ),
++            "fs_direction_mode": getattr(
++                self, "_fs_direction_mode", self.args.get("fs_direction_mode", "")
++            ),
++            "actual_optimizer_class": getattr(self, "_last_optimizer_class", ""),
++            "fs_base_optimizer": self.args.get("fs_base_optimizer", ""),
++            "fs_alpha_mode": getattr(
++                self, "_fs_alpha_mode", self.args.get("fs_alpha_mode", "")
++            ),
++            "fs_alpha": float(getattr(self, "_fs_alpha", self.args.get("fs_alpha", 0.0))),
++            "fs_rho": float(getattr(self, "_fs_rho", self.args.get("fs_rho", 0.0))),
++            "fs_sam_equivalent": bool(getattr(self, "_fs_sam_equivalent", False)),
++            "fs_preserve_probe_rng": bool(
++                getattr(self, "_fs_preserve_probe_rng", False)
++            ),
++            "stage_lambda": float(getattr(self, "_lambda_ewc", self.args.get("ewc_lambda", 0.0))),
++            "fisher_mode": getattr(self, "_fisher_mode", self.args.get("fisher_mode", "")),
++            "fisher_source": str(
++                self.args.get("ewc_fisher_source", "heldout")
++            ).lower(),
++            "fisher_scope": "effective_delta_w",
++            "fisher_max_batches": self.args.get("ewc_max_batches", ""),
++            "ewc_normalize_fisher": bool(getattr(self, "_normalize_fisher", False)),
++            "ewc_normalize_accumulated_fisher": bool(
++                getattr(self, "_normalize_accumulated_fisher", False)
++            ),
++            "ewc_fisher_damping_beta": float(
++                getattr(self, "_ewc_fisher_damping_beta", 0.0)
++            ),
++            "ewc_gamma": float(getattr(self, "_ewc_gamma", self.args.get("ewc_gamma", 1.0))),
++            "fisher_tensor_count": int(len(fisher)),
++            "fisher_trace": fisher_trace,
++            "fisher_shapes": {key: list(value.shape) for key, value in sorted(fisher.items())},
++            "producer_receipt": dict(
++                getattr(self, "_task_producer_receipt", {}) or {}
++            ),
++        }
++        split_info = dict(getattr(self, "_current_fisher_split_info", {}) or {})
++        train_source_indices = [
++            int(value) for value in split_info.get("train_source_indices", [])
++        ]
++        diagnostic_source_indices = [
++            int(value) for value in split_info.get("val_source_indices", [])
++        ]
++        identity["producer_receipt"].update(
++            {
++                "split_seed": int(split_info.get("seed", -1)),
++                "fit_samples": int(split_info.get("train_samples", 0)),
++                "diagnostic_samples": int(split_info.get("val_samples", 0)),
++                "fit_source_indices_sha256": self._canonical_sha256(
++                    train_source_indices
++                ),
++                "diagnostic_source_indices_sha256": self._canonical_sha256(
++                    diagnostic_source_indices
++                ),
++                "fit_diagnostic_disjoint": bool(
++                    train_source_indices
++                    and diagnostic_source_indices
++                    and set(train_source_indices).isdisjoint(diagnostic_source_indices)
++                ),
++                "fisher_source": identity["fisher_source"],
++            }
++        )
++        require_resume_sidecars = str(
++            self.args.get("checkpoint_require_resume_sidecars", False)
++        ).strip().lower() in {"1", "true", "yes", "y", "on"}
++        if require_resume_sidecars:
++            identity["artifact_sha256"] = validate_task_resume_sidecars(
++                ckpt_dir, task_idx
++            )
++        else:
++            checkpoint_path = os.path.join(
++                ckpt_dir, f"task_{int(task_idx):02d}.pt"
++            )
++            sidecar_path = os.path.join(
++                ckpt_dir, f"fisher_state_{int(task_idx)}.pt"
++            )
++            identity["artifact_sha256"] = {
++                "task_checkpoint": (
++                    self._file_sha256(checkpoint_path)
++                    if os.path.isfile(checkpoint_path)
++                    else ""
++                ),
++                "fisher_sidecar": (
++                    self._file_sha256(sidecar_path)
++                    if os.path.isfile(sidecar_path)
++                    else ""
++                ),
++            }
++        path = os.path.join(ckpt_dir, f"experiment_identity_{int(task_idx)}.json")
++        tmp_path = path + f".tmp.{os.getpid()}"
++        with open(tmp_path, "w", encoding="utf-8") as handle:
++            json.dump(identity, handle, indent=2, sort_keys=True)
++            handle.write("\n")
++        os.replace(tmp_path, path)
++
++    def _validate_resume_experiment_identity(self, checkpoint_dir: str, task_idx: int) -> None:
++        identity_required = str(
++            self.args.get("resume_require_experiment_identity", False)
++        ).strip().lower() in {"1", "true", "yes", "y", "on"}
++        sidecars_required = str(
++            self.args.get("resume_require_model_sidecars", False)
++        ).strip().lower() in {"1", "true", "yes", "y", "on"}
++        if not identity_required and not sidecars_required:
++            return
++        path = os.path.join(
++            checkpoint_dir, f"experiment_identity_{int(task_idx)}.json"
++        )
++        if not os.path.isfile(path):
++            raise FileNotFoundError(f"Required staged identity manifest is missing: {path}")
++        with open(path, encoding="utf-8") as handle:
++            identity = json.load(handle)
++        if identity.get("status") != "complete":
++            raise ValueError(f"Incomplete staged identity manifest: {path}")
++
++        expected = {
++            "task": int(task_idx),
++            "dataset": self.args.get("dataset", ""),
++            "backbone_type": self.args.get("backbone_type", ""),
++            "lora_rank": int(self.args.get("lora_rank", getattr(self, "_rank", 0))),
++            "seed": int(self.args.get("resume_expected_seed", -1)),
++            "class_shuffle": False,
++            "init_cls": int(self.args.get("init_cls", 0)),
++            "increment": int(self.args.get("increment", 0)),
++            "batch_size": int(self.args.get("batch_size", 0)),
++            "epochs": int(self.args.get("resume_expected_epochs", 0)),
++            "lr": float(self.args.get("init_lr", 0.0)),
++            "scheduler": self.args.get("scheduler", ""),
++            "momentum": float(self.args.get("init_momentum", 0.0)),
++            "weight_decay": float(self.args.get("init_weight_decay", 0.0)),
++            "fs_direction_mode": self.args.get(
++                "resume_expected_fs_direction_mode", ""
++            ),
++            "actual_optimizer_class": self.args.get(
++                "resume_expected_optimizer_class", ""
++            ),
++            "fs_alpha_mode": self.args.get("fs_alpha_mode", ""),
++            "fs_alpha": float(self.args.get("resume_expected_fs_alpha", 0.0)),
++            "fs_rho": float(self.args.get("fs_rho", 0.0)),
++            "fs_preserve_probe_rng": True,
++            "stage_lambda": 0.0,
++            "fisher_mode": str(self.args.get("fisher_mode", "")),
++            "fisher_scope": "effective_delta_w",
++            "ewc_normalize_fisher": True,
++            "ewc_normalize_accumulated_fisher": False,
++            "ewc_fisher_damping_beta": float(
++                self.args.get("ewc_fisher_damping_beta", 0.0)
++            ),
++            "ewc_gamma": float(self.args.get("ewc_gamma", 1.0)),
++        }
++        receipt_required = str(
++            self.args.get("resume_require_producer_receipt", False)
++        ).strip().lower() in {"1", "true", "yes", "y", "on"}
++        if receipt_required:
++            expected["fisher_source"] = str(
++                self.args.get("ewc_fisher_source", "fit")
++            ).lower()
++        mismatches = {}
++        for key, expected_value in expected.items():
++            actual = identity.get(key)
++            if isinstance(expected_value, float):
++                try:
++                    matches = bool(np.isclose(float(actual), expected_value, rtol=0.0, atol=1e-12))
++                except (TypeError, ValueError):
++                    matches = False
++            else:
++                matches = actual == expected_value
++            if not matches:
++                mismatches[key] = {"expected": expected_value, "actual": actual}
++        if int(identity.get("fisher_tensor_count", 0)) <= 0 or float(
++            identity.get("fisher_trace", 0.0)
++        ) <= 0.0:
++            mismatches["fisher_nonempty"] = {
++                "expected": True,
++                "actual": {
++                    "count": identity.get("fisher_tensor_count"),
++                    "trace": identity.get("fisher_trace"),
++                },
++            }
++        if receipt_required:
++            receipt = identity.get("producer_receipt", {})
++            required_receipt_fields = (
++                "origin_network_sha256",
++                "origin_rng_sha256",
++                "optimizer_groups_sha256",
++                "producer_source_bundle_sha256",
++                "producer_env_spec_hash",
++                "producer_env_receipt_sha256",
++                "frozen_protocol_sha256",
++                "sampler_order_sha256",
++                "fit_source_indices_sha256",
++                "diagnostic_source_indices_sha256",
++            )
++            missing_receipt = [
++                key for key in required_receipt_fields if not receipt.get(key)
++            ]
++            if missing_receipt:
++                mismatches["producer_receipt_fields"] = {
++                    "expected": list(required_receipt_fields),
++                    "missing": missing_receipt,
++                }
++            if not bool(receipt.get("fit_diagnostic_disjoint", False)):
++                mismatches["fit_diagnostic_disjoint"] = {
++                    "expected": True,
++                    "actual": receipt.get("fit_diagnostic_disjoint"),
++                }
++            expected_source_bundle = str(
++                self.args.get("producer_source_bundle_sha256", "")
++            )
++            if receipt.get("producer_source_bundle_sha256") != expected_source_bundle:
++                mismatches["producer_source_bundle_sha256"] = {
++                    "expected": expected_source_bundle,
++                    "actual": receipt.get("producer_source_bundle_sha256"),
++                }
++            expected_env_spec_hash = str(
++                self.args.get("producer_env_spec_hash", "")
++            )
++            if receipt.get("producer_env_spec_hash") != expected_env_spec_hash:
++                mismatches["producer_env_spec_hash"] = {
++                    "expected": expected_env_spec_hash,
++                    "actual": receipt.get("producer_env_spec_hash"),
++                }
++            expected_env_receipt = str(
++                self.args.get("producer_env_receipt_sha256", "")
++            )
++            if receipt.get("producer_env_receipt_sha256") != expected_env_receipt:
++                mismatches["producer_env_receipt_sha256"] = {
++                    "expected": expected_env_receipt,
++                    "actual": receipt.get("producer_env_receipt_sha256"),
++                }
++            expected_protocol = str(self.args.get("frozen_protocol_sha256", ""))
++            if receipt.get("frozen_protocol_sha256") != expected_protocol:
++                mismatches["frozen_protocol_sha256"] = {
++                    "expected": expected_protocol,
++                    "actual": receipt.get("frozen_protocol_sha256"),
++                }
++            artifact_hashes = identity.get("artifact_sha256", {})
++            observed_artifacts = (
++                validate_task_resume_sidecars(checkpoint_dir, task_idx)
++                if sidecars_required
++                else task_resume_artifact_sha256(checkpoint_dir, task_idx)
++            )
++            if artifact_hashes != observed_artifacts:
++                mismatches["artifact_sha256"] = {
++                    "expected": artifact_hashes,
++                    "actual": observed_artifacts,
++                }
++            if int(identity.get("fisher_tensor_count", 0)) != 24:
++                mismatches["fisher_tensor_count"] = {
++                    "expected": 24,
++                    "actual": identity.get("fisher_tensor_count"),
++                }
++            if not np.isclose(
++                float(identity.get("fisher_trace", 0.0)),
++                1.0,
++                rtol=1e-5,
++                atol=1e-6,
++            ):
++                mismatches["fisher_trace_normalized"] = {
++                    "expected": 1.0,
++                    "actual": identity.get("fisher_trace"),
++                }
++        if mismatches:
++            raise ValueError(
++                f"Staged experiment identity mismatch in {path}: {mismatches}"
++            )
++        self._log(
++            f"[Resume][IdentityValidated] source={path} "
++            f"direction={identity.get('fs_direction_mode')} "
++            f"optimizer={identity.get('actual_optimizer_class')}"
++        )
++
++    def _load_auxiliary_task_state(self, checkpoint_dir: str, task_idx: int) -> None:
++        require_fisher = str(
++            self.args.get("resume_require_fisher_state", False)
++        ).strip().lower() in {"1", "true", "yes", "y", "on"}
++        fisher_path = os.path.join(checkpoint_dir, f"fisher_state_{int(task_idx)}.pt")
++        if not os.path.exists(fisher_path):
++            legacy_path = os.path.join(checkpoint_dir, f"fisher_state_{int(task_idx):02d}.pt")
++            fisher_path = legacy_path if os.path.exists(legacy_path) else fisher_path
++        if not os.path.exists(fisher_path):
++            if require_fisher:
++                raise FileNotFoundError(
++                    "Required Fisher sidecar is missing for staged resume: "
++                    f"{fisher_path}"
++                )
++            return
++
++        state = torch.load(fisher_path, map_location="cpu", weights_only=False)
++        if require_fisher:
++            self._validate_fisher_checkpoint_state(
++                state,
++                source=fisher_path,
++                require_shape_match=True,
++            )
++        fisher = state.get("fisher_past_delta", None)
++        if fisher is not None and hasattr(self, "_fisher_past_delta"):
++            self._fisher_past_delta = {
++                key: value.detach().cpu().clone()
++                for key, value in fisher.items()
++            }
++        if "fisher_past_trace_mass" in state and hasattr(self, "_fisher_past_trace_mass"):
++            self._fisher_past_trace_mass = float(state["fisher_past_trace_mass"])
++        if "last_task_new_fisher_stats" in state and hasattr(self, "_last_task_new_fisher_stats"):
++            self._last_task_new_fisher_stats = dict(state["last_task_new_fisher_stats"])
++        if "fisher_new_task_raw_trace" in state:
++            self._fisher_new_task_raw_trace = float(state["fisher_new_task_raw_trace"])
++        self._restore_extra_fisher_checkpoint_state(state)
++        self._log(f"[Resume] Loaded Fisher state from {fisher_path}")
++
++    def _validate_fisher_checkpoint_state(
++        self,
++        state,
++        *,
++        source: str,
++        require_shape_match: bool,
++    ) -> None:
++        if not isinstance(state, dict):
++            raise ValueError(f"Invalid Fisher state in {source}: expected dict")
++        fisher = state.get("fisher_past_delta")
++        if not isinstance(fisher, dict) or not fisher:
++            raise ValueError(f"Invalid Fisher state in {source}: Fisher is empty")
++
++        trace = 0.0
++        shapes = {}
++        for key, value in fisher.items():
++            if not isinstance(key, str) or not torch.is_tensor(value) or value.numel() == 0:
++                raise ValueError(
++                    f"Invalid Fisher entry in {source}: key={key!r}, type={type(value).__name__}"
++                )
++            value_float = value.detach().float()
++            if not bool(torch.isfinite(value_float).all().item()):
++                raise ValueError(f"Non-finite Fisher tensor {key!r} in {source}")
++            if bool((value_float < 0).any().item()):
++                raise ValueError(f"Negative Fisher tensor {key!r} in {source}")
++            trace += float(value_float.sum().item())
++            shapes[key] = tuple(value.shape)
++        if not np.isfinite(trace) or trace <= 0.0:
++            raise ValueError(f"Invalid Fisher trace in {source}: {trace}")
++
++        trace_mass = state.get("fisher_past_trace_mass", None)
++        if trace_mass is not None:
++            trace_mass = float(trace_mass)
++            # This legacy accumulator is bookkeeping for one optional
++            # accumulated-normalization path and legitimately remains zero
++            # when that path is disabled.  The authoritative validity gate is
++            # the positive trace computed directly from fisher_past_delta.
++            if not np.isfinite(trace_mass) or trace_mass < 0.0:
++                raise ValueError(
++                    f"Invalid fisher_past_trace_mass in {source}: {trace_mass}"
++                )
++
++        if require_shape_match and hasattr(self, "_iter_delta_terms"):
++            current_shapes = {
++                key: tuple(delta.shape)
++                for key, delta in self._iter_delta_terms(self._unwrap_network())
++            }
++            if set(shapes) != set(current_shapes):
++                missing = sorted(set(current_shapes) - set(shapes))
++                extra = sorted(set(shapes) - set(current_shapes))
++                raise ValueError(
++                    f"Fisher key mismatch in {source}: missing={missing}, extra={extra}"
++                )
++            mismatched = {
++                key: (shapes[key], current_shapes[key])
++                for key in shapes
++                if shapes[key] != current_shapes[key]
++            }
++            if mismatched:
++                raise ValueError(
++                    f"Fisher shape mismatch in {source}: {mismatched}"
++                )
++
++        self._log(
++            f"[Resume][FisherValidated] source={source} tensors={len(fisher)} "
++            f"trace={trace:.6e} shape_match={bool(require_shape_match)}"
+         )
+ 
+     def _load_current_lora_factors(self, backbone, checkpoint_dir: str, task_idx: int) -> None:

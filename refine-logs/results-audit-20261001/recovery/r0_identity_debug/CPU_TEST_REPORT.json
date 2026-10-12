@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "positive": [
+    {
+      "r": 0.0,
+      "passed": true,
+      "restore": {
+        "parameters_exact": true,
+        "buffers_exact": true,
+        "modes_exact": true,
+        "rng_exact": true,
+        "gradients_exact": true
+      }
+    },
+    {
+      "r": 1.0,
+      "passed": true,
+      "restore": {
+        "parameters_exact": true,
+        "buffers_exact": true,
+        "modes_exact": true,
+        "rng_exact": true,
+        "gradients_exact": true
+      }
+    }
+  ],
+  "negative": [
+    {
+      "case": "corrupt_native_probe",
+      "rejected": true,
+      "restore": {
+        "parameters_exact": true,
+        "buffers_exact": true,
+        "modes_exact": true,
+        "rng_exact": true,
+        "gradients_exact": true
+      }
+    },
+    {
+      "case": "corrupt_native_final_gradient",
+      "rejected": true,
+      "restore": {
+        "parameters_exact": true,
+        "buffers_exact": true,
+        "modes_exact": true,
+        "rng_exact": true,
+        "gradients_exact": true
+      }
+    },
+    {
+      "case": "corrupt_sameprobe_CE",
+      "rejected": true
+    },
+    {
+      "case": "nonfinite_gradient",
+      "rejected": true
+    }
+  ]
+}

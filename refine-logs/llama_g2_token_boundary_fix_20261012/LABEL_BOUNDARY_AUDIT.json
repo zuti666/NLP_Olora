@@ -1,0 +1,8554 @@
+{
+  "status": "pass",
+  "created_at": "2026-10-12T09:15:53.372264+00:00",
+  "script": "/data/140-1/users/liying/O-LoRA/scripts_llama/audit_g2_label_boundary.py",
+  "script_sha256": "093e2274b0994871c3d097af9fecdc6050efd71efcdbc9507710b0bfb924db92",
+  "metric": "normalized lowercase / ASCII punctuation removal / whitespace EM, task-equal FAA",
+  "diagnostic_warning": "Excluding affected gold-label classes does not repair legacy training, automatic BOS/off-by-one or truncation defects, or create a corrected benchmark. Class contributions describe localization of counts, not a causal attribution to the bug.",
+  "scope": "Two models, three orders, seed0 paired G2/IncLoRA; historical IncLoRA seeds for descriptive variability only",
+  "affected_labels": [
+    {
+      "task": "amazon",
+      "label": "negative"
+    },
+    {
+      "task": "dbpedia",
+      "label": "Athlete"
+    },
+    {
+      "task": "dbpedia",
+      "label": "Educational Institution"
+    },
+    {
+      "task": "dbpedia",
+      "label": "Natural Place"
+    },
+    {
+      "task": "yahoo",
+      "label": "Society & Culture"
+    }
+  ],
+  "token_boundaries": [
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Album",
+      "test_n": 506,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "b9824bf2da1fc00cb7bfbe4008340ba5ef85f91740a8a009fc9a6b26956cd97a",
+      "actual_prompt_token_count": 157,
+      "actual_joint_token_count": 159,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        33478,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        33478,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        2160,
+        15621,
+        439,
+        7573,
+        2380,
+        1667,
+        3010,
+        382,
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        2160,
+        15621,
+        439,
+        7573,
+        2380,
+        1667,
+        3010,
+        382,
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġret",
+        "itled",
+        "Ġas",
+        "ĠGold",
+        "Ġthree",
+        "Ġyears",
+        "Ġlater",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġret",
+        "itled",
+        "Ġas",
+        "ĠGold",
+        "Ġthree",
+        "Ġyears",
+        "Ġlater",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Animal",
+      "test_n": 534,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "97b093db3472e6e4de74e0aab274515dffb55eda6c6913644f2940ee2b367746",
+      "actual_prompt_token_count": 115,
+      "actual_joint_token_count": 117,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        42515,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        42515,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        374,
+        1766,
+        1193,
+        304,
+        279,
+        3723,
+        4273,
+        382,
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        374,
+        1766,
+        1193,
+        304,
+        279,
+        3723,
+        4273,
+        382,
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġis",
+        "Ġfound",
+        "Ġonly",
+        "Ġin",
+        "Ġthe",
+        "ĠUnited",
+        "ĠStates",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġis",
+        "Ġfound",
+        "Ġonly",
+        "Ġin",
+        "Ġthe",
+        "ĠUnited",
+        "ĠStates",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Artist",
+      "test_n": 557,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "ee79f09eede985f7b90a161adc520be35ca7112d6c9aaf49a4e82ffd0cb5b9c1",
+      "actual_prompt_token_count": 114,
+      "actual_joint_token_count": 116,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        41409,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        41409,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        279,
+        10778,
+        7091,
+        7200,
+        3092,
+        94672,
+        39869,
+        382,
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        279,
+        10778,
+        7091,
+        7200,
+        3092,
+        94672,
+        39869,
+        382,
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġthe",
+        "Ġalternative",
+        "Ġrock",
+        "Ġband",
+        "ĠMy",
+        "ĠBloody",
+        "ĠValentine",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġthe",
+        "Ġalternative",
+        "Ġrock",
+        "Ġband",
+        "ĠMy",
+        "ĠBloody",
+        "ĠValentine",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Athlete",
+      "test_n": 560,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        56748,
+        339,
+        1649,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":A",
+        "th",
+        "lete",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        86340,
+        1649,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Ath",
+        "lete",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "02403bd0a6643927195a2199f73cab5fb5b4e4acf9c3654d64030e8336df13d0",
+      "actual_prompt_token_count": 90,
+      "actual_joint_token_count": 93,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        86340,
+        1649,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        86340,
+        1649,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1917,
+        18824,
+        1765,
+        809,
+        505,
+        7188,
+        382,
+        16533,
+        56748,
+        339,
+        1649,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1917,
+        18824,
+        1765,
+        809,
+        505,
+        7188,
+        382,
+        16533,
+        25,
+        86340,
+        1649,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġworld",
+        "Ġchampion",
+        "Ġsur",
+        "fer",
+        "Ġfrom",
+        "ĠCalifornia",
+        ".ĊĊ",
+        "Answer",
+        ":A",
+        "th",
+        "lete",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġworld",
+        "Ġchampion",
+        "Ġsur",
+        "fer",
+        "Ġfrom",
+        "ĠCalifornia",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Ath",
+        "lete",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Building",
+      "test_n": 519,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "93e1f13ce02adce32c82b23dac32a5d437680d6c43e0331445cb711aa4c22a9a",
+      "actual_prompt_token_count": 152,
+      "actual_joint_token_count": 154,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        31233,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        31233,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        78219,
+        304,
+        800,
+        13,
+        3842,
+        596,
+        75742,
+        382,
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        78219,
+        304,
+        800,
+        13,
+        3842,
+        596,
+        75742,
+        382,
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġanchored",
+        "Ġin",
+        "ĠSt",
+        ".",
+        "ĠJohn",
+        "'s",
+        "Ġharbour",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġanchored",
+        "Ġin",
+        "ĠSt",
+        ".",
+        "ĠJohn",
+        "'s",
+        "Ġharbour",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Company",
+      "test_n": 538,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "2817592f4f9bd0b7198db3dace06942138747f4c737f41182453b4b8a09778ca",
+      "actual_prompt_token_count": 100,
+      "actual_joint_token_count": 102,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        14831,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        14831,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        3196,
+        304,
+        16386,
+        8421,
+        323,
+        38975,
+        33654,
+        382,
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        3196,
+        304,
+        16386,
+        8421,
+        323,
+        38975,
+        33654,
+        382,
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġbased",
+        "Ġin",
+        "ĠHouston",
+        "ĠTexas",
+        "Ġand",
+        "ĠCalgary",
+        "ĠAlberta",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġbased",
+        "Ġin",
+        "ĠHouston",
+        "ĠTexas",
+        "Ġand",
+        "ĠCalgary",
+        "ĠAlberta",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Educational Institution",
+      "test_n": 519,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        85588,
+        7697,
+        1697,
+        43964,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":E",
+        "duc",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Educ",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "d672fbde92aaf171b8c16836eabf382c09e46e8becf660477f60a10cc4ebce4e",
+      "actual_prompt_token_count": 162,
+      "actual_joint_token_count": 166,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        8620,
+        8853,
+        304,
+        21631,
+        57664,
+        382,
+        16533,
+        85588,
+        7697,
+        1697,
+        43964,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        8620,
+        8853,
+        304,
+        21631,
+        57664,
+        382,
+        16533,
+        25,
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠChinese",
+        "Ġschools",
+        "Ġin",
+        "ĠMetro",
+        "ĠManila",
+        ".ĊĊ",
+        "Answer",
+        ":E",
+        "duc",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠChinese",
+        "Ġschools",
+        "Ġin",
+        "ĠMetro",
+        "ĠManila",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Educ",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Film",
+      "test_n": 547,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "44a43fb67942c49475605bbdd33fe8e2038994e66b9383442858035f28269893",
+      "actual_prompt_token_count": 82,
+      "actual_joint_token_count": 84,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        52587,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        52587,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        21335,
+        2206,
+        61661,
+        374,
+        459,
+        33589,
+        4632,
+        382,
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        21335,
+        2206,
+        61661,
+        374,
+        459,
+        33589,
+        4632,
+        382,
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠGive",
+        "ĠMe",
+        "ĠSpray",
+        "Ġis",
+        "Ġan",
+        "ĠEgyptian",
+        "Ġfilm",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠGive",
+        "ĠMe",
+        "ĠSpray",
+        "Ġis",
+        "Ġan",
+        "ĠEgyptian",
+        "Ġfilm",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Mean of Transportation",
+      "test_n": 543,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "0130a8f88dc3ffeb6c69d8063acb7a2f7285f7e6c04788cc1c6f4f7a365faa20",
+      "actual_prompt_token_count": 168,
+      "actual_joint_token_count": 172,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        560,
+        304,
+        220,
+        6393,
+        19,
+        382,
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        560,
+        304,
+        220,
+        6393,
+        19,
+        382,
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ice",
+        "Ġin",
+        "Ġ",
+        "194",
+        "4",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ice",
+        "Ġin",
+        "Ġ",
+        "194",
+        "4",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Natural Place",
+      "test_n": 537,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        38794,
+        4688,
+        11004,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":N",
+        "atural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        55381,
+        11004,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Natural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "c37ff3b6aecca2773a570ab93f1e15122be88fac62c346c67bc3321fb64abc86",
+      "actual_prompt_token_count": 204,
+      "actual_joint_token_count": 207,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        55381,
+        11004,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        55381,
+        11004,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        889,
+        12439,
+        11226,
+        315,
+        9119,
+        11188,
+        382,
+        16533,
+        38794,
+        4688,
+        11004,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        889,
+        12439,
+        11226,
+        315,
+        9119,
+        11188,
+        382,
+        16533,
+        25,
+        55381,
+        11004,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġwho",
+        "Ġlived",
+        "Ġeast",
+        "Ġof",
+        "ĠTree",
+        "ĠRiver",
+        ".ĊĊ",
+        "Answer",
+        ":N",
+        "atural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġwho",
+        "Ġlived",
+        "Ġeast",
+        "Ġof",
+        "ĠTree",
+        "ĠRiver",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Natural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Office Holder",
+      "test_n": 532,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "cf410809c466f170613aee02f2f710530632cea0de0a3fe0b405e262205fe34a",
+      "actual_prompt_token_count": 114,
+      "actual_joint_token_count": 117,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        24861,
+        41433,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        24861,
+        41433,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        10336,
+        22,
+        311,
+        220,
+        10336,
+        23,
+        382,
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        10336,
+        22,
+        311,
+        220,
+        10336,
+        23,
+        382,
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "184",
+        "7",
+        "Ġto",
+        "Ġ",
+        "184",
+        "8",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "184",
+        "7",
+        "Ġto",
+        "Ġ",
+        "184",
+        "8",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Plant",
+      "test_n": 567,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "b04b88f833eaab62bcc45d27034641b8469c4fa9d5619b1efb1fcab24c9ce74d",
+      "actual_prompt_token_count": 101,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        55747,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        55747,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        13,
+        1115,
+        9606,
+        374,
+        96013,
+        311,
+        16327,
+        382,
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        13,
+        1115,
+        9606,
+        374,
+        96013,
+        311,
+        16327,
+        382,
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        ".",
+        "ĠThis",
+        "Ġspecies",
+        "Ġis",
+        "Ġendemic",
+        "Ġto",
+        "ĠBrazil",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        ".",
+        "ĠThis",
+        "Ġspecies",
+        "Ġis",
+        "Ġendemic",
+        "Ġto",
+        "ĠBrazil",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Village",
+      "test_n": 558,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "8d8c9c369ef948c00f40b6653719a3e3c92d4fe873a101fe22e96ff12df2f999",
+      "actual_prompt_token_count": 206,
+      "actual_joint_token_count": 209,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        53,
+        48164,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        53,
+        48164,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1518,
+        11346,
+        315,
+        393,
+        26429,
+        9345,
+        382,
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1518,
+        11346,
+        315,
+        393,
+        26429,
+        9345,
+        382,
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġsee",
+        "ĠHistory",
+        "Ġof",
+        "ĠP",
+        "omer",
+        "ania",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġsee",
+        "ĠHistory",
+        "Ġof",
+        "ĠP",
+        "omer",
+        "ania",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "dbpedia",
+      "label": "Written Work",
+      "test_n": 583,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "6606e2603b5cec06b6182bc91bf93f735c5cdf45766433368b01642b3eef946f",
+      "actual_prompt_token_count": 135,
+      "actual_joint_token_count": 138,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        36724,
+        5664,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        36724,
+        5664,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        304,
+        24156,
+        6067,
+        323,
+        30828,
+        14488,
+        382,
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        304,
+        24156,
+        6067,
+        323,
+        30828,
+        14488,
+        382,
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġin",
+        "Ġbiological",
+        "Ġsystems",
+        "Ġand",
+        "Ġneural",
+        "Ġnetworks",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġin",
+        "Ġbiological",
+        "Ġsystems",
+        "Ġand",
+        "Ġneural",
+        "Ġnetworks",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "amazon",
+      "label": "negative",
+      "test_n": 1574,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        19822,
+        15410,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":n",
+        "egative",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        43324,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "negative",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "2c33397d02b63e45c5f3351b4f92b12f6b7731f930b2fbb7e677faf5d2014f38",
+      "actual_prompt_token_count": 93,
+      "actual_joint_token_count": 95,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        43324,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        43324,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        743,
+        690,
+        539,
+        2559,
+        709,
+        311,
+        1514,
+        382,
+        16533,
+        19822,
+        15410,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        743,
+        690,
+        539,
+        2559,
+        709,
+        311,
+        1514,
+        382,
+        16533,
+        25,
+        43324,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġset",
+        "Ġwill",
+        "Ġnot",
+        "Ġstand",
+        "Ġup",
+        "Ġto",
+        "Ġplay",
+        ".ĊĊ",
+        "Answer",
+        ":n",
+        "egative",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġset",
+        "Ġwill",
+        "Ġnot",
+        "Ġstand",
+        "Ġup",
+        "Ġto",
+        "Ġplay",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "negative",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "amazon",
+      "label": "neutral",
+      "test_n": 1535,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "db5c690f8e676ada81861150321c5a393ec61ec86467178d611a4634f4f837ae",
+      "actual_prompt_token_count": 183,
+      "actual_joint_token_count": 185,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        60668,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        60668,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1472,
+        527,
+        2731,
+        1022,
+        53675,
+        420,
+        2363,
+        382,
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1472,
+        527,
+        2731,
+        1022,
+        53675,
+        420,
+        2363,
+        382,
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠYou",
+        "Ġare",
+        "Ġbetter",
+        "Ġoff",
+        "Ġborrowing",
+        "Ġthis",
+        "Ġbook",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠYou",
+        "Ġare",
+        "Ġbetter",
+        "Ġoff",
+        "Ġborrowing",
+        "Ġthis",
+        "Ġbook",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "amazon",
+      "label": "positive",
+      "test_n": 1509,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "2e7320aeca1790f91a11118c4c312c8200a890ca8712565007cc52ae1fcb3379",
+      "actual_prompt_token_count": 86,
+      "actual_joint_token_count": 88,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        31587,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        31587,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        719,
+        1373,
+        389,
+        323,
+        5115,
+        14333,
+        433,
+        382,
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        719,
+        1373,
+        389,
+        323,
+        5115,
+        14333,
+        433,
+        382,
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġbut",
+        "Ġread",
+        "Ġon",
+        "Ġand",
+        "Ġquite",
+        "Ġenjoyed",
+        "Ġit",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġbut",
+        "Ġread",
+        "Ġon",
+        "Ġand",
+        "Ġquite",
+        "Ġenjoyed",
+        "Ġit",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "amazon",
+      "label": "very negative",
+      "test_n": 1525,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "82d9e19d2ac61e325ac78df7ca269c61b59b632fd09c1cdbe4353d6bd10741d2",
+      "actual_prompt_token_count": 213,
+      "actual_joint_token_count": 216,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        1225,
+        8389,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        1225,
+        8389,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        304,
+        279,
+        26964,
+        323,
+        3577,
+        3783,
+        382,
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        304,
+        279,
+        26964,
+        323,
+        3577,
+        3783,
+        382,
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġin",
+        "Ġthe",
+        "Ġgarbage",
+        "Ġand",
+        "Ġpress",
+        "Ġdelete",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġin",
+        "Ġthe",
+        "Ġgarbage",
+        "Ġand",
+        "Ġpress",
+        "Ġdelete",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "amazon",
+      "label": "very positive",
+      "test_n": 1457,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "37eca97325ce84d98561dd48bb94f389608306b398946b3dc47c99af6fa25120",
+      "actual_prompt_token_count": 128,
+      "actual_joint_token_count": 131,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        1225,
+        6928,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        1225,
+        6928,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        47706,
+        433,
+        311,
+        682,
+        11033,
+        98976,
+        382,
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        47706,
+        433,
+        311,
+        682,
+        11033,
+        98976,
+        382,
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠRecommend",
+        "Ġit",
+        "Ġto",
+        "Ġall",
+        "Ġcoffee",
+        "Ġdrinkers",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠRecommend",
+        "Ġit",
+        "Ġto",
+        "Ġall",
+        "Ġcoffee",
+        "Ġdrinkers",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Business & Finance",
+      "test_n": 773,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "afee75f819f28dc9ff4df088e1445c1692e3e166946738f1b930a9033a89f152",
+      "actual_prompt_token_count": 99,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        4791,
+        19101,
+        499,
+        2351,
+        21078,
+        25782,
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        4791,
+        19101,
+        499,
+        2351,
+        21078,
+        25782,
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "-to",
+        "-one",
+        "Ġyou",
+        "'re",
+        "Ġlying",
+        "Ġ!ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "-to",
+        "-one",
+        "Ġyou",
+        "'re",
+        "Ġlying",
+        "Ġ!ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Computers & Internet",
+      "test_n": 781,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "ae72e7bdfd9e97784508ad4b46ab02076512f6f40b80ec8ed7ac78197306c049",
+      "actual_prompt_token_count": 105,
+      "actual_joint_token_count": 110,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        548,
+        582,
+        536,
+        2628,
+        271,
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        548,
+        582,
+        536,
+        2628,
+        271,
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "are",
+        "ac",
+        "ode",
+        ".html",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "are",
+        "ac",
+        "ode",
+        ".html",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Education & Reference",
+      "test_n": 795,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "3b34c0703bb10331a91f109ff5ca5a2f1ad679fd596d45b5a939e990bd64d500",
+      "actual_prompt_token_count": 128,
+      "actual_joint_token_count": 132,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        433,
+        1253,
+        387,
+        78896,
+        62314,
+        271,
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        433,
+        1253,
+        387,
+        78896,
+        62314,
+        271,
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġit",
+        "Ġmay",
+        "Ġbe",
+        "ĠElla",
+        "ĠFitzgerald",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġit",
+        "Ġmay",
+        "Ġbe",
+        "ĠElla",
+        "ĠFitzgerald",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Entertainment & Music",
+      "test_n": 752,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "830a76c37fe9c2b78acdfd08bdeeaa948f691cbf3a1170c6b51534bfbff5a40d",
+      "actual_prompt_token_count": 116,
+      "actual_joint_token_count": 121,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        369,
+        279,
+        2624,
+        11236,
+        382,
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        369,
+        279,
+        2624,
+        11236,
+        382,
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġfor",
+        "Ġthe",
+        "Ġdisc",
+        "Ġcopies",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġfor",
+        "Ġthe",
+        "Ġdisc",
+        "Ġcopies",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Family & Relationships",
+      "test_n": 774,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "4b71d21d7f3f9f64d880e5d515bc04ff8550ee369bedde22f6a3106412146fa2",
+      "actual_prompt_token_count": 131,
+      "actual_joint_token_count": 135,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        690,
+        539,
+        617,
+        1877,
+        13971,
+        271,
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        690,
+        539,
+        617,
+        1877,
+        13971,
+        271,
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġwill",
+        "Ġnot",
+        "Ġhave",
+        "Ġsex",
+        "Ġanyway",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġwill",
+        "Ġnot",
+        "Ġhave",
+        "Ġsex",
+        "Ġanyway",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Health",
+      "test_n": 775,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "324f18f3caa6b62130317322fc992a05f0182584bca49b7915b5d3489bacbca5",
+      "actual_prompt_token_count": 154,
+      "actual_joint_token_count": 156,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        14884,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        14884,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        11013,
+        11,
+        499,
+        2731,
+        636,
+        10273,
+        67590,
+        382,
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        11013,
+        11,
+        499,
+        2731,
+        636,
+        10273,
+        67590,
+        382,
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġmouth",
+        ",",
+        "Ġyou",
+        "Ġbetter",
+        "Ġget",
+        "Ġchecked",
+        "ĠASAP",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġmouth",
+        ",",
+        "Ġyou",
+        "Ġbetter",
+        "Ġget",
+        "Ġchecked",
+        "ĠASAP",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Politics & Government",
+      "test_n": 758,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "e04a8dd334fed5b23f2374559590778585a73bca698650e46ebd45cb585d3eeb",
+      "actual_prompt_token_count": 151,
+      "actual_joint_token_count": 155,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        35410,
+        2883,
+        2163,
+        4920,
+        1180,
+        382,
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        35410,
+        2883,
+        2163,
+        4920,
+        1180,
+        382,
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġpharmaceutical",
+        "Ġcompany",
+        "Ġleft",
+        "Ġbehind",
+        "Ġact",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġpharmaceutical",
+        "Ġcompany",
+        "Ġleft",
+        "Ġbehind",
+        "Ġact",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Science & Mathematics",
+      "test_n": 724,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "62d463f9b4d1bbce0a119493f1bcff643023326aa76d09276300ba405a333065",
+      "actual_prompt_token_count": 211,
+      "actual_joint_token_count": 215,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1306,
+        701,
+        19405,
+        374,
+        2731,
+        20838,
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1306,
+        701,
+        19405,
+        374,
+        2731,
+        20838,
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġafter",
+        "Ġyour",
+        "Ġinfection",
+        "Ġis",
+        "Ġbetter",
+        "....ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġafter",
+        "Ġyour",
+        "Ġinfection",
+        "Ġis",
+        "Ġbetter",
+        "....ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Society & Culture",
+      "test_n": 716,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        76469,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "307bf3da493688dd61313e6da3aa41cd983c5cab017ea82dc006af782c41d19e",
+      "actual_prompt_token_count": 91,
+      "actual_joint_token_count": 95,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        16533,
+        25,
+        7839,
+        3488,
+        36157,
+        382,
+        16533,
+        76469,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        25,
+        7839,
+        3488,
+        36157,
+        382,
+        16533,
+        25,
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Answer",
+        ":",
+        "ĠGood",
+        "Ġquestion",
+        "Ġdude",
+        ".ĊĊ",
+        "Answer",
+        ":S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        ":",
+        "ĠGood",
+        "Ġquestion",
+        "Ġdude",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "yahoo",
+      "label": "Sports",
+      "test_n": 752,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "e4b53c7660ac38ce6c2b871124afea109319619188271bfbcbc5b573c780887a",
+      "actual_prompt_token_count": 101,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        42079,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        42079,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1053,
+        617,
+        8208,
+        93576,
+        449,
+        872,
+        9899,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1053,
+        617,
+        8208,
+        93576,
+        449,
+        872,
+        9899,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġwould",
+        "Ġhave",
+        "Ġgone",
+        "Ġundefeated",
+        "Ġwith",
+        "Ġtheir",
+        "Ġschedule",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġwould",
+        "Ġhave",
+        "Ġgone",
+        "Ġundefeated",
+        "Ġwith",
+        "Ġtheir",
+        "Ġschedule",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "agnews",
+      "label": "Business",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "cf6804159879e6ea897d0ebcbd03ece64a192a9a8c6ba5a83a234e5cf160fc1f",
+      "actual_prompt_token_count": 101,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        23562,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        23562,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        264,
+        28035,
+        6108,
+        3765,
+        531,
+        285,
+        45587,
+        382,
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        264,
+        28035,
+        6108,
+        3765,
+        531,
+        285,
+        45587,
+        382,
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġa",
+        "ĠBarcelona",
+        "-based",
+        "ĠAb",
+        "ert",
+        "is",
+        "ĠInfrastructure",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġa",
+        "ĠBarcelona",
+        "-based",
+        "ĠAb",
+        "ert",
+        "is",
+        "ĠInfrastructure",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "agnews",
+      "label": "Science or Technology",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "a6efbf2a4ddd95d93a8d564d63f515e116ee851d062192e0c15289af76eefb25",
+      "actual_prompt_token_count": 103,
+      "actual_joint_token_count": 107,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1903,
+        1202,
+        1620,
+        11213,
+        6740,
+        382,
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1903,
+        1202,
+        1620,
+        11213,
+        6740,
+        382,
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġmade",
+        "Ġits",
+        "Ġfinal",
+        "Ġflight",
+        "ĠFriday",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġmade",
+        "Ġits",
+        "Ġfinal",
+        "Ġflight",
+        "ĠFriday",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "agnews",
+      "label": "Sports",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "144d8e54d80bfcd1eda494f0bbc043c4cef51b572e17237fc9b48feca2437543",
+      "actual_prompt_token_count": 97,
+      "actual_joint_token_count": 99,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        42079,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        42079,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        19,
+        2128,
+        3596,
+        91124,
+        389,
+        264,
+        32635,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        19,
+        2128,
+        3596,
+        91124,
+        389,
+        264,
+        32635,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "4",
+        "Ġteam",
+        "Ġever",
+        "Ġstrapped",
+        "Ġon",
+        "Ġa",
+        "Ġhelmet",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "4",
+        "Ġteam",
+        "Ġever",
+        "Ġstrapped",
+        "Ġon",
+        "Ġa",
+        "Ġhelmet",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "1B",
+      "task": "agnews",
+      "label": "World",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "f9aaab6e43f3b468f388f61c74faf2f6ec79a98c524b163da5d7cb7f03d0c636",
+      "actual_prompt_token_count": 136,
+      "actual_joint_token_count": 138,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        10343,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        10343,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        4184,
+        311,
+        10195,
+        549,
+        2112,
+        13,
+        7510,
+        382,
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        4184,
+        311,
+        10195,
+        549,
+        2112,
+        13,
+        7510,
+        382,
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġaccording",
+        "Ġto",
+        "Ġsenior",
+        "ĠU",
+        ".N",
+        ".",
+        "Ġofficials",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġaccording",
+        "Ġto",
+        "Ġsenior",
+        "ĠU",
+        ".N",
+        ".",
+        "Ġofficials",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Album",
+      "test_n": 506,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "b9824bf2da1fc00cb7bfbe4008340ba5ef85f91740a8a009fc9a6b26956cd97a",
+      "actual_prompt_token_count": 157,
+      "actual_joint_token_count": 159,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        33478,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        33478,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        2160,
+        15621,
+        439,
+        7573,
+        2380,
+        1667,
+        3010,
+        382,
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        2160,
+        15621,
+        439,
+        7573,
+        2380,
+        1667,
+        3010,
+        382,
+        16533,
+        25,
+        33478,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġret",
+        "itled",
+        "Ġas",
+        "ĠGold",
+        "Ġthree",
+        "Ġyears",
+        "Ġlater",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġret",
+        "itled",
+        "Ġas",
+        "ĠGold",
+        "Ġthree",
+        "Ġyears",
+        "Ġlater",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Album",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Animal",
+      "test_n": 534,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "97b093db3472e6e4de74e0aab274515dffb55eda6c6913644f2940ee2b367746",
+      "actual_prompt_token_count": 115,
+      "actual_joint_token_count": 117,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        42515,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        42515,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        374,
+        1766,
+        1193,
+        304,
+        279,
+        3723,
+        4273,
+        382,
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        374,
+        1766,
+        1193,
+        304,
+        279,
+        3723,
+        4273,
+        382,
+        16533,
+        25,
+        42515,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġis",
+        "Ġfound",
+        "Ġonly",
+        "Ġin",
+        "Ġthe",
+        "ĠUnited",
+        "ĠStates",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġis",
+        "Ġfound",
+        "Ġonly",
+        "Ġin",
+        "Ġthe",
+        "ĠUnited",
+        "ĠStates",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Animal",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Artist",
+      "test_n": 557,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "ee79f09eede985f7b90a161adc520be35ca7112d6c9aaf49a4e82ffd0cb5b9c1",
+      "actual_prompt_token_count": 114,
+      "actual_joint_token_count": 116,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        41409,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        41409,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        279,
+        10778,
+        7091,
+        7200,
+        3092,
+        94672,
+        39869,
+        382,
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        279,
+        10778,
+        7091,
+        7200,
+        3092,
+        94672,
+        39869,
+        382,
+        16533,
+        25,
+        41409,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġthe",
+        "Ġalternative",
+        "Ġrock",
+        "Ġband",
+        "ĠMy",
+        "ĠBloody",
+        "ĠValentine",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġthe",
+        "Ġalternative",
+        "Ġrock",
+        "Ġband",
+        "ĠMy",
+        "ĠBloody",
+        "ĠValentine",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Artist",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Athlete",
+      "test_n": 560,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        56748,
+        339,
+        1649,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":A",
+        "th",
+        "lete",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        86340,
+        1649,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Ath",
+        "lete",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "02403bd0a6643927195a2199f73cab5fb5b4e4acf9c3654d64030e8336df13d0",
+      "actual_prompt_token_count": 90,
+      "actual_joint_token_count": 93,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        86340,
+        1649,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        86340,
+        1649,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1917,
+        18824,
+        1765,
+        809,
+        505,
+        7188,
+        382,
+        16533,
+        56748,
+        339,
+        1649,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1917,
+        18824,
+        1765,
+        809,
+        505,
+        7188,
+        382,
+        16533,
+        25,
+        86340,
+        1649,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġworld",
+        "Ġchampion",
+        "Ġsur",
+        "fer",
+        "Ġfrom",
+        "ĠCalifornia",
+        ".ĊĊ",
+        "Answer",
+        ":A",
+        "th",
+        "lete",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġworld",
+        "Ġchampion",
+        "Ġsur",
+        "fer",
+        "Ġfrom",
+        "ĠCalifornia",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Ath",
+        "lete",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Building",
+      "test_n": 519,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "93e1f13ce02adce32c82b23dac32a5d437680d6c43e0331445cb711aa4c22a9a",
+      "actual_prompt_token_count": 152,
+      "actual_joint_token_count": 154,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        31233,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        31233,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        78219,
+        304,
+        800,
+        13,
+        3842,
+        596,
+        75742,
+        382,
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        78219,
+        304,
+        800,
+        13,
+        3842,
+        596,
+        75742,
+        382,
+        16533,
+        25,
+        31233,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġanchored",
+        "Ġin",
+        "ĠSt",
+        ".",
+        "ĠJohn",
+        "'s",
+        "Ġharbour",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġanchored",
+        "Ġin",
+        "ĠSt",
+        ".",
+        "ĠJohn",
+        "'s",
+        "Ġharbour",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Building",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Company",
+      "test_n": 538,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "2817592f4f9bd0b7198db3dace06942138747f4c737f41182453b4b8a09778ca",
+      "actual_prompt_token_count": 100,
+      "actual_joint_token_count": 102,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        14831,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        14831,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        3196,
+        304,
+        16386,
+        8421,
+        323,
+        38975,
+        33654,
+        382,
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        3196,
+        304,
+        16386,
+        8421,
+        323,
+        38975,
+        33654,
+        382,
+        16533,
+        25,
+        14831,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġbased",
+        "Ġin",
+        "ĠHouston",
+        "ĠTexas",
+        "Ġand",
+        "ĠCalgary",
+        "ĠAlberta",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġbased",
+        "Ġin",
+        "ĠHouston",
+        "ĠTexas",
+        "Ġand",
+        "ĠCalgary",
+        "ĠAlberta",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Company",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Educational Institution",
+      "test_n": 519,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        85588,
+        7697,
+        1697,
+        43964,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":E",
+        "duc",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Educ",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "d672fbde92aaf171b8c16836eabf382c09e46e8becf660477f60a10cc4ebce4e",
+      "actual_prompt_token_count": 162,
+      "actual_joint_token_count": 166,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        8620,
+        8853,
+        304,
+        21631,
+        57664,
+        382,
+        16533,
+        85588,
+        7697,
+        1697,
+        43964,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        8620,
+        8853,
+        304,
+        21631,
+        57664,
+        382,
+        16533,
+        25,
+        98982,
+        1697,
+        43964,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠChinese",
+        "Ġschools",
+        "Ġin",
+        "ĠMetro",
+        "ĠManila",
+        ".ĊĊ",
+        "Answer",
+        ":E",
+        "duc",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠChinese",
+        "Ġschools",
+        "Ġin",
+        "ĠMetro",
+        "ĠManila",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Educ",
+        "ational",
+        "ĠInstitution",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Film",
+      "test_n": 547,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "44a43fb67942c49475605bbdd33fe8e2038994e66b9383442858035f28269893",
+      "actual_prompt_token_count": 82,
+      "actual_joint_token_count": 84,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        52587,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        52587,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        21335,
+        2206,
+        61661,
+        374,
+        459,
+        33589,
+        4632,
+        382,
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        21335,
+        2206,
+        61661,
+        374,
+        459,
+        33589,
+        4632,
+        382,
+        16533,
+        25,
+        52587,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠGive",
+        "ĠMe",
+        "ĠSpray",
+        "Ġis",
+        "Ġan",
+        "ĠEgyptian",
+        "Ġfilm",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠGive",
+        "ĠMe",
+        "ĠSpray",
+        "Ġis",
+        "Ġan",
+        "ĠEgyptian",
+        "Ġfilm",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Film",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Mean of Transportation",
+      "test_n": 543,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "0130a8f88dc3ffeb6c69d8063acb7a2f7285f7e6c04788cc1c6f4f7a365faa20",
+      "actual_prompt_token_count": 168,
+      "actual_joint_token_count": 172,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        560,
+        304,
+        220,
+        6393,
+        19,
+        382,
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        560,
+        304,
+        220,
+        6393,
+        19,
+        382,
+        16533,
+        25,
+        19312,
+        315,
+        30978,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ice",
+        "Ġin",
+        "Ġ",
+        "194",
+        "4",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ice",
+        "Ġin",
+        "Ġ",
+        "194",
+        "4",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Mean",
+        "Ġof",
+        "ĠTransportation",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Natural Place",
+      "test_n": 537,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        38794,
+        4688,
+        11004,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":N",
+        "atural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        55381,
+        11004,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Natural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "c37ff3b6aecca2773a570ab93f1e15122be88fac62c346c67bc3321fb64abc86",
+      "actual_prompt_token_count": 204,
+      "actual_joint_token_count": 207,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        55381,
+        11004,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        55381,
+        11004,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        889,
+        12439,
+        11226,
+        315,
+        9119,
+        11188,
+        382,
+        16533,
+        38794,
+        4688,
+        11004,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        889,
+        12439,
+        11226,
+        315,
+        9119,
+        11188,
+        382,
+        16533,
+        25,
+        55381,
+        11004,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġwho",
+        "Ġlived",
+        "Ġeast",
+        "Ġof",
+        "ĠTree",
+        "ĠRiver",
+        ".ĊĊ",
+        "Answer",
+        ":N",
+        "atural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġwho",
+        "Ġlived",
+        "Ġeast",
+        "Ġof",
+        "ĠTree",
+        "ĠRiver",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Natural",
+        "ĠPlace",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Office Holder",
+      "test_n": 532,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "cf410809c466f170613aee02f2f710530632cea0de0a3fe0b405e262205fe34a",
+      "actual_prompt_token_count": 114,
+      "actual_joint_token_count": 117,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        24861,
+        41433,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        24861,
+        41433,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        10336,
+        22,
+        311,
+        220,
+        10336,
+        23,
+        382,
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        10336,
+        22,
+        311,
+        220,
+        10336,
+        23,
+        382,
+        16533,
+        25,
+        24861,
+        41433,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "184",
+        "7",
+        "Ġto",
+        "Ġ",
+        "184",
+        "8",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "184",
+        "7",
+        "Ġto",
+        "Ġ",
+        "184",
+        "8",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Office",
+        "ĠHolder",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Plant",
+      "test_n": 567,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "b04b88f833eaab62bcc45d27034641b8469c4fa9d5619b1efb1fcab24c9ce74d",
+      "actual_prompt_token_count": 101,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        55747,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        55747,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        13,
+        1115,
+        9606,
+        374,
+        96013,
+        311,
+        16327,
+        382,
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        13,
+        1115,
+        9606,
+        374,
+        96013,
+        311,
+        16327,
+        382,
+        16533,
+        25,
+        55747,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        ".",
+        "ĠThis",
+        "Ġspecies",
+        "Ġis",
+        "Ġendemic",
+        "Ġto",
+        "ĠBrazil",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        ".",
+        "ĠThis",
+        "Ġspecies",
+        "Ġis",
+        "Ġendemic",
+        "Ġto",
+        "ĠBrazil",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Plant",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Village",
+      "test_n": 558,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "8d8c9c369ef948c00f40b6653719a3e3c92d4fe873a101fe22e96ff12df2f999",
+      "actual_prompt_token_count": 206,
+      "actual_joint_token_count": 209,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        53,
+        48164,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        53,
+        48164,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1518,
+        11346,
+        315,
+        393,
+        26429,
+        9345,
+        382,
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1518,
+        11346,
+        315,
+        393,
+        26429,
+        9345,
+        382,
+        16533,
+        25,
+        53,
+        48164,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġsee",
+        "ĠHistory",
+        "Ġof",
+        "ĠP",
+        "omer",
+        "ania",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġsee",
+        "ĠHistory",
+        "Ġof",
+        "ĠP",
+        "omer",
+        "ania",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "V",
+        "illage",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "dbpedia",
+      "label": "Written Work",
+      "test_n": 583,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "6606e2603b5cec06b6182bc91bf93f735c5cdf45766433368b01642b3eef946f",
+      "actual_prompt_token_count": 135,
+      "actual_joint_token_count": 138,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        36724,
+        5664,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        36724,
+        5664,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        304,
+        24156,
+        6067,
+        323,
+        30828,
+        14488,
+        382,
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        304,
+        24156,
+        6067,
+        323,
+        30828,
+        14488,
+        382,
+        16533,
+        25,
+        36724,
+        5664,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġin",
+        "Ġbiological",
+        "Ġsystems",
+        "Ġand",
+        "Ġneural",
+        "Ġnetworks",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġin",
+        "Ġbiological",
+        "Ġsystems",
+        "Ġand",
+        "Ġneural",
+        "Ġnetworks",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Written",
+        "ĠWork",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "amazon",
+      "label": "negative",
+      "test_n": 1574,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        19822,
+        15410,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":n",
+        "egative",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        43324,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "negative",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "2c33397d02b63e45c5f3351b4f92b12f6b7731f930b2fbb7e677faf5d2014f38",
+      "actual_prompt_token_count": 93,
+      "actual_joint_token_count": 95,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        43324,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        43324,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        743,
+        690,
+        539,
+        2559,
+        709,
+        311,
+        1514,
+        382,
+        16533,
+        19822,
+        15410,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        743,
+        690,
+        539,
+        2559,
+        709,
+        311,
+        1514,
+        382,
+        16533,
+        25,
+        43324,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġset",
+        "Ġwill",
+        "Ġnot",
+        "Ġstand",
+        "Ġup",
+        "Ġto",
+        "Ġplay",
+        ".ĊĊ",
+        "Answer",
+        ":n",
+        "egative",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġset",
+        "Ġwill",
+        "Ġnot",
+        "Ġstand",
+        "Ġup",
+        "Ġto",
+        "Ġplay",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "negative",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "amazon",
+      "label": "neutral",
+      "test_n": 1535,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "db5c690f8e676ada81861150321c5a393ec61ec86467178d611a4634f4f837ae",
+      "actual_prompt_token_count": 183,
+      "actual_joint_token_count": 185,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        60668,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        60668,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1472,
+        527,
+        2731,
+        1022,
+        53675,
+        420,
+        2363,
+        382,
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1472,
+        527,
+        2731,
+        1022,
+        53675,
+        420,
+        2363,
+        382,
+        16533,
+        25,
+        60668,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠYou",
+        "Ġare",
+        "Ġbetter",
+        "Ġoff",
+        "Ġborrowing",
+        "Ġthis",
+        "Ġbook",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠYou",
+        "Ġare",
+        "Ġbetter",
+        "Ġoff",
+        "Ġborrowing",
+        "Ġthis",
+        "Ġbook",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "neutral",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "amazon",
+      "label": "positive",
+      "test_n": 1509,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "2e7320aeca1790f91a11118c4c312c8200a890ca8712565007cc52ae1fcb3379",
+      "actual_prompt_token_count": 86,
+      "actual_joint_token_count": 88,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        31587,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        31587,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        719,
+        1373,
+        389,
+        323,
+        5115,
+        14333,
+        433,
+        382,
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        719,
+        1373,
+        389,
+        323,
+        5115,
+        14333,
+        433,
+        382,
+        16533,
+        25,
+        31587,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġbut",
+        "Ġread",
+        "Ġon",
+        "Ġand",
+        "Ġquite",
+        "Ġenjoyed",
+        "Ġit",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġbut",
+        "Ġread",
+        "Ġon",
+        "Ġand",
+        "Ġquite",
+        "Ġenjoyed",
+        "Ġit",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "positive",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "amazon",
+      "label": "very negative",
+      "test_n": 1525,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "82d9e19d2ac61e325ac78df7ca269c61b59b632fd09c1cdbe4353d6bd10741d2",
+      "actual_prompt_token_count": 213,
+      "actual_joint_token_count": 216,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        1225,
+        8389,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        1225,
+        8389,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        304,
+        279,
+        26964,
+        323,
+        3577,
+        3783,
+        382,
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        304,
+        279,
+        26964,
+        323,
+        3577,
+        3783,
+        382,
+        16533,
+        25,
+        1225,
+        8389,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġin",
+        "Ġthe",
+        "Ġgarbage",
+        "Ġand",
+        "Ġpress",
+        "Ġdelete",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġin",
+        "Ġthe",
+        "Ġgarbage",
+        "Ġand",
+        "Ġpress",
+        "Ġdelete",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġnegative",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "amazon",
+      "label": "very positive",
+      "test_n": 1457,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "37eca97325ce84d98561dd48bb94f389608306b398946b3dc47c99af6fa25120",
+      "actual_prompt_token_count": 128,
+      "actual_joint_token_count": 131,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        1225,
+        6928,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        1225,
+        6928,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        47706,
+        433,
+        311,
+        682,
+        11033,
+        98976,
+        382,
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        47706,
+        433,
+        311,
+        682,
+        11033,
+        98976,
+        382,
+        16533,
+        25,
+        1225,
+        6928,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "ĠRecommend",
+        "Ġit",
+        "Ġto",
+        "Ġall",
+        "Ġcoffee",
+        "Ġdrinkers",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "ĠRecommend",
+        "Ġit",
+        "Ġto",
+        "Ġall",
+        "Ġcoffee",
+        "Ġdrinkers",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "very",
+        "Ġpositive",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Business & Finance",
+      "test_n": 773,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "afee75f819f28dc9ff4df088e1445c1692e3e166946738f1b930a9033a89f152",
+      "actual_prompt_token_count": 99,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        4791,
+        19101,
+        499,
+        2351,
+        21078,
+        25782,
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        4791,
+        19101,
+        499,
+        2351,
+        21078,
+        25782,
+        16533,
+        25,
+        23562,
+        612,
+        23261,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "-to",
+        "-one",
+        "Ġyou",
+        "'re",
+        "Ġlying",
+        "Ġ!ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "-to",
+        "-one",
+        "Ġyou",
+        "'re",
+        "Ġlying",
+        "Ġ!ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "Ġ&",
+        "ĠFinance",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Computers & Internet",
+      "test_n": 781,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "ae72e7bdfd9e97784508ad4b46ab02076512f6f40b80ec8ed7ac78197306c049",
+      "actual_prompt_token_count": 105,
+      "actual_joint_token_count": 110,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        548,
+        582,
+        536,
+        2628,
+        271,
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        548,
+        582,
+        536,
+        2628,
+        271,
+        16533,
+        25,
+        59122,
+        388,
+        612,
+        8191,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "are",
+        "ac",
+        "ode",
+        ".html",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "are",
+        "ac",
+        "ode",
+        ".html",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Comput",
+        "ers",
+        "Ġ&",
+        "ĠInternet",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Education & Reference",
+      "test_n": 795,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "3b34c0703bb10331a91f109ff5ca5a2f1ad679fd596d45b5a939e990bd64d500",
+      "actual_prompt_token_count": 128,
+      "actual_joint_token_count": 132,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        433,
+        1253,
+        387,
+        78896,
+        62314,
+        271,
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        433,
+        1253,
+        387,
+        78896,
+        62314,
+        271,
+        16533,
+        25,
+        40234,
+        612,
+        17650,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġit",
+        "Ġmay",
+        "Ġbe",
+        "ĠElla",
+        "ĠFitzgerald",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġit",
+        "Ġmay",
+        "Ġbe",
+        "ĠElla",
+        "ĠFitzgerald",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Education",
+        "Ġ&",
+        "ĠReference",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Entertainment & Music",
+      "test_n": 752,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "830a76c37fe9c2b78acdfd08bdeeaa948f691cbf3a1170c6b51534bfbff5a40d",
+      "actual_prompt_token_count": 116,
+      "actual_joint_token_count": 121,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        369,
+        279,
+        2624,
+        11236,
+        382,
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        369,
+        279,
+        2624,
+        11236,
+        382,
+        16533,
+        25,
+        2300,
+        11454,
+        612,
+        10948,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġfor",
+        "Ġthe",
+        "Ġdisc",
+        "Ġcopies",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġfor",
+        "Ġthe",
+        "Ġdisc",
+        "Ġcopies",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Ent",
+        "ertainment",
+        "Ġ&",
+        "ĠMusic",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Family & Relationships",
+      "test_n": 774,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "4b71d21d7f3f9f64d880e5d515bc04ff8550ee369bedde22f6a3106412146fa2",
+      "actual_prompt_token_count": 131,
+      "actual_joint_token_count": 135,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        690,
+        539,
+        617,
+        1877,
+        13971,
+        271,
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        690,
+        539,
+        617,
+        1877,
+        13971,
+        271,
+        16533,
+        25,
+        15547,
+        612,
+        69668,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġwill",
+        "Ġnot",
+        "Ġhave",
+        "Ġsex",
+        "Ġanyway",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġwill",
+        "Ġnot",
+        "Ġhave",
+        "Ġsex",
+        "Ġanyway",
+        "ĊĊ",
+        "Answer",
+        ":",
+        "Family",
+        "Ġ&",
+        "ĠRelationships",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Health",
+      "test_n": 775,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "324f18f3caa6b62130317322fc992a05f0182584bca49b7915b5d3489bacbca5",
+      "actual_prompt_token_count": 154,
+      "actual_joint_token_count": 156,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        14884,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        14884,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        11013,
+        11,
+        499,
+        2731,
+        636,
+        10273,
+        67590,
+        382,
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        11013,
+        11,
+        499,
+        2731,
+        636,
+        10273,
+        67590,
+        382,
+        16533,
+        25,
+        14884,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġmouth",
+        ",",
+        "Ġyou",
+        "Ġbetter",
+        "Ġget",
+        "Ġchecked",
+        "ĠASAP",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġmouth",
+        ",",
+        "Ġyou",
+        "Ġbetter",
+        "Ġget",
+        "Ġchecked",
+        "ĠASAP",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Health",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Politics & Government",
+      "test_n": 758,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "e04a8dd334fed5b23f2374559590778585a73bca698650e46ebd45cb585d3eeb",
+      "actual_prompt_token_count": 151,
+      "actual_joint_token_count": 155,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        35410,
+        2883,
+        2163,
+        4920,
+        1180,
+        382,
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        35410,
+        2883,
+        2163,
+        4920,
+        1180,
+        382,
+        16533,
+        25,
+        97036,
+        612,
+        10423,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġpharmaceutical",
+        "Ġcompany",
+        "Ġleft",
+        "Ġbehind",
+        "Ġact",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġpharmaceutical",
+        "Ġcompany",
+        "Ġleft",
+        "Ġbehind",
+        "Ġact",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Politics",
+        "Ġ&",
+        "ĠGovernment",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Science & Mathematics",
+      "test_n": 724,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "62d463f9b4d1bbce0a119493f1bcff643023326aa76d09276300ba405a333065",
+      "actual_prompt_token_count": 211,
+      "actual_joint_token_count": 215,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1306,
+        701,
+        19405,
+        374,
+        2731,
+        20838,
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1306,
+        701,
+        19405,
+        374,
+        2731,
+        20838,
+        16533,
+        25,
+        36500,
+        612,
+        50895,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġafter",
+        "Ġyour",
+        "Ġinfection",
+        "Ġis",
+        "Ġbetter",
+        "....ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġafter",
+        "Ġyour",
+        "Ġinfection",
+        "Ġis",
+        "Ġbetter",
+        "....ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġ&",
+        "ĠMathematics",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Society & Culture",
+      "test_n": 716,
+      "boundary_mismatch": true,
+      "joint_ids": [
+        16533,
+        76469,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "307bf3da493688dd61313e6da3aa41cd983c5cab017ea82dc006af782c41d19e",
+      "actual_prompt_token_count": 91,
+      "actual_joint_token_count": 95,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        16533,
+        25,
+        7839,
+        3488,
+        36157,
+        382,
+        16533,
+        76469,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        25,
+        7839,
+        3488,
+        36157,
+        382,
+        16533,
+        25,
+        50,
+        6180,
+        612,
+        21023,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Answer",
+        ":",
+        "ĠGood",
+        "Ġquestion",
+        "Ġdude",
+        ".ĊĊ",
+        "Answer",
+        ":S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        ":",
+        "ĠGood",
+        "Ġquestion",
+        "Ġdude",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "S",
+        "ociety",
+        "Ġ&",
+        "ĠCulture",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "yahoo",
+      "label": "Sports",
+      "test_n": 752,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "e4b53c7660ac38ce6c2b871124afea109319619188271bfbcbc5b573c780887a",
+      "actual_prompt_token_count": 101,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        42079,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        42079,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1053,
+        617,
+        8208,
+        93576,
+        449,
+        872,
+        9899,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1053,
+        617,
+        8208,
+        93576,
+        449,
+        872,
+        9899,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġwould",
+        "Ġhave",
+        "Ġgone",
+        "Ġundefeated",
+        "Ġwith",
+        "Ġtheir",
+        "Ġschedule",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġwould",
+        "Ġhave",
+        "Ġgone",
+        "Ġundefeated",
+        "Ġwith",
+        "Ġtheir",
+        "Ġschedule",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "agnews",
+      "label": "Business",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "cf6804159879e6ea897d0ebcbd03ece64a192a9a8c6ba5a83a234e5cf160fc1f",
+      "actual_prompt_token_count": 101,
+      "actual_joint_token_count": 103,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        23562,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        23562,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        264,
+        28035,
+        6108,
+        3765,
+        531,
+        285,
+        45587,
+        382,
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        264,
+        28035,
+        6108,
+        3765,
+        531,
+        285,
+        45587,
+        382,
+        16533,
+        25,
+        23562,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġa",
+        "ĠBarcelona",
+        "-based",
+        "ĠAb",
+        "ert",
+        "is",
+        "ĠInfrastructure",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġa",
+        "ĠBarcelona",
+        "-based",
+        "ĠAb",
+        "ert",
+        "is",
+        "ĠInfrastructure",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Business",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "agnews",
+      "label": "Science or Technology",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "a6efbf2a4ddd95d93a8d564d63f515e116ee851d062192e0c15289af76eefb25",
+      "actual_prompt_token_count": 103,
+      "actual_joint_token_count": 107,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        1903,
+        1202,
+        1620,
+        11213,
+        6740,
+        382,
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        1903,
+        1202,
+        1620,
+        11213,
+        6740,
+        382,
+        16533,
+        25,
+        36500,
+        477,
+        12053,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġmade",
+        "Ġits",
+        "Ġfinal",
+        "Ġflight",
+        "ĠFriday",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġmade",
+        "Ġits",
+        "Ġfinal",
+        "Ġflight",
+        "ĠFriday",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Science",
+        "Ġor",
+        "ĠTechnology",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "agnews",
+      "label": "Sports",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "144d8e54d80bfcd1eda494f0bbc043c4cef51b572e17237fc9b48feca2437543",
+      "actual_prompt_token_count": 97,
+      "actual_joint_token_count": 99,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        42079,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        42079,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        19,
+        2128,
+        3596,
+        91124,
+        389,
+        264,
+        32635,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        19,
+        2128,
+        3596,
+        91124,
+        389,
+        264,
+        32635,
+        382,
+        16533,
+        25,
+        42079,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "4",
+        "Ġteam",
+        "Ġever",
+        "Ġstrapped",
+        "Ġon",
+        "Ġa",
+        "Ġhelmet",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "4",
+        "Ġteam",
+        "Ġever",
+        "Ġstrapped",
+        "Ġon",
+        "Ġa",
+        "Ġhelmet",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "Sports",
+        "<|end_of_text|>"
+      ]
+    },
+    {
+      "model": "3B",
+      "task": "agnews",
+      "label": "World",
+      "test_n": 1900,
+      "boundary_mismatch": false,
+      "joint_ids": [
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "joint_pieces": [
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ],
+      "separate_ids": [
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "separate_pieces": [
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ],
+      "actual_prompt_sha256": "f9aaab6e43f3b468f388f61c74faf2f6ec79a98c524b163da5d7cb7f03d0c636",
+      "actual_prompt_token_count": 136,
+      "actual_joint_token_count": 138,
+      "legacy_label_ids_with_automatic_specials": [
+        128000,
+        10343,
+        128001
+      ],
+      "label_ids_without_automatic_specials": [
+        10343,
+        128001
+      ],
+      "legacy_extra_label_special_tokens": 1,
+      "legacy_prompt_initial_ids": [
+        128000,
+        128000,
+        6396
+      ],
+      "actual_joint_tail_ids": [
+        4184,
+        311,
+        10195,
+        549,
+        2112,
+        13,
+        7510,
+        382,
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "actual_separate_tail_ids": [
+        4184,
+        311,
+        10195,
+        549,
+        2112,
+        13,
+        7510,
+        382,
+        16533,
+        25,
+        10343,
+        128001
+      ],
+      "actual_joint_tail_pieces": [
+        "Ġaccording",
+        "Ġto",
+        "Ġsenior",
+        "ĠU",
+        ".N",
+        ".",
+        "Ġofficials",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ],
+      "actual_separate_tail_pieces": [
+        "Ġaccording",
+        "Ġto",
+        "Ġsenior",
+        "ĠU",
+        ".N",
+        ".",
+        "Ġofficials",
+        ".ĊĊ",
+        "Answer",
+        ":",
+        "World",
+        "<|end_of_text|>"
+      ]
+    }
+  ],
+  "paired_results": [
+    {
+      "model": "1B",
+      "order": 1,
+      "seed": 0,
+      "G2_FAA": 64.5032894736842,
+      "IncLoRA_FAA": 65.59868421052632,
+      "delta_FAA": -1.0953947368421098,
+      "G2_exclusion_diagnostic_FAA": 71.47093824142074,
+      "IncLoRA_exclusion_diagnostic_FAA": 73.50877357159915,
+      "delta_exclusion_diagnostic_FAA": -2.0378353301784102,
+      "strict_delta_FAA": -1.0953947368421098,
+      "strict_delta_exclusion_diagnostic_FAA": -2.0378353301784102,
+      "affected_classes_contribution_to_raw_delta_pp": 0.5032894736842105,
+      "other_classes_contribution_to_raw_delta_pp": -1.5986842105263157
+    },
+    {
+      "model": "1B",
+      "order": 2,
+      "seed": 0,
+      "G2_FAA": 64.83881578947368,
+      "IncLoRA_FAA": 64.50657894736842,
+      "delta_FAA": 0.33223684210526017,
+      "G2_exclusion_diagnostic_FAA": 72.87386729311378,
+      "IncLoRA_exclusion_diagnostic_FAA": 72.82521179983189,
+      "delta_exclusion_diagnostic_FAA": 0.04865549328188479,
+      "strict_delta_FAA": 0.33223684210526017,
+      "strict_delta_exclusion_diagnostic_FAA": 0.04865549328188479,
+      "affected_classes_contribution_to_raw_delta_pp": 0.48355263157894735,
+      "other_classes_contribution_to_raw_delta_pp": -0.1513157894736842
+    },
+    {
+      "model": "1B",
+      "order": 3,
+      "seed": 0,
+      "G2_FAA": 68.28618421052632,
+      "IncLoRA_FAA": 67.47039473684211,
+      "delta_FAA": 0.8157894736842053,
+      "G2_exclusion_diagnostic_FAA": 76.35200847706334,
+      "IncLoRA_exclusion_diagnostic_FAA": 76.9409621689988,
+      "delta_exclusion_diagnostic_FAA": -0.5889536919354583,
+      "strict_delta_FAA": 0.8421052631578902,
+      "strict_delta_exclusion_diagnostic_FAA": -0.5599008157007148,
+      "affected_classes_contribution_to_raw_delta_pp": 1.200657894736842,
+      "other_classes_contribution_to_raw_delta_pp": -0.3848684210526316
+    },
+    {
+      "model": "3B",
+      "order": 1,
+      "seed": 0,
+      "G2_FAA": 71.34539473684211,
+      "IncLoRA_FAA": 68.69407894736842,
+      "delta_FAA": 2.651315789473685,
+      "G2_exclusion_diagnostic_FAA": 78.25701779484179,
+      "IncLoRA_exclusion_diagnostic_FAA": 77.22789643647565,
+      "delta_exclusion_diagnostic_FAA": 1.0291213583661403,
+      "strict_delta_FAA": 2.651315789473685,
+      "strict_delta_exclusion_diagnostic_FAA": 1.0291213583661403,
+      "affected_classes_contribution_to_raw_delta_pp": 1.868421052631579,
+      "other_classes_contribution_to_raw_delta_pp": 0.7828947368421053
+    },
+    {
+      "model": "3B",
+      "order": 2,
+      "seed": 0,
+      "G2_FAA": 72.47368421052632,
+      "IncLoRA_FAA": 70.20394736842105,
+      "delta_FAA": 2.26973684210526,
+      "G2_exclusion_diagnostic_FAA": 79.6291453538681,
+      "IncLoRA_exclusion_diagnostic_FAA": 79.29272942534293,
+      "delta_exclusion_diagnostic_FAA": 0.3364159285251702,
+      "strict_delta_FAA": 2.26973684210526,
+      "strict_delta_exclusion_diagnostic_FAA": 0.3364159285251702,
+      "affected_classes_contribution_to_raw_delta_pp": 2.0065789473684212,
+      "other_classes_contribution_to_raw_delta_pp": 0.2631578947368421
+    },
+    {
+      "model": "3B",
+      "order": 3,
+      "seed": 0,
+      "G2_FAA": 72.6875,
+      "IncLoRA_FAA": 71.60197368421052,
+      "delta_FAA": 1.0855263157894797,
+      "G2_exclusion_diagnostic_FAA": 82.10964079926026,
+      "IncLoRA_exclusion_diagnostic_FAA": 81.33532384014023,
+      "delta_exclusion_diagnostic_FAA": 0.7743169591200285,
+      "strict_delta_FAA": 1.0855263157894797,
+      "strict_delta_exclusion_diagnostic_FAA": 0.7743169591200285,
+      "affected_classes_contribution_to_raw_delta_pp": 0.2993421052631579,
+      "other_classes_contribution_to_raw_delta_pp": 0.7861842105263158
+    },
+    {
+      "model": "1B",
+      "order": "mean_Orders1_2_3",
+      "seed": 0,
+      "G2_FAA": 65.87609649122807,
+      "IncLoRA_FAA": 65.85855263157895,
+      "delta_FAA": 0.01754385964911857,
+      "G2_exclusion_diagnostic_FAA": 73.56560467053262,
+      "IncLoRA_exclusion_diagnostic_FAA": 74.4249825134766,
+      "delta_exclusion_diagnostic_FAA": -0.8593778429439946,
+      "strict_delta_FAA": 0.026315789473680223,
+      "strict_delta_exclusion_diagnostic_FAA": -0.8496935508657467,
+      "affected_classes_contribution_to_raw_delta_pp": 0.7291666666666666,
+      "other_classes_contribution_to_raw_delta_pp": -0.7116228070175439
+    },
+    {
+      "model": "3B",
+      "order": "mean_Orders1_2_3",
+      "seed": 0,
+      "G2_FAA": 72.16885964912281,
+      "IncLoRA_FAA": 70.16666666666667,
+      "delta_FAA": 2.0021929824561417,
+      "G2_exclusion_diagnostic_FAA": 79.99860131599004,
+      "IncLoRA_exclusion_diagnostic_FAA": 79.2853165673196,
+      "delta_exclusion_diagnostic_FAA": 0.7132847486704463,
+      "strict_delta_FAA": 2.0021929824561417,
+      "strict_delta_exclusion_diagnostic_FAA": 0.7132847486704463,
+      "affected_classes_contribution_to_raw_delta_pp": 1.3914473684210527,
+      "other_classes_contribution_to_raw_delta_pp": 0.6107456140350878
+    }
+  ],
+  "input_hashes": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/manifest.json",
+      "sha256": "f7f24aaa8acbbfe4571e34d4c65713540b8905807bcef364d1b81438cb9fa3ba"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/history_reuse_20260926/final_per_seed.csv",
+      "sha256": "48d39803e48fc99f622b7d823469ef86b0215b5ccf05e9526bfc79ec5004d428"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/test.json",
+      "sha256": "971c1a298668385042ce02b67444e1d45773ce0b8b22abbbc39a2592bbe7c255"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/test.json",
+      "sha256": "0e3337b659505456dd62089f4099778043d409e54f6e9cacf35154e783fdb6a2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/test.json",
+      "sha256": "ef13a28c0e9980197f20fbdf74e5ee3ca7d24914509bd471ca7044abcc1c692b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/test.json",
+      "sha256": "4cbed43bd30eb2841b053a13cb7b2dc4a2692934fd03832402a53cf557778849"
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/tokenizer.json",
+      "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/tokenizer_config.json",
+      "sha256": "8004530facf809ac432114de2a4dcc65fcb632da5ec16d666091aeb6a2ee444a"
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/special_tokens_map.json",
+      "sha256": "cc2e013b7545f183ef03e079a3c91c6f364fa37e4068c512d7dd843e59024535"
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/tokenizer.json",
+      "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/tokenizer_config.json",
+      "sha256": "8004530facf809ac432114de2a4dcc65fcb632da5ec16d666091aeb6a2ee444a"
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/special_tokens_map.json",
+      "sha256": "cc2e013b7545f183ef03e079a3c91c6f364fa37e4068c512d7dd843e59024535"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "b9019b9c132630656ec02b73998edd2d653f627fb6f9ef1f69551ab5a3f8258e"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_42/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "e7c16b6852ffca7457697044aa7f5968e161c22ab0fc921087c44d028c112ddd"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_1993/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "315dd07420bb0e8193f9a38d851c8f41feb3f96541c0fe9583b28319eea3b95f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "7c9b72c58771a24ac67f4acae3b7d6e7ff1514e58eb42c02ca331c2a62f2ebac"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_42/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "7e3af469affeb6ff3e1760bb2e6a48a1a3fe2d6faeac41070fb31f7fbfba3147"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_1993/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "cfea1f895ebe3063215645631454857814f2043b17a2b8e7d8f1f7e5aea18cec"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "edbfe4f7376cecb536c09e711ae4ef53e80312a44dd3674531edd3788c89dd0c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_42/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "a1c457b280cd71d7f60fc7f922550db880a4bddc3438c76bce739ccd7637d56b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_1993/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "f83ac8823c077eece97ba1692bafed7a485400f2773527dada9222c30d9a4747"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "32e46e12d9743c0bf31d3e7fa8911719417b453c4fbda12192db427c2656c4ff"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "b1b7d34619e50da56e22ee60fd0fc62399fbcbee313b98fcb56b12b29c964b5c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_1993/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "596cfa548e1b421537ec1ef5524b21f67c60fe760dc449935aab3f6d50c37996"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "237c242db2eb5693141485a18b3ff3091caaf5d8e6b390bcb299cc1903781d17"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "219e4f4ba029d28748eead6fc5f97577cd26929dcb4e9a0e059bbfd624db7f76"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_1993/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "d06919fe33f0560512c26d424c3ff929c09a2532cfe9214fe87601500b80ee35"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "880aac0c7c7cc7c55ddacd8879ce0ba1b8db6bd590e02edfd231481907726eee"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "b674c37a860e53dfe11c9f21ff72fd9ba6e8093f6cec5fc51c4313d2e13cd536"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_1993/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "9617fd4fd531ccaa8c0c43bc525006ae0d10afbb5a29b21f2f3260a7f7637e48"
+    }
+  ],
+  "prediction_sources": [
+    {
+      "model": "1B",
+      "order": 1,
+      "seed": 0,
+      "method": "G2",
+      "stage": 4,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "88afabeb7a7975cc704e5492c48b3a99dc80248fd25d243d04b50b14f4de44ef",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 2429,
+        "yahoo": 4642,
+        "dbpedia": 5785,
+        "agnews": 6753
+      },
+      "strict_correct": {
+        "amazon": 2429,
+        "yahoo": 4642,
+        "dbpedia": 5785,
+        "agnews": 6753
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 2429,
+        "yahoo": 4642,
+        "dbpedia": 5343,
+        "agnews": 6753
+      },
+      "retained_strict_correct": {
+        "amazon": 2429,
+        "yahoo": 4642,
+        "dbpedia": 5343,
+        "agnews": 6753
+      },
+      "faa": 64.5032894736842,
+      "exclusion_diagnostic_faa": 71.47093824142074,
+      "strict_faa": 64.5032894736842,
+      "strict_exclusion_diagnostic_faa": 71.47093824142074
+    },
+    {
+      "model": "1B",
+      "order": 1,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 4,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "b9019b9c132630656ec02b73998edd2d653f627fb6f9ef1f69551ab5a3f8258e",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 2936,
+        "yahoo": 4590,
+        "dbpedia": 5656,
+        "agnews": 6760
+      },
+      "strict_correct": {
+        "amazon": 2936,
+        "yahoo": 4590,
+        "dbpedia": 5656,
+        "agnews": 6760
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 2936,
+        "yahoo": 4590,
+        "dbpedia": 5367,
+        "agnews": 6760
+      },
+      "retained_strict_correct": {
+        "amazon": 2936,
+        "yahoo": 4590,
+        "dbpedia": 5367,
+        "agnews": 6760
+      },
+      "faa": 65.59868421052632,
+      "exclusion_diagnostic_faa": 73.50877357159915,
+      "strict_faa": 65.59868421052632,
+      "strict_exclusion_diagnostic_faa": 73.50877357159915
+    },
+    {
+      "model": "1B",
+      "order": 1,
+      "seed": 0,
+      "method": "G2",
+      "stage": 1,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "f337515d686b63af04a94d578bdda3e3885f27c0db09a1a09754ed2784c4f354",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 6095
+      },
+      "strict_correct": {
+        "dbpedia": 6095
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5903
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5903
+      },
+      "faa": 80.19736842105263,
+      "exclusion_diagnostic_faa": 98.64639037433155,
+      "strict_faa": 80.19736842105263,
+      "strict_exclusion_diagnostic_faa": 98.64639037433155
+    },
+    {
+      "model": "1B",
+      "order": 1,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_1/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "6666b6b54a1513839d291664f4a536a8601797cc0d7e9bd09b15b2e4d19f363e",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 5908
+      },
+      "strict_correct": {
+        "dbpedia": 5908
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5907
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5907
+      },
+      "faa": 77.73684210526316,
+      "exclusion_diagnostic_faa": 98.71323529411765,
+      "strict_faa": 77.73684210526316,
+      "strict_exclusion_diagnostic_faa": 98.71323529411765
+    },
+    {
+      "model": "1B",
+      "order": 2,
+      "seed": 0,
+      "method": "G2",
+      "stage": 4,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/full/seed_0/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "23822c00e4f4264ae9ac40e6a3d273838f9f48f83ce435feb0ec5a6beeb92c87",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 3299,
+        "yahoo": 5043,
+        "dbpedia": 5906,
+        "agnews": 5463
+      },
+      "strict_correct": {
+        "amazon": 3299,
+        "yahoo": 5043,
+        "dbpedia": 5906,
+        "agnews": 5463
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 3299,
+        "yahoo": 5043,
+        "dbpedia": 5482,
+        "agnews": 5463
+      },
+      "retained_strict_correct": {
+        "amazon": 3299,
+        "yahoo": 5043,
+        "dbpedia": 5482,
+        "agnews": 5463
+      },
+      "faa": 64.83881578947368,
+      "exclusion_diagnostic_faa": 72.87386729311378,
+      "strict_faa": 64.83881578947368,
+      "strict_exclusion_diagnostic_faa": 72.87386729311378
+    },
+    {
+      "model": "1B",
+      "order": 2,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 4,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "7c9b72c58771a24ac67f4acae3b7d6e7ff1514e58eb42c02ca331c2a62f2ebac",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 2990,
+        "yahoo": 5115,
+        "dbpedia": 5805,
+        "agnews": 5700
+      },
+      "strict_correct": {
+        "amazon": 2990,
+        "yahoo": 5115,
+        "dbpedia": 5805,
+        "agnews": 5700
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 2989,
+        "yahoo": 5115,
+        "dbpedia": 5529,
+        "agnews": 5700
+      },
+      "retained_strict_correct": {
+        "amazon": 2989,
+        "yahoo": 5115,
+        "dbpedia": 5529,
+        "agnews": 5700
+      },
+      "faa": 64.50657894736842,
+      "exclusion_diagnostic_faa": 72.82521179983189,
+      "strict_faa": 64.50657894736842,
+      "strict_exclusion_diagnostic_faa": 72.82521179983189
+    },
+    {
+      "model": "1B",
+      "order": 2,
+      "seed": 0,
+      "method": "G2",
+      "stage": 1,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/full/seed_0/order_2/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "f337515d686b63af04a94d578bdda3e3885f27c0db09a1a09754ed2784c4f354",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 6095
+      },
+      "strict_correct": {
+        "dbpedia": 6095
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5903
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5903
+      },
+      "faa": 80.19736842105263,
+      "exclusion_diagnostic_faa": 98.64639037433155,
+      "strict_faa": 80.19736842105263,
+      "strict_exclusion_diagnostic_faa": 98.64639037433155
+    },
+    {
+      "model": "1B",
+      "order": 2,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_2/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "6666b6b54a1513839d291664f4a536a8601797cc0d7e9bd09b15b2e4d19f363e",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 5908
+      },
+      "strict_correct": {
+        "dbpedia": 5908
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5907
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5907
+      },
+      "faa": 77.73684210526316,
+      "exclusion_diagnostic_faa": 98.71323529411765,
+      "strict_faa": 77.73684210526316,
+      "strict_exclusion_diagnostic_faa": 98.71323529411765
+    },
+    {
+      "model": "1B",
+      "order": 3,
+      "seed": 0,
+      "method": "G2",
+      "stage": 4,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/full/seed_0/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "f00caa49b9689877a1f6e22373d31a0cdcaa6609290d5e1a3d16521f2819551c",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 3616,
+        "yahoo": 4245,
+        "dbpedia": 6454,
+        "agnews": 6444
+      },
+      "strict_correct": {
+        "amazon": 3616,
+        "yahoo": 4245,
+        "dbpedia": 6454,
+        "agnews": 6444
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 3616,
+        "yahoo": 4245,
+        "dbpedia": 5921,
+        "agnews": 6444
+      },
+      "retained_strict_correct": {
+        "amazon": 3616,
+        "yahoo": 4245,
+        "dbpedia": 5921,
+        "agnews": 6444
+      },
+      "faa": 68.28618421052632,
+      "exclusion_diagnostic_faa": 76.35200847706334,
+      "strict_faa": 68.28618421052632,
+      "strict_exclusion_diagnostic_faa": 76.35200847706334
+    },
+    {
+      "model": "1B",
+      "order": 3,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 4,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "edbfe4f7376cecb536c09e711ae4ef53e80312a44dd3674531edd3788c89dd0c",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 3971,
+        "yahoo": 3937,
+        "dbpedia": 6094,
+        "agnews": 6509
+      },
+      "strict_correct": {
+        "amazon": 3971,
+        "yahoo": 3929,
+        "dbpedia": 6094,
+        "agnews": 6509
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 3971,
+        "yahoo": 3937,
+        "dbpedia": 5926,
+        "agnews": 6509
+      },
+      "retained_strict_correct": {
+        "amazon": 3971,
+        "yahoo": 3929,
+        "dbpedia": 5926,
+        "agnews": 6509
+      },
+      "faa": 67.47039473684211,
+      "exclusion_diagnostic_faa": 76.9409621689988,
+      "strict_faa": 67.44407894736842,
+      "strict_exclusion_diagnostic_faa": 76.91190929276405
+    },
+    {
+      "model": "1B",
+      "order": 3,
+      "seed": 0,
+      "method": "G2",
+      "stage": 1,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/full/seed_0/order_3/1-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "4b1611c047a5965edcfc107bcfcc0a173b0078fce85b267ab6fe99434053bd30",
+      "counts": {
+        "yahoo": 7600
+      },
+      "correct": {
+        "yahoo": 5118
+      },
+      "strict_correct": {
+        "yahoo": 5118
+      },
+      "retained": {
+        "yahoo": 6884
+      },
+      "retained_correct": {
+        "yahoo": 5118
+      },
+      "retained_strict_correct": {
+        "yahoo": 5118
+      },
+      "faa": 67.34210526315789,
+      "exclusion_diagnostic_faa": 74.34631028471819,
+      "strict_faa": 67.34210526315789,
+      "strict_exclusion_diagnostic_faa": 74.34631028471819
+    },
+    {
+      "model": "1B",
+      "order": 3,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/1b/inclora/seed_0/order_3/1-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "45b9c2268ba74574df921c295f21d57009f3c3ef64d574f301f4af2cd0fc27cf",
+      "counts": {
+        "yahoo": 7600
+      },
+      "correct": {
+        "yahoo": 5061
+      },
+      "strict_correct": {
+        "yahoo": 5061
+      },
+      "retained": {
+        "yahoo": 6884
+      },
+      "retained_correct": {
+        "yahoo": 5061
+      },
+      "retained_strict_correct": {
+        "yahoo": 5061
+      },
+      "faa": 66.59210526315789,
+      "exclusion_diagnostic_faa": 73.5183033120279,
+      "strict_faa": 66.59210526315789,
+      "strict_exclusion_diagnostic_faa": 73.5183033120279
+    },
+    {
+      "model": "3B",
+      "order": 1,
+      "seed": 0,
+      "method": "G2",
+      "stage": 4,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/full/seed_0/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "87831f1c1700d4da3b2c25de6bb4060e80d025a9389fefc396ed377f819455aa",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 3182,
+        "yahoo": 4980,
+        "dbpedia": 6707,
+        "agnews": 6820
+      },
+      "strict_correct": {
+        "amazon": 3182,
+        "yahoo": 4980,
+        "dbpedia": 6707,
+        "agnews": 6820
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 3182,
+        "yahoo": 4980,
+        "dbpedia": 5873,
+        "agnews": 6820
+      },
+      "retained_strict_correct": {
+        "amazon": 3182,
+        "yahoo": 4980,
+        "dbpedia": 5873,
+        "agnews": 6820
+      },
+      "faa": 71.34539473684211,
+      "exclusion_diagnostic_faa": 78.25701779484179,
+      "strict_faa": 71.34539473684211,
+      "strict_exclusion_diagnostic_faa": 78.25701779484179
+    },
+    {
+      "model": "3B",
+      "order": 1,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 4,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_1/4-agnews/predict_eval_predictions.jsonl",
+      "sha256": "32e46e12d9743c0bf31d3e7fa8911719417b453c4fbda12192db427c2656c4ff",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 2897,
+        "yahoo": 5015,
+        "dbpedia": 6124,
+        "agnews": 6847
+      },
+      "strict_correct": {
+        "amazon": 2897,
+        "yahoo": 5015,
+        "dbpedia": 6124,
+        "agnews": 6847
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 2897,
+        "yahoo": 5015,
+        "dbpedia": 5858,
+        "agnews": 6847
+      },
+      "retained_strict_correct": {
+        "amazon": 2897,
+        "yahoo": 5015,
+        "dbpedia": 5858,
+        "agnews": 6847
+      },
+      "faa": 68.69407894736842,
+      "exclusion_diagnostic_faa": 77.22789643647565,
+      "strict_faa": 68.69407894736842,
+      "strict_exclusion_diagnostic_faa": 77.22789643647565
+    },
+    {
+      "model": "3B",
+      "order": 1,
+      "seed": 0,
+      "method": "G2",
+      "stage": 1,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/full/seed_0/order_1/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "9e3ad854f6233a42069baceef0f5998d76a90d8b1d11ca4e0f80ab641247d10c",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 6515
+      },
+      "strict_correct": {
+        "dbpedia": 6515
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5904
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5904
+      },
+      "faa": 85.72368421052632,
+      "exclusion_diagnostic_faa": 98.66310160427807,
+      "strict_faa": 85.72368421052632,
+      "strict_exclusion_diagnostic_faa": 98.66310160427807
+    },
+    {
+      "model": "3B",
+      "order": 1,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_1/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "f4fa7e18b188071ca19e082b45a974910db07faeda381058e9535c1e794736c0",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 6006
+      },
+      "strict_correct": {
+        "dbpedia": 6006
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5908
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5908
+      },
+      "faa": 79.02631578947368,
+      "exclusion_diagnostic_faa": 98.72994652406418,
+      "strict_faa": 79.02631578947368,
+      "strict_exclusion_diagnostic_faa": 98.72994652406418
+    },
+    {
+      "model": "3B",
+      "order": 2,
+      "seed": 0,
+      "method": "G2",
+      "stage": 4,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/full/seed_0/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "35999ac9aa8d0eafdf6a186a5ad7c22fd6dcd05ca073cfbaf3b635d9ed4b361b",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 3462,
+        "yahoo": 5175,
+        "dbpedia": 6692,
+        "agnews": 6703
+      },
+      "strict_correct": {
+        "amazon": 3462,
+        "yahoo": 5175,
+        "dbpedia": 6692,
+        "agnews": 6703
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 3462,
+        "yahoo": 5175,
+        "dbpedia": 5846,
+        "agnews": 6703
+      },
+      "retained_strict_correct": {
+        "amazon": 3462,
+        "yahoo": 5175,
+        "dbpedia": 5846,
+        "agnews": 6703
+      },
+      "faa": 72.47368421052632,
+      "exclusion_diagnostic_faa": 79.6291453538681,
+      "strict_faa": 72.47368421052632,
+      "strict_exclusion_diagnostic_faa": 79.6291453538681
+    },
+    {
+      "model": "3B",
+      "order": 2,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 4,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_2/4-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "237c242db2eb5693141485a18b3ff3091caaf5d8e6b390bcb299cc1903781d17",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 3401,
+        "yahoo": 5166,
+        "dbpedia": 6062,
+        "agnews": 6713
+      },
+      "strict_correct": {
+        "amazon": 3401,
+        "yahoo": 5166,
+        "dbpedia": 6062,
+        "agnews": 6713
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 3401,
+        "yahoo": 5166,
+        "dbpedia": 5826,
+        "agnews": 6713
+      },
+      "retained_strict_correct": {
+        "amazon": 3401,
+        "yahoo": 5166,
+        "dbpedia": 5826,
+        "agnews": 6713
+      },
+      "faa": 70.20394736842105,
+      "exclusion_diagnostic_faa": 79.29272942534293,
+      "strict_faa": 70.20394736842105,
+      "strict_exclusion_diagnostic_faa": 79.29272942534293
+    },
+    {
+      "model": "3B",
+      "order": 2,
+      "seed": 0,
+      "method": "G2",
+      "stage": 1,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/full/seed_0/order_2/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "9e3ad854f6233a42069baceef0f5998d76a90d8b1d11ca4e0f80ab641247d10c",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 6515
+      },
+      "strict_correct": {
+        "dbpedia": 6515
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5904
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5904
+      },
+      "faa": 85.72368421052632,
+      "exclusion_diagnostic_faa": 98.66310160427807,
+      "strict_faa": 85.72368421052632,
+      "strict_exclusion_diagnostic_faa": 98.66310160427807
+    },
+    {
+      "model": "3B",
+      "order": 2,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_2/1-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "f4fa7e18b188071ca19e082b45a974910db07faeda381058e9535c1e794736c0",
+      "counts": {
+        "dbpedia": 7600
+      },
+      "correct": {
+        "dbpedia": 6006
+      },
+      "strict_correct": {
+        "dbpedia": 6006
+      },
+      "retained": {
+        "dbpedia": 5984
+      },
+      "retained_correct": {
+        "dbpedia": 5908
+      },
+      "retained_strict_correct": {
+        "dbpedia": 5908
+      },
+      "faa": 79.02631578947368,
+      "exclusion_diagnostic_faa": 98.72994652406418,
+      "strict_faa": 79.02631578947368,
+      "strict_exclusion_diagnostic_faa": 98.72994652406418
+    },
+    {
+      "model": "3B",
+      "order": 3,
+      "seed": 0,
+      "method": "G2",
+      "stage": 4,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/full/seed_0/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "d9e71222bfd78094cbc05c9b99c831ac413888359423d39f6b494a3c943692f4",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 4254,
+        "yahoo": 4892,
+        "dbpedia": 6268,
+        "agnews": 6683
+      },
+      "strict_correct": {
+        "amazon": 4254,
+        "yahoo": 4892,
+        "dbpedia": 6268,
+        "agnews": 6683
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 4254,
+        "yahoo": 4892,
+        "dbpedia": 5915,
+        "agnews": 6683
+      },
+      "retained_strict_correct": {
+        "amazon": 4254,
+        "yahoo": 4892,
+        "dbpedia": 5915,
+        "agnews": 6683
+      },
+      "faa": 72.6875,
+      "exclusion_diagnostic_faa": 82.10964079926026,
+      "strict_faa": 72.6875,
+      "strict_exclusion_diagnostic_faa": 82.10964079926026
+    },
+    {
+      "model": "3B",
+      "order": 3,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 4,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+      "sha256": "880aac0c7c7cc7c55ddacd8879ce0ba1b8db6bd590e02edfd231481907726eee",
+      "counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "correct": {
+        "amazon": 4289,
+        "yahoo": 4831,
+        "dbpedia": 6180,
+        "agnews": 6467
+      },
+      "strict_correct": {
+        "amazon": 4289,
+        "yahoo": 4831,
+        "dbpedia": 6180,
+        "agnews": 6467
+      },
+      "retained": {
+        "amazon": 6026,
+        "yahoo": 6884,
+        "dbpedia": 5984,
+        "agnews": 7600
+      },
+      "retained_correct": {
+        "amazon": 4289,
+        "yahoo": 4831,
+        "dbpedia": 5918,
+        "agnews": 6467
+      },
+      "retained_strict_correct": {
+        "amazon": 4289,
+        "yahoo": 4831,
+        "dbpedia": 5918,
+        "agnews": 6467
+      },
+      "faa": 71.60197368421052,
+      "exclusion_diagnostic_faa": 81.33532384014023,
+      "strict_faa": 71.60197368421052,
+      "strict_exclusion_diagnostic_faa": 81.33532384014023
+    },
+    {
+      "model": "3B",
+      "order": 3,
+      "seed": 0,
+      "method": "G2",
+      "stage": 1,
+      "path": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/full/seed_0/order_3/1-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "4ed2d782da78e45b9391b9a6e07256f51e02c0da64b9b4fe9aca8f9e53cbd421",
+      "counts": {
+        "yahoo": 7600
+      },
+      "correct": {
+        "yahoo": 5200
+      },
+      "strict_correct": {
+        "yahoo": 5200
+      },
+      "retained": {
+        "yahoo": 6884
+      },
+      "retained_correct": {
+        "yahoo": 5200
+      },
+      "retained_strict_correct": {
+        "yahoo": 5200
+      },
+      "faa": 68.42105263157895,
+      "exclusion_diagnostic_faa": 75.53747821034283,
+      "strict_faa": 68.42105263157895,
+      "strict_exclusion_diagnostic_faa": 75.53747821034283
+    },
+    {
+      "model": "3B",
+      "order": 3,
+      "seed": 0,
+      "method": "IncLoRA",
+      "stage": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/full/3b/inclora/seed_0/order_3/1-yahoo/predict_eval_predictions.jsonl",
+      "sha256": "db3bdeb9cd7ea6703f599dec663672a2e6138159fb25469f6159bdc41812737a",
+      "counts": {
+        "yahoo": 7600
+      },
+      "correct": {
+        "yahoo": 5235
+      },
+      "strict_correct": {
+        "yahoo": 5235
+      },
+      "retained": {
+        "yahoo": 6884
+      },
+      "retained_correct": {
+        "yahoo": 5235
+      },
+      "retained_strict_correct": {
+        "yahoo": 5235
+      },
+      "faa": 68.88157894736842,
+      "exclusion_diagnostic_faa": 76.0459035444509,
+      "strict_faa": 68.88157894736842,
+      "strict_exclusion_diagnostic_faa": 76.0459035444509
+    }
+  ],
+  "order1_order2_first_stage_same_bytes": {
+    "1B": true,
+    "3B": true
+  },
+  "cuda_initialized": false
+}

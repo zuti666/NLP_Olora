@@ -1,0 +1,60 @@
+% Requires \usepackage{booktabs,caption,amsmath}.
+% Alternative versions with the same label should not both be included.
+\begin{table*}[t]
+\centering
+\captionsetup{font=footnotesize,labelfont=bf}
+\caption{Two-task diagnostics for the legacy fresh-adapter LoRA implementation
+on ImageNet-R (rank 10). Means and sample standard deviations over seeds 0, 1, and 2.
+Accuracies are percentages and BWT is in percentage points.
+The update rules are listed explicitly; all GAM variants use Adam as the base
+optimizer. P-GAM+EWC projects the GAM gradient against the EWC gradient separately
+for each parameter tensor before adding the EWC gradient.
+$\mathcal B_j=\operatorname{tr}(\widehat F^{\mathrm{batch}}_{j,\mathrm{cur},KV})$
+is the current-task batch-gradient Fisher proxy trace at that task's endpoint.
+It is neither a per-example empirical Fisher trace nor a cumulative buffer,
+and $\mathcal B_2$ is not old-task sensitivity re-estimated after Task~2.
+$r_{KV}$ is the effective K/V weight displacement between the two evaluated
+endpoints, excluding classifier heads.
+Both endpoints are evaluated before task-end factor accumulation.
+No trajectory averaging is used.}
+\label{tab:two_task_lora_diagnostics}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Update rule}
+& \multicolumn{2}{c}{Task 1 endpoint}
+& \multicolumn{4}{c}{Task 2 endpoint}
+& Drift \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-9}
+Variant & Task 1 & Task 2
+& $a_{11}\uparrow$ & $\mathcal B_1$
+& $a_{21}\uparrow$ & $a_{22}\uparrow$ & BWT$\uparrow$ & $\mathcal B_2$
+& $r_{KV}$ \\
+\midrule
+Vanilla LoRA & Adam & Adam & $90.73\pm0.27$ & $19.885\pm3.471$ & $84.85\pm0.87$ & $89.59\pm0.21$ & $-5.87\pm0.66$ & $22.469\pm1.838$ & $1.560\pm0.033$ \\
+Shaping-only LoRA & GAM & GAM & $93.34\pm0.18$ & $10.946\pm0.869$ & $84.80\pm0.64$ & $93.81\pm0.35$ & $-8.55\pm0.74$ & $10.471\pm0.212$ & $3.131\pm0.011$ \\
+EWCLoRA & Adam & Adam+EWC & $90.73\pm0.27$ & $19.885\pm3.471$ & $87.95\pm0.24$ & $83.45\pm1.48$ & $-2.78\pm0.48$ & $24.599\pm1.434$ & $0.0106\pm0.0010$ \\
+Shaping + EWCLoRA & GAM & P-GAM+EWC & $93.34\pm0.18$ & $10.946\pm0.869$ & $89.10\pm0.33$ & $88.33\pm0.84$ & $-4.24\pm0.47$ & $17.931\pm0.600$ & $0.0204\pm0.0008$ \\
+\midrule
+EWCLoRA + Task-1 shaping & GAM & Adam+EWC & $93.34\pm0.18$ & $10.946\pm0.869$ & $91.82\pm0.54$ & $82.57\pm1.61$ & $-1.52\pm0.65$ & $18.734\pm1.520$ & $0.392\pm0.022$ \\
+EWCLoRA + Task-2 shaping & Adam & P-GAM+EWC & $90.73\pm0.27$ & $19.885\pm3.471$ & $83.07\pm1.22$ & $89.21\pm0.82$ & $-7.66\pm1.42$ & $41.316\pm4.115$ & $0.129\pm0.018$ \\
+\bottomrule
+\end{tabular*}
+\par\smallskip
+\begin{minipage}{\textwidth}\scriptsize
+For this fresh-adapter two-task implementation,
+$r_{KV}=[\sum_{\ell}\sum_{c\in\{K,V\}}\|B^{(2)}_{\ell c,\mathrm{new}}
+A^{(2)}_{\ell c,\mathrm{new}}\|_F^2]^{1/2}$.
+The proxy uses
+$\widehat F^{\mathrm{batch}}_{\mathrm{diag}}
+=N^{-1}\sum_b |b|\,(\nabla_{W^{\mathrm{eff}}_{KV}}\overline{\ell}_b)^{\odot2}$,
+with sample averaging and no trace rescaling or positive floor.
+The Fisher batch size is 128; EWC accumulation uses $\gamma=1$.
+BWT is $a_{21}-a_{11}$ within each seed before rounding;
+each seed's norm is computed before aggregation.
+Adam learning rate is $5\times10^{-4}$, weight decay is $0.005$,
+and EWC uses $\lambda=10^7$ where enabled.
+\end{minipage}
+\end{table*}

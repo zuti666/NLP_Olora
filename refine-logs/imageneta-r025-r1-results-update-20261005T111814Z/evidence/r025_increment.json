@@ -1,0 +1,1171 @@
+{
+  "created_at_utc": "2026-10-05T11:12:54.608680+00:00",
+  "scope": "CPU read-only increment audit beyond 28 r025 baseline; no queue/training edits",
+  "baseline_rows": 28,
+  "baseline_csv": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r025-all-results-20261003T062250Z/all_10task_results.csv",
+  "new_strict_formal_audited_count": 4,
+  "all_bounded_new_formal_candidates": [
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": false
+    },
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": false
+    },
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": false
+    },
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": false
+    },
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD01_O_P_natural_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": true
+    },
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD02_O_C_natural_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": true
+    },
+    {
+      "source_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD03_O_CD_natural_s2/final_summary.json",
+      "status": "completed",
+      "tasks": 10,
+      "epochs": 500,
+      "seed": 2,
+      "delegated_g2_audit": true
+    }
+  ],
+  "new_formal_candidate_total": 7,
+  "rows": [
+    {
+      "job_id": "S2-05_Residual_natural_s2",
+      "protocol": "g012_four_probe_exact_restore_rng_replay_v1_math",
+      "status": "verified_completed",
+      "phase": "ordinary_stage2",
+      "branch": "P",
+      "direction": "g2-g1",
+      "update_direction": "residual_only",
+      "scale": "natural",
+      "backend": "math",
+      "seed": 2,
+      "rank": 10,
+      "outer_r": 0.25,
+      "inner_rho": 0.05,
+      "tasks": 10,
+      "epochs": 500,
+      "epochs_per_task": 50,
+      "updates": 2550,
+      "metrics": {
+        "AAA": 31.822875793650795,
+        "FAA": 0.33399999999999996,
+        "LA": 18.603,
+        "BWT": -20.29888888888889,
+        "forgetting": 20.825555555555557
+      },
+      "metric_recompute_agreement": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "settings_checks": {
+        "dataset": true,
+        "class_shuffle": true,
+        "init_cls": true,
+        "increment": true,
+        "nb_tasks": true,
+        "lora_rank": true,
+        "ewc_lambda": true,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": true,
+        "in_task_weight_merge": true,
+        "task_endpoint_weight_merge": true,
+        "gam_grad_rho": true,
+        "gam_grad_norm_rho": true,
+        "init_epoch": true,
+        "epochs": true,
+        "batch_size": true,
+        "init_lr": true,
+        "lrate": true,
+        "optimizer": true,
+        "scheduler": true,
+        "momentum": true,
+        "weight_decay": true,
+        "init_momentum": true,
+        "init_weight_decay": true,
+        "cosine_min_lr_ratio": true,
+        "attention_backend": true,
+        "use_sgv": true,
+        "gam_use_sgv": true,
+        "memory_size": true,
+        "memory_per_class": true,
+        "seed": true,
+        "max_train_tasks": true
+      },
+      "hash_checks": {
+        "receipt_summary": true,
+        "receipt_trace": true,
+        "receipt_matrix": true,
+        "input_config": true,
+        "trainer": true,
+        "suite": true
+      },
+      "strict_completion_validation": {
+        "summary_sha256": "bb0aab6a958a20b92f1893acef280f8c6bfb3e19ec62f9b3d2e8c52b914d004c",
+        "trace_sha256": "b0218b4c7c73067d5436cc2fc18c95521e7060780603aae07c33636bfd695622",
+        "matrix_sha256": "52b9e89d41b42a056d90c13246aaf8c4c4d03bd81088a740169ab17a4e48fa80",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "exit_returncode": 0,
+      "completed_at": "2026-10-03T09:36:36.942460+00:00",
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix": [
+        [
+          74.92
+        ],
+        [
+          68.73,
+          44.49
+        ],
+        [
+          67.43,
+          41.73,
+          24.42
+        ],
+        [
+          64.17,
+          37.4,
+          20.54,
+          23.64
+        ],
+        [
+          65.15,
+          38.98,
+          21.32,
+          24.24,
+          8.82
+        ],
+        [
+          59.93,
+          35.43,
+          18.99,
+          19.39,
+          9.8,
+          2.82
+        ],
+        [
+          61.89,
+          35.83,
+          20.16,
+          21.82,
+          11.76,
+          2.82,
+          2.41
+        ],
+        [
+          48.86,
+          30.31,
+          12.79,
+          13.94,
+          6.86,
+          1.41,
+          0.0,
+          1.18
+        ],
+        [
+          40.39,
+          34.25,
+          9.3,
+          15.76,
+          5.88,
+          0.0,
+          3.61,
+          0.0,
+          3.33
+        ],
+        [
+          0.0,
+          0.0,
+          1.16,
+          0.0,
+          0.98,
+          0.0,
+          1.2,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "final_task_accuracies": [
+        0.0,
+        0.0,
+        1.16,
+        0.0,
+        0.98,
+        0.0,
+        1.2,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "acquisition_diagonal": [
+        74.92,
+        44.49,
+        24.42,
+        23.64,
+        8.82,
+        2.82,
+        2.41,
+        1.18,
+        3.33,
+        0.0
+      ],
+      "sample_weighted_FAA": 0.33,
+      "sample_weighted_AAA": 35.91400000000001,
+      "max_match_relative_error": null,
+      "U_g0_negative_cosine_steps": 503,
+      "gradient_projection_calls": 0,
+      "sources": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-05_Residual_natural_s2.json",
+        "effective_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/effective_config.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/task_matrix.json",
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/final_summary.json",
+        "trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-05_Residual_natural_s2/step_trace.jsonl",
+        "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/runtime/jobs/S2-05_Residual_natural_s2/completed.json"
+      }
+    },
+    {
+      "job_id": "S2-06_Residual_matched_s2",
+      "protocol": "g012_four_probe_exact_restore_rng_replay_v1_math",
+      "status": "verified_completed",
+      "phase": "ordinary_stage2",
+      "branch": "P",
+      "direction": "g2-g1",
+      "update_direction": "residual_only",
+      "scale": "matched",
+      "backend": "math",
+      "seed": 2,
+      "rank": 10,
+      "outer_r": 0.25,
+      "inner_rho": 0.05,
+      "tasks": 10,
+      "epochs": 500,
+      "epochs_per_task": 50,
+      "updates": 2550,
+      "metrics": {
+        "AAA": 19.04020515873016,
+        "FAA": 0.6739999999999999,
+        "LA": 14.376,
+        "BWT": -15.224444444444444,
+        "forgetting": 16.176666666666666
+      },
+      "metric_recompute_agreement": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "settings_checks": {
+        "dataset": true,
+        "class_shuffle": true,
+        "init_cls": true,
+        "increment": true,
+        "nb_tasks": true,
+        "lora_rank": true,
+        "ewc_lambda": true,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": true,
+        "in_task_weight_merge": true,
+        "task_endpoint_weight_merge": true,
+        "gam_grad_rho": true,
+        "gam_grad_norm_rho": true,
+        "init_epoch": true,
+        "epochs": true,
+        "batch_size": true,
+        "init_lr": true,
+        "lrate": true,
+        "optimizer": true,
+        "scheduler": true,
+        "momentum": true,
+        "weight_decay": true,
+        "init_momentum": true,
+        "init_weight_decay": true,
+        "cosine_min_lr_ratio": true,
+        "attention_backend": true,
+        "use_sgv": true,
+        "gam_use_sgv": true,
+        "memory_size": true,
+        "memory_per_class": true,
+        "seed": true,
+        "max_train_tasks": true
+      },
+      "hash_checks": {
+        "receipt_summary": true,
+        "receipt_trace": true,
+        "receipt_matrix": true,
+        "input_config": true,
+        "trainer": true,
+        "suite": true
+      },
+      "strict_completion_validation": {
+        "summary_sha256": "16db421d0101c257060f416a039c4cf4d910acb7fef236d88b4ec7c1aedc434a",
+        "trace_sha256": "66e93647dc8c79a2be5581209bc1de083ae1be22817d988a44fdb7073c32fa8e",
+        "matrix_sha256": "566e6892b297b2dfac66deaf12ae2c22958b8a920b1a73461e08a5cc68441e6e",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "exit_returncode": 0,
+      "completed_at": "2026-10-03T09:48:12.737611+00:00",
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix": [
+        [
+          83.71
+        ],
+        [
+          78.5,
+          46.46
+        ],
+        [
+          58.96,
+          40.94,
+          0.78
+        ],
+        [
+          3.58,
+          0.39,
+          1.55,
+          0.0
+        ],
+        [
+          13.68,
+          5.12,
+          2.33,
+          0.61,
+          3.92
+        ],
+        [
+          1.3,
+          1.97,
+          1.16,
+          1.82,
+          2.94,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.82,
+          0.0
+        ],
+        [
+          0.33,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.82,
+          1.2,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          8.89
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.18,
+          5.56,
+          0.0
+        ]
+      ],
+      "final_task_accuracies": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.18,
+        5.56,
+        0.0
+      ],
+      "acquisition_diagonal": [
+        83.71,
+        46.46,
+        0.78,
+        0.0,
+        3.92,
+        0.0,
+        0.0,
+        0.0,
+        8.89,
+        0.0
+      ],
+      "sample_weighted_FAA": 0.39,
+      "sample_weighted_AAA": 19.342999999999996,
+      "max_match_relative_error": 3.542341061761051e-06,
+      "U_g0_negative_cosine_steps": 794,
+      "gradient_projection_calls": 0,
+      "sources": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-06_Residual_matched_s2.json",
+        "effective_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/effective_config.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/task_matrix.json",
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/final_summary.json",
+        "trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-06_Residual_matched_s2/step_trace.jsonl",
+        "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/runtime/jobs/S2-06_Residual_matched_s2/completed.json"
+      }
+    },
+    {
+      "job_id": "S2-B01_Sec_math_natural_s2",
+      "protocol": "g012_four_probe_exact_restore_rng_replay_v1_math",
+      "status": "verified_completed",
+      "phase": "ordinary_stage2",
+      "branch": "P",
+      "direction": "g0+(g2-g1)",
+      "update_direction": "A",
+      "scale": "natural",
+      "backend": "math",
+      "seed": 2,
+      "rank": 10,
+      "outer_r": 0.25,
+      "inner_rho": 0.05,
+      "tasks": 10,
+      "epochs": 500,
+      "epochs_per_task": 50,
+      "updates": 2550,
+      "metrics": {
+        "AAA": 66.03902301587301,
+        "FAA": 49.315,
+        "LA": 55.515,
+        "BWT": -6.888888888888889,
+        "forgetting": 7.146666666666667
+      },
+      "metric_recompute_agreement": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "settings_checks": {
+        "dataset": true,
+        "class_shuffle": true,
+        "init_cls": true,
+        "increment": true,
+        "nb_tasks": true,
+        "lora_rank": true,
+        "ewc_lambda": true,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": true,
+        "in_task_weight_merge": true,
+        "task_endpoint_weight_merge": true,
+        "gam_grad_rho": true,
+        "gam_grad_norm_rho": true,
+        "init_epoch": true,
+        "epochs": true,
+        "batch_size": true,
+        "init_lr": true,
+        "lrate": true,
+        "optimizer": true,
+        "scheduler": true,
+        "momentum": true,
+        "weight_decay": true,
+        "init_momentum": true,
+        "init_weight_decay": true,
+        "cosine_min_lr_ratio": true,
+        "attention_backend": true,
+        "use_sgv": true,
+        "gam_use_sgv": true,
+        "memory_size": true,
+        "memory_per_class": true,
+        "seed": true,
+        "max_train_tasks": true
+      },
+      "hash_checks": {
+        "receipt_summary": true,
+        "receipt_trace": true,
+        "receipt_matrix": true,
+        "input_config": true,
+        "trainer": true,
+        "suite": true
+      },
+      "strict_completion_validation": {
+        "summary_sha256": "c1c6799214195c3ddd2912a5cd3ad6202b334e9bd34c7903785b189d3b30cfbe",
+        "trace_sha256": "4ebd8062cea3c185fc001b4b984cc4768cbf16f35c569d6a1ea658cae596fb20",
+        "matrix_sha256": "36f58a4b1b729d88db2dc5ea66e8d935a1f409d50b20ca23ab2bc39d5ad841d6",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "exit_returncode": 0,
+      "completed_at": "2026-10-03T09:42:55.006465+00:00",
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix": [
+        [
+          86.32
+        ],
+        [
+          83.06,
+          79.53
+        ],
+        [
+          82.74,
+          78.35,
+          70.54
+        ],
+        [
+          79.48,
+          75.59,
+          68.22,
+          72.73
+        ],
+        [
+          75.57,
+          74.8,
+          65.5,
+          66.06,
+          52.94
+        ],
+        [
+          75.9,
+          73.62,
+          65.12,
+          66.06,
+          41.18,
+          50.7
+        ],
+        [
+          74.92,
+          73.23,
+          65.12,
+          64.24,
+          44.12,
+          46.48,
+          38.55
+        ],
+        [
+          73.94,
+          70.08,
+          63.95,
+          64.24,
+          42.16,
+          49.3,
+          38.55,
+          34.12
+        ],
+        [
+          73.94,
+          68.9,
+          62.4,
+          61.21,
+          42.16,
+          43.66,
+          39.76,
+          30.59,
+          32.22
+        ],
+        [
+          74.27,
+          69.69,
+          62.02,
+          61.21,
+          41.18,
+          43.66,
+          37.35,
+          32.94,
+          33.33,
+          37.5
+        ]
+      ],
+      "final_task_accuracies": [
+        74.27,
+        69.69,
+        62.02,
+        61.21,
+        41.18,
+        43.66,
+        37.35,
+        32.94,
+        33.33,
+        37.5
+      ],
+      "acquisition_diagonal": [
+        86.32,
+        79.53,
+        70.54,
+        72.73,
+        52.94,
+        50.7,
+        38.55,
+        34.12,
+        32.22,
+        37.5
+      ],
+      "sample_weighted_FAA": 57.08,
+      "sample_weighted_AAA": 69.759,
+      "max_match_relative_error": null,
+      "U_g0_negative_cosine_steps": 0,
+      "gradient_projection_calls": 0,
+      "sources": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-B01_Sec_math_natural_s2.json",
+        "effective_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/effective_config.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/task_matrix.json",
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/final_summary.json",
+        "trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B01_Sec_math_natural_s2/step_trace.jsonl",
+        "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/runtime/jobs/S2-B01_Sec_math_natural_s2/completed.json"
+      }
+    },
+    {
+      "job_id": "S2-B02_Sec_math_matched_s2",
+      "protocol": "g012_four_probe_exact_restore_rng_replay_v1_math",
+      "status": "verified_completed",
+      "phase": "ordinary_stage2",
+      "branch": "P",
+      "direction": "g0+(g2-g1)",
+      "update_direction": "A",
+      "scale": "matched",
+      "backend": "math",
+      "seed": 2,
+      "rank": 10,
+      "outer_r": 0.25,
+      "inner_rho": 0.05,
+      "tasks": 10,
+      "epochs": 500,
+      "epochs_per_task": 50,
+      "updates": 2550,
+      "metrics": {
+        "AAA": 65.14472222222221,
+        "FAA": 47.525,
+        "LA": 54.208,
+        "BWT": -7.425555555555556,
+        "forgetting": 7.6433333333333335
+      },
+      "metric_recompute_agreement": {
+        "AAA": true,
+        "FAA": true,
+        "LA": true,
+        "BWT": true,
+        "forgetting": true
+      },
+      "settings_checks": {
+        "dataset": true,
+        "class_shuffle": true,
+        "init_cls": true,
+        "increment": true,
+        "nb_tasks": true,
+        "lora_rank": true,
+        "ewc_lambda": true,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": true,
+        "in_task_weight_merge": true,
+        "task_endpoint_weight_merge": true,
+        "gam_grad_rho": true,
+        "gam_grad_norm_rho": true,
+        "init_epoch": true,
+        "epochs": true,
+        "batch_size": true,
+        "init_lr": true,
+        "lrate": true,
+        "optimizer": true,
+        "scheduler": true,
+        "momentum": true,
+        "weight_decay": true,
+        "init_momentum": true,
+        "init_weight_decay": true,
+        "cosine_min_lr_ratio": true,
+        "attention_backend": true,
+        "use_sgv": true,
+        "gam_use_sgv": true,
+        "memory_size": true,
+        "memory_per_class": true,
+        "seed": true,
+        "max_train_tasks": true
+      },
+      "hash_checks": {
+        "receipt_summary": true,
+        "receipt_trace": true,
+        "receipt_matrix": true,
+        "input_config": true,
+        "trainer": true,
+        "suite": true
+      },
+      "strict_completion_validation": {
+        "summary_sha256": "034e29211ec1a9e57c8dd8ce9d320d6a2e3f7573ad4db51b335e2d52cdac1d5e",
+        "trace_sha256": "12c16490f63a235d484a94621bddde2117db969c59ce73727586e3dde09bbc5e",
+        "matrix_sha256": "7bad927eb18d1d793fb1701364b98a2328ac4841b0d8aa8de4e92399d8df6f24",
+        "updates": 2550,
+        "tasks": 10
+      },
+      "exit_returncode": 0,
+      "completed_at": "2026-10-03T09:54:00.587641+00:00",
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "matrix": [
+        [
+          85.99
+        ],
+        [
+          83.39,
+          77.17
+        ],
+        [
+          82.41,
+          79.13,
+          70.93
+        ],
+        [
+          80.78,
+          74.8,
+          67.83,
+          72.12
+        ],
+        [
+          78.18,
+          72.83,
+          65.12,
+          64.24,
+          50.98
+        ],
+        [
+          77.85,
+          70.87,
+          64.73,
+          64.24,
+          40.2,
+          46.48
+        ],
+        [
+          76.87,
+          70.87,
+          63.18,
+          63.03,
+          43.14,
+          45.07,
+          36.14
+        ],
+        [
+          73.94,
+          67.72,
+          63.18,
+          61.82,
+          41.18,
+          45.07,
+          34.94,
+          35.29
+        ],
+        [
+          74.59,
+          67.72,
+          60.85,
+          57.58,
+          41.18,
+          42.25,
+          36.14,
+          31.76,
+          33.33
+        ],
+        [
+          75.24,
+          68.5,
+          60.85,
+          58.18,
+          40.2,
+          40.85,
+          33.73,
+          32.94,
+          31.11,
+          33.65
+        ]
+      ],
+      "final_task_accuracies": [
+        75.24,
+        68.5,
+        60.85,
+        58.18,
+        40.2,
+        40.85,
+        33.73,
+        32.94,
+        31.11,
+        33.65
+      ],
+      "acquisition_diagonal": [
+        85.99,
+        77.17,
+        70.93,
+        72.12,
+        50.98,
+        46.48,
+        36.14,
+        35.29,
+        33.33,
+        33.65
+      ],
+      "sample_weighted_FAA": 55.76,
+      "sample_weighted_AAA": 69.102,
+      "max_match_relative_error": 7.983591080325796e-07,
+      "U_g0_negative_cosine_steps": 0,
+      "gradient_projection_calls": 0,
+      "sources": {
+        "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/configs/S2-B02_Sec_math_matched_s2.json",
+        "effective_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/effective_config.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/task_matrix.json",
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/final_summary.json",
+        "trace": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/outputs/S2-B02_Sec_math_matched_s2/step_trace.jsonl",
+        "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/runtime/jobs/S2-B02_Sec_math_matched_s2/completed.json"
+      }
+    }
+  ],
+  "frozen_pins": {
+    "count": 32,
+    "all_passed": true,
+    "failures": []
+  },
+  "source_manifest": {
+    "count": 190,
+    "all_passed": true,
+    "failures": []
+  },
+  "cross_arm_pairing": {
+    "S2-05_Residual_natural_s2": {
+      "actual_training_batch_identities_same": true,
+      "batch_coordinates_same": true,
+      "task0_initial_parameters_same": true,
+      "new_fc_rows_all_tasks_same": true
+    },
+    "S2-06_Residual_matched_s2": {
+      "actual_training_batch_identities_same": true,
+      "batch_coordinates_same": true,
+      "task0_initial_parameters_same": true,
+      "new_fc_rows_all_tasks_same": true
+    },
+    "S2-B01_Sec_math_natural_s2": {
+      "actual_training_batch_identities_same": true,
+      "batch_coordinates_same": true,
+      "task0_initial_parameters_same": true,
+      "new_fc_rows_all_tasks_same": true
+    },
+    "S2-B02_Sec_math_matched_s2": {
+      "actual_training_batch_identities_same": true,
+      "batch_coordinates_same": true,
+      "task0_initial_parameters_same": true,
+      "new_fc_rows_all_tasks_same": true
+    }
+  },
+  "math_gradient_acceptance": {
+    "status": "passed",
+    "created_at": "2026-10-03T07:23:57.608554+00:00",
+    "backend": "math",
+    "case_count": 24,
+    "ordinary_training_allowed": true,
+    "HVP_training_allowed": false,
+    "shards": {
+      "0": {
+        "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/gradient_task0/gradient_revalidation_report.json",
+        "report_sha256": "0ce1e93298ca4a092c7a5d479771940bb1bfc6697e49cbadca4ff15ae90e5ed8",
+        "exit": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/gradient_runtime/jobs/gradient_task0/exit.json",
+        "exit_sha256": "751d2e1f5c4b32055f7fd3dd62eddc20d04b726ac97c114cc901c3ed7dad84cc",
+        "case_count": 6
+      },
+      "1": {
+        "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/gradient_task1/gradient_revalidation_report.json",
+        "report_sha256": "f169d591cb326db8a155f03100bdf507d8aacdc7a417ada62b6253e7331fadca",
+        "exit": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/gradient_runtime/jobs/gradient_task1/exit.json",
+        "exit_sha256": "929fa8273228e25de425a9454c764fc1ad27f58434fc6217509b4661b4e8a480",
+        "case_count": 6
+      },
+      "4": {
+        "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/gradient_task4/gradient_revalidation_report.json",
+        "report_sha256": "c9dbdb216f3ff503306d53fcd5674d77ada7ff6f81f4c7de7e747bf858291356",
+        "exit": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/gradient_runtime/jobs/gradient_task4/exit.json",
+        "exit_sha256": "bf779f6012ca92da3696427777cb73a7edd5419710a7b16ee6817a914017ff9c",
+        "case_count": 6
+      },
+      "9": {
+        "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/gradient_task9/gradient_revalidation_report.json",
+        "report_sha256": "70f1b9ba169eb0db10cb5bbc212c77a15da0dfc58833990b9f23a4ad181da939",
+        "exit": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/gradient_runtime/jobs/gradient_task9/exit.json",
+        "exit_sha256": "e1425ba12549cf1ecc8dd7460643e03c96600a5952fafba0707fecf93bacda4c",
+        "case_count": 6
+      }
+    },
+    "scope": "Four ordinary Sec/Residual math conditions; original HVP gates remain failed."
+  },
+  "math_gradient_acceptance_shard_hashes": {
+    "0": true,
+    "1": true,
+    "4": true,
+    "9": true
+  },
+  "queue_states": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/ordinary_stage2/runtime/queue_state.json",
+      "status": "completed",
+      "updated_at": "2026-10-03T09:54:00.626376+00:00",
+      "job_status_counts_recomputed": {
+        "completed": 8
+      },
+      "recorded_counts": {
+        "completed": 8
+      },
+      "jobs": {
+        "smoke_S2-05_Residual_natural_s2": "completed",
+        "smoke_S2-06_Residual_matched_s2": "completed",
+        "smoke_S2-B01_Sec_math_natural_s2": "completed",
+        "smoke_S2-B02_Sec_math_matched_s2": "completed",
+        "S2-05_Residual_natural_s2": "completed",
+        "S2-06_Residual_matched_s2": "completed",
+        "S2-B01_Sec_math_natural_s2": "completed",
+        "S2-B02_Sec_math_matched_s2": "completed"
+      },
+      "controller": {
+        "pid": 3870964,
+        "proc_starttime": "146712753"
+      }
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/gradient_runtime/queue_state.json",
+      "status": "completed",
+      "updated_at": "2026-10-03T07:22:31.656320+00:00",
+      "job_status_counts_recomputed": {
+        "completed": 4
+      },
+      "recorded_counts": null,
+      "jobs": {
+        "gradient_task0": "completed",
+        "gradient_task1": "completed",
+        "gradient_task4": "completed",
+        "gradient_task9": "completed"
+      },
+      "controller": {
+        "pid": 3867314,
+        "proc_starttime": "146677595"
+      }
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/hvp_runtime/queue_state.json",
+      "status": "completed_with_failed_gates",
+      "updated_at": "2026-10-03T07:35:52.553356+00:00",
+      "job_status_counts_recomputed": {
+        "failed": 2,
+        "completed": 1
+      },
+      "recorded_counts": null,
+      "jobs": {
+        "hvp_task0": "failed",
+        "hvp_task4": "completed",
+        "hvp_task9": "failed"
+      },
+      "controller": {
+        "pid": 3870212,
+        "proc_starttime": "146704241"
+      }
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/runtime/queue_state.json",
+      "status": "halted_failure",
+      "updated_at": "2026-10-02T22:53:13.654516+00:00",
+      "job_status_counts_recomputed": {
+        "completed": 32,
+        "failed": 2,
+        "pending": 17
+      },
+      "recorded_counts": {
+        "completed": 32,
+        "failed": 1,
+        "running": 1,
+        "pending": 17
+      },
+      "jobs": {
+        "smoke_S1-01_CE_natural_s2": "completed",
+        "smoke_S1-02_Splus_natural_s2": "completed",
+        "smoke_S1-03_Sminus_natural_s2": "completed",
+        "smoke_S1-04_O_P_natural_s2": "completed",
+        "smoke_S1-05_O_D_natural_s2": "completed",
+        "smoke_S1-06_O_C_natural_s2": "completed",
+        "smoke_S1-07_A_P_natural_s2": "completed",
+        "smoke_S1-08_A_D_natural_s2": "completed",
+        "smoke_S1-09_A_C_natural_s2": "completed",
+        "smoke_S1-10_O_R_natural_s2": "completed",
+        "smoke_S1-11_A_R_natural_s2": "completed",
+        "smoke_S1-12_A_P_matched_s2": "completed",
+        "smoke_S1-13_A_D_matched_s2": "completed",
+        "smoke_S1-14_A_C_matched_s2": "completed",
+        "smoke_S1-15_A_R_matched_s2": "completed",
+        "smoke_S1-16_CE_matched_s2": "completed",
+        "S1-01_CE_natural_s2": "completed",
+        "S1-02_Splus_natural_s2": "completed",
+        "S1-03_Sminus_natural_s2": "completed",
+        "S1-04_O_P_natural_s2": "completed",
+        "S1-05_O_D_natural_s2": "completed",
+        "S1-06_O_C_natural_s2": "completed",
+        "S1-07_A_P_natural_s2": "completed",
+        "S1-08_A_D_natural_s2": "completed",
+        "S1-09_A_C_natural_s2": "completed",
+        "S1-10_O_R_natural_s2": "completed",
+        "S1-11_A_R_natural_s2": "completed",
+        "S1-12_A_P_matched_s2": "completed",
+        "S1-13_A_D_matched_s2": "completed",
+        "S1-14_A_C_matched_s2": "completed",
+        "S1-15_A_R_matched_s2": "completed",
+        "S1-16_CE_matched_s2": "completed",
+        "Stage1_mechanism_diagnostics": "failed",
+        "HVP_full_gate": "failed",
+        "smoke_S2-01_Hstart_natural_s2": "pending",
+        "smoke_S2-02_Hmid_natural_s2": "pending",
+        "smoke_S2-03_Hstart_matched_s2": "pending",
+        "smoke_S2-04_Hmid_matched_s2": "pending",
+        "smoke_S2-05_Residual_natural_s2": "pending",
+        "smoke_S2-06_Residual_matched_s2": "pending",
+        "smoke_S2-B01_Sec_math_natural_s2": "pending",
+        "smoke_S2-B02_Sec_math_matched_s2": "pending",
+        "S2-01_Hstart_natural_s2": "pending",
+        "S2-02_Hmid_natural_s2": "pending",
+        "S2-03_Hstart_matched_s2": "pending",
+        "S2-04_Hmid_matched_s2": "pending",
+        "S2-05_Residual_natural_s2": "pending",
+        "S2-06_Residual_matched_s2": "pending",
+        "S2-B01_Sec_math_natural_s2": "pending",
+        "S2-B02_Sec_math_matched_s2": "pending",
+        "Response_mechanism_diagnostics": "pending"
+      },
+      "controller": {
+        "pid": 926910,
+        "proc_starttime": "140039576"
+      }
+    }
+  ],
+  "limits": [
+    "G2 P/C/CD three new formal runs independently audited by sibling r1_fourbranches agent, not duplicated here.",
+    "Math backend differs from prior native four-probe cohort; do not attribute between-protocol differences solely to direction.",
+    "No math g0-only formal complete paired run in ordinary_stage2; cannot establish independent gain vs math g0 from these four rows.",
+    "Residual-only completed finitely but performance collapsed; not NaN or OOM.",
+    "HVP full production FP32 acceptance still failed; no Hstart/Hmid training results.",
+    "No running/proc claim from state files alone; root checks real host process identities separately."
+  ]
+}

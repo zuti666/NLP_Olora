@@ -1,0 +1,47 @@
+--- /data/140-1/users/liying/Flatness_CV/src/main.py
++++ /data/140-1/users/liying/CopyFlatCV/src/main.py
+@@ -6,9 +6,44 @@
+ from __future__ import annotations
+ import argparse
+ import json
++import os
+ import sys
+ from pathlib import Path
+ from typing import Dict
++
++# ── NFS silly-rename fix ────────────────────────────────────────────────────
++# Python multiprocessing creates temp dirs via tempfile.mkdtemp().  On NFS,
++# when a worker process exits while another process still has a file open,
++# NFS renames the file to .nfs<hex> instead of deleting it.  Python's cleanup
++# finalizer then fails with EBUSY trying to remove those .nfs files.
++# Fix 1: redirect ALL temp I/O to /dev/shm (local RAM, ~187 GB free).
++# Fix 2: monkey-patch the finalizer to silently ignore EBUSY / OSError.
++def _redirect_tmpdir_to_local() -> None:
++    candidates = ["/dev/shm", "/var/tmp", "/tmp"]
++    chosen = next((p for p in candidates if os.path.isdir(p) and os.access(p, os.W_OK)), None)
++    if chosen is None:
++        return
++    for var in ("TMPDIR", "TEMP", "TMP"):
++        os.environ[var] = chosen
++    import tempfile
++    tempfile.tempdir = chosen
++
++def _patch_multiprocessing_cleanup() -> None:
++    try:
++        import multiprocessing.util as _mpu
++        _orig = _mpu.Finalize.__call__
++        def _safe_call(self, *a, **kw):
++            try:
++                return _orig(self, *a, **kw)
++            except OSError:
++                pass
++        _mpu.Finalize.__call__ = _safe_call
++    except Exception:
++        pass
++
++_redirect_tmpdir_to_local()
++_patch_multiprocessing_cleanup()
++# ────────────────────────────────────────────────────────────────────────────
+ 
+ # Ensure project root is on sys.path so imports like `utils` work when running src/main.py directly
+ ROOT = Path(__file__).resolve().parent.parent

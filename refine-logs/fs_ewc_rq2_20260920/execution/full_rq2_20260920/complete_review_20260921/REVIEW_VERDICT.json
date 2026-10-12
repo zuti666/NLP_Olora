@@ -1,0 +1,127 @@
+{
+  "schema_version": "result-to-claim.v1",
+  "review_date": "2026-09-21",
+  "claim_supported": "partial",
+  "confidence": "medium",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "integrity_status": "unavailable",
+  "integrity_note": "没有独立的完整实验完整性审计。88/88 作业回执、212/212 冻结输入哈希、23/23 精确值定位以及 S3 只读原始数据审计均通过；这些检查证明文件存在、冻结输入一致且报告值可追溯，但本身不证明科学主张。",
+  "overall_verdict": "证据支持若干严格限域的经验观察：GAM 起点在旧任务训练集局部邻域更耐受，持续 GAM 在 t9 可在更大有效参数位移下产生更小旧任务损伤，且仅塑造首任务解在相同后续 SGD 下提高旧任务保持。证据不支持把这些观察扩展为训练集与测试集普遍平坦、统一的因果 Fisher 机制、稳健的平均持续学习收益、EWC 的材料性保护，或 S3 融合和各子组件的已证明必要性。",
+  "claim_verdicts": [
+    {
+      "id": "rq2_c1_train_and_test_tolerance",
+      "claim_supported": "partial",
+      "confidence": "medium",
+      "supported_part": "在 ImageNet-A、ViT-B/16、rank-10 Q/V LoRA、固定类别顺序和训练 seeds 0/1/2 下，GAM 起点的旧任务训练集正 CE 损伤均值和 Q95 在 80 个非零半径乘 3 seeds 的 240/240 比较中均低于 SGD；多个非右删失阈值的经验容忍半径也扩大。",
+      "unsupported_part": "同一结论不能推广到 held-out test：test 正损伤均值在 225/240 个半径-seed 比较中更高，r=20 时 GAM 在 3/3 seeds 更差；test 容忍半径总体收缩或持平。100 个方向和多个半径是相关探针，不是额外训练重复。"
+    },
+    {
+      "id": "rq2_c2_smaller_damage_despite_larger_movement",
+      "claim_supported": "partial",
+      "confidence": "medium",
+      "supported_part": "在持续训练链 t9，GAM 的有效权重漂移更大（1.44156 对 1.25391），但旧任务 train/test CE 损伤更低，端点直线路径方向敏感度更低（0.01519 对 0.23965）；18/18 路径数值门通过。test D0 在 t1/t5/t9 的 9/9 seed-task 配对中更低。",
+      "unsupported_part": "train D0 在 t1 的 3/3 seeds 以及 t5 的 2/3 seeds 出现反例。端点插值路径不是实际优化轨迹，积分恒等式或界通过不构成因果识别；B1 的实际学习方向损伤也超出相同半径随机方向样本最大值，随机邻域不能单独预测真实更新损伤。"
+    },
+    {
+      "id": "b3_anchor_shaping_retention_under_same_future_sgd",
+      "claim_supported": "yes",
+      "confidence": "medium",
+      "supported_part": "固定后续优化器为 SGD 时，仅 Task 0 使用 GAM 在无 EWC 和 lambda=2000 两层均提高旧任务准确率：B-A 为 +4.127±0.500 pp，D-C 为 +4.233±0.650 pp，且 BWT 分别改善约 +3.910 和 +4.016 pp。",
+      "scope_limit": "该结论仅是此固定协议中的旧任务保持结果。两层的新任务准确率均下降 3.413±0.992 pp，两任务平均准确率仅 +0.357±0.508 和 +0.410±0.737 pp，后者逐 seed 增量为 +0.015、+1.260、-0.045 pp，因此不支持稳健净平均收益。"
+    },
+    {
+      "id": "b3_ewc_material_protection",
+      "claim_supported": "no",
+      "confidence": "medium",
+      "evidence": "在该 operating point，C-A 的平均准确率约为 0，D-B 为 +0.053±0.092 pp；S3 单 seed 的 lambda 0/200/2000/20000 响应也近乎平坦。",
+      "scope_limit": "这表示没有观察到材料性保护，不证明 EWC 在其他强度、任务、估计器或协议中无效；四舍五入相同也不能证明运行逐位相同。"
+    },
+    {
+      "id": "s3_factor_fusion_material_contribution",
+      "claim_supported": "no",
+      "confidence": "medium",
+      "evidence": "按预注册 seeds 1/2/3，center-minus-matched-no-merge 的 FAA 差为 +0.089、+0.321、+0.071 pp，均值 +0.160333、样本 SD 0.139432、95% 配对 t 区间 [-0.186035,+0.506702]；区间包含 0，且略超出 ±0.5 pp 等价界。AAA 均值 +0.009707、SD 0.081460、区间 [-0.192650,+0.212064]，仅 AAA 满足 ±0.3 pp 实用等价。",
+      "scope_limit": "因此材料性正贡献未被支持，FAA 等价也未建立；结果应称为不确定，而非证明所有融合规则无效。"
+    },
+    {
+      "id": "s3_fisher_geometry_history_anchor_necessity",
+      "claim_supported": "no",
+      "confidence": "low",
+      "evidence": "Fisher damping、history、task normalization、endpoint anchor 与 lambda 对照多数仅 seed 2，准确率差小且探索性。alpha=1 将平均 EWC/clean 梯度比相对 center 降低约 51.4 倍，却没有相应稳定准确率效应；这说明该 operating point 下强机制归因尚未成立。",
+      "missing_evidence": "按预注册的双向 2x 变化解释，alpha0/alpha1 的 seeds 1 和 3 四个确认运行已触发但未执行；endpoint/retained Fisher 配对余弦也未采集。"
+    },
+    {
+      "id": "s3_gam_component_necessity",
+      "claim_supported": "partial",
+      "confidence": "low",
+      "supported_part": "seed-2 中 half-direction FAA 比 center 低 1.585 pp，SGD+EWC 低 13.296 pp，说明完整 GAM 包及方向尺度与结果相关。",
+      "unsupported_part": "SGD+EWC 同时改变额外 forward 和 RNG 执行，不能单独识别方向质量；projection-off、rho 和其他子组件也主要是单 seed。现有结果不证明任一单独子组件的必要性或跨 seed 稳健性。"
+    }
+  ],
+  "what_results_support": [
+    "RQ2 B1 的旧任务训练集局部邻域耐受性改善；该支持来自三个独立训练 seeds，方向与半径仅是每个 seed 内的相关诊断。",
+    "RQ2 B2 在 t9 的存在性观察：更大的有效参数位移可与更小旧任务损伤和更低端点直线路径方向敏感度同时出现。",
+    "RQ2 B3 在固定后续 SGD 下，首任务 GAM 塑形提高旧任务保持，且在 lambda=0 与 lambda=2000 两层方向一致。",
+    "RQ2 测得的原始经验 Fisher trace 在 GAM 侧普遍更低，可作为与限域观察一致的诊断，但不是 Hessian、训练用 EWC 张量或充分机制解释。",
+    "S3 的三 seed 配对融合差为小幅正均值，但 FAA 的 benefit 和 equivalence 判据均未通过；AAA 单独满足预注册等价界。",
+    "S3 sidecar 验证了因子空间融合包含交叉项且代数重构成立；观测交叉项误差很小，但其大小不推出性能因果性。"
+  ],
+  "what_results_dont_support": [
+    "训练集和 held-out test 上普遍更平坦或普遍扩大容忍半径。",
+    "Fisher trace 单独预测真实旧任务损伤，或 Fisher/路径积分提供因果机制证明。",
+    "持续 GAM 在所有任务阶段和所有 split 都减小损伤。",
+    "首任务塑形带来稳健的两任务平均准确率收益，或 EWC 在该 operating point 提供材料性保护。",
+    "S3 factor fusion 有统计支持的正贡献、FAA 实用等价，或 Fisher/history/anchor/GAM 单组件已证明必要。",
+    "把 RQ2、S3 native、历史 pilot、旧 ImageNet-R、sample_empirical 或 RNG-isolated 协议合并估计。",
+    "同状态 boundary witness 或回执/哈希通过意味着完整训练逐位复现或科学结论正确。"
+  ],
+  "missing_evidence": [
+    "更强的通用 train/test 平坦性主张需要更多独立训练 seeds、类别顺序和数据集，并预先指定 held-out 诊断；当前 test 反证必须先解释而不能靠增加方向数消除。",
+    "更强的 C2 因果主张需要匹配执行和路径的干预设计，区分起点、方向、步长与未来优化器；端点插值本身不足。",
+    "S3 融合若要判定小正效应或 FAA 等价，需要预先设定功效和停止规则后增加配对 seeds；当前 n=3 不足。",
+    "若主张 Fisher damping/geometry 的必要性，需完成已触发的 alpha0/alpha1 seeds 1/3 四个确认运行；若主张 anchor 几何对齐，还需采集配对 endpoint/retained Fisher 余弦。",
+    "若主张 GAM 某组件必要，需多 seed、额外 forward/RNG 匹配的组件干预；当前 SGD 对照有执行混杂。",
+    "要提升证据保证等级，需要独立且完整的实验完整性审计和异族 reviewer，而不仅是回执、哈希、数值定位与同族复核。"
+  ],
+  "suggested_claim_revision": "在 ImageNet-A、ViT-B/16 rank-10 Q/V LoRA、固定类别顺序和三个训练 seed 下，GAM 起点在旧任务训练集的配对随机方向上降低平均与尾部正 CE 损伤并扩大经验容忍半径；持续 GAM 链在 t9 虽产生更大的有效权重位移，仍表现出更低的旧任务 train/test 损伤和端点直线路径方向敏感度。固定后续 SGD 时，仅 Task 0 采用 GAM 也提高旧任务保持，但以约 3.41 pp 新任务准确率下降为代价，未形成稳健的两任务平均收益。held-out test 邻域扫描、较早 train 端点和 S3 三 seed 融合对照均不支持更广泛的“普遍平坦、普遍保持或融合有材料性增益”以及因果机制主张；Fisher 数值仅作为与这些限域观察一致的诊断。",
+  "next_experiments_needed": {
+    "required_for_stronger_claim": [
+      "按预注册完成 S3 alpha0/alpha1 的 seeds 1 和 3 四个确认运行；只用于检验 Fisher damping/geometry 的更强主张，不自动扩展参数搜索。",
+      "若声称 GAM 单组件必要，做多 seed、额外 forward 与 RNG 执行匹配的方向/组件对照。",
+      "若声称 train 与 test 普遍更耐受，增加预注册的独立 seeds、类别顺序或数据集，并把 held-out 指标作为共同主要终点。",
+      "若声称 S3 融合有小正效应或 FAA 等价，先做功效设计与固定停止规则，再增加配对 seeds。",
+      "仅在声称 Fisher anchor 几何对齐时，采集 endpoint/retained Fisher 配对余弦和相应匹配干预。"
+    ],
+    "unnecessary_for_narrow_claim": [
+      "陈述本次严格限域的 RQ2 观察无需再启动 GPU 实验。",
+      "只报告‘S3 融合效应当前不确定’无需为取得显著性追加运行。",
+      "只报告因子融合并非精确的有效更新凸组合、且观测交叉项很小时，无需自动启动 SVD 或固定批次 logit 扫描。",
+      "无需基于当前结果选择更优超参数或启动无界参数搜索。"
+    ]
+  },
+  "scope_metric_notes": {
+    "rq2_scope": "正式 RQ2 是 ImageNet-A、ViT-B/16、rank-10 Q/V LoRA、seeds 0/1/2、固定类别顺序、FP32、无轨迹平均；历史 pilot 和旧 ImageNet-R 表属于其他协议。",
+    "b1": "B1 是共同随机方向的端点邻域诊断；方向和半径不是独立训练 seeds，signed damage 与 positive damage 不可互换。",
+    "b2": "B2 是持续 GAM 对持续 SGD；端点之间直线插值不是实际优化轨迹。",
+    "b3": "B3 的四单元设计都让 Task 1 使用 SGD；A/B 比较 lambda=0，C/D 比较 lambda=2000，不能与 B2 的持续 GAM 解释混合。",
+    "fisher": "RQ2 raw empirical Fisher 使用有效 Q/V 权重上的逐样本真标签 CE 梯度平方和，未归一化且无 floor；S3 native Fisher 是 batch-gradient delta-W proxy。二者不能合并，也都不是 Hessian 证书。",
+    "s3_metrics": "S3 FAA/AAA 是 10-task task-macro 指标，不得与 sample-weighted final accuracy 或 RQ2 两任务平均准确率混用。任务矩阵保存到 0.01 pp，三位小数差值和 t 区间继承该舍入精度。",
+    "reproducibility": "S3 同状态 boundary 不变量通过，但跨运行逐位相等失败；该 witness 只证明边界观察器在保存状态上的中立性，不证明完整训练逐位复现。"
+  },
+  "aggregation_correction": {
+    "defect": "旧 summarizer 删除所有 s3_* override，因而丢失 s3_fisher_location='endpoint'，把 s3_mech_fisher_endpoint_anchor_s2 的 FAA 53.454 错当 seed-2 center，并覆盖真正的 s3_center_s2（FAA 53.419）。原始运行数据未损坏。",
+    "correct_primary_analysis": "预注册主队列是 seeds 1/2/3。其 FAA 配对差均值为 +0.160333±0.139432 pp（样本 SD），95% t 区间 [-0.186035,+0.506702]；AAA 为 +0.009707±0.081460 pp，区间 [-0.192650,+0.212064]。",
+    "cohort_change_warning": "最新 SUMMARY_CORRECTION.json 将 seeds 2/3 标为 primary、seeds 1/2/3 标为 supplementary，但仅解释 seed-2 center 身份修正，没有给出 seed 1 协议失效或排除依据；这与未变更的三 seed 预注册冲突。因此三 seed 保持主推断。",
+    "sensitivity_only": "seeds 2/3 的未注册敏感性结果为 FAA +0.196000±0.176777 pp、95% t 区间 [-1.392276,+1.784276]，AAA +0.056698±0.004772 pp、区间 [+0.013824,+0.099571]；不得静默替代三 seed 主分析。"
+  },
+  "evidence_assurance": {
+    "completion_receipts": "88/88 passed",
+    "frozen_inputs": "212/212 matched",
+    "evidence_values": "23/23 exact-value fallback checks verified; standard evidence checker unresolved",
+    "rq2_diagnostics": "54/54 complete",
+    "s3_runs": "18 new completed plus 8 reused native sensitivity runs",
+    "s3_raw_audit": "passed_raw_integrity=true, issues=[]；26/26 原始任务矩阵、260 个 task 行的 50 epoch 完成度、180 个 boundary archives 及 factor 重构/RNG 检查通过；这是只读确定性审计",
+    "interpretation": "以上是完成度、来源和数值一致性证据，不是科学主张证明，也不替代独立完整性审计。"
+  }
+}

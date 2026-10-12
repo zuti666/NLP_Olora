@@ -1,0 +1,231 @@
+{
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "execution_hostname": "cudahpc40.cvc.uab.es",
+  "allowed_gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 4,
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/140-1/datasets",
+    "OMP_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HOME": "/home-local/liying/.cache/huggingface",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "expected_tasks": 10,
+  "source_manifest": "source_manifest.json",
+  "execution_pid_namespace": "pid:[4026531836]",
+  "jobs": [
+    {
+      "id": "smoke_native_control_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "native_control",
+      "direction_selector": "native_control",
+      "phase": "smoke",
+      "seed": 2,
+      "config": "configs/smoke_native_control_r1_k10_s2.json",
+      "config_sha256": "2cf6b6c7d8949bf45b70a997e3eed968bbed71e5c7cf6db6f906ce5b4d16e436",
+      "expected_tasks": 2,
+      "expected_steps": 18,
+      "expected_samples": 2256,
+      "expected_task_steps": {
+        "0": 10,
+        "1": 8
+      },
+      "depends_on": []
+    },
+    {
+      "id": "smoke_g1_control_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "g1_control",
+      "direction_selector": "g1_control",
+      "phase": "smoke",
+      "seed": 2,
+      "config": "configs/smoke_g1_control_r1_k10_s2.json",
+      "config_sha256": "f74795e89d678df20aa2bbd7b5e97ef989cd0a33557bed67bc416baa0e72666c",
+      "expected_tasks": 2,
+      "expected_steps": 18,
+      "expected_samples": 2256,
+      "expected_task_steps": {
+        "0": 10,
+        "1": 8
+      },
+      "depends_on": []
+    },
+    {
+      "id": "smoke_g0_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "g0",
+      "direction_selector": "g0",
+      "phase": "smoke",
+      "seed": 2,
+      "config": "configs/smoke_g0_r1_k10_s2.json",
+      "config_sha256": "91030a9db61744e7f47210b9e66a308654707aaa095f84be838031432f3a9bec",
+      "expected_tasks": 2,
+      "expected_steps": 18,
+      "expected_samples": 2256,
+      "expected_task_steps": {
+        "0": 10,
+        "1": 8
+      },
+      "depends_on": []
+    },
+    {
+      "id": "smoke_g2_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "g2",
+      "direction_selector": "g2",
+      "phase": "smoke",
+      "seed": 2,
+      "config": "configs/smoke_g2_r1_k10_s2.json",
+      "config_sha256": "30e1e30013bac2b527ba75e3fb0c26017bb98658e262106dd5b14fd899a04727",
+      "expected_tasks": 2,
+      "expected_steps": 18,
+      "expected_samples": 2256,
+      "expected_task_steps": {
+        "0": 10,
+        "1": 8
+      },
+      "depends_on": []
+    },
+    {
+      "id": "smoke_ug_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "ug",
+      "direction_selector": "ug",
+      "phase": "smoke",
+      "seed": 2,
+      "config": "configs/smoke_ug_r1_k10_s2.json",
+      "config_sha256": "5a9d90a59396c2bd005548385c9ddc4ef678304ae1e98dad1654d442e6387da2",
+      "expected_tasks": 2,
+      "expected_steps": 18,
+      "expected_samples": 2256,
+      "expected_task_steps": {
+        "0": 10,
+        "1": 8
+      },
+      "depends_on": []
+    },
+    {
+      "id": "formal_g0_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "g0",
+      "direction_selector": "g0",
+      "phase": "formal",
+      "seed": 2,
+      "config": "configs/formal_g0_r1_k10_s2.json",
+      "config_sha256": "4337a1967587510e027eb8219431b5b148be3872192e65382fd9788baca1a52d",
+      "expected_tasks": 10,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      },
+      "depends_on": [
+        "smoke_native_control_r1_k10_s2",
+        "smoke_g1_control_r1_k10_s2",
+        "smoke_g0_r1_k10_s2",
+        "smoke_g2_r1_k10_s2",
+        "smoke_ug_r1_k10_s2"
+      ]
+    },
+    {
+      "id": "formal_g2_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "g2",
+      "direction_selector": "g2",
+      "phase": "formal",
+      "seed": 2,
+      "config": "configs/formal_g2_r1_k10_s2.json",
+      "config_sha256": "2c72117412081e5abac18edd7d7e434cbe47ffa33f70659e26331bc31fa30f09",
+      "expected_tasks": 10,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      },
+      "depends_on": [
+        "smoke_native_control_r1_k10_s2",
+        "smoke_g1_control_r1_k10_s2",
+        "smoke_g0_r1_k10_s2",
+        "smoke_g2_r1_k10_s2",
+        "smoke_ug_r1_k10_s2"
+      ]
+    },
+    {
+      "id": "formal_ug_r1_k10_s2",
+      "axis": "historical_r1_direction_completion",
+      "value": "ug",
+      "direction_selector": "ug",
+      "phase": "formal",
+      "seed": 2,
+      "config": "configs/formal_ug_r1_k10_s2.json",
+      "config_sha256": "718dd8b8184ce1bdbb5c485202b6694c7069ead1421c8fd98f139ed6a7585178",
+      "expected_tasks": 10,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      },
+      "depends_on": [
+        "smoke_native_control_r1_k10_s2",
+        "smoke_g1_control_r1_k10_s2",
+        "smoke_g0_r1_k10_s2",
+        "smoke_g2_r1_k10_s2",
+        "smoke_ug_r1_k10_s2"
+      ]
+    }
+  ],
+  "smoke_jobs": [
+    "smoke_native_control_r1_k10_s2",
+    "smoke_g1_control_r1_k10_s2",
+    "smoke_g0_r1_k10_s2",
+    "smoke_g2_r1_k10_s2",
+    "smoke_ug_r1_k10_s2"
+  ],
+  "legacy_protocol": "historical_native_global_rng",
+  "reuse_report": "REUSE_VERIFIED.json",
+  "data_counts": "DATA_COUNTS.json",
+  "run_pins": "RUN_PINS.json",
+  "final_report_script": "summarize_seven.py"
+}

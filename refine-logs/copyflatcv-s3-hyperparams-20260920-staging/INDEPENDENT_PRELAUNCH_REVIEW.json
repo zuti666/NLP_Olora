@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "review_scope": "Independent prelaunch review of fixed eight-run suite, original reference YAML, runtime safeguards, historical metrics parser and deployed validate-only. No full training launched by reviewer.",
+  "reviewed_at_utc": "2026-09-20T08:04:47.657097+00:00",
+  "config_review": {
+    "passed": true,
+    "jobs": 8,
+    "seeds": [
+      2
+    ],
+    "A_enabled": true,
+    "epochs_per_task": 50,
+    "tasks": 10,
+    "center_original_scientific_differences": {},
+    "explicit_default_additions": [
+      "fisher_mode=batch_empirical",
+      "ewc_preserve_fisher_rng=false",
+      "fisher_split=false",
+      "ewc_skip_task_fisher=false",
+      "train_num_workers=8",
+      "eval_num_workers=8",
+      "data_root=/data/140-1/datasets"
+    ],
+    "single_axis_differences_verified": true,
+    "all_config_hashes_match": true
+  },
+  "runtime_review": {
+    "passed": true,
+    "authorized_gpus": [
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 3,
+    "single_uuid_per_child": true,
+    "native_source_entry": "src.main.main",
+    "protocol_install": false,
+    "campaign_lock": true,
+    "exclusive_run_directories_logs_receipts": true,
+    "fail_closed_on_failed_or_invalid_result": true,
+    "fail_closed_on_source_or_config_hash_mismatch": true,
+    "source_verified_before_and_after_job": true,
+    "per_spawn_gpu_recheck": true,
+    "completed_results_require_ten_tasks_and_finite_observed_accuracy": true,
+    "native_undefined_diagnostics_serialized_as_null": true
+  },
+  "historical_parser_validation": {
+    "passed": true,
+    "seeds_checked": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "max_absolute_difference": 2.842170943040401e-14,
+    "checked_metrics": [
+      "faa_task_macro",
+      "aaa_task_macro",
+      "bwt",
+      "forgetting",
+      "faa_sample_weighted",
+      "aaa_sample_weighted"
+    ],
+    "requested_reference_seed2": {
+      "faa_task_macro": 53.311,
+      "aaa_task_macro": 66.70017817460317,
+      "bwt": -6.37111111111111,
+      "forgetting": 6.37111111111111,
+      "faa_sample_weighted": 60.7,
+      "aaa_sample_weighted": 70.426
+    },
+    "test_method": "Copy original historical logs/metrics to temporary directory and invoke unmodified common.inspect_metrics; verify against independently audited reference_results.json."
+  },
+  "deployed_dry_run": {
+    "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/launch_queue.py --validate-only",
+    "exit_code": 0,
+    "output": "{\"gpus\": {\"0\": {\"index\": 0, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-fd7e2955-3733-e30a-dff1-5da992423839\"}, \"1\": {\"index\": 1, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a\"}, \"2\": {\"index\": 2, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-fe4ca05a-b7fd-efa7-8192-201e24573825\"}, \"3\": {\"index\": 3, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26\"}, \"4\": {\"index\": 4, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5\"}, \"5\": {\"index\": 5, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e\"}, \"6\": {\"index\": 6, \"memory_used_mb\": 2, \"utilization_percent\": 0, \"uuid\": \"GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a\"}}, \"host\": \"cudahpc40.cvc.uab.es\", \"jobs\": 8, \"selected_jobs\": [\"s3_center_s2\", \"s3_lambda0_s2\", \"s3_lambda20000_s2\", \"s3_lambda200_s2\", \"s3_radius01_s2\", \"s3_radius05_s2\", \"s3_strength05_s2\", \"s3_strength0_s2\"], \"source_manifest_sha256\": \"e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2\", \"validated_at\": \"2026-09-20T08:04:47.657097+00:00\"}\n"
+  },
+  "deployed_matches_reviewed_staging": true,
+  "runtime_sha256": {
+    "common.py": "de3f19724e01447ca7782b6ccd1c7c92bb4ed5fc35e24732d839e8b99eecf510",
+    "run_job.py": "856bdc9d6385f45f69c3690eb5631f79bd9427f0b199aca6cbc9596fdb815652",
+    "launch_queue.py": "b94e9b6fb441d2eceb26e61c883791272f41c6210850382a88e3457b944fb775",
+    "collect_results.py": "27cbf84e63cfe19c8a2d2abf7f5da981b094fdd7900185c025fbfc922688f841",
+    "suite.json": "67819b4cf958f6c71023723d3e58a5cb7ed89e2be2e6247c7611f8bc4c73f930"
+  },
+  "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "primary_smoke_evidence": {
+    "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/preflight/smoke_validation.json",
+    "passed": true,
+    "scope": "Read primary two-task integration validation; reviewer did not rerun GPU training."
+  },
+  "blockers": [],
+  "limitations": [
+    "Historical June29 execution source identity is not fully frozen; new source-matched center is included.",
+    "GPU occupancy can change after read; queue rechecks immediately before each launch."
+  ],
+  "full_training_launched": false
+}

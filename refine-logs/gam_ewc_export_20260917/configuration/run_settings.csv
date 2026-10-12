@@ -1,0 +1,21 @@
+model,method_family,orders,seed,data_seed,precision,world_size,micro_batch,gradient_accumulation,global_batch,lora_rank,lora_alpha,lora_dropout,epochs_per_task,lr_first,lr_later,optimizer,ewc_lambda_cli,ewc_gamma,olora_lambda1,olora_lambda2,fisher_settings,notes
+T5-large,SeqLoRA-GAM cfgUnified,"1,2,3",1993,1993,bf16,4,16,1,64,8,32,0.1,1,1e-3,1e-3,gam-adamw_hf,,,,,,
+T5-large,EWC,"1,2,3",1993,1993,bf16,8,8,1,64,8,32,0.1,1,1e-3,1e-3,adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Historical results; current default OLoRA regularization differs from early implementation.
+T5-small,EWC,"1,2,3",1993,1993,bf16,,16,1,64,8,32,0.1,1,1e-3,1e-3,adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Microbatch from run name; GB64 inferred from result steps; GPU topology not fully reconstructed.
+T5-large,GAM+EWC,"1,2,3",1993,1993,bf16,8,8,1,64,8,32,0.1,1,1e-3,1e-3,gam-adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Historical results; current default OLoRA regularization differs from early implementation.
+T5-small,GAM+EWC,"1,2,3",1993,1993,bf16,,16,1,64,8,32,0.1,1,1e-3,1e-3,gam-adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Microbatch from run name; GB64 inferred from result steps; GPU topology not fully reconstructed.
+Llama-3.2-1B,IncLoRA-GAM,"1,2,3",42,,bf16,8,1,8,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,0.5,0,,Historical CLI lambda1=.5; ignored by inclora; effective OLoRA penalty is zero.
+Llama-3.2-1B,OLoRA-GAM,"1,2,3",42,,bf16,8,1,8,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,0.5,0,,
+Llama-3.2-1B,SeqLoRA-GAM,"2,3",42,,bf16,4,4,4,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,,,,
+Llama-3.2-1B,SeqLoRA-GAM,1,42,,bf16,,,,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,,,,Successful result steps support GB64; retained launch log is a different failed attempt.
+Llama-3.2-1B,EWC,1,1993,1993,bf16,5,1,8,40,8,32,0.1,1,1e-3,1e-4,adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Legacy BF16 experiment; historical source version cannot be inferred from current worktree.
+Llama-3.2-1B,GAM+EWC,"1,2,3",1993,1993,bf16,5,1,8,40,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Legacy BF16 experiment; historical source version cannot be inferred from current worktree.
+Llama-3.2-1B,SAM+OLoRA+EWC (GAMFS name),"1,2,3",1993,1993,bf16,1,1,64,64,8,32,0.1,1,1e-3,1e-4,gamfishershape-adamw_hf,1,1,0.5,0,raw;full-data;normalize=false;damping=0,gamfs_mode=sam;rho=.05;GAM four-probe disabled.
+Llama-3.2-3B,IncLoRA-GAM,"1,2,3",42,,bf16,8,1,8,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,0.5,0,,Historical CLI lambda1=.5; ignored by inclora; effective OLoRA penalty is zero.
+Llama-3.2-3B,OLoRA-GAM,"1,2,3",42,,bf16,8,1,8,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,0.5,0,,
+Llama-3.2-3B,SeqLoRA-GAM,"1,2,3",42,,bf16,4,2,8,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,,,,,,
+Llama-3.2-3B,EWC,"1,2,3",1993,1993,bf16,8,1,8,64,8,32,0.1,1,1e-3,1e-4,adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Legacy BF16 experiment; historical source version cannot be inferred from current worktree.
+Llama-3.2-3B,GAM+EWC,"1,2,3",1993,1993,bf16,8,1,8,64,8,32,0.1,1,1e-3,1e-4,gam-adamw_hf,1,1,,,raw;full-data;normalize=false;damping=0,Legacy BF16 experiment; historical source version cannot be inferred from current worktree.
+Llama-3.2-3B,SAM+OLoRA+EWC (GAMFS name),"1,2,3",1993,1993,bf16,1,1,64,64,8,32,0.1,1,1e-3,1e-4,gamfishershape-adamw_hf,1,1,0.5,0,raw;full-data;normalize=false;damping=0,gamfs_mode=sam;rho=.05;GAM four-probe disabled.
+Llama-3.2-1B,IncLoRA+EWC supplement,"2,3",1993,1993,fp32,1,1,40,40,8,32,0.1,1,1e-3,1e-4,adamw_hf,0.2,1,0,0,raw;full-data;normalize=false;damping=0,"Nominal lambda1 at legacy GA8; CLI=.2 at GA40 preserves existing CE/EWC gradient scaling. GPU9 Quadro RTX6000, completed."
+T5-large,GAMFS-SAMEquivalent,1,1993,1993,bf16,1,8,8,64,8,32,0.1,1,1e-3,1e-3,gamfishershape-adamw_hf,0,1,0,0,raw;full-data;normalize=false;damping=0,SAM-equivalent ablation; EWC disabled; rho=.05.

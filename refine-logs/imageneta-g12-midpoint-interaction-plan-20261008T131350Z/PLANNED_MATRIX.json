@@ -1,0 +1,93 @@
+{
+  "status": "planned_not_registered",
+  "runnable": false,
+  "registered_jobs": 0,
+  "training_started": false,
+  "main_complete_trainings": 4,
+  "formal_runs": [
+    {
+      "id": "R01",
+      "direction": "sum12",
+      "formula": "g1+g2",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "tasks": 10,
+      "epochs_per_task": 50,
+      "ce_gradients_per_step": 3,
+      "status": "planned_not_registered",
+      "config_draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-plan-20261008T131350Z/config_drafts/R01_sum12_r1_k10_s2.json"
+    },
+    {
+      "id": "R02",
+      "direction": "base02",
+      "formula": "g0+g2",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "tasks": 10,
+      "epochs_per_task": 50,
+      "ce_gradients_per_step": 3,
+      "status": "planned_not_registered",
+      "config_draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-plan-20261008T131350Z/config_drafts/R02_base02_r1_k10_s2.json"
+    },
+    {
+      "id": "R03",
+      "direction": "two_midpoint",
+      "formula": "2*gm",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "tasks": 10,
+      "epochs_per_task": 50,
+      "ce_gradients_per_step": 3,
+      "status": "planned_not_registered",
+      "config_draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-plan-20261008T131350Z/config_drafts/R03_two_midpoint_r1_k10_s2.json"
+    },
+    {
+      "id": "R04",
+      "direction": "sum13",
+      "formula": "g1+g3",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "tasks": 10,
+      "epochs_per_task": 50,
+      "ce_gradients_per_step": 4,
+      "status": "planned_not_registered",
+      "config_draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-plan-20261008T131350Z/config_drafts/R04_sum13_r1_k10_s2.json"
+    }
+  ],
+  "diagnostics": {
+    "reuse_snapshots": 12,
+    "training_batches_per_snapshot": 2,
+    "state_batch_combinations": 24,
+    "current_and_old_eval_samples_per_task_max": 32,
+    "main_reads": [
+      "g0",
+      "g1",
+      "g2",
+      "gm",
+      "g3"
+    ],
+    "additional_position_read": "g_aligned",
+    "FP64_calibration_states": 6,
+    "formal_lr_changed": false,
+    "FP64_calibration_state_batch_combinations": 6,
+    "uncalibrated_state_batch_combinations": 18,
+    "precision_comparison_same_saved_virtual_coordinates": true
+  },
+  "conditional_extensions": [
+    "2g2 and same-protocol g2",
+    "g2/g3 terminal long-term factorial",
+    "aligned midpoint-length location",
+    "parallel/perpendicular e12 factorial",
+    "r=.25 sum12/two_midpoint",
+    "additional paired seeds"
+  ],
+  "queue_action": "none"
+}

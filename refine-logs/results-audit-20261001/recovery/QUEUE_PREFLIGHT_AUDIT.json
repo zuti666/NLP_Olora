@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "validation_budget_epochs": 14,
+  "native_scheduler_T_max": 50,
+  "validation_checkpoint_epochs": [
+    0,
+    10,
+    14
+  ],
+  "formal_checkpoint_epochs": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "environment_spec_unchanged": true,
+  "environment_spec_sha256": "574b252ec7b676947b1e431b88231959dcb69e79742d933f03cf354eb8c17798",
+  "old_validator_defect": "any smoke assumed checkpoints [0,N], incorrectly excluding intervening ten-epoch checkpoints",
+  "old_trainer_max_epochs_caveat": "max_epochs14 changes scheduler T_max; new validation_entry preserves epochs50 while init_epoch14",
+  "authorized_gpus": [
+    5,
+    6
+  ],
+  "lock_root": "/tmp/olora_gamfs_gpu_locks"
+}

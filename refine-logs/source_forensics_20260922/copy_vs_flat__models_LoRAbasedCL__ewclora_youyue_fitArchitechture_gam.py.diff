@@ -1,0 +1,294 @@
+--- /data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py
++++ /data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py
+@@ -1,11 +1,13 @@
+ from __future__ import annotations
+ 
+ import logging
+-from typing import Dict, List
++import os
++from typing import Dict, List, Optional
+ 
+ import torch
+ 
+ from models_LoRAbasedCL.ewclora_youyue_fitArchitechture import Learner as _BaseFitArchLearner
++from utils.mechanism_eval import as_bool, evaluate_anchor_metrics, parse_int_list, parse_str_list
+ 
+ logger = logging.getLogger(__name__)
+ 
+@@ -32,11 +34,6 @@
+ 
+     def __init__(self, args):
+         super().__init__(args)
+-        if self._optimizer_type != "gam":
+-            raise ValueError(
+-                "ewclora_youyue_fitArchitechture_gam only supports optimizer_type=gam, "
+-                f"got {self._optimizer_type}."
+-            )
+ 
+         self._lambda_flat = float(args.get("lambda_flat", 1.0))
+         self._lambda_ewc = float(args.get("ewc_lambda", args.get("lambda", 20.0)))
+@@ -48,7 +45,6 @@
+         topk = args.get("mechanism_topk", None)
+         self._mechanism_topk = None if topk is None else int(topk)
+         self._mechanism_eps = float(args.get("mechanism_eps", 1e-12))
+-        self._kl_diag_sigma2 = float(args.get("kl_diag_sigma2", 1.0))
+         self._mechanism_grad_sums: Dict[str, float] = {}
+         self._mechanism_grad_count = 0
+         self._mechanism_loss_sums: Dict[str, float] = {}
+@@ -70,10 +66,17 @@
+             self._gam_args.grad_norm_rho = self._as1_norm_rho
+ 
+     def after_task(self):
++        task_start, task_end = self._task_class_range(self._cur_task)
+         drift_metrics = self._compute_delta_drift_metrics() if self._mechanism_eval else {}
+         super().after_task()
+         self._num_finished_tasks = int(self._cur_task + 1)
+-        if self._mechanism_eval:
++        full_fisher_diff = dict(getattr(self, "_last_full_fisher_diff", {}))
++        if self._mechanism_eval or full_fisher_diff:
++            endpoint_metrics = (
++                self._compute_endpoint_eval_metrics_if_needed(task_start, task_end)
++                if self._mechanism_eval
++                else {}
++            )
+             self._last_mechanism_metrics = {
+                 "task": int(self._cur_task),
+                 "lambda_flat": float(self._lambda_flat),
+@@ -82,6 +85,8 @@
+                 **self._summarize_mechanism_loss_stats(),
+                 **self._summarize_mechanism_grad_stats(),
+                 **drift_metrics,
++                **endpoint_metrics,
++                **full_fisher_diff,
+             }
+             if self._is_main_process:
+                 self._log(f"[EWCLoRA-GAM][Mechanism] {self._last_mechanism_metrics}")
+@@ -100,6 +105,123 @@
+         super()._snapshot_task_reference()
+         if self._mechanism_eval:
+             self._reset_mechanism_stats()
++
++    def _task_class_range(self, task_idx: int):
++        increments = self.args.get("task_increments", None)
++        if increments:
++            sizes = [int(value) for value in increments]
++            task_idx = max(0, min(int(task_idx), len(sizes) - 1))
++            start = int(sum(sizes[:task_idx]))
++            return start, int(start + sizes[task_idx])
++
++        init_cls = int(self.args.get("init_cls", 0))
++        increment = int(self.args.get("increment", init_cls))
++        task_idx = int(task_idx)
++        if task_idx <= 0:
++            return 0, init_cls
++        start = init_cls + (task_idx - 1) * increment
++        return int(start), int(start + increment)
++
++    def _fqa_partial_results_path(self, prefix: str) -> Optional[str]:
++        partial_dir = self.args.get("flat_eval_fqa_partial_dir", None)
++        if not partial_dir:
++            return None
++        partial_dir = os.path.abspath(os.path.expanduser(str(partial_dir)))
++        os.makedirs(partial_dir, exist_ok=True)
++        run_prefix = str(self.args.get("prefix", "run"))
++        filename = f"{run_prefix}_task{int(self._cur_task):02d}_{prefix}_fqa_partial.json"
++        return os.path.join(partial_dir, filename)
++
++    def _compute_endpoint_eval_metrics_if_needed(self, task_start: int, task_end: int) -> Dict[str, float]:
++        if not as_bool(self.args.get("endpoint_eval", False)):
++            return {}
++
++        endpoint_tasks = set(parse_int_list(
++            self.args.get("endpoint_eval_tasks", str(int(self._cur_task))),
++            default=[int(self._cur_task)],
++        ))
++        if int(self._cur_task) not in endpoint_tasks:
++            return {}
++
++        split_arg = self.args.get("endpoint_eval_splits", None)
++        if split_arg is None:
++            split_specs = [("endpoint", "train")]
++        else:
++            requested = [
++                item.lower()
++                for item in parse_str_list(split_arg, default=["train"])
++            ]
++            if any(item in {"both", "all"} for item in requested):
++                requested = ["train", "test"]
++            split_specs = [(f"endpoint_{split}", split) for split in requested]
++
++        metrics: Dict[str, float] = {}
++        for prefix, split in split_specs:
++            if split == "train":
++                loader = getattr(self, "train_loader", None)
++            elif split == "test":
++                loader = getattr(self, "test_loader", None)
++            elif split in {"val", "valid", "validation", "fisher"}:
++                loader = (
++                    getattr(self, "_current_fisher_loader", None)
++                    or getattr(self, "fisher_loader", None)
++                    or getattr(self, "val_loader", None)
++                )
++            else:
++                logging.warning("[EWCLoRA-GAM][EndpointEval] unknown split=%s; skip", split)
++                continue
++            if loader is None:
++                logging.warning("[EWCLoRA-GAM][EndpointEval] missing %s loader; skip", split)
++                continue
++
++            eval_args = dict(self.args)
++            eval_args["flat_eval_fqa_tasks"] = str(int(self._cur_task))
++            if split_arg is not None:
++                prefixes = parse_str_list(
++                    eval_args.get("flat_eval_fqa_prefixes", ""),
++                    default=[],
++                )
++                if prefix not in {item.lower() for item in prefixes}:
++                    prefixes.append(prefix)
++                    eval_args["flat_eval_fqa_prefixes"] = ",".join(prefixes)
++
++            metrics.update(evaluate_anchor_metrics(
++                self._unwrap_network(),
++                loader,
++                self._device,
++                eval_args,
++                cur_task=int(self._cur_task),
++                task_start=int(task_start),
++                task_end=int(task_end),
++                omega_W=list(self._fisher_past_delta.values()),
++                prefix=prefix,
++                partial_results_path=self._fqa_partial_results_path(prefix),
++            ))
++        return metrics
++
++    def evaluate_loaded_checkpoint(self, task_idx: int) -> Dict[str, float]:
++        task_start, task_end = self._task_class_range(int(task_idx))
++        endpoint_metrics = self._compute_endpoint_eval_metrics_if_needed(task_start, task_end)
++        fisher_stats = {}
++        if hasattr(self, "_summarize_tensor_dict"):
++            fisher_stats = {
++                f"loaded_fisher_{key}": value
++                for key, value in self._summarize_tensor_dict(
++                    getattr(self, "_fisher_past_delta", {})
++                ).items()
++            }
++        metrics = {
++            "task": int(task_idx),
++            "loaded_checkpoint_eval": True,
++            "method_type": "as1_normfisher_gam_intask",
++            "fisher_past_trace_mass": float(getattr(self, "_fisher_past_trace_mass", 0.0)),
++            **fisher_stats,
++            **endpoint_metrics,
++        }
++        self._last_mechanism_metrics = metrics
++        if self._is_main_process:
++            self._log(f"[EWCLoRA-GAM][LoadedCheckpointEval] {metrics}")
++        return metrics
+ 
+     @staticmethod
+     def _flatten_optimizer_params(optimizer) -> List[torch.nn.Parameter]:
+@@ -135,7 +257,7 @@
+         return float(task_loss.detach().item()), grad_cache
+ 
+     def _compute_fisher_grad_cache(self, params: List[torch.nn.Parameter]):
+-        if not self._fisher_past_delta:
++        if not self._fisher_past_delta or float(self._ewc_lambda) == 0.0:
+             return 0.0, {}
+ 
+         base_model = self._unwrap_network()
+@@ -197,7 +319,6 @@
+             return {
+                 "delta_drift_available": 0,
+                 "delta_tensors": 0,
+-                "delta_numel": 0,
+                 "delta_norm": 0.0,
+                 "fisher_weighted_drift": 0.0,
+                 "fisher_eta_weighted_drift": 0.0,
+@@ -205,28 +326,11 @@
+                 "normalized_fisher_eta_drift": 0.0,
+                 "high_fisher_delta_energy_ratio": 0.0,
+                 "high_fisher_weighted_energy_ratio": 0.0,
+-                "kl_iso_delta": 0.0,
+-                "kl_step_iso_proxy": 0.0,
+-                "kl_gaussian_l2_sigma2": 0.0,
+-                "kl_gaussian_l2_per_dim": 0.0,
+-                "kl_fisher_delta": 0.0,
+-                "kl_fisher_delta_weighted": 0.0,
+-                "kl_fisher_to_iso_ratio": 0.0,
+-                "kl_fisher_per_tensor_mean": 0.0,
+-                "kl_fisher_per_layer_mean": 0.0,
+-                "kl_fisher_per_task": 0.0,
+-                "kl_step_fisher_proxy": 0.0,
+-                "kl_fisher_proxy": 0.0,
+-                "kl_fisher_eta_proxy": 0.0,
+-                "kl_fisher_proxy_per_dim": 0.0,
+-                "kl_fisher_eta_proxy_per_dim": 0.0,
+-                "kl_fisher_eta_proxy_scaled_by_lambda": 0.0,
+                 "ewc_penalty_value": 0.0,
+             }
+ 
+         base_model = self._unwrap_network()
+         eps = float(self._mechanism_eps)
+-        kl_sigma2 = max(float(self._kl_diag_sigma2), eps)
+         delta_norm = 0.0
+         fisher_weighted = 0.0
+         fisher_eta_weighted = 0.0
+@@ -235,7 +339,6 @@
+         fisher_sum = 0.0
+         fisher_max = 0.0
+         fisher_numel = 0
+-        delta_numel = 0
+         tensor_count = 0
+ 
+         with torch.no_grad():
+@@ -251,7 +354,6 @@
+                 fisher_update = fisher_t * update_sq
+ 
+                 delta_norm += float(update_sq.sum().item())
+-                delta_numel += int(update_sq.numel())
+                 fisher_weighted += float(fisher_update.sum().item())
+                 if self._fisher_eta != 0.0:
+                     fisher_eta_weighted += float(((fisher_t + self._fisher_eta) * update_sq).sum().item())
+@@ -275,17 +377,9 @@
+                     high_delta_energy += float(flat_update_sq[top_idx].sum().item())
+                     high_weighted_energy += float((flat_fisher[top_idx] * flat_update_sq[top_idx]).sum().item())
+ 
+-        kl_gaussian_l2 = 0.5 * delta_norm / kl_sigma2
+-        kl_fisher = 0.5 * fisher_weighted
+-        kl_fisher_eta = 0.5 * fisher_eta_weighted
+-        ewc_penalty = self._lambda_ewc * kl_fisher_eta
+-        denom_dim = float(max(delta_numel, 1))
+-        denom_tensor = float(max(tensor_count, 1))
+-
+         return {
+             "delta_drift_available": 1,
+             "delta_tensors": int(tensor_count),
+-            "delta_numel": int(delta_numel),
+             "delta_norm": float(delta_norm),
+             "fisher_weighted_drift": float(fisher_weighted),
+             "fisher_eta_weighted_drift": float(fisher_eta_weighted),
+@@ -295,23 +389,7 @@
+             "high_fisher_weighted_energy_ratio": float(high_weighted_energy / (fisher_weighted + eps)),
+             "fisher_mean": float(fisher_sum / max(fisher_numel, 1)),
+             "fisher_max": float(fisher_max),
+-            "kl_iso_delta": float(kl_gaussian_l2),
+-            "kl_step_iso_proxy": float(kl_gaussian_l2),
+-            "kl_gaussian_l2_sigma2": float(kl_gaussian_l2),
+-            "kl_gaussian_l2_per_dim": float(kl_gaussian_l2 / denom_dim),
+-            "kl_fisher_delta": float(kl_fisher_eta),
+-            "kl_fisher_delta_weighted": float(ewc_penalty),
+-            "kl_fisher_to_iso_ratio": float(kl_fisher_eta / (kl_gaussian_l2 + eps)),
+-            "kl_fisher_per_tensor_mean": float(kl_fisher_eta / denom_tensor),
+-            "kl_fisher_per_layer_mean": float(kl_fisher_eta / denom_tensor),
+-            "kl_fisher_per_task": float(kl_fisher_eta),
+-            "kl_step_fisher_proxy": float(kl_fisher_eta),
+-            "kl_fisher_proxy": float(kl_fisher),
+-            "kl_fisher_eta_proxy": float(kl_fisher_eta),
+-            "kl_fisher_proxy_per_dim": float(kl_fisher / denom_dim),
+-            "kl_fisher_eta_proxy_per_dim": float(kl_fisher_eta / denom_dim),
+-            "kl_fisher_eta_proxy_scaled_by_lambda": float(ewc_penalty),
+-            "ewc_penalty_value": float(ewc_penalty),
++            "ewc_penalty_value": float(0.5 * self._lambda_ewc * fisher_eta_weighted),
+         }
+ 
+     def _build_direction_projector(

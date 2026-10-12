@@ -1,0 +1,73 @@
+{
+  "protocol": "task0_formation_20ep_task1_sgd_v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "conditions": [
+    "sgd",
+    "sam",
+    "gam_residual",
+    "sf_g2",
+    "sf_g2_then_sgd",
+    "sgd_then_sf_g2"
+  ],
+  "task0_phases": {
+    "sgd": [
+      "sgd",
+      "sgd"
+    ],
+    "sam": [
+      "sam",
+      "sam"
+    ],
+    "gam_residual": [
+      "gam_residual",
+      "gam_residual"
+    ],
+    "sf_g2": [
+      "sf_g2",
+      "sf_g2"
+    ],
+    "sf_g2_then_sgd": [
+      "sf_g2",
+      "sgd"
+    ],
+    "sgd_then_sf_g2": [
+      "sgd",
+      "sf_g2"
+    ]
+  },
+  "task1": "sgd",
+  "epochs": [
+    20,
+    20
+  ],
+  "switch_epoch": 11,
+  "lr": [
+    0.04,
+    0.02
+  ],
+  "eta_min_ratio": 0.1,
+  "sam_rho": 0.05,
+  "residual_gam": "g0+(g3-g2)",
+  "residual_gam_outer_r": 1.0,
+  "sf_inner": "theta-eta*g0",
+  "sf_outer_r": 0.25,
+  "old_drop": "A_old_start_after_head_expansion_joint40-A_old_end_joint40",
+  "data_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a",
+  "historical_50epoch_scores_pooled": false,
+  "resource": {
+    "gpus": [
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 3,
+    "idle_only": true,
+    "preemption": false
+  },
+  "inherited_environment_spec_is_reference": true,
+  "active_workload_defined_here": true
+}

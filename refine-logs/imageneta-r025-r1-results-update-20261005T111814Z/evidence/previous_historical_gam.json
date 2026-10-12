@@ -1,0 +1,4299 @@
+{
+  "scope": "Read-only historical effectiveImageNet-A r=.25 training withinthree localroots; no globalabsenceclaim.",
+  "formal_ten_task": [
+    {
+      "unique_id": "legacy10T::s3_puregam_onlyg3_r0p25_k10_s2",
+      "id": "s3_puregam_onlyg3_r0p25_k10_s2",
+      "method": "pure native g3",
+      "method_group": "single_gradient",
+      "status": "completed",
+      "seed": 2,
+      "rank": 10,
+      "outer_radius": 0.25,
+      "inner_radius": 0.05,
+      "gamma": 0,
+      "beta": [
+        0,
+        1,
+        1
+      ],
+      "task_count": 10,
+      "actual_trained_tasks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "epochs_per_task": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "formal_ten_task": true,
+      "AAA": 66.22960873015873,
+      "FAA": 50.799,
+      "Forget": 7.365555555555555,
+      "BWT": -7.242222222222221,
+      "raw_task_matrix": [
+        [
+          85.99,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          80.71,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          81.43,
+          79.92,
+          70.54,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.48,
+          77.95,
+          69.77,
+          73.33,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.22,
+          75.59,
+          65.5,
+          69.7,
+          55.88,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          74.92,
+          72.83,
+          64.34,
+          67.88,
+          46.08,
+          42.25,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.24,
+          72.44,
+          65.12,
+          67.88,
+          40.2,
+          40.85,
+          40.96,
+          null,
+          null,
+          null
+        ],
+        [
+          74.92,
+          70.87,
+          64.34,
+          67.27,
+          38.24,
+          35.21,
+          36.14,
+          37.65,
+          null,
+          null
+        ],
+        [
+          74.92,
+          72.05,
+          62.79,
+          67.27,
+          37.25,
+          32.39,
+          36.14,
+          36.47,
+          37.78,
+          null
+        ],
+        [
+          74.92,
+          71.26,
+          63.57,
+          67.27,
+          39.22,
+          30.99,
+          36.14,
+          37.65,
+          38.89,
+          48.08
+        ]
+      ],
+      "stage_task_macro_accuracy": [
+        85.99,
+        81.725,
+        77.29666666666667,
+        75.1325,
+        68.578,
+        61.38333333333333,
+        57.527142857142856,
+        53.08,
+        50.784444444444446,
+        50.799
+      ],
+      "native_logged_AAA": 59.7350909090909,
+      "config": {
+        "dataset": "imageneta",
+        "seed": [
+          2
+        ],
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0,
+        "momentum": 0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 0.25,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 0.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/configs/s3_puregam_onlyg3_r0p25_k10_s2.json",
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/outputs/s3_puregam_onlyg3_r0p25_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/s3_puregam_onlyg3_r0p25_k10_s2/exp_run/20/s3_puregam_onlyg3_r0p25_k10_s2_vit_base_patch16_224_cl_metrics.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/runtime/jobs/s3_puregam_onlyg3_r0p25_k10_s2/completed.json",
+      "console_log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/runtime/jobs/s3_puregam_onlyg3_r0p25_k10_s2/console.log",
+      "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+      "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/source_manifest.json",
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "fisher_skipped_task_count": 10,
+      "fisher_estimation_log_count": 0,
+      "protocol_note": "Native learner trajectory, distinct from later recovery geometrytrainer. gamma0beta011=g3. Native final.AAA59.73509 is not standardAAA66.229609."
+    }
+  ],
+  "single_task": [
+    {
+      "id": "task0_g_r025_k10_s2",
+      "unique_id": "independent_task0::task0_g_r025_k10_s2",
+      "kind": "independent_task0",
+      "method": "pure native g3",
+      "method_group": "single_gradient",
+      "status": "completed",
+      "seed": 2,
+      "rank": 10,
+      "outer_radius": 0.25,
+      "inner_radius": 0.05,
+      "gamma": 0.0,
+      "beta": [
+        0.0,
+        1.0,
+        1.0
+      ],
+      "task_count": 1,
+      "actual_trained_tasks": [
+        0
+      ],
+      "completed_epochs": 50,
+      "formal_ten_task": false,
+      "eval_accuracy": 86.97068403908794,
+      "eval_class_macro_accuracy": 88.68944852428497,
+      "eval_ce": 0.4003465820213094,
+      "train_ce": 0.43794982510487934,
+      "train_accuracy": 86.3383637807784,
+      "eval_samples": 307,
+      "eval_correct": 267,
+      "raw_eval_per_class_counts": [
+        15,
+        19,
+        14,
+        23,
+        9,
+        19,
+        20,
+        4,
+        23,
+        10,
+        17,
+        15,
+        17,
+        16,
+        21,
+        13,
+        22,
+        4,
+        14,
+        12
+      ],
+      "raw_eval_per_class_correct": [
+        15,
+        13,
+        11,
+        22,
+        9,
+        17,
+        15,
+        4,
+        20,
+        10,
+        16,
+        14,
+        13,
+        12,
+        19,
+        12,
+        18,
+        4,
+        13,
+        10
+      ],
+      "counters": {
+        "training_batches": 500,
+        "training_samples": 62950,
+        "training_ce_gradient_passes": 2500,
+        "isolated_diagnostic_ce_gradient_passes": 0
+      },
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 0.25,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 0.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/configs/task0_g_r025_k10_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/outputs/task0_g_r025_k10_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/outputs/task0_g_r025_k10_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/runtime/recovery_radii_20261001T132842Z/jobs/task0_g_r025_k10_s2/completed.json",
+      "trainer_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/trainer/task0_trainer.py",
+      "trainer_sha256": "b6632580c900ee91650d1f6a2c2ab8ae0e760348942bde69799ecf0cc79ae746",
+      "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+      "checkpoint_checks": {
+        "0": true,
+        "10": true,
+        "20": true,
+        "30": true,
+        "40": true,
+        "50": true
+      },
+      "protocol_note": "Independent task0seed2 and formationtask0seed2 are distinct entrypoints/traces. Classmacro accuracy is not taskmacroAAA."
+    },
+    {
+      "id": "formation_g_r025_s0",
+      "unique_id": "formation_task0::formation_g_r025_s0",
+      "kind": "formation_task0",
+      "method": "pure native g3",
+      "method_group": "single_gradient",
+      "status": "completed",
+      "seed": 0,
+      "rank": 10,
+      "outer_radius": 0.25,
+      "inner_radius": 0.05,
+      "gamma": 0.0,
+      "beta": [
+        0.0,
+        1.0,
+        1.0
+      ],
+      "task_count": 1,
+      "actual_trained_tasks": [
+        0
+      ],
+      "completed_epochs": 50,
+      "formal_ten_task": false,
+      "eval_accuracy": 86.97068403908794,
+      "eval_class_macro_accuracy": 89.07454231112362,
+      "eval_ce": 0.4233352462321229,
+      "train_ce": 0.38596508813529284,
+      "train_accuracy": 88.88006354249404,
+      "eval_samples": 307,
+      "eval_correct": 267,
+      "raw_eval_per_class_counts": [
+        15,
+        19,
+        14,
+        23,
+        9,
+        19,
+        20,
+        4,
+        23,
+        10,
+        17,
+        15,
+        17,
+        16,
+        21,
+        13,
+        22,
+        4,
+        14,
+        12
+      ],
+      "raw_eval_per_class_correct": [
+        15,
+        16,
+        12,
+        21,
+        9,
+        16,
+        15,
+        4,
+        19,
+        10,
+        16,
+        14,
+        13,
+        11,
+        19,
+        12,
+        17,
+        4,
+        12,
+        12
+      ],
+      "counters": {
+        "training_batches": 500,
+        "training_samples": 62950,
+        "training_ce_gradient_passes": 2500,
+        "isolated_diagnostic_ce_gradient_passes": 0,
+        "independent_sam_probe_gradient_passes": 0
+      },
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 0.25,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 0.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/formation_g_r025_s0/completed.json",
+      "trainer_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/trainer/formation_task0.py",
+      "trainer_sha256": "0a353bc3fda436caacdf73aca649d4674bdd376823defafff4087f74f78ddc0c",
+      "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+      "checkpoint_checks": {
+        "0": true,
+        "10": true,
+        "20": true,
+        "30": true,
+        "40": true,
+        "50": true
+      },
+      "protocol_note": "Independent task0seed2 and formationtask0seed2 are distinct entrypoints/traces. Classmacro accuracy is not taskmacroAAA."
+    },
+    {
+      "id": "formation_g_r025_s1",
+      "unique_id": "formation_task0::formation_g_r025_s1",
+      "kind": "formation_task0",
+      "method": "pure native g3",
+      "method_group": "single_gradient",
+      "status": "completed",
+      "seed": 1,
+      "rank": 10,
+      "outer_radius": 0.25,
+      "inner_radius": 0.05,
+      "gamma": 0.0,
+      "beta": [
+        0.0,
+        1.0,
+        1.0
+      ],
+      "task_count": 1,
+      "actual_trained_tasks": [
+        0
+      ],
+      "completed_epochs": 50,
+      "formal_ten_task": false,
+      "eval_accuracy": 86.31921824104235,
+      "eval_class_macro_accuracy": 87.9890026208592,
+      "eval_ce": 0.43582749755064126,
+      "train_ce": 0.41497364663907327,
+      "train_accuracy": 87.76806989674344,
+      "eval_samples": 307,
+      "eval_correct": 265,
+      "raw_eval_per_class_counts": [
+        15,
+        19,
+        14,
+        23,
+        9,
+        19,
+        20,
+        4,
+        23,
+        10,
+        17,
+        15,
+        17,
+        16,
+        21,
+        13,
+        22,
+        4,
+        14,
+        12
+      ],
+      "raw_eval_per_class_correct": [
+        14,
+        15,
+        12,
+        21,
+        9,
+        16,
+        15,
+        4,
+        21,
+        9,
+        17,
+        13,
+        13,
+        11,
+        19,
+        11,
+        17,
+        4,
+        12,
+        12
+      ],
+      "counters": {
+        "training_batches": 500,
+        "training_samples": 62950,
+        "training_ce_gradient_passes": 2500,
+        "isolated_diagnostic_ce_gradient_passes": 0,
+        "independent_sam_probe_gradient_passes": 0
+      },
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 0.25,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 0.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/formation_g_r025_s1/completed.json",
+      "trainer_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/trainer/formation_task0.py",
+      "trainer_sha256": "0a353bc3fda436caacdf73aca649d4674bdd376823defafff4087f74f78ddc0c",
+      "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+      "checkpoint_checks": {
+        "0": true,
+        "10": true,
+        "20": true,
+        "30": true,
+        "40": true,
+        "50": true
+      },
+      "protocol_note": "Independent task0seed2 and formationtask0seed2 are distinct entrypoints/traces. Classmacro accuracy is not taskmacroAAA."
+    },
+    {
+      "id": "formation_g_r025_s2",
+      "unique_id": "formation_task0::formation_g_r025_s2",
+      "kind": "formation_task0",
+      "method": "pure native g3",
+      "method_group": "single_gradient",
+      "status": "completed",
+      "seed": 2,
+      "rank": 10,
+      "outer_radius": 0.25,
+      "inner_radius": 0.05,
+      "gamma": 0.0,
+      "beta": [
+        0.0,
+        1.0,
+        1.0
+      ],
+      "task_count": 1,
+      "actual_trained_tasks": [
+        0
+      ],
+      "completed_epochs": 50,
+      "formal_ten_task": false,
+      "eval_accuracy": 86.64495114006515,
+      "eval_class_macro_accuracy": 88.46217579701224,
+      "eval_ce": 0.39818975591504224,
+      "train_ce": 0.43798479118263844,
+      "train_accuracy": 86.10007942811755,
+      "eval_samples": 307,
+      "eval_correct": 266,
+      "raw_eval_per_class_counts": [
+        15,
+        19,
+        14,
+        23,
+        9,
+        19,
+        20,
+        4,
+        23,
+        10,
+        17,
+        15,
+        17,
+        16,
+        21,
+        13,
+        22,
+        4,
+        14,
+        12
+      ],
+      "raw_eval_per_class_correct": [
+        15,
+        13,
+        11,
+        22,
+        9,
+        17,
+        15,
+        4,
+        20,
+        10,
+        16,
+        14,
+        13,
+        12,
+        19,
+        12,
+        17,
+        4,
+        13,
+        10
+      ],
+      "counters": {
+        "training_batches": 500,
+        "training_samples": 62950,
+        "training_ce_gradient_passes": 2500,
+        "isolated_diagnostic_ce_gradient_passes": 0,
+        "independent_sam_probe_gradient_passes": 0
+      },
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 0.25,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 0.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/formation_g_r025_s2/completed.json",
+      "trainer_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/trainer/formation_task0.py",
+      "trainer_sha256": "0a353bc3fda436caacdf73aca649d4674bdd376823defafff4087f74f78ddc0c",
+      "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+      "checkpoint_checks": {
+        "0": true,
+        "10": true,
+        "20": true,
+        "30": true,
+        "40": true,
+        "50": true
+      },
+      "protocol_note": "Independent task0seed2 and formationtask0seed2 are distinct entrypoints/traces. Classmacro accuracy is not taskmacroAAA."
+    }
+  ],
+  "formation_seed012_summary": {
+    "eval_accuracy": {
+      "mean": 86.64495114006515,
+      "sample_std": 0.3257328990227961
+    },
+    "eval_class_macro_accuracy": {
+      "mean": 88.50857357633168,
+      "sample_std": 0.5442551517709121
+    },
+    "eval_ce": {
+      "mean": 0.4191174998992688,
+      "sample_std": 0.019170079210928004
+    },
+    "train_ce": {
+      "mean": 0.41297450865233487,
+      "sample_std": 0.026067408593894018
+    }
+  },
+  "excluded_anchor_only_continuations": [
+    {
+      "id": "future_g_r025_e00_s_s0",
+      "unique_id": "formation_future::future_g_r025_e00_s_s0",
+      "seed": 0,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 0,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 3.6706855660152744,
+              "accuracy": 4.234527687296417,
+              "macro_accuracy": 5.271033775829172,
+              "samples": 307,
+              "correct": 13
+            },
+            "all_seen": {
+              "ce": 4.920653956332502,
+              "accuracy": 1.3029315960912053,
+              "macro_accuracy": 1.840277777777778,
+              "samples": 307,
+              "correct": 4
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 3.628858569790335,
+              "accuracy": 3.9215686274509802,
+              "macro_accuracy": 3.8392857142857144,
+              "samples": 102,
+              "correct": 4
+            },
+            "all_seen": {
+              "ce": 4.84931141722436,
+              "accuracy": 0.9803921568627451,
+              "macro_accuracy": 1.6666666666666667,
+              "samples": 102,
+              "correct": 1
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 3.6914970179883446,
+              "accuracy": 4.390243902439024,
+              "macro_accuracy": 5.73466810966811,
+              "samples": 205,
+              "correct": 9
+            },
+            "all_seen": {
+              "ce": 4.956151203411381,
+              "accuracy": 1.4634146341463417,
+              "macro_accuracy": 1.9128787878787878,
+              "samples": 205,
+              "correct": 3
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.6789234660512687,
+              "accuracy": 79.92125984251969,
+              "macro_accuracy": 75.04605402767167,
+              "samples": 254,
+              "correct": 203
+            },
+            "all_seen": {
+              "ce": 0.8491282581579028,
+              "accuracy": 77.95275590551181,
+              "macro_accuracy": 70.64129212290977,
+              "samples": 254,
+              "correct": 198
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.639560639628187,
+              "accuracy": 79.76190476190477,
+              "macro_accuracy": 73.89724310776943,
+              "samples": 84,
+              "correct": 67
+            },
+            "all_seen": {
+              "ce": 0.8110568111463051,
+              "accuracy": 77.38095238095238,
+              "macro_accuracy": 67.88220551378446,
+              "samples": 84,
+              "correct": 65
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.6983732583850403,
+              "accuracy": 80.0,
+              "macro_accuracy": 77.39772727272728,
+              "samples": 170,
+              "correct": 136
+            },
+            "all_seen": {
+              "ce": 0.8679399576503783,
+              "accuracy": 78.23529411764706,
+              "macro_accuracy": 73.23106060606061,
+              "samples": 170,
+              "correct": 133
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e00_s_s0/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e10_s_s0",
+      "unique_id": "formation_future::future_g_r025_e10_s_s0",
+      "seed": 0,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 10,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.48948324469740256,
+              "accuracy": 83.38762214983714,
+              "macro_accuracy": 85.5874475494966,
+              "samples": 307,
+              "correct": 256
+            },
+            "all_seen": {
+              "ce": 0.6796422464904263,
+              "accuracy": 80.13029315960912,
+              "macro_accuracy": 82.14230360563144,
+              "samples": 307,
+              "correct": 246
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.47884993384222446,
+              "accuracy": 83.33333333333334,
+              "macro_accuracy": 85.83928571428572,
+              "samples": 102,
+              "correct": 85
+            },
+            "all_seen": {
+              "ce": 0.6734411350517607,
+              "accuracy": 79.41176470588235,
+              "macro_accuracy": 81.08928571428572,
+              "samples": 102,
+              "correct": 81
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.4947739062802412,
+              "accuracy": 83.41463414634146,
+              "macro_accuracy": 85.45032745032745,
+              "samples": 205,
+              "correct": 171
+            },
+            "all_seen": {
+              "ce": 0.6827275966225964,
+              "accuracy": 80.48780487804879,
+              "macro_accuracy": 82.53907203907204,
+              "samples": 205,
+              "correct": 165
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5138942569221084,
+              "accuracy": 83.46456692913385,
+              "macro_accuracy": 83.32220842882609,
+              "samples": 254,
+              "correct": 212
+            },
+            "all_seen": {
+              "ce": 0.8862544344628127,
+              "accuracy": 73.22834645669292,
+              "macro_accuracy": 73.38126538494187,
+              "samples": 254,
+              "correct": 186
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.4974797605093391,
+              "accuracy": 78.57142857142857,
+              "macro_accuracy": 73.89724310776943,
+              "samples": 84,
+              "correct": 66
+            },
+            "all_seen": {
+              "ce": 0.9225182570295319,
+              "accuracy": 67.85714285714286,
+              "macro_accuracy": 65.07518796992481,
+              "samples": 84,
+              "correct": 57
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.522005131165497,
+              "accuracy": 85.88235294117646,
+              "macro_accuracy": 86.68560606060606,
+              "samples": 170,
+              "correct": 146
+            },
+            "all_seen": {
+              "ce": 0.868335989901029,
+              "accuracy": 75.88235294117646,
+              "macro_accuracy": 76.19751082251082,
+              "samples": 170,
+              "correct": 129
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e10_s_s0/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e20_s_s0",
+      "unique_id": "formation_future::future_g_r025_e20_s_s0",
+      "seed": 0,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 20,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4225203625902197,
+              "accuracy": 87.29641693811075,
+              "macro_accuracy": 89.30346398172654,
+              "samples": 307,
+              "correct": 268
+            },
+            "all_seen": {
+              "ce": 0.5770276817493141,
+              "accuracy": 85.34201954397395,
+              "macro_accuracy": 86.6954638022497,
+              "samples": 307,
+              "correct": 262
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.4049873529384415,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 87.97619047619047,
+              "samples": 102,
+              "correct": 87
+            },
+            "all_seen": {
+              "ce": 0.5578620796749258,
+              "accuracy": 82.35294117647058,
+              "macro_accuracy": 81.42857142857142,
+              "samples": 102,
+              "correct": 84
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.4312440534184755,
+              "accuracy": 88.29268292682927,
+              "macro_accuracy": 90.10633810633811,
+              "samples": 205,
+              "correct": 181
+            },
+            "all_seen": {
+              "ce": 0.5865636846675287,
+              "accuracy": 86.82926829268293,
+              "macro_accuracy": 88.81845931845932,
+              "samples": 205,
+              "correct": 178
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5140663705313373,
+              "accuracy": 82.67716535433071,
+              "macro_accuracy": 82.2334479246244,
+              "samples": 254,
+              "correct": 210
+            },
+            "all_seen": {
+              "ce": 0.925685315425911,
+              "accuracy": 72.44094488188976,
+              "macro_accuracy": 72.57453739071387,
+              "samples": 254,
+              "correct": 184
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.4989953779815031,
+              "accuracy": 79.76190476190477,
+              "macro_accuracy": 74.64912280701753,
+              "samples": 84,
+              "correct": 67
+            },
+            "all_seen": {
+              "ce": 0.9752004758144418,
+              "accuracy": 69.04761904761905,
+              "macro_accuracy": 66.8295739348371,
+              "samples": 84,
+              "correct": 58
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5215132001581986,
+              "accuracy": 84.11764705882354,
+              "macro_accuracy": 84.80032467532467,
+              "samples": 170,
+              "correct": 143
+            },
+            "all_seen": {
+              "ce": 0.9012188853750772,
+              "accuracy": 74.11764705882354,
+              "macro_accuracy": 74.02056277056276,
+              "samples": 170,
+              "correct": 126
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e20_s_s0/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e30_s_s0",
+      "unique_id": "formation_future::future_g_r025_e30_s_s0",
+      "seed": 0,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 30,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4038761043130475,
+              "accuracy": 87.29641693811075,
+              "macro_accuracy": 89.54986618633308,
+              "samples": 307,
+              "correct": 268
+            },
+            "all_seen": {
+              "ce": 0.5462304865719572,
+              "accuracy": 85.01628664495115,
+              "macro_accuracy": 86.15374185031104,
+              "samples": 307,
+              "correct": 261
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.36362776419150133,
+              "accuracy": 86.27450980392157,
+              "macro_accuracy": 88.97619047619047,
+              "samples": 102,
+              "correct": 88
+            },
+            "all_seen": {
+              "ce": 0.5032006728179826,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 83.97619047619047,
+              "samples": 102,
+              "correct": 87
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.42390221549232104,
+              "accuracy": 87.8048780487805,
+              "macro_accuracy": 89.96259296259296,
+              "samples": 205,
+              "correct": 180
+            },
+            "all_seen": {
+              "ce": 0.5676405649618018,
+              "accuracy": 84.8780487804878,
+              "macro_accuracy": 86.77987290487292,
+              "samples": 205,
+              "correct": 174
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5157446345464715,
+              "accuracy": 81.88976377952756,
+              "macro_accuracy": 81.66201935319583,
+              "samples": 254,
+              "correct": 208
+            },
+            "all_seen": {
+              "ce": 0.9540500524673816,
+              "accuracy": 71.65354330708661,
+              "macro_accuracy": 67.32010228333759,
+              "samples": 254,
+              "correct": 182
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5014298074196891,
+              "accuracy": 78.57142857142857,
+              "macro_accuracy": 73.89724310776943,
+              "samples": 84,
+              "correct": 66
+            },
+            "all_seen": {
+              "ce": 1.0002207971798878,
+              "accuracy": 67.85714285714286,
+              "macro_accuracy": 66.07769423558896,
+              "samples": 84,
+              "correct": 57
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.522817739922389,
+              "accuracy": 83.52941176470588,
+              "macro_accuracy": 84.30032467532467,
+              "samples": 170,
+              "correct": 142
+            },
+            "all_seen": {
+              "ce": 0.9312362652217202,
+              "accuracy": 73.52941176470588,
+              "macro_accuracy": 69.02056277056276,
+              "samples": 170,
+              "correct": 125
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e30_s_s0/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e40_s_s0",
+      "unique_id": "formation_future::future_g_r025_e40_s_s0",
+      "seed": 0,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 40,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4040742073619908,
+              "accuracy": 87.29641693811075,
+              "macro_accuracy": 89.54986618633308,
+              "samples": 307,
+              "correct": 268
+            },
+            "all_seen": {
+              "ce": 0.5403097490675774,
+              "accuracy": 85.99348534201955,
+              "macro_accuracy": 88.20502390159308,
+              "samples": 307,
+              "correct": 264
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.35200654744489035,
+              "accuracy": 86.27450980392157,
+              "macro_accuracy": 88.97619047619047,
+              "samples": 102,
+              "correct": 88
+            },
+            "all_seen": {
+              "ce": 0.48625329856340793,
+              "accuracy": 86.27450980392157,
+              "macro_accuracy": 88.97619047619047,
+              "samples": 102,
+              "correct": 88
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.42998110907473147,
+              "accuracy": 87.8048780487805,
+              "macro_accuracy": 89.96259296259296,
+              "samples": 205,
+              "correct": 180
+            },
+            "all_seen": {
+              "ce": 0.567206203317122,
+              "accuracy": 85.85365853658537,
+              "macro_accuracy": 87.96042846042846,
+              "samples": 205,
+              "correct": 176
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.516711847179232,
+              "accuracy": 81.88976377952756,
+              "macro_accuracy": 81.66201935319583,
+              "samples": 254,
+              "correct": 208
+            },
+            "all_seen": {
+              "ce": 0.9692538024666976,
+              "accuracy": 71.25984251968504,
+              "macro_accuracy": 66.76454672778203,
+              "samples": 254,
+              "correct": 181
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5007171916492682,
+              "accuracy": 78.57142857142857,
+              "macro_accuracy": 73.89724310776943,
+              "samples": 84,
+              "correct": 66
+            },
+            "all_seen": {
+              "ce": 1.0125004450036657,
+              "accuracy": 67.85714285714286,
+              "macro_accuracy": 66.07769423558896,
+              "samples": 84,
+              "correct": 57
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5246150158783969,
+              "accuracy": 83.52941176470588,
+              "macro_accuracy": 84.30032467532467,
+              "samples": 170,
+              "correct": 142
+            },
+            "all_seen": {
+              "ce": 0.9478847487665275,
+              "accuracy": 72.94117647058823,
+              "macro_accuracy": 68.18722943722943,
+              "samples": 170,
+              "correct": 124
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e40_s_s0/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e50_s_s0",
+      "unique_id": "formation_future::future_g_r025_e50_s_s0",
+      "seed": 0,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 50,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 0,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.3956565435674134,
+              "accuracy": 88.27361563517914,
+              "macro_accuracy": 90.29357328015458,
+              "samples": 307,
+              "correct": 271
+            },
+            "all_seen": {
+              "ce": 0.5319298740957199,
+              "accuracy": 86.97068403908796,
+              "macro_accuracy": 88.94873099541459,
+              "samples": 307,
+              "correct": 267
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.35221668237343196,
+              "accuracy": 87.25490196078431,
+              "macro_accuracy": 89.60119047619047,
+              "samples": 102,
+              "correct": 89
+            },
+            "all_seen": {
+              "ce": 0.485814077843565,
+              "accuracy": 87.25490196078431,
+              "macro_accuracy": 89.60119047619047,
+              "samples": 102,
+              "correct": 89
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.41727063691161187,
+              "accuracy": 88.78048780487805,
+              "macro_accuracy": 90.73182373182372,
+              "samples": 205,
+              "correct": 182
+            },
+            "all_seen": {
+              "ce": 0.5548754532304706,
+              "accuracy": 86.82926829268293,
+              "macro_accuracy": 88.72965922965923,
+              "samples": 205,
+              "correct": 178
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5167522813188,
+              "accuracy": 81.88976377952756,
+              "macro_accuracy": 81.66201935319583,
+              "samples": 254,
+              "correct": 208
+            },
+            "all_seen": {
+              "ce": 0.9691932802711885,
+              "accuracy": 71.25984251968504,
+              "macro_accuracy": 66.69510228333759,
+              "samples": 254,
+              "correct": 181
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5001426853372583,
+              "accuracy": 78.57142857142857,
+              "macro_accuracy": 73.89724310776943,
+              "samples": 84,
+              "correct": 66
+            },
+            "all_seen": {
+              "ce": 1.0114113421268052,
+              "accuracy": 66.66666666666666,
+              "macro_accuracy": 63.44611528822055,
+              "samples": 84,
+              "correct": 56
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5249593593796495,
+              "accuracy": 83.52941176470588,
+              "macro_accuracy": 84.30032467532467,
+              "samples": 170,
+              "correct": 142
+            },
+            "all_seen": {
+              "ce": 0.9483324924593463,
+              "accuracy": 73.52941176470588,
+              "macro_accuracy": 69.02056277056276,
+              "samples": 170,
+              "correct": 125
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s0/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s0/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e50_s_s0/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e00_s_s1",
+      "unique_id": "formation_future::future_g_r025_e00_s_s1",
+      "seed": 1,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 0,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 3.861446732418545,
+              "accuracy": 2.2801302931596092,
+              "macro_accuracy": 2.1484689985834153,
+              "samples": 307,
+              "correct": 7
+            },
+            "all_seen": {
+              "ce": 5.133097240124929,
+              "accuracy": 0.32573289902280134,
+              "macro_accuracy": 0.33333333333333337,
+              "samples": 307,
+              "correct": 1
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 3.939632686914182,
+              "accuracy": 3.9215686274509802,
+              "macro_accuracy": 3.8333333333333335,
+              "samples": 102,
+              "correct": 4
+            },
+            "all_seen": {
+              "ce": 5.138782301369836,
+              "accuracy": 0.0,
+              "macro_accuracy": 0.0,
+              "samples": 102,
+              "correct": 0
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 3.822544385165703,
+              "accuracy": 1.4634146341463417,
+              "macro_accuracy": 1.217948717948718,
+              "samples": 205,
+              "correct": 3
+            },
+            "all_seen": {
+              "ce": 5.130268403960438,
+              "accuracy": 0.4878048780487805,
+              "macro_accuracy": 0.5,
+              "samples": 205,
+              "correct": 1
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.7094375927777645,
+              "accuracy": 80.31496062992126,
+              "macro_accuracy": 76.34800207961973,
+              "samples": 254,
+              "correct": 204
+            },
+            "all_seen": {
+              "ce": 0.8989200090190146,
+              "accuracy": 77.95275590551181,
+              "macro_accuracy": 71.38768461930226,
+              "samples": 254,
+              "correct": 198
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.644481759169139,
+              "accuracy": 82.14285714285714,
+              "macro_accuracy": 81.70426065162907,
+              "samples": 84,
+              "correct": 69
+            },
+            "all_seen": {
+              "ce": 0.8234474059454875,
+              "accuracy": 82.14285714285714,
+              "macro_accuracy": 81.70426065162907,
+              "samples": 84,
+              "correct": 69
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.741533483849044,
+              "accuracy": 79.41176470588235,
+              "macro_accuracy": 75.99891774891776,
+              "samples": 170,
+              "correct": 135
+            },
+            "all_seen": {
+              "ce": 0.9362124342430274,
+              "accuracy": 75.88235294117646,
+              "macro_accuracy": 68.55844155844156,
+              "samples": 170,
+              "correct": 129
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e00_s_s1/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e10_s_s1",
+      "unique_id": "formation_future::future_g_r025_e10_s_s1",
+      "seed": 1,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 10,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4958378641468174,
+              "accuracy": 85.01628664495115,
+              "macro_accuracy": 86.82801739977168,
+              "samples": 307,
+              "correct": 261
+            },
+            "all_seen": {
+              "ce": 0.6869301998042441,
+              "accuracy": 82.41042345276874,
+              "macro_accuracy": 84.29511807403348,
+              "samples": 307,
+              "correct": 253
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.48055141324385103,
+              "accuracy": 83.33333333333334,
+              "macro_accuracy": 84.54166666666666,
+              "samples": 102,
+              "correct": 85
+            },
+            "all_seen": {
+              "ce": 0.6721326506641858,
+              "accuracy": 83.33333333333334,
+              "macro_accuracy": 84.54166666666666,
+              "samples": 102,
+              "correct": 85
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5034441099415544,
+              "accuracy": 85.85365853658537,
+              "macro_accuracy": 87.85730935730935,
+              "samples": 205,
+              "correct": 176
+            },
+            "all_seen": {
+              "ce": 0.6942931675156238,
+              "accuracy": 81.95121951219512,
+              "macro_accuracy": 84.05765068265069,
+              "samples": 205,
+              "correct": 168
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5581367884718585,
+              "accuracy": 84.25196850393701,
+              "macro_accuracy": 80.32671780833546,
+              "samples": 254,
+              "correct": 214
+            },
+            "all_seen": {
+              "ce": 0.9210503433691705,
+              "accuracy": 74.40944881889764,
+              "macro_accuracy": 69.94068309141839,
+              "samples": 254,
+              "correct": 189
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5277440628380559,
+              "accuracy": 85.71428571428571,
+              "macro_accuracy": 86.09022556390978,
+              "samples": 84,
+              "correct": 72
+            },
+            "all_seen": {
+              "ce": 0.9443595801879253,
+              "accuracy": 75.0,
+              "macro_accuracy": 72.88220551378447,
+              "samples": 84,
+              "correct": 63
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5731543938656721,
+              "accuracy": 83.52941176470588,
+              "macro_accuracy": 79.95941558441558,
+              "samples": 170,
+              "correct": 142
+            },
+            "all_seen": {
+              "ce": 0.9095328769591802,
+              "accuracy": 74.11764705882354,
+              "macro_accuracy": 69.8262987012987,
+              "samples": 170,
+              "correct": 126
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e10_s_s1/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e20_s_s1",
+      "unique_id": "formation_future::future_g_r025_e20_s_s1",
+      "seed": 1,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 20,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4689199281253485,
+              "accuracy": 85.01628664495115,
+              "macro_accuracy": 86.84785774697775,
+              "samples": 307,
+              "correct": 261
+            },
+            "all_seen": {
+              "ce": 0.6189767091928644,
+              "accuracy": 83.38762214983714,
+              "macro_accuracy": 85.30374009991894,
+              "samples": 307,
+              "correct": 256
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.4408346518064397,
+              "accuracy": 83.33333333333334,
+              "macro_accuracy": 84.51190476190476,
+              "samples": 102,
+              "correct": 85
+            },
+            "all_seen": {
+              "ce": 0.5970190364534181,
+              "accuracy": 83.33333333333334,
+              "macro_accuracy": 84.51190476190476,
+              "samples": 102,
+              "correct": 85
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.4828939569641257,
+              "accuracy": 85.85365853658537,
+              "macro_accuracy": 87.94821844821846,
+              "samples": 205,
+              "correct": 176
+            },
+            "all_seen": {
+              "ce": 0.6299018635011346,
+              "accuracy": 83.41463414634146,
+              "macro_accuracy": 85.59944222444223,
+              "samples": 205,
+              "correct": 171
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5440455350143043,
+              "accuracy": 83.85826771653542,
+              "macro_accuracy": 79.59439457601222,
+              "samples": 254,
+              "correct": 213
+            },
+            "all_seen": {
+              "ce": 0.9632352609774024,
+              "accuracy": 71.25984251968504,
+              "macro_accuracy": 67.30143345216875,
+              "samples": 254,
+              "correct": 181
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5327754294377796,
+              "accuracy": 85.71428571428571,
+              "macro_accuracy": 86.09022556390978,
+              "samples": 84,
+              "correct": 72
+            },
+            "all_seen": {
+              "ce": 1.002078285795592,
+              "accuracy": 72.61904761904762,
+              "macro_accuracy": 71.2531328320802,
+              "samples": 84,
+              "correct": 61
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5496142476865583,
+              "accuracy": 82.94117647058825,
+              "macro_accuracy": 78.91774891774892,
+              "samples": 170,
+              "correct": 141
+            },
+            "all_seen": {
+              "ce": 0.9440421640653821,
+              "accuracy": 70.58823529411765,
+              "macro_accuracy": 66.75487012987013,
+              "samples": 170,
+              "correct": 120
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e20_s_s1/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e30_s_s1",
+      "unique_id": "formation_future::future_g_r025_e30_s_s1",
+      "seed": 1,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 30,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.43465753020451353,
+              "accuracy": 86.64495114006515,
+              "macro_accuracy": 88.18088238599915,
+              "samples": 307,
+              "correct": 266
+            },
+            "all_seen": {
+              "ce": 0.5728897387436773,
+              "accuracy": 85.01628664495115,
+              "macro_accuracy": 86.77543404065312,
+              "samples": 307,
+              "correct": 261
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.4139012845028215,
+              "accuracy": 84.31372549019608,
+              "macro_accuracy": 85.3452380952381,
+              "samples": 102,
+              "correct": 86
+            },
+            "all_seen": {
+              "ce": 0.5561848998597057,
+              "accuracy": 84.31372549019608,
+              "macro_accuracy": 85.3452380952381,
+              "samples": 102,
+              "correct": 86
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.44498486502760476,
+              "accuracy": 87.8048780487805,
+              "macro_accuracy": 89.50960150960151,
+              "samples": 205,
+              "correct": 180
+            },
+            "all_seen": {
+              "ce": 0.5812013395298159,
+              "accuracy": 85.36585365853658,
+              "macro_accuracy": 87.378774003774,
+              "samples": 205,
+              "correct": 175
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5424771796413294,
+              "accuracy": 83.85826771653542,
+              "macro_accuracy": 79.59439457601222,
+              "samples": 254,
+              "correct": 213
+            },
+            "all_seen": {
+              "ce": 0.975602554531372,
+              "accuracy": 72.04724409448819,
+              "macro_accuracy": 67.61719612087259,
+              "samples": 254,
+              "correct": 183
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5350244703115008,
+              "accuracy": 85.71428571428571,
+              "macro_accuracy": 86.09022556390978,
+              "samples": 84,
+              "correct": 72
+            },
+            "all_seen": {
+              "ce": 1.0295360320292057,
+              "accuracy": 75.0,
+              "macro_accuracy": 72.88220551378446,
+              "samples": 84,
+              "correct": 63
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5461597262826913,
+              "accuracy": 82.94117647058825,
+              "macro_accuracy": 78.91774891774892,
+              "samples": 170,
+              "correct": 141
+            },
+            "all_seen": {
+              "ce": 0.9489531301948078,
+              "accuracy": 70.58823529411765,
+              "macro_accuracy": 66.48701298701299,
+              "samples": 170,
+              "correct": 120
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e30_s_s1/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e40_s_s1",
+      "unique_id": "formation_future::future_g_r025_e40_s_s1",
+      "seed": 1,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 40,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.42676679983830645,
+              "accuracy": 86.64495114006515,
+              "macro_accuracy": 88.3023398758777,
+              "samples": 307,
+              "correct": 266
+            },
+            "all_seen": {
+              "ce": 0.561041587584118,
+              "accuracy": 84.69055374592834,
+              "macro_accuracy": 86.51227614591627,
+              "samples": 307,
+              "correct": 260
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.3998335915247855,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 86.5952380952381,
+              "samples": 102,
+              "correct": 87
+            },
+            "all_seen": {
+              "ce": 0.5366970427789698,
+              "accuracy": 84.31372549019608,
+              "macro_accuracy": 85.3452380952381,
+              "samples": 102,
+              "correct": 86
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.4401677208969642,
+              "accuracy": 87.3170731707317,
+              "macro_accuracy": 89.12498612498612,
+              "samples": 205,
+              "correct": 179
+            },
+            "all_seen": {
+              "ce": 0.5731545272155483,
+              "accuracy": 84.8780487804878,
+              "macro_accuracy": 86.99415861915863,
+              "samples": 205,
+              "correct": 174
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.544169408350809,
+              "accuracy": 83.85826771653542,
+              "macro_accuracy": 79.59439457601222,
+              "samples": 254,
+              "correct": 213
+            },
+            "all_seen": {
+              "ce": 0.9837445803903277,
+              "accuracy": 71.65354330708661,
+              "macro_accuracy": 67.06164056531703,
+              "samples": 254,
+              "correct": 182
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5337348966582102,
+              "accuracy": 85.71428571428571,
+              "macro_accuracy": 86.09022556390978,
+              "samples": 84,
+              "correct": 72
+            },
+            "all_seen": {
+              "ce": 1.0392764118233961,
+              "accuracy": 75.0,
+              "macro_accuracy": 72.88220551378446,
+              "samples": 84,
+              "correct": 63
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.549325373740045,
+              "accuracy": 82.94117647058825,
+              "macro_accuracy": 78.91774891774892,
+              "samples": 170,
+              "correct": 141
+            },
+            "all_seen": {
+              "ce": 0.9563054297941134,
+              "accuracy": 70.0,
+              "macro_accuracy": 65.65367965367965,
+              "samples": 170,
+              "correct": 119
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e40_s_s1/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e50_s_s1",
+      "unique_id": "formation_future::future_g_r025_e50_s_s1",
+      "seed": 1,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 50,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 1,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4141453224750378,
+              "accuracy": 87.29641693811075,
+              "macro_accuracy": 88.92264062775739,
+              "samples": 307,
+              "correct": 268
+            },
+            "all_seen": {
+              "ce": 0.5466409769866324,
+              "accuracy": 85.34201954397395,
+              "macro_accuracy": 87.13257689779597,
+              "samples": 307,
+              "correct": 262
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.38533996641989704,
+              "accuracy": 86.27450980392157,
+              "macro_accuracy": 87.5952380952381,
+              "samples": 102,
+              "correct": 88
+            },
+            "all_seen": {
+              "ce": 0.5199813718865306,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 86.3452380952381,
+              "samples": 102,
+              "correct": 87
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.42847775359547174,
+              "accuracy": 87.8048780487805,
+              "macro_accuracy": 89.50960150960151,
+              "samples": 205,
+              "correct": 180
+            },
+            "all_seen": {
+              "ce": 0.5599057313784526,
+              "accuracy": 85.36585365853658,
+              "macro_accuracy": 87.378774003774,
+              "samples": 205,
+              "correct": 175
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5441984022943684,
+              "accuracy": 83.85826771653542,
+              "macro_accuracy": 79.59439457601222,
+              "samples": 254,
+              "correct": 213
+            },
+            "all_seen": {
+              "ce": 0.9867956820677408,
+              "accuracy": 71.25984251968504,
+              "macro_accuracy": 66.82354532722181,
+              "samples": 254,
+              "correct": 181
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5336078550511351,
+              "accuracy": 85.71428571428571,
+              "macro_accuracy": 86.09022556390978,
+              "samples": 84,
+              "correct": 72
+            },
+            "all_seen": {
+              "ce": 1.0438986543033804,
+              "accuracy": 73.80952380952381,
+              "macro_accuracy": 72.13032581453633,
+              "samples": 84,
+              "correct": 62
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5494313171557973,
+              "accuracy": 82.94117647058825,
+              "macro_accuracy": 78.91774891774892,
+              "samples": 170,
+              "correct": 141
+            },
+            "all_seen": {
+              "ce": 0.9585800384171307,
+              "accuracy": 70.0,
+              "macro_accuracy": 65.65367965367965,
+              "samples": 170,
+              "correct": 119
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s1/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s1/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e50_s_s1/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e00_s_s2",
+      "unique_id": "formation_future::future_g_r025_e00_s_s2",
+      "seed": 2,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 0,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 3.7045854372776295,
+              "accuracy": 6.840390879478828,
+              "macro_accuracy": 6.931662398414316,
+              "samples": 307,
+              "correct": 21
+            },
+            "all_seen": {
+              "ce": 4.995610146646779,
+              "accuracy": 1.9543973941368076,
+              "macro_accuracy": 1.9591495461060677,
+              "samples": 307,
+              "correct": 6
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 3.6867589757722965,
+              "accuracy": 8.823529411764707,
+              "macro_accuracy": 8.428571428571427,
+              "samples": 102,
+              "correct": 9
+            },
+            "all_seen": {
+              "ce": 4.965372085571289,
+              "accuracy": 2.941176470588235,
+              "macro_accuracy": 2.875,
+              "samples": 102,
+              "correct": 3
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 3.7134552909106744,
+              "accuracy": 5.853658536585367,
+              "macro_accuracy": 6.303751803751804,
+              "samples": 205,
+              "correct": 12
+            },
+            "all_seen": {
+              "ce": 5.010655614224876,
+              "accuracy": 1.4634146341463417,
+              "macro_accuracy": 1.5555555555555556,
+              "samples": 205,
+              "correct": 3
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.7602941744913179,
+              "accuracy": 75.98425196850394,
+              "macro_accuracy": 71.55305682879212,
+              "samples": 254,
+              "correct": 193
+            },
+            "all_seen": {
+              "ce": 0.9565120524292313,
+              "accuracy": 74.01574803149606,
+              "macro_accuracy": 68.95385047958578,
+              "samples": 254,
+              "correct": 188
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.7326007788665482,
+              "accuracy": 73.80952380952381,
+              "macro_accuracy": 67.44360902255639,
+              "samples": 84,
+              "correct": 62
+            },
+            "all_seen": {
+              "ce": 0.9474831670550408,
+              "accuracy": 71.42857142857143,
+              "macro_accuracy": 64.06015037593984,
+              "samples": 84,
+              "correct": 60
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.7739781054181923,
+              "accuracy": 77.05882352941177,
+              "macro_accuracy": 74.64989177489177,
+              "samples": 170,
+              "correct": 131
+            },
+            "all_seen": {
+              "ce": 0.9609735178514658,
+              "accuracy": 75.29411764705883,
+              "macro_accuracy": 72.14989177489177,
+              "samples": 170,
+              "correct": 128
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e00_s_s2/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e10_s_s2",
+      "unique_id": "formation_future::future_g_r025_e10_s_s2",
+      "seed": 2,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 10,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4337573624918494,
+              "accuracy": 86.64495114006515,
+              "macro_accuracy": 88.33895413992838,
+              "samples": 307,
+              "correct": 266
+            },
+            "all_seen": {
+              "ce": 0.6135827612639208,
+              "accuracy": 82.41042345276874,
+              "macro_accuracy": 83.58754905524323,
+              "samples": 307,
+              "correct": 253
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.4015872363881642,
+              "accuracy": 88.23529411764706,
+              "macro_accuracy": 89.8452380952381,
+              "samples": 102,
+              "correct": 90
+            },
+            "all_seen": {
+              "ce": 0.5968536467887188,
+              "accuracy": 81.37254901960785,
+              "macro_accuracy": 83.5,
+              "samples": 102,
+              "correct": 83
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.4497639896521322,
+              "accuracy": 85.85365853658537,
+              "macro_accuracy": 87.63490675990676,
+              "samples": 205,
+              "correct": 176
+            },
+            "all_seen": {
+              "ce": 0.6219065378669922,
+              "accuracy": 82.92682926829268,
+              "macro_accuracy": 83.83741258741259,
+              "samples": 205,
+              "correct": 170
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5758908892602213,
+              "accuracy": 83.07086614173228,
+              "macro_accuracy": 77.90905907817674,
+              "samples": 254,
+              "correct": 211
+            },
+            "all_seen": {
+              "ce": 0.9572176461192361,
+              "accuracy": 72.83464566929135,
+              "macro_accuracy": 67.30873864697395,
+              "samples": 254,
+              "correct": 185
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5619092347360926,
+              "accuracy": 82.14285714285714,
+              "macro_accuracy": 77.70676691729322,
+              "samples": 84,
+              "correct": 69
+            },
+            "all_seen": {
+              "ce": 1.0125602749453502,
+              "accuracy": 71.42857142857143,
+              "macro_accuracy": 69.46115288220551,
+              "samples": 84,
+              "correct": 60
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5827994655242519,
+              "accuracy": 83.52941176470588,
+              "macro_accuracy": 79.45400432900433,
+              "samples": 170,
+              "correct": 142
+            },
+            "all_seen": {
+              "ce": 0.9298719535417417,
+              "accuracy": 73.52941176470588,
+              "macro_accuracy": 67.68398268398269,
+              "samples": 170,
+              "correct": 125
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e10_s_s2/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e20_s_s2",
+      "unique_id": "formation_future::future_g_r025_e20_s_s2",
+      "seed": 2,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 20,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.4047674467650254,
+              "accuracy": 87.29641693811075,
+              "macro_accuracy": 89.05976345187545,
+              "samples": 307,
+              "correct": 268
+            },
+            "all_seen": {
+              "ce": 0.5503808266152582,
+              "accuracy": 84.36482084690554,
+              "macro_accuracy": 85.47449054512589,
+              "samples": 307,
+              "correct": 259
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.3725120484122468,
+              "accuracy": 88.23529411764706,
+              "macro_accuracy": 89.55952380952382,
+              "samples": 102,
+              "correct": 90
+            },
+            "all_seen": {
+              "ce": 0.5225588061707551,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 87.01190476190477,
+              "samples": 102,
+              "correct": 87
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.4208166121363231,
+              "accuracy": 86.82926829268293,
+              "macro_accuracy": 88.81894494394494,
+              "samples": 205,
+              "correct": 178
+            },
+            "all_seen": {
+              "ce": 0.5642241400240625,
+              "accuracy": 83.90243902439025,
+              "macro_accuracy": 84.92471417471417,
+              "samples": 205,
+              "correct": 172
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5637243717274534,
+              "accuracy": 83.85826771653542,
+              "macro_accuracy": 78.77215431627198,
+              "samples": 254,
+              "correct": 213
+            },
+            "all_seen": {
+              "ce": 1.000269680797291,
+              "accuracy": 70.47244094488188,
+              "macro_accuracy": 65.43355827179357,
+              "samples": 254,
+              "correct": 179
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5724517102963069,
+              "accuracy": 82.14285714285714,
+              "macro_accuracy": 77.70676691729322,
+              "samples": 84,
+              "correct": 69
+            },
+            "all_seen": {
+              "ce": 1.06921751704067,
+              "accuracy": 69.04761904761905,
+              "macro_accuracy": 67.83208020050125,
+              "samples": 84,
+              "correct": 58
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5594119654530112,
+              "accuracy": 84.70588235294117,
+              "macro_accuracy": 80.64448051948054,
+              "samples": 170,
+              "correct": 144
+            },
+            "all_seen": {
+              "ce": 0.9662013678811491,
+              "accuracy": 71.17647058823529,
+              "macro_accuracy": 65.70183982683983,
+              "samples": 170,
+              "correct": 121
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e20_s_s2/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e30_s_s2",
+      "unique_id": "formation_future::future_g_r025_e30_s_s2",
+      "seed": 2,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 30,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.3876591004124662,
+              "accuracy": 86.64495114006515,
+              "macro_accuracy": 88.46218997272301,
+              "samples": 307,
+              "correct": 266
+            },
+            "all_seen": {
+              "ce": 0.5224836202469542,
+              "accuracy": 84.69055374592834,
+              "macro_accuracy": 85.75436804636561,
+              "samples": 307,
+              "correct": 260
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.3556482913685899,
+              "accuracy": 88.23529411764706,
+              "macro_accuracy": 89.55952380952382,
+              "samples": 102,
+              "correct": 90
+            },
+            "all_seen": {
+              "ce": 0.49469960076099845,
+              "accuracy": 87.25490196078431,
+              "macro_accuracy": 88.8452380952381,
+              "samples": 102,
+              "correct": 89
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.40358662457764716,
+              "accuracy": 85.85365853658537,
+              "macro_accuracy": 87.878774003774,
+              "samples": 205,
+              "correct": 176
+            },
+            "all_seen": {
+              "ce": 0.536308073802147,
+              "accuracy": 83.41463414634146,
+              "macro_accuracy": 84.36915861915863,
+              "samples": 205,
+              "correct": 171
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.563442817342827,
+              "accuracy": 84.25196850393701,
+              "macro_accuracy": 79.22669977081742,
+              "samples": 254,
+              "correct": 214
+            },
+            "all_seen": {
+              "ce": 1.033826416882679,
+              "accuracy": 69.29133858267717,
+              "macro_accuracy": 64.48334182157711,
+              "samples": 254,
+              "correct": 176
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5727658036076242,
+              "accuracy": 82.14285714285714,
+              "macro_accuracy": 77.70676691729322,
+              "samples": 84,
+              "correct": 69
+            },
+            "all_seen": {
+              "ce": 1.108839850429268,
+              "accuracy": 69.04761904761905,
+              "macro_accuracy": 67.65664160401002,
+              "samples": 84,
+              "correct": 58
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5588362169698539,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 81.26948051948054,
+              "samples": 170,
+              "correct": 145
+            },
+            "all_seen": {
+              "ce": 0.9967610035420341,
+              "accuracy": 69.41176470588235,
+              "macro_accuracy": 64.30303030303031,
+              "samples": 170,
+              "correct": 118
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e30_s_s2/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e40_s_s2",
+      "unique_id": "formation_future::future_g_r025_e40_s_s2",
+      "seed": 2,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 40,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.37903586775784953,
+              "accuracy": 88.27361563517914,
+              "macro_accuracy": 89.88375860017399,
+              "samples": 307,
+              "correct": 271
+            },
+            "all_seen": {
+              "ce": 0.50628684972965,
+              "accuracy": 85.99348534201955,
+              "macro_accuracy": 86.88181902675778,
+              "samples": 307,
+              "correct": 264
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.3403979463211156,
+              "accuracy": 90.19607843137256,
+              "macro_accuracy": 91.10714285714286,
+              "samples": 102,
+              "correct": 92
+            },
+            "all_seen": {
+              "ce": 0.4692934069522273,
+              "accuracy": 89.2156862745098,
+              "macro_accuracy": 90.39285714285714,
+              "samples": 102,
+              "correct": 91
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.39826058991489044,
+              "accuracy": 87.3170731707317,
+              "macro_accuracy": 89.21793484293485,
+              "samples": 205,
+              "correct": 179
+            },
+            "all_seen": {
+              "ce": 0.5246933453341537,
+              "accuracy": 84.39024390243902,
+              "macro_accuracy": 85.253774003774,
+              "samples": 205,
+              "correct": 173
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5636811684872075,
+              "accuracy": 83.85826771653542,
+              "macro_accuracy": 78.77215431627198,
+              "samples": 254,
+              "correct": 213
+            },
+            "all_seen": {
+              "ce": 1.0456192341163812,
+              "accuracy": 68.11023622047244,
+              "macro_accuracy": 62.32425091248622,
+              "samples": 254,
+              "correct": 173
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5719374153885015,
+              "accuracy": 80.95238095238095,
+              "macro_accuracy": 75.95238095238095,
+              "samples": 84,
+              "correct": 68
+            },
+            "all_seen": {
+              "ce": 1.1245310799595678,
+              "accuracy": 66.66666666666666,
+              "macro_accuracy": 64.14786967418547,
+              "samples": 84,
+              "correct": 56
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5596015797818408,
+              "accuracy": 85.29411764705883,
+              "macro_accuracy": 81.26948051948054,
+              "samples": 170,
+              "correct": 145
+            },
+            "all_seen": {
+              "ce": 1.0066276358221384,
+              "accuracy": 68.82352941176471,
+              "macro_accuracy": 62.63636363636364,
+              "samples": 170,
+              "correct": 117
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e40_s_s2/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    },
+    {
+      "id": "future_g_r025_e50_s_s2",
+      "unique_id": "formation_future::future_g_r025_e50_s_s2",
+      "seed": 2,
+      "formation_outer_radius": 0.25,
+      "formation_epoch": 50,
+      "future_rule": "s",
+      "future_outer_radius": 1.0,
+      "future_inner_radius": 0.05,
+      "future_gamma": 0.0,
+      "future_beta": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "completed_steps": 100,
+      "completed_full_epochs": 12,
+      "completed_fractional_epochs": 12.5,
+      "formal_two_task": false,
+      "active_r025_training": false,
+      "config": {
+        "dataset": "imageneta",
+        "seed": 2,
+        "class_shuffle": false,
+        "lora_rank": 10,
+        "backbone_type": "vit_base_patch16_224",
+        "nb_tasks": 10,
+        "total_sessions": 10,
+        "init_cls": 20,
+        "increment": 20,
+        "init_epoch": 50,
+        "epochs": 50,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "optimizer_type": "gam",
+        "gam_base_optimizer": "sgd",
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "gam_grad_gamma": 0.0,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.0,
+        "gam_adaptive": false,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_gamma": 0.9,
+        "ewc_skip_task_fisher": true,
+        "ewc_max_batches": 100,
+        "fisher_mode": "batch_empirical",
+        "ewc_normalize_fisher": false,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "in_task_weight_merge_omega": 0.0,
+        "task_endpoint_weight_merge": false,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.0,
+        "stage1_direction": "g",
+        "max_train_tasks": 1
+      },
+      "counters": {
+        "training_steps": 100,
+        "ce_gradient_passes": 500,
+        "fisher_estimation_passes": 0,
+        "weight_merge_calls": 0,
+        "task_end_hooks": 0
+      },
+      "final_evaluation": {
+        "task0": {
+          "full": {
+            "local": {
+              "ce": 0.37803376475307354,
+              "accuracy": 87.62214983713355,
+              "macro_accuracy": 89.33964095311518,
+              "samples": 307,
+              "correct": 269
+            },
+            "all_seen": {
+              "ce": 0.5035448439350254,
+              "accuracy": 85.66775244299674,
+              "macro_accuracy": 86.63181902675778,
+              "samples": 307,
+              "correct": 263
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.3420336257104817,
+              "accuracy": 90.19607843137256,
+              "macro_accuracy": 91.10714285714286,
+              "samples": 102,
+              "correct": 92
+            },
+            "all_seen": {
+              "ce": 0.4710857125658852,
+              "accuracy": 89.2156862745098,
+              "macro_accuracy": 90.39285714285714,
+              "samples": 102,
+              "correct": 91
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.39594619380361284,
+              "accuracy": 86.34146341463415,
+              "macro_accuracy": 88.378774003774,
+              "samples": 205,
+              "correct": 177
+            },
+            "all_seen": {
+              "ce": 0.5196954066728855,
+              "accuracy": 83.90243902439025,
+              "macro_accuracy": 84.86915861915863,
+              "samples": 205,
+              "correct": 172
+            }
+          }
+        },
+        "task1": {
+          "full": {
+            "local": {
+              "ce": 0.5646768944524961,
+              "accuracy": 83.46456692913385,
+              "macro_accuracy": 78.4943765384942,
+              "samples": 254,
+              "correct": 212
+            },
+            "all_seen": {
+              "ce": 1.0462666343288922,
+              "accuracy": 67.32283464566929,
+              "macro_accuracy": 61.76869535693065,
+              "samples": 254,
+              "correct": 171
+            }
+          },
+          "diagnostic": {
+            "local": {
+              "ce": 0.5726172242457757,
+              "accuracy": 80.95238095238095,
+              "macro_accuracy": 75.95238095238095,
+              "samples": 84,
+              "correct": 68
+            },
+            "all_seen": {
+              "ce": 1.1247732148372702,
+              "accuracy": 66.66666666666666,
+              "macro_accuracy": 64.14786967418547,
+              "samples": 84,
+              "correct": 56
+            }
+          },
+          "reporting": {
+            "local": {
+              "ce": 0.5607532616896446,
+              "accuracy": 84.70588235294117,
+              "macro_accuracy": 80.85281385281385,
+              "samples": 170,
+              "correct": 144
+            },
+            "all_seen": {
+              "ce": 1.0074748908607838,
+              "accuracy": 67.64705882352942,
+              "macro_accuracy": 61.80303030303031,
+              "samples": 170,
+              "correct": 115
+            }
+          }
+        }
+      },
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json",
+      "effective_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s2/effective_config.json",
+      "summary_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s2/final_summary.json",
+      "completed_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e50_s_s2/completed.json",
+      "reason": "Excluded anchor-only appendix: r=.25 task0 formationanchor then100-step task1nativeg1 with effectiveouterradiusfield1. Notformal2-taskr025."
+    }
+  ],
+  "not_found_within_explicit_scope": [
+    "OriginalfullGAM gamma=.1 beta111 at effectiver=.25",
+    "Nativegamma0 g1+g3sum beta111 at effectiver=.25",
+    "MainGAM+EWC/Fisher/weightmerge at effectiver=.25"
+  ],
+  "search_evidence": {
+    "roots": [
+      "/data/140-1/users/liying/CopyFlatCV",
+      "/data/140-1/users/liying/Flatness_CV",
+      "/data/140-1/users/liying/O-LoRA"
+    ],
+    "exact_numeric_field": "gam_grad_norm_rho:0.25; excludes1.25 substring",
+    "file_types": [
+      "json",
+      "yaml",
+      "yml",
+      "log"
+    ],
+    "exact_field_match_files": 260,
+    "direct_imageneta_r025_json_configs": 184,
+    "gamma_nonzero_or_ewc_positive_or_beta111_candidates": 0,
+    "old_historical_index": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-historical-reuse-20260920/reverse_index.json",
+    "old_index_runs": 205,
+    "old_index_r025_runs": 0,
+    "excluded_subtrees": [
+      "checkpoints",
+      "data",
+      "cache",
+      "install-tl*"
+    ],
+    "s3_gam_projection": "Nos3-gam-projection stringfound inlocalmd/json/py/csv across3roots.",
+    "excluded_originalGAM_r1_reference": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_original_r1_k10_s2.json"
+  },
+  "source_sha256": {
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/suite.json": "6c39e90d7924af22984c1af7b1916244175a83b7fdfccaeb6f71ba7762a1b771",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/configs/s3_puregam_onlyg3_r0p25_k10_s2.json": "4db43402a2a1eba3ee6ce3c0408db04cf21ec7ac42d061c7f2ce0016b32f1742",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/runtime/jobs/s3_puregam_onlyg3_r0p25_k10_s2/completed.json": "af031da6437507cd6a52a37e35717257963b6a4dcbfe4d819603617bc7910579",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/outputs/s3_puregam_onlyg3_r0p25_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/s3_puregam_onlyg3_r0p25_k10_s2/exp_run/20/s3_puregam_onlyg3_r0p25_k10_s2_vit_base_patch16_224_cl_metrics.json": "f5b07ffe59797e2a2ca46674ec745644fc1ea925c95eceb3117eb92b5db40740",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/suite.json": "c9ea47324a49cf563a7db7b8868763eb48692dc020cb35c01f95fd5d6b9890b6",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/suite.json": "da6e02cf7973fabea3f01aa4dc338d061ae8a1c101458816066f40981a6e05f3",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/queue_state.json": "17360352117cc22b1b07fdcab402229273a4d9ab660bc474d9b9e989ba58c727",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_s0.json": "0a719f5eb8f95f19fa2c4cd7912661cc0f8ae5d7fa1035269b903a0fc65cdb8d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_sum_s0.json": "22c5a7eac58fe82c1bbce4790280c3e6904e124ddfb31f6bc6b69eb42ce29953",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_mean_lr2_s0.json": "47e8b9f9d22aa699148c4b8448f2278f934a43280a9002cab81c7020b6f71411",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_lr15_s0.json": "ab64d1d68c69c287303498c665cacea0fa71013f4bfc0b0860888a866edac448",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_lr2_s0.json": "cd8ce6f848542317d6d11904012e6222eb89512deae519aba6ba753ebb500ed0",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_raw_s0.json": "277f404700e701648d1f83957cd99a7afa65ac7c657e50fc289e14a09a4cae03",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s0.json": "464c475918e4bf06292315f34de5afb76fa8623852a51e3e7d3c58dc37e35cd5",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_match_s0.json": "283c9d1fb783982d2364049b2ed58e9c3e0b8c0e5e6e9c6d1dbd55789da14727",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_s1.json": "3a8867e9454d6489920657062c69915d268378445a4744a9ac76124e273b0e6c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_sum_s1.json": "6fc1f35eff6aee66f15c092e7682ad470dd8164deed2aa64c93ba9855408236d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_mean_lr2_s1.json": "9f5bac419e6267db6769a257bb72625bcf5183e84489e55e9729fb635fa1e4b7",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_lr15_s1.json": "b6ff40b63b0e0b2c22a3f1947ed2b2e31224601146eaadfba21b3ef381cb6b2d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_lr2_s1.json": "a5cea001ab8a131960ae5f092691b7e8b422ca027751e7bf8912dbac7472a9c8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_raw_s1.json": "45c99fee2c79272cb5fb8c861faaf96d643dd003bfd71e67cc828a169b3ccd37",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s1.json": "edd1a93216e1eaec2d980f7c931dc585c628304578715b3b0c784a2ba0d5eaa5",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_match_s1.json": "e51113fa7fed6bc5b8e3beb47af7066aa3a6624b0646061c8e0f138f330021f8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_s2.json": "0eb8f6aff0ab64e5fcff09a079ff4728dccaa3febd0f842dc3d26a15fb0aafdd",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_sum_s2.json": "f66387959cf36ad157796ca00897a992d70fc37867c1a5cdda2c752b3b0a825b",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_mean_lr2_s2.json": "4ec32571d73a7a6be26593c5e9efc4153162c7c335cfc77ca4d3e8de4245f684",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_lr15_s2.json": "e7437e399753694f1c71aef3e41d1be27af1f29ffdc8efa68d99ab5235178209",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_s_lr2_s2.json": "82f40c1f0c4e902827b8ec990d29b003a659369bee798f8c4eedf9583826a365",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_raw_s2.json": "5dff80ad066bf3f7558498bb9542845822d563bccb7c76d4d5460fc586159158",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_r025_s2.json": "22c8a1effce798851d4bd83786e37d71762f6f5c5d05eaa46f7a128b070fe392",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/configs/formation_g_match_s2.json": "2dd02013a075aa6850dba89ae417caef63592b9c47168168c9fd5269cca7568a",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s0/final_summary.json": "78aaa18e9ceab7686312a5a34a74d21b3995f77de586901a50906ec91e62f7c8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s0/effective_config.json": "98fcd45ef55d3c2b67ef61fa1b9e669a38dc8a15839b66c356a5c9dc02981fa1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e00_s_s0/completed.json": "c8eed4e2b3b77fc83919c2dab1c5fb5a5a4abfb4ed55d8705dd3bc420fa8f416",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s0/final_summary.json": "e4525a26ab3ead92986b5d3705e691dd197d42bc72d8e74f7a3c1933510555e6",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s0/effective_config.json": "9a37076a666e839a3a8ba7045dd1b4cb9a23946a7d2176d8f8ede3d9ddba1d83",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e10_s_s0/completed.json": "019209247ba5a7397f9bcadd0172f1b552cbc38c8178825d3dd0015d9e7c0b2c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s0/final_summary.json": "5190f7657fdf15eb3c9f2db1564d7617d94fcd5e8dcec3574fe1b171bd8b8fd4",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s0/effective_config.json": "117458619f6dd0a1a0919866dd8843cc22f5dd99c3432194a406ecfaabd67dfb",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e20_s_s0/completed.json": "5822306769079c406b544cf3ab70e1042687243904928f93f0bf4940975785c3",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s0/final_summary.json": "edd270e7ba04c67f1aa926f202ccc846ba265c28985e5002b66cfccd02f9a684",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s0/effective_config.json": "03008071716d949635236cf77726139020aaac75db76b20b22fbf1d54c514a33",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e30_s_s0/completed.json": "730ff771142d74f8b3951eae316d00228d7cd2a01f2c2adde677f743bb78b625",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s0/final_summary.json": "469379913f3cf7a479307058b8418bcb07aeb719de05df024cdb7c67ea2329f3",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s0/effective_config.json": "9f5e70ad21021a889e51b43f0f8a1c773a7d692a2d60f1903f47e9b228625615",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e40_s_s0/completed.json": "94fc22b4c83eba88b0ad1cba25e98f1000efe64b9d1074754f279a2de253cea7",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s0/final_summary.json": "357c584cd50268e98d541d4f9e9bc618a6b62440e19ffdee5d2324e77c4aee89",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s0/effective_config.json": "17b327cbebbcb8e8b4a69d17e346cf58067815e1cfd3b4914d27ec63089fe026",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e50_s_s0/completed.json": "d429bee756b2027fcd62d868ff56031bb2fe6856d97f1e5c77edbdb12a0012be",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s1/final_summary.json": "33ae592fb4ae3e86e5aba74d7c7a72b5d7aae2b6f10d9d831fc9f5d648a4d6b4",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s1/effective_config.json": "246a447da7dd2527e94e2da84c3da57b63bcfa8cedd09d83833236417c8cf807",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e00_s_s1/completed.json": "c16fb9536cccf96e40433de4e141b3c12f203ab24ed981e8b94c31028f031b5f",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s1/final_summary.json": "03bed0e340c8cf5e9a08a700a2bb048b95b6e4a53a88db0b6a439ba6a25887a1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s1/effective_config.json": "2784e886da6115918fb7bcfa82e3bc24e9d409e80fbe5defcf4cdef9f6db3cdb",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e10_s_s1/completed.json": "ea55d9c5ee1b091144281c662e629688ba115777344fb9270de33ab3bd82156c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s1/final_summary.json": "b7409baf2b61a7d2252822c98fd24e32ca1b245980b67d92655aad74b57cfd2d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s1/effective_config.json": "835a212b9adc6c69437e4d35e3bdab032c2c0b4a873bda9004adafa0d11f4577",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e20_s_s1/completed.json": "c7475d6c3e4454cdf98a6459c0bb62ea3fc90fcb709550aec2ded740ed281600",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s1/final_summary.json": "bca3e03e50621992c94fa652f13d7441723b8019e4421a3baa0ff2c88c71a17a",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s1/effective_config.json": "6b79442fa594c1a8b49c69bfa2b967f8f021feba0e60ba8e2b78e966ac2a8739",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e30_s_s1/completed.json": "5e35603cc470a86ca074d65ed93df7a192e781ea2c410b0e9fc7f81cc326f7ba",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s1/final_summary.json": "d13d9a1a86bfb284644d7bb5b022f0b4a892006e98efd573700755fb9807976b",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s1/effective_config.json": "3bbe64854795854ec59063b1cfd38f0a5fee31263a5b457f82e7d2b8afb51a3f",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e40_s_s1/completed.json": "29aa35f385c546f262a938b518bc2b78ef4eac6895e19130750580ed51089af2",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s1/final_summary.json": "26e9a51f6ec34ca55aaf81386175819133dc3a4f4a8c61ee2059551eb85ef9f5",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s1/effective_config.json": "af060db893c6d557606f070a4ecae5813900afc227b611e866c882f6b1457eda",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e50_s_s1/completed.json": "d99f7cc7e5b542b73594237be8f902bfc0e9126685f4271e30db3af7c9a24886",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s2/final_summary.json": "9f1f9cbe623de1f264846365a3a35b4369d63a02a36ffb3f6188bccb03465e02",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e00_s_s2/effective_config.json": "44f240b0381573c3c27f810b67b2fb2c60a13177c112609b8575a13af5b74a6d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e00_s_s2/completed.json": "6023e0f309f02ba902ebc2437fa19d909d3f29bc5ca721de976ffe94f0928b68",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s2/final_summary.json": "948aa65baff9a0297158cd7935ba95f24d357bc57c152b39e9766d8dab77a133",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e10_s_s2/effective_config.json": "477c8921be5bf7ee5fbb9dc5c27590f2455816390497a839d76d7993908c7be1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e10_s_s2/completed.json": "6192aa0386ca5fd773508c9381d5f69adc4c67671bebb4520d7e2f19295f6b65",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s2/final_summary.json": "27d91870c958e9fa7df2e4a13cfb94bc297f41003f1b70326751643477f5ab25",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e20_s_s2/effective_config.json": "6b4cbcb4248af42c6b4cb493c1f55be7958064e19ea13ddbce1cbbb206fe61ff",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e20_s_s2/completed.json": "f7987796c5932d92ff2c25a780df2ed22c070f6f14089e35e967455b7f567c6a",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s2/final_summary.json": "a63e8bb35ce32a714154c1061e2ed25443c7cc07029536d2cce05d35dc42b625",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e30_s_s2/effective_config.json": "e4b1c4f7e9070a6665b27204a9a1b2a4d21fd802ca8f1971b0992ec0adcb7f6f",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e30_s_s2/completed.json": "836155fb1e467db7ee847fd206813919b77953cbde6a86d395049d8fb87bbc8a",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s2/final_summary.json": "a3fbde5f94aed31bbc1f749b29b1fab05d2e72f26dd042f20d98730274d8f07d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e40_s_s2/effective_config.json": "b18903d6ec508f0d45419e789e2a7a4aec96fcacbebaad851e7a660b8b7c00c0",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e40_s_s2/completed.json": "685000e039b57dd256b939f4b3507ed29ee2de0c9c918a25a6545287c95a3ed4",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s2/final_summary.json": "62b163bfbc3a3bb0388074a0575b04b19880dc901162b83215ac03f6f7260357",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/future_g_r025_e50_s_s2/effective_config.json": "18bfb320972105e4e660f794b172aa3763c52936ee1feca776336a101a14f9dc",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/future_g_r025_e50_s_s2/completed.json": "7c3634177410580fb00047628ae70e10f0c96bc059c3246e9cbc5f1ca9188498",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/outputs/task0_g_r025_k10_s2/final_summary.json": "dd8ffa78a38048aed7bfcc8d606a62fd7a361a836f51031cdfb9b7299b25626b",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/outputs/task0_g_r025_k10_s2/effective_config.json": "ecff506547418f7dc0815108bd7a92f664ba8ef756ee7b435b0fdf42319fcbd1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/runtime/recovery_radii_20261001T132842Z/jobs/task0_g_r025_k10_s2/completed.json": "32e708496ec595e92e5fc2615099dc968b1ff5b580c3b3ca7be5dc425e01cdd0",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s0/final_summary.json": "176fe05919c0c0a2d53da4d01641cb0ce3a62985e951e9c5cdec06f9c567a38b",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s0/effective_config.json": "3a269213dc4d323257574517f03471e92e0e93ac69438a3e8a9022687a02009f",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/formation_g_r025_s0/completed.json": "240a677b84b0f3cd1a0ff395eabb2f6d28de1f606d97252e9a11f5afd96f3a36",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s1/final_summary.json": "c3b1416aa0452bb4e8562491c61218a540f70b2496cd39fa09c0d5db33ffc7fc",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s1/effective_config.json": "6387112575b4e78d18be923d4dc89e4551239f2392234a9d48230891362a08ff",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/formation_g_r025_s1/completed.json": "4cdfb86d763f95a43631ec438bb8f1be694ed9f0e66be8c60e9add40f8aac51c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s2/final_summary.json": "df3667ee9259dac54af2bf6eba72806943cafead76a3834060ce70aa90c80dcb",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/outputs/formation_g_r025_s2/effective_config.json": "1724cf0fc83ca2af580c742a1fcf80b63cf2f77792635e5e66676d9d1af3e93c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-formation-run-20261001T180712Z/runtime/jobs/formation_g_r025_s2/completed.json": "e138c7a92602fdbd833f9465483e091a414944a34064ac0d0e1f62dfeb98b765",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-historical-reuse-20260920/reverse_index.json": "3b3e25668a13b3e464cea5e20b398ccafc4b5da3e7edac12bf34a6b9ac93662b"
+  }
+}

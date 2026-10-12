@@ -1,0 +1,251 @@
+--- /data/140-1/users/liying/Flatness_CV/utils/factory.py
++++ /data/140-1/users/liying/CopyFlatCV/utils/factory.py
+@@ -8,7 +8,7 @@
+ def _load_learner_from_file(rel_path: str):
+     repo_root = Path(__file__).resolve().parents[1]
+     file_path = repo_root / rel_path
+-    module_name = f"_dynamic_learner_{file_path.stem}"
++    module_name = f"_dynamic_learner_{file_path.stem.replace('-', '_')}"
+     spec = spec_from_file_location(module_name, file_path)
+     if spec is None or spec.loader is None:
+         raise ImportError(f"Unable to load Learner from {file_path}")
+@@ -30,6 +30,60 @@
+         from models_CL.EWC import Learner
+     elif name == "ewcon":
+         from models_CL.EWCon import Learner
++    elif name in {"ewcon_probe", "ewcon_mechanism", "ewcon_fqa"}:
++        from models_CL.EWCon_Probe import Learner
++    elif name in {
++        "fishersam_ewc_lambda",
++        "fisher_sam_ewc_lambda",
++        "fishersam-ewc-lambda",
++        "fisher-sam-ewc-lambda",
++        "fsam_ewc_lambda",
++    }:
++        Learner = _load_learner_from_file("models_CL/FisherSAM-EWC-lambda.py")
++    elif name in {
++        "fishersam_ewc_lambda_kfac",
++        "fisher_sam_ewc_lambda_kfac",
++        "fishersam-ewc-lambda-kfac",
++        "fisher-sam-ewc-lambda-kfac",
++        "fsam_ewc_lambda_kfac",
++        "fishersam_ewc_lambda_kfacfishersam",
++    }:
++        Learner = _load_learner_from_file("models_CL/FisherSAM-EWC-lambda-KFACFisherSAM.py")
++    elif name in {"ewc_gam_projected", "ewcon_gam_projected", "ewc_gam_proj"}:
++        from models_CL.ewc_gam_projected import Learner
++    elif name in {
++        "ewc_gam_merged_intask_euc",
++        "ewc_gam_merge_intask_euc",
++        "ewc_gam_intask_euc",
++        "ewcon_gam_merged_intask_euc",
++    }:
++        from models_CL.ewc_gam_merged_intask_euc import Learner
++    elif name in {
++        "ewc_gam_mergedintask_multifisher_norm",
++        "ewc_gam_merged_intask_multifisher_norm",
++        "ewc_gam_multifisher_norm",
++        "ewcon_gam_mergedintask_multifisher_norm",
++    }:
++        from models_CL.ewc_gam_mergedintask_multifisher_norm import Learner
++    elif name in {
++        "ewc_gam_mergedintask_multifisher_norm_weightmergethenfisher",
++        "ewc_gam_merged_intask_multifisher_norm_weightmergethenfisher",
++        "ewc_gam_multifisher_norm_weightmergethenfisher",
++        "ewc_gam_weightmergethenfisher",
++        "ewc_gam_wmergethenfisher",
++    }:
++        from models_CL.ewc_gam_mergedintask_multifisher_norm_weightmergethenfisher import Learner
++    elif name in {"ewcon_probe_gam_factored", "ewcon_gam_factored", "ewcon_factored"}:
++        from models_CL.EWConProbe_GAMFactored import Learner
++    elif name in {"ewc_fishershape", "fs_ewc", "ewcon_fishershape", "fishershape_ewc"}:
++        from models_CL.EWConProbe_FisherShape import Learner
++    elif name in {
++        "ewcon_probe_fishershape_factored",
++        "ewcon_fishershape_factored",
++        "ewcon_fs_factored",
++        "fs_ewc_factored",
++    }:
++        from models_CL.EWConProbe_FisherShapeFactored import Learner
+     elif name in {"ewcon_rwp_gaussian", "ewcon_rwp_gauss"}:
+         from models_CL.EWCon_RWP_Gaussian import Learner
+     elif name in {"ewcon_rwp_fisher", "ewcon_fisher"}:
+@@ -98,6 +152,8 @@
+     elif name == "geolora":
+         from models.GeoLoRA import Learner
+     # loraBased
++    elif name in {"cllora_aligned", "cllora"}:
++        from models_LoRAbasedCL.cllora_aligned import Learner
+     elif name == "sdlora":
+         from models_LoRAbasedCL.sdlora import Learner
+     elif name == "ogd_lora":
+@@ -113,7 +169,7 @@
+     elif name == "ewc_yaoyue_lora_liying":
+         from models_LoRAbasedCL.EWC_Yaoyue_LoRA_liying import Learner
+     elif name == "ewclora_youyue_github":
+-        from models_LoRAbasedCL.ewclora_youyue_github import Learner
++        from ref.ewclora_youyue_github import Learner
+     elif name in {"ewclora_youyue_fitarchitechture", "ewclora_youyue_fitarchitecture"}:
+         from models_LoRAbasedCL.ewclora_youyue_fitArchitechture import Learner
+     elif name in {
+@@ -129,11 +185,146 @@
+     }:
+         from models_LoRAbasedCL.as1_normfisher_gam import Learner
+     elif name in {
+-        "as1_normfisher_gam_inclora",
+-        "inclora_normfisher_gam",
+-        "fs_lora_inclora",
+-    }:
+-        from models_LoRAbasedCL.as1_normfisher_gam_inclora import Learner
++        "as1_normfisher_fishershape",
++        "as1_normfisher_fs",
++        "ewclora_normfisher_fishershape",
++        "ewclora_fishershape",
++        "fs_ewclora",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_fishershape import Learner
++    elif name == "as1_normfisher_fishershape_complementarity":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_complementarity import Learner
++    elif name == "as1_normfisher_fishershape_kfac":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_kfac import Learner
++    elif name == "as1_normfisher_fishershape_richardson":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_richardson import Learner
++    elif name == "as1_normfisher_fishershape_central":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_central import Learner
++    elif name == "as1_normfisher_fishershape_freshlora_merge":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_freshlora_merge import Learner
++    elif name in {
++        "as1_normfisher_fishershape_freshlora_merge_factor",
++        "as1_normfisher_fishershape_freshlora_merge-factor",
++        "freshlora_merge_factor",
++        "merge_factor",
++        "merge-factor",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_fishershape_freshlora_merge_factor import Learner
++    elif name in {
++        "as1_normfisher_fishershape_decoupled",
++        "as1_normfisher_fs_decoupled",
++        "ewclora_normfisher_fishershape_decoupled",
++        "fs_decoupled_ewclora",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_fishershape_decoupled import Learner
++    elif name in {
++        "as1_normfisher_fishershape_efficient",
++        "as1_normfisher_efficientfs",
++        "as1_normfisher_efs",
++        "ewclora_efficient_fishershape",
++        "efficient_fishershape_ewclora",
++        "lookfs_ewclora",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_fishershape_efficient import Learner
++    elif name in {
++        "as1_normfisher_fishershape_multidirectional",
++        "as1_normfisher_multidirectional_fs",
++        "as1_normfisher_pmdfs",
++        "ewclora_multidirectional_fishershape",
++        "periodic_multidirectional_fs_ewclora",
++        "pmdfs_ewclora",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_fishershape_multidirectional import Learner
++    elif name in {
++        "as1_normfisher_sam",
++        "as1_normfisher_sam_ref",
++        "ewclora_normfisher_sam",
++        "sam_ewclora",
++        "sam_ewc_lora",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_sam import Learner
++    elif name in {
++        "as1_normfisher_gam_intask_projected",
++        "as1_normfisher_gam_intask_project",
++        "as1_normfisher_gam_intask_lambda_project",
++        "ewclora_normfisher_gam_intask_project",
++        "ewclora_normfisher_gam_intask_lambda_project",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_gam_intask_lambda_project import Learner
++    elif name in {
++        "as1_normfisher_gam_intask",
++        "ewclora_normfisher_gam_intask",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_gam_intask import Learner
++    elif name in {
++        "as1_normfisher_gam_intask_damp",
++        "ewclora_normfisher_gam_intask_damp",
++    }:
++        from models_LoRAbasedCL.as1_normfisher_gam_intask_damp_weightmergethenfisher import Learner
++    elif name in {
++        "as1_normfisher_gam_intask_damp_project",
++        "as1_normfisher_gam_intask_damp_wmerge_project",
++        "as1_normfisher_gam_intask_damp_weightmergethenfisher_project",
++        "ewclora_normfisher_gam_intask_damp_project",
++        "ewclora_normfisher_gam_intask_damp_wmerge_project",
++        "ewclora_normfisher_gam_intask_damp_weightmergethenfisher_project",
++    }:
++        Learner = _load_learner_from_file(
++            "models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher-project.py"
++        )
++    elif name in {
++        "fishersam_ewclora_lambda",
++        "fisher_sam_ewclora_lambda",
++        "fishersam_ewc_lora_lambda",
++        "fisher_sam_ewc_lora_lambda",
++        "fsam_ewclora_lambda",
++        "fsam_ewc_lora_lambda",
++    }:
++        from models_LoRAbasedCL.FisherSAM_EWCLoRA_lambda import Learner
++    elif name in {
++        "fishersam_ewclora_lambda_project",
++        "fisher_sam_ewclora_lambda_project",
++        "fishersam_ewc_lora_lambda_project",
++        "fisher_sam_ewc_lora_lambda_project",
++        "fsam_ewclora_lambda_project",
++        "fsam_ewc_lora_lambda_project",
++    }:
++        from models_LoRAbasedCL.FisherSAM_EWCLoRA_lambda_project import Learner
++    elif name in {
++        "gam_ewclora_lambda",
++        "gam_ewc_lora_lambda",
++    }:
++        from models_LoRAbasedCL.GAM_EWCLoRA_lambda import Learner
++    elif name in {
++        "gam_ewclora_lambda_norm",
++        "gam_ewc_lora_lambda_norm",
++        "ewclora_normfisher_gam_lambda",
++    }:
++        from models_LoRAbasedCL.GAM_EWCLoRA_lambda_norm import Learner
++    elif name in {
++        "gam_ewclora_lambda_project",
++        "gam_ewc_lora_lambda_project",
++    }:
++        from models_LoRAbasedCL.GAM_EWCLoRA_lambda_project import Learner
++    elif name in {
++        "gam_ewclora_ncl",
++        "gam_ewc_lora_ncl",
++        "ewclora_ncl",
++    }:
++        Learner = _load_learner_from_file("models_LoRAbasedCL/GAM_EWCLoRA_NCL.py")
++    elif name in {
++        "gam_ewclora_ncl_kfac",
++        "gam_ewc_lora_ncl_kfac",
++        "ewclora_ncl_kfac",
++    }:
++        Learner = _load_learner_from_file("models_LoRAbasedCL/GAM_EWCLoRA_NCL-KFAC.py")
++    elif name in {
++        "ncl_kfac_lora",
++        "ncl_kfa_lora",
++        "ncl_kfac",
++        "ncl_kfa",
++    }:
++        Learner = _load_learner_from_file("models_LoRAbasedCL/NCL-KFA.py")
+     elif name == "fo_so_lora":
+         from models_LoRAbasedCL.OGD_EWC_LoRA import Learner
+     elif name == "si_lora":
+@@ -173,8 +364,6 @@
+         "seqlora-ewc-deltaw",
+     }:
+         Learner = _load_learner_from_file("models_LoRA_drift-difussion/SeqLoRA_EWC_new.py")
+-    elif name in {"pgsr_lora", "pgsr_inclora"}:
+-        Learner = _load_learner_from_file("Project1-3 INitilization/pgsr_inclora.py")
+     elif name == "inclora":
+         from models_LoRAbasedCL.inclora import Learner
+     elif name == "olora":

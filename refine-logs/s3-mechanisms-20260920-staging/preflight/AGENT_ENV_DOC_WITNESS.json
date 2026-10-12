@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "timestamp_utc": "2026-09-20T19:11:44.347492+00:00",
+  "independent_agent": "/root/fusion_source_audit",
+  "document_path": "/data/140-1/users/liying/O-LoRA/refine-logs/s3-mechanisms-20260920-staging/ENVIRONMENT.md",
+  "document_sha256": "acc0c00112452180142572b21925e0a8db26dfca6eeb4657887da4283560c364",
+  "spec_path": "/data/140-1/users/liying/CopyFlatCV/.aris/compute/local-pilot-new-local-env-spec.json",
+  "spec_canonical_sha256": "574b252ec7b676947b1e431b88231959dcb69e79742d933f03cf354eb8c17798",
+  "expected_spec_sha_prefix": "574b252e",
+  "spec_matches": true,
+  "availability_before": {
+    "gpu_index": 6,
+    "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+    "memory_used_mib": 2,
+    "utilization_percent": 0,
+    "compute_processes_on_gpu": [],
+    "criteria": "memory < 500 MiB and utilization < 5 percent",
+    "passed": true
+  },
+  "command_executed": "CUDA_VISIBLE_DEVICES=6 CUBLAS_WORKSPACE_CONFIG=:4096:8 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -c 'import torch, platform, socket, timm, torchvision; torch.manual_seed(0); x=torch.randn(8,8,device=\"cuda\"); print(\"WITNESS\", tuple((x@x).shape), torch.cuda.get_device_name()); print(\"VERSIONS\", platform.python_version(), torch.__version__, torchvision.__version__, timm.__version__, socket.gethostname()); assert torch.isfinite(x@x).all()'",
+  "literal_output": "WITNESS (8, 8) NVIDIA RTX 6000 Ada Generation\nVERSIONS 3.11.15 2.4.1+cu121 0.19.1+cu121 1.0.9 cudahpc40.cvc.uab.es\n",
+  "exit_code": 0,
+  "execution": "Existing escalation mechanism; sandbox nvidia-smi cannot access driver. Escalated availability query and exact documented command both passed.",
+  "deviations": [],
+  "environment_changes": [],
+  "installations": []
+}

@@ -1,0 +1,45 @@
+--- /data/140-1/users/liying/Flatness_CV/utils/inc_net.py
++++ /data/140-1/users/liying/CopyFlatCV/utils/inc_net.py
+@@ -23,5 +23,41 @@
+ 
+     ## Lora version
+-    if (name == "pretrained_vit_b16_224" or name == "vit_base_patch16_224") and ("lora" in method_name):
++    _AS1_LORA_MODELS = {
++        "as1_normfisher_gam",
++        "as1_normfisher",
++        "as1_normfisher_gam_intask",
++        "as1_normfisher_gam_intask_damp",
++        "as1_normfisher_fishershape",
++        "as1_normfisher_fishershape_kfac",
++        "as1_normfisher_fishershape_complementarity",
++        "as1_normfisher_fishershape_richardson",
++        "as1_normfisher_fishershape_central",
++        "as1_normfisher_fishershape_freshlora_merge",
++        "as1_normfisher_fishershape_freshlora_merge_factor",
++        "as1_normfisher_fishershape_freshlora_merge-factor",
++        "freshlora_merge_factor",
++        "merge_factor",
++        "merge-factor",
++        "as1_normfisher_fs",
++        "ewclora_normfisher_fishershape",
++        "ewclora_fishershape",
++        "fs_ewclora",
++        "as1_normfisher_fishershape_decoupled",
++        "as1_normfisher_fs_decoupled",
++        "ewclora_normfisher_fishershape_decoupled",
++        "fs_decoupled_ewclora",
++        "as1_normfisher_fishershape_efficient",
++        "as1_normfisher_efficientfs",
++        "as1_normfisher_efs",
++        "as1_normfisher_fishershape_multidirectional",
++        "as1_normfisher_multidirectional_fs",
++        "as1_normfisher_pmdfs",
++        "as1_normfisher_sam",
++        "as1_normfisher_sam_ref",
++        "ewclora_normfisher_sam",
++        "sam_ewclora",
++        "sam_ewc_lora",
++    }
++    if (name == "pretrained_vit_b16_224" or name == "vit_base_patch16_224") and ("lora" in method_name or method_name in _AS1_LORA_MODELS):
+         model = timm.create_model("vit_base_patch16_224", pretrained=True, num_classes=0)
+         model = LoRA_ViT_timm(vit_model=model.eval(), r=args['lora_rank'],  num_classes=0, increment=args['increment'], filepath=args['filepath'])

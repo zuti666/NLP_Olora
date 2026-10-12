@@ -1,0 +1,74 @@
+{
+  "at": "2026-10-07T07:33:12.336034+00:00",
+  "local_time": "2026-10-07T09:33:12.336034+02:00",
+  "status": "formal_training_verified",
+  "controller": {
+    "pid": 3463902,
+    "proc_starttime": "16238873",
+    "hostname": "cudahpc40.cvc.uab.es",
+    "pid_namespace": "pid:[4026531836]"
+  },
+  "host_controller_live_verified": true,
+  "smoke_accepted": 16,
+  "strict_pairing_accepted": true,
+  "pairing_receipt_sha256": "45b0af985966dd55c0e83bfde0cc60db89b2d60c32e7f060729ec1d41f7cd0bf",
+  "formal_expected": 16,
+  "formal_completed": 0,
+  "formal_running": 3,
+  "formal_pending": 13,
+  "active_formals": [
+    {
+      "id": "formal_N5_g0_probem1_residualm1_r1_k10_s2",
+      "gpu": 2,
+      "observed_steps": 50,
+      "process": {
+        "pid": 3605693,
+        "proc_starttime": "16281560",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "formula": "g0\u2212(g3\u2212\u2212g2)"
+    },
+    {
+      "id": "formal_N6_g1_probem1_residualm1_r1_k10_s2",
+      "gpu": 3,
+      "observed_steps": 50,
+      "process": {
+        "pid": 3605699,
+        "proc_starttime": "16281578",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "formula": "g1\u2212(g3\u2212\u2212g2)"
+    },
+    {
+      "id": "formal_B0_g0_probep1_residualp1_r1_k10_s2",
+      "gpu": 4,
+      "observed_steps": 51,
+      "process": {
+        "pid": 3605705,
+        "proc_starttime": "16281596",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "formula": "g0+(g3+\u2212g2)"
+    }
+  ],
+  "actual_observed_checks": {
+    "finite": true,
+    "four_ce_one_sgd": true,
+    "fisher_merge_projection_hvp_zero": true,
+    "deterministic_true_warn_false": true
+  },
+  "allowed_gpus": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "no_gpus_0_1": true,
+  "new_final_metrics_available": false,
+  "new_results_reuse_count": 0,
+  "old_failures_and_results_preserved": true
+}

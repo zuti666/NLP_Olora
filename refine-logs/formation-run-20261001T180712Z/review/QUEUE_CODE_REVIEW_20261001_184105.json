@@ -1,0 +1,70 @@
+{
+  "status": "pass_for_frozen_smoke_only_deployment",
+  "created_at_utc": "2026-10-01T18:41:05.107495+00:00",
+  "reviewer": "independent agent imageneta_best_results_now",
+  "source_sha256": {
+    "run_queue.py": "64d132d0f48317fa95f0d01884f68e971aa4fe47f4994b31e980e00454b75ccc",
+    "job_worker.py": "658b451359124a72b3caaf4434d5cd6ea7f9612fdc50467e555edf73588f69c7",
+    "validate_job.py": "4f338a19784e3e88a74e858d5618e9d4b03ca46d35ede9a32e7561f624fcad9f",
+    "prepare_manifest.py": "2267382ca552c58614898b3bb6f26b76838a88f763eed84111cc129deab408e9",
+    "collect_results.py": "f8d11605dfa61be44d6a099de3f14881698ed1819593fd5ebf239c7152ad8a82"
+  },
+  "cpu_report": "/data/140-1/users/liying/O-LoRA/refine-logs/formation-run-20261001T180712Z/review/QUEUE_STRICT_CPU_INDEPENDENT.json",
+  "cpu_report_sha256": "a22b6bb1312ec7627307efa6ee0745d0cc72afdcfac81aa47319ec9169ee3e86",
+  "test_sha256": "7786788d5b7ce438e670be0ce8693337cee673c9f263acf27a25a9cf1e38ad27",
+  "cpu_counts": {
+    "accepted_complete_fixtures": 8,
+    "formation_targeted_rejections": 14,
+    "future_targeted_rejections": 20,
+    "receipt_field_mutations_rejected": 6
+  },
+  "dependency_audit": {
+    "job_count": 120,
+    "phase_counts": {
+      "smoke": 12,
+      "formation": 24,
+      "future_s": 78,
+      "switch": 6
+    },
+    "all_formals_guarded_by_12_smokes": true,
+    "all_84_future_guarded_by_24_formation": true,
+    "DAG": true,
+    "auto_phase2_or_phase3": false,
+    "suite_sha256": "da6e02cf7973fabea3f01aa4dc338d061ae8a1c101458816066f40981a6e05f3"
+  },
+  "lease_audit": {
+    "worker_and_child_hold_lease": true,
+    "child_keeps_lease_after_worker_killed": true,
+    "released_after_child_exit": true,
+    "gpu_used": false
+  },
+  "passed": [
+    "host/GPU UUID binding; only authorised0..6 free devices; no preemption",
+    "controller exclusive lock and inherited GPU FD lease retained by training child",
+    "no overwrite of existing runtime job directories or nonempty output directories",
+    "only successful validated completions satisfy dependencies",
+    "all12smoke success before24formation; all24formation before84formal future; DAG120jobs",
+    "failed job halts new launches while existing jobs finish",
+    "per-formation full epoch/step grid, native operation guards, selected direction/LR configuration, checkpoint hash coverage",
+    "per-future seed/rule/count/grid/8batch cosine/5forward ownspec and evaluation finite/samplecount/finalraw checks",
+    "receipt config/summary/trace/identity/evaluations/checkpoint hashes checked on restart/dependency/collector",
+    "collector only uses hash-matched completed receipts with returncode0",
+    "conditional Phase2/3 remain disabled"
+  ],
+  "fixed_blockers": [
+    "old positive fixture wrongly rejected and negative tests did not assert targeted rejection",
+    "future trace own-spec/LR/config coverage incomplete",
+    "future evaluation contents not independently checked despite matching file hash",
+    "collector raw-summary-only premature completion counts",
+    "receipt field coverage incomplete"
+  ],
+  "limits": [
+    "CPU fixtures use explicit SYNTHETIC_CPU_VALIDATOR_FIXTURE_NOT_A_MODEL bytes; not scientific experiment results.",
+    "Initial validator test report is retained only as evidence of the fixed test defect; its rejected positive fixture is not passing evidence.",
+    "Lease test killed only its own CPU worker; no GPU or training processes touched.",
+    "No GPU launched by this reviewer.",
+    "Full model checkpoint loading, actual GPU numerical tolerances and cross-arm real-data pairing require12smokes and paired smoke audit.",
+    "The first controller should use--smoke-only; formal release follows successful real GPU paired smoke checks.",
+    "Science phase gates are separate from technical completion and are not tested by synthetic fixtures."
+  ]
+}

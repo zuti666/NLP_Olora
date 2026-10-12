@@ -1,0 +1,284 @@
+{
+  "timestamp_utc": "2026-10-12T09:24:48.088166+00:00",
+  "diagnostic": "same_base_same_rng_inner_probe_bf16_vs_full_fp32",
+  "device": "cpu",
+  "lr": 0.001,
+  "h": 9.289803323136768e-05,
+  "direction": "-normalize(g0_bf16)",
+  "master_weights": "full_model_FP32",
+  "precision_modes": {
+    "bf16": "BF16 autocast over FP32 masters",
+    "fp32": "autocast disabled over FP32 masters"
+  },
+  "optimizer_commits": 0,
+  "batch_count": 1,
+  "g0_is_unclipped": true,
+  "gradient_evaluations": 14,
+  "trainable_coordinates": 128,
+  "base": {
+    "bf16_loss": 3.4413278102874756,
+    "fp32_loss": 3.4412057399749756,
+    "bf16_g0_norm": 0.09289803323136768,
+    "fp32_g0_norm": 0.09325296402546387,
+    "cos_g0_bf16_fp32": 0.9999771097861004,
+    "g0_bf16_minus_fp32_relative_norm": 0.007751944009314863
+  },
+  "points": [
+    {
+      "name": "zero",
+      "radius": 0.0,
+      "bf16": {
+        "probe_loss": 3.4413278102874756,
+        "probe_gradient_norm": 0.09289803323136768,
+        "response_norm": 0.0,
+        "response_relative_to_g0": 0.0,
+        "response_norm_per_radius": null,
+        "cos_g0_probe_gradient": 1.0,
+        "noise_corrected_response_norm": 0.0,
+        "relative_linear_residual_against_h": null,
+        "cos_noise_corrected_response_h": null
+      },
+      "fp32": {
+        "probe_loss": 3.4412057399749756,
+        "probe_gradient_norm": 0.09325296402546387,
+        "response_norm": 0.0,
+        "response_relative_to_g0": 0.0,
+        "response_norm_per_radius": null,
+        "cos_g0_probe_gradient": 1.0,
+        "noise_corrected_response_norm": 0.0,
+        "relative_linear_residual_against_h": null,
+        "cos_noise_corrected_response_h": null
+      },
+      "cos_response_bf16_fp32": null,
+      "fp32_parameter_displacement": {
+        "actual_norm": 0.0,
+        "intended_norm": 0.0,
+        "cos_actual_intended": null
+      },
+      "bf16_weight_rounding_proxy": {
+        "kind": "FP32 trainable-parameter casts to BF16; not a forward measurement",
+        "proves_forward_visibility": false,
+        "changed_coordinate_fraction": 0.0,
+        "represented_displacement_norm": 0.0,
+        "represented_over_intended_norm": null,
+        "cos_represented_intended": null
+      }
+    },
+    {
+      "name": "half_h",
+      "radius": 4.644901661568384e-05,
+      "bf16": {
+        "probe_loss": 3.4413278102874756,
+        "probe_gradient_norm": 0.09289709275870084,
+        "response_norm": 2.549576079349227e-05,
+        "response_relative_to_g0": 0.00027444887589809,
+        "response_norm_per_radius": 0.5488977517961801,
+        "cos_g0_probe_gradient": 0.9999999623897712,
+        "noise_corrected_response_norm": 2.549576079349227e-05,
+        "relative_linear_residual_against_h": 0.9681875130282998,
+        "cos_noise_corrected_response_h": 0.2689388715096814
+      },
+      "fp32": {
+        "probe_loss": 3.4412014484405518,
+        "probe_gradient_norm": 0.09324886264640284,
+        "response_norm": 3.1658575049937214e-05,
+        "response_relative_to_g0": 0.00033949135430475375,
+        "response_norm_per_radius": 0.6815768633355194,
+        "cos_g0_probe_gradient": 0.999999943337492,
+        "noise_corrected_response_norm": 3.1658575049937214e-05,
+        "relative_linear_residual_against_h": 0.000815329658390112,
+        "cos_noise_corrected_response_h": 0.9999996878559657
+      },
+      "cos_response_bf16_fp32": 0.31828224777055375,
+      "fp32_parameter_displacement": {
+        "actual_norm": 4.6448899537241596e-05,
+        "intended_norm": 4.644901531386148e-05,
+        "cos_actual_intended": 0.9999998360786525
+      },
+      "bf16_weight_rounding_proxy": {
+        "kind": "FP32 trainable-parameter casts to BF16; not a forward measurement",
+        "proves_forward_visibility": false,
+        "changed_coordinate_fraction": 0.0234375,
+        "represented_displacement_norm": 6.315167667825052e-05,
+        "represented_over_intended_norm": 1.359591290612453,
+        "cos_represented_intended": 0.20355483810296046
+      }
+    },
+    {
+      "name": "h",
+      "radius": 9.289803323136768e-05,
+      "bf16": {
+        "probe_loss": 3.4413278102874756,
+        "probe_gradient_norm": 0.09288418977032778,
+        "response_norm": 0.00013875075243807215,
+        "response_relative_to_g0": 0.0014935811621813967,
+        "response_norm_per_radius": 1.4935811621813966,
+        "cos_g0_probe_gradient": 0.9999988955462258,
+        "noise_corrected_response_norm": 0.00013875075243807215,
+        "relative_linear_residual_against_h": 0.0,
+        "cos_noise_corrected_response_h": 0.9999999999999998
+      },
+      "fp32": {
+        "probe_loss": 3.441197156906128,
+        "probe_gradient_norm": 0.09324476807208869,
+        "response_norm": 6.33044341027051e-05,
+        "response_relative_to_g0": 0.0006788463483629223,
+        "response_norm_per_radius": 0.6814399821042704,
+        "cos_g0_probe_gradient": 0.9999997734261835,
+        "noise_corrected_response_norm": 6.33044341027051e-05,
+        "relative_linear_residual_against_h": 0.0,
+        "cos_noise_corrected_response_h": 1.0
+      },
+      "cos_response_bf16_fp32": 0.16916581556525892,
+      "fp32_parameter_displacement": {
+        "actual_norm": 9.289768332215018e-05,
+        "intended_norm": 9.289803062772296e-05,
+        "cos_actual_intended": 0.9999999561400981
+      },
+      "bf16_weight_rounding_proxy": {
+        "kind": "FP32 trainable-parameter casts to BF16; not a forward measurement",
+        "proves_forward_visibility": false,
+        "changed_coordinate_fraction": 0.046875,
+        "represented_displacement_norm": 0.0001411180214927209,
+        "represented_over_intended_norm": 1.5190636501029113,
+        "cos_represented_intended": 0.41160018621537475
+      }
+    },
+    {
+      "name": "double_h",
+      "radius": 0.00018579606646273536,
+      "bf16": {
+        "probe_loss": 3.4413278102874756,
+        "probe_gradient_norm": 0.09289150952917866,
+        "response_norm": 9.746383230852802e-05,
+        "response_relative_to_g0": 0.001049148500978368,
+        "response_norm_per_radius": 0.524574250489184,
+        "cos_g0_probe_gradient": 0.9999994520709617,
+        "noise_corrected_response_norm": 9.746383230852802e-05,
+        "relative_linear_residual_against_h": 0.9122519961203936,
+        "cos_noise_corrected_response_h": 0.4144864988483841
+      },
+      "fp32": {
+        "probe_loss": 3.4411885738372803,
+        "probe_gradient_norm": 0.09323662717478465,
+        "response_norm": 0.00012660257601951742,
+        "response_relative_to_g0": 0.001357625222346252,
+        "response_norm_per_radius": 0.6814061160165077,
+        "cos_g0_probe_gradient": 0.9999990936136018,
+        "noise_corrected_response_norm": 0.00012660257601951742,
+        "relative_linear_residual_against_h": 0.0003033182687482702,
+        "cos_noise_corrected_response_h": 0.9999999552317262
+      },
+      "cos_response_bf16_fp32": 0.7122762704342972,
+      "fp32_parameter_displacement": {
+        "actual_norm": 0.00018579617595373892,
+        "intended_norm": 0.00018579606125544593,
+        "cos_actual_intended": 0.9999999899963447
+      },
+      "bf16_weight_rounding_proxy": {
+        "kind": "FP32 trainable-parameter casts to BF16; not a forward measurement",
+        "proves_forward_visibility": false,
+        "changed_coordinate_fraction": 0.0625,
+        "represented_displacement_norm": 0.00020512867273378562,
+        "represented_over_intended_norm": 1.1040528596123458,
+        "cos_represented_intended": 0.5339536894665557
+      }
+    },
+    {
+      "name": "fixed_0.05",
+      "radius": 0.05,
+      "bf16": {
+        "probe_loss": 3.4368226528167725,
+        "probe_gradient_norm": 0.09473423558580546,
+        "response_norm": 0.03352532079521175,
+        "response_relative_to_g0": 0.3608829985852885,
+        "response_norm_per_radius": 0.6705064159042349,
+        "cos_g0_probe_gradient": 0.936335453358198,
+        "noise_corrected_response_norm": 0.03352532079521175,
+        "relative_linear_residual_against_h": 1.0232111541818696,
+        "cos_noise_corrected_response_h": 0.17215879190404382
+      },
+      "fp32": {
+        "probe_loss": 3.4366559982299805,
+        "probe_gradient_norm": 0.09471502717070752,
+        "response_norm": 0.033655325615270196,
+        "response_relative_to_g0": 0.36090354839638333,
+        "response_norm_per_radius": 0.6731065123054039,
+        "cos_g0_probe_gradient": 0.9360006332299998,
+        "noise_corrected_response_norm": 0.033655325615270196,
+        "relative_linear_residual_against_h": 0.014910801956920383,
+        "cos_noise_corrected_response_h": 0.9999631606137052
+      },
+      "cos_response_bf16_fp32": 0.9996473242507319,
+      "fp32_parameter_displacement": {
+        "actual_norm": 0.05000000116818958,
+        "intended_norm": 0.05000000103705907,
+        "cos_actual_intended": 0.9999999999999003
+      },
+      "bf16_weight_rounding_proxy": {
+        "kind": "FP32 trainable-parameter casts to BF16; not a forward measurement",
+        "proves_forward_visibility": false,
+        "changed_coordinate_fraction": 0.6796875,
+        "represented_displacement_norm": 0.049993481004218826,
+        "represented_over_intended_norm": 0.9998695993458997,
+        "cos_represented_intended": 0.9993605240982282
+      }
+    },
+    {
+      "name": "fixed_0.2",
+      "radius": 0.2,
+      "bf16": {
+        "probe_loss": 3.4243662357330322,
+        "probe_gradient_norm": 0.14567060684032596,
+        "response_norm": 0.1273875696625945,
+        "response_relative_to_g0": 1.371262288678693,
+        "response_norm_per_radius": 0.6369378483129725,
+        "cos_g0_probe_gradient": 0.5033203181362601,
+        "noise_corrected_response_norm": 0.1273875696625945,
+        "relative_linear_residual_against_h": 1.0154337296732892,
+        "cos_noise_corrected_response_h": 0.17675459863261245
+      },
+      "fp32": {
+        "probe_loss": 3.4244630336761475,
+        "probe_gradient_norm": 0.14554633231360084,
+        "response_norm": 0.1270969651012025,
+        "response_relative_to_g0": 1.3629268134200765,
+        "response_norm_per_radius": 0.6354848255060125,
+        "cos_g0_probe_gradient": 0.5056578852457393,
+        "noise_corrected_response_norm": 0.1270969651012025,
+        "relative_linear_residual_against_h": 0.07391199581526622,
+        "cos_noise_corrected_response_h": 0.9995093868443051
+      },
+      "cos_response_bf16_fp32": 0.999987850071909,
+      "fp32_parameter_displacement": {
+        "actual_norm": 0.20000000437486465,
+        "intended_norm": 0.2000000041482363,
+        "cos_actual_intended": 0.9999999999999926
+      },
+      "bf16_weight_rounding_proxy": {
+        "kind": "FP32 trainable-parameter casts to BF16; not a forward measurement",
+        "proves_forward_visibility": false,
+        "changed_coordinate_fraction": 0.765625,
+        "represented_displacement_norm": 0.2000450086340481,
+        "represented_over_intended_norm": 1.0002250224243918,
+        "cos_represented_intended": 0.9999699616995699
+      }
+    }
+  ],
+  "limitations": [
+    "One batch and parameter point, not trained performance.",
+    "The rounding proxy does not prove that a forward sees or loses a probe.",
+    "Shared direction isolates precision; FP32 does not choose its own g0 direction.",
+    "The virtual SGD radius is distinct from an AdamW commit length."
+  ],
+  "construction_validation": {
+    "tiny_random_model": true,
+    "trained_llama_checkpoint": false,
+    "cuda_initialized": false,
+    "state_exact": true,
+    "rng_exact": true,
+    "existing_gradient_exact": true,
+    "interpretation": "CPU helper construction only; does not establish BF16 probe swallowing in real 1B/3B runs."
+  },
+  "source_sha256": "6a6e476eee3e11ddcf8eb8a1bbacd982895daaae7fc0b77675ce55ad17e3a4eb"
+}

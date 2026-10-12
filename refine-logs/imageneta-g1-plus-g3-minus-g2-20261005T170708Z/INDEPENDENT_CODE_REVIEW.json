@@ -1,0 +1,144 @@
+{
+  "status": "passed",
+  "blocking_findings": [],
+  "reviewer": "/root/g0b_review",
+  "generated_at_utc": "2026-10-05T17:17:32.039490+00:00",
+  "recommendation": "Proceed to the authorized two GPU smokes after normal artifact freezing. Both formal jobs remain dependent on the pairing gate.",
+  "scope": "Independent read-only source review and CPU checks; no GPU training launched and no trainer/config/source modified.",
+  "resolved_findings": [
+    {
+      "severity": "blocking_before_fix",
+      "file": "validate_job.py",
+      "issue": "Required checks four_base_probes/g3_included did not exist in the real writer's checks four_probes/g3_outer_probe.",
+      "resolution": "Root changed validator required keys only. Re-read and CPU integration using the exact real writer keys now passes."
+    }
+  ],
+  "checks": {
+    "g0_base_g1_positive_phi_plus_rho_N_g0": true,
+    "g2_at_original_base_plus_r_N_g1_minus_g0": true,
+    "g3_at_phi2_plus_rho_N_g2": true,
+    "update_exactly_g1_plus_g3_minus_g2": true,
+    "no_coefficient_half_or_sum_without_minus_g2": true,
+    "four_actual_CE_gradients_forward_calls_one_natural_SGD": true,
+    "no_projection_Fisher_merge_HVP_create_graph_opposite_g1": true,
+    "no_final_normalization_or_step_matching": true,
+    "entry_parameters_gradients_buffers_modes_caches_restored": true,
+    "R0_replay_four_probes_and_final_R1_from_g0": true,
+    "all_trainable_LoRA_and_seen_FC_optimizer_geometry_coverage": true,
+    "radius_configuration_reaches_actual_stepper": true,
+    "validator_summary_check_keys_match_real_writer": true,
+    "actual_controller_CPU_step_records_accepted_both_radii": true,
+    "smoke_pairing_two_inputs_initial_state_only": true,
+    "two_smokes_one_pairing_two_formals_dependency_DAG": true,
+    "GPU0_1_exclusion_idle_shared_index_UUID_admission_locks": true,
+    "source_manifest_verified": true,
+    "collect_results_pending_partial_completed_schema": true,
+    "historical_g1_reference_task_macro_metrics_recomputed": true
+  },
+  "CPU_checks": {
+    "acceptance_suite": {
+      "independently_rerun": true,
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "schema_integration": {
+      "status": "passed",
+      "actual_controller_step_records_validated": [
+        {
+          "job": "smoke_g1_d32_r025_k10_s2",
+          "updates": 2,
+          "tasks": 2
+        },
+        {
+          "job": "smoke_g1_d32_r1_k10_s2",
+          "updates": 2,
+          "tasks": 2
+        }
+      ],
+      "pairing_checks": {
+        "two_smokes": true,
+        "two_requested_formal": true,
+        "initial_parameters_equal": true,
+        "paired_realized_batches": true,
+        "class_slices_equal": true,
+        "exactly_four_probes": true,
+        "radius_direction_grid": true
+      },
+      "source_manifest_verified": true,
+      "scope": "CPU toy-model step records; summary envelope follows inspected main writer. No ImageNet-A runtime claim."
+    }
+  },
+  "protocol_boundary": [
+    "Historical g1+ reference shares the positive first probe and requested rho; its submitted gradient has no outer-radius dependence. Its four gradients include an unused opposite first probe and do not include g3, unlike this new four-probe execution.",
+    "Historical native g3 or g0+(g3-g2) is a different update/probe/RNG protocol and remains background context.",
+    "Single-seed natural-step comparisons do not isolate direction from update magnitude.",
+    "Partial matrices are progress; accepted final task-macro metrics require complete ten-task queue receipts."
+  ],
+  "limitations": [
+    "No ImageNet-A runtime or cross-GPU bitwise claim is made. The two queued GPU smokes still validate actual CUDA/model/data/lifecycle execution.",
+    "CPU schema checks generated real Controller records on a toy model; summary envelope uses the exact inspected writer field names.",
+    "Documentation and immutable final pins are root-managed following this code review; this artifact does not claim an unperformed final queue dry-run."
+  ],
+  "reviewed_artifact_hashes": {
+    "trainer/direction_step.py": "a0388d8f589e1376da9f9d1af92b846aa1e87beb0f3794cceb3b81273d704599",
+    "trainer/four_probe_train.py": "8dca07820fdd1b8cd039a14e01901c75f4629472cac53a8cbf31c4c02422aa9d",
+    "trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "trainer/test_four_probe_cpu.py": "825eeaadb7fc2e8d227c6b5b2cabdc74e3456fbcf2192bfc43a2f9d83698bf3a",
+    "validate_job.py": "7da2e473540db8e2404621a5ec465182349abc3b90c095944665b1675e74850f",
+    "smoke_pairing.py": "348b79891107cd13201251d4fc55a27549511cd816a73fba0461a85376ed9156",
+    "collect_results.py": "80414f22b4beb5e10395e16680fd595c524a75be54ccaed5f0190d15b256700c",
+    "run_queue.py": "2f6641fc00531356c4c378b092a980a84d1f624466e24330f24397eae7c4df49",
+    "common.py": "bba6076a0e547595e407734ef2ce8b947822a9ff859f68fd541a39a9a169c63f",
+    "suite.json": "3b772098649de63e33aa6d00264d5d41c99e9966d91ea33be25012d99165149d",
+    "source_manifest.json": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+    "historical_inventory.json": "388ff98fbdad48720521c2ba21eab5ed63e260f4a3882a4d9458b387e9958ee4"
+  },
+  "job_grid": [
+    {
+      "id": "smoke_g1_d32_r025_k10_s2",
+      "kind": "training",
+      "depends_on": [],
+      "radius": 0.25,
+      "expected_steps": 2
+    },
+    {
+      "id": "smoke_g1_d32_r1_k10_s2",
+      "kind": "training",
+      "depends_on": [],
+      "radius": 1.0,
+      "expected_steps": 2
+    },
+    {
+      "id": "smoke_pairing_gate",
+      "kind": "pairing",
+      "depends_on": [
+        "smoke_g1_d32_r025_k10_s2",
+        "smoke_g1_d32_r1_k10_s2"
+      ],
+      "radius": null,
+      "expected_steps": null
+    },
+    {
+      "id": "formal_g1_d32_r025_k10_s2",
+      "kind": "training",
+      "depends_on": [
+        "smoke_pairing_gate"
+      ],
+      "radius": 0.25,
+      "expected_steps": 2550
+    },
+    {
+      "id": "formal_g1_d32_r1_k10_s2",
+      "kind": "training",
+      "depends_on": [
+        "smoke_pairing_gate"
+      ],
+      "radius": 1.0,
+      "expected_steps": 2550
+    }
+  ]
+}

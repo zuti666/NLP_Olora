@@ -1,0 +1,142 @@
+{
+  "current": [
+    {
+      "dataset": "ImageNet-A",
+      "seed": 0,
+      "task1_update": "SGD",
+      "task2_update": "SGD+EWC",
+      "a11": 85.66775244299674,
+      "a21": 84.36482084690553,
+      "a22_recorded_rounded": 74.8,
+      "BWT_pp": -1.302931596091213,
+      "average_from_recorded_accuracies": 79.58,
+      "F_old_raw_at_task1": 1465.4969269027679,
+      "F_old_raw_at_task2": 2008.3878732628307,
+      "effective_QV_displacement": 0.3749495707076054,
+      "old_test_local_CE_increment": -0.019245972975083903
+    },
+    {
+      "dataset": "ImageNet-A",
+      "seed": 0,
+      "task1_update": "GAM",
+      "task2_update": "SGD+EWC",
+      "a11": 87.62214983713355,
+      "a21": 84.03908794788273,
+      "a22_recorded_rounded": 72.05,
+      "BWT_pp": -3.583061889250814,
+      "average_from_recorded_accuracies": 78.045,
+      "F_old_raw_at_task1": 761.9007743249618,
+      "F_old_raw_at_task2": 940.4125323057578,
+      "effective_QV_displacement": 0.34987579697360244,
+      "old_test_local_CE_increment": -0.013388091220670861
+    }
+  ],
+  "training_diagnostics": [
+    {
+      "task1_update": "SGD",
+      "task2_update": "SGD+EWC",
+      "task2_batch_proxy_raw_trace": 27.52147839218378,
+      "inherited_normalized_protection_trace": 0.999999995168322,
+      "delta_norm_squared": 0.1405871788483637,
+      "sqrt_logged_delta_norm": 0.3749495684066908,
+      "fisher_weighted_drift": 3.294973629022497e-07,
+      "normalized_fisher_drift": 2.343722703585221e-06,
+      "endpoint_EWC_penalty": 0.0003294973629022497
+    },
+    {
+      "task1_update": "GAM",
+      "task2_update": "SGD+EWC",
+      "task2_batch_proxy_raw_trace": 22.6480197571218,
+      "inherited_normalized_protection_trace": 0.9999999790550963,
+      "delta_norm_squared": 0.12241307087424502,
+      "sqrt_logged_delta_norm": 0.34987579349569903,
+      "fisher_weighted_drift": 1.4044296944750855e-07,
+      "normalized_fisher_drift": 1.1472873643586506e-06,
+      "endpoint_EWC_penalty": 0.00014044296944750855
+    }
+  ],
+  "historical_reference": [
+    {
+      "dataset": "ImageNet-A",
+      "seed": 0,
+      "task1_update": "SGD",
+      "task2_update": "SGD+EWC",
+      "a11_historical": 85.34,
+      "a21_historical": 82.08,
+      "a22_historical": 75.2,
+      "BWT_historical_pp": -3.260000000000005,
+      "effective_QV_displacement": 0.36787009810357174,
+      "F_old_raw_at_task2": null,
+      "F_old_raw_at_task2_status": "not measured for this historical task1 endpoint",
+      "task2_batch_proxy_raw_trace": 30.05868272483349
+    },
+    {
+      "dataset": "ImageNet-A",
+      "seed": 0,
+      "task1_update": "GAM",
+      "task2_update": "GAM+EWC",
+      "a11_historical": 87.62,
+      "a21_historical": 81.76,
+      "a22_historical": 81.5,
+      "BWT_historical_pp": -5.859999999999999,
+      "effective_QV_displacement": 0.5037783653580257,
+      "F_old_raw_at_task2": null,
+      "F_old_raw_at_task2_status": "not measured for this historical task1 endpoint",
+      "task2_batch_proxy_raw_trace": 17.710210628807545
+    }
+  ],
+  "definitions": {
+    "task_numbering": "paper Task 1/2 corresponds to code Task0/Task1",
+    "current_raw_trace": "mean_i ||grad_W CE_i||^2 on the same stratified 256 old-task train images with fixed old 20-class head, full FP32, 24 effective Q/V BA matrices; no normalization, floor, regularizer",
+    "current_displacement": "sqrt(sum_lc ||B2A2-B1A1||_F^2), 24 Q/V blocks; excludes classifier and frozen base",
+    "current_batch_proxy": "new-task training batch-mean CE gradient squared, before trace normalization, 997 samples; not old-task per-example Fisher",
+    "legacy_table_trace": "endpoint_fisher_total_mass; current-task batch-gradient proxy trace, effective K/V; Task2 value uses new-task data/head, not old-task sensitivity",
+    "legacy_table_displacement": "mean_seed sqrt(delta_norm), delta_norm=sum_lc ||B_new A_new||_F^2; fresh K/V adapter, pre-merge endpoint; excludes classifier",
+    "legacy_scope": "ImageNet-R, seeds0/1/2, low-rank-cl-new, Adam-based update, lambda1e7; no direct pooling with current ImageNet-A SGD lambda2000 seed0"
+  },
+  "validated_current_rows": 2,
+  "expected_current_rows": 2,
+  "no_gpu_used": true,
+  "source_receipts": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/table_a/summary.json",
+      "sha256": "62743cd1074d651b25df043ca57c05c5381aaaff1e6dae73f80daf85da369652"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_sgd_to_sgd_seed0/task0_local_metrics.jsonl",
+      "sha256": "8609350eae94a28d6e808f1e4143c38bedff58815dbf517d7a1e5467d002b32b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_sgd_to_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/A_sgd_to_sgd_seed0/imageneta/0/A_sgd_to_sgd_seed0/exp_run/20/A_sgd_to_sgd_seed0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "3fe21bf0642cc09e65907302275ca6ada8eb7b5ef150bd7a444d2d1309018b79"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/trajectory/summary.json",
+      "sha256": "45190c88aedc0a3fd069769f51bdf605abd6b3a55f1f82dd8f059b6453e63d54"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sgd_from_task0_T10_lr0.02_e50/imageneta/0/s1c_sgd_from_task0_T10_e50_lam2000_s0/exp_run/20/s1c_sgd_from_task0_T10_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "4b5c56c31c4bbffabac7bc30274754435ee72e1360593c3f0e194ffbb64e9662"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/table_a/summary.json",
+      "sha256": "7517faedce788bb68a4899bdab799b8ebd7555e1a04c71a65b2a654440d33175"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed0/task0_local_metrics.jsonl",
+      "sha256": "a98e761af6007c71327872c29e938c2fe4c36a6539068469c68f081adcdc7c09"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/A_gam_to_sgd_seed0/imageneta/0/A_gam_to_sgd_seed0/exp_run/20/A_gam_to_sgd_seed0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "7797230c2574ef2d810d492bed4c21adc2823557f0620b8ff8a42595e97b9339"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/trajectory/summary.json",
+      "sha256": "210cbc0a0dda526817e41ea17acff8993ab95587a2c65815d0a6766f3791423a"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/gam_from_task0_T10_lr0.02_e50/imageneta/0/s1c_gam_from_task0_T10_e50_lam2000_s0/exp_run/20/s1c_gam_from_task0_T10_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "d69f3d9930b687e559ef0de97ecbfa7a7b683a1042a58b3d95d759b368557be4"
+    }
+  ]
+}

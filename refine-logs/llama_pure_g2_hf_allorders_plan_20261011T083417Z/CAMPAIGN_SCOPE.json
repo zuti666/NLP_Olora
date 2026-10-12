@@ -1,0 +1,38 @@
+{
+  "environment_canonical_sha256": "0715917e1ad74c80ae4defaf61a143c33d13857323b67d09ead666a792fa61b2",
+  "environment_raw_sha256": "e45ab90933d3e0968a8743569b207fbf3de0fd202178c0b07dafbed644099301",
+  "script_configuration_files": [
+    "scripts_llama/run_g2_llama.py",
+    "scripts_llama/run_g2_orders_queue.py",
+    "scripts_llama/collect_g2_orders_results.py",
+    "configs/g2_llama/inclora_g2_llama1b_order1.json",
+    "configs/g2_llama/inclora_g2_llama1b_order2.json",
+    "configs/g2_llama/inclora_g2_llama1b_order3.json",
+    "configs/g2_llama/inclora_g2_llama3b_order1.json",
+    "configs/g2_llama/inclora_g2_llama3b_order2.json",
+    "configs/g2_llama/inclora_g2_llama3b_order3.json",
+    "scripts_order1_llama1B/IncLoRA-G2_LLaMA3-1b.sh",
+    "scripts_order1_llama3B/IncLoRA-G2_LLaMA3-3b.sh",
+    "scripts_order2_llama1B/IncLoRA-G2_LLaMA3-1b.sh",
+    "scripts_order2_llama3B/IncLoRA-G2_LLaMA3-3b.sh",
+    "scripts_order3_llama1B/IncLoRA-G2_LLaMA3-1b.sh",
+    "scripts_order3_llama3B/IncLoRA-G2_LLaMA3-3b.sh"
+  ],
+  "scope": {
+    "method": "IncLoRA-G2",
+    "optimizer": "transformers.optimization.AdamW",
+    "epsilon": 1e-06,
+    "weight_decay": 0,
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "seeds": [
+      0
+    ],
+    "formal_orders": 6,
+    "formal_stages": 24
+  }
+}

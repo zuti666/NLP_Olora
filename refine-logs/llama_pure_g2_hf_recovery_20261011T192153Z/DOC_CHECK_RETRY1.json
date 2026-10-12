@@ -1,0 +1,98 @@
+{
+  "schema": "G2RecoveryDocCheck_v1",
+  "reviewer": "fresh_independent_agent_g2_recovery_doc_witness",
+  "checked_at": "2026-10-11T19:27:57.669244+00:00",
+  "working_directory": "/data/140-1/users/liying/O-LoRA",
+  "documentation": "refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/ENVIRONMENT.md",
+  "status": "PASS",
+  "first_literal_dry_run": {
+    "command": "python3 scripts_llama/run_g2_llama.py --config configs/g2_llama/inclora_g2_llama1b_order1.json --seed 0 --run-root /tmp/llama_g2_recovery_20261011T192153Z --dry-run",
+    "exit_code": 0,
+    "stdout_summary": "Valid seed0 pure IncLoRA-G2 plan: 1B Order1, 2 smoke stages, 4 formal stages, 514 formal updates, Transformers AdamW, DDP4, global batch64.",
+    "run_root_absent": true,
+    "no_cuda_allocation_evidence": "Standard-library-only dry-run path returns before execute/claim_gpus; no torch import or subprocess launch."
+  },
+  "actual_frozen_entrypoint_help": {
+    "command": "CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 NLTK_DATA=/data/140-1/users/liying/O-LoRA/.cache/nltk_data PYTHONPATH=/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry1/source/src /data/140-1/users/liying/conda_envs/nlora_req/bin/python /data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry1/source/src/run_uie_lora.py --help",
+    "exit_code": 0,
+    "wall_time_seconds": 2.447793205,
+    "output_characters": 51517,
+    "stdout_summary": "Printed run_uie_lora.py usage and full argparse options, including G2 parameters; exited successfully during argument parsing before model loading.",
+    "usage_seen": true,
+    "g2_options_seen": true
+  },
+  "additional_cpu_witness": {
+    "exit_code": 0,
+    "stdout_summary": "FROZEN_HELP_NETWORK_DENIED_CUDA_UNINITIALIZED_TOKENIZATION_OK",
+    "network_calls_denied": true,
+    "cuda_uninitialized_before_and_after": true,
+    "real_local_metric_tokenizer_tokenized": true
+  },
+  "scope": "CPU-only read-only review of source/control; only this review artifact written. No model loading, package change, algorithm edit, GPU allocation or launch.",
+  "issues": [],
+  "frozen_source_review": {
+    "source_hash_count": 112,
+    "old_source_hash_count": 106,
+    "all_source_hashes_match": true,
+    "source_hash_file_matches_manifest": true,
+    "manifest_hash_matches": true,
+    "added_files": [
+      "data/gpt2tokenizer/config.json",
+      "data/gpt2tokenizer/merges.txt",
+      "data/gpt2tokenizer/special_tokens_map.json",
+      "data/gpt2tokenizer/tokenizer.json",
+      "data/gpt2tokenizer/tokenizer_config.json",
+      "data/gpt2tokenizer/vocab.json"
+    ],
+    "shared_changed_files": [
+      "scripts_llama/run_g2_llama.py",
+      "scripts_llama/run_g2_orders_queue.py"
+    ],
+    "core_trainer_entrypoint_and_configs_unchanged": true,
+    "tokenizer_assets": {
+      "data/gpt2tokenizer/config.json": {
+        "sha256": "55495c6256b36b6408afab38ca897afb44fd0d9e9529fd8f151bf9a681776800",
+        "bytes": 907,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/merges.txt": {
+        "sha256": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+        "bytes": 456356,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/special_tokens_map.json": {
+        "sha256": "6f50ab5a5a509a1c309d6171f339b196a900dc9c99ad0408ff23bb615fdae7ad",
+        "bytes": 99,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/tokenizer.json": {
+        "sha256": "86f12f9648802a0c45c4b87ef2ab235e9bfdf1a43cc40571291507c81e35c4c3",
+        "bytes": 2107625,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/tokenizer_config.json": {
+        "sha256": "0f7123cb7e1be4e9c2e8770bd3c00f73d75364fb71680d0412d6263e7af2654c",
+        "bytes": 255,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/vocab.json": {
+        "sha256": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7",
+        "bytes": 798156,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      }
+    },
+    "old_manifest_hash_matches": true,
+    "old_frozen_source_hash_errors": [],
+    "jobs_and_protocol_unchanged_except_new_queue_and_artifact_paths": true
+  },
+  "missing_asset_negative_check": {
+    "claim_gpus_rejected_before_gpu_inspection": true,
+    "freeze_source_rejected_before_creating_run_root": true
+  }
+}

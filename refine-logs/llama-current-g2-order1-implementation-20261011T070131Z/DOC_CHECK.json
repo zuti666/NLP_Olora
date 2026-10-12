@@ -1,0 +1,92 @@
+{
+  "schema": "CurrentG2DocumentedDryRunWitness_v1",
+  "status": "passed",
+  "scope": "fresh CPU-only follows-documentation check; not GPU acceptance",
+  "document": "scripts_llama/G2_LLAMA_ORDER1.md",
+  "actual_command": "python3 scripts_llama/run_g2_llama.py --config configs/g2_llama/inclora_g2_llama1b_order1.json --seed 0 --run-root /tmp/llama_g2_documented_dry_run --dry-run",
+  "exit_code": 0,
+  "doc_sha256": "d0c8754a996a23b0971a5cac417155cd409af4a5a049f2b3abef1eeb403b3756",
+  "CUDA_training_started": false,
+  "full_model_loaded": false,
+  "checks": {
+    "exact_first_documented_dry_run": true,
+    "dry_run_exit_zero": true,
+    "run_root_absent_before_and_after": true,
+    "pure_inclora_g2": true,
+    "EWC_and_OLoRA_coefficients_zero_all_six_stages": true,
+    "Fisher_and_projection_disabled": {
+      "configuration_only": true,
+      "evidence": "inclora + g2-adamw_hf; no Fisher/projection option keys; launcher forbids Fisher hooks and requires zero Fisher/projection runtime audit counts for future real runs",
+      "GPU_runtime_observed": false,
+      "no_fisher_or_projection_option_keys": true
+    },
+    "two_smoke_stages_each_two_steps": true,
+    "smoke_precedes_formal": true,
+    "formal_stage_budgets_218_78_156_62": true,
+    "formal_total_updates": 514,
+    "HF_AdamW_all_six_stages": true,
+    "documented_wrapper_files_exist": {
+      "scripts_order1_llama1B/IncLoRA-G2-GAMBase_LLaMA3-1b.sh": true,
+      "scripts_order1_llama1B/IncLoRA-G2_LLaMA3-1b.sh": true,
+      "scripts_order1_llama3B/IncLoRA-G2-GAMBase_LLaMA3-3b.sh": true,
+      "scripts_order1_llama3B/IncLoRA-G2_LLaMA3-3b.sh": true
+    },
+    "source_manifest_file_count": 16,
+    "source_manifest_hashes_match": true,
+    "source_manifest_mismatches": {},
+    "dry_run_returns_before_execute_or_GPU_reservation": true,
+    "launcher_top_level_imports_standard_library_only": true,
+    "documented_offline_validation": "20 core + 10 Trainer + 12 launcher = 42 new tests; 28 existing regression tests",
+    "document_states_no_new_G2_LLM_FAA": true
+  },
+  "plan_summary": {
+    "method": "inclora_g2",
+    "model_size": "1B",
+    "seeds": [
+      0
+    ],
+    "stage_sequence": [
+      {
+        "task": "dbpedia",
+        "smoke": true,
+        "updates": 2,
+        "max_steps": 2
+      },
+      {
+        "task": "amazon",
+        "smoke": true,
+        "updates": 2,
+        "max_steps": 2
+      },
+      {
+        "task": "dbpedia",
+        "smoke": false,
+        "updates": 218,
+        "max_steps": 218
+      },
+      {
+        "task": "amazon",
+        "smoke": false,
+        "updates": 78,
+        "max_steps": 78
+      },
+      {
+        "task": "yahoo",
+        "smoke": false,
+        "updates": 156,
+        "max_steps": 156
+      },
+      {
+        "task": "agnews",
+        "smoke": false,
+        "updates": 62,
+        "max_steps": 62
+      }
+    ],
+    "optimizer_class": "transformers.AdamW",
+    "optimizer_type": "g2-adamw_hf",
+    "adam_epsilon": 1e-06,
+    "weight_decay": 0
+  },
+  "checked_at_utc": "2026-10-11T07:16:59.581810+00:00"
+}

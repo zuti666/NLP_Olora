@@ -1,0 +1,1655 @@
+{
+  "project": "imageneta_two_task_six_row_table",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign",
+  "gpus": [
+    4,
+    6
+  ],
+  "max_parallel": 2,
+  "code_files": [
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/eval_common.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/learner.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/make_plan.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/pipeline.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize_stage.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/verify_smoke.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imagenetr_gam_ewc_1x1/train.py",
+    "/data/140-1/users/liying/O-LoRA/scripts/imagenetr_gam_ewc_1x1/learner.py",
+    "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/gam.py",
+    "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/util.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/baseLoRA.py",
+    "/data/140-1/users/liying/CopyFlatCV/utils/inc_net.py",
+    "/data/140-1/users/liying/CopyFlatCV/utils/data.py",
+    "/data/140-1/users/liying/CopyFlatCV/utils/data_manager.py",
+    "/data/140-1/users/liying/CopyFlatCV/backbone/lora.py",
+    "/data/140-1/users/liying/CopyFlatCV/backbone/linears.py",
+    "/data/140-1/users/liying/CopyFlatCV/src/trainer.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py"
+  ],
+  "stages": [
+    {
+      "id": "smoke_s0_anchors",
+      "depends_on": [],
+      "jobs": [
+        {
+          "id": "smoke_s0_anchor_sgd",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "sgd",
+            "--seed",
+            "0",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/anchors/sgd/seed0/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/smoke_s0_anchor_sgd_environment.json"
+          ]
+        },
+        {
+          "id": "smoke_s0_anchor_gam",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "gam",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/anchors/gam/seed0/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/smoke_s0_anchor_gam_environment.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke_s0_branches",
+      "depends_on": [
+        "smoke_s0_anchors"
+      ],
+      "jobs": [
+        {
+          "id": "smoke_s0_gam_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "gam_ewc",
+            "--seed",
+            "0",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/gam_ewc/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_shaping_only_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "shaping_only",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/shaping_only/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_task1_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task1_shaping",
+            "--seed",
+            "0",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task1_shaping/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "ewc",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_task0_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task0_shaping",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_vanilla_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "vanilla",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json",
+            "--smoke"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/vanilla/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": true
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "smoke_s0_evaluations",
+      "depends_on": [
+        "smoke_s0_branches"
+      ],
+      "jobs": [
+        {
+          "id": "smoke_s0_vanilla_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/vanilla/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "8"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/vanilla/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_shaping_only_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/shaping_only/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "8"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/shaping_only/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "8"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_gam_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/gam_ewc/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "8"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/gam_ewc/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_task0_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "8"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "smoke_s0_task1_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task1_shaping/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "8"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task1_shaping/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "smoke_s0_summary",
+      "depends_on": [
+        "smoke_s0_evaluations"
+      ],
+      "jobs": [
+        {
+          "id": "smoke_s0_summary",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize_stage.py",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs",
+            "--seeds",
+            "0",
+            "--allow-smoke"
+          ],
+          "gpu": null,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/comparison/COMPLETE_seed0.json",
+          "receipt_require": {
+            "status": "complete",
+            "smoke": true,
+            "runs": 6
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "smoke_verified",
+      "depends_on": [
+        "smoke_s0_summary"
+      ],
+      "jobs": [
+        {
+          "id": "smoke_verified",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/verify_smoke.py",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs"
+          ],
+          "gpu": null,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/SMOKE_VERIFIED.json",
+          "receipt_require": {
+            "status": "passed",
+            "paper_evidence_allowed": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s0_anchors",
+      "depends_on": [
+        "smoke_verified"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s0_anchor_sgd",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "sgd",
+            "--seed",
+            "0",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/anchors/sgd/seed0/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/formal_s0_anchor_sgd_environment.json"
+          ]
+        },
+        {
+          "id": "formal_s0_anchor_gam",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "gam",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/anchors/gam/seed0/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/formal_s0_anchor_gam_environment.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "formal_s0_branches",
+      "depends_on": [
+        "formal_s0_anchors"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s0_gam_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "gam_ewc",
+            "--seed",
+            "0",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_shaping_only_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "shaping_only",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_task1_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task1_shaping",
+            "--seed",
+            "0",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "ewc",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_task0_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task0_shaping",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_vanilla_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "vanilla",
+            "--seed",
+            "0",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed0/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s0_evaluations",
+      "depends_on": [
+        "formal_s0_branches"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s0_vanilla_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_shaping_only_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_gam_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_task0_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s0_task1_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed0",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed0/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s0_summary",
+      "depends_on": [
+        "formal_s0_evaluations"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s0_summary",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize_stage.py",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--seeds",
+            "0"
+          ],
+          "gpu": null,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/comparison/COMPLETE_seed0.json",
+          "receipt_require": {
+            "status": "complete",
+            "smoke": false,
+            "runs": 6
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s1_anchors",
+      "depends_on": [
+        "formal_s0_summary"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s1_anchor_sgd",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "sgd",
+            "--seed",
+            "1",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/anchors/sgd/seed1/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/formal_s1_anchor_sgd_environment.json"
+          ]
+        },
+        {
+          "id": "formal_s1_anchor_gam",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "gam",
+            "--seed",
+            "1",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/anchors/gam/seed1/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/formal_s1_anchor_gam_environment.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "formal_s1_branches",
+      "depends_on": [
+        "formal_s1_anchors"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s1_gam_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "gam_ewc",
+            "--seed",
+            "1",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_shaping_only_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "shaping_only",
+            "--seed",
+            "1",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_task1_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task1_shaping",
+            "--seed",
+            "1",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "ewc",
+            "--seed",
+            "1",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_task0_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task0_shaping",
+            "--seed",
+            "1",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_vanilla_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "vanilla",
+            "--seed",
+            "1",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed1/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s1_evaluations",
+      "depends_on": [
+        "formal_s1_branches"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s1_vanilla_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed1",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed1/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_shaping_only_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed1",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed1/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed1",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed1/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_gam_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed1",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed1/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_task0_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed1",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed1/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s1_task1_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed1",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed1/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s1_summary",
+      "depends_on": [
+        "formal_s1_evaluations"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s1_summary",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize_stage.py",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--seeds",
+            "0,1"
+          ],
+          "gpu": null,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/comparison/COMPLETE_seed1.json",
+          "receipt_require": {
+            "status": "complete",
+            "smoke": false,
+            "runs": 12
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s2_anchors",
+      "depends_on": [
+        "formal_s1_summary"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s2_anchor_sgd",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "sgd",
+            "--seed",
+            "2",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/anchors/sgd/seed2/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/formal_s2_anchor_sgd_environment.json"
+          ]
+        },
+        {
+          "id": "formal_s2_anchor_gam",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task0",
+            "--method",
+            "gam",
+            "--seed",
+            "2",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/anchors/gam/seed2/TASK0_COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 1,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA",
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/formal_s2_anchor_gam_environment.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "formal_s2_branches",
+      "depends_on": [
+        "formal_s2_anchors"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s2_gam_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "gam_ewc",
+            "--seed",
+            "2",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_shaping_only_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "shaping_only",
+            "--seed",
+            "2",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_task1_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task1_shaping",
+            "--seed",
+            "2",
+            "--gpu",
+            "4",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_ewc_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "ewc",
+            "--seed",
+            "2",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_task0_shaping_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "task0_shaping",
+            "--seed",
+            "2",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_vanilla_train",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py",
+            "--stage",
+            "task1",
+            "--method",
+            "vanilla",
+            "--seed",
+            "2",
+            "--gpu",
+            "6",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed2/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete",
+            "completed_tasks": 2,
+            "smoke": false
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s2_evaluations",
+      "depends_on": [
+        "formal_s2_branches"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s2_vanilla_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed2",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/vanilla/seed2/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_shaping_only_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed2",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/shaping_only/seed2/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed2",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/ewc/seed2/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_gam_ewc_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed2",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/gam_ewc/seed2/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_task0_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed2",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 4,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task0_shaping/seed2/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        },
+        {
+          "id": "formal_s2_task1_shaping_eval",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+            "--run-dir",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed2",
+            "--device",
+            "cuda",
+            "--fisher-samples",
+            "256"
+          ],
+          "gpu": 6,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/task1_shaping/seed2/evaluation/COMPLETE.json",
+          "receipt_require": {
+            "status": "complete"
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    },
+    {
+      "id": "formal_s2_summary",
+      "depends_on": [
+        "formal_s2_evaluations"
+      ],
+      "jobs": [
+        {
+          "id": "formal_s2_summary",
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize_stage.py",
+            "--output-root",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs",
+            "--seeds",
+            "0,1,2"
+          ],
+          "gpu": null,
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/runs/comparison/COMPLETE_seed2.json",
+          "receipt_require": {
+            "status": "complete",
+            "smoke": false,
+            "runs": 18
+          },
+          "cwd": "/data/140-1/users/liying/O-LoRA"
+        }
+      ]
+    }
+  ],
+  "formal_runs": 18,
+  "formal_anchor_trainings": 6,
+  "formal_branch_trainings": 18,
+  "failure_policy": "stop dependent work; preserve failed attempt; no automatic budget changes",
+  "start_after": {
+    "gpu_uuids": {
+      "4": "GPU-e97b92ec-d10c-0913-e3f8-67941b20ee0c",
+      "6": "GPU-854d8366-b2d5-676d-1c34-70a08132c88f"
+    }
+  }
+}

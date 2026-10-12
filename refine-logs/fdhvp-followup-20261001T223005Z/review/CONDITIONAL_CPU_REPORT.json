@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "checks": {
+    "unconditional_core_ready": true,
+    "absent_core_waits": true,
+    "below_signal_second_skips": true,
+    "below_signal_coefficient_ready": true,
+    "FAA_guard_applies": true,
+    "exact_signal_boundary_waits_for_diagnostics": true,
+    "signal_true_no_lambda_fallback": true,
+    "exact_boundary_and_low_alignment_release": true,
+    "unsupported_HVP_skips_second": true,
+    "unsupported_HVP_does_not_trigger_lambda": true,
+    "valid_second_skips_propagate_to_first": true,
+    "current_skip_validates": true,
+    "stale_skip_rejected": {
+      "rejected": true,
+      "reason": "skipped frozen gates changed"
+    },
+    "collector_separates_skips": true,
+    "collector_absent_not_zero_filled": true,
+    "first_waits_for_four_trajectories": true,
+    "one_large_effect_still_waits_for_all_four": true,
+    "first_any_scale_effect_releases": true,
+    "negative_exact_effect_boundary_releases": true,
+    "both_below_absolute_threshold_skip_first": true,
+    "effect_threshold_read_from_frozen_input": true,
+    "signal_threshold_read_from_frozen_input": true,
+    "nonfinite_metric_rejected": {
+      "rejected": true,
+      "reason": "invalid finite number: AAA_task_macro"
+    },
+    "core_initialization_mismatch_rejected": {
+      "rejected": true,
+      "reason": "paired initial model/frozen origins/new head differs"
+    },
+    "core_actual_input_mismatch_rejected": {
+      "rejected": true,
+      "reason": "paired actual inputs differ"
+    },
+    "nonzero_completed_exit_rejected": {
+      "rejected": true,
+      "reason": "invalid completion identity/exit: screen_r1_ug_natural_s2"
+    },
+    "tampered_completed_hash_rejected": {
+      "rejected": true,
+      "reason": "completion receipt changed: screen_r1_ug_natural_s2"
+    },
+    "wrong_completed_identity_rejected": {
+      "rejected": true,
+      "reason": "invalid completion identity/exit: screen_r1_ug_natural_s2"
+    },
+    "base10_pairing_and_real_CPU_tensor_identity_pass": true,
+    "different_rule_endstate_not_compared": true,
+    "second4_cross_group_pairs_without_US_identity_requirement": true,
+    "first4_pairing_pass": true,
+    "changed_second_task_head_pair_rejected": {
+      "rejected": true,
+      "reason": "smoke initialization/data/new-head/LR pairing differs: smoke_second_fd_matched_s2"
+    },
+    "changed_input_pair_rejected": {
+      "rejected": true,
+      "reason": "smoke initialization/data/new-head/LR pairing differs: smoke_second_fd_matched_s2"
+    },
+    "stale_base_proof_rejected": {
+      "rejected": true,
+      "reason": "base smoke proof stale"
+    },
+    "US_lambda1_tensor_mismatch_rejected": {
+      "rejected": true,
+      "reason": "US natural/matched checkpoint numerical gate failed"
+    },
+    "missing_or_unknown_smoke_group_rejected": {
+      "rejected": true,
+      "reason": "unknown or empty smoke group: missing"
+    },
+    "US_tensor_count_mismatch_rejected": {
+      "rejected": true,
+      "reason": "US checkpoint structures differ"
+    },
+    "lambda4_pairs_without_false_US_lambda1_identity": true
+  },
+  "check_count": 39,
+  "negative_count": 13,
+  "implementation_sha256": {
+    "conditional_gate.py": "9fd504beace1c6d00dba47de4c16447f54a44ef723cf5ac1a0f91da5e487e010",
+    "collect_results.py": "3ea9dc1b7d1252ae6019e916c87311ac8ab8f1c15f76af307c4a868f90725064",
+    "check_gpu_smokes.py": "1dd347559a4d4d29ab0d7499cb549026f7049ffe81ddb4be1167f23678a71f53"
+  },
+  "test_sha256": "d1e37bdb11118beb8e8785b2e50841d755ed4d076417a3b71cb95cd5da91e7bf",
+  "scope": "CPU-only synthetic branch and report fixtures, actual CPU checkpoint tensors; full validator tested separately; no queue/GPU invoked."
+}

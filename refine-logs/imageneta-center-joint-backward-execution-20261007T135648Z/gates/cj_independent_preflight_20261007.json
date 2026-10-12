@@ -1,0 +1,27 @@
+{
+  "scope": "independent CPU direction review; not GPU or model performance evidence",
+  "status": "passed",
+  "tests": 7,
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python refine-logs/imageneta-center-joint-backward-execution-20261007T135648Z/tests/test_cj_independent.py",
+  "checks": [
+    "independent nonlinear analytic CPLUS/CMINUS/BF/BB positions and U",
+    "training gradient budgets 5/5/4/4 and BB has no ascent side",
+    "nonzero e2 removed, no division by rho",
+    "quadratic qF=qB and matching positive residuals",
+    "rho0 and zero gradients finite and reduce to g0",
+    "all random streams replay and only R1 advances",
+    "buffers modes caches preexisting gradients restored on every failed probe",
+    "full state restored on post-step optimizer exception",
+    "bitwise FF/FB regression versus frozen old direction class"
+  ],
+  "sha256": {
+    "trainer/direction_step.py": "2d88eb19c122a45f8fa9545c7d5c0d7b2665107cd2cbc1afcf34aa3146a64225",
+    "tests/test_cj_independent.py": "fc58e1c15d70a30d2de6216a0842caa5b79b26a7681c24b6ece98fe1d2d7e48d",
+    "run_queue.py": "15f4cd9f77958e09a51fe18938365ad13383c6df6b7104014440622b07755c97"
+  },
+  "pending_checks": [
+    "new suite shares old GPU index+UUID lease directory",
+    "documented host dry-run after final pins and suite generation",
+    "trainer and job acceptance tests handled by separate worker"
+  ]
+}

@@ -1,0 +1,869 @@
+{
+  "audit_scope": "CPU-only existing artifacts; no training, no GPU, no Fisher modification/reconstruction/recomputation",
+  "latest_user_choice": "Reuse existing trace-normalized Fisher and sweep lambda only; both normalization flags stay true",
+  "anchors": {
+    "sgd": {
+      "sidecar_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/fisher_state_0.pt",
+      "sha256": "7d89cb797c9505f7866141759e020d38f348b4e34dd0a78eef38455efd2d6482",
+      "keys": [
+        "fisher_past_delta",
+        "fisher_past_trace_mass",
+        "last_task_new_fisher_stats",
+        "fisher_new_task_raw_trace"
+      ],
+      "tensor_count": 24,
+      "numel": 14155776,
+      "trace_fp64": 1.0000000537704132,
+      "mean_fp64": 7.064254575449719e-08,
+      "max": 0.0015906902262941003,
+      "all_finite_nonnegative": true,
+      "metadata": {
+        "fisher_past_trace_mass": 0.9999999511055648,
+        "last_task_new_fisher_stats": {
+          "tensors": 24,
+          "numel": 14155776,
+          "max": 0.0015906901098787785,
+          "mean": 7.064253850199133e-08,
+          "sum": 0.9999999511055648
+        },
+        "fisher_new_task_raw_trace": 34.06988796591759
+      },
+      "normalization_config": {
+        "ewc_normalize_fisher": true,
+        "ewc_normalize_accumulated_fisher": true,
+        "ewc_fisher_norm_eps": 1e-12,
+        "ewc_gamma": 0.9,
+        "fisher_mode": "batch_empirical"
+      },
+      "blocks": [
+        {
+          "key": "backbone.lora_vit.blocks.0.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.010394172115801568,
+          "max": 5.184971814742312e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.0.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.18587314599727012,
+          "max": 0.0015906902262941003
+        },
+        {
+          "key": "backbone.lora_vit.blocks.1.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.002857946853747395,
+          "max": 9.700775081000756e-06
+        },
+        {
+          "key": "backbone.lora_vit.blocks.1.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.09306598932140622,
+          "max": 0.0005080749397166073
+        },
+        {
+          "key": "backbone.lora_vit.blocks.2.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0036381620507138224,
+          "max": 2.0160503481747583e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.2.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.10370499877856092,
+          "max": 0.00022543405066244304
+        },
+        {
+          "key": "backbone.lora_vit.blocks.3.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006035125913355635,
+          "max": 1.8696682673180476e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.3.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.08817336410021613,
+          "max": 0.0003906204365193844
+        },
+        {
+          "key": "backbone.lora_vit.blocks.4.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.005928444242967506,
+          "max": 1.5887519111856818e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.4.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.08333812905800525,
+          "max": 0.00035088794538751245
+        },
+        {
+          "key": "backbone.lora_vit.blocks.5.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006936061423260949,
+          "max": 3.0642073397757486e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.5.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.07789591594715914,
+          "max": 6.317327643046156e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.6.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0077518636111093085,
+          "max": 4.3023603211622685e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.6.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0705392203580229,
+          "max": 5.804871398140676e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.7.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006495930123928432,
+          "max": 2.4210083211073652e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.7.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.06886385907404995,
+          "max": 5.289054388413206e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.8.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.005082253827225645,
+          "max": 3.924594693671679e-06
+        },
+        {
+          "key": "backbone.lora_vit.blocks.8.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.05126151097024785,
+          "max": 4.693006121669896e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.9.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006581739922945045,
+          "max": 1.0983321772073396e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.9.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.045061893653251195,
+          "max": 4.455018279259093e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.10.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006115973187687793,
+          "max": 1.0071144060930237e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.10.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.03642293838875549,
+          "max": 1.9925089873140678e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.11.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.002416784781242167,
+          "max": 2.4773823952273233e-06
+        },
+        {
+          "key": "backbone.lora_vit.blocks.11.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.025564630069482626,
+          "max": 1.2663575944316108e-05
+        }
+      ]
+    },
+    "gam": {
+      "sidecar_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/fisher_state_0.pt",
+      "sha256": "3100e031b312daa15e9bd72fe3440f1fd694689fc971ab576e4e1a9295813118",
+      "keys": [
+        "fisher_past_delta",
+        "fisher_past_trace_mass",
+        "last_task_new_fisher_stats",
+        "fisher_new_task_raw_trace"
+      ],
+      "tensor_count": 24,
+      "numel": 14155776,
+      "trace_fp64": 0.9999999796979775,
+      "mean_fp64": 7.064254052183204e-08,
+      "max": 0.0016581519739702344,
+      "all_finite_nonnegative": true,
+      "metadata": {
+        "fisher_past_trace_mass": 1.000000000698492,
+        "last_task_new_fisher_stats": {
+          "tensors": 24,
+          "numel": 14155776,
+          "max": 0.0016581519739702344,
+          "mean": 7.064254200536177e-08,
+          "sum": 1.000000000698492
+        },
+        "fisher_new_task_raw_trace": 24.82307168096304
+      },
+      "normalization_config": {
+        "ewc_normalize_fisher": true,
+        "ewc_normalize_accumulated_fisher": true,
+        "ewc_fisher_norm_eps": 1e-12,
+        "ewc_gamma": 0.9,
+        "fisher_mode": "batch_empirical"
+      },
+      "blocks": [
+        {
+          "key": "backbone.lora_vit.blocks.0.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.011910828028134562,
+          "max": 8.69220748427324e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.0.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.19721992354533627,
+          "max": 0.0016581519739702344
+        },
+        {
+          "key": "backbone.lora_vit.blocks.1.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.003086465756100389,
+          "max": 1.0040924280474428e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.1.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.09401822251270386,
+          "max": 0.00041240296559408307
+        },
+        {
+          "key": "backbone.lora_vit.blocks.2.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0038506324591040487,
+          "max": 2.1767153157270513e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.2.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.10653583166296712,
+          "max": 0.0002939374535344541
+        },
+        {
+          "key": "backbone.lora_vit.blocks.3.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006123726928064064,
+          "max": 1.794383570086211e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.3.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.09034843075201274,
+          "max": 0.00045060497359372675
+        },
+        {
+          "key": "backbone.lora_vit.blocks.4.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.005888448784228414,
+          "max": 1.3165541531634517e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.4.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.08295209413517793,
+          "max": 0.00035691543598659337
+        },
+        {
+          "key": "backbone.lora_vit.blocks.5.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006717487467198323,
+          "max": 2.1930516595602967e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.5.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.07316749708109094,
+          "max": 6.036405829945579e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.6.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.008118374343178953,
+          "max": 4.845318471780047e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.6.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.06761642062540554,
+          "max": 9.067074279300869e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.7.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0064863740764417735,
+          "max": 3.045771700271871e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.7.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.06608577500067808,
+          "max": 4.220866321702488e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.8.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0048364435526379625,
+          "max": 3.0632793368567945e-06
+        },
+        {
+          "key": "backbone.lora_vit.blocks.8.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.04920196917547279,
+          "max": 4.505973993218504e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.9.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.006306948104113594,
+          "max": 1.26475151773775e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.9.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.04118626285293778,
+          "max": 3.890194420819171e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.10.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.005762044590395542,
+          "max": 1.1072636880271602e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.10.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.03351046401609281,
+          "max": 2.447913539072033e-05
+        },
+        {
+          "key": "backbone.lora_vit.blocks.11.attn.qkv.q",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.0022985674977904526,
+          "max": 5.9472508837643545e-06
+        },
+        {
+          "key": "backbone.lora_vit.blocks.11.attn.qkv.v",
+          "shape": [
+            768,
+            768
+          ],
+          "numel": 589824,
+          "trace_fp64": 0.02677074675071337,
+          "max": 9.395766937814187e-06
+        }
+      ]
+    }
+  },
+  "task2_metrics": {
+    "B3_A_sgd_lam0_seed0": {
+      "lambda_ewc": 0.0,
+      "train_clean_loss_mean": 0.5608059354871512,
+      "train_fisher_loss_mean": 0.0,
+      "ewc_penalty_value": 0.0,
+      "fisher_weighted_drift": 4.267724560675203e-07,
+      "delta_norm": 0.1453827910736436,
+      "fisher_mean": 7.064254590347816e-08,
+      "fisher_max": 0.0015906902262941003,
+      "train_ewc_gam_ratio_mean": 0.0,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/B3_A_sgd_lam0_seed0/imageneta/0/B3_A_sgd_lam0_seed0/exp_run/20/B3_A_sgd_lam0_seed0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "597a35a6c83f0fe0ce14b928a5bed49c211cf46f20dbacba7885980fef937b4b",
+      "cnn_t01": [
+        [
+          87.3,
+          NaN
+        ],
+        [
+          83.06,
+          76.38
+        ]
+      ],
+      "mean_loss_ratio_proxy": 0.0,
+      "gradient_norms_status": "Not recorded by SGD path; cannot infer stepwise ratios from loss ratios or transplant GAM diagnostics"
+    },
+    "sequence_sgd_seed0": {
+      "lambda_ewc": 2000.0,
+      "train_clean_loss_mean": 0.5609101163223386,
+      "train_fisher_loss_mean": 0.0002552426593510404,
+      "ewc_penalty_value": 0.0003785280731211896,
+      "fisher_weighted_drift": 3.785280731211896e-07,
+      "delta_norm": 0.14403242828848306,
+      "fisher_mean": 7.064254590347816e-08,
+      "fisher_max": 0.0015906902262941003,
+      "train_ewc_gam_ratio_mean": 0.0006366268079003315,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_sgd_seed0/imageneta/0/sequence_sgd_seed0/exp_run/20/sequence_sgd_seed0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "c7a346e703bb10462326b887dfb8648b5da23f808b43cc402f7bc2040c67072b",
+      "cnn_t01": [
+        [
+          87.3,
+          NaN
+        ],
+        [
+          83.06,
+          76.38
+        ]
+      ],
+      "mean_loss_ratio_proxy": 0.000455050910874212,
+      "gradient_norms_status": "Not recorded by SGD path; cannot infer stepwise ratios from loss ratios or transplant GAM diagnostics"
+    },
+    "B3_D_gam_lam2000_seed0": {
+      "lambda_ewc": 2000.0,
+      "train_clean_loss_mean": 0.6053967856615782,
+      "train_fisher_loss_mean": 0.00012221907850335612,
+      "ewc_penalty_value": 0.0001874286186417896,
+      "fisher_weighted_drift": 1.874286186417896e-07,
+      "delta_norm": 0.13141692885619705,
+      "fisher_mean": 7.064254146258606e-08,
+      "fisher_max": 0.0016581519739702344,
+      "train_ewc_gam_ratio_mean": 0.0002799654650863048,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/B3_D_gam_lam2000_seed0/imageneta/0/B3_D_gam_lam2000_seed0/exp_run/20/B3_D_gam_lam2000_seed0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "587010218ce13bb6fd4edfe82677150f542528925333e22586fb17cb772ac223",
+      "cnn_t01": [
+        [
+          86.97,
+          NaN
+        ],
+        [
+          86.64,
+          72.83
+        ]
+      ],
+      "mean_loss_ratio_proxy": 0.0002018826022833851,
+      "gradient_norms_status": "Not recorded by SGD path; cannot infer stepwise ratios from loss ratios or transplant GAM diagnostics"
+    },
+    "sequence_gam_seed0": {
+      "lambda_ewc": 2000.0,
+      "train_clean_loss_mean": 0.4521739524975419,
+      "train_fisher_loss_mean": 0.00019534930317405497,
+      "ewc_penalty_value": 0.0002471161719887899,
+      "fisher_weighted_drift": 2.471161719887899e-07,
+      "delta_norm": 0.2520106419469812,
+      "fisher_mean": 7.064254146258606e-08,
+      "fisher_max": 0.0016581519739702344,
+      "grad_clean_norm_mean": 1.3187284503098327,
+      "grad_fisher_norm_mean": 0.0023790984756614213,
+      "grad_fisher_to_clean_norm_ratio_mean": 0.0019462519971664837,
+      "train_ewc_gam_ratio_mean": 0.0002869719926610609,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed0/imageneta/0/sequence_gam_seed0/exp_run/20/sequence_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+      "sha256": "17235ae77f6b46ccbfd43c96cb7fbc2e9b9ffc121ced56be3398f5a250ac6917",
+      "cnn_t01": [
+        [
+          86.97,
+          NaN
+        ],
+        [
+          83.71,
+          81.1
+        ]
+      ],
+      "mean_loss_ratio_proxy": 0.00043202245970839495,
+      "ratio_of_mean_gradient_norms_proxy": 0.0018040851966926602
+    }
+  },
+  "code": {
+    "factory": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/factory.py",
+      "sha256": "3f40a5a03e23eeba5b2f0c1c3675f459b418f92c78c6be0d6e516f7b7005ef62"
+    },
+    "penalty_and_delta_terms": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+      "sha256": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334"
+    },
+    "fisher_grad_cache": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+      "sha256": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8"
+    },
+    "normalize": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam.py",
+      "sha256": "39bce968dece86804e1d2e19898f775ec92e2af05311a7316c1e8775f286c54e"
+    },
+    "update_and_accumulate": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+      "sha256": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69"
+    },
+    "resume": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/baseLoRA.py",
+      "sha256": "6a29a544b29cfda83054fe98f6c605561b1545d49130977ee8c6db823b4f740e"
+    }
+  },
+  "recommended_lambda_grid": [
+    0,
+    2000,
+    20000,
+    200000,
+    2000000,
+    20000000
+  ],
+  "seed0_paired_results": {
+    "A": {
+      "seed": "0",
+      "branch": "A",
+      "anchor_method": "sgd",
+      "task1_optimizer": "sgd",
+      "ewc_lambda": "0",
+      "a11": "87.29641693811075",
+      "a21": "83.06",
+      "a22": "76.38",
+      "BWT": "-4.23641693811075",
+      "average_accuracy": "79.72",
+      "raw_trace_anchor_train256": "1499.9142375239746",
+      "raw_trace_endpoint_train256": "1954.358426508156",
+      "drift_l2": "0.38129095597362905",
+      "drift_squared": "0.14538279310728394",
+      "base_loss_train": "0.09609712585271754",
+      "final_loss_train": "0.10403565349217873",
+      "D0_train": "0.007938527639461193",
+      "base_loss_test": "0.4104792336183417",
+      "final_loss_test": "0.40954051306805994",
+      "D0_test": "-0.0009387205502817686",
+      "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/A/summary.json",
+      "summary_sha256": "1a868f34e3613344a125976d4856ee320013d00e8b8db6ea6b6659833bda56de",
+      "training_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/run_manifest.json",
+      "rng_receipts": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0/rng_receipts.jsonl",
+      "anchor_checkpoint_sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229"
+    },
+    "C": {
+      "seed": "0",
+      "branch": "C",
+      "anchor_method": "sgd",
+      "task1_optimizer": "sgd",
+      "ewc_lambda": "2000",
+      "a11": "87.29641693811075",
+      "a21": "83.06",
+      "a22": "76.38",
+      "BWT": "-4.23641693811075",
+      "average_accuracy": "79.72",
+      "raw_trace_anchor_train256": "1499.9142375239746",
+      "raw_trace_endpoint_train256": "1995.5262609012295",
+      "drift_l2": "0.3795160433263445",
+      "drift_squared": "0.14403242714208378",
+      "base_loss_train": "0.09609712585271754",
+      "final_loss_train": "0.10385202746995639",
+      "D0_train": "0.007754901617238852",
+      "base_loss_test": "0.4104792336183417",
+      "final_loss_test": "0.4080650138038931",
+      "D0_test": "-0.002414219814448615",
+      "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/C/summary.json",
+      "summary_sha256": "f6f49430c8665bd258d1ef5ec74cc15dea47dcf4c892119fa289df444e3253e2",
+      "training_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0/run_manifest.json",
+      "rng_receipts": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0/rng_receipts.jsonl",
+      "anchor_checkpoint_sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229"
+    }
+  },
+  "seven_row_report_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/final_report/TABLE_IMAGENETA.md",
+  "formula": "P = (lambda/2) * sum_{24 Q/V matrices} sum_{elements} F * (B A - B0 A0)^2; eta=0. No per-matrix or per-element mean.",
+  "training_fisher_estimator": "batch_empirical: square of batch-mean CE delta-W gradient, weighted/averaged across batches; not per-sample empirical Fisher. Normalization is global across all 24 Q/V matrices.",
+  "local_penalty_stability": {
+    "method": "CPU power iteration on J^T diag(F) J in trainable A/B coordinates at anchor; 40 FP32 iterations for each of 24 blocks, 500 FP64 iterations for maximal block",
+    "block_estimates": [
+      {
+        "key": "backbone.lora_vit.blocks.0.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 2.878991267607489e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.0.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.6447835150756873e-05
+      },
+      {
+        "key": "backbone.lora_vit.blocks.1.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 9.02414285519626e-08
+      },
+      {
+        "key": "backbone.lora_vit.blocks.1.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.0551511877565645e-05
+      },
+      {
+        "key": "backbone.lora_vit.blocks.2.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 2.2279539280134486e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.2.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 4.101437298231758e-06
+      },
+      {
+        "key": "backbone.lora_vit.blocks.3.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 2.6089108473570377e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.3.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 2.8873479095636867e-05
+      },
+      {
+        "key": "backbone.lora_vit.blocks.4.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 1.2562331619392353e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.4.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.4748216017324012e-05
+      },
+      {
+        "key": "backbone.lora_vit.blocks.5.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 1.8606405660648306e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.5.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 7.390813721031009e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.6.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 2.9704440862587944e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.6.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.4617389751947485e-06
+      },
+      {
+        "key": "backbone.lora_vit.blocks.7.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 1.9938543971420586e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.7.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.0492969977349276e-06
+      },
+      {
+        "key": "backbone.lora_vit.blocks.8.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 4.2671000954896954e-08
+      },
+      {
+        "key": "backbone.lora_vit.blocks.8.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 5.826896654070879e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.9.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 2.421579665679019e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.9.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.5410768128276686e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.10.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 2.2161709978263389e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.10.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 2.304803388142318e-07
+      },
+      {
+        "key": "backbone.lora_vit.blocks.11.attn.qkv.q",
+        "lambda1_max_eigenvalue_estimate": 3.805926240829649e-08
+      },
+      {
+        "key": "backbone.lora_vit.blocks.11.attn.qkv.v",
+        "lambda1_max_eigenvalue_estimate": 1.4111166990460333e-07
+      }
+    ],
+    "largest_block": "backbone.lora_vit.blocks.3.attn.qkv.v",
+    "max_eigenvalue_estimate_lambda1": 2.8997246251176223e-05,
+    "largest_block_relative_residual": 7.709941664334624e-08,
+    "lr": 0.02,
+    "pure_penalty_quadratic_gd_lambda_critical_estimate": 3448603.3305988037,
+    "caveat": "Diagnostic local threshold estimate only: CE Hessian, factor movement and stochasticity are absent. Not a guarantee of full training stability."
+  },
+  "current_scope_note": {
+    "status": "historical_measurements_valid_prior_normalized_sweep_recommendation_superseded",
+    "active_plan": "EXPERIMENT_PLAN.md",
+    "current_policy": "Reuse Task0 weights; actually recompute raw Fisher; both trace normalization flags false; SGD to SGD seed0 sweep",
+    "original_audit_copy": "before_raw_fisher/EWC_SCALE_AUDIT.json"
+  }
+}

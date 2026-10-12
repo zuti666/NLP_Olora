@@ -1,0 +1,243 @@
+{
+  "status": "passed",
+  "device": "cpu",
+  "scope": "real CLI main with mock native trainer and evaluation callback",
+  "cases": [
+    {
+      "backend": "native",
+      "intentional_failure": false,
+      "main_return_status": "completed",
+      "observed": [
+        {
+          "phase": "train_entry",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "model_initialization",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "controller_install",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "nested_training_batch",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "evaluation_callback",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "train_return",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        }
+      ],
+      "outer_backend_restored_exact": true,
+      "factory_restored_exact": true
+    },
+    {
+      "backend": "native",
+      "intentional_failure": true,
+      "main_return_status": "failed",
+      "observed": [
+        {
+          "phase": "train_entry",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "model_initialization",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "controller_install",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "nested_training_batch",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "evaluation_callback",
+          "flags": {
+            "flash": true,
+            "math": true,
+            "mem_efficient": true,
+            "cudnn": false
+          }
+        }
+      ],
+      "outer_backend_restored_exact": true,
+      "factory_restored_exact": true
+    },
+    {
+      "backend": "math",
+      "intentional_failure": false,
+      "main_return_status": "completed",
+      "observed": [
+        {
+          "phase": "train_entry",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "model_initialization",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "controller_install",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "nested_training_batch",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "evaluation_callback",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "train_return",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        }
+      ],
+      "outer_backend_restored_exact": true,
+      "factory_restored_exact": true
+    },
+    {
+      "backend": "math",
+      "intentional_failure": true,
+      "main_return_status": "failed",
+      "observed": [
+        {
+          "phase": "train_entry",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "model_initialization",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "controller_install",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "nested_training_batch",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        },
+        {
+          "phase": "evaluation_callback",
+          "flags": {
+            "flash": false,
+            "math": true,
+            "mem_efficient": false,
+            "cudnn": false
+          }
+        }
+      ],
+      "outer_backend_restored_exact": true,
+      "factory_restored_exact": true
+    }
+  ],
+  "trainer_sha256": "0eb1a4b2040e118f346c56224d8d69d17e581382391c50a2bbf8a7fae60c128c",
+  "test_sha256": "aee8fe7396f5fc3c1f65301efc59dffcb0d5a8e34bc6c7e3a75abb3b48c69042"
+}

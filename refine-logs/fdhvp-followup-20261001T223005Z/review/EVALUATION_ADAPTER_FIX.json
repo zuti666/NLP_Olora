@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "trainer_sha256": "0eb1a4b2040e118f346c56224d8d69d17e581382391c50a2bbf8a7fae60c128c",
+  "source_toolkit_sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+  "root_cause": "native BaseLearner supplies all 10 task boundaries; accuracy emits future NaN placeholders; former regex scan incorrectly included all 10 groups in each growing matrix row",
+  "implementation_scope": "New staging component_horizon.py helper and evaluation call only; no native model/optimizer/forward/SGD modification",
+  "actual_source_positive_tasks": [
+    0,
+    1,
+    9
+  ],
+  "negative_cases": 15,
+  "reports": {
+    "SEEN_EVALUATION_CPU_AUDIT.json": {
+      "status": "passed",
+      "sha256": "ad60840fd8b60531ba8beaf150dc07bcaa8271a5f84a09017b85a45f307ca110"
+    },
+    "COMPONENT_CPU_AUDIT.json": {
+      "status": "passed",
+      "sha256": "bfec454402e67ff672b05204f89402a0554a5d09366f711c56db93861bea1ecf"
+    },
+    "FDHVP_CPU_AUDIT.json": {
+      "status": "passed",
+      "sha256": "af71d727c8bc86590930d6b812fc34ff421d140449ff7669930cc0e1c5e2f594"
+    },
+    "MAIN_BACKEND_CPU_AUDIT.json": {
+      "status": "passed",
+      "sha256": "a42059dc045c3a642c9a89c80f9ad62634b7955fc7fd5b8272db7f91bf4f11fd"
+    }
+  },
+  "old_failed_artifacts_preserved": true,
+  "GPU_launched": false,
+  "future_integrity": "Future keys optional; present canonical future keys must be NaN. Finite/Inf reject as evaluation-scope contamination."
+}

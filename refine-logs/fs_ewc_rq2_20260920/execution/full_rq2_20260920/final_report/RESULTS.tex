@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Formal two-task ImageNet-A LoRA diagnostics (seeds 0, 1, 2; mean $\pm$ sample standard deviation). Task 2 always uses SGD. Both raw Fisher traces use the same 256 old-task training examples and fixed old-task head. The endpoint trace is an old-task statistic after Task 2. Effective Q/V drift excludes the classifier.}
+\label{tab:formal_rq2_b3}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrrrrrr}
+\toprule
+Branch & Anchor & $\lambda$ & $a_{11}$ & $a_{21}$ & $a_{22}$ & BWT & Avg. & $T_0(\theta_0)$ & $T_0(\theta_1)$ & $\|\Delta W_{QV}\|_F$ \\
+\midrule
+A & SGD & 0 & $87.08 \pm 0.38$ & $82.41 \pm 1.13$ & $76.38 \pm 0.40$ & $-4.67 \pm 1.35$ & $79.39 \pm 0.74$ & $1451.954 \pm 44.336$ & $1846.930 \pm 99.060$ & $0.378 \pm 0.016$ \\
+B & GAM & 0 & $87.30 \pm 0.56$ & $86.54 \pm 0.82$ & $72.96 \pm 1.38$ & $-0.76 \pm 1.36$ & $79.75 \pm 1.10$ & $634.510 \pm 36.068$ & $959.291 \pm 28.008$ & $0.358 \pm 0.015$ \\
+C & SGD & 2000 & $87.08 \pm 0.38$ & $82.41 \pm 0.86$ & $76.38 \pm 0.40$ & $-4.67 \pm 1.05$ & $79.39 \pm 0.60$ & $1451.954 \pm 44.336$ & $1853.643 \pm 124.078$ & $0.375 \pm 0.017$ \\
+D & GAM & 2000 & $87.30 \pm 0.56$ & $86.64 \pm 0.98$ & $72.96 \pm 1.38$ & $-0.65 \pm 1.49$ & $79.80 \pm 1.18$ & $634.510 \pm 36.068$ & $953.294 \pm 26.416$ & $0.357 \pm 0.015$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

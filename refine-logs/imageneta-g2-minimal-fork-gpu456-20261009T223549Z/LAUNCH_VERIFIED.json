@@ -1,0 +1,327 @@
+{
+  "status": "passed",
+  "at": "2026-10-09T22:56:33.471976+00:00",
+  "checks": {
+    "controller_process_identity_verified": true,
+    "monitor_process_identity_verified": true,
+    "source190_and_sealed57_unchanged": true,
+    "fresh_document_queue_and_cpu_acceptance_passed": true,
+    "native_7training_smokes_accepted": true,
+    "offline_native_smoke_accepted": true,
+    "native_pair_gate_accepted": true,
+    "formal_parent_started_with_actual_finite_SGD": true,
+    "only_authorized_physical_gpus": true,
+    "no_queue_failure": true
+  },
+  "controller": {
+    "pid": 3861135,
+    "proc_starttime": "39098503"
+  },
+  "monitor": {
+    "pid": 3871227,
+    "proc_starttime": "39104686"
+  },
+  "gpus": {
+    "4": {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 12034,
+      "utilization_percent": 89,
+      "compute_pids": [
+        3773808
+      ]
+    },
+    "5": {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 2,
+      "utilization_percent": 0,
+      "compute_pids": []
+    },
+    "6": {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mb": 12030,
+      "utilization_percent": 89,
+      "compute_pids": [
+        3886510
+      ]
+    }
+  },
+  "current_jobs": {
+    "smoke_parent_sgd_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:53:01.954381+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_parent_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_parent_sgd_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3861144,
+        "proc_starttime": "39098541"
+      },
+      "completed_at": "2026-10-09T22:53:33.629920+00:00",
+      "summary_sha256": "b08db09f38f26e94d4e012c931cf48d7f8877d6bf37b179e62634e431be27070"
+    },
+    "smoke_task1_B0_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:53:33.979432+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_B0_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_B0_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3864757,
+        "proc_starttime": "39101743"
+      },
+      "completed_at": "2026-10-09T22:54:05.641240+00:00",
+      "summary_sha256": "35d8208cbe25b710f09f91af59048a59a3f0757e4819a76c3daea51a912266ab"
+    },
+    "smoke_task1_R25_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:53:34.146986+00:00",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_R25_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_R25_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3864764,
+        "proc_starttime": "39101760"
+      },
+      "completed_at": "2026-10-09T22:54:05.707573+00:00",
+      "summary_sha256": "a4181ed7471423e2d26587cca57afb974df28c74982ef31e66d6c13a98e6fa64"
+    },
+    "smoke_task1_S_F_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:54:06.094603+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_S_F_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_S_F_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3871259,
+        "proc_starttime": "39104955"
+      },
+      "completed_at": "2026-10-09T22:54:36.699959+00:00",
+      "summary_sha256": "5909a5becd87ec215558fba42168f71efc036e64e996664a02991215087f55e4"
+    },
+    "smoke_task1_F_S_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:54:06.283207+00:00",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_F_S_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_F_S_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3871265,
+        "proc_starttime": "39104974"
+      },
+      "completed_at": "2026-10-09T22:54:36.764760+00:00",
+      "summary_sha256": "340ee526b1351f6eda466c3e3c35ed44260222a608cfcc59ed1106a9a1ce4791"
+    },
+    "smoke_task1_S_S_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:54:37.152915+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_S_S_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_S_S_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3877743,
+        "proc_starttime": "39108061"
+      },
+      "completed_at": "2026-10-09T22:55:07.772943+00:00",
+      "summary_sha256": "bdbc4a5a82397220e3f4405f376455c0dc8e1daf7c15dc2af3fa8d8b50f65741"
+    },
+    "smoke_task1_R100_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:54:37.335698+00:00",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_R100_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_R100_s2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 3877749,
+        "proc_starttime": "39108079"
+      },
+      "completed_at": "2026-10-09T22:55:07.837598+00:00",
+      "summary_sha256": "43c552be8dd9f9c2253fdcad2aae7eaad127362f8e043bc2f69befd255c00da7"
+    },
+    "smoke_local_probe_audit_s2": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:55:08.221606+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/local_probe_audit.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--reference-output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_task1_B0_s2",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/smoke_local_probe_audit_s2",
+        "--dev-split",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/dev_split.json",
+        "--smoke"
+      ],
+      "process": {
+        "pid": 3884202,
+        "proc_starttime": "39111167"
+      },
+      "completed_at": "2026-10-09T22:55:39.127713+00:00",
+      "summary_sha256": "5895f589e316ef72f8c438ca14c0ac9eefaff429c7305901de2bb5da339d3eb3"
+    },
+    "fork_smoke_pairing": {
+      "status": "completed",
+      "started_at": "2026-10-09T22:55:39.518322+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/smoke_pairing.py"
+      ],
+      "process": {
+        "pid": 3885912,
+        "proc_starttime": "39114297"
+      },
+      "completed_at": "2026-10-09T22:55:49.538323+00:00",
+      "summary_sha256": "5b1e37d9df50559973705f189328d5b0098cae67a00e00774e1bd4f488e8c31e"
+    },
+    "formal_parent_sgd_s2": {
+      "status": "running",
+      "started_at": "2026-10-09T22:55:49.926079+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_parent_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2"
+      ],
+      "process": {
+        "pid": 3886492,
+        "proc_starttime": "39115338"
+      }
+    },
+    "formal_task1_B0_s2": {
+      "status": "pending"
+    },
+    "formal_task1_R25_s2": {
+      "status": "pending"
+    },
+    "formal_task1_S_F_s2": {
+      "status": "pending"
+    },
+    "formal_task1_F_S_s2": {
+      "status": "pending"
+    },
+    "formal_task1_S_S_s2": {
+      "status": "pending"
+    },
+    "formal_task1_R100_s2": {
+      "status": "pending"
+    },
+    "local_probe_audit_s2": {
+      "status": "pending"
+    }
+  },
+  "formal_parent_actual_updates": 27,
+  "formal_parent_epoch": 3,
+  "formal_parent_budget_updates": 450,
+  "new_formal_full_results": 0,
+  "artifacts": {
+    "suite_sha256": "6e97e37ee3a3ecfe276193d827e90279bd3d98cb6bf6d4eca54be697d0f15790",
+    "RUN_PINS_sha256": "374c138d4ef5e77e4608e6475c666ddc586a112e0ab4ea2466c3457c4563a0f3",
+    "fresh_gate_sha256": "5d9d2ba0f83f1fab17df5ad273392a5efd05d653e92daee77732d5e4e81d2fa9",
+    "pair_gate_sha256": "5b1e37d9df50559973705f189328d5b0098cae67a00e00774e1bd4f488e8c31e"
+  }
+}

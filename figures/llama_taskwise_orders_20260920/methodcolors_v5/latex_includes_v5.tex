@@ -1,0 +1,13 @@
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/methodcolors_v5/llama_1b_taskwise_orders_methodcolors_v5.pdf}
+\caption{Task-wise normalized exact-match accuracy with Llama-3.2-1B across three task orders. Colors identify methods, with FS-EWCLoRA (the implemented GAM-EWC branch) highlighted in red. The lowercase legend label \texttt{olra} denotes OLoRA+GAM. Four line-and-marker combinations identify datasets: a solid line with circles for DBPedia, a dashed line with squares for Amazon, a dotted line with triangles for Yahoo, and a dash-dot line with diamonds for AGNews. Curves begin when a dataset is first learned. The last-learned dataset is shown by a single marker at its observed stage-4 accuracy. Each observation uses 7,600 examples. One seed is available per method: 42 for SeqLoRA, IncLoRA, OLoRA+GAM, TreeLoRA and EWCLoRA, and 1993 for FS-EWCLoRA. Nominal global batch is 64; SeqLoRA, IncLoRA and OLoRA+GAM use DDP8/GA8, while TreeLoRA, EWCLoRA and FS-EWCLoRA use DDP4/GA16. Optimizer defaults and adapter budgets also differ, as documented in the implementation details. The green \texttt{olra} (OLoRA+GAM) curves have final FAA values of 65.81, 58.28 and 66.92 percent for Orders 1--3, respectively.}
+\label{fig:llama1b_taskwise_methodcolors_v5}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/methodcolors_v5/llama_3b_taskwise_orders_methodcolors_v5.pdf}
+\caption{Task-wise normalized exact-match accuracy with Llama-3.2-3B across three task orders. Colors identify methods, with FS-EWCLoRA (the implemented GAM-EWC branch) highlighted in red. The lowercase legend label \texttt{olra} denotes OLoRA+GAM. Four line-and-marker combinations identify datasets: a solid line with circles for DBPedia, a dashed line with squares for Amazon, a dotted line with triangles for Yahoo, and a dash-dot line with diamonds for AGNews. Curves begin when a dataset is first learned. The last-learned dataset is shown by a single marker at its observed stage-4 accuracy. Each observation uses 7,600 examples. One seed is available per method: 42 for SeqLoRA, IncLoRA, OLoRA+GAM and TreeLoRA, and 1993 for EWCLoRA and FS-EWCLoRA. Nominal global batch is 64; TreeLoRA uses DDP4/GA16 and other methods use DDP8/GA8. Optimizer defaults and adapter budgets also differ, as documented in the implementation details.}
+\label{fig:llama3b_taskwise_methodcolors_v5}
+\end{figure*}

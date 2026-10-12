@@ -1,0 +1,55 @@
+{
+  "check_kind": "independent_agent_follows_doc",
+  "date_utc": "2026-10-03",
+  "documents_read_this_attempt": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/resource_extension_20261003T074000Z/RUN.md"
+  ],
+  "previously_reviewed_reference_documents": [
+    "/home-local/liying/.codex/skills/run-experiment/SKILL.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/ENVIRONMENT.md"
+  ],
+  "documented_invocation": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/resource_extension_20261003T074000Z/resource_queue.py check --gpu 1",
+  "invocation_executed_verbatim": true,
+  "sandbox_permissions": "require_escalated",
+  "tool_chunk_ids": ["bdc0e7", "bf3df1"],
+  "tool_session_id": 77558,
+  "exit_code": 0,
+  "expected_dry_run": {
+    "status": "valid",
+    "jobs": 28,
+    "formal": 12,
+    "smokes": 16,
+    "allowed_gpus": [1, 4, 5, 6, 3, 2],
+    "max_parallel": 3
+  },
+  "observed_dry_run": {
+    "status": "valid",
+    "jobs": 28,
+    "formal": 12,
+    "smokes": 16,
+    "allowed_gpus": [1, 4, 5, 6, 3, 2],
+    "max_parallel": 3
+  },
+  "dry_run_matches_documentation": true,
+  "cuda_witness": {
+    "requested_physical_gpu": 1,
+    "status": "passed",
+    "shape": [32, 32],
+    "device": "NVIDIA RTX 6000 Ada Generation",
+    "dtype": "torch.float32",
+    "nonempty": true,
+    "finite_output": true,
+    "finite_gradient": true,
+    "tf32_matmul": false,
+    "tf32_cudnn": false,
+    "documented_seed": 2,
+    "documented_optimizer_updates": 0,
+    "process_exit_observed": true,
+    "shared_lease": "The documented shared-lease checker exited successfully; no independent lock reacquisition probe was performed."
+  },
+  "doc_vs_reality": [],
+  "status": "passed",
+  "training_started_by_verifier": false,
+  "prior_failure_records_modified": false,
+  "raw_output": "{\"status\": \"valid\", \"jobs\": 28, \"formal\": 12, \"smokes\": 16, \"allowed_gpus\": [1, 4, 5, 6, 3, 2], \"max_parallel\": 3}\nG012_ENV_WITNESS {\"shape\": [32, 32], \"device\": \"NVIDIA RTX 6000 Ada Generation\", \"dtype\": \"torch.float32\", \"nonempty\": true, \"finite_output\": true, \"finite_gradient\": true, \"tf32_matmul\": false, \"tf32_cudnn\": false}\n"
+}

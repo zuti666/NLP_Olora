@@ -1,0 +1,607 @@
+{
+  "scope": "Read-only metric/data audit; no training or existing artifact modification. No applicable AGENTS.md found in audited Flatness_CV / CopyFlatCV paths.",
+  "conclusion": "Metric definitions agree only when comparing log total/top1 curves. Native JSON FAA/AAA have different aggregation semantics. Vanilla/SD/Inf historical task accuracies are incompatible with current GAM task sample counts; original sample identities cannot be verified because historical data symlinks are broken.",
+  "formulas": {
+    "notation": "R[t,j] is sample accuracy (%) on task j after stage t; n[j] is test sample count; stages/tasks indexed 1..T.",
+    "sample_stage_accuracy": "a[t] = sum(j<=t) n[j]*R[t,j] / sum(j<=t) n[j]; actual code computes from pooled integer counts before rounding.",
+    "sample_FAA": "a[T]",
+    "sample_AAA": "(1/T)*sum(t=1..T) a[t]",
+    "task_macro_FAA": "(1/T)*sum(j=1..T) R[T,j]",
+    "stage_task_macro_AAA": "(1/T)*sum(t=1..T) (1/t)*sum(j=1..t) R[t,j]",
+    "native_JSON_AAA": "2/(T*(T+1))*sum(t=1..T)sum(j=1..t)R[t,j]",
+    "sample_sd": "sqrt(sum_s (x_s-mean(x))^2/(n_seeds-1))"
+  },
+  "rounding": "Both pooled total and each task accuracy are rounded to 2 decimal percentage points. Reported AAA is mean of rounded stage totals; does not establish unrounded prediction-level precision. Sample FAA cannot be replaced by average of rounded task accuracies.",
+  "GAM_rows": [
+    {
+      "seed": 0,
+      "sample_FAA": 79.87,
+      "sample_AAA": 83.633,
+      "task_macro_FAA": 79.75699999999999,
+      "stage_task_macro_AAA": 83.71429285714285,
+      "native_lower_triangle_AAA": 81.76436363636364,
+      "curve": [
+        91.98,
+        88.17,
+        86.05,
+        84.86,
+        83.12,
+        82.19,
+        80.76,
+        79.96,
+        79.37,
+        79.87
+      ],
+      "metric": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s0/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/0/imagenetr_gam_ewc_A_r1p0_s0/exp_run/20/imagenetr_gam_ewc_A_r1p0_s0_vit_base_patch16_224_cl_metrics.json",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s0/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/0/imagenetr_gam_ewc_A_r1p0_s0/exp_run/20/imagenetr_gam_ewc_A_r1p0_s0_vit_base_patch16_224.log"
+    },
+    {
+      "seed": 1,
+      "sample_FAA": 79.58,
+      "sample_AAA": 83.449,
+      "task_macro_FAA": 79.52700000000002,
+      "stage_task_macro_AAA": 83.48970515873016,
+      "native_lower_triangle_AAA": 81.61018181818183,
+      "curve": [
+        90.88,
+        87.88,
+        86.1,
+        84.82,
+        83.12,
+        82.38,
+        80.83,
+        79.94,
+        78.96,
+        79.58
+      ],
+      "metric": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s1/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/1/imagenetr_gam_ewc_A_r1p0_s1/exp_run/20/imagenetr_gam_ewc_A_r1p0_s1_vit_base_patch16_224_cl_metrics.json",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s1/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/1/imagenetr_gam_ewc_A_r1p0_s1/exp_run/20/imagenetr_gam_ewc_A_r1p0_s1_vit_base_patch16_224.log"
+    },
+    {
+      "seed": 2,
+      "sample_FAA": 79.98,
+      "sample_AAA": 83.443,
+      "task_macro_FAA": 79.96399999999998,
+      "stage_task_macro_AAA": 83.50571825396825,
+      "native_lower_triangle_AAA": 81.70763636363638,
+      "curve": [
+        91.04,
+        88.32,
+        86.05,
+        84.13,
+        82.63,
+        81.97,
+        80.66,
+        79.79,
+        79.86,
+        79.98
+      ],
+      "metric": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/2/imagenetr_gam_ewc_A_r1p0_s2/exp_run/20/imagenetr_gam_ewc_A_r1p0_s2_vit_base_patch16_224_cl_metrics.json",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/2/imagenetr_gam_ewc_A_r1p0_s2/exp_run/20/imagenetr_gam_ewc_A_r1p0_s2_vit_base_patch16_224.log"
+    }
+  ],
+  "GAM_stats": {
+    "sample_FAA": {
+      "mean": 79.81,
+      "sample_sd": 0.2066397831977215,
+      "ddof": 1
+    },
+    "sample_AAA": {
+      "mean": 83.50833333333333,
+      "sample_sd": 0.10800617266310772,
+      "ddof": 1
+    },
+    "task_macro_FAA": {
+      "mean": 79.74933333333333,
+      "sample_sd": 0.21860085391719433,
+      "ddof": 1
+    },
+    "stage_task_macro_AAA": {
+      "mean": 83.56990542328042,
+      "sample_sd": 0.12529925417898188,
+      "ddof": 1
+    },
+    "native_lower_triangle_AAA": {
+      "mean": 81.69406060606062,
+      "sample_sd": 0.07798226823951235,
+      "ddof": 1
+    }
+  },
+  "flatness_representative": {
+    "metric": "/data/140-1/users/liying/Flatness_CV/outputs_logs/config_Expand_ewc_gamma099/logs_inc_lora/ewclora_normfisher_gam/gam_sgd_lr004_e50_rho02_nr02_g01_ewcg099_lam2000/imagenetr/0/as2normfisher_lam2000_ewcg099_imagenetr_t10c20_r10_sgd_lr004_e50_rho02_nr02_g01_paper1agg_s0/exp_run/20/as2normfisher_lam2000_ewcg099_imagenetr_t10c20_r10_sgd_lr004_e50_rho02_nr02_g01_paper1agg_s0_vit_base_patch16_224_cl_metrics.json",
+    "log": "/data/140-1/users/liying/Flatness_CV/outputs_logs/config_Expand_ewc_gamma099/logs_inc_lora/ewclora_normfisher_gam/gam_sgd_lr004_e50_rho02_nr02_g01_ewcg099_lam2000/imagenetr/0/as2normfisher_lam2000_ewcg099_imagenetr_t10c20_r10_sgd_lr004_e50_rho02_nr02_g01_paper1agg_s0/exp_run/20/as2normfisher_lam2000_ewcg099_imagenetr_t10c20_r10_sgd_lr004_e50_rho02_nr02_g01_paper1agg_s0_vit_base_patch16_224.log",
+    "tasks": 10,
+    "sample_FAA": 79.92,
+    "sample_AAA": 83.986,
+    "native_JSON_FAA": 79.74100000000001,
+    "native_JSON_AAA": 81.92127272727272
+  },
+  "data": {
+    "GAM_data_root": "/data/140-1/datasets/imagenet-r",
+    "train_count": 24000,
+    "test_count": 6000,
+    "test_task_counts": [
+      636,
+      717,
+      417,
+      568,
+      701,
+      577,
+      604,
+      475,
+      628,
+      677
+    ],
+    "protocol": "200 classes, identity class order, class_shuffle=false, 10 x 20",
+    "baseline_logs_checks": [
+      {
+        "method": "baseline",
+        "log": "/data/115-2/users/liying/low-rank-cl-new/logs/baseline/imagenet-r/t10/seed0.log",
+        "tasks": [
+          {
+            "task_key": "00-19",
+            "GAM_current_sample_count": 636,
+            "historical_reported_accuracies": [
+              90.25,
+              81.42,
+              77.71,
+              74.3,
+              73.07,
+              67.49,
+              63.47,
+              57.89,
+              50.46,
+              53.1
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 81.42,
+                "nearest_count": 518,
+                "nearest_possible_percent": 81.44654088050315
+              },
+              {
+                "reported": 77.71,
+                "nearest_count": 494,
+                "nearest_possible_percent": 77.67295597484276
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              646
+            ]
+          },
+          {
+            "task_key": "20-39",
+            "GAM_current_sample_count": 717,
+            "historical_reported_accuracies": [
+              89.17,
+              80.28,
+              76.81,
+              72.36,
+              65.83,
+              60.69,
+              56.94,
+              47.64,
+              52.36
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 89.17,
+                "nearest_count": 639,
+                "nearest_possible_percent": 89.1213389121339
+              },
+              {
+                "reported": 80.28,
+                "nearest_count": 576,
+                "nearest_possible_percent": 80.3347280334728
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              720
+            ]
+          },
+          {
+            "task_key": "40-59",
+            "GAM_current_sample_count": 417,
+            "historical_reported_accuracies": [
+              80.05,
+              74.31,
+              66.28,
+              63.3,
+              52.75,
+              48.85,
+              41.97,
+              41.74
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 80.05,
+                "nearest_count": 334,
+                "nearest_possible_percent": 80.0959232613909
+              },
+              {
+                "reported": 74.31,
+                "nearest_count": 310,
+                "nearest_possible_percent": 74.34052757793765
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              436,
+              872
+            ]
+          }
+        ]
+      },
+      {
+        "method": "sdlora",
+        "log": "/data/115-2/users/liying/low-rank-cl-new/logs/sdlora/imagenet-r/t10/seed0.log",
+        "tasks": [
+          {
+            "task_key": "00-19",
+            "GAM_current_sample_count": 636,
+            "historical_reported_accuracies": [
+              87.77,
+              79.41,
+              76.01,
+              76.47,
+              73.99,
+              73.22,
+              71.21,
+              69.81,
+              70.28,
+              66.72
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 87.77,
+                "nearest_count": 558,
+                "nearest_possible_percent": 87.73584905660377
+              },
+              {
+                "reported": 79.41,
+                "nearest_count": 505,
+                "nearest_possible_percent": 79.40251572327044
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              646
+            ]
+          },
+          {
+            "task_key": "20-39",
+            "GAM_current_sample_count": 717,
+            "historical_reported_accuracies": [
+              87.78,
+              80.56,
+              78.89,
+              79.72,
+              78.19,
+              73.47,
+              73.61,
+              71.94,
+              70.14
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 87.78,
+                "nearest_count": 629,
+                "nearest_possible_percent": 87.72663877266388
+              },
+              {
+                "reported": 80.56,
+                "nearest_count": 578,
+                "nearest_possible_percent": 80.61366806136681
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              720
+            ]
+          },
+          {
+            "task_key": "40-59",
+            "GAM_current_sample_count": 417,
+            "historical_reported_accuracies": [
+              68.81,
+              64.45,
+              59.17,
+              62.61,
+              61.93,
+              63.07,
+              58.26,
+              59.17
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 68.81,
+                "nearest_count": 287,
+                "nearest_possible_percent": 68.82494004796163
+              },
+              {
+                "reported": 64.45,
+                "nearest_count": 269,
+                "nearest_possible_percent": 64.5083932853717
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              436,
+              872
+            ]
+          }
+        ]
+      },
+      {
+        "method": "inflora",
+        "log": "/data/115-2/users/liying/low-rank-cl-new/logs/inflora/imagenet-r/t10/seed0.log",
+        "tasks": [
+          {
+            "task_key": "00-19",
+            "GAM_current_sample_count": 636,
+            "historical_reported_accuracies": [
+              94.01,
+              90.85,
+              87.69,
+              85.52,
+              84.69,
+              84.53,
+              84.36,
+              83.19,
+              82.2,
+              82.53
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 94.01,
+                "nearest_count": 598,
+                "nearest_possible_percent": 94.0251572327044
+              },
+              {
+                "reported": 90.85,
+                "nearest_count": 578,
+                "nearest_possible_percent": 90.88050314465409
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              601
+            ]
+          },
+          {
+            "task_key": "20-39",
+            "GAM_current_sample_count": 717,
+            "historical_reported_accuracies": [
+              87.74,
+              86.7,
+              84.97,
+              84.28,
+              84.11,
+              83.42,
+              81.17,
+              80.48,
+              80.83
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 87.74,
+                "nearest_count": 629,
+                "nearest_possible_percent": 87.72663877266388
+              },
+              {
+                "reported": 86.7,
+                "nearest_count": 622,
+                "nearest_possible_percent": 86.75034867503487
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              579
+            ]
+          },
+          {
+            "task_key": "40-59",
+            "GAM_current_sample_count": 417,
+            "historical_reported_accuracies": [
+              83.7,
+              79.85,
+              78.96,
+              77.19,
+              76.59,
+              75.85,
+              74.37,
+              73.33
+            ],
+            "compatible_with_GAM_count": false,
+            "incompatible_examples": [
+              {
+                "reported": 83.7,
+                "nearest_count": 349,
+                "nearest_possible_percent": 83.69304556354916
+              },
+              {
+                "reported": 79.85,
+                "nearest_count": 333,
+                "nearest_possible_percent": 79.85611510791367
+              }
+            ],
+            "candidate_counts_between_300_and_1000": [
+              675
+            ]
+          }
+        ]
+      },
+      {
+        "method": "ewc_lora_redo",
+        "log": "/data/140-1/users/liying/low-rank-cl/Previous_Version/low-rank-cl/logs/ewc_lora_redo/imagenet-r/t10/seed0.log",
+        "tasks": [
+          {
+            "task_key": "00-19",
+            "GAM_current_sample_count": 636,
+            "historical_reported_accuracies": [
+              90.72,
+              88.21,
+              87.74,
+              87.11,
+              86.79,
+              86.48,
+              86.95,
+              86.16,
+              85.85,
+              85.53
+            ],
+            "compatible_with_GAM_count": true,
+            "incompatible_examples": [],
+            "candidate_counts_between_300_and_1000": [
+              636
+            ]
+          },
+          {
+            "task_key": "20-39",
+            "GAM_current_sample_count": 717,
+            "historical_reported_accuracies": [
+              82.57,
+              82.43,
+              80.61,
+              79.92,
+              79.64,
+              79.08,
+              79.08,
+              78.1,
+              77.82
+            ],
+            "compatible_with_GAM_count": true,
+            "incompatible_examples": [],
+            "candidate_counts_between_300_and_1000": [
+              717
+            ]
+          },
+          {
+            "task_key": "40-59",
+            "GAM_current_sample_count": 417,
+            "historical_reported_accuracies": [
+              73.38,
+              70.74,
+              70.26,
+              70.26,
+              69.78,
+              69.06,
+              68.35,
+              69.06
+            ],
+            "compatible_with_GAM_count": true,
+            "incompatible_examples": [],
+            "candidate_counts_between_300_and_1000": [
+              417,
+              834
+            ]
+          }
+        ]
+      }
+    ],
+    "historical_data_links": [
+      {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/data/imagenet-r",
+        "resolved": "/data/140-0/datasets/imagenet-r",
+        "exists": false
+      },
+      {
+        "path": "/data/140-1/users/liying/low-rank-cl/Previous_Version/low-rank-cl/data/imagenet-r",
+        "resolved": "/data/140-0/datasets/imagenet-r",
+        "exists": false
+      }
+    ],
+    "limitations": [
+      "Candidate counts are inference within search range 300..1000, not historical verified counts.",
+      "Incompatibility proves different task test sample groups or effective order/protocol; exact cause not recoverable from current broken links.",
+      "EWC redo count compatibility does not prove identical historical images.",
+      "Old data_manager prints sorted class order; the summary line alone cannot establish actual order."
+    ]
+  },
+  "code_refs": [
+    {
+      "path": "/data/140-1/users/liying/Flatness_CV/utils/toolkit.py",
+      "line": 29,
+      "finding": "Pooled total counts at lines 32-34; per-task groups at lines 36-46, all rounded to 2 decimals."
+    },
+    {
+      "path": "/data/140-1/users/liying/Flatness_CV/src/trainer.py",
+      "line": 425,
+      "finding": "Logs grouped CNN and top1 curve; Average Accuracy at line 438 is stage equal mean."
+    },
+    {
+      "path": "/data/140-1/users/liying/Flatness_CV/evaluation_performance/metrics.py",
+      "line": 123,
+      "finding": "Native FAA final task-row mean; AAA lines 125-128 mean of entire lower triangle."
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/baseLearner.py",
+      "line": 138,
+      "finding": "ret.top1 uses grouped.total; eval_task uses pooled test_loader."
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/seqlora.py",
+      "line": 423,
+      "finding": "Test loader includes all seen classes; update_fc at lines 327-328 expands to total seen classes."
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/data.py",
+      "line": 698,
+      "finding": "Identity 200-class order; lines 700-716 load existing ImageFolder train/test."
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/data.py",
+      "line": 304,
+      "finding": "Train random crop min scale .05; test Resize at 318 uses interpolation=3 (bicubic)."
+    },
+    {
+      "path": "/data/115-2/users/liying/low-rank-cl-new/utils/toolkit.py",
+      "line": 143,
+      "finding": "total is sample pooled accuracy, rounded to 2 decimals at line 149."
+    },
+    {
+      "path": "/data/115-2/users/liying/low-rank-cl-new/trainer.py",
+      "line": 87,
+      "finding": "Use (curve) top1 Acc, not top1 Acc with task or prototype curves."
+    },
+    {
+      "path": "/data/115-2/users/liying/low-rank-cl-new/methods/base.py",
+      "line": 71,
+      "finding": "All-seen test set; lines 108-120 distinguish class-incremental prediction from task-aware oracle prediction."
+    },
+    {
+      "path": "/data/115-2/users/liying/low-rank-cl-new/dataloaders/data.py",
+      "line": 434,
+      "finding": "Identity order at 453; ImageFolder split loaded at 460-475. Default train crop and test Resize differ from GAM preprocessing."
+    },
+    {
+      "path": "/data/115-2/users/liying/low-rank-cl-new/dataloaders/data.py",
+      "line": 842,
+      "finding": "If no existing split, train_test_split stratify labels, 20% test, random_state=42."
+    },
+    {
+      "path": "/data/140-1/users/liying/low-rank-cl/Previous_Version/low-rank-cl/dataloaders/data_manager.py",
+      "line": 79,
+      "finding": "Class order summary prints sorted(self._class_order)."
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/GAM-EWC/results/imagenetr_r1_check_20261001/recompute.py",
+      "line": 104,
+      "finding": "Cross-seed statistics.stdev implements ddof=1."
+    }
+  ],
+  "identical_source_checks": [
+    {
+      "relative": "utils/toolkit.py",
+      "sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+      "matches_GAM_frozen": true
+    },
+    {
+      "relative": "evaluation_performance/metrics.py",
+      "sha256": "661c53510d8a4ae10f40c76db9d43266dedacf59cc8701c3d4c8907467b1222a",
+      "matches_GAM_frozen": true
+    }
+  ]
+}

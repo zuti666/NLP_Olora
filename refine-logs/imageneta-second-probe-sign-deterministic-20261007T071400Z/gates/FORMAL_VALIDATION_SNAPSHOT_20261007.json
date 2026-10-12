@@ -1,0 +1,3171 @@
+{
+  "audit": "independent_completed_formal_validation",
+  "created_at": "2026-10-07T13:09:02.511233+00:00",
+  "scope": "Read-only run artifacts; only this report is written in /tmp. No GPU or process check required.",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z",
+  "count": {
+    "formal_total": 16,
+    "formal_by_state": {
+      "completed": 10,
+      "running": 5,
+      "pending": 1
+    },
+    "completed_checked": 10,
+    "completed_passed": 10,
+    "failure_count": 0
+  },
+  "failures": [],
+  "jobs": [
+    {
+      "job_id": "formal_N5_g0_probem1_residualm1_r1_k10_s2",
+      "condition_id": "N5_g0_probem1_residualm1_r1_k10_s2",
+      "variant": "N5",
+      "radius": 1.0,
+      "formula": "g0\u2212(g3\u2212\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "9ca5b6a976fe75b5371134850ff41862a8148be76aff2749eb6742be9069de9f",
+        "trace_sha256": "78ca74874264c3317ad69aca356e0721504f843330b13fba1056314d3da59529",
+        "matrix_sha256": "0e701ac582e1fa9952dbc6b53c23e385649a4cf21a885913b507201657ecb0f3",
+        "diagnostics_sha256": "d674743477f2dde01f434aadf6e000f2c4f2413e765b71e24fad7c71456e0186",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g0"
+      },
+      "exit": {
+        "job_id": "formal_N5_g0_probem1_residualm1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T10:02:31.368045+00:00",
+        "runner_pid": 3606286
+      },
+      "receipt_sha256": "567efaa12db115a08314ce02e04a1d8364ce4c64f72c60a8baa6fa6864d5ffab",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g0",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 0,
+        "training_g3_negative_gradient_passes": 2550,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 10,
+        "diagnostic_g3_negative_gradient_calls": 0
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 65.38512182539682,
+        "FAA_task_macro": 48.632,
+        "LA": 54.035000000000004,
+        "BWT": -6.003333333333333,
+        "forgetting": 6.525555555555555
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 1.4210854715202004e-14,
+          "summary": 1.4210854715202004e-14
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        85.67,
+        81.98,
+        76.36333333333333,
+        73.1725,
+        67.624,
+        61.385,
+        56.88285714285714,
+        52.99375,
+        49.147777777777776,
+        48.632
+      ],
+      "acquisition_curve": [
+        85.67,
+        79.92,
+        69.77,
+        68.48,
+        54.9,
+        46.48,
+        33.73,
+        32.94,
+        30.0,
+        38.46
+      ],
+      "bwt_per_prior_task": [
+        -10.75,
+        -11.810000000000002,
+        -8.139999999999993,
+        -7.270000000000003,
+        -13.719999999999999,
+        -7.039999999999999,
+        2.4100000000000037,
+        1.1799999999999997,
+        1.1099999999999994
+      ],
+      "forgetting_per_prior_task": [
+        10.75,
+        11.810000000000002,
+        8.139999999999993,
+        7.270000000000003,
+        13.719999999999999,
+        7.039999999999999,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "matrix": [
+        [
+          85.67
+        ],
+        [
+          84.04,
+          79.92
+        ],
+        [
+          81.76,
+          77.56,
+          69.77
+        ],
+        [
+          80.78,
+          76.38,
+          67.05,
+          68.48
+        ],
+        [
+          78.83,
+          72.83,
+          65.5,
+          66.06,
+          54.9
+        ],
+        [
+          77.85,
+          72.05,
+          63.57,
+          64.24,
+          44.12,
+          46.48
+        ],
+        [
+          77.2,
+          72.83,
+          63.18,
+          63.03,
+          43.14,
+          45.07,
+          33.73
+        ],
+        [
+          75.9,
+          69.29,
+          62.79,
+          63.03,
+          40.2,
+          43.66,
+          36.14,
+          32.94
+        ],
+        [
+          74.59,
+          68.11,
+          60.85,
+          60.61,
+          38.24,
+          40.85,
+          36.14,
+          32.94,
+          30.0
+        ],
+        [
+          74.92,
+          68.11,
+          61.63,
+          61.21,
+          41.18,
+          39.44,
+          36.14,
+          34.12,
+          31.11,
+          38.46
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.38300000000001,
+        "FAA_sample_weighted": 56.62
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/final_summary.json",
+          "sha256": "9ca5b6a976fe75b5371134850ff41862a8148be76aff2749eb6742be9069de9f"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/effective_config.json",
+          "sha256": "a30c8995c67db6eed179a9398ea950596e643019722c5dc386ab2baefc6b5f62"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "78ca74874264c3317ad69aca356e0721504f843330b13fba1056314d3da59529"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "d674743477f2dde01f434aadf6e000f2c4f2413e765b71e24fad7c71456e0186"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/task_matrix.json",
+          "sha256": "0e701ac582e1fa9952dbc6b53c23e385649a4cf21a885913b507201657ecb0f3"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/metrics.json",
+          "sha256": "702d3fbf10659e8fb749f067d124a33867e7069b2855204432d86e07bcb70ea7"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/observations.json",
+          "sha256": "0c0d73a87ba11f71ac8d22bcdbae7479a42773a5412deea2898b6d5e8f74f13c"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N6_g1_probem1_residualm1_r1_k10_s2",
+      "condition_id": "N6_g1_probem1_residualm1_r1_k10_s2",
+      "variant": "N6",
+      "radius": 1.0,
+      "formula": "g1\u2212(g3\u2212\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "1aced9f9c7525ae5fd1e23833b4fe2bd77a0757eab76c8a8e1e157d9f1648fff",
+        "trace_sha256": "e36129488d1e69f29a385122bae56bf7cfb47cbed177c58f3523982f288736c5",
+        "matrix_sha256": "421265d44eccbcfe39746b544342e51c36444a5d9d80b36a60211ebeeeaabe16",
+        "diagnostics_sha256": "baebf01186c2f9499fb4beabea0740a999f82c115afa7587d9e96bf0e676e6ba",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g1"
+      },
+      "exit": {
+        "job_id": "formal_N6_g1_probem1_residualm1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T10:01:48.871532+00:00",
+        "runner_pid": 3606287
+      },
+      "receipt_sha256": "320c62ccb16643d2e89bc5c84a692f0e74ca56932a821c8a848f951ff7e286de",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g1",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 0,
+        "training_g3_negative_gradient_passes": 2550,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 10,
+        "diagnostic_g3_negative_gradient_calls": 0
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 65.90568452380953,
+        "FAA_task_macro": 48.917,
+        "LA": 55.435,
+        "BWT": -7.24222222222222,
+        "forgetting": 7.365555555555555
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "FAA_task_macro": {
+          "matrix": 1.4210854715202004e-14,
+          "summary": 1.4210854715202004e-14
+        },
+        "LA": {
+          "matrix": -1.4210854715202004e-14,
+          "summary": -1.4210854715202004e-14
+        },
+        "BWT": {
+          "matrix": 8.881784197001252e-16,
+          "summary": 8.881784197001252e-16
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        85.02,
+        82.05,
+        76.86333333333333,
+        73.8875,
+        67.918,
+        61.791666666666664,
+        57.58142857142857,
+        54.33125,
+        50.696666666666665,
+        48.917
+      ],
+      "acquisition_curve": [
+        85.02,
+        80.71,
+        69.38,
+        71.52,
+        53.92,
+        49.3,
+        37.35,
+        36.47,
+        32.22,
+        38.46
+      ],
+      "bwt_per_prior_task": [
+        -12.060000000000002,
+        -11.019999999999996,
+        -7.359999999999992,
+        -11.519999999999996,
+        -13.719999999999999,
+        -7.049999999999997,
+        -1.2100000000000009,
+        -2.3500000000000014,
+        1.1099999999999994
+      ],
+      "forgetting_per_prior_task": [
+        12.060000000000002,
+        11.019999999999996,
+        7.359999999999992,
+        11.519999999999996,
+        13.719999999999999,
+        7.049999999999997,
+        1.2100000000000009,
+        2.3500000000000014,
+        0.0
+      ],
+      "matrix": [
+        [
+          85.02
+        ],
+        [
+          83.39,
+          80.71
+        ],
+        [
+          82.08,
+          79.13,
+          69.38
+        ],
+        [
+          79.8,
+          77.56,
+          66.67,
+          71.52
+        ],
+        [
+          77.52,
+          75.59,
+          65.89,
+          66.67,
+          53.92
+        ],
+        [
+          76.87,
+          74.02,
+          63.18,
+          64.24,
+          43.14,
+          49.3
+        ],
+        [
+          76.87,
+          74.02,
+          62.79,
+          62.42,
+          43.14,
+          46.48,
+          37.35
+        ],
+        [
+          73.94,
+          73.23,
+          63.57,
+          63.64,
+          41.18,
+          46.48,
+          36.14,
+          36.47
+        ],
+        [
+          74.59,
+          69.69,
+          62.02,
+          62.42,
+          40.2,
+          43.66,
+          37.35,
+          34.12,
+          32.22
+        ],
+        [
+          72.96,
+          69.69,
+          62.02,
+          60.0,
+          40.2,
+          42.25,
+          36.14,
+          34.12,
+          33.33,
+          38.46
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.72,
+        "FAA_sample_weighted": 56.62
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/final_summary.json",
+          "sha256": "1aced9f9c7525ae5fd1e23833b4fe2bd77a0757eab76c8a8e1e157d9f1648fff"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/effective_config.json",
+          "sha256": "78e6b2c02ea83b0f494581f252fc8cca63e7ae0a1f3ebd42f8ded8bd0548838a"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "e36129488d1e69f29a385122bae56bf7cfb47cbed177c58f3523982f288736c5"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "baebf01186c2f9499fb4beabea0740a999f82c115afa7587d9e96bf0e676e6ba"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/task_matrix.json",
+          "sha256": "421265d44eccbcfe39746b544342e51c36444a5d9d80b36a60211ebeeeaabe16"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/metrics.json",
+          "sha256": "058db48a08e72ee4313ad3d9f23459f8c2e0fd7d8fe18b559a9ab3166f076573"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/observations.json",
+          "sha256": "0b9650671f4d634e4722e1260e265dc2681c9ba49ec1048e5c70373e3cb4826a"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_B0_g0_probep1_residualp1_r1_k10_s2",
+      "condition_id": "B0_g0_probep1_residualp1_r1_k10_s2",
+      "variant": "B0",
+      "radius": 1.0,
+      "formula": "g0+(g3+\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "f4e1318a5ff2e965eb2bcd00f99409b79aad17e752933a9049bb95bd9f156a3a",
+        "trace_sha256": "85efd538383eb814593cd2c2407aaef98555f34c1ba205fd7d04a72b7cea040e",
+        "matrix_sha256": "1dec3fca2f638cceff4d6fac1a8e7196feef3557108a1d4362fac57ed57961e2",
+        "diagnostics_sha256": "910b531b5c037699b54ba347dd8ae3a2edb1c21129007f467e6464c976ff087f",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": 1,
+        "update_base": "g0"
+      },
+      "exit": {
+        "job_id": "formal_B0_g0_probep1_residualp1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T09:54:53.395345+00:00",
+        "runner_pid": 3606288
+      },
+      "receipt_sha256": "5330180fe5f2a1feb6eac6bafef8c7b4f91b1c7f82e7399cfd2fb9962cd8f7ce",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": 1,
+        "update_base": "g0",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 2550,
+        "training_g3_negative_gradient_passes": 0,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 0,
+        "diagnostic_g3_negative_gradient_calls": 10
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 65.17612023809524,
+        "FAA_task_macro": 47.583999999999996,
+        "LA": 54.30800000000001,
+        "BWT": -7.47111111111111,
+        "forgetting": 7.47111111111111
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        85.67,
+        81.225,
+        76.90666666666667,
+        72.88,
+        67.26,
+        61.336666666666666,
+        56.75428571428572,
+        53.08125,
+        49.06333333333333,
+        47.583999999999996
+      ],
+      "acquisition_curve": [
+        85.67,
+        78.74,
+        69.38,
+        68.48,
+        53.92,
+        46.48,
+        36.14,
+        36.47,
+        32.22,
+        35.58
+      ],
+      "bwt_per_prior_task": [
+        -10.75,
+        -11.809999999999988,
+        -9.299999999999997,
+        -8.480000000000004,
+        -12.740000000000002,
+        -7.039999999999999,
+        -2.4100000000000037,
+        -4.709999999999997,
+        0.0
+      ],
+      "forgetting_per_prior_task": [
+        10.75,
+        11.809999999999988,
+        9.299999999999997,
+        8.480000000000004,
+        12.740000000000002,
+        7.039999999999999,
+        2.4100000000000037,
+        4.709999999999997,
+        0.0
+      ],
+      "matrix": [
+        [
+          85.67
+        ],
+        [
+          83.71,
+          78.74
+        ],
+        [
+          83.39,
+          77.95,
+          69.38
+        ],
+        [
+          80.78,
+          75.59,
+          66.67,
+          68.48
+        ],
+        [
+          79.15,
+          72.83,
+          64.34,
+          66.06,
+          53.92
+        ],
+        [
+          77.2,
+          72.05,
+          63.18,
+          63.03,
+          46.08,
+          46.48
+        ],
+        [
+          76.87,
+          71.26,
+          63.18,
+          63.03,
+          43.14,
+          43.66,
+          36.14
+        ],
+        [
+          74.27,
+          68.5,
+          62.79,
+          61.21,
+          40.2,
+          45.07,
+          36.14,
+          36.47
+        ],
+        [
+          73.29,
+          66.54,
+          61.63,
+          59.39,
+          41.18,
+          39.44,
+          34.94,
+          32.94,
+          32.22
+        ],
+        [
+          74.92,
+          66.93,
+          60.08,
+          60.0,
+          41.18,
+          39.44,
+          33.73,
+          31.76,
+          32.22,
+          35.58
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.078,
+        "FAA_sample_weighted": 55.63
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/final_summary.json",
+          "sha256": "f4e1318a5ff2e965eb2bcd00f99409b79aad17e752933a9049bb95bd9f156a3a"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/effective_config.json",
+          "sha256": "4099517dea144bf6e04f0f56ebea931f313f8fa98e45574f65457b239e61a946"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "85efd538383eb814593cd2c2407aaef98555f34c1ba205fd7d04a72b7cea040e"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "910b531b5c037699b54ba347dd8ae3a2edb1c21129007f467e6464c976ff087f"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/task_matrix.json",
+          "sha256": "1dec3fca2f638cceff4d6fac1a8e7196feef3557108a1d4362fac57ed57961e2"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/metrics.json",
+          "sha256": "99019f1af7fc51476854b8a6bf7c775c3a876ca50cd67e137a9ca1b7d985ae2f"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/observations.json",
+          "sha256": "65321dbeb47ca6597cd7323a31e3b1df978a72bfc161664797411f6391c467ac"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_B1_g1_probep1_residualp1_r1_k10_s2",
+      "condition_id": "B1_g1_probep1_residualp1_r1_k10_s2",
+      "variant": "B1",
+      "radius": 1.0,
+      "formula": "g1+(g3+\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "dedbb0874744df7ecfcd1025abb5a0643f723cc557dc291bb75f84a9319c7275",
+        "trace_sha256": "647ebb255f3b352ebfd1693a5d5b6415495608aee4db83b2ee2a46265e667e2c",
+        "matrix_sha256": "ade364141448140ff45dbe2017b362d889149082664b83c3c1ffdd3855ff38c8",
+        "diagnostics_sha256": "219ce7d84cba2d32c1dfae1e6544d08da84a5925f88ce15031afa8851a9f2f9b",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": 1,
+        "update_base": "g1"
+      },
+      "exit": {
+        "job_id": "formal_B1_g1_probep1_residualp1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T10:21:31.541547+00:00",
+        "runner_pid": 3735104
+      },
+      "receipt_sha256": "d592d47adfeea5aab3e79ee021bcb29254fced7fa92462652580dfaba3b8b7f9",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": 1,
+        "update_base": "g1",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 2550,
+        "training_g3_negative_gradient_passes": 0,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 0,
+        "diagnostic_g3_negative_gradient_calls": 10
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 65.33516825396825,
+        "FAA_task_macro": 47.562,
+        "LA": 54.761,
+        "BWT": -7.998888888888887,
+        "forgetting": 7.998888888888887
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 1.7763568394002505e-15,
+          "summary": 1.7763568394002505e-15
+        },
+        "forgetting": {
+          "matrix": -1.7763568394002505e-15,
+          "summary": -1.7763568394002505e-15
+        }
+      },
+      "stage_macro_curve": [
+        85.34,
+        81.225,
+        76.91,
+        73.995,
+        67.6,
+        60.945,
+        56.97857142857142,
+        53.405,
+        49.39111111111111,
+        47.562
+      ],
+      "acquisition_curve": [
+        85.34,
+        78.74,
+        68.99,
+        71.52,
+        53.92,
+        46.48,
+        39.76,
+        36.47,
+        28.89,
+        37.5
+      ],
+      "bwt_per_prior_task": [
+        -11.070000000000007,
+        -11.019999999999996,
+        -8.519999999999996,
+        -13.339999999999996,
+        -13.719999999999999,
+        -8.449999999999996,
+        -2.4099999999999966,
+        -2.3500000000000014,
+        -1.1099999999999994
+      ],
+      "forgetting_per_prior_task": [
+        11.070000000000007,
+        11.019999999999996,
+        8.519999999999996,
+        13.339999999999996,
+        13.719999999999999,
+        8.449999999999996,
+        2.4099999999999966,
+        2.3500000000000014,
+        1.1099999999999994
+      ],
+      "matrix": [
+        [
+          85.34
+        ],
+        [
+          83.71,
+          78.74
+        ],
+        [
+          83.39,
+          78.35,
+          68.99
+        ],
+        [
+          81.43,
+          75.59,
+          67.44,
+          71.52
+        ],
+        [
+          77.85,
+          73.23,
+          65.12,
+          67.88,
+          53.92
+        ],
+        [
+          76.55,
+          70.47,
+          63.95,
+          66.06,
+          42.16,
+          46.48
+        ],
+        [
+          75.57,
+          70.47,
+          64.34,
+          64.85,
+          40.2,
+          43.66,
+          39.76
+        ],
+        [
+          74.27,
+          69.29,
+          63.95,
+          63.03,
+          39.22,
+          43.66,
+          37.35,
+          36.47
+        ],
+        [
+          74.27,
+          67.32,
+          60.85,
+          61.21,
+          38.24,
+          42.25,
+          38.55,
+          32.94,
+          28.89
+        ],
+        [
+          74.27,
+          67.72,
+          60.47,
+          58.18,
+          40.2,
+          38.03,
+          37.35,
+          34.12,
+          27.78,
+          37.5
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.21000000000001,
+        "FAA_sample_weighted": 55.56
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/final_summary.json",
+          "sha256": "dedbb0874744df7ecfcd1025abb5a0643f723cc557dc291bb75f84a9319c7275"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/effective_config.json",
+          "sha256": "9fa843783e44a2fa9878dfeae0a74abe9b14547f1075e968a3ca0b65aa657eba"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "647ebb255f3b352ebfd1693a5d5b6415495608aee4db83b2ee2a46265e667e2c"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "219ce7d84cba2d32c1dfae1e6544d08da84a5925f88ce15031afa8851a9f2f9b"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/task_matrix.json",
+          "sha256": "ade364141448140ff45dbe2017b362d889149082664b83c3c1ffdd3855ff38c8"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/metrics.json",
+          "sha256": "163a918da7aa77361ad155083bc9995cf36326aa3d3c9934258f31d09cbda4f7"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/observations.json",
+          "sha256": "c7e2d9a7ae884288f6a507d47129751c963df1bf840476c96b7c9cd198be1768"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B1_g1_probep1_residualp1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N1_g0_probep1_residualm1_r1_k10_s2",
+      "condition_id": "N1_g0_probep1_residualm1_r1_k10_s2",
+      "variant": "N1",
+      "radius": 1.0,
+      "formula": "g0\u2212(g3+\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "45c2734fde2b70845b4f1611351f3bec3638f88c7939056dbb42daf511e96296",
+        "trace_sha256": "2b6f3e9d19e8192d837c46c430795d5c5fa8f7e5cecec86d22328bff1d44b8bf",
+        "matrix_sha256": "3d51ebad7bf2da9eed1a692eaf0c369dceec6669c5587a0469c003b968a68063",
+        "diagnostics_sha256": "49839cba62db2bcfbbfac7b93c8501435ccb2966a34e044523529cc2f3738b21",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": -1,
+        "update_base": "g0"
+      },
+      "exit": {
+        "job_id": "formal_N1_g0_probep1_residualm1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T10:34:03.116467+00:00",
+        "runner_pid": 4060302
+      },
+      "receipt_sha256": "d1f6846aca9993da821c828df924c58575d9865ef2a19901c1583b59515849e9",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": -1,
+        "update_base": "g0",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 2550,
+        "training_g3_negative_gradient_passes": 0,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 0,
+        "diagnostic_g3_negative_gradient_calls": 10
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 1.9113408730158732,
+        "FAA_task_macro": 0.619,
+        "LA": 0.717,
+        "BWT": -0.10888888888888884,
+        "forgetting": 0.7977777777777777
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        7.17,
+        3.095,
+        2.0633333333333335,
+        1.5475,
+        1.238,
+        1.0333333333333334,
+        0.8857142857142858,
+        0.77375,
+        0.6877777777777778,
+        0.619
+      ],
+      "acquisition_curve": [
+        7.17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bwt_per_prior_task": [
+        -0.9799999999999995,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forgetting_per_prior_task": [
+        0.9799999999999995,
+        0.0,
+        6.2,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "matrix": [
+        [
+          7.17
+        ],
+        [
+          6.19,
+          0.0
+        ],
+        [
+          6.19,
+          0.0,
+          0.0
+        ],
+        [
+          6.19,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.19,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          6.2,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          6.2,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.19,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 2.325,
+        "FAA_sample_weighted": 1.25
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/final_summary.json",
+          "sha256": "45c2734fde2b70845b4f1611351f3bec3638f88c7939056dbb42daf511e96296"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/effective_config.json",
+          "sha256": "7a9c87bc5bfa8106c5bc7acfa71e4c62b1ecc68e7f16c9209bc2ef82bef8ad16"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "2b6f3e9d19e8192d837c46c430795d5c5fa8f7e5cecec86d22328bff1d44b8bf"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "49839cba62db2bcfbbfac7b93c8501435ccb2966a34e044523529cc2f3738b21"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/task_matrix.json",
+          "sha256": "3d51ebad7bf2da9eed1a692eaf0c369dceec6669c5587a0469c003b968a68063"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/metrics.json",
+          "sha256": "554469abd690a18a0eaeb1d12ef425c8747e23339ec19b2c729a426e8fef09dd"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/observations.json",
+          "sha256": "18e9aef153a3cd6c3d35f01351f1228d68bcf8a2c0ad9adceca8fb4f16230528"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N1_g0_probep1_residualm1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N2_g1_probep1_residualm1_r1_k10_s2",
+      "condition_id": "N2_g1_probep1_residualm1_r1_k10_s2",
+      "variant": "N2",
+      "radius": 1.0,
+      "formula": "g1\u2212(g3+\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "5061822d70c6bba56857e7fae6c43f8b2ca1ce1a1d265f91d873192cb30de0b3",
+        "trace_sha256": "117c156efc0f5451b7fbd7519c2cf755effa4c18d57b6250aa5e177a21b444ac",
+        "matrix_sha256": "7db66b57f5dd6e1c5bde4406d613eb293c978e9d1ea65f48308e156d958a78c1",
+        "diagnostics_sha256": "7dbcf0e816383820e5dcfc7fdc64e9c64c6527f4d0ba3d3ed3d8adab25a7e20e",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": -1,
+        "update_base": "g1"
+      },
+      "exit": {
+        "job_id": "formal_N2_g1_probep1_residualm1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T12:18:32.827553+00:00",
+        "runner_pid": 1353900
+      },
+      "receipt_sha256": "c820f4691b484b247801194bc4255dd854f402c38c00f38a3566e41dbe0f88d6",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": 1,
+        "second_difference_sign": -1,
+        "update_base": "g1",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 2550,
+        "training_g3_negative_gradient_passes": 0,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 0,
+        "diagnostic_g3_negative_gradient_calls": 10
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 1.7198210317460318,
+        "FAA_task_macro": 0.554,
+        "LA": 0.717,
+        "BWT": -0.1811111111111111,
+        "forgetting": 0.1811111111111111
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 2.220446049250313e-16,
+          "summary": 2.220446049250313e-16
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        7.17,
+        2.77,
+        1.7366666666666666,
+        1.0575,
+        1.108,
+        0.9766666666666667,
+        0.5585714285714286,
+        0.65125,
+        0.6155555555555555,
+        0.554
+      ],
+      "acquisition_curve": [
+        7.17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bwt_per_prior_task": [
+        -1.63,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forgetting_per_prior_task": [
+        1.63,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "matrix": [
+        [
+          7.17
+        ],
+        [
+          5.54,
+          0.0
+        ],
+        [
+          5.21,
+          0.0,
+          0.0
+        ],
+        [
+          4.23,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          5.54,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          5.86,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          3.91,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          5.21,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          5.54,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          5.54,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 2.11,
+        "FAA_sample_weighted": 1.12
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/final_summary.json",
+          "sha256": "5061822d70c6bba56857e7fae6c43f8b2ca1ce1a1d265f91d873192cb30de0b3"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/effective_config.json",
+          "sha256": "812629fc34aa87937ff92fed490dd30cee43ed408f21a940b6baaad4551d6c50"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "117c156efc0f5451b7fbd7519c2cf755effa4c18d57b6250aa5e177a21b444ac"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "7dbcf0e816383820e5dcfc7fdc64e9c64c6527f4d0ba3d3ed3d8adab25a7e20e"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/task_matrix.json",
+          "sha256": "7db66b57f5dd6e1c5bde4406d613eb293c978e9d1ea65f48308e156d958a78c1"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/metrics.json",
+          "sha256": "8bbdc7ae1a0a6ec7ad95c5b479ac81e8a2c2e289c7c2897f0f770bc4a0c6c429"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/observations.json",
+          "sha256": "3bc7421db9eac721e0dfa9cb5a8ec93ee107b2c939e169e42e35969b31978219"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N2_g1_probep1_residualm1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N3_g0_probem1_residualp1_r1_k10_s2",
+      "condition_id": "N3_g0_probem1_residualp1_r1_k10_s2",
+      "variant": "N3",
+      "radius": 1.0,
+      "formula": "g0+(g3\u2212\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "d92a8a5f72f197acb037cc69b8c08f88cfa304531e2741d48452ae828df5a1d5",
+        "trace_sha256": "54ca43cf0ff2efb587b33f5c1e81057e36d21281d30b922bad485e83e3de34e8",
+        "matrix_sha256": "89e3f88d4e3f0fb3bcc49f0ab134d097b13055c6cd7ba620494ad1bccc40129a",
+        "diagnostics_sha256": "139613806ed7145f7d0b81a81875d01efcc740c6b2c710ac62e7e5fa11c405c9",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": 1,
+        "update_base": "g0"
+      },
+      "exit": {
+        "job_id": "formal_N3_g0_probem1_residualp1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T12:31:42.069154+00:00",
+        "runner_pid": 1475493
+      },
+      "receipt_sha256": "267f27ea2026f1da66d772fd7ffc98f7e420547fb17b55498f9a2a4fbead9613",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": 1,
+        "update_base": "g0",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 0,
+        "training_g3_negative_gradient_passes": 2550,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 10,
+        "diagnostic_g3_negative_gradient_calls": 0
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 1.934152380952381,
+        "FAA_task_macro": 0.45599999999999996,
+        "LA": 1.44,
+        "BWT": -1.0933333333333333,
+        "forgetting": 2.37
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 4.440892098500626e-16,
+          "summary": 4.440892098500626e-16
+        }
+      },
+      "stage_macro_curve": [
+        7.17,
+        3.095,
+        2.39,
+        1.8725,
+        0.606,
+        1.195,
+        1.032857142857143,
+        1.0175,
+        0.5066666666666666,
+        0.45599999999999996
+      ],
+      "acquisition_curve": [
+        7.17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        7.23,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bwt_per_prior_task": [
+        -2.6100000000000003,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -7.23,
+        0.0,
+        0.0
+      ],
+      "forgetting_per_prior_task": [
+        2.9300000000000006,
+        0.0,
+        8.14,
+        3.03,
+        0.0,
+        0.0,
+        7.23,
+        0.0,
+        0.0
+      ],
+      "matrix": [
+        [
+          7.17
+        ],
+        [
+          6.19,
+          0.0
+        ],
+        [
+          7.17,
+          0.0,
+          0.0
+        ],
+        [
+          7.49,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          3.03,
+          0.0
+        ],
+        [
+          7.17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          7.23
+        ],
+        [
+          0.0,
+          0.0,
+          8.14,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          4.56,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          4.56,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 2.1919999999999997,
+        "FAA_sample_weighted": 0.92
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/final_summary.json",
+          "sha256": "d92a8a5f72f197acb037cc69b8c08f88cfa304531e2741d48452ae828df5a1d5"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/effective_config.json",
+          "sha256": "1a523f81be88dd9aa5d6a86148226707c63057afe0e133bae6edd2d3055519d4"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "54ca43cf0ff2efb587b33f5c1e81057e36d21281d30b922bad485e83e3de34e8"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "139613806ed7145f7d0b81a81875d01efcc740c6b2c710ac62e7e5fa11c405c9"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/task_matrix.json",
+          "sha256": "89e3f88d4e3f0fb3bcc49f0ab134d097b13055c6cd7ba620494ad1bccc40129a"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/metrics.json",
+          "sha256": "5d659b832503b821a9a818125464faf0d03e3dcc41557a9191ac4405a36124df"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/observations.json",
+          "sha256": "99168669e6d085201c7b1bce9b2c30a7a56cc518efea046a44498711c6d585cf"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N3_g0_probem1_residualp1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N4_g1_probem1_residualp1_r1_k10_s2",
+      "condition_id": "N4_g1_probem1_residualp1_r1_k10_s2",
+      "variant": "N4",
+      "radius": 1.0,
+      "formula": "g1+(g3\u2212\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "c53c6f12e0e4557677b9999d0361ffdfe1e7b3684d6030bae7327af2efae39b3",
+        "trace_sha256": "af9ec7b8589b75419d6caaa1513db087782166a12eba282b1df493aee914d772",
+        "matrix_sha256": "5b485151ff289e6684bd82e7bc5fffd49cf08dda9c96f4c6d4147c8433ad49c3",
+        "diagnostics_sha256": "fb1c8f37a75e630f7a7a7bf3c6548f13977ba1e5273acd524592532d3e8ea874",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": 1,
+        "update_base": "g1"
+      },
+      "exit": {
+        "job_id": "formal_N4_g1_probem1_residualp1_r1_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T12:32:37.284555+00:00",
+        "runner_pid": 1475494
+      },
+      "receipt_sha256": "5b661af810f82c19627b305a2014d295637cbd022435263b02dcbef5a5bd723c",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 1.0,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": 1,
+        "update_base": "g1",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 0,
+        "training_g3_negative_gradient_passes": 2550,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 10,
+        "diagnostic_g3_negative_gradient_calls": 0
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 1.862232142857143,
+        "FAA_task_macro": 0.673,
+        "LA": 0.651,
+        "BWT": 0.024444444444444467,
+        "forgetting": 0.3622222222222222
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 4.440892098500626e-16,
+          "summary": 4.440892098500626e-16
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        6.51,
+        3.585,
+        1.8466666666666667,
+        1.3025,
+        1.302,
+        1.085,
+        0.6985714285714285,
+        0.89625,
+        0.7233333333333333,
+        0.673
+      ],
+      "acquisition_curve": [
+        6.51,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bwt_per_prior_task": [
+        -2.5999999999999996,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.82,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "forgetting_per_prior_task": [
+        3.26,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "matrix": [
+        [
+          6.51
+        ],
+        [
+          7.17,
+          0.0
+        ],
+        [
+          5.54,
+          0.0,
+          0.0
+        ],
+        [
+          5.21,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.51,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.51,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          4.89,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          7.17,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.51,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          3.91,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.82,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 2.2910000000000004,
+        "FAA_sample_weighted": 0.92
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/final_summary.json",
+          "sha256": "c53c6f12e0e4557677b9999d0361ffdfe1e7b3684d6030bae7327af2efae39b3"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/effective_config.json",
+          "sha256": "9c49d144e97b6ab867c9bc443eb81671d075cd2c9fae3e3ac2a3675620f924be"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/step_trace.jsonl",
+          "sha256": "af9ec7b8589b75419d6caaa1513db087782166a12eba282b1df493aee914d772"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/side_diagnostics.jsonl",
+          "sha256": "fb1c8f37a75e630f7a7a7bf3c6548f13977ba1e5273acd524592532d3e8ea874"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/task_matrix.json",
+          "sha256": "5b485151ff289e6684bd82e7bc5fffd49cf08dda9c96f4c6d4147c8433ad49c3"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/metrics.json",
+          "sha256": "4a7fad08c37a7f668a096dd1b8ad13c73021161d3a55b1a521bad6baaa53cb24"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/observations.json",
+          "sha256": "d7c2920196357d9af3dd2fa310947a3c05c555b3996567ad4381431c1978138a"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N4_g1_probem1_residualp1_r1_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N5_g0_probem1_residualm1_r025_k10_s2",
+      "condition_id": "N5_g0_probem1_residualm1_r025_k10_s2",
+      "variant": "N5",
+      "radius": 0.25,
+      "formula": "g0\u2212(g3\u2212\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "3194ae7fc8a8075f8b876ddc10d24fc10ad449ca2666375a2d5310e67edbe9f2",
+        "trace_sha256": "b0e1d1c80e199c828989281023510424aadf7097afd0fb96bb71a2b98b4c5fba",
+        "matrix_sha256": "1be40caa188cdb49f393a968decb9bd058a794db9e363a8fd88b2a4830e17727",
+        "diagnostics_sha256": "e929cd8085d28d69e380ea6f915bf508b372650cfeb92a30e40d5041ddeea8fe",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g0"
+      },
+      "exit": {
+        "job_id": "formal_N5_g0_probem1_residualm1_r025_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T13:02:17.537551+00:00",
+        "runner_pid": 1691634
+      },
+      "receipt_sha256": "e2967b32e68034bb73f03e77fef3228460a02d93ec8e9b1b2593b38c0a42a3ff",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 0.25,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g0",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 0,
+        "training_g3_negative_gradient_passes": 2550,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 10,
+        "diagnostic_g3_negative_gradient_calls": 0
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 64.84544563492064,
+        "FAA_task_macro": 48.015,
+        "LA": 55.112,
+        "BWT": -7.885555555555552,
+        "forgetting": 7.885555555555552
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": -7.105427357601002e-15,
+          "summary": -7.105427357601002e-15
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        85.02,
+        80.9,
+        76.71,
+        72.85499999999999,
+        66.104,
+        60.67166666666666,
+        56.56142857142857,
+        52.76625,
+        48.85111111111111,
+        48.015
+      ],
+      "acquisition_curve": [
+        85.02,
+        78.74,
+        70.16,
+        71.52,
+        50.98,
+        47.89,
+        38.55,
+        36.47,
+        33.33,
+        38.46
+      ],
+      "bwt_per_prior_task": [
+        -11.72999999999999,
+        -11.420000000000002,
+        -8.529999999999994,
+        -12.729999999999997,
+        -12.739999999999995,
+        -5.640000000000001,
+        -3.6099999999999994,
+        -2.3500000000000014,
+        -2.219999999999999
+      ],
+      "forgetting_per_prior_task": [
+        11.72999999999999,
+        11.420000000000002,
+        8.529999999999994,
+        12.729999999999997,
+        12.739999999999995,
+        5.640000000000001,
+        3.6099999999999994,
+        2.3500000000000014,
+        2.219999999999999
+      ],
+      "matrix": [
+        [
+          85.02
+        ],
+        [
+          83.06,
+          78.74
+        ],
+        [
+          82.41,
+          77.56,
+          70.16
+        ],
+        [
+          78.83,
+          74.02,
+          67.05,
+          71.52
+        ],
+        [
+          77.52,
+          72.05,
+          65.12,
+          64.85,
+          50.98
+        ],
+        [
+          76.55,
+          70.08,
+          66.28,
+          63.03,
+          40.2,
+          47.89
+        ],
+        [
+          75.9,
+          70.87,
+          63.95,
+          61.82,
+          41.18,
+          43.66,
+          38.55
+        ],
+        [
+          74.27,
+          67.72,
+          62.4,
+          61.82,
+          38.24,
+          45.07,
+          36.14,
+          36.47
+        ],
+        [
+          71.99,
+          64.96,
+          61.24,
+          56.97,
+          37.25,
+          43.66,
+          36.14,
+          34.12,
+          33.33
+        ],
+        [
+          73.29,
+          67.32,
+          61.63,
+          58.79,
+          38.24,
+          42.25,
+          34.94,
+          34.12,
+          31.11,
+          38.46
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 68.66,
+        "FAA_sample_weighted": 55.76
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/final_summary.json",
+          "sha256": "3194ae7fc8a8075f8b876ddc10d24fc10ad449ca2666375a2d5310e67edbe9f2"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/effective_config.json",
+          "sha256": "ecfe41830981dc701e5eff0c8657a4096f7638356249f1000bd8469d99803418"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/step_trace.jsonl",
+          "sha256": "b0e1d1c80e199c828989281023510424aadf7097afd0fb96bb71a2b98b4c5fba"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/side_diagnostics.jsonl",
+          "sha256": "e929cd8085d28d69e380ea6f915bf508b372650cfeb92a30e40d5041ddeea8fe"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/task_matrix.json",
+          "sha256": "1be40caa188cdb49f393a968decb9bd058a794db9e363a8fd88b2a4830e17727"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/metrics.json",
+          "sha256": "1ed101de1b7771a82a8c4a143a2a25f92cd8cc82d5b5a0e9116ef9a1d45f0190"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/observations.json",
+          "sha256": "33a87546a85a2a433d3eac2d043375cc8cb5aca220a33c4cc4fe3b4d9fcb85db"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N5_g0_probem1_residualm1_r025_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    },
+    {
+      "job_id": "formal_N6_g1_probem1_residualm1_r025_k10_s2",
+      "condition_id": "N6_g1_probem1_residualm1_r025_k10_s2",
+      "variant": "N6",
+      "radius": 0.25,
+      "formula": "g1\u2212(g3\u2212\u2212g2)",
+      "accepted": true,
+      "failures": [],
+      "existing_validator_result": {
+        "summary_sha256": "bf9e178484f5e32bb0ae88974cf6b8860d248d3c4726862f4041e1aa311507a2",
+        "trace_sha256": "e3a12597d6933db0963ecf90e377e4b3b82e71ed39ff0dc107e2ecacd4ee3d3b",
+        "matrix_sha256": "ea631b803fc6c2da621527b4ac9d9c1aa79f6f8bcf4db7d689a20c3fce55d398",
+        "diagnostics_sha256": "95217f8af82f71a999ab5be313151ae376a0d8eb77693dc121f6e86e36e1dbec",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true,
+        "same_state_snapshot": null,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g1"
+      },
+      "exit": {
+        "job_id": "formal_N6_g1_probem1_residualm1_r025_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-07T12:59:45.302469+00:00",
+        "runner_pid": 1814776
+      },
+      "receipt_sha256": "8bcc0b1862838357398d401d41df95173e47ef1d11cb6c0b459414d268a1c2a9",
+      "receipt_all_fields_match": true,
+      "raw_config_identity": {
+        "seed": [
+          2
+        ],
+        "rank": 10,
+        "rho": 0.05,
+        "r": 0.25,
+        "epochs": 50,
+        "init_epoch": 50,
+        "first_probe_sign": 1,
+        "second_probe_sign": -1,
+        "second_difference_sign": -1,
+        "update_base": "g1",
+        "second_difference_weight": 1.0
+      },
+      "actual_flags": {
+        "deterministic_enabled": true,
+        "deterministic_warn_only": false,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0,
+        "training_g3_positive_gradient_passes": 0,
+        "training_g3_negative_gradient_passes": 2550,
+        "diagnostic_gradient_calls": 10,
+        "diagnostic_forward_count": 10,
+        "diagnostic_sgd_updates": 0,
+        "diagnostic_snapshots": 10,
+        "diagnostic_g3_positive_gradient_calls": 10,
+        "diagnostic_g3_negative_gradient_calls": 0
+      },
+      "finite_json_observations": {
+        "metrics.json": true,
+        "observations.json": true,
+        "tasks.json": true,
+        "after_task_checks.json": true,
+        "task_identities.json": true,
+        "task_checkpoints.json": true
+      },
+      "finite_trace_and_diagnostics": true,
+      "finite_training_losses": true,
+      "epoch_count": 500,
+      "independently_recomputed_metrics": {
+        "AAA_task_macro": 65.37817896825398,
+        "FAA_task_macro": 48.72,
+        "LA": 55.220000000000006,
+        "BWT": -7.222222222222222,
+        "forgetting": 7.222222222222222
+      },
+      "metric_deltas": {
+        "AAA_task_macro": {
+          "matrix": -1.4210854715202004e-14,
+          "summary": -1.4210854715202004e-14
+        },
+        "FAA_task_macro": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "LA": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "BWT": {
+          "matrix": 0.0,
+          "summary": 0.0
+        },
+        "forgetting": {
+          "matrix": 0.0,
+          "summary": 0.0
+        }
+      },
+      "stage_macro_curve": [
+        85.02,
+        81.85,
+        77.10000000000001,
+        73.245,
+        67.268,
+        60.79333333333333,
+        57.18142857142857,
+        53.066250000000004,
+        49.537777777777784,
+        48.72
+      ],
+      "acquisition_curve": [
+        85.02,
+        80.31,
+        70.54,
+        71.52,
+        52.94,
+        46.48,
+        37.35,
+        35.29,
+        33.33,
+        39.42
+      ],
+      "bwt_per_prior_task": [
+        -12.060000000000002,
+        -11.409999999999997,
+        -8.910000000000004,
+        -11.519999999999996,
+        -14.699999999999996,
+        -2.8200000000000003,
+        -2.4100000000000037,
+        -1.1700000000000017,
+        0.0
+      ],
+      "forgetting_per_prior_task": [
+        12.060000000000002,
+        11.409999999999997,
+        8.910000000000004,
+        11.519999999999996,
+        14.699999999999996,
+        2.8200000000000003,
+        2.4100000000000037,
+        1.1700000000000017,
+        0.0
+      ],
+      "matrix": [
+        [
+          85.02
+        ],
+        [
+          83.39,
+          80.31
+        ],
+        [
+          82.41,
+          78.35,
+          70.54
+        ],
+        [
+          78.83,
+          74.8,
+          67.83,
+          71.52
+        ],
+        [
+          77.2,
+          74.41,
+          65.12,
+          66.67,
+          52.94
+        ],
+        [
+          76.55,
+          71.65,
+          65.5,
+          62.42,
+          42.16,
+          46.48
+        ],
+        [
+          75.9,
+          71.26,
+          65.5,
+          63.03,
+          42.16,
+          45.07,
+          37.35
+        ],
+        [
+          74.27,
+          68.9,
+          61.63,
+          63.03,
+          40.2,
+          45.07,
+          36.14,
+          35.29
+        ],
+        [
+          71.34,
+          66.54,
+          60.85,
+          60.61,
+          39.22,
+          43.66,
+          37.35,
+          32.94,
+          33.33
+        ],
+        [
+          72.96,
+          68.9,
+          61.63,
+          60.0,
+          38.24,
+          43.66,
+          34.94,
+          34.12,
+          33.33,
+          39.42
+        ]
+      ],
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.152,
+        "FAA_sample_weighted": 56.35
+      },
+      "sources": {
+        "final_summary.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/final_summary.json",
+          "sha256": "bf9e178484f5e32bb0ae88974cf6b8860d248d3c4726862f4041e1aa311507a2"
+        },
+        "effective_config.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/effective_config.json",
+          "sha256": "158adcefe588f449a74cb6ba1b64efc38542dcb608b02c5ba9ee086a7b6b5466"
+        },
+        "step_trace.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/step_trace.jsonl",
+          "sha256": "e3a12597d6933db0963ecf90e377e4b3b82e71ed39ff0dc107e2ecacd4ee3d3b"
+        },
+        "side_diagnostics.jsonl": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/side_diagnostics.jsonl",
+          "sha256": "95217f8af82f71a999ab5be313151ae376a0d8eb77693dc121f6e86e36e1dbec"
+        },
+        "task_matrix.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/task_matrix.json",
+          "sha256": "ea631b803fc6c2da621527b4ac9d9c1aa79f6f8bcf4db7d689a20c3fce55d398"
+        },
+        "metrics.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/metrics.json",
+          "sha256": "ae9b188040f737c663e2d1ef5791e92d42297d7fd9606047cfa8d956699576d6"
+        },
+        "observations.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/observations.json",
+          "sha256": "fbd047f30095835a37e3e5c01c47d77bc677fd8a905f616653af65f2c9e70c37"
+        },
+        "after_task_checks.json": {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/N6_g1_probem1_residualm1_r025_k10_s2/after_task_checks.json",
+          "sha256": "657ab82b564a061d12c42bed11d4bfe521075a54f90a73120c29d55e5ec682e3"
+        }
+      }
+    }
+  ],
+  "state_updated_at": "2026-10-07T13:08:35.296436+00:00",
+  "source_schema": {
+    "matrix_file": "outputs/<condition_id>/task_matrix.json",
+    "matrix_key": "matrix",
+    "units": "percentage points",
+    "shape": "10 triangular rows, row t contains t+1 seen-task accuracies",
+    "rows": "time after task t, t=0..9",
+    "columns": "task j, fixed class slices 20*j..20*j+19",
+    "evaluation": "native CNN argmax over all seen classes",
+    "native_source": "trainer/four_probe_train.py evaluate -> trainer/native_lifecycle.py seen_accuracy_row(cnn,...), reading cnn[\"grouped\"][\"00-19\" ... \"180-199\"]",
+    "future_keys": "future NaN placeholders are excluded from observed matrix",
+    "precision": "stored task accuracies are native percentages (two decimal places); no underlying prediction counts reconstructed",
+    "AAA": "(1/10)*sum_t[(1/(t+1))*sum_j<=t A[t,j]]",
+    "FAA": "(1/10)*sum_j A[9,j]",
+    "LA": "(1/10)*sum_j A[j,j]",
+    "BWT": "(1/9)*sum_j=0..8 (A[9,j]-A[j,j])",
+    "forgetting": "(1/9)*sum_j=0..8 (max_{t=j..9} A[t,j]-A[9,j]); includes final stage in max, excludes newest task; not simply -BWT",
+    "sample_weighted": "AAA_sample_weighted/FAA_sample_weighted separately stored; not used as primary AAA/FAA"
+  },
+  "all_run_pins_match": true,
+  "source_gate": {
+    "passed": true,
+    "source_files_count": 190,
+    "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+    "cpu_gate_status": "passed"
+  },
+  "pins": {
+    "RUN_PINS_sha256": "b8b1108ff91cd8bc1b020a75e4097a096a89896d09b72a0109f10050b77fcea2",
+    "pinned_count": 63,
+    "suite_sha256": "bc08d5da7cfd32cea6c06f580fe1efc411f8facc3cfefe2db2369082a7cd9b59",
+    "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+    "files": {
+      "CODE_CHANGES.md": {
+        "expected": "7885a3478620bdf72b4d1212309d960e153890ef163e3a8d05c75034f1789758",
+        "observed": "7885a3478620bdf72b4d1212309d960e153890ef163e3a8d05c75034f1789758",
+        "match": true
+      },
+      "ENVIRONMENT.md": {
+        "expected": "191147f9976d2bb4ec240b2bb7d585196d7c565623963687e4694a5a5b378891",
+        "observed": "191147f9976d2bb4ec240b2bb7d585196d7c565623963687e4694a5a5b378891",
+        "match": true
+      },
+      "EXECUTION_REVISION.json": {
+        "expected": "827a4bb58da75ef5d85ee1de435e916691d1d727877ee6c116bb4e1ba7569547",
+        "observed": "827a4bb58da75ef5d85ee1de435e916691d1d727877ee6c116bb4e1ba7569547",
+        "match": true
+      },
+      "EXPERIMENT_SETTINGS.csv": {
+        "expected": "5552f3c2f915648c7a254973e9c31d1a1aac4472602e0abc6fe076a078d36c5a",
+        "observed": "5552f3c2f915648c7a254973e9c31d1a1aac4472602e0abc6fe076a078d36c5a",
+        "match": true
+      },
+      "build_suite.py": {
+        "expected": "d41261ddcff6df97f65f47f05b70cf36f31d3a980f5689721c23ebadf4bd206c",
+        "observed": "d41261ddcff6df97f65f47f05b70cf36f31d3a980f5689721c23ebadf4bd206c",
+        "match": true
+      },
+      "collect_results.py": {
+        "expected": "785f5a1047a140bcfdce8f034fec3fe60e307a09097778f340f47c124875b4ae",
+        "observed": "785f5a1047a140bcfdce8f034fec3fe60e307a09097778f340f47c124875b4ae",
+        "match": true
+      },
+      "common.py": {
+        "expected": "5ad1f3dcde1f39838c056b0936f42d4d91f198b99fdbb760a48a446e0d6c9d0a",
+        "observed": "5ad1f3dcde1f39838c056b0936f42d4d91f198b99fdbb760a48a446e0d6c9d0a",
+        "match": true
+      },
+      "configs/B0_g0_probep1_residualp1_r025_k10_s2.json": {
+        "expected": "8004d19e8b68020be5ba3ad3698dbf36e372b9e846082e2f36e10359a347aff5",
+        "observed": "8004d19e8b68020be5ba3ad3698dbf36e372b9e846082e2f36e10359a347aff5",
+        "match": true
+      },
+      "configs/B0_g0_probep1_residualp1_r1_k10_s2.json": {
+        "expected": "0508bed52db8cc68cb6b64eb7e001fbbd05617b081cef1ab14e303ea8d2df0e1",
+        "observed": "0508bed52db8cc68cb6b64eb7e001fbbd05617b081cef1ab14e303ea8d2df0e1",
+        "match": true
+      },
+      "configs/B1_g1_probep1_residualp1_r025_k10_s2.json": {
+        "expected": "a0f6a3e197b3a2bd4004df5dcf3e0d2fd014ba940eeb112bc06eb5223af34a12",
+        "observed": "a0f6a3e197b3a2bd4004df5dcf3e0d2fd014ba940eeb112bc06eb5223af34a12",
+        "match": true
+      },
+      "configs/B1_g1_probep1_residualp1_r1_k10_s2.json": {
+        "expected": "33d9ce339b1b1dd5ac2490f884042c90ac321985457c62a975c76cf74f6d6602",
+        "observed": "33d9ce339b1b1dd5ac2490f884042c90ac321985457c62a975c76cf74f6d6602",
+        "match": true
+      },
+      "configs/N1_g0_probep1_residualm1_r025_k10_s2.json": {
+        "expected": "9e7799115d724ee3b8800e69d908239db9f2c9b3d7fa8d0ea02626215524c0a4",
+        "observed": "9e7799115d724ee3b8800e69d908239db9f2c9b3d7fa8d0ea02626215524c0a4",
+        "match": true
+      },
+      "configs/N1_g0_probep1_residualm1_r1_k10_s2.json": {
+        "expected": "2a41048471dc9b0caa0d0dddd3b2e1ac651c25e1fd1fb41494f5eee79e37bb47",
+        "observed": "2a41048471dc9b0caa0d0dddd3b2e1ac651c25e1fd1fb41494f5eee79e37bb47",
+        "match": true
+      },
+      "configs/N2_g1_probep1_residualm1_r025_k10_s2.json": {
+        "expected": "54b7c4907ab0c28a7e7ccebd6ec406bfef49a215c7df85fe580f421fdb9ee031",
+        "observed": "54b7c4907ab0c28a7e7ccebd6ec406bfef49a215c7df85fe580f421fdb9ee031",
+        "match": true
+      },
+      "configs/N2_g1_probep1_residualm1_r1_k10_s2.json": {
+        "expected": "b0f06d36aef60751a8d5b73fe916500d3fedcc82dc8f131768c04e7143088e8c",
+        "observed": "b0f06d36aef60751a8d5b73fe916500d3fedcc82dc8f131768c04e7143088e8c",
+        "match": true
+      },
+      "configs/N3_g0_probem1_residualp1_r025_k10_s2.json": {
+        "expected": "db3a892e7c9d62ad791e8337c68188827d81d0e78ccb28cd0c851257af78e80a",
+        "observed": "db3a892e7c9d62ad791e8337c68188827d81d0e78ccb28cd0c851257af78e80a",
+        "match": true
+      },
+      "configs/N3_g0_probem1_residualp1_r1_k10_s2.json": {
+        "expected": "99667a9d391dcc914d31f4afb811080097f45ec3ed1350cd33f95b14612ed638",
+        "observed": "99667a9d391dcc914d31f4afb811080097f45ec3ed1350cd33f95b14612ed638",
+        "match": true
+      },
+      "configs/N4_g1_probem1_residualp1_r025_k10_s2.json": {
+        "expected": "9c15323ac9c4e7796ae23acc19a55e5287ed99153ee3d00eee3ab57dfa51fd42",
+        "observed": "9c15323ac9c4e7796ae23acc19a55e5287ed99153ee3d00eee3ab57dfa51fd42",
+        "match": true
+      },
+      "configs/N4_g1_probem1_residualp1_r1_k10_s2.json": {
+        "expected": "24e0c202f0ed8266e7d84bbfd8507572603dd1927df65c6d2b9a1df0da1967f7",
+        "observed": "24e0c202f0ed8266e7d84bbfd8507572603dd1927df65c6d2b9a1df0da1967f7",
+        "match": true
+      },
+      "configs/N5_g0_probem1_residualm1_r025_k10_s2.json": {
+        "expected": "8760128ea9e0f6c771a44ba064d05080ca048d83413da420c66d311e0aca5ac3",
+        "observed": "8760128ea9e0f6c771a44ba064d05080ca048d83413da420c66d311e0aca5ac3",
+        "match": true
+      },
+      "configs/N5_g0_probem1_residualm1_r1_k10_s2.json": {
+        "expected": "fbf5cc0345e17a4d93d7009f74f1aa859707d3a463292271cce45353db100d8b",
+        "observed": "fbf5cc0345e17a4d93d7009f74f1aa859707d3a463292271cce45353db100d8b",
+        "match": true
+      },
+      "configs/N6_g1_probem1_residualm1_r025_k10_s2.json": {
+        "expected": "edea5980285c1feb8b06f75d8d19381023e74ff3e7f6f9624f60c623e57000fc",
+        "observed": "edea5980285c1feb8b06f75d8d19381023e74ff3e7f6f9624f60c623e57000fc",
+        "match": true
+      },
+      "configs/N6_g1_probem1_residualm1_r1_k10_s2.json": {
+        "expected": "27c988064fb92a10dd06694aecbcc7afae8d013f8c76245039d7db55f051336a",
+        "observed": "27c988064fb92a10dd06694aecbcc7afae8d013f8c76245039d7db55f051336a",
+        "match": true
+      },
+      "configs/smoke_B0_g0_probep1_residualp1_r025_k10_s2.json": {
+        "expected": "d51de00bf3e8ca22df2fdbbe3b2ac2d636c139fd1668175406bf11cf2eacec0f",
+        "observed": "d51de00bf3e8ca22df2fdbbe3b2ac2d636c139fd1668175406bf11cf2eacec0f",
+        "match": true
+      },
+      "configs/smoke_B0_g0_probep1_residualp1_r1_k10_s2.json": {
+        "expected": "43d4405c074c18bec5a0c3eddd9f0dd5e2a9fd00cc52f24f27b97438e219ca9c",
+        "observed": "43d4405c074c18bec5a0c3eddd9f0dd5e2a9fd00cc52f24f27b97438e219ca9c",
+        "match": true
+      },
+      "configs/smoke_B1_g1_probep1_residualp1_r025_k10_s2.json": {
+        "expected": "e87692b217efd3e025f638c74448f08f3c43cc3d27c037960b1b9d8123709097",
+        "observed": "e87692b217efd3e025f638c74448f08f3c43cc3d27c037960b1b9d8123709097",
+        "match": true
+      },
+      "configs/smoke_B1_g1_probep1_residualp1_r1_k10_s2.json": {
+        "expected": "999d0fe41733245e33dd09ba6974fd9a6768b59547283609e549910d69a2af9f",
+        "observed": "999d0fe41733245e33dd09ba6974fd9a6768b59547283609e549910d69a2af9f",
+        "match": true
+      },
+      "configs/smoke_N1_g0_probep1_residualm1_r025_k10_s2.json": {
+        "expected": "039a8af7740c0570ba6d03271b0fe26bd5044d18b5a02d67fd5ecc1e076ee8bc",
+        "observed": "039a8af7740c0570ba6d03271b0fe26bd5044d18b5a02d67fd5ecc1e076ee8bc",
+        "match": true
+      },
+      "configs/smoke_N1_g0_probep1_residualm1_r1_k10_s2.json": {
+        "expected": "58aae365cc2ad956635ded1e1b335b80c144f58063ec0e79ee740f2997b9d6ef",
+        "observed": "58aae365cc2ad956635ded1e1b335b80c144f58063ec0e79ee740f2997b9d6ef",
+        "match": true
+      },
+      "configs/smoke_N2_g1_probep1_residualm1_r025_k10_s2.json": {
+        "expected": "6b9d79e4c1ed60d35ac959e8a1c5acb3e78d3f58182a242400bea9169858f94d",
+        "observed": "6b9d79e4c1ed60d35ac959e8a1c5acb3e78d3f58182a242400bea9169858f94d",
+        "match": true
+      },
+      "configs/smoke_N2_g1_probep1_residualm1_r1_k10_s2.json": {
+        "expected": "3cc8527645b28f4f42f83d6ef1c8ba7b7793ecf1264ec5bed240dd5b29d91fc6",
+        "observed": "3cc8527645b28f4f42f83d6ef1c8ba7b7793ecf1264ec5bed240dd5b29d91fc6",
+        "match": true
+      },
+      "configs/smoke_N3_g0_probem1_residualp1_r025_k10_s2.json": {
+        "expected": "4b6d4bae28b9570889232a572ad3e3b71fce9de1c570ddd3093770dc0ab60036",
+        "observed": "4b6d4bae28b9570889232a572ad3e3b71fce9de1c570ddd3093770dc0ab60036",
+        "match": true
+      },
+      "configs/smoke_N3_g0_probem1_residualp1_r1_k10_s2.json": {
+        "expected": "c8d391ccc65cc31deaa7847463e547d11d78b465d61561535ab1d9b3233e9a49",
+        "observed": "c8d391ccc65cc31deaa7847463e547d11d78b465d61561535ab1d9b3233e9a49",
+        "match": true
+      },
+      "configs/smoke_N4_g1_probem1_residualp1_r025_k10_s2.json": {
+        "expected": "8e7119094e8dd982699c09312bc73d3ea108765d02e1bc7497829643e27bb717",
+        "observed": "8e7119094e8dd982699c09312bc73d3ea108765d02e1bc7497829643e27bb717",
+        "match": true
+      },
+      "configs/smoke_N4_g1_probem1_residualp1_r1_k10_s2.json": {
+        "expected": "75b0ce6070e98218fa96be1448aafde688da6dc9169ccee96f02647c43cae64e",
+        "observed": "75b0ce6070e98218fa96be1448aafde688da6dc9169ccee96f02647c43cae64e",
+        "match": true
+      },
+      "configs/smoke_N5_g0_probem1_residualm1_r025_k10_s2.json": {
+        "expected": "7e96bb89bc706040f4cc2c589fc40780dd683cee5f17e229de672c6dfa93b86a",
+        "observed": "7e96bb89bc706040f4cc2c589fc40780dd683cee5f17e229de672c6dfa93b86a",
+        "match": true
+      },
+      "configs/smoke_N5_g0_probem1_residualm1_r1_k10_s2.json": {
+        "expected": "7e521928bb48d83f92f168c862bc42bffcd31a0c3163817cefdd319ee5562524",
+        "observed": "7e521928bb48d83f92f168c862bc42bffcd31a0c3163817cefdd319ee5562524",
+        "match": true
+      },
+      "configs/smoke_N6_g1_probem1_residualm1_r025_k10_s2.json": {
+        "expected": "3207d53c6cb77ea38461ec7339aac3b112286eb891ec2f35086023cc547eab7d",
+        "observed": "3207d53c6cb77ea38461ec7339aac3b112286eb891ec2f35086023cc547eab7d",
+        "match": true
+      },
+      "configs/smoke_N6_g1_probem1_residualm1_r1_k10_s2.json": {
+        "expected": "98f3bbb34184f8c8d739daf3181350a107417dc2ba4f6efdf6d614e6228c002a",
+        "observed": "98f3bbb34184f8c8d739daf3181350a107417dc2ba4f6efdf6d614e6228c002a",
+        "match": true
+      },
+      "environment_spec.json": {
+        "expected": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+        "observed": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+        "match": true
+      },
+      "gates/DETERMINISTIC_PREFLIGHT_ACCEPTANCE.json": {
+        "expected": "407a7e7b1e7e8093bbdef23a871d6a40f78816bc75a2dd9d29fb8c25d82bf68a",
+        "observed": "407a7e7b1e7e8093bbdef23a871d6a40f78816bc75a2dd9d29fb8c25d82bf68a",
+        "match": true
+      },
+      "gates/EXISTING_RESULTS_VALIDATED.json": {
+        "expected": "874c91f596ab38bc8192cb02e44b453968f4ad7bee51bea21096784244b3f0b4",
+        "observed": "874c91f596ab38bc8192cb02e44b453968f4ad7bee51bea21096784244b3f0b4",
+        "match": true
+      },
+      "gates/INDEPENDENT_SCIENTIFIC_REVIEW.json": {
+        "expected": "7f8f18630867350d12c0a86d12ffe9fdbb154e0e84ef7a2f9d2e2486ac863deb",
+        "observed": "7f8f18630867350d12c0a86d12ffe9fdbb154e0e84ef7a2f9d2e2486ac863deb",
+        "match": true
+      },
+      "gates/QUEUE_HELPERS_CPU.json": {
+        "expected": "41ccb01eb6874c334c2ac78a43bcbebe8778ce6f1f6f475f33328e1c7ad58621",
+        "observed": "41ccb01eb6874c334c2ac78a43bcbebe8778ce6f1f6f475f33328e1c7ad58621",
+        "match": true
+      },
+      "job_worker.py": {
+        "expected": "277e1c7b9f797109334211431ad22c69895c3461afc4a60631fd52bdb8dfbe25",
+        "observed": "277e1c7b9f797109334211431ad22c69895c3461afc4a60631fd52bdb8dfbe25",
+        "match": true
+      },
+      "launch_queue.py": {
+        "expected": "1c241485f795f4f7009be1aa8f6314e5a62688f974246762091b42a2921ba19b",
+        "observed": "1c241485f795f4f7009be1aa8f6314e5a62688f974246762091b42a2921ba19b",
+        "match": true
+      },
+      "run_queue.py": {
+        "expected": "19958a04756edd29fc49d5eeb36bdc3f5b80bd3f3263f16f26acf917bbc87608",
+        "observed": "19958a04756edd29fc49d5eeb36bdc3f5b80bd3f3263f16f26acf917bbc87608",
+        "match": true
+      },
+      "smoke_pairing.py": {
+        "expected": "1a67b0046164aa3b0367439e5ad2807cf217e53a8c347b4fb2151e844089e9d5",
+        "observed": "1a67b0046164aa3b0367439e5ad2807cf217e53a8c347b4fb2151e844089e9d5",
+        "match": true
+      },
+      "source_manifest.json": {
+        "expected": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+        "observed": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+        "match": true
+      },
+      "suite.json": {
+        "expected": "bc08d5da7cfd32cea6c06f580fe1efc411f8facc3cfefe2db2369082a7cd9b59",
+        "observed": "bc08d5da7cfd32cea6c06f580fe1efc411f8facc3cfefe2db2369082a7cd9b59",
+        "match": true
+      },
+      "tests/queue_helpers_check.py": {
+        "expected": "6be8c787ae18a9243a5abe2049383ea3d98b5c46656b769a49e661068bef8cf8",
+        "observed": "6be8c787ae18a9243a5abe2049383ea3d98b5c46656b769a49e661068bef8cf8",
+        "match": true
+      },
+      "tests/test_second_probe_cpu.py": {
+        "expected": "7abe0cc3f01d8c9293fa0ee4e688a4cdd72c31b338a0e8fa41abf8e670bbb608",
+        "observed": "7abe0cc3f01d8c9293fa0ee4e688a4cdd72c31b338a0e8fa41abf8e670bbb608",
+        "match": true
+      },
+      "trainer/CPU_GATE.json": {
+        "expected": "9294012ff043b76ad15e3fca92e403d03e6ea15244b1ad30c579aebbf893a765",
+        "observed": "9294012ff043b76ad15e3fca92e403d03e6ea15244b1ad30c579aebbf893a765",
+        "match": true
+      },
+      "trainer/TRAINER_HASHES.json": {
+        "expected": "981b4e1dcf04ff92a64d092afb17e95378bd899ae5cb1fc19ca86c7f1c7b7a79",
+        "observed": "981b4e1dcf04ff92a64d092afb17e95378bd899ae5cb1fc19ca86c7f1c7b7a79",
+        "match": true
+      },
+      "trainer/audit_core.py": {
+        "expected": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+        "observed": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+        "match": true
+      },
+      "trainer/cuda_witness.py": {
+        "expected": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a",
+        "observed": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a",
+        "match": true
+      },
+      "trainer/direction_step.py": {
+        "expected": "7518e3f59fc4a997fb02c6335744a1b3574a2f235bf9147559bc730fd1ccc93d",
+        "observed": "7518e3f59fc4a997fb02c6335744a1b3574a2f235bf9147559bc730fd1ccc93d",
+        "match": true
+      },
+      "trainer/effective_step.py": {
+        "expected": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+        "observed": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+        "match": true
+      },
+      "trainer/four_probe_train.py": {
+        "expected": "293bdf8d80f5c3199ccbaad555a43d2903fe15558a60171137cb18b3abe6a28c",
+        "observed": "293bdf8d80f5c3199ccbaad555a43d2903fe15558a60171137cb18b3abe6a28c",
+        "match": true
+      },
+      "trainer/native_lifecycle.py": {
+        "expected": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+        "observed": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+        "match": true
+      },
+      "trainer/state_transaction.py": {
+        "expected": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+        "observed": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+        "match": true
+      },
+      "trainer/task0_trainer_base_v2.py": {
+        "expected": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659",
+        "observed": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659",
+        "match": true
+      },
+      "validate_job.py": {
+        "expected": "6c3a56c8ad3fe9d5234f8e45c7453ca562d221731e52c0aaf02be80cba0e533f",
+        "observed": "6c3a56c8ad3fe9d5234f8e45c7453ca562d221731e52c0aaf02be80cba0e533f",
+        "match": true
+      }
+    }
+  },
+  "status": "passed"
+}

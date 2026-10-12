@@ -1,0 +1,45 @@
+% Requires booktabs, caption, amsmath. Task 1/2 correspond to code task 0/1.
+\begin{table*}[t]
+\centering
+\captionsetup{font=footnotesize,labelfont=bf}
+\caption{Completed two-task LoRA diagnostics on ImageNet-A (seed 0).
+Both continuations use SGD+EWC for 50 epochs with $\lambda=2000$,
+learning rate $0.02$, and rank 10. Each branch restores its own Task-1
+model and Fisher protection buffer. Accuracies use all classes seen
+at the corresponding endpoint; BWT is $a_{21}-a_{11}$ in percentage points.
+$\mathcal T_1(\theta_j)$ is the unnormalized per-example empirical-Fisher
+trace evaluated at endpoint $j$ on the same 256 old-task training images,
+using a fixed old 20-class head and deterministic evaluation transforms.
+It is not a new-task Fisher statistic.
+The coordinate space is the 24 effective Q/V LoRA matrices.
+All measurements use FP32 with TF32 disabled and no trajectory averaging.}
+\label{tab:two_task_imageneta_fixed_future_complete}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Update rule}
+& \multicolumn{2}{c}{Task 1 endpoint}
+& \multicolumn{4}{c}{Task 2 endpoint} & Drift \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-9}
+Variant & Task 1 & Task 2 & $a_{11}\uparrow$ & $\mathcal T_1(\theta_1)$
+& $a_{21}\uparrow$ & $a_{22}\uparrow$ & BWT$\uparrow$
+& $\mathcal T_1(\theta_2)$ & $r_{QV}$ \\
+\midrule
+EWCLoRA & SGD & SGD+EWC & 85.67 & 1465.497 & 84.36 & 74.80 & -1.30 & 2008.388 & 0.374950 \\
+EWC + Task-1 shaping & GAM & SGD+EWC & 87.62 & 761.901 & 84.04 & 72.05 & -3.58 & 940.413 & 0.349876 \\
+\bottomrule
+\end{tabular*}
+\par\smallskip
+\begin{minipage}{\textwidth}\scriptsize
+$r_{QV}=[\sum_{\ell,c\in\{Q,V\}}
+\|B^{(2)}_{\ell c}A^{(2)}_{\ell c}-B^{(1)}_{\ell c}A^{(1)}_{\ell c}\|_F^2]^{1/2}$
+excludes classifier heads. This implementation continues the same adapter;
+the drift is not the norm of a fresh Task-2 adapter.
+Fisher traces are diagnostic measurements; training uses each branch's
+own trace-normalized batch-gradient protection matrix.
+BWT is computed from current-protocol accuracies before display rounding.
+Only seed 0 is available; across-seed standard deviations are not estimable.
+\end{minipage}
+\end{table*}

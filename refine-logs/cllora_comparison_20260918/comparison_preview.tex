@@ -1,0 +1,34 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=15mm]{geometry}
+\usepackage{booktabs,array,amsmath}
+\makeatletter\setlength{\@fptop}{0pt}\makeatother
+\begin{document}
+\input{table_expanded.tex}
+\clearpage
+\noindent\textbf{Configuration comparison (single-run records)}\par\medskip
+\small
+\noindent\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
+\toprule
+Dataset & CUB & Cars & Aircraft & Flowers & Pets & 5Datasets\\
+\midrule
+Tasks & 10 & 10 & 10 & 10 & 9 & 5\\
+Initial classes & 20 & 16 & 10 & 12 & 5 & 200\\
+Increment & 20 & 20 & 10 & 10 & 4 & variable\\
+Default LR & .01 & .05 & .05 & .0025 & .0025 & .02\\
+Epochs/task & 40 & 40 & 40 & 40 & 40 & 30/40\\
+EWC lambda & 200000 & 2000 & 200 & 2000 & 200000 & 50000\\
+GAM-EWC lambda & 2000 & 2000 & 2000 & 2000 & 2000 & 2000\\
+\bottomrule
+\end{tabular*}
+\par\medskip
+5Datasets task sizes: 200, 100, 196, 102, 37; total 635 classes.
+SDLoRA/Aircraft LR is .02. EWC/Pets and EWC/5Datasets use seed 2; others use seed 0.
+Cars/Flowers EWC use an alpha-zero wrapper. No claim of equal compute or strict component isolation is made.
+\par\medskip
+For task accuracy $a_{t,i}$ after stage $t$,
+\[\mathrm{FAA}=\frac1T\sum_{i=1}^{T}a_{T,i},\qquad
+\mathrm{AAA}_{\rm stage}=\frac1T\sum_{t=1}^{T}\frac1t\sum_{i=1}^{t}a_{t,i}.\]
+The archived JSON field \textnormal{cnn.final.AAA} averages lower-triangular cells, which weights later stages more. Every numeric table cell above is recomputed from the same completed task matrix using the stage definition.
+\par\medskip
+Historical checkpoint hub identifiers match the new port; exact historical file revisions and image/label manifests are not available for all runs. Available Flowers loaders changed indexing code, but reproduce identical image/label mappings on the current data copy; the historical copy is unavailable. The new port's frozen data manifests therefore do not certify historical equivalence. Its native prototype classifier and adapter accumulation also differ from linear-head baselines. These differences prevent a strictly controlled superiority claim.
+\end{document}

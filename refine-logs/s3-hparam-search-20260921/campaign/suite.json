@@ -1,0 +1,96 @@
+{
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "execution_hostname": "cudahpc40.cvc.uab.es",
+  "allowed_gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 7,
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source_manifest.json",
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/140-1/datasets",
+    "OMP_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HOME": "/home-local/liying/.cache/huggingface",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "expected_tasks": 10,
+  "final_report_script": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/summarize_search.py",
+  "jobs": [
+    {
+      "id": "s3_hp_weightmerge_0p5_s2",
+      "axis": "in_task_fisher_omega",
+      "value": 0.5,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_weightmerge_0p5_s2.json",
+      "config_sha256": "8a7e307a17d178af0f97e23debaaf62076bb0ea587c503faddbca0779958273f",
+      "depends_on": []
+    },
+    {
+      "id": "s3_hp_weightmerge_0p05_s2",
+      "axis": "in_task_fisher_omega",
+      "value": 0.05,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_weightmerge_0p05_s2.json",
+      "config_sha256": "15ee829cfacf69409c1c9377bfd3695bf8f2d99672e347ff5b3840c53bb0fafb",
+      "depends_on": []
+    },
+    {
+      "id": "s3_hp_weightmerge_0p1_s2",
+      "axis": "in_task_fisher_omega",
+      "value": 0.1,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_weightmerge_0p1_s2.json",
+      "config_sha256": "bb43446838f44df01b555088d0e48c8f126b8df3ab0fa996687b26c62e2afe80",
+      "depends_on": []
+    },
+    {
+      "id": "s3_hp_weightmerge_0p2_s2",
+      "axis": "in_task_fisher_omega",
+      "value": 0.2,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_weightmerge_0p2_s2.json",
+      "config_sha256": "c68abb3aab73249f0ac60527e165241f65ff37f17a5d2b19c9019a9b9f566f90",
+      "depends_on": []
+    },
+    {
+      "id": "s3_hp_weightmerge_0p4_s2",
+      "axis": "in_task_fisher_omega",
+      "value": 0.4,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_weightmerge_0p4_s2.json",
+      "config_sha256": "d6cdffd88a38d7a026d1127d47eea53372387cd2b7369b2a240ffefac9e78784",
+      "depends_on": []
+    },
+    {
+      "id": "s3_hp_damping_0p5_s2",
+      "axis": "ewc_fisher_damping_alpha",
+      "value": 0.5,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_damping_0p5_s2.json",
+      "config_sha256": "c3d437f184a371d6e74d83d30435a2b8ac2c7ec4f016cf10a40b136baabdb703",
+      "depends_on": []
+    },
+    {
+      "id": "s3_hp_damping_0p1_s2",
+      "axis": "ewc_fisher_damping_alpha",
+      "value": 0.1,
+      "seed": 2,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/configs/s3_hp_damping_0p1_s2.json",
+      "config_sha256": "0ec67c82a9da197322053a8e02f6d8dbf78445dc05a64a24fd376f0fa6313cd4",
+      "depends_on": []
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "cpu_tests": 10,
+  "cpu_log_sha256": "7afbec7ec7e6e120ec6a20062469577a385b034e92f1c796fda4f065f4771330",
+  "entrypoints": [
+    {
+      "id": "smoke_history_fused_k10_s2",
+      "returncode": 0,
+      "result": {
+        "status": "valid",
+        "protocol": "cached_history_sgd_prediction_direct_response_exact_restore_rng_replay_v1",
+        "direction": "history_fused",
+        "seed": 2,
+        "gradients_per_normal_step": 2,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.5,
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "gam_radii_active": false,
+        "tasks": 2,
+        "epochs": 2
+      }
+    },
+    {
+      "id": "smoke_future_only_k10_s2",
+      "returncode": 0,
+      "result": {
+        "status": "valid",
+        "protocol": "cached_history_sgd_prediction_direct_response_exact_restore_rng_replay_v1",
+        "direction": "future_only",
+        "seed": 2,
+        "gradients_per_normal_step": 2,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.0,
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "gam_radii_active": false,
+        "tasks": 2,
+        "epochs": 2
+      }
+    },
+    {
+      "id": "formal_history_fused_k10_s2",
+      "returncode": 0,
+      "result": {
+        "status": "valid",
+        "protocol": "cached_history_sgd_prediction_direct_response_exact_restore_rng_replay_v1",
+        "direction": "history_fused",
+        "seed": 2,
+        "gradients_per_normal_step": 2,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.5,
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "gam_radii_active": false,
+        "tasks": 10,
+        "epochs": 50
+      }
+    },
+    {
+      "id": "formal_future_only_k10_s2",
+      "returncode": 0,
+      "result": {
+        "status": "valid",
+        "protocol": "cached_history_sgd_prediction_direct_response_exact_restore_rng_replay_v1",
+        "direction": "future_only",
+        "seed": 2,
+        "gradients_per_normal_step": 2,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.0,
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "gam_radii_active": false,
+        "tasks": 10,
+        "epochs": 50
+      }
+    }
+  ],
+  "python_ast": "all_passed",
+  "cuda_visible_devices": "",
+  "independent_cpu_tests": 13,
+  "formal_results_available": false
+}

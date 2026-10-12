@@ -1,0 +1,74 @@
+--- /data/140-1/users/liying/Flatness_CV/backbone/lora.py
++++ /data/140-1/users/liying/CopyFlatCV/backbone/lora.py
+@@ -163,4 +163,6 @@
+         self.delta_w_q_new_grad = None
+         self.delta_w_v_new_grad = None
++        self.external_delta_w_q = None
++        self.external_delta_w_v = None
+ 
+     def save_grad(self, name):
+@@ -171,10 +173,4 @@
+ 
+     def forward(self, x):
+-
+-        w_a_linear_q = nn.Linear(self.dim, self.rank, bias=False)
+-        w_b_linear_q = nn.Linear(self.rank, self.dim, bias=False)
+-        w_a_linear_v = nn.Linear(self.dim, self.rank, bias=False)
+-        w_b_linear_v = nn.Linear(self.rank, self.dim, bias=False)
+-         
+         new_q, new_v = 0, 0
+         for i in range(self.task_id):
+@@ -188,27 +184,35 @@
+             _, (A_v, B_v) = V
+ 
+-            w_a_linear_q.weight = Parameter(A_q.weight)
+-            w_a_linear_q.weight.requires_grad = False 
+-            w_a_linear_q.to(x.device)
+-            w_b_linear_q.weight = Parameter(B_q.weight)
+-            w_b_linear_q.weight.requires_grad = False 
+-            w_b_linear_q.to(x.device)
+-            w_a_linear_v.weight = Parameter(A_v.weight)
+-            w_a_linear_v.weight.requires_grad = False 
+-            w_a_linear_v.to(x.device)
+-            w_b_linear_v.weight = Parameter(B_v.weight)
+-            w_b_linear_v.weight.requires_grad = False  
+-            w_b_linear_v.to(x.device)
+-
+-
++            # Historical factors are frozen, but their contribution still
++            # differentiates with respect to x.  Constructing temporary Linear
++            # modules here initialized unused weights and consumed CPU RNG on
++            # every forward (even when task_id == 0).
++            past_q = F.linear(
++                F.linear(x, A_q.weight.detach().to(x.device)),
++                B_q.weight.detach().to(x.device),
++            )
++            past_v = F.linear(
++                F.linear(x, A_v.weight.detach().to(x.device)),
++                B_v.weight.detach().to(x.device),
++            )
+             if i ==0 :
+-                new_q = self.scaling_factor_prev[i](w_b_linear_q(w_a_linear_q(x)))
+-                new_v = self.scaling_factor_prev[i](w_b_linear_v(w_a_linear_v(x)))
++                new_q = self.scaling_factor_prev[i](past_q)
++                new_v = self.scaling_factor_prev[i](past_v)
+             else:
+-                new_q += self.scaling_factor_prev[i](w_b_linear_q(w_a_linear_q(x)))
+-                new_v += self.scaling_factor_prev[i](w_b_linear_v(w_a_linear_v(x)))
++                new_q += self.scaling_factor_prev[i](past_q)
++                new_v += self.scaling_factor_prev[i](past_v)
+ 
+         delta_w_q_new = self.linear_b_q.weight @ self.linear_a_q.weight
+         delta_w_v_new = self.linear_b_v.weight @ self.linear_a_v.weight
++        if self.external_delta_w_q is not None:
++            delta_w_q_new = delta_w_q_new + self.external_delta_w_q.to(
++                device=delta_w_q_new.device,
++                dtype=delta_w_q_new.dtype,
++            )
++        if self.external_delta_w_v is not None:
++            delta_w_v_new = delta_w_v_new + self.external_delta_w_v.to(
++                device=delta_w_v_new.device,
++                dtype=delta_w_v_new.dtype,
++            )
+         cur_q = x @ delta_w_q_new.t()
+         cur_v = x @ delta_w_v_new.t()

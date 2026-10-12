@@ -1,0 +1,2181 @@
+{
+  "audited_utc": "2026-09-22T12:01:54.536148+00:00",
+  "scope": "Independent CPU audit; no training or GPU execution",
+  "trials": [
+    {
+      "arm": "ewclora",
+      "seed": 0,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:37:11.621849+02:00",
+      "end_madrid": "2026-09-22T11:43:01.565589+02:00",
+      "actual_gpu": "0",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "sgd",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          87.3,
+          null
+        ],
+        [
+          83.39,
+          76.77
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 87.3,
+        "a21": 83.39,
+        "a22": 76.77
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0/rng_receipts.jsonl",
+        "reference_sha256": "2fc744ebd81aee771b8523283f11e41e8352de3136e12be8ac525a754400796d",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 34.069888104965315,
+      "drift_float64_from_saved_AB": 0.2802482580248853,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 8.032539014031595e-07,
+      "reported_drift": 0.280248258026207,
+      "reported_weighted_drift_squared": 8.032539165743531e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.039858244143377505,
+        "fisher_to_clean_norm_ratio_mean": 0.04975968277095946,
+        "grad_clean_norm_mean": 1.9317149280961643,
+        "grad_combined_norm_max": 5.616682287079148,
+        "grad_combined_norm_mean": 1.9190134206457494,
+        "grad_fisher_norm_mean": 0.0886453184907279,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.00045770444558002055,
+        "step1_grad_fisher_norm": 0.07563711037783699
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.5663048293814064,
+        "train_fisher_loss_mean": 0.007185992664526566
+      },
+      "task2_new_data_batch_proxy_trace": 27.200517870485783,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30261948,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30269867,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 57.86341594533367,
+      "task2_saved_accumulated_trace_expected": 57.86341716495457,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.107758162673298e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 87.29641693811075,
+            "local_ce": 0.4104792336183417,
+            "n": 307,
+            "seen_accuracy": 87.29641693811075,
+            "seen_ce": 0.4104792336183417
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.61715647339157,
+            "local_ce": 0.09609712585271754,
+            "n": 1259,
+            "seen_accuracy": 97.61715647339157,
+            "seen_ce": 0.09609712585271754
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.280248258026207,
+          "endpoint_ewc_penalty": 0.008032539165743532,
+          "fisher_weighted_displacement": 8.032539165743531e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.40484290888285757,
+            "n": 307,
+            "seen_accuracy": 83.38762214983713,
+            "seen_ce": 0.5752249934009226
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.29944400317713,
+            "local_ce": 0.09793187578497495,
+            "n": 1259,
+            "seen_accuracy": 95.23431294678316,
+            "seen_ce": 0.1786259300713964
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "task2_shaping",
+      "seed": 0,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:37:11.345602+02:00",
+      "end_madrid": "2026-09-22T12:01:13.932984+02:00",
+      "actual_gpu": "5",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "gam",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          87.3,
+          null
+        ],
+        [
+          81.43,
+          83.07
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 87.3,
+        "a21": 81.43,
+        "a22": 83.07
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/rng_receipts.jsonl",
+        "reference_sha256": "2c2282cc25498d39ad6dc500cfcaef28b2e73baa7213d7c5cbdb00da6bc5a213",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 34.069888104965315,
+      "drift_float64_from_saved_AB": 0.4579621572207051,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 1.6989510597599664e-06,
+      "reported_drift": 0.45796215718675,
+      "reported_weighted_drift_squared": 1.698951056454162e-06,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -6.73261545815515e-05,
+        "fisher_to_clean_norm_ratio_mean": 0.09454775845012982,
+        "grad_clean_norm_mean": 1.5169591039987185,
+        "grad_combined_norm_max": 12.724472258998391,
+        "grad_combined_norm_mean": 4.013914073713419,
+        "grad_fisher_norm_mean": 0.13289549346931473,
+        "grad_gam_direction_norm_mean": 4.0622855961621385,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.00395645247772336,
+        "step1_grad_fisher_norm": 0.22350510405925775
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.4271668890491128,
+        "train_fisher_loss_mean": 0.017565686621237545
+      },
+      "task2_new_data_batch_proxy_trace": 19.05354580655694,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30261948,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30269867,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 49.71644396966284,
+      "task2_saved_accumulated_trace_expected": 49.71644510102573,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.275631099011856e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 87.29641693811075,
+            "local_ce": 0.4104792336183417,
+            "n": 307,
+            "seen_accuracy": 87.29641693811075,
+            "seen_ce": 0.4104792336183417
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.61715647339157,
+            "local_ce": 0.09609712585271754,
+            "n": 1259,
+            "seen_accuracy": 97.61715647339157,
+            "seen_ce": 0.09609712585271754
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.45796215718675,
+          "endpoint_ewc_penalty": 0.01698951056454162,
+          "fisher_weighted_displacement": 1.698951056454162e-06,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.385444451551691,
+            "n": 307,
+            "seen_accuracy": 81.43322475570032,
+            "seen_ce": 0.6270528505706071
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.06115965051629,
+            "local_ce": 0.11357388470825698,
+            "n": 1259,
+            "seen_accuracy": 93.64575059571088,
+            "seen_ce": 0.2413006797810625
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "ewclora",
+      "seed": 1,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:43:12.657019+02:00",
+      "end_madrid": "2026-09-22T11:48:56.486194+02:00",
+      "actual_gpu": "4",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "sgd",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          86.64,
+          null
+        ],
+        [
+          83.39,
+          76.38
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 86.64,
+        "a21": 83.39,
+        "a22": 76.38
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "17c7c4bf794328e23a3079d0268ce1a51d79e3d43d8f01cba232f481d5361c2f",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed1/rng_receipts.jsonl",
+        "reference_sha256": "827bad6bb8012dc4a928ce08495c0ab26985a8b1ae0f8de54268e122b9464d04",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 26.555998546461083,
+      "drift_float64_from_saved_AB": 0.26582885451552274,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 6.240674301185042e-07,
+      "reported_drift": 0.265828854463758,
+      "reported_weighted_drift_squared": 6.240674224172131e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.03305864720378062,
+        "fisher_to_clean_norm_ratio_mean": 0.05153754919540327,
+        "grad_clean_norm_mean": 2.0025211350954555,
+        "grad_combined_norm_max": 6.119443759581931,
+        "grad_combined_norm_mean": 1.9001822720158343,
+        "grad_fisher_norm_mean": 0.09609501309580709,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.0010354021796956658,
+        "step1_grad_fisher_norm": 0.1365889979922431
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.5545124400779605,
+        "train_fisher_loss_mean": 0.005927990049531218
+      },
+      "task2_new_data_batch_proxy_trace": 29.654564514756203,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30361951,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30369870,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 53.55496272871717,
+      "task2_saved_accumulated_trace_expected": 53.55496320657117,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 8.922683782980997e-09,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 86.64495114006515,
+            "local_ce": 0.4435743636460834,
+            "n": 307,
+            "seen_accuracy": 86.64495114006515,
+            "seen_ce": 0.4435743636460834
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.17315329626688,
+            "local_ce": 0.08907588075838568,
+            "n": 1259,
+            "seen_accuracy": 98.17315329626688,
+            "seen_ce": 0.08907588075838568
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.265828854463758,
+          "endpoint_ewc_penalty": 0.006240674224172131,
+          "fisher_weighted_displacement": 6.240674224172131e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 86.31921824104235,
+            "local_ce": 0.43428732748463567,
+            "n": 307,
+            "seen_accuracy": 83.38762214983713,
+            "seen_ce": 0.5882408786748031
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.45830023828435,
+            "local_ce": 0.0944643718373861,
+            "n": 1259,
+            "seen_accuracy": 95.15488482922954,
+            "seen_ce": 0.18275267657534858
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "task2_shaping",
+      "seed": 1,
+      "status": "complete",
+      "start_madrid": "2026-09-22T12:01:25.541209+02:00",
+      "end_madrid": "2026-09-22T12:23:50.346428+02:00",
+      "actual_gpu": "1",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "gam",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          86.64,
+          null
+        ],
+        [
+          81.76,
+          81.1
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 86.64,
+        "a21": 81.76,
+        "a22": 81.1
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "17c7c4bf794328e23a3079d0268ce1a51d79e3d43d8f01cba232f481d5361c2f",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/rng_receipts.jsonl",
+        "reference_sha256": "d5a56949eeb19fc80aa4331bfc543d3f114763e12bd49b7e31016fe6ae308d4e",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 26.555998546461083,
+      "drift_float64_from_saved_AB": 0.46632376250497043,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 1.5816446109251316e-06,
+      "reported_drift": 0.46632376238535717,
+      "reported_weighted_drift_squared": 1.581644600514569e-06,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": 0.006478353350091562,
+        "fisher_to_clean_norm_ratio_mean": 0.10149952646627015,
+        "grad_clean_norm_mean": 1.5662796054413595,
+        "grad_combined_norm_max": 14.09753570805954,
+        "grad_combined_norm_mean": 3.9497253547757127,
+        "grad_fisher_norm_mean": 0.15155685967896904,
+        "grad_gam_direction_norm_mean": 4.1839021107041745,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.008412095718085766,
+        "step1_grad_fisher_norm": 0.3949991296836171
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.4168523473292589,
+        "train_fisher_loss_mean": 0.0176085411850363
+      },
+      "task2_new_data_batch_proxy_trace": 21.74258703738451,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30361951,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30369870,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 45.642984783763616,
+      "task2_saved_accumulated_trace_expected": 45.64298572919948,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.0713716458360512e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 86.64495114006515,
+            "local_ce": 0.4435743636460834,
+            "n": 307,
+            "seen_accuracy": 86.64495114006515,
+            "seen_ce": 0.4435743636460834
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.17315329626688,
+            "local_ce": 0.08907588075838568,
+            "n": 1259,
+            "seen_accuracy": 98.17315329626688,
+            "seen_ce": 0.08907588075838568
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.46632376238535717,
+          "endpoint_ewc_penalty": 0.01581644600514569,
+          "fisher_weighted_displacement": 1.581644600514569e-06,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.29641693811075,
+            "local_ce": 0.4108200866878285,
+            "n": 307,
+            "seen_accuracy": 81.75895765472313,
+            "seen_ce": 0.6372239432702067
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 96.90230341540905,
+            "local_ce": 0.11423656999196197,
+            "n": 1259,
+            "seen_accuracy": 93.01032565528197,
+            "seen_ce": 0.25714866311235834
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "ewclora",
+      "seed": 2,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:49:07.797082+02:00",
+      "end_madrid": "2026-09-22T11:54:59.944868+02:00",
+      "actual_gpu": "2",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "sgd",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          87.3,
+          null
+        ],
+        [
+          82.08,
+          75.59
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 87.3,
+        "a21": 82.08,
+        "a22": 75.59
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "f3691cae0907d4f54b6f06569d7ce45462168468d8bd28aa94c6fc1930e19371",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/rng_receipts.jsonl",
+        "reference_sha256": "6ae7667a073aeaf5c8c85efe709d17015c9f67ac2fa6adb14e7419ab0e534872",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 33.696880105609694,
+      "drift_float64_from_saved_AB": 0.2807354591391352,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 7.864564681727467e-07,
+      "reported_drift": 0.28073545902034025,
+      "reported_weighted_drift_squared": 7.864564563494206e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.03722946911762741,
+        "fisher_to_clean_norm_ratio_mean": 0.05391443965432604,
+        "grad_clean_norm_mean": 1.9428825577561768,
+        "grad_combined_norm_max": 5.7902762493779685,
+        "grad_combined_norm_mean": 1.9047004106448155,
+        "grad_fisher_norm_mean": 0.09759674491029159,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.0005963215953670442,
+        "step1_grad_fisher_norm": 0.10201423452891777
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.566401196308434,
+        "train_fisher_loss_mean": 0.007512116137804697
+      },
+      "task2_new_data_batch_proxy_trace": 27.23849819600582,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30461954,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30469873,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 57.56569015195338,
+      "task2_saved_accumulated_trace_expected": 57.56569029105455,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.416390165985793e-09,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 87.29641693811075,
+            "local_ce": 0.40923229141061496,
+            "n": 307,
+            "seen_accuracy": 87.29641693811075,
+            "seen_ce": 0.40923229141061496
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.17315329626688,
+            "local_ce": 0.0897870803760122,
+            "n": 1259,
+            "seen_accuracy": 98.17315329626688,
+            "seen_ce": 0.0897870803760122
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.28073545902034025,
+          "endpoint_ewc_penalty": 0.007864564563494205,
+          "fisher_weighted_displacement": 7.864564563494206e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.29641693811075,
+            "local_ce": 0.39677958148773834,
+            "n": 307,
+            "seen_accuracy": 82.08469055374593,
+            "seen_ce": 0.5802103831583114
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.93486894360603,
+            "local_ce": 0.0917891174767336,
+            "n": 1259,
+            "seen_accuracy": 95.71088165210485,
+            "seen_ce": 0.17664644109762104
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "task2_shaping",
+      "seed": 2,
+      "status": "complete",
+      "start_madrid": "2026-09-22T12:24:01.574826+02:00",
+      "end_madrid": "2026-09-22T12:47:53.583844+02:00",
+      "actual_gpu": "5",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "gam",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          87.3,
+          null
+        ],
+        [
+          80.78,
+          81.5
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 87.3,
+        "a21": 80.78,
+        "a22": 81.5
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "f3691cae0907d4f54b6f06569d7ce45462168468d8bd28aa94c6fc1930e19371",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/rng_receipts.jsonl",
+        "reference_sha256": "cf56b812d94126638b90a2fa38ebe5a3842a08afa0d75ac931b595afb01c8edb",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 33.696880105609694,
+      "drift_float64_from_saved_AB": 0.475210049962528,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 1.8899931049143152e-06,
+      "reported_drift": 0.4752100499458818,
+      "reported_weighted_drift_squared": 1.8899930898275443e-06,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": 0.007435022357802958,
+        "fisher_to_clean_norm_ratio_mean": 0.10672517631361503,
+        "grad_clean_norm_mean": 1.5179343440084623,
+        "grad_combined_norm_max": 13.103317213627424,
+        "grad_combined_norm_mean": 3.987156675142716,
+        "grad_fisher_norm_mean": 0.1537344029185004,
+        "grad_gam_direction_norm_mean": 4.10372545478745,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.0052474262192845345,
+        "step1_grad_fisher_norm": 0.3051182192966209
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.42552125360816717,
+        "train_fisher_loss_mean": 0.020618910910561682
+      },
+      "task2_new_data_batch_proxy_trace": 18.573496721684933,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30461954,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30469873,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 48.90068810624135,
+      "task2_saved_accumulated_trace_expected": 48.90068881673366,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 1.4529290544562685e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 87.29641693811075,
+            "local_ce": 0.40923229141061496,
+            "n": 307,
+            "seen_accuracy": 87.29641693811075,
+            "seen_ce": 0.40923229141061496
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.17315329626688,
+            "local_ce": 0.0897870803760122,
+            "n": 1259,
+            "seen_accuracy": 98.17315329626688,
+            "seen_ce": 0.0897870803760122
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.4752100499458818,
+          "endpoint_ewc_penalty": 0.018899930898275442,
+          "fisher_weighted_displacement": 1.8899930898275443e-06,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.62214983713355,
+            "local_ce": 0.38095492686569526,
+            "n": 307,
+            "seen_accuracy": 80.78175895765472,
+            "seen_ce": 0.6252965157755259
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 97.45830023828435,
+            "local_ce": 0.10796240392220496,
+            "n": 1259,
+            "seen_accuracy": 93.80460683081812,
+            "seen_ce": 0.23949392132814848
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "fs_ewclora",
+      "seed": 0,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:37:11.299617+02:00",
+      "end_madrid": "2026-09-22T11:59:36.835478+02:00",
+      "actual_gpu": "1",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "gam",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          86.97,
+          null
+        ],
+        [
+          83.39,
+          81.1
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 86.97,
+        "a21": 83.39,
+        "a22": 81.1
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/rng_receipts.jsonl",
+        "reference_sha256": "2c2282cc25498d39ad6dc500cfcaef28b2e73baa7213d7c5cbdb00da6bc5a213",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 24.8230719159779,
+      "drift_float64_from_saved_AB": 0.42582416456855876,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 1.1255633430121496e-06,
+      "reported_drift": 0.42582416452021776,
+      "reported_weighted_drift_squared": 1.1255633401129634e-06,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.022276618380604237,
+        "fisher_to_clean_norm_ratio_mean": 0.06356175910362429,
+        "grad_clean_norm_mean": 1.356454918034255,
+        "grad_combined_norm_max": 9.755270402232336,
+        "grad_combined_norm_mean": 3.5303554896214457,
+        "grad_fisher_norm_mean": 0.07846702888062941,
+        "grad_gam_direction_norm_mean": 3.5402372412304297,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.0002987001498695463,
+        "step1_grad_fisher_norm": 0.04081389157371318
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.45267900481820106,
+        "train_fisher_loss_mean": 0.00991891842080804
+      },
+      "task2_new_data_batch_proxy_trace": 16.69101932644844,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30261948,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30269867,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 39.031783218283394,
+      "task2_saved_accumulated_trace_expected": 39.03178405082855,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.1329928283834795e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 86.97068403908794,
+            "local_ce": 0.3800352643753665,
+            "n": 307,
+            "seen_accuracy": 86.97068403908794,
+            "seen_ce": 0.3800352643753665
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.12629070691024,
+            "local_ce": 0.05704095710461409,
+            "n": 1259,
+            "seen_accuracy": 99.12629070691024,
+            "seen_ce": 0.05704095710461409
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.42582416452021776,
+          "endpoint_ewc_penalty": 0.011255633401129634,
+          "fisher_weighted_displacement": 1.1255633401129634e-06,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.35511627174642374,
+            "n": 307,
+            "seen_accuracy": 83.38762214983713,
+            "seen_ce": 0.5340665733598701
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.64972200158856,
+            "local_ce": 0.0632630845198835,
+            "n": 1259,
+            "seen_accuracy": 96.5845909451946,
+            "seen_ce": 0.14301160182985104
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "task1_shaping",
+      "seed": 0,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:37:11.606905+02:00",
+      "end_madrid": "2026-09-22T11:43:06.259560+02:00",
+      "actual_gpu": "2",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "sgd",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          86.97,
+          null
+        ],
+        [
+          86.97,
+          74.41
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 86.97,
+        "a21": 86.97,
+        "a22": 74.41
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0/rng_receipts.jsonl",
+        "reference_sha256": "2fc744ebd81aee771b8523283f11e41e8352de3136e12be8ac525a754400796d",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 24.8230719159779,
+      "drift_float64_from_saved_AB": 0.302286442490658,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 6.648750320980174e-07,
+      "reported_drift": 0.30228644250379416,
+      "reported_weighted_drift_squared": 6.648750467066045e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.04466714179304788,
+        "fisher_to_clean_norm_ratio_mean": 0.03501912653630726,
+        "grad_clean_norm_mean": 1.6681560634708053,
+        "grad_combined_norm_max": 4.562306411265374,
+        "grad_combined_norm_mean": 1.6472198506528246,
+        "grad_fisher_norm_mean": 0.0529848510961851,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 5.251526818028651e-05,
+        "step1_grad_fisher_norm": 0.016691381012094882
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.6097269209474325,
+        "train_fisher_loss_mean": 0.005125812077631053
+      },
+      "task2_new_data_batch_proxy_trace": 22.43338033556938,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30261948,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30269867,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 44.77414411257647,
+      "task2_saved_accumulated_trace_expected": 44.77414505994949,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.115893036259361e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 86.97068403908794,
+            "local_ce": 0.3800352643753665,
+            "n": 307,
+            "seen_accuracy": 86.97068403908794,
+            "seen_ce": 0.3800352643753665
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.12629070691024,
+            "local_ce": 0.05704095710461409,
+            "n": 1259,
+            "seen_accuracy": 99.12629070691024,
+            "seen_ce": 0.05704095710461409
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.30228644250379416,
+          "endpoint_ewc_penalty": 0.006648750467066045,
+          "fisher_weighted_displacement": 6.648750467066045e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.36487461205162874,
+            "n": 307,
+            "seen_accuracy": 86.97068403908794,
+            "seen_ce": 0.4789087392003177
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.8880063542494,
+            "local_ce": 0.05435388541763861,
+            "n": 1259,
+            "seen_accuracy": 97.53772835583797,
+            "seen_ce": 0.10183929074930068
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "fs_ewclora",
+      "seed": 1,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:59:48.265906+02:00",
+      "end_madrid": "2026-09-22T12:22:20.519046+02:00",
+      "actual_gpu": "0",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "gam",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          86.97,
+          null
+        ],
+        [
+          84.04,
+          79.13
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 86.97,
+        "a21": 84.04,
+        "a22": 79.13
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "17c7c4bf794328e23a3079d0268ce1a51d79e3d43d8f01cba232f481d5361c2f",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/rng_receipts.jsonl",
+        "reference_sha256": "d5a56949eeb19fc80aa4331bfc543d3f114763e12bd49b7e31016fe6ae308d4e",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 18.866997319388574,
+      "drift_float64_from_saved_AB": 0.42418654509035797,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 9.089945541180397e-07,
+      "reported_drift": 0.4241865451714639,
+      "reported_weighted_drift_squared": 9.089945665930272e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.014685533005910535,
+        "fisher_to_clean_norm_ratio_mean": 0.0585801531604941,
+        "grad_clean_norm_mean": 1.4057849298364211,
+        "grad_combined_norm_max": 11.124725729413344,
+        "grad_combined_norm_mean": 3.517720273413255,
+        "grad_fisher_norm_mean": 0.07721773731613903,
+        "grad_gam_direction_norm_mean": 3.6973107564877457,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.0009786476148292422,
+        "step1_grad_fisher_norm": 0.10110038745104521
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.4391160107776523,
+        "train_fisher_loss_mean": 0.008093476637732237
+      },
+      "task2_new_data_batch_proxy_trace": 20.75707709416747,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30361951,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30369870,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 37.73737409887782,
+      "task2_saved_accumulated_trace_expected": 37.73737468161718,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 1.5441968755974268e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 86.97068403908794,
+            "local_ce": 0.392308564567044,
+            "n": 307,
+            "seen_accuracy": 86.97068403908794,
+            "seen_ce": 0.392308564567044
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.20571882446386,
+            "local_ce": 0.05539939562163147,
+            "n": 1259,
+            "seen_accuracy": 99.20571882446386,
+            "seen_ce": 0.05539939562163147
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.4241865451714639,
+          "endpoint_ewc_penalty": 0.009089945665930273,
+          "fisher_weighted_displacement": 9.089945665930272e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 88.27361563517915,
+            "local_ce": 0.3676200845217155,
+            "n": 307,
+            "seen_accuracy": 84.03908794788273,
+            "seen_ce": 0.548083861070459
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.96743447180302,
+            "local_ce": 0.06652014084849149,
+            "n": 1259,
+            "seen_accuracy": 96.5845909451946,
+            "seen_ce": 0.15747900717561578
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "task1_shaping",
+      "seed": 1,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:43:17.031507+02:00",
+      "end_madrid": "2026-09-22T11:49:05.048632+02:00",
+      "actual_gpu": "0",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "sgd",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          86.97,
+          null
+        ],
+        [
+          86.64,
+          73.62
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 86.97,
+        "a21": 86.64,
+        "a22": 73.62
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "17c7c4bf794328e23a3079d0268ce1a51d79e3d43d8f01cba232f481d5361c2f",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed1/rng_receipts.jsonl",
+        "reference_sha256": "827bad6bb8012dc4a928ce08495c0ab26985a8b1ae0f8de54268e122b9464d04",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 18.866997319388574,
+      "drift_float64_from_saved_AB": 0.29176724372989327,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 5.172688962922272e-07,
+      "reported_drift": 0.29176724371481544,
+      "reported_weighted_drift_squared": 5.172688933604613e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.03778105627687753,
+        "fisher_to_clean_norm_ratio_mean": 0.03342072030614003,
+        "grad_clean_norm_mean": 1.729813581548259,
+        "grad_combined_norm_max": 4.973396563907212,
+        "grad_combined_norm_mean": 1.642282803052185,
+        "grad_fisher_norm_mean": 0.053680597652262664,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.00016928788681980222,
+        "step1_grad_fisher_norm": 0.04242852366448336
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.5900010731071234,
+        "train_fisher_loss_mean": 0.00407956571001705
+      },
+      "task2_new_data_batch_proxy_trace": 25.12472588568926,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30361951,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30369870,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 42.10502250568058,
+      "task2_saved_accumulated_trace_expected": 42.10502347313897,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 2.2977267578293554e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 86.97068403908794,
+            "local_ce": 0.392308564567044,
+            "n": 307,
+            "seen_accuracy": 86.97068403908794,
+            "seen_ce": 0.392308564567044
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.20571882446386,
+            "local_ce": 0.05539939562163147,
+            "n": 1259,
+            "seen_accuracy": 99.20571882446386,
+            "seen_ce": 0.05539939562163147
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.29176724371481544,
+          "endpoint_ewc_penalty": 0.005172688933604613,
+          "fisher_weighted_displacement": 5.172688933604613e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 88.59934853420195,
+            "local_ce": 0.3793162589639911,
+            "n": 307,
+            "seen_accuracy": 86.64495114006515,
+            "seen_ce": 0.497089267373596
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.04686258935664,
+            "local_ce": 0.05605125268878577,
+            "n": 1259,
+            "seen_accuracy": 97.77601270849881,
+            "seen_ce": 0.11080458979758799
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "fs_ewclora",
+      "seed": 2,
+      "status": "complete",
+      "start_madrid": "2026-09-22T12:22:31.822303+02:00",
+      "end_madrid": "2026-09-22T12:45:21.408247+02:00",
+      "actual_gpu": "2",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "gam",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          87.95,
+          null
+        ],
+        [
+          83.06,
+          79.53
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 87.95,
+        "a21": 83.06,
+        "a22": 79.53
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "f3691cae0907d4f54b6f06569d7ce45462168468d8bd28aa94c6fc1930e19371",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/rng_receipts.jsonl",
+        "reference_sha256": "cf56b812d94126638b90a2fa38ebe5a3842a08afa0d75ac931b595afb01c8edb",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 22.10840046951054,
+      "drift_float64_from_saved_AB": 0.4486565281967364,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 1.0947240419846927e-06,
+      "reported_drift": 0.44865652825662605,
+      "reported_weighted_drift_squared": 1.0947240485717895e-06,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.016935234259202615,
+        "fisher_to_clean_norm_ratio_mean": 0.06268958958831095,
+        "grad_clean_norm_mean": 1.3583966784433124,
+        "grad_combined_norm_max": 10.420373313902184,
+        "grad_combined_norm_mean": 3.5131295072738835,
+        "grad_fisher_norm_mean": 0.0777477160152381,
+        "grad_gam_direction_norm_mean": 3.6110839981106233,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 0.0002597453130874783,
+        "step1_grad_fisher_norm": 0.0337116539374678
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.45178800985217094,
+        "train_fisher_loss_mean": 0.009635086639827933
+      },
+      "task2_new_data_batch_proxy_trace": 18.423319552093744,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30461954,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30469873,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 38.320879626731404,
+      "task2_saved_accumulated_trace_expected": 38.32087997465323,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 9.079171112205122e-09,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.36905843303432684,
+            "n": 307,
+            "seen_accuracy": 87.94788273615636,
+            "seen_ce": 0.36905843303432684
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.12629070691024,
+            "local_ce": 0.056212964710678805,
+            "n": 1259,
+            "seen_accuracy": 99.12629070691024,
+            "seen_ce": 0.056212964710678805
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.44865652825662605,
+          "endpoint_ewc_penalty": 0.010947240485717895,
+          "fisher_weighted_displacement": 1.0947240485717895e-06,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 88.92508143322476,
+            "local_ce": 0.34601781485383365,
+            "n": 307,
+            "seen_accuracy": 83.06188925081433,
+            "seen_ce": 0.5307806302894381
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.8085782366958,
+            "local_ce": 0.06352134335223411,
+            "n": 1259,
+            "seen_accuracy": 96.5845909451946,
+            "seen_ce": 0.14649456974736716
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    },
+    {
+      "arm": "task1_shaping",
+      "seed": 2,
+      "status": "complete",
+      "start_madrid": "2026-09-22T11:49:15.599132+02:00",
+      "end_madrid": "2026-09-22T11:54:59.265378+02:00",
+      "actual_gpu": "4",
+      "actual_task": 1,
+      "old_and_total_classes": [
+        20,
+        40
+      ],
+      "all_network_tensors_finite": true,
+      "network_tensor_count": 350,
+      "old_head_bitwise_unchanged": true,
+      "frozen_non_adapter_tensors_unchanged": true,
+      "frozen_non_adapter_tensor_count": 300,
+      "new_adapter_keys_match_parent": true,
+      "all_batches_finite_parameters_and_single_P": true,
+      "update_count": 400,
+      "step_range": [
+        0,
+        399
+      ],
+      "epochs": 50,
+      "trained_tasks": [
+        1
+      ],
+      "future_optimizer": "sgd",
+      "lambda": 20000.0,
+      "normalize_fisher": false,
+      "normalize_accumulated_fisher": false,
+      "matrix": [
+        [
+          87.95,
+          null
+        ],
+        [
+          85.34,
+          72.05
+        ]
+      ],
+      "matrix_evaluated_cells_finite": true,
+      "a11_a21_a22": {
+        "a11": 87.95,
+        "a21": 85.34,
+        "a22": 72.05
+      },
+      "full_reload_event": true,
+      "paired": {
+        "epochs": 50,
+        "fit_fisher_passes": 1,
+        "new_head_sha256": "f3691cae0907d4f54b6f06569d7ce45462168468d8bd28aa94c6fc1930e19371",
+        "passed": true,
+        "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/rng_receipts.jsonl",
+        "reference_sha256": "6ae7667a073aeaf5c8c85efe709d17015c9f67ac2fa6adb14e7419ab0e534872",
+        "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+      },
+      "rawF_loaded": 22.10840046951054,
+      "drift_float64_from_saved_AB": 0.31163736631189154,
+      "rawF_weighted_drift_squared_float64_from_saved_AB": 6.418138817255387e-07,
+      "reported_drift": 0.31163736628935346,
+      "reported_weighted_drift_squared": 6.418138849725381e-07,
+      "reported_gradients": {
+        "batches": 400,
+        "component_norms_available": true,
+        "component_sample_count": 51,
+        "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+        "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+        "cos_clean_fisher_mean": -0.0419344103407368,
+        "fisher_to_clean_norm_ratio_mean": 0.03632439152564182,
+        "grad_clean_norm_mean": 1.6750788179177771,
+        "grad_combined_norm_max": 4.817028231975249,
+        "grad_combined_norm_mean": 1.6390155992381839,
+        "grad_fisher_norm_mean": 0.05502573507149164,
+        "single_ewc_injection_verified": true,
+        "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+        "step1_ewc": 4.5527267502620816e-05,
+        "step1_grad_fisher_norm": 0.014427335042195186
+      },
+      "reported_losses": {
+        "train_clean_loss_mean": 0.606687479838729,
+        "train_fisher_loss_mean": 0.005004918467420794
+      },
+      "task2_new_data_batch_proxy_trace": 23.79199244827032,
+      "loader_created": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30461954,
+          "loader_serial": 0,
+          "num_workers": 4,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30469873,
+          "loader_serial": 1,
+          "num_workers": 4,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "task2_saved_accumulated_Fisher_trace": 43.68955221653208,
+      "task2_saved_accumulated_trace_expected": 43.68955287082981,
+      "task2_saved_Fisher_all_finite_nonnegative": true,
+      "task2_saved_trace_relative_error": 1.4976068325084115e-08,
+      "local_metrics": [
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.0,
+          "endpoint_ewc_penalty": 0.0,
+          "fisher_weighted_displacement": 0.0,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 0,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.36905843303432684,
+            "n": 307,
+            "seen_accuracy": 87.94788273615636,
+            "seen_ce": 0.36905843303432684
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 99.12629070691024,
+            "local_ce": 0.056212964710678805,
+            "n": 1259,
+            "seen_accuracy": 99.12629070691024,
+            "seen_ce": 0.056212964710678805
+          },
+          "train_transform": "deterministic_test"
+        },
+        {
+          "coordinate": "effective_QV_BA",
+          "effective_weight_displacement": 0.31163736628935346,
+          "endpoint_ewc_penalty": 0.0064181388497253815,
+          "fisher_weighted_displacement": 6.418138849725381e-07,
+          "old_local_head": [
+            0,
+            20
+          ],
+          "task": 1,
+          "test": {
+            "local_accuracy": 87.94788273615636,
+            "local_ce": 0.34919632965206493,
+            "n": 307,
+            "seen_accuracy": 85.34201954397395,
+            "seen_ce": 0.47608980150982066
+          },
+          "trace_measured": false,
+          "train": {
+            "local_accuracy": 98.72915011914218,
+            "local_ce": 0.05425937158650296,
+            "n": 1259,
+            "seen_accuracy": 97.77601270849881,
+            "seen_ce": 0.10406107681720844
+          },
+          "train_transform": "deterministic_test"
+        }
+      ]
+    }
+  ],
+  "parents": [
+    {
+      "method": "sgd",
+      "seed": 0,
+      "raw_trace": 34.069888104965315,
+      "old_saved_fisher_trace": 1.0000000537704132,
+      "raw_renormalized_relative_l2_error_vs_old": 1.3711606496957894e-07,
+      "new_over_old_penalty_scalar": 340.69888104965315,
+      "new_equivalent_lambda_if_trace_normalized": 681397.7620993063,
+      "prepared_inputs_count": 1259,
+      "recompute_training_steps": 0,
+      "preparation_kind": "verified_existing_raw_payload_reuse",
+      "all_tensors_finite_nonnegative": true,
+      "shapes": [
+        [
+          768,
+          768
+        ]
+      ]
+    },
+    {
+      "method": "sgd",
+      "seed": 1,
+      "raw_trace": 26.555998546461083,
+      "old_saved_fisher_trace": 1.000000025990257,
+      "raw_renormalized_relative_l2_error_vs_old": 9.589524544667891e-08,
+      "new_over_old_penalty_scalar": 265.5599854646108,
+      "new_equivalent_lambda_if_trace_normalized": 531119.9709292217,
+      "prepared_inputs_count": 1259,
+      "recompute_training_steps": 0,
+      "preparation_kind": "native_fit_fisher_recomputation",
+      "all_tensors_finite_nonnegative": true,
+      "shapes": [
+        [
+          768,
+          768
+        ]
+      ]
+    },
+    {
+      "method": "sgd",
+      "seed": 2,
+      "raw_trace": 33.696880105609694,
+      "old_saved_fisher_trace": 0.9999999941308242,
+      "raw_renormalized_relative_l2_error_vs_old": 1.1958404320616093e-07,
+      "new_over_old_penalty_scalar": 336.96880105609694,
+      "new_equivalent_lambda_if_trace_normalized": 673937.6021121938,
+      "prepared_inputs_count": 1259,
+      "recompute_training_steps": 0,
+      "preparation_kind": "native_fit_fisher_recomputation",
+      "all_tensors_finite_nonnegative": true,
+      "shapes": [
+        [
+          768,
+          768
+        ]
+      ]
+    },
+    {
+      "method": "gam",
+      "seed": 0,
+      "raw_trace": 24.8230719159779,
+      "old_saved_fisher_trace": 0.9999999796979775,
+      "raw_renormalized_relative_l2_error_vs_old": 9.85301251025321e-08,
+      "new_over_old_penalty_scalar": 248.23071915977897,
+      "new_equivalent_lambda_if_trace_normalized": 496461.438319558,
+      "prepared_inputs_count": 1259,
+      "recompute_training_steps": 0,
+      "preparation_kind": "native_fit_fisher_recomputation",
+      "all_tensors_finite_nonnegative": true,
+      "shapes": [
+        [
+          768,
+          768
+        ]
+      ]
+    },
+    {
+      "method": "gam",
+      "seed": 1,
+      "raw_trace": 18.866997319388574,
+      "old_saved_fisher_trace": 1.0000000291165063,
+      "raw_renormalized_relative_l2_error_vs_old": 6.297130368199555e-08,
+      "new_over_old_penalty_scalar": 188.66997319388574,
+      "new_equivalent_lambda_if_trace_normalized": 377339.94638777146,
+      "prepared_inputs_count": 1259,
+      "recompute_training_steps": 0,
+      "preparation_kind": "native_fit_fisher_recomputation",
+      "all_tensors_finite_nonnegative": true,
+      "shapes": [
+        [
+          768,
+          768
+        ]
+      ]
+    },
+    {
+      "method": "gam",
+      "seed": 2,
+      "raw_trace": 22.10840046951054,
+      "old_saved_fisher_trace": 1.000000006849556,
+      "raw_renormalized_relative_l2_error_vs_old": 1.1073665852091691e-07,
+      "new_over_old_penalty_scalar": 221.0840046951054,
+      "new_equivalent_lambda_if_trace_normalized": 442168.0093902108,
+      "prepared_inputs_count": 1259,
+      "recompute_training_steps": 0,
+      "preparation_kind": "native_fit_fisher_recomputation",
+      "all_tensors_finite_nonnegative": true,
+      "shapes": [
+        [
+          768,
+          768
+        ]
+      ]
+    }
+  ],
+  "issues": [],
+  "all_12_passed": true,
+  "same_seed_pairing_across_four_arms": {
+    "0": {
+      "all_four_heads_and_training_plus_Fisher_loader_receipts_equal": true,
+      "loader_traversals": 51
+    },
+    "1": {
+      "all_four_heads_and_training_plus_Fisher_loader_receipts_equal": true,
+      "loader_traversals": 51
+    },
+    "2": {
+      "all_four_heads_and_training_plus_Fisher_loader_receipts_equal": true,
+      "loader_traversals": 51
+    }
+  },
+  "all_12_saved_Fisher_passed": true,
+  "audit_definitions": {
+    "P": "lambda/2 * sum_k F1_raw[k] * (B2A2-B1A1)[k]^2",
+    "F1_raw": "sum_b n_b (gradient_deltaW mean(CE_b))^2 / N; native batch-gradient-square proxy on old fit data; NOT per-example empirical Fisher",
+    "B2": "Task2 endpoint native new-task fit data batch-gradient proxy raw trace; NOT old-task Fisher and NOT accumulated saved Fisher",
+    "d_QV_cont": "sqrt(sum_layer/component_QV ||B2A2-B1A1||_F^2); heads excluded; continuous adapter",
+    "Fisher_saved_after_Task2": ".9 F1_raw + F2_raw; does not affect already completed Task2 training",
+    "gradient_ratio": "mean of 51 observed norm(P)/norm(clean CE) ratios across actual trainable parameters, clean heads included; GAM clean cache is not GAM direction",
+    "statistics": "three fixed seeds; sample standard deviation ddof1; CIL matrix entries saved to 2 decimal places"
+  },
+  "source_locations": {
+    "P": "execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py:270",
+    "CE_new_classes": "execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py:263",
+    "batch_Fisher": "execution/source/models_LoRAbasedCL/as1_normfisher_gam.py:382",
+    "disable_normalization": "execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py:721",
+    "gam_projector": "execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py:1018",
+    "gam_step": "execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py:1173",
+    "gam_optimizer": "execution/source/optimer_PerturabtionType/gam.py:239",
+    "actual_update_assertions": "ewc_lambda20000_four_rows_20260922/train.py:665",
+    "old_head_assertion": "ewc_lambda20000_four_rows_20260922/train.py:997"
+  }
+}

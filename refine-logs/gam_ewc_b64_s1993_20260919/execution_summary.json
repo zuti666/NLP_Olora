@@ -1,0 +1,193 @@
+{
+  "checked_at": "2026-09-20T07:55:32.280977+00:00",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z",
+  "supervisor_log": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z.supervisor.log",
+  "supervisor_pid": 102059,
+  "worker_pid": null,
+  "status": "completed",
+  "phase": "full",
+  "order": 3,
+  "stage": 4,
+  "gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "protocol": {
+    "protocol_id": "gam_ewc_bf16_b64_seed1993_ddp4_bs1_ga16_lam1",
+    "model": "Llama-3.2-1B",
+    "method": "IncLoRA-GAM-EWC",
+    "precision": "bf16",
+    "world_size": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_batch": 64,
+    "seed": 1993,
+    "data_seed": 1993,
+    "ewclora_lambda": 1.0,
+    "ewclora_gamma": 1.0,
+    "olora_lamda_1": 0.0,
+    "olora_lamda_2": 0.0,
+    "ddp_find_unused_parameters": false,
+    "optimizer_type": "gam-adamw_hf",
+    "lora_dim": 8,
+    "fisher": "full_data_raw",
+    "num_train_epochs": 1,
+    "gam_grad_rho": 0.02,
+    "gam_grad_norm_rho": 0.2,
+    "gam_adaptive": false,
+    "gam_grad_beta_1": 1.0,
+    "gam_grad_beta_2": 1.0,
+    "gam_grad_beta_3": 1.0,
+    "gam_grad_gamma": 0.03,
+    "gam_grad_reduce": "mean",
+    "gam_perturb_eps": 1e-12,
+    "ewclora_project_eps": 1e-12,
+    "actual_base_optimizer": "torch.optim.adamw.AdamW",
+    "actual_base_optimizer_defaults": {
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0.01
+    },
+    "rank_parameter_agreement": {
+      "require_exact_hash_match": false,
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "reason": "Historical local GAM perturb/add/subtract can produce FP32 rounding residuals; record hashes and maximum absolute difference, verify allclose without introducing rank broadcasts."
+    },
+    "legacy_reference_world_size": 5,
+    "legacy_reference_gradient_accumulation_steps": 8,
+    "legacy_reference_global_batch": 40,
+    "legacy_reference_seed": 1993,
+    "legacy_reference_ewclora_lambda": 1.0,
+    "ewc_accumulation_note": "GAM replay averages the full microbatch window; EWC supplies its directional projection. Preserve lambda1; do not apply the pure-EWC lambda0.5 adjustment.",
+    "alignment_scope": "Historical GAM-EWC seed/data_seed1993 and method settings are retained; DDP5/GA8/batch40 changes to DDP4/GA16/batch64. This cohort does not align seed42 controls."
+  },
+  "smoke": [
+    {
+      "stage": "1-dbpedia",
+      "status": "pass",
+      "errors": [],
+      "r_sum": 8,
+      "fisher_updates": 1,
+      "historical_prefix_exact": null,
+      "optimizer_steps": 2,
+      "closure_calls": 8,
+      "microbatch_counts": [
+        16
+      ],
+      "gradient_sync_samples": [
+        {
+          "identical": true,
+          "optimizer_step": 1,
+          "rank_sha256": [
+            "40da3a264b1fdcf906777a27d09a562867e44b356ceb30374341fa1ad0705348",
+            "40da3a264b1fdcf906777a27d09a562867e44b356ceb30374341fa1ad0705348",
+            "40da3a264b1fdcf906777a27d09a562867e44b356ceb30374341fa1ad0705348",
+            "40da3a264b1fdcf906777a27d09a562867e44b356ceb30374341fa1ad0705348"
+          ]
+        },
+        {
+          "identical": true,
+          "optimizer_step": 2,
+          "rank_sha256": [
+            "a2ea5c9b93a13dafd4754b3d9b90c0d61e6cdfd0ad0763555776fb8894504dc2",
+            "a2ea5c9b93a13dafd4754b3d9b90c0d61e6cdfd0ad0763555776fb8894504dc2",
+            "a2ea5c9b93a13dafd4754b3d9b90c0d61e6cdfd0ad0763555776fb8894504dc2",
+            "a2ea5c9b93a13dafd4754b3d9b90c0d61e6cdfd0ad0763555776fb8894504dc2"
+          ]
+        }
+      ],
+      "ewc_cache_nonzero_steps": 0,
+      "projection_delta_l2_max": 0.0,
+      "parameters_close": true,
+      "max_rank_abs_diff": 7.450580596923828e-09
+    },
+    {
+      "stage": "2-amazon",
+      "status": "pass",
+      "errors": [],
+      "r_sum": 16,
+      "fisher_updates": 2,
+      "historical_prefix_exact": true,
+      "optimizer_steps": 2,
+      "closure_calls": 8,
+      "microbatch_counts": [
+        16
+      ],
+      "gradient_sync_samples": [
+        {
+          "identical": true,
+          "optimizer_step": 1,
+          "rank_sha256": [
+            "f0726d466453dddd39c10fae34f636730fa0eaad5791b3e867c80715d576b974",
+            "f0726d466453dddd39c10fae34f636730fa0eaad5791b3e867c80715d576b974",
+            "f0726d466453dddd39c10fae34f636730fa0eaad5791b3e867c80715d576b974",
+            "f0726d466453dddd39c10fae34f636730fa0eaad5791b3e867c80715d576b974"
+          ]
+        },
+        {
+          "identical": true,
+          "optimizer_step": 2,
+          "rank_sha256": [
+            "e0ec30faaac8c37a472ad9a222ea5328a9fd4e58e544ee6edbe2d7deaa08725d",
+            "e0ec30faaac8c37a472ad9a222ea5328a9fd4e58e544ee6edbe2d7deaa08725d",
+            "e0ec30faaac8c37a472ad9a222ea5328a9fd4e58e544ee6edbe2d7deaa08725d",
+            "e0ec30faaac8c37a472ad9a222ea5328a9fd4e58e544ee6edbe2d7deaa08725d"
+          ]
+        }
+      ],
+      "ewc_cache_nonzero_steps": 1,
+      "projection_delta_l2_max": 10.341528081401902,
+      "parameters_close": true,
+      "max_rank_abs_diff": 9.313225746154785e-09
+    }
+  ],
+  "formal_completed": 12,
+  "formal_total": 12,
+  "independent_smoke_check": {
+    "status": "pass",
+    "agent": "/root/gam_b64_runtime_review",
+    "rank_audits": 8,
+    "stage_verifications": 2,
+    "gradient_sync_hashes": "all ranks identical, first and last optimizer steps",
+    "frozen_source_hashes_checked": 5,
+    "second_stage_ewc_penalty": 2.01e-06,
+    "second_stage_ewc_gradient_l2": 0.000244
+  },
+  "validated": 12,
+  "running": 0,
+  "failed": 0,
+  "pending": 0,
+  "finished_at": "2026-09-19T16:13:54.833403+00:00",
+  "elapsed_seconds": 10585.031931,
+  "supervisor_alive": false,
+  "gpus_released": true,
+  "final_faa": {
+    "1": 69.84539473684211,
+    "2": 68.125,
+    "3": 70.61842105263158
+  },
+  "three_order_average": 69.5296052631579,
+  "old_b40_average": 70.198475,
+  "delta_vs_old_b40": -0.6688697368420975,
+  "final_runtime_check": {
+    "status": "pass",
+    "rank_audits": 48,
+    "errors": [],
+    "max_rank_abs_diff": 1.4528632164001465e-07
+  },
+  "independent_final_recompute": {
+    "status": "pass",
+    "orders": 3,
+    "raw_prediction_rows": 91200,
+    "samples_per_order": 30400,
+    "samples_per_task": 7600,
+    "prediction_and_metric_hashes_matched": 6,
+    "source": "FINAL_RECOMPUTE_CHECK.json"
+  }
+}

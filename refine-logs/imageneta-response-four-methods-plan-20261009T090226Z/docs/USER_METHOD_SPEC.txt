@@ -1,0 +1,755 @@
+下面固定为 **SGD，加上三种新方法**。第三种方法按你这次的要求修改：**缓存上一轮实际用于最终参数更新的完整梯度向量，正常情况下就是 $g_{2,t-1}$，不再缓存基点梯度 $g_{0,t-1}$。**
+
+统一把最终更新写成
+
+$$
+\theta_{t+1}=\theta_t-\eta_t d_t.
+$$
+
+这里缓存的“最终梯度方向”是**保留幅值的 $d_t$**，不是单位向量 $N(d_t)$，也不是带学习率和负号的位移 $-\eta_t d_t$。真实位移另外保存。
+
+| 编号 | 方法 | 代码名称 | 正常梯度读取次数 | 最终更新信号 | 历史缓存 |
+|---|---|---|---:|---|---|
+| SGD | 普通 SGD | `sgd` | 1 | $g_0$ | 无 |
+| 方法一 | 当前响应重定位 | `current_g2` | 3 | $g_2$ | 无 |
+| 方法二 | 历史响应直接融合 | `history_fusion` | 2 | $U_t$ | 基点梯度 $g_{0,t}$ 与真实位移 |
+| 方法三 | 最终更新历史辅助重定位 | `history_g2` | 3 | $g_2$ | **最终提交向量 $d_t$ 与真实位移** |
+
+方法二保留此前的定义，方法三采用本次明确指定的缓存定义。两者不混用。
+
+**完整代码已经生成：**
+
+gradient_response_framework.zip[下载完整代码包](sandbox:/mnt/data/gradient_response_framework.zip) · response_sgd.py[核心 PyTorch 实现](sandbox:/mnt/data/gradient_response_framework/response_sgd.py) · ALGORITHMS.md[算法规范](sandbox:/mnt/data/gradient_response_framework/ALGORITHMS.md) · train_example.py[训练示例](sandbox:/mnt/data/gradient_response_framework/train_example.py)
+
+本地在 **PyTorch 2.10.0、CPU** 上通过了 **20 项单元测试**，并运行了四种方法的合成数据训练示例。尚未运行你的 ImageNet-A 实验，CUDA 路径也未在本地硬件上验证。TEST_RESULTS.txt[测试记录](sandbox:/mnt/data/gradient_response_framework/TEST_RESULTS.txt)
+
+## 一、统一的算法约定
+
+第 $t$ 步取一次 minibatch $\mathcal B_t$，定义
+
+$$
+L_t(\theta)=L_{\mathcal B_t}(\theta).
+$$
+
+当前步骤中的所有新梯度都使用这一批数据。历史梯度直接从缓存读取，**当前版本不引入不同 minibatch 的差异修正，也不回到历史位置重新计算梯度。**
+
+对三种新方法，共同的前两次读取为
+
+$$
+\boxed{
+\begin{aligned}
+g_{0,t}
+&=\nabla L_t(\theta_t),\\
+h_t
+&=\eta_t\|g_{0,t}\|,\\
+\widetilde\theta_{1,t}
+&=\theta_t-\eta_tg_{0,t},\\
+g_{1,t}
+&=\nabla L_t(\widetilde\theta_{1,t}),\\
+a_t
+&=g_{0,t}-g_{1,t}.
+\end{aligned}
+}
+$$
+
+其中，$a_t$ 是已经校正取向的下降预测响应。
+
+默认采用
+
+$$
+\boxed{
+r_t=h_t=\eta_t\|g_{0,t}\|,
+\qquad
+w=\frac12.
+}
+$$
+
+所有范数都在**整个可训练参数集合**上计算，不进行逐层独立归一化。LoRA 情况下，只包含实际设置为 `requires_grad=True` 的参数。
+
+参考实现固定使用纯 SGD 提交更新，不加入动量、权重衰减、最终投影、梯度裁剪或最终范数匹配。只有扰动方向需要归一化，最终更新 $d_t$ 不归一化。
+
+## 二、四种方法的完整算法
+
+### 0. SGD
+
+$$
+\boxed{
+\begin{aligned}
+g_{0,t}
+&=\nabla L_t(\theta_t),\\
+d_t
+&=g_{0,t},\\
+\theta_{t+1}
+&=\theta_t-\eta_td_t.
+\end{aligned}
+}
+$$
+
+每步只计算一次梯度，不保存历史状态。
+
+### 1. 方法一：当前响应重定位
+
+先进行一次 SGD 虚拟下降预测，再根据当前响应选择第二个探测点：
+
+$$
+\boxed{
+\begin{aligned}
+g_{0,t}
+&=\nabla L_t(\theta_t),\\
+h_t
+&=\eta_t\|g_{0,t}\|,\\
+\widetilde\theta_{1,t}
+&=\theta_t-\eta_tg_{0,t},\\
+g_{1,t}
+&=\nabla L_t(\widetilde\theta_{1,t}),\\
+v_t
+&=\frac{g_{0,t}-g_{1,t}}
+{\|g_{0,t}-g_{1,t}\|},\\
+\widetilde\theta_{2,t}
+&=\theta_t+r_tv_t,\\
+g_{2,t}
+&=\nabla L_t(\widetilde\theta_{2,t}),\\
+d_t
+&=g_{2,t},\\
+\theta_{t+1}
+&=\theta_t-\eta_td_t.
+\end{aligned}
+}
+$$
+
+两个探测都是虚拟的。第二个点相对于原始基点 $\theta_t$ 构造：
+
+$$
+\widetilde\theta_{2,t}=\theta_t+r_tv_t,
+$$
+
+**不是**
+
+$$
+\widetilde\theta_{1,t}+r_tv_t.
+$$
+
+这个方法不需要历史缓存。
+
+### 2. 方法二：历史响应直接融合
+
+这里保留此前历史融合算法的基点梯度缓存。原设计将当前预测响应与历史响应直接加入最终更新。粘贴的文本 (1)
+
+在第 $t$ 步开始时，缓存为
+
+$$
+b_{t-1}=g_{0,t-1},
+\qquad
+s_t=\theta_t-\theta_{t-1},
+\qquad
+\ell_t=\|s_t\|.
+$$
+
+有效历史存在时：
+
+$$
+\boxed{
+\begin{aligned}
+g_{0,t}
+&=\nabla L_t(\theta_t),\\
+h_t
+&=\eta_t\|g_{0,t}\|,\\
+g_{1,t}
+&=\nabla L_t(\theta_t-\eta_tg_{0,t}),\\
+c_t
+&=
+(1-w)(g_{0,t}-g_{1,t})
++
+w\frac{h_t}{\ell_t}(b_{t-1}-g_{0,t}),\\
+d_t
+&=g_{0,t}+c_t,\\
+\theta_{t+1}
+&=\theta_t-\eta_td_t.
+\end{aligned}
+}
+$$
+
+取 $w=\frac12$：
+
+$$
+\boxed{
+d_t
+=
+g_{0,t}
++
+\frac12(g_{0,t}-g_{1,t})
++
+\frac{h_t}{2\ell_t}(b_{t-1}-g_{0,t}).
+}
+$$
+
+无有效历史时：
+
+$$
+\boxed{
+d_t=2g_{0,t}-g_{1,t}.
+}
+$$
+
+成功更新后缓存：
+
+$$
+\boxed{
+b_t\leftarrow g_{0,t},
+\qquad
+s_{t+1}\leftarrow\theta_{t+1}-\theta_t.
+}
+$$
+
+这里缓存 $g_{0,t}$，而不是 $d_t$，是为了保留方法二此前的定义。
+
+### 3. 方法三：最终更新历史辅助重定位
+
+**这次明确将历史缓存改为上一轮真正提交的最终更新信号：**
+
+$$
+\boxed{
+k_{t-1}=d_{t-1}.
+}
+$$
+
+正常情况下，
+
+$$
+k_{t-1}=g_{2,t-1}.
+$$
+
+另外保存真实位移：
+
+$$
+s_t=\theta_t-\theta_{t-1},
+\qquad
+\ell_t=\|s_t\|.
+$$
+
+有效历史存在时：
+
+$$
+\boxed{
+\begin{aligned}
+g_{0,t}
+&=\nabla L_t(\theta_t),\\
+h_t
+&=\eta_t\|g_{0,t}\|,\\
+\widetilde\theta_{1,t}
+&=\theta_t-\eta_tg_{0,t},\\
+g_{1,t}
+&=\nabla L_t(\widetilde\theta_{1,t}),\\
+c_t
+&=
+(1-w)(g_{0,t}-g_{1,t})
++
+w\frac{h_t}{\ell_t}(k_{t-1}-g_{0,t}),\\
+v_t
+&=\frac{c_t}{\|c_t\|},\\
+\widetilde\theta_{2,t}
+&=\theta_t+r_tv_t,\\
+g_{2,t}
+&=\nabla L_t(\widetilde\theta_{2,t}),\\
+d_t
+&=g_{2,t},\\
+\theta_{t+1}
+&=\theta_t-\eta_td_t.
+\end{aligned}
+}
+$$
+
+取 $w=\frac12$ 时，第二个探测方向也可以等价写为
+
+$$
+\boxed{
+v_t
+=
+N\!\left[
+(g_{0,t}-g_{1,t})
++
+\frac{h_t}{\ell_t}
+(k_{t-1}-g_{0,t})
+\right].
+}
+$$
+
+共同的 $\frac12$ 会在归一化时消去。
+
+无有效历史时：
+
+$$
+c_t=g_{0,t}-g_{1,t},
+$$
+
+因此**退化为方法一**，而不是退化为方法二。
+
+成功更新后：
+
+$$
+\boxed{
+k_t\leftarrow d_t,
+\qquad
+s_{t+1}\leftarrow\theta_{t+1}-\theta_t.
+}
+$$
+
+正常步骤中就是
+
+$$
+\boxed{
+k_t\leftarrow g_{2,t}.
+}
+$$
+
+若数值回退导致这一轮最终提交的是 $g_{0,t}$，则缓存实际提交的 $g_{0,t}$。缓存始终跟随**真实提交的向量**，而不是机械地寻找一个名为 `g2` 的变量。
+
+### 第三种方法的缓存语义
+
+这里只需要保留一个数学上的区别：$g_{2,t-1}$ 通常是在上一轮的虚拟第二点计算，而不是上一轮真实基点的梯度。因此，
+
+$$
+k_{t-1}-g_{0,t}
+$$
+
+在当前算法中定义为**历史最终更新信号与当前基点梯度之间的差**。即使暂时忽略 minibatch 差异，也不把它严格称为真实基点之间的梯度割线。
+
+这不改变上面的实现。分母仍然按你的设计使用真实历史位移长度 $\ell_t$，不额外重新计算或修正历史。
+
+## 三、代码框架的组织
+
+完整实现拆成两个部分：
+
+```text
+ResponseOptimizer.step()
+    │
+    ├── 保存真实基点参数、buffers、随机状态
+    │
+    ├── 读取当前梯度 g0
+    │
+    ├── compute_update()
+    │      ├── SGD：直接返回 g0
+    │      ├── 方法一：当前响应选点，返回 g2
+    │      ├── 方法二：历史响应直接融合，返回 U
+    │      └── 方法三：最终更新历史参与选点，返回 g2
+    │
+    ├── 恢复基点对应的模型状态
+    │
+    ├── 只提交一次 theta <- theta - lr * final
+    │
+    └── 按方法类型更新缓存
+```
+
+`compute_update()` 只决定最终提交向量，不直接推进真实参数或缓存。外层驱动器负责虚拟探测恢复、真实更新和状态提交。
+
+### 1. 决定四种方法差异的核心代码
+
+下面是完整实现中的主要算法分支。`g0`、`g1` 等均为与可训练参数逐一对应的 Tensor 元组；`combine(x, y, a, b)` 表示 $ax+by$。完整的类型定义、数值检查、状态恢复和日志在下载的模块中。
+
+```python
+# 已经在真实基点读取 g0。
+# read_at_offset(offset) 始终在 theta_base + offset 读取梯度。
+
+if method == "sgd":
+    final = g0
+
+else:
+    h = lr * global_norm(g0)
+
+    # 第一次虚拟探测：theta_base - lr * g0
+    g1 = read_at_offset(scale(g0, -lr))
+    current = combine(g0, g1, b=-1.0)  # g0 - g1
+    response = current
+
+    if method in ("history_fusion", "history_g2"):
+        if valid_history:
+            ell = global_norm(history.step)
+
+            # history.grad 的来源由方法固定：
+            # history_fusion：上一轮基点 g0
+            # history_g2：上一轮实际提交的 final，通常为 g2
+            historical = scale(
+                combine(history.grad, g0, b=-1.0),
+                h / ell,
+            )
+
+            response = combine(
+                current,
+                historical,
+                a=1.0 - history_weight,
+                b=history_weight,
+            )
+
+    if method == "history_fusion":
+        # 无历史时 response=current，因此 final=2*g0-g1。
+        final = combine(g0, response)
+
+    else:
+        # current_g2 / history_g2：
+        # response 只决定探测位置，不再添加到最终更新。
+        response_norm = global_norm(response)
+
+        if response_norm <= eps:
+            response = current
+            response_norm = global_norm(current)
+
+        if response_norm <= eps:
+            final = g0
+        else:
+            v = scale(response, 1.0 / response_norm)
+            r = h  # 默认；完整实现也支持显式固定半径。
+
+            # 第二次虚拟探测仍从 theta_base 出发。
+            g2 = read_at_offset(scale(v, r))
+            final = g2
+```
+
+这里没有
+
+```python
+final = g2 + response
+```
+
+也没有
+
+```python
+final = g2 + historical_update
+```
+
+历史在方法三中**只参与选点**，最终仍然只提交读取到的 $g_2$。
+
+### 2. 最终提交与缓存必须放在一起处理
+
+对应完整实现中的关键逻辑：
+
+```python
+# final 已经确定，正常情况下：
+# SGD             -> g0
+# current_g2      -> g2
+# history_fusion  -> U
+# history_g2      -> g2
+
+candidate = clone_vector(theta_base)
+for parameter_value, direction in zip(candidate, final):
+    parameter_value.add_(direction, alpha=-lr)
+
+actual_step = combine(candidate, theta_base, b=-1.0)
+
+if method == "history_fusion":
+    new_history = History(
+        grad=clone_vector(g0),
+        step=clone_vector(actual_step),
+        source="base",
+    )
+
+elif method == "history_g2":
+    new_history = History(
+        grad=clone_vector(final),  # 关键：不是 g0
+        step=clone_vector(actual_step),
+        source="final",
+    )
+
+else:
+    new_history = None
+
+# 恢复探测状态后，将 candidate 写入模型，完成唯一一次真实更新。
+```
+
+第三种方法不能只保存
+
+```python
+normalize(final)
+```
+
+因为下一步需要计算
+
+```python
+history.grad - g0
+```
+
+这要求保留完整幅值。
+
+缓存使用 `detach().clone()`。`detach()` 本身仍与原 Tensor 共享存储，因此还需要复制，避免后续覆盖 `.grad` 或修改 Tensor 时污染历史。[PyTorch Docs](https://docs.pytorch.org/docs/2.14/generated/torch.Tensor.detach.html)
+
+## 四、接入现有 minibatch 训练代码
+
+下载并解压后，将 `response_sgd.py` 放到训练脚本可导入的位置。四种方法共用同一个接口：
+
+```python
+from response_sgd import Config, ResponseOptimizer
+```
+
+### 1. 创建驱动器
+
+在模型迁移设备、设置冻结参数和安装 LoRA 之后创建：
+
+```python
+import torch
+
+from response_sgd import Config, ResponseOptimizer
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
+
+config = Config(
+    method="history_g2",
+    history_weight=0.5,
+    radius_mode="sgd_step",
+    radius_scale=1.0,  # r = lr * ||g0||
+)
+
+driver = ResponseOptimizer(model, config)
+criterion = torch.nn.CrossEntropyLoss()
+```
+
+四组实验分别使用：
+
+```python
+Config(method="sgd")
+Config(method="current_g2")
+Config(method="history_fusion", history_weight=0.5)
+Config(method="history_g2", history_weight=0.5)
+```
+
+每组必须有独立模型和独立驱动器，不在同一个训练轨迹中间切换方法。
+
+### 2. 单个 epoch 的完整训练接口
+
+```python
+def train_one_epoch(
+    model,
+    loader,
+    driver,
+    criterion,
+    *,
+    lr: float,
+    device: torch.device,
+):
+    model.train()
+
+    loss_sum = 0.0
+    sample_count = 0
+    gradient_reads = 0
+    history_steps = 0
+
+    for images, labels in loader:
+        images = images.to(device)
+        labels = labels.to(device)
+
+        # 数据增强在 DataLoader 或这里完成一次。
+        # 不在 closure 内重新取 minibatch 或重新采样增强。
+        def loss_closure():
+            logits = model(images)
+            return criterion(logits, labels)
+
+        result = driver.step(
+            loss_closure,
+            lr=lr,
+            trace=False,
+        )
+
+        batch_size = labels.shape[0]
+        loss_sum += result.loss_base * batch_size
+        sample_count += batch_size
+        gradient_reads += result.gradient_reads
+        history_steps += int(result.history_used)
+
+        # 不再调用：
+        # loss.backward()
+        # optimizer.step()
+        #
+        # driver.step() 已经完成最终参数更新。
+
+    return {
+        "loss_base": loss_sum / max(sample_count, 1),
+        "gradient_reads": gradient_reads,
+        "history_steps": history_steps,
+    }
+```
+
+`loss_closure()` 只返回当前 minibatch 的未缩放标量损失。梯度由驱动器通过 `torch.autograd.grad(..., create_graph=False)` 读取，不构建二阶导数图，也不把每次探测梯度累加到参数的 `.grad` 中。[PyTorch Docs](https://docs.pytorch.org/docs/stable/generated/torch.autograd.grad.html)
+
+### 3. 持续学习任务循环
+
+下面给出带任务级缓存重置和 epoch 级余弦学习率的框架。真实项目的数据划分、类别扩展和 FAA/AAA 评估保持原实现。
+
+```python
+import math
+
+
+def cosine_lr(epoch: int, epochs: int, peak_lr: float) -> float:
+    if epochs == 1:
+        return peak_lr
+
+    min_lr = 0.1 * peak_lr
+    progress = epoch / (epochs - 1)
+
+    return min_lr + 0.5 * (peak_lr - min_lr) * (
+        1.0 + math.cos(math.pi * progress)
+    )
+
+
+epochs_per_task = 50
+
+for task_id, train_loader in enumerate(task_loaders):
+
+    # 任务切换时清空短期历史。
+    # 普通 epoch 切换时不清空。
+    driver.reset_history()
+
+    peak_lr = 0.04 if task_id == 0 else 0.02
+
+    for epoch in range(epochs_per_task):
+        lr = cosine_lr(epoch, epochs_per_task, peak_lr)
+
+        statistics = train_one_epoch(
+            model,
+            train_loader,
+            driver,
+            criterion,
+            lr=lr,
+            device=device,
+        )
+
+        print(
+            f"task={task_id} "
+            f"epoch={epoch} "
+            f"lr={lr:.6f} "
+            f"loss={statistics['loss_base']:.6f} "
+            f"reads={statistics['gradient_reads']}"
+        )
+```
+
+这是一个独立更新驱动器，不是需要再接一个 `torch.optim.SGD.step()` 的包装器。学习率由外层传入，**每次真实更新使用一次，不随虚拟探测额外推进。**
+
+如果任务切换时新增分类头、重建 LoRA 参数或改变冻结集合，应在模型修改完成后重建驱动器，不能让旧缓存继续对应新的参数布局。
+
+## 五、虚拟探测的状态处理
+
+除了公式，下面几项决定代码是否真的在执行同一个算法。
+
+### 参数必须从同一个基点构造
+
+实现保存 $\theta_t$，每次探测都从这个快照构造新参数。不会采用“加上扰动、再减回扰动”的方式累计恢复误差。
+
+参数写入放在 `torch.no_grad()` 环境中，普通梯度读取在启用梯度的环境中完成；不会对扰动方向的生成过程进行反向传播。[PyTorch Docs](https://docs.pytorch.org/docs/2.14/generated/torch.no_grad.html)
+
+### 步内随机状态重放，不等于跨 minibatch 修正
+
+实现保存当前基点读取之前的 PyTorch CPU 和本地 CUDA 随机状态，并在当前步骤的各次探测前重放。这样可以控制标准 dropout 等随机计算对梯度差的干扰。成功后保留相当于一次基点读取后的随机状态。相关状态读取与设置使用 PyTorch 的 RNG 接口。[PyTorch Docs](https://docs.pytorch.org/docs/2.14/random.html)
+
+**这只是步内探测一致性，不涉及你要求忽略的不同 minibatch 之间的差异。**
+
+### buffers 不随虚拟探测累计推进
+
+实现同时保存和恢复模型的 registered buffers，成功后只保留基点读取对应的状态变化，而不是让 BatchNorm 等状态因为三次探测推进三次。PyTorch 的 `named_buffers()` 接口用于取得这些注册状态。[PyTorch Docs](https://docs.pytorch.org/docs/2.14/generated/torch.nn.Module.html)
+
+当前参考实现不管理 closure 内的任意 Python 副作用、NumPy 随机流或自定义随机生成器。因此，数据增强应在 closure 外完成，closure 内也不应更新日志计数器之外的训练状态。
+
+## 六、边界情况与缓存规则
+
+数值退化只采用明确回退，不引入额外算法机制。
+
+| 情况 | 处理 |
+|---|---|
+| $h_t$ 接近零 | 提交 $g_0$，跳过无意义探测 |
+| 没有历史或历史真实位移接近零 | 忽略历史 |
+| 方法二没有有效历史 | 提交 $2g_0-g_1$ |
+| 方法三没有有效历史 | 退化为方法一 |
+| 重定位合成响应接近零 | 回退到当前响应 $g_0-g_1$ |
+| 当前响应也接近零 | 提交 $g_0$ |
+| 损失或梯度出现非有限值 | 恢复基点与状态，报错，不推进缓存 |
+
+没有加入夹角门控、历史幅值裁剪、QR、Hessian 求逆或最终梯度投影。
+
+第三种方法的缓存更新始终遵守：
+
+$$
+\boxed{
+\text{缓存什么}
+=
+\text{这一轮实际提交了什么。}
+}
+$$
+
+历史位移则保存实际参数差：
+
+$$
+\boxed{
+s_{t+1}=\theta_{t+1}-\theta_t.
+}
+$$
+
+不能用当前步骤的学习率去反推上一轮的位移长度。直接保存真实位移后，学习率发生变化也不会混淆历史尺度。
+
+## 七、断点保存与恢复
+
+驱动器提供独立的 `state_dict()`，其中包含算法配置、缓存来源、历史向量、真实位移和已完成步数。
+
+```python
+torch.save(
+    {
+        "model": model.state_dict(),
+        "driver": driver.state_dict(),
+    },
+    "checkpoint.pt",
+)
+```
+
+恢复：
+
+```python
+checkpoint = torch.load(
+    "checkpoint.pt",
+    map_location=device,
+    weights_only=True,
+)
+
+model.load_state_dict(checkpoint["model"])
+driver.load_state_dict(checkpoint["driver"])
+```
+
+方法三的 checkpoint 明确标记
+
+```python
+source = "final"
+```
+
+方法二则标记
+
+```python
+source = "base"
+```
+
+配置或缓存来源不匹配时直接报错，避免把两种历史定义意外混用。完整续训还应由原训练项目恢复任务编号、epoch、学习率日程、数据采样位置和随机状态。
+
+## 八、已完成的实现核验
+
+本地测试覆盖了多步解析二次函数对照、SGD 与 `torch.optim.SGD` 的逐元素一致性，以及以下关键语义：
+
+**方法三缓存完整 $g_2$，不是 $g_0$、单位向量或 $(g_2-g_0)/r$；方法二仍缓存基点 $g_0$；方法三在没有历史时与方法一一致；两个虚拟点都相对原基点构造；更新后没有额外第四次梯度读取；异常时恢复参数、buffers、RNG 和旧缓存；断点恢复后继续得到相同更新。**
+
+合成训练示例中，四组各执行 8 次真实更新，对应新梯度读取次数分别为：
+
+$$
+\boxed{
+8,\quad24,\quad16,\quad24,
+}
+$$
+
+与 SGD、方法一、方法二、方法三的设计一致。
+
+该参考实现采用 eager 模式、单设备、FP32/FP64 可训练参数。AMP、DDP/FSDP、多设备分片及多参数组不同学习率尚未实现，不应未经适配直接接入这些训练路径。
+
+最终四组实验的区别可以固定为：
+
+$$
+\boxed{
+\begin{aligned}
+\text{SGD：}&\quad g_0\text{ 直接更新};\\
+\text{方法一：}&\quad \text{当前响应决定 }g_2\text{ 的位置};\\
+\text{方法二：}&\quad \text{基点历史响应直接修正更新};\\
+\text{方法三：}&\quad \text{最终更新历史参与 }g_2\text{ 的选点，并继续缓存实际最终更新。}
+\end{aligned}
+}
+$$

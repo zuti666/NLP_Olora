@@ -1,0 +1,109 @@
+--- suite.json
++++ suite.json
+@@ -3,9 +3,14 @@
+   "execution_hostname": "cudahpc40.cvc.uab.es",
+   "allowed_gpus": [
+     0,
+-    1
++    1,
++    2,
++    3,
++    4,
++    5,
++    6
+   ],
+-  "max_parallel": 2,
++  "max_parallel": 7,
+   "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/source",
+   "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/source_manifest.json",
+   "environment": {
+--- common.py
++++ common.py
+@@ -16,7 +16,7 @@
+ from datetime import datetime, timezone
+ 
+ HERE = Path(__file__).resolve().parent
+-ALLOWED_GPUS = {0, 1, 4, 5, 6}
++ALLOWED_GPUS = set(range(7))
+ 
+ 
+ def now():
+@@ -119,8 +119,8 @@
+         raise ValueError("suite.jobs must be nonempty")
+     gpu_list = suite["allowed_gpus"]
+     if not gpu_list or len(set(gpu_list)) != len(gpu_list) or not set(gpu_list) <= ALLOWED_GPUS:
+-        raise ValueError("Only explicitly authorized physical GPUs 0, 1, 4, 5, 6 are permitted")
+-    if not 1 <= int(suite["max_parallel"]) <= min(3, len(gpu_list)):
++        raise ValueError("Only explicitly authorized physical GPUs 0 through 6 are permitted")
++    if not 1 <= int(suite["max_parallel"]) <= len(gpu_list):
+         raise ValueError("max_parallel must be between 1 and number of authorized GPUs")
+     identifiers = [job["id"] for job in suite["jobs"]]
+     if len(set(identifiers)) != len(identifiers):
+--- launch_queue.py
++++ launch_queue.py
+@@ -1,4 +1,4 @@
+-"""Bounded, fail-closed queue restricted to physical GPUs 4, 5, and 6."""
++"""Bounded, fail-closed queue using the authorized physical GPUs in suite.json."""
+ from __future__ import annotations
+ 
+ import argparse
+--- build_campaign.py
++++ build_campaign.py
+@@ -38,7 +38,7 @@
+     })
+     old_suite = json.loads((OLD / 'suite.json').read_text())
+     suite = {k: v for k, v in old_suite.items() if k != 'jobs'}
+-    suite.update(allowed_gpus=[0,1], max_parallel=2, source_root=str(TARGET / 'source'),
++    suite.update(allowed_gpus=list(range(7)), max_parallel=7, source_root=str(TARGET / 'source'),
+                  source_manifest=str(TARGET / 'source_manifest.json'),
+                  final_report_script=str(TARGET / 'finish_analysis.py'),
+                  required_preflight_review='preflight/smoke_review.json',
+--- preflight/smoke_attempt2/suite.json
++++ preflight/smoke_attempt2/suite.json
+@@ -3,9 +3,14 @@
+   "execution_hostname": "cudahpc40.cvc.uab.es",
+   "allowed_gpus": [
+     0,
+-    1
++    1,
++    2,
++    3,
++    4,
++    5,
++    6
+   ],
+-  "max_parallel": 2,
++  "max_parallel": 7,
+   "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/source",
+   "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/source_manifest.json",
+   "environment": {
+--- preflight/smoke_attempt2/common.py
++++ preflight/smoke_attempt2/common.py
+@@ -16,7 +16,7 @@
+ from datetime import datetime, timezone
+ 
+ HERE = Path(__file__).resolve().parent
+-ALLOWED_GPUS = {0, 1, 4, 5, 6}
++ALLOWED_GPUS = set(range(7))
+ 
+ 
+ def now():
+@@ -119,8 +119,8 @@
+         raise ValueError("suite.jobs must be nonempty")
+     gpu_list = suite["allowed_gpus"]
+     if not gpu_list or len(set(gpu_list)) != len(gpu_list) or not set(gpu_list) <= ALLOWED_GPUS:
+-        raise ValueError("Only explicitly authorized physical GPUs 0, 1, 4, 5, 6 are permitted")
+-    if not 1 <= int(suite["max_parallel"]) <= min(3, len(gpu_list)):
++        raise ValueError("Only explicitly authorized physical GPUs 0 through 6 are permitted")
++    if not 1 <= int(suite["max_parallel"]) <= len(gpu_list):
+         raise ValueError("max_parallel must be between 1 and number of authorized GPUs")
+     identifiers = [job["id"] for job in suite["jobs"]]
+     if len(set(identifiers)) != len(identifiers):
+--- preflight/smoke_attempt2/launch_queue.py
++++ preflight/smoke_attempt2/launch_queue.py
+@@ -1,4 +1,4 @@
+-"""Bounded, fail-closed queue restricted to physical GPUs 4, 5, and 6."""
++"""Bounded, fail-closed queue using the authorized physical GPUs in suite.json."""
+ from __future__ import annotations
+ 
+ import argparse

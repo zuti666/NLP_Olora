@@ -1,0 +1,107 @@
+{
+  "reviewed_at_utc": "2026-10-06T15:30:41.823532+00:00",
+  "reviewer": "independent prior8_combinations_audit_1006",
+  "status": "passed",
+  "files_read": [
+    "common.py",
+    "run_queue.py",
+    "job_worker.py",
+    "validate_job.py",
+    "collect_results.py",
+    "smoke_pairing.py",
+    "suite.json",
+    "12configs",
+    "trainer/four_probe_train.py",
+    "trainer/direction_step.py",
+    "trainer/native_lifecycle.py",
+    "trainer/test_three_directions_cpu.py"
+  ],
+  "cpu_tests": {
+    "acceptance_tests_rerun": 8,
+    "passed": 8,
+    "device": "cpu",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "fixture_checks": {
+    "partial_9_cells_no_duplicate": true,
+    "partial_missing_no_means_or_stds": true,
+    "partial_no_paired_claim": true,
+    "full_ddof1_three_seeds": true,
+    "full_pairing_intersection_all_seeds": true,
+    "valid_external_fixture_accepted": true,
+    "invalid_rehashed_trace_rejected_by_original_validator": true,
+    "real_external_pending_not_imported": true,
+    "real_two_completed_external_passed": true,
+    "external_cfg_strict_checks_inspected": true
+  },
+  "suite_checks": {
+    "job_count": 13,
+    "smoke_count": 6,
+    "pairing_count": 1,
+    "formal_count": 6,
+    "seed_direction_grid": true,
+    "explicit_seed_configs_match_jobs": true,
+    "source_files_sha_verified": 190,
+    "configs_sha_verified": 12,
+    "formal_budget": "10tasks/50epochs/2550updates",
+    "smoke_budget": "2tasks/1epoch/1batch per task =2updates",
+    "formula_metadata_g3flags": true,
+    "no_seed2_new_jobs": true
+  },
+  "queue_checks": {
+    "only_GPU_2_3_4_5_6": true,
+    "idle_check": "memory<500MiB and util<5%; before and after shared index/UUID locks",
+    "locks": "/tmp/olora_gamfs_gpu_locks index+UUID flock inherited controller→worker→trainer",
+    "formal_depends_on_pairing": true,
+    "pairing_depends_on_all_six_smokes": true,
+    "unknown_launch_not_retried": true,
+    "no_old_queues_modified": true,
+    "external_seed2_pending_does_not_duplicate": true
+  },
+  "protocol_checks": {
+    "all_three_same_positive_four_probe_geometry": true,
+    "g3_computed_all_three": true,
+    "g3_final_used_only_d32": true,
+    "no_final_normalization_or_matching_or_projection": true,
+    "mean_half_once_original_lr": true,
+    "FP32_FP64_old_executor_equivalence_cpu": true,
+    "seed0_1_config_and_controller_supported": true,
+    "epoch_input_pairing_within_seed_only": true,
+    "EWC_Fisher_weightmerge_HVP_disabled_and_forbiddenwork_guards": true
+  },
+  "findings": [
+    {
+      "id": "external_strict_validation_gap",
+      "severity": "medium",
+      "blocks": "full automatic external result acceptance",
+      "path": "collect_results.py:check_external",
+      "detail": "Pending Mean seed2 import checks old controller completed receipt and some summary counters/hash, but does not re-execute frozen old validate_job; does not read effective_config to verify rank10, native backend, skip Fisher or selected flags; pending Mean has no frozen output hash map. This is weaker than requested complete acceptance and current-run validator. Existing completed two have hashed source artifacts but all external validation should be strict.",
+      "fix": "On external completion dynamically load original frozen validate_job.py or execute it via subprocess in original campaign, compare returned summary hash to stored state/receipt; verify original RUN_PINS/source, effective config metadata. Do not modify/cancel original queue.",
+      "status": "resolved",
+      "resolution": "Collector now verifies external RUN_PINS and original source manifest/190 files, invokes old frozen validate_job in separate original Python interpreter, compares accepted digest, and checks effective config dataset/rank/seed/radius/rho/backend/50epoch/LR plus Fisher/merge switches."
+    }
+  ],
+  "nonblocking_notes": [
+    {
+      "path": "common.py:validate",
+      "detail": "Legacy unused validate loops every job assuming config, thus would fail for pairing; current controller uses load_suite/dry-run explicitly guards training so active path unaffected."
+    },
+    {
+      "path": "trainer/direction_step.py:compose_direction",
+      "detail": "Mean computes sum then half; old half executor computes .5g1+.5g2. Eight acceptance tests establish exact FP32/FP64 equivalence on tested finite toy states. Keep old seed2 lifecycle config and g3 trace evidence, do not rely on stale old compute_g3_probe=false."
+    }
+  ],
+  "limits": "No GPU training or process changes performed. Runtime within-seed pairing and all full endpoints still require strict smoke/formal acceptance. CPU fixtures test mechanics, not ML outcomes. External invalid-step fixture staged only in a temporary directory, rehashed summaries/receipts to prove semantic old-validator rejection; original campaigns untouched.",
+  "reviewed_file_sha256": {
+    "common.py": "44e7543fbed6f3aba639a20f639a4e476c79cc3ecf276289d4f9df0915ca3ec4",
+    "run_queue.py": "662299056d26e01c6f46279bab79203fc9cb9088ab041de828d10687d81d36e1",
+    "job_worker.py": "270e0e2a8b5204d8a0dcb9ed61efec0f6ea3d12e6923039d3d145b1749129dff",
+    "validate_job.py": "df7a2749b70e429268710d94cb3b7d8f97a8a8b2d9bf4162040b72c77497b427",
+    "collect_results.py": "176596ce52caf005a5fb6032559453b9f638a8a33394d02a491d1907cf4c1f5e",
+    "smoke_pairing.py": "a6cbd7bdc2307f84a3c4363960925d1e7e71ebd6124412d5d73a73b158f83d56",
+    "suite.json": "6a6c142555580535dc6e7b1b038ed444c18d3b722ae1e3d6ba5742a750f1374a",
+    "trainer/four_probe_train.py": "dfdb74651cc6a9fbb5f4b40cec4d209125bd2a1ce3b8cc82e124668056734d9e",
+    "trainer/direction_step.py": "ae51534a0b9593d978733e4f36727947db438bab95c03ee76bbd959211497053"
+  },
+  "unresolved_findings": []
+}

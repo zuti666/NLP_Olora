@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-06T14:51:12.212668+00:00",
+  "fresh_agent": true,
+  "document": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/ENVIRONMENT.md",
+  "compute_skill": "/home-local/liying/.codex/skills/run-experiment/SKILL.md",
+  "compute_contract": "/home-local/liying/.codex/skills/shared-references/compute-env-contract.md",
+  "provider_ledger": "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md",
+  "exact_command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/suite.json --dry-run",
+  "stdout": "{\"status\": \"valid\", \"jobs\": 5, \"formal\": 2, \"smokes\": 2, \"allowed_gpus\": [0, 1], \"max_parallel\": 2}\n",
+  "exit_code": 0,
+  "execution_route": "exec_command:sandbox_permissions=require_escalated",
+  "host": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "host_identity": {
+    "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+    "execution_route": "exec_command:sandbox_permissions=require_escalated",
+    "host": "cudahpc40.cvc.uab.es",
+    "hostname": "cudahpc40.cvc.uab.es",
+    "observed_at": "2026-10-06T14:51:12.212668+00:00",
+    "pid": 296700,
+    "pid1_comm": "systemd",
+    "pid1_namespace": null,
+    "pid1_namespace_read_error": "[Errno 13] Permission denied: '/proc/1/ns/pid'",
+    "pid_namespace": "pid:[4026531836]",
+    "ppid": 296699
+  },
+  "expected": {
+    "status": "valid",
+    "jobs": 5,
+    "formal": 2,
+    "smokes": 2,
+    "allowed_gpus": [
+      0,
+      1
+    ],
+    "max_parallel": 2
+  },
+  "observed": {
+    "status": "valid",
+    "jobs": 5,
+    "formal": 2,
+    "smokes": 2,
+    "allowed_gpus": [
+      0,
+      1
+    ],
+    "max_parallel": 2
+  },
+  "run_pins": {
+    "exists": true,
+    "files_count": 28,
+    "cpu_gate_passed": true
+  },
+  "divergences": [],
+  "companion_identity_probe": {
+    "initial_exit_code": 1,
+    "initial_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 3, in <module>\nPermissionError: [Errno 13] Permission denied: '/proc/1/ns/pid'\n",
+    "scope": "Only the companion probe was denied /proc/1/ns/pid access. The documented invocation passed its actual host/PID namespace check."
+  },
+  "gpu_claimed": false,
+  "training_launched": false,
+  "code_modified": false
+}

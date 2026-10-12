@@ -1,0 +1,112 @@
+{
+  "status": "passed_prelaunch_queue_design",
+  "at": "2026-10-09T10:39:06.386654+00:00",
+  "scope": "independent read-only safety and training-budget review; CPU fixtures never dispatch training/CUDA; no formal performance conclusion",
+  "allowed_physical_gpus": [
+    5,
+    6,
+    7
+  ],
+  "max_parallel": 2,
+  "gpu7_absence": "fixture independently covers absent7; actual hardware observation deferred to root host preflight",
+  "checks": {
+    "invalid_gpu_sets_rejected": true,
+    "missing7_only_5_6_admitted": true,
+    "busy_gpu_is_skipped": true,
+    "underlock_idle_recheck": true,
+    "index_and_uuid_flocks_held": true,
+    "two_lease_fds_passed_worker": true,
+    "worker_passes_two_fds_to_cuda_witness_and_trainer": true,
+    "worker_pid_starttime_identity": true,
+    "failed_validation_stops_new_admission": true,
+    "cl10_all_four_single200_receipt_dependencies": true,
+    "dependency_summary_hashes_checked_at_admission": true,
+    "source_entities_reverified_on_each_pin_check": true,
+    "source190_currently_matches_manifest": true,
+    "prior_implementation_evidence_currently_matches": true,
+    "trainer11_byteidentical_prior": true,
+    "seven_full_commands_without_smoke_limits": true,
+    "output_paths_fresh_campaign_only": true,
+    "shared_baseline_and_budgets_match_prior_formal_config": true
+  },
+  "source_file_count": 190,
+  "prior_evidence_file_count": 144,
+  "identical_trainer_files": 11,
+  "formal_config_checks": [
+    {
+      "job": "formal_single200_sgd_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2350
+    },
+    {
+      "job": "formal_single200_current_g2_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2350
+    },
+    {
+      "job": "formal_single200_history_fusion_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2350
+    },
+    {
+      "job": "formal_single200_history_g2_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2350
+    },
+    {
+      "job": "formal_cl10_sgd_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2550
+    },
+    {
+      "job": "formal_cl10_current_g2_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2550
+    },
+    {
+      "job": "formal_cl10_history_g2_s2",
+      "status": "passed",
+      "only_prior_config_change": [
+        "outputs_root"
+      ],
+      "budget_steps": 2550
+    }
+  ],
+  "reviewed_files_sha256": {
+    "suite.json": "f15dd095716936654619eca84af5b5ffdbb449cb89abea02955e58b4ed0cf42a",
+    "common.py": "5410e7baf695f1068ff73816fd6829e170a551ca254a709ab957fc8c7ef52da8",
+    "run_queue.py": "01165d4e97a884d7abaffa0bed6f864c37920299d40786a576c7ddc091267f0f",
+    "job_worker.py": "270e0e2a8b5204d8a0dcb9ed61efec0f6ea3d12e6923039d3d145b1749129dff",
+    "validate_job.py": "9f8b7c2a479faa2bf254d2a2b59cffa254656a6d993726e8d1a023ef3c9dd629",
+    "docs/queue_fixture_test.py": "a097bf6015a202163d4dfd920880df1aee98338655dd037bc44529f4ac0dd6c9",
+    "gates/PREVIOUS_IMPLEMENTATION_ACCEPTED.json": "de85b8239bdc1150c8a2d7befd0d044b8a4bd8826e653e847e287aff71dc10ae"
+  },
+  "fixtures_file": "docs/QUEUE_FIXTURE_RESULTS.json",
+  "remaining_prelaunch_requirements": [
+    "Seal RUN_PINS and validate them on the real host.",
+    "Run actual-host queue --dry-run.",
+    "Verify actual physical-GPU identity and idle status before launch.",
+    "Confirm formal traces contain real finite SGD updates before claiming launched training.",
+    "Collector must accept only full verified results and keep reused HRF provenance."
+  ],
+  "unresolved_blockers": [],
+  "nonblocking_limitation": "GPU shared locks protect cooperating queues; unrelated users/processes can still occupy a card after the idle recheck. Queue does not preempt such processes."
+}

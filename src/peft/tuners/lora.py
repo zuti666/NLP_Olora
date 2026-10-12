@@ -86,6 +86,7 @@ class LoraConfig(PeftConfig):
     )
     r_sum: int = field(default=0) # modified. This argument represents the dim of the previous LoRA parameters. 
     save_loranew: bool = field(default=False) # modified. This arguments represents whether modules named of 'loranew_A/B' are saved independently, rather than being combined with "lora_A/B".  
+    save_lora_only: bool = field(default=False) # Keep a fixed shared adapter without concatenating the unused fresh branch (SeqLoRA).
 
     def __post_init__(self):
         self.peft_type = PeftType.LORA
@@ -448,9 +449,18 @@ class LoraLayer:
         # The flag keeps normal training on the cheap low-rank path.
         self.ewclora_register_hook = False
         self.ewclora_delta_grad = None
+        # SeqLoRA-EWC estimates Fisher in the effective cumulative Delta-W
+        # space.  Unlike EWCLoRA's fresh branch, that space is represented by
+        # lora_B @ lora_A once a historical adapter exists (and by the fresh
+        # branch for the very first task, where r_sum == 0).
+        self.seqlora_ewc_register_hook = False
+        self.seqlora_ewc_delta_grad = None
 
     def _save_ewclora_delta_grad(self, grad):
         self.ewclora_delta_grad = grad.detach()
+
+    def _save_seqlora_ewc_delta_grad(self, grad):
+        self.seqlora_ewc_delta_grad = grad.detach()
 
     def update_layer(self, adapter_name, r, lora_alpha, lora_dropout, init_lora_weights, r_sum): # modified 
         self.r[adapter_name] = r
@@ -589,15 +599,37 @@ class Linear(nn.Linear, LoraLayer):
             x = x.to(self.lora_A[self.active_adapter].weight.dtype)
             x = self.lora_dropout[self.active_adapter](x)
 
-            result += (
-                self.lora_B[self.active_adapter](
-                    self.lora_A[self.active_adapter](x)
-                )
-                * self.scaling[self.active_adapter]
+            seqlora_ewc_hook = bool(
+                getattr(self, "seqlora_ewc_register_hook", False)
+            )
+            has_cumulative_rank = (
+                self.lora_A[self.active_adapter].weight.shape[0] > 0
             )
 
+            if seqlora_ewc_hook and has_cumulative_rank:
+                delta_w_seq = (
+                    self.lora_B[self.active_adapter].weight
+                    @ self.lora_A[self.active_adapter].weight
+                )
+                delta_w_seq.register_hook(self._save_seqlora_ewc_delta_grad)
+                result += F.linear(x, delta_w_seq) * self.scaling[self.active_adapter]
+            else:
+                result += (
+                    self.lora_B[self.active_adapter](
+                        self.lora_A[self.active_adapter](x)
+                    )
+                    * self.scaling[self.active_adapter]
+                )
+
             # modified
-            if getattr(self, "ewclora_register_hook", False):
+            if seqlora_ewc_hook and not has_cumulative_rank:
+                delta_w_seq = (
+                    self.loranew_B[self.active_adapter].weight
+                    @ self.loranew_A[self.active_adapter].weight
+                )
+                delta_w_seq.register_hook(self._save_seqlora_ewc_delta_grad)
+                result += F.linear(x, delta_w_seq) * self.scaling[self.active_adapter]
+            elif getattr(self, "ewclora_register_hook", False):
                 delta_w_new = (
                     self.loranew_B[self.active_adapter].weight
                     @ self.loranew_A[self.active_adapter].weight

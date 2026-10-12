@@ -1,0 +1,140 @@
+{
+  "round": 2,
+  "seed": 0,
+  "initial_sweep": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921",
+  "trials": [
+    {
+      "trial_id": "refine2_01_seed0",
+      "ewc_lambda": 4053.6004644211034,
+      "interval": [
+        3000,
+        10000
+      ],
+      "log_fraction": 0.25
+    },
+    {
+      "trial_id": "refine2_02_seed0",
+      "ewc_lambda": 5477.2255750516615,
+      "interval": [
+        3000,
+        10000
+      ],
+      "log_fraction": 0.5
+    },
+    {
+      "trial_id": "refine2_03_seed0",
+      "ewc_lambda": 7400.828044922852,
+      "interval": [
+        3000,
+        10000
+      ],
+      "log_fraction": 0.75
+    },
+    {
+      "trial_id": "refine2_04_seed0",
+      "ewc_lambda": 185515.71554236667,
+      "interval": [
+        173205.0807568877,
+        227950.70569547775
+      ],
+      "log_fraction": 0.25
+    },
+    {
+      "trial_id": "refine2_05_seed0",
+      "ewc_lambda": 198701.33464215777,
+      "interval": [
+        173205.0807568877,
+        227950.70569547775
+      ],
+      "log_fraction": 0.5
+    },
+    {
+      "trial_id": "refine2_06_seed0",
+      "ewc_lambda": 212824.127989082,
+      "interval": [
+        173205.0807568877,
+        227950.70569547775
+      ],
+      "log_fraction": 0.75
+    }
+  ],
+  "efficacy_thresholds": {
+    "retention_gain_pp": 1.0,
+    "max_new_task_drop_pp": 5.0,
+    "nondecreasing_average_gain_pp": 0.0
+  },
+  "trigger": "Initial14+round1six fully observed:17finite,3numericallydiverged;maxretentiongain0.33pp<predeclared1pp;noqualifiedlambda",
+  "interval_rationale": {
+    "3000..10000": "Unresolved lower adjacent interval of the best-average lambda10000;larger-lambda side already sampled in round1 without further retention benefit.",
+    "173205.0807568877..227950.70569547775": "Nearest finite/divergent boundary now bracketed to ratio1.316>1.10;test interior only,without treating divergence as protection."
+  },
+  "protocol": "Same seed0 SGD to SGD,Task0fullweights/rawF/inputheadRNG/lr0.02/batch128/50epochs;onlylambda changes",
+  "prepared_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/fisher_state_raw.pt",
+  "input_fingerprints": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/report/COMPLETE.json": "15aa8beef331a59a24ffd360ebe16dc3261bd26d9f6854898c01040c8ebd1140",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/report/results.json": "d9385d396b5ff3f5871bdbc9c6afdf75060a66c16f2e4e12bd93524d94324ba7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/PREPARED.json": "76a06376cb87e5a21bcb92c26c9a66890b5fb280d36fa372bc57dcc54f1e3cf1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/fisher_state_raw.pt": "cfdcd801f773d3d33cb48885c84ff31f032a60bf4a4cccbdead5008d67aacd95",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_selected_lambda_followup_20260921/selection_policy.json": "4df79d205965ab7e98b6108a94aca9f64880d62e91afbc092b3f39f5cc7499b3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_selected_lambda_followup_20260921/refinement_policy.json": "11adb41b38f0bd44da3171f498c92f27fc34074ae3df6bb91bd34c2286764232",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/report/COMPLETE.json": "e06a75e2c0eaa76020fc5409cf7b170b3a07e898d5ee426d4a7bc8124a8c1037",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/report/results.json": "68315a41f8e207508d9c5165381e2b10edc91ac264b3b3678f9f1b343c571190",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/report.py": "2fe58a17c769daa15371742354643a14c7ebc139c2ced5ed92d4b177c8edb58e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/refinement_spec.json": "e50e4da13283b4e495da67bf3e4928885ab4f7731b6d31fed5a7b5e3d921bd12",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/run_trial.py": "b02d8a0273de735aaa4918c305689499bc4714a5734f7d130e005f8002152fc1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/train.py": "a03892b30727a5f8b6ea3545de480302d57cb4b9f1c3cd14a664ddff5e71c6c5"
+  },
+  "created_utc": "2026-09-22T07:57:21.208527+00:00",
+  "common_lambda_star": null,
+  "selection_pool": "14initial+6round1+6round2 points; preserve every completed and divergent observation",
+  "parent_task0_retraining": false,
+  "raw_fisher_recomputed_again": false,
+  "tested_lambda_union": [
+    0,
+    1,
+    10,
+    30,
+    60,
+    100,
+    300,
+    1000,
+    3000,
+    10000,
+    13160.740129524924,
+    17320.508075688773,
+    22795.070569547774,
+    30000,
+    100000,
+    131607.40129524923,
+    173205.0807568877,
+    227950.70569547775,
+    300000,
+    1000000
+  ],
+  "resource_policy": {
+    "gpu_priority": [
+      3,
+      4,
+      6,
+      2,
+      5
+    ],
+    "excluded_gpus": [
+      0,
+      1
+    ],
+    "wait_for_all_gpus": false,
+    "poll_seconds": 900,
+    "max_parallel": 5,
+    "authority": "User explicitly superseded original all-GPU gate on2026-09-22."
+  },
+  "prior_refinement_rounds": [
+    {
+      "round": 1,
+      "root": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922",
+      "complete_sha256": "e06a75e2c0eaa76020fc5409cf7b170b3a07e898d5ee426d4a7bc8124a8c1037",
+      "reporter_sha256": "2fe58a17c769daa15371742354643a14c7ebc139c2ced5ed92d4b177c8edb58e",
+      "spec_sha256": "e50e4da13283b4e495da67bf3e4928885ab4f7731b6d31fed5a7b5e3d921bd12"
+    }
+  ]
+}

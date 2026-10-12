@@ -1,0 +1,172 @@
+{
+  "status": "formal_training_verified",
+  "at": "2026-10-11T20:16:52.812668+00:00",
+  "host": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "controller": {
+    "pid": 1637551,
+    "proc_starttime": "55405749"
+  },
+  "controller_live": true,
+  "allowed_gpus": [
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 3,
+  "verified_preflight_jobs": 7,
+  "formal_completed": 0,
+  "formal_running": [
+    {
+      "job": "formal_S_s2",
+      "gpu": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "worker": {
+        "pid": 1654349,
+        "proc_starttime": "55419758"
+      },
+      "actual_runners": [
+        {
+          "pid": 1654381,
+          "proc_starttime": "55419920"
+        }
+      ],
+      "actual_sgd_updates": 68,
+      "last_epoch": 9,
+      "last_batch": 3,
+      "active_method": "sam",
+      "normal_gradient_reads": 2,
+      "all_updates_natural_sgd_exact": true,
+      "witness_passed": true
+    },
+    {
+      "job": "formal_R_s2",
+      "gpu": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "worker": {
+        "pid": 1654378,
+        "proc_starttime": "55419912"
+      },
+      "actual_runners": [
+        {
+          "pid": 1654412,
+          "proc_starttime": "55420073"
+        }
+      ],
+      "actual_sgd_updates": 51,
+      "last_epoch": 7,
+      "last_batch": 2,
+      "active_method": "sf_g2",
+      "normal_gradient_reads": 3,
+      "all_updates_natural_sgd_exact": true,
+      "witness_passed": true
+    },
+    {
+      "job": "formal_S_s0",
+      "gpu": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "worker": {
+        "pid": 1654409,
+        "proc_starttime": "55420065"
+      },
+      "actual_runners": [
+        {
+          "pid": 1654464,
+          "proc_starttime": "55420244"
+        }
+      ],
+      "actual_sgd_updates": 69,
+      "last_epoch": 9,
+      "last_batch": 4,
+      "active_method": "sam",
+      "normal_gradient_reads": 2,
+      "all_updates_natural_sgd_exact": true,
+      "witness_passed": true
+    }
+  ],
+  "formal_pending": [
+    "formal_R_s0",
+    "formal_S_s1",
+    "formal_R_s1"
+  ],
+  "offline_jobs": 3,
+  "pilot_hvp_gate": {
+    "status": "accepted",
+    "seed": 2,
+    "submitted_training_updates": 0,
+    "completed_combinations": 1,
+    "numerical_gate_passed": true,
+    "state_restoration_passed": true,
+    "final_results_sha256": "3453d8da5fe03f24b58ee2b428c97d1affef0163179665d9fe365380a9890f99",
+    "checkpoint_sha256": {
+      "/data/115-2/users/liying/cache/tmp/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/smoke_R_s2/checkpoints/epoch_001.pt": "df3900b2ac73f01ea223fc2ddacf80667009cd41e42ef9ce669ebf7198ff5284"
+    }
+  },
+  "hardware": {
+    "0": {
+      "index": 0,
+      "uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "memory_used_mb": 8834,
+      "utilization_percent": 91,
+      "compute_pids": [
+        1654234
+      ]
+    },
+    "1": {
+      "index": 1,
+      "uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "memory_used_mb": 10138,
+      "utilization_percent": 96,
+      "compute_pids": [
+        1654235
+      ]
+    },
+    "2": {
+      "index": 2,
+      "uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "memory_used_mb": 9582,
+      "utilization_percent": 96,
+      "compute_pids": [
+        1654236
+      ]
+    },
+    "3": {
+      "index": 3,
+      "uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "memory_used_mb": 10410,
+      "utilization_percent": 93,
+      "compute_pids": [
+        1654237
+      ]
+    },
+    "4": {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 12724,
+      "utilization_percent": 100,
+      "compute_pids": [
+        1654381
+      ]
+    },
+    "5": {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 12728,
+      "utilization_percent": 100,
+      "compute_pids": [
+        1654412
+      ]
+    },
+    "6": {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mb": 12724,
+      "utilization_percent": 99,
+      "compute_pids": [
+        1654464
+      ]
+    }
+  },
+  "execution_pins_unchanged": 51,
+  "full_formal_results_claimed": false
+}

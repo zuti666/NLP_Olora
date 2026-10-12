@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "dataset": "ImageNet-A",
+  "training_seeds": [
+    0
+  ],
+  "method_names": {
+    "sgd": "EWCLoRA",
+    "gam": "FS-EWCLoRA"
+  },
+  "raw_state_count_per_method": 97,
+  "positive_radius_K": 16,
+  "radius_zero_is_one_reused_origin": true,
+  "radii": [
+    0.0,
+    0.5,
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "fixed_Task0_head_classes": 20,
+  "train_evaluation_samples": 1259,
+  "test_evaluation_samples": 307,
+  "raw_Fisher_train_samples": 256,
+  "raw_damage_signed_mean_positive_mean_and_linear_Q95_match_all_report_rows": true,
+  "raw_Fisher_mean_matches_all_report_rows": true,
+  "raw_Fisher_Q95_and_sample_max_recomputed_from_all_raw_states": true,
+  "raw_Fisher_normalization_floor_regularizer": [
+    false,
+    null,
+    null
+  ],
+  "checkpoint_and_coordinate_hashes_match_manifest": true,
+  "checkpoint_weight_files_rehashed": false,
+  "paired_direction_hashes_match_methods_and_radii": true,
+  "shared_data_manifest_hash_matches_methods_and_all_states": true,
+  "all_40_prefix_safe_radii_and_censoring_flags_recomputed": true,
+  "Gmean_method_ties_at_all_sampled_thresholds": true,
+  "sample_max_preserved_in_CSV_but_not_plotted": true,
+  "original_report_CSV_bytes_preserved": true,
+  "point_jitter_displacement_clipping_smoothing": false,
+  "CPU_only_redraw": true,
+  "sources": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_neighborhood_deterministic.csv",
+      "sha256": "552c5a2ea3dc5633f9aaecdebef6ab1e7e7aeece0767ab1cb714f034093be2b0"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_tolerance_deterministic.csv",
+      "sha256": "c60baf481e6bb888a4517b6d9f37b62b60d72fc859f34dff60b26cbbab3b03ba"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic_config_recovery1.json",
+      "sha256": "0869b642c97d0694597dca0c376ea235313377fb38c4c542fef8cdbd98cb2ae3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/neighborhood/states.jsonl",
+      "sha256": "8492a4f5253bd67768b213d740e5b9457c08bef6c6a97d851b800b37eaecf76c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/neighborhood/manifest.json",
+      "sha256": "3d09e91e95999c8084c37a2106d1eb0169d0da14f7d5ad55bf9170cc69794563"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/neighborhood/states.jsonl",
+      "sha256": "e6c2378714e18ecac17626e3b31c346474a06f464720d07f14fa7d2e0d3d58f8"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/neighborhood/manifest.json",
+      "sha256": "1a9f1a3d36f4a288fe295cdee0112a5b97a56125917bb8d3ba4a428e5c95ed5c"
+    }
+  ],
+  "versions": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.3.3",
+    "pandas": "2.3.3"
+  },
+  "axis_scales": {
+    "abc_radius": {
+      "kind": "symlog",
+      "base": 10,
+      "linthresh": 0.5,
+      "linscale": 0.65
+    },
+    "ab_damage": {
+      "kind": "symlog",
+      "base": 10,
+      "linthresh": 0.0001,
+      "linscale": 0.65
+    },
+    "c_Fisher": "linear",
+    "d_epsilon": "log base10",
+    "d_radius": "linear"
+  },
+  "tolerance_interpretation": "Largest sampled radius whose entire sampled prefix meets Gmean <= epsilon; train points at epsilon=.05 are right-censored at rmax=20; connecting lines guide the eye.",
+  "figure_inches": [
+    7.6,
+    6.05
+  ],
+  "plotted_series": {
+    "a": 4,
+    "b": 4,
+    "c": 4,
+    "d": 4
+  },
+  "figure": "Figure_B_neighborhood_merged",
+  "all_plotted_line_coordinates_match_source_rows": true,
+  "text_extents_inside_canvas": true,
+  "axes_titles_empty": true,
+  "rendered_visual_review": "passed subagent view_image inspection after root-requested label refinements; root independent review pending",
+  "outputs": {
+    "pdf": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/figures_redesign_20260920/Figure_B_neighborhood_merged.pdf",
+      "sha256": "ba4b31c2ef9615942e0ed8f829beb11170bfcb72d6cb0d03881cd4f984e2aa0e"
+    },
+    "png": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/figures_redesign_20260920/Figure_B_neighborhood_merged.png",
+      "sha256": "3d35b0edb768f3a5342b3252a40dd24565898368bdb15003e761fde42e0ab3a1"
+    }
+  },
+  "output_format": "vector PDF with embedded text; PNG at 300 dpi",
+  "PNG_pixels": [
+    2280,
+    1815
+  ],
+  "PNG_dpi": 300,
+  "PDF_page_count": 1,
+  "PDF_raster_image_count": 0,
+  "PDF_fonts_embedded": true,
+  "caption_word_count": 213
+}

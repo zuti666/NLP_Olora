@@ -1,0 +1,38 @@
+{
+  "id": "formal_cl10_fixed_both_s2",
+  "kind": "training",
+  "phase": "cl10",
+  "smoke": false,
+  "method": "current_g2",
+  "layout": "cl10",
+  "seed": 2,
+  "history_weight": 0.0,
+  "history_source": null,
+  "radius_variant": "fixed_both",
+  "response_probe_variant": "CurrentG2-FixedBoth",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/trainer/response_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/configs/formal_cl10_fixed_both_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/formal_cl10_fixed_both_s2"
+  ],
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/formal_cl10_fixed_both_s2",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/configs/formal_cl10_fixed_both_s2.json",
+  "config_sha256": "8d5917c464ce7c26e64aabb4648f5df0c2ce824019f84dff0525a209096e73f4",
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "depends_on": [
+    "radius_smoke_pairing"
+  ],
+  "inner_probe_radius_mode": "fixed_l2",
+  "inner_probe_radius": 0.05,
+  "outer_probe_radius_mode": "fixed_l2",
+  "outer_probe_radius": 0.05,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/runtime/jobs/formal_cl10_fixed_both_s2/cuda_witness.json"
+}

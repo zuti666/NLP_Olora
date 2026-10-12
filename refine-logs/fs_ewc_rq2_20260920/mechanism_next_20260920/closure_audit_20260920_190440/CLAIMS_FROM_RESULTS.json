@@ -1,0 +1,225 @@
+{
+  "schema_version": "result-to-claim-closure-v1",
+  "created_utc": "2026-09-20T19:12:31.478316Z",
+  "question": "Are the current execution and mechanism_next artifacts sufficient and closed for exactly one controlled two-task table, one neighborhood figure, one realized-future figure, two primary claims, and the chain shaping -> lower F -> larger radius -> less damage?",
+  "review": {
+    "skill": "result-to-claim",
+    "reviewer_model": "gpt-5.6-sol",
+    "reasoning_effort": "ultra",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "integrity_status": "unavailable",
+    "integrity_note": "No scope-matched EXPERIMENT_AUDIT.json was found; this does not block the provisional judgment.",
+    "evidence_precheck": "verified_for_existence_and_recorded_hashes_only",
+    "confidence": "high"
+  },
+  "scope": {
+    "selected_method": "current visual GAM+EWC implementation",
+    "method_identity_blocker": false,
+    "primary_current_regime": "ImageNet-A, ViT-B/16, Q/V LoRA rank 10, training seed 0",
+    "legacy_regime_kept_separate": "ImageNet-R, fresh K/V LoRA, Adam, seeds 0/1/2, batch-gradient Fisher proxy"
+  },
+  "overall": {
+    "claim_supported": "partial",
+    "full_chain_supported": "no",
+    "narrow_direction_dependent_case_supported": "partial",
+    "what_results_support": "A one-seed, coordinate-specific result: the GAM anchor has lower train256 raw empirical-Fisher and lower sampled train damage; both realized directions yield lower D_test on the GAM anchor at all ten nonzero anchor-matched cells; and the historical GAM-to-GAM chain has lower Task0 damage despite larger displacement, with lower Task0-to-Task9 endpoint-chord directional sensitivity.",
+    "what_results_dont_support": "The current data do not support a split-robust lower-neighborhood-damage claim, a generally larger tolerated radius, a worst-case neighborhood guarantee, a causal mediation chain, an optimizer-trajectory sensitivity claim, or a cross-seed/cross-dataset general claim.",
+    "missing_evidence": [
+      "test307 raw per-example Fisher on the predeclared sparse radii",
+      "a genuine finite sensitivity-directed search and cross-anchor evaluation",
+      "Task1 and Task5 endpoint-chord path sensitivities under the same protocol as Task9",
+      "a predeclared dense loss-only radius grid only if the larger-radius claim is retained",
+      "matching seeds 1/2 only if a cross-seed formal claim is retained"
+    ],
+    "suggested_claim_revision": "In one ImageNet-A seed of the current visual GAM+EWC implementation, the GAM Task0 anchor has lower raw empirical-Fisher and lower sampled train-neighborhood damage in fixed effective-Q/V coordinates, but not lower test mean positive damage or a larger current G-tolerance radius. Along two realized directions it has lower finite-displacement test damage; separately, the historical full GAM-to-GAM sequence reaches Task9 with lower old-task damage and lower endpoint-chord directional sensitivity despite larger displacement. These are direction- and coordinate-dependent descriptive observations, not a complete causal chain.",
+    "next_experiments_needed": "For the narrow case, none; only reporting corrections are required. For the attachment's broad chain, run the small test-raw-Fisher and directed-probe diagnostics, add t1/t5 chords, and either measure the larger-radius arrow with a predeclared loss-only grid or delete that arrow."
+  },
+  "closure_layers": {
+    "design": {
+      "status": "yes",
+      "reason": "The two claims, A/B/C roles, and one-table/two-figure structure are explicit and coherent."
+    },
+    "implementation": {
+      "status": "partial",
+      "reason": "Existing seed0 measurement/rendering code is implemented, and an 88-job full_rq2 formal plan exists, but mechanism_next follow-ups remain proposed_not_queued; the formal queue has no state, full_rq2 sparse-test omits r=5 by default, its path sample scope differs from existing t9, and bridge_full does not implement sensitivity-directed search."
+    },
+    "execution": {
+      "status": "partial",
+      "reason": "Seed0 A/B/C, the 2x2 realized-direction bridge, all ten task endpoints, and the t9 chord are complete. Test raw Fisher, directed search, t1/t5 chords, and formal matching multi-seed results are absent. At the snapshot the formal queue had no state and zero complete training receipts; two completed micro-smokes are code checks only, while the replacement lambda=0 pilot was still running."
+    },
+    "semantic": {
+      "status": "no_for_full_chain_partial_for_narrow_case",
+      "reason": "Test G reverses at all six nonzero radii and the reported G tolerance radii tie, so the full chain breaks before the larger-radius node."
+    }
+  },
+  "primary_claims": [
+    {
+      "id": "P1_local_neighborhood_and_radius",
+      "claim": "Shaping lowers neighborhood Fisher sensitivity and enlarges the damage-tolerant region.",
+      "claim_supported": "partial",
+      "confidence": "high",
+      "what_results_support": "On train256, GAM/SGD raw-trace ratios are 0.468-0.520 over the measured radii, and train G/Q95 are lower at all six nonzero radii.",
+      "what_results_dont_support": "Test raw Fisher is unmeasured; test G is higher at all six nonzero radii; train and test G prefix-safe radii tie for every reported epsilon, and test Q95 radii also tie.",
+      "suggested_claim_revision": "The seed0 GAM anchor has lower sampled train-neighborhood empirical-gradient sensitivity; no split-robust or larger-radius claim is made."
+    },
+    {
+      "id": "P2_realized_future_direction",
+      "claim": "Lower directional sensitivity allows realized future drift to cause less old-task damage.",
+      "claim_supported": "partial",
+      "confidence": "high",
+      "what_results_support": "At Task9, GAM-to-GAM has drift 1.400472589 versus 1.197584100, test damage 0.034347380 versus 0.260130529, and endpoint-chord S_path 0.014793093 versus 0.368057602. GAM-to-GAM also has greater drift and lower test damage at every Task1-Task9 endpoint.",
+      "what_results_dont_support": "Only the Task9 ambient endpoint chord was integrated; it is not the optimizer path, and the compared full sequences use different future optimizers. Causal mediation is not identified.",
+      "suggested_claim_revision": "Lower endpoint-chord sensitivity is associated with lower realized damage despite larger displacement in this seed0 historical full-sequence comparison."
+    }
+  ],
+  "arrow_status": [
+    {
+      "arrow": "shaping -> lower F",
+      "status": "partial",
+      "narrow_status": "yes_on_train256_seed0",
+      "evidence": "Current ImageNet-A raw trace is 1465.496927 vs 761.900774 at the anchors and 2008.387873 vs 940.412532 after common SGD+EWC continuation."
+    },
+    {
+      "arrow": "lower F -> larger radius",
+      "status": "no",
+      "evidence": "G prefix-safe radii tie on train and test for every reported epsilon; test G is worse for GAM at 6/6 nonzero radii."
+    },
+    {
+      "arrow": "larger radius -> less damage",
+      "status": "no",
+      "evidence": "The larger-radius premise is not observed, and radius was not independently intervened on."
+    },
+    {
+      "arrow": "lower realized-direction/chord sensitivity <-> less realized damage despite larger drift",
+      "status": "partial",
+      "evidence": "GAM anchor D_test is lower in 10/10 nonzero cross-anchor bridge comparisons; Task9 S_path and damage are lower while displacement is larger. Direction effects are strong and the evidence is single-seed association."
+    }
+  ],
+  "evidence_blocks": {
+    "A_current_imageneta": {
+      "status": "complete_negative_or_mixed_control",
+      "sgd": {
+        "a21": 84.36,
+        "a22": 74.8,
+        "D0_test": -0.019245972975083903,
+        "drift": 0.3749495707076054,
+        "raw_trace_t0_train256": 1465.4969269027679,
+        "raw_trace_t1_train256": 2008.3878732628307
+      },
+      "gam_anchor": {
+        "a21": 84.04,
+        "a22": 72.05,
+        "D0_test": -0.013388091220670861,
+        "drift": 0.34987579697360244,
+        "raw_trace_t0_train256": 761.9007743249618,
+        "raw_trace_t1_train256": 940.4125323057578
+      },
+      "interpretation": "The inherited package changes and raw trace is lower, but current class-IL retention/plasticity does not improve. T1 trace exists in CSV and can be added to the rendered table without training."
+    },
+    "A_legacy_imagenetr_separate": {
+      "status": "verified_positive_in_its_own_regime",
+      "n": 3,
+      "control": {
+        "F1_batch_proxy": 19.885229110717773,
+        "a21": 87.94666666666666,
+        "a22": 83.45,
+        "BWT": -2.780000000000001
+      },
+      "task1_shaping": {
+        "F1_batch_proxy": 10.945783615112305,
+        "a21": 91.82333333333334,
+        "a22": 82.56666666666666,
+        "BWT": -1.5199999999999914
+      },
+      "limitations": [
+        "Different dataset, optimizer, parameter lifecycle, and Fisher estimator from current ImageNet-A B/C.",
+        "F2 proxy and endpoint base loss are on the new-task classes, not an old-task endpoint D1.",
+        "All 18 logs have save_ckp=False, so old-task D1 cannot be added from existing checkpoints."
+      ]
+    },
+    "B_random": {
+      "train_raw_trace_ratio_gam_over_sgd_range": [0.4675430145999491, 0.519892],
+      "train_G_lower_nonzero_radii": "6/6",
+      "train_Q95_lower_nonzero_radii": "6/6",
+      "test_G_higher_nonzero_radii": "6/6",
+      "G_tolerance_radius": "ties for both methods at every reported epsilon on train and test",
+      "test_Q95_tolerance_radius": "ties for both methods at every reported epsilon"
+    },
+    "B_bridge": {
+      "gam_anchor_D_test_lower_for_fixed_direction_and_radius": "10/10 nonzero cells",
+      "direction_effect": "strong",
+      "limitation": "The two realized directions are finite probes, not sensitivity-directed raw-Fisher searches or worst-case certificates."
+    },
+    "C": {
+      "all_tasks_checkpoint_coverage": "Task0 through Task9 for both historical full chains",
+      "path_coverage": "Task9 chord only",
+      "sgd_task9": {
+        "drift": 1.197584099887894,
+        "test_damage": 0.2601305286017725,
+        "S_path": 0.3680576024116533,
+        "D_subset": 0.16382227891843115
+      },
+      "gam_task9": {
+        "drift": 1.4004725891407084,
+        "test_damage": 0.03434737973395435,
+        "S_path": 0.014793092786504949,
+        "D_subset": 0.03809727218539649
+      },
+      "limitation": "GAM-to-GAM is distinct from A's GAM-anchor-to-SGD continuation."
+    }
+  },
+  "minimum_remaining_work": {
+    "attachment_full_chain": [
+      "Do not retrain or expand A by default; add existing T1 raw trace to the current table. If the legacy ImageNet-R table requires D1, retrain only that exact pair; otherwise omit D1 with a scope note.",
+      "Run test307 raw per-example Fisher for both anchors at r={0,1,5,10,20} with the existing paired directions.",
+      "Implement and run one fixed-budget sensitivity-directed finite probe per source anchor on an independent train calibration subset, then cross-evaluate both directions on both anchors.",
+      "If and only if the larger-radius wording is retained, run a common predeclared dense loss-only radius grid; remove the arrow if it remains null or negative.",
+      "Compute Task1 and Task5 endpoint chords under the same data/coordinate/integration protocol as Task9.",
+      "Add matching seeds 1/2 only for a formal cross-seed claim after the protocol is frozen."
+    ],
+    "narrow_direction_dependent_case": [
+      "No new training is required.",
+      "Add existing T1 raw trace to the current A table and retain the unfavorable a21/a22 result.",
+      "Retain negative/neutral random-neighborhood and tolerance results in Figure B; remove general larger-radius and worst-case wording.",
+      "Label C's Fisher quantity endpoint-segment sensitivity, show that only Task9 is measured, and keep A GAM-to-SGD separate from C GAM-to-GAM."
+    ],
+    "explicitly_not_required": [
+      "a full four-cell A table",
+      "a large comparison among Fisher estimators",
+      "a promise that additional experiments will produce a positive sign"
+    ]
+  },
+  "dynamic_execution_snapshot": {
+    "snapshot_utc": "2026-09-20T19:12:31.478316Z",
+    "original_workers4_pilot": "superseded and excluded from result comparison",
+    "replacement_workers8_pilot": "running",
+    "replacement_jobs": [
+      "B3_A_sgd_lam0_seed0",
+      "B3_B_gam_lam0_seed0"
+    ],
+    "smoke_queue": "complete: SGD dense forward-only r={0,0.25} with one direction (2 states), and GAM sparse_train r=0 only (1 state); code micro-checks, not new B/C evidence",
+    "formal_plan": "prepared: 88 jobs, 21 training jobs/69 task segments, 54 diagnostic jobs, 12 endpoint jobs, 1 report job; formal queue state absent",
+    "completed_full_rq2_training_receipts": 0,
+    "scientific_result_status": "no completed formal training or full diagnostic evidence at snapshot",
+    "relevance": "These lambda=0 cells are not required to close the narrow direction-dependent case and do not fill the B/C semantic gaps."
+  },
+  "evidence_sources": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/A_two_task.csv",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/A_PAIRED_RNG_CHECK.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_neighborhood_deterministic.csv",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_tolerance_deterministic.csv",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_actual_direction_bridge.csv",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_current_FP32_task_trajectory.csv",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_summary.csv",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/table_revision_20260920/USER_TABLE_PROVENANCE.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/table_revision_20260920/TABLE_REVISION.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/followup_spec.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/diagnostic_full.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/TRAINING_CPU_CHECKS.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/pilot_queue_paired/STATUS.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/closure_audit_20260920_190440/CURRENT_EXECUTION_SNAPSHOT.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/closure_audit_20260920_190440/EVIDENCE_PACKET.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/closure_audit_20260920_190440/evidence_precheck.json"
+  ]
+}

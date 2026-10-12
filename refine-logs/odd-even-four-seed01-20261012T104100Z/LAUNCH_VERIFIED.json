@@ -1,0 +1,496 @@
+{
+  "status": "passed",
+  "verified_at": "2026-10-12T10:58:02.910077+00:00",
+  "local_time": "2026-10-12T12:58:02.910473+02:00",
+  "allowed_gpus": [
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 3,
+  "controller": {
+    "pid": 2345142,
+    "proc_starttime": "60705201",
+    "hostname": "cudahpc40.cvc.uab.es",
+    "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+    "pid_namespace": "pid:[4026531836]"
+  },
+  "smokes_completed": 8,
+  "pairing": "passed",
+  "formal_running": 3,
+  "formal_pending": 5,
+  "formal_completed": 0,
+  "failed": 0,
+  "active": [
+    {
+      "job": "OE01_SAM_s0",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "worker": {
+        "pid": 2388149,
+        "proc_starttime": "60720694",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "runner": {
+        "pid": 2388235,
+        "proc_starttime": "60720873",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "steps_observed": 24,
+      "task": 0,
+      "epoch": 3,
+      "last_loss": 1.0895633697509766,
+      "cuda_witness_passed": true
+    },
+    {
+      "job": "OE02_Backward_s0",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "worker": {
+        "pid": 2388173,
+        "proc_starttime": "60720732",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "runner": {
+        "pid": 2388242,
+        "proc_starttime": "60720907",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "steps_observed": 22,
+      "task": 0,
+      "epoch": 3,
+      "last_loss": 1.0958137512207031,
+      "cuda_witness_passed": true
+    },
+    {
+      "job": "OE03_Central_s0",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "worker": {
+        "pid": 2388191,
+        "proc_starttime": "60720770",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "runner": {
+        "pid": 2388259,
+        "proc_starttime": "60720953",
+        "hostname": "cudahpc40.cvc.uab.es",
+        "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+        "pid_namespace": "pid:[4026531836]"
+      },
+      "steps_observed": 25,
+      "task": 0,
+      "epoch": 3,
+      "last_loss": 1.0833386182785034,
+      "cuda_witness_passed": true
+    }
+  ],
+  "gpu_observation": {
+    "4": {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 14244,
+      "utilization_percent": 100
+    },
+    "5": {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 14244,
+      "utilization_percent": 99
+    },
+    "6": {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mb": 14244,
+      "utilization_percent": 70
+    }
+  },
+  "run_pins_sha256": "3e7357bd903914ceb1287bfa940a7b6f4dab5c6ce70878444b3019ca04300532",
+  "queue_state": {
+    "run_id": "odd-even-four-seed01-20261012T104100Z",
+    "created_at": "2026-10-12T10:54:08.694083+00:00",
+    "jobs": {
+      "smoke_OE01_SAM_s0": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:54:08.944458+00:00",
+        "gpu": 4,
+        "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE01_SAM_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE01_SAM_s0",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2345157,
+          "proc_starttime": "60705240",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:54:54.546582+00:00",
+        "summary_sha256": "25633c120992119cbca7e06fdca45f4f76080d1906c45aeb8b72e42ee6dd8dfd"
+      },
+      "smoke_OE02_Backward_s0": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:54:09.193441+00:00",
+        "gpu": 5,
+        "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE02_Backward_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE02_Backward_s0",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2345171,
+          "proc_starttime": "60705265",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:54:54.763773+00:00",
+        "summary_sha256": "5dba608cf2f8d4652faf3d6b561b7f391189967f436710feb6357539e36a9c6e"
+      },
+      "smoke_OE03_Central_s0": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:54:09.447727+00:00",
+        "gpu": 6,
+        "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE03_Central_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE03_Central_s0",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2345188,
+          "proc_starttime": "60705290",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:54:54.980937+00:00",
+        "summary_sha256": "21000a2b46b0ca51b0d97bf404f2f3ecb1eab2c7c3696a1fe20114ead1b12945"
+      },
+      "smoke_OE04_CE_s0": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:54:55.378429+00:00",
+        "gpu": 4,
+        "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE04_CE_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE04_CE_s0",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2361332,
+          "proc_starttime": "60709883",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:55:41.023715+00:00",
+        "summary_sha256": "5f29f3eb1d91776f9a564474631aaa65233f03e5fddea3f8d40ac58fdda2fc9e"
+      },
+      "smoke_OE01_SAM_s1": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:54:55.655507+00:00",
+        "gpu": 5,
+        "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE01_SAM_s1.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE01_SAM_s1",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2361352,
+          "proc_starttime": "60709911",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:55:41.247935+00:00",
+        "summary_sha256": "8f2d928c60ceeae403fe954cab70e0fe5f7d61bfbd6ecde08def634249224956"
+      },
+      "smoke_OE02_Backward_s1": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:54:55.921869+00:00",
+        "gpu": 6,
+        "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE02_Backward_s1.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE02_Backward_s1",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2361378,
+          "proc_starttime": "60709937",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:55:41.471423+00:00",
+        "summary_sha256": "bc8f0f1281fa7780804c900ffd2de45d914ec3d67c6ea02bebecc3a2a80c8aa5"
+      },
+      "smoke_OE03_Central_s1": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:55:41.850620+00:00",
+        "gpu": 4,
+        "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE03_Central_s1.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE03_Central_s1",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2377357,
+          "proc_starttime": "60714530",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:56:27.203699+00:00",
+        "summary_sha256": "4456f2ffeb39543b15d5312343fffb2cc7cbbce04772694be6afb4da48b07256"
+      },
+      "smoke_OE04_CE_s1": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:55:42.103204+00:00",
+        "gpu": 5,
+        "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/smoke_OE04_CE_s1.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/smoke_OE04_CE_s1",
+          "--max-tasks",
+          "2",
+          "--max-epochs",
+          "1",
+          "--max-batches",
+          "1"
+        ],
+        "process": {
+          "pid": 2377376,
+          "proc_starttime": "60714556",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:56:27.423659+00:00",
+        "summary_sha256": "8328792ed69dbfed7256a839ddade5253ed470fa98650b59796124f897af6c9b"
+      },
+      "two_seed_four_way_smoke_pairing": {
+        "status": "completed",
+        "started_at": "2026-10-12T10:56:27.758324+00:00",
+        "gpu": null,
+        "gpu_uuid": null,
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/verify_pairing.py",
+          "--run-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/two_seed_four_way_smoke_pairing"
+        ],
+        "process": {
+          "pid": 2388048,
+          "proc_starttime": "60719121",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        },
+        "completed_at": "2026-10-12T10:56:42.977814+00:00",
+        "summary_sha256": "45224c0fd2eafb7ab9a18fb41e6ed8661ffc94d127427f362f558a696e8073c5"
+      },
+      "OE01_SAM_s0": {
+        "status": "running",
+        "started_at": "2026-10-12T10:56:43.484255+00:00",
+        "gpu": 4,
+        "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/OE01_SAM_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/OE01_SAM_s0"
+        ],
+        "process": {
+          "pid": 2388149,
+          "proc_starttime": "60720694",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        }
+      },
+      "OE02_Backward_s0": {
+        "status": "running",
+        "started_at": "2026-10-12T10:56:43.869687+00:00",
+        "gpu": 5,
+        "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/OE02_Backward_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/OE02_Backward_s0"
+        ],
+        "process": {
+          "pid": 2388173,
+          "proc_starttime": "60720732",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        }
+      },
+      "OE03_Central_s0": {
+        "status": "running",
+        "started_at": "2026-10-12T10:56:44.251302+00:00",
+        "gpu": 6,
+        "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/trainer/odd_even_train.py",
+          "--source",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+          "--config",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/configs/OE03_Central_s0.json",
+          "--output-dir",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/OE03_Central_s0"
+        ],
+        "process": {
+          "pid": 2388191,
+          "proc_starttime": "60720770",
+          "hostname": "cudahpc40.cvc.uab.es",
+          "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+          "pid_namespace": "pid:[4026531836]"
+        }
+      },
+      "OE04_CE_s0": {
+        "status": "pending"
+      },
+      "OE01_SAM_s1": {
+        "status": "pending"
+      },
+      "OE02_Backward_s1": {
+        "status": "pending"
+      },
+      "OE03_Central_s1": {
+        "status": "pending"
+      },
+      "OE04_CE_s1": {
+        "status": "pending"
+      }
+    },
+    "controller": {
+      "pid": 2345142,
+      "proc_starttime": "60705201",
+      "hostname": "cudahpc40.cvc.uab.es",
+      "boot_id": "6d9b801b-9f83-45ae-bd2d-fdb186c1d8dc",
+      "pid_namespace": "pid:[4026531836]"
+    },
+    "status": "running",
+    "suite_sha256": "638ec6eff030091a1ad97bbe54f3018197eafd61819e1b4ad376be1256d1f243",
+    "updated_at": "2026-10-12T10:57:59.259467+00:00",
+    "paused": false,
+    "counts": {
+      "completed": 9,
+      "running": 3,
+      "pending": 5
+    }
+  }
+}

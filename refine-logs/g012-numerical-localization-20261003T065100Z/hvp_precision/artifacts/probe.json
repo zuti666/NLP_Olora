@@ -1,0 +1,942 @@
+{
+  "status": "failed_exploratory",
+  "exploratory": true,
+  "task": 9,
+  "batch": 0,
+  "response": "hstart",
+  "full_stage2_allowed": false,
+  "criteria": {
+    "relative_l2_max": 0.005,
+    "cosine_min": 0.999,
+    "two_adjacent_required": true
+  },
+  "model_sha256": "6d7001c319533dd18f94dea40ea937dcdef98221da4d9631274889c88f7358d9",
+  "input_sha256": "b9a2e71303af706af0913db92181a4042bf6b26a6b49f19904926201b310bf83",
+  "target_sha256": "c6084d61329bee2ab07a9231de554e0307e3f6e95ec97de3bed71551fbe98808",
+  "data_seed": 270009,
+  "original_gate": {
+    "status": "failed",
+    "hvp": {
+      "backend": "math",
+      "ce": 0.48401781916618347,
+      "ce_forward_count": 1,
+      "first_derivative_passes": 1,
+      "second_derivative_passes": 1,
+      "direction_detached": true,
+      "direction_norm": 0.23469121462739187,
+      "direction_radius_multiplier": 1.0,
+      "gradient_norm": 1.2380823193457977,
+      "hvp_norm": 5.283264962535576,
+      "seconds": 1.92302042292431,
+      "fallback_used": false,
+      "attention_backend_flags": {
+        "flash": false,
+        "math": true,
+        "mem_efficient": false,
+        "cudnn": false,
+        "fused_attn_true_modules": 0
+      },
+      "entry_state_restore": {
+        "trainable_parameters_exact": true,
+        "frozen_versions_exact": true,
+        "gradients_exact": true,
+        "buffers_exact": true,
+        "modes_exact": true,
+        "controls_caches_exact": true,
+        "rng_exact": true
+      },
+      "same_point_gradient": {
+        "first_norm": 1.2380823193457977,
+        "reference_norm": 1.2380823193457977,
+        "relative_l2": 0.0,
+        "cosine": 1.0000000000000002,
+        "norm_ratio": 1.0,
+        "max_abs": 0.0,
+        "degenerate": false
+      },
+      "ordinary_reference_passes": 1,
+      "ordinary_reference_report": {
+        "backend": "math",
+        "ce": 0.48401781916618347,
+        "ce_forward_count": 1,
+        "first_derivative_passes": 1,
+        "second_derivative_passes": 0,
+        "direction_detached": false,
+        "direction_norm": null,
+        "direction_radius_multiplier": 1.0,
+        "gradient_norm": 1.2380823193457977,
+        "hvp_norm": null,
+        "seconds": 0.6559816049411893,
+        "fallback_used": false,
+        "attention_backend_flags": {
+          "flash": false,
+          "math": true,
+          "mem_efficient": false,
+          "cudnn": false,
+          "fused_attn_true_modules": 0
+        },
+        "entry_state_restore": {
+          "trainable_parameters_exact": true,
+          "frozen_versions_exact": true,
+          "gradients_exact": true,
+          "buffers_exact": true,
+          "modes_exact": true,
+          "controls_caches_exact": true,
+          "rng_exact": true
+        }
+      },
+      "hvp_graph_forward_count": 1,
+      "ordinary_reference_forward_count": 1,
+      "total_ce_forward_count": 2,
+      "total_first_derivative_passes": 2,
+      "status": "passed"
+    },
+    "scan": [
+      {
+        "h": 0.1,
+        "central_vs_hvp": {
+          "first_norm": 5.438912815850137,
+          "reference_norm": 5.283264962535576,
+          "relative_l2": 1.319884388079837,
+          "cosine": 0.15430130486347488,
+          "norm_ratio": 1.02946054275496,
+          "max_abs": 1.140217900276184,
+          "degenerate": false
+        },
+        "accepted": false
+      },
+      {
+        "h": 0.03,
+        "central_vs_hvp": {
+          "first_norm": 1.8634049832949373,
+          "reference_norm": 5.283264962535576,
+          "relative_l2": 1.2035513997263103,
+          "cosine": -0.45951158397925745,
+          "norm_ratio": 0.352699513749286,
+          "max_abs": 0.655029833316803,
+          "degenerate": false
+        },
+        "accepted": false
+      },
+      {
+        "h": 0.01,
+        "central_vs_hvp": {
+          "first_norm": 6.460111038710437,
+          "reference_norm": 5.283264962535576,
+          "relative_l2": 2.061755648809326,
+          "cosine": -0.7179389396016641,
+          "norm_ratio": 1.2227497739598625,
+          "max_abs": 1.281372308731079,
+          "degenerate": false
+        },
+        "accepted": false
+      },
+      {
+        "h": 0.003,
+        "central_vs_hvp": {
+          "first_norm": 7.070160589767194,
+          "reference_norm": 5.283264962535576,
+          "relative_l2": 2.1331851081134956,
+          "cosine": -0.6574605407356108,
+          "norm_ratio": 1.3382180602151819,
+          "max_abs": 1.353111743927002,
+          "degenerate": false
+        },
+        "accepted": false
+      },
+      {
+        "h": 0.001,
+        "central_vs_hvp": {
+          "first_norm": 3.385794557525938,
+          "reference_norm": 5.283264962535576,
+          "relative_l2": 0.4512657520154327,
+          "cosine": 0.9417541745199198,
+          "norm_ratio": 0.6408526889215505,
+          "max_abs": 0.2868289351463318,
+          "degenerate": false
+        },
+        "accepted": false
+      }
+    ],
+    "two_adjacent_h_accepted": false,
+    "hvp_near_zero": false,
+    "criteria": {
+      "relative_l2_max": 0.005,
+      "cosine_min": 0.999,
+      "same_point_gradient_relative_max": 2e-05
+    },
+    "note": "Near-zero HVP requires separate absolute-error/float64 review; no automatic pass.",
+    "hvp_vs_finite_sec": {
+      "first_norm": 5.283264962535576,
+      "reference_norm": 0.6039054190579144,
+      "relative_l2": 8.844885649406239,
+      "cosine": -0.03976659904604977,
+      "norm_ratio": 8.74849735704874,
+      "max_abs": 0.6167244911193848,
+      "degenerate": false
+    }
+  },
+  "precisions": {
+    "float32": {
+      "dtype": "torch.float32",
+      "hvp": {
+        "backend": "math",
+        "ce": 0.48401781916618347,
+        "ce_forward_count": 1,
+        "first_derivative_passes": 1,
+        "second_derivative_passes": 1,
+        "direction_detached": true,
+        "direction_norm": 0.23469121462739187,
+        "direction_radius_multiplier": 1.0,
+        "gradient_norm": 1.2380823193457977,
+        "hvp_norm": 5.283264962535576,
+        "seconds": 1.8451351812109351,
+        "fallback_used": false,
+        "attention_backend_flags": {
+          "flash": false,
+          "math": true,
+          "mem_efficient": false,
+          "cudnn": false,
+          "fused_attn_true_modules": 0
+        },
+        "entry_state_restore": {
+          "trainable_parameters_exact": true,
+          "frozen_versions_exact": true,
+          "gradients_exact": true,
+          "buffers_exact": true,
+          "modes_exact": true,
+          "controls_caches_exact": true,
+          "rng_exact": true
+        }
+      },
+      "ordinary_reference": {
+        "backend": "math",
+        "ce": 0.48401781916618347,
+        "ce_forward_count": 1,
+        "first_derivative_passes": 1,
+        "second_derivative_passes": 0,
+        "direction_detached": false,
+        "direction_norm": null,
+        "direction_radius_multiplier": 1.0,
+        "gradient_norm": 1.2380823193457977,
+        "hvp_norm": null,
+        "seconds": 0.6104505809489638,
+        "fallback_used": false,
+        "attention_backend_flags": {
+          "flash": false,
+          "math": true,
+          "mem_efficient": false,
+          "cudnn": false,
+          "fused_attn_true_modules": 0
+        },
+        "entry_state_restore": {
+          "trainable_parameters_exact": true,
+          "frozen_versions_exact": true,
+          "gradients_exact": true,
+          "buffers_exact": true,
+          "modes_exact": true,
+          "controls_caches_exact": true,
+          "rng_exact": true
+        }
+      },
+      "same_point_gradient": {
+        "first_norm": 1.2380823193457977,
+        "reference_norm": 1.2380823193457977,
+        "relative_l2": 0.0,
+        "cosine": 1.0000000000000002,
+        "norm_ratio": 1.0,
+        "max_abs": 0.0,
+        "degenerate": false
+      },
+      "scan": [
+        {
+          "h": 0.001,
+          "central_vs_hvp": {
+            "first_norm": 3.385794557525938,
+            "reference_norm": 5.283264962535576,
+            "relative_l2": 0.4512657520154327,
+            "cosine": 0.9417541745199198,
+            "norm_ratio": 0.6408526889215505,
+            "max_abs": 0.2868289351463318,
+            "degenerate": false
+          },
+          "per_block": {
+            "block_00": {
+              "first_norm": 1.0837739703924765,
+              "reference_norm": 1.4714724094002403,
+              "relative_l2": 0.448878925986495,
+              "cosine": 0.9103406650514093,
+              "norm_ratio": 0.7365234736777794,
+              "max_abs": 0.084476538002491,
+              "degenerate": false
+            },
+            "block_01": {
+              "first_norm": 1.4905527911681118,
+              "reference_norm": 2.1649960132907293,
+              "relative_l2": 0.44169018764295487,
+              "cosine": 0.9287962627029845,
+              "norm_ratio": 0.6884783075893595,
+              "max_abs": 0.11186818778514862,
+              "degenerate": false
+            },
+            "block_02": {
+              "first_norm": 1.7675551329627617,
+              "reference_norm": 2.5993184936564124,
+              "relative_l2": 0.40283305936251457,
+              "cosine": 0.9559717544234381,
+              "norm_ratio": 0.6800071392853344,
+              "max_abs": 0.0801306962966919,
+              "degenerate": false
+            },
+            "block_03": {
+              "first_norm": 1.8677710933189664,
+              "reference_norm": 3.3254120356245616,
+              "relative_l2": 0.47489779233565044,
+              "cosine": 0.9702747979189915,
+              "norm_ratio": 0.5616660652303712,
+              "max_abs": 0.2868289351463318,
+              "degenerate": false
+            },
+            "block_04": {
+              "first_norm": 0.7063918719661451,
+              "reference_norm": 1.3998168230362216,
+              "relative_l2": 0.5672560610430555,
+              "cosine": 0.9243114891718808,
+              "norm_ratio": 0.5046316491853352,
+              "max_abs": 0.10615630447864532,
+              "degenerate": false
+            },
+            "block_05": {
+              "first_norm": 0.32214828811709345,
+              "reference_norm": 0.5965774430024021,
+              "relative_l2": 0.5164620221398107,
+              "cosine": 0.9489553893096487,
+              "norm_ratio": 0.5399940810631627,
+              "max_abs": 0.04453590139746666,
+              "degenerate": false
+            },
+            "block_06": {
+              "first_norm": 0.2449217271997838,
+              "reference_norm": 0.33631284666267286,
+              "relative_l2": 0.3771322312909163,
+              "cosine": 0.9530496443582781,
+              "norm_ratio": 0.7282556394446752,
+              "max_abs": 0.0190773606300354,
+              "degenerate": false
+            },
+            "block_07": {
+              "first_norm": 0.1804069586485885,
+              "reference_norm": 0.1976733454062833,
+              "relative_l2": 0.16364649003246995,
+              "cosine": 0.9895083291928518,
+              "norm_ratio": 0.9126519221789526,
+              "max_abs": 0.005282048135995865,
+              "degenerate": false
+            },
+            "block_08": {
+              "first_norm": 0.15664828131458994,
+              "reference_norm": 0.1659799428936203,
+              "relative_l2": 0.09472621075892666,
+              "cosine": 0.9969207896762982,
+              "norm_ratio": 0.9437783781802407,
+              "max_abs": 0.0014732452109456062,
+              "degenerate": false
+            },
+            "block_09": {
+              "first_norm": 0.10054057466862201,
+              "reference_norm": 0.10569457584531512,
+              "relative_l2": 0.08080498173288703,
+              "cosine": 0.9978177886795133,
+              "norm_ratio": 0.9512368431826054,
+              "max_abs": 0.0006905226036906242,
+              "degenerate": false
+            },
+            "block_10": {
+              "first_norm": 0.1854702867947478,
+              "reference_norm": 0.19598566312504506,
+              "relative_l2": 0.0578939501800481,
+              "cosine": 0.9997501026580988,
+              "norm_ratio": 0.9463461961317644,
+              "max_abs": 0.002426043152809143,
+              "degenerate": false
+            },
+            "block_11": {
+              "first_norm": 0.0636597857782476,
+              "reference_norm": 0.06398974991746934,
+              "relative_l2": 0.009726825144201236,
+              "cosine": 0.9999658129765964,
+              "norm_ratio": 0.9948434844698205,
+              "max_abs": 7.011019624769688e-05,
+              "degenerate": false
+            },
+            "fc": {
+              "first_norm": 0.8282933853469296,
+              "reference_norm": 0.8347630910049131,
+              "relative_l2": 0.011320101830998481,
+              "cosine": 0.9999656957354807,
+              "norm_ratio": 0.9922496505563093,
+              "max_abs": 0.0013017207384109497,
+              "degenerate": false
+            }
+          },
+          "accepted": false,
+          "actual_plus_delta_vs_h_d": {
+            "first_norm": 0.00023469156189045501,
+            "reference_norm": 0.0002346912146273919,
+            "relative_l2": 0.0011375005064127074,
+            "cosine": 0.9999993530483507,
+            "norm_ratio": 1.0000014796594054,
+            "max_abs": 6.3329935073852116e-09,
+            "degenerate": false
+          },
+          "actual_minus_delta_vs_h_d": {
+            "first_norm": 0.00023469155599361018,
+            "reference_norm": 0.0002346912146273919,
+            "relative_l2": 0.0011375014617635874,
+            "cosine": 0.999999353047211,
+            "norm_ratio": 1.0000014545334337,
+            "max_abs": 6.3329935073852116e-09,
+            "degenerate": false
+          },
+          "effective_direction_vs_d": {
+            "first_norm": 0.23469155894179597,
+            "reference_norm": 0.23469121462739187,
+            "relative_l2": 0.0011375000976291834,
+            "cosine": 0.9999993530487893,
+            "norm_ratio": 1.0000014670954116,
+            "max_abs": 6.332993507385254e-06,
+            "degenerate": false
+          },
+          "midpoint_drift_norm": 3.3328592931765955e-10,
+          "nominal_offset_norm": 0.0002346912146273919,
+          "gp_report": {
+            "backend": "math",
+            "ce": 0.4841219186782837,
+            "ce_forward_count": 1,
+            "first_derivative_passes": 1,
+            "second_derivative_passes": 0,
+            "direction_detached": false,
+            "direction_norm": null,
+            "direction_radius_multiplier": 1.0,
+            "gradient_norm": 1.2381391725562145,
+            "hvp_norm": null,
+            "seconds": 0.5978390120435506,
+            "fallback_used": false,
+            "attention_backend_flags": {
+              "flash": false,
+              "math": true,
+              "mem_efficient": false,
+              "cudnn": false,
+              "fused_attn_true_modules": 0
+            },
+            "entry_state_restore": {
+              "trainable_parameters_exact": true,
+              "frozen_versions_exact": true,
+              "gradients_exact": true,
+              "buffers_exact": true,
+              "modes_exact": true,
+              "controls_caches_exact": true,
+              "rng_exact": true
+            }
+          },
+          "gm_report": {
+            "backend": "math",
+            "ce": 0.48391419649124146,
+            "ce_forward_count": 1,
+            "first_derivative_passes": 1,
+            "second_derivative_passes": 0,
+            "direction_detached": false,
+            "direction_norm": null,
+            "direction_radius_multiplier": 1.0,
+            "gradient_norm": 1.2372525302942492,
+            "hvp_norm": null,
+            "seconds": 0.6165542469825596,
+            "fallback_used": false,
+            "attention_backend_flags": {
+              "flash": false,
+              "math": true,
+              "mem_efficient": false,
+              "cudnn": false,
+              "fused_attn_true_modules": 0
+            },
+            "entry_state_restore": {
+              "trainable_parameters_exact": true,
+              "frozen_versions_exact": true,
+              "gradients_exact": true,
+              "buffers_exact": true,
+              "modes_exact": true,
+              "controls_caches_exact": true,
+              "rng_exact": true
+            }
+          },
+          "plus_unchanged_fraction": 0.291579894341934,
+          "tensor_file": "float32_h1e-03.pt"
+        },
+        {
+          "h": 0.0003,
+          "central_vs_hvp": {
+            "first_norm": 5.072326677291127,
+            "reference_norm": 5.283264962535576,
+            "relative_l2": 0.04468425362107144,
+            "cosine": 0.9997903196175514,
+            "norm_ratio": 0.9600742558360703,
+            "max_abs": 0.026943206787109375,
+            "degenerate": false
+          },
+          "per_block": {
+            "block_00": {
+              "first_norm": 1.4179222633779596,
+              "reference_norm": 1.4714724094002403,
+              "relative_l2": 0.043731292786530415,
+              "cosine": 0.9996948798130116,
+              "norm_ratio": 0.9636077811040255,
+              "max_abs": 0.008729696273803711,
+              "degenerate": false
+            },
+            "block_01": {
+              "first_norm": 2.0800944239527195,
+              "reference_norm": 2.1649960132907293,
+              "relative_l2": 0.04766137385246116,
+              "cosine": 0.9996181535170379,
+              "norm_ratio": 0.9607844130812223,
+              "max_abs": 0.014523688703775406,
+              "degenerate": false
+            },
+            "block_02": {
+              "first_norm": 2.501102721111125,
+              "reference_norm": 2.5993184936564124,
+              "relative_l2": 0.04132309919962819,
+              "cosine": 0.9998545662102062,
+              "norm_ratio": 0.9622147986924338,
+              "max_abs": 0.01055079698562622,
+              "degenerate": false
+            },
+            "block_03": {
+              "first_norm": 3.1813873634004897,
+              "reference_norm": 3.3254120356245616,
+              "relative_l2": 0.04536545085611615,
+              "cosine": 0.9999047549151643,
+              "norm_ratio": 0.9566896761420357,
+              "max_abs": 0.026943206787109375,
+              "degenerate": false
+            },
+            "block_04": {
+              "first_norm": 1.3294710038789959,
+              "reference_norm": 1.3998168230362216,
+              "relative_l2": 0.05357976282205018,
+              "cosine": 0.9998181789460199,
+              "norm_ratio": 0.9497464111021007,
+              "max_abs": 0.009590104222297668,
+              "degenerate": false
+            },
+            "block_05": {
+              "first_norm": 0.569540985681384,
+              "reference_norm": 0.5965774430024021,
+              "relative_l2": 0.04823953839759359,
+              "cosine": 0.9998569069466944,
+              "norm_ratio": 0.9546807247941669,
+              "max_abs": 0.00423373281955719,
+              "degenerate": false
+            },
+            "block_06": {
+              "first_norm": 0.3266730517175805,
+              "reference_norm": 0.33631284666267286,
+              "relative_l2": 0.03588177556735926,
+              "cosine": 0.9997601634976663,
+              "norm_ratio": 0.9713368221263303,
+              "max_abs": 0.0017907433211803436,
+              "degenerate": false
+            },
+            "block_07": {
+              "first_norm": 0.19596698387151518,
+              "reference_norm": 0.1976733454062833,
+              "relative_l2": 0.015814506421737252,
+              "cosine": 0.9999114439437561,
+              "norm_ratio": 0.991367771252816,
+              "max_abs": 0.0004494916647672653,
+              "degenerate": false
+            },
+            "block_08": {
+              "first_norm": 0.16507905616263122,
+              "reference_norm": 0.1659799428936203,
+              "relative_l2": 0.010962801285962824,
+              "cosine": 0.999954390820206,
+              "norm_ratio": 0.9945723156949964,
+              "max_abs": 0.00013235118240118027,
+              "degenerate": false
+            },
+            "block_09": {
+              "first_norm": 0.10521362556122235,
+              "reference_norm": 0.10569457584531512,
+              "relative_l2": 0.010483001273361473,
+              "cosine": 0.9999552024669129,
+              "norm_ratio": 0.9954496218916982,
+              "max_abs": 8.749030530452728e-05,
+              "degenerate": false
+            },
+            "block_10": {
+              "first_norm": 0.19495007506721845,
+              "reference_norm": 0.19598566312504506,
+              "relative_l2": 0.0065535143004977845,
+              "cosine": 0.9999924461335142,
+              "norm_ratio": 0.9947160009496926,
+              "max_abs": 0.00022276490926742554,
+              "degenerate": false
+            },
+            "block_11": {
+              "first_norm": 0.06403739874086133,
+              "reference_norm": 0.06398974991746934,
+              "relative_l2": 0.007225344500736689,
+              "cosine": 0.9999741936531596,
+              "norm_ratio": 1.0007446321239486,
+              "max_abs": 5.024950951337814e-05,
+              "degenerate": false
+            },
+            "fc": {
+              "first_norm": 0.8348924709552443,
+              "reference_norm": 0.8347630910049131,
+              "relative_l2": 0.006970447724117713,
+              "cosine": 0.9999757222030313,
+              "norm_ratio": 1.000154990022589,
+              "max_abs": 0.0005041146650910378,
+              "degenerate": false
+            }
+          },
+          "accepted": false,
+          "actual_plus_delta_vs_h_d": {
+            "first_norm": 7.040752075199623e-05,
+            "reference_norm": 7.040736438821758e-05,
+            "relative_l2": 0.0037319475299275,
+            "cosine": 0.9999930363017481,
+            "norm_ratio": 1.0000022208440837,
+            "max_abs": 7.04079866409302e-09,
+            "degenerate": false
+          },
+          "actual_minus_delta_vs_h_d": {
+            "first_norm": 7.040751992995829e-05,
+            "reference_norm": 7.040736438821758e-05,
+            "relative_l2": 0.003731948011742095,
+            "cosine": 0.9999930362998426,
+            "norm_ratio": 1.0000022091686298,
+            "max_abs": 7.04079866409302e-09,
+            "degenerate": false
+          },
+          "effective_direction_vs_d": {
+            "first_norm": 0.23469173446934752,
+            "reference_norm": 0.23469121462739187,
+            "relative_l2": 0.0037319471123076742,
+            "cosine": 0.9999930363032525,
+            "norm_ratio": 1.0000022150038999,
+            "max_abs": 2.346932888031006e-05,
+            "degenerate": false
+          },
+          "midpoint_drift_norm": 1.5609452876178155e-10,
+          "nominal_offset_norm": 7.040736438821758e-05,
+          "gp_report": {
+            "backend": "math",
+            "ce": 0.4840489625930786,
+            "ce_forward_count": 1,
+            "first_derivative_passes": 1,
+            "second_derivative_passes": 0,
+            "direction_detached": false,
+            "direction_norm": null,
+            "direction_radius_multiplier": 1.0,
+            "gradient_norm": 1.2382243701423519,
+            "hvp_norm": null,
+            "seconds": 0.6129209708888084,
+            "fallback_used": false,
+            "attention_backend_flags": {
+              "flash": false,
+              "math": true,
+              "mem_efficient": false,
+              "cudnn": false,
+              "fused_attn_true_modules": 0
+            },
+            "entry_state_restore": {
+              "trainable_parameters_exact": true,
+              "frozen_versions_exact": true,
+              "gradients_exact": true,
+              "buffers_exact": true,
+              "modes_exact": true,
+              "controls_caches_exact": true,
+              "rng_exact": true
+            }
+          },
+          "gm_report": {
+            "backend": "math",
+            "ce": 0.4839864671230316,
+            "ce_forward_count": 1,
+            "first_derivative_passes": 1,
+            "second_derivative_passes": 0,
+            "direction_detached": false,
+            "direction_norm": null,
+            "direction_radius_multiplier": 1.0,
+            "gradient_norm": 1.2378634633115795,
+            "hvp_norm": null,
+            "seconds": 0.6108587579801679,
+            "fallback_used": false,
+            "attention_backend_flags": {
+              "flash": false,
+              "math": true,
+              "mem_efficient": false,
+              "cudnn": false,
+              "fused_attn_true_modules": 0
+            },
+            "entry_state_restore": {
+              "trainable_parameters_exact": true,
+              "frozen_versions_exact": true,
+              "gradients_exact": true,
+              "buffers_exact": true,
+              "modes_exact": true,
+              "controls_caches_exact": true,
+              "rng_exact": true
+            }
+          },
+          "plus_unchanged_fraction": 0.32756297373861115,
+          "tensor_file": "float32_h3e-04.pt"
+        },
+        {
+          "h": 0.0001,
+          "central_vs_hvp": {
+            "first_norm": 5.284185638171867,
+            "reference_norm": 5.283264962535576,
+            "relative_l2": 0.019443588987717322,
+            "cosine": 0.9998110215392216,
+            "norm_ratio": 1.0001742626279053,
+            "max_abs": 0.010130032896995544,
+            "degenerate": false
+          },
+          "per_block": {
+            "block_00": {
+              "first_norm": 1.470839358697662,
+              "reference_norm": 1.4714724094002403,
+              "relative_l2": 0.02668780540220087,
+              "cosine": 0.9996438198298714,
+              "norm_ratio": 0.999569784184512,
+              "max_abs": 0.005873076617717743,
+              "degenerate": false
+            },
+            "block_01": {
+              "first_norm": 2.162153449375719,
+              "reference_norm": 2.1649960132907293,
+              "relative_l2": 0.021195015446555766,
+              "cosine": 0.9997759534333895,
+              "norm_ratio": 0.9986870350349099,
+              "max_abs": 0.00623127818107605,
+              "degenerate": false
+            },
+            "block_02": {
+              "first_norm": 2.606546756763617,
+              "reference_norm": 2.5993184936564124,
+              "relative_l2": 0.015549837452561952,
+              "cosine": 0.9998832923298018,
+              "norm_ratio": 1.0027808301002148,
+              "max_abs": 0.003264397382736206,
+              "degenerate": false
+            },
+            "block_03": {
+              "first_norm": 3.3260215457210434,
+              "reference_norm": 3.3254120356245616,
+              "relative_l2": 0.0200946155637585,
+              "cosine": 0.9997981570054534,
+              "norm_ratio": 1.0001832885940005,
+              "max_abs": 0.010130032896995544,
+              "degenerate": false
+            },
+            "block_04": {
+              "first_norm": 1.3951018573191194,
+              "reference_norm": 1.3998168230362216,
+              "relative_l2": 0.014255147164968486,
+              "cosine": 0.9999037438051908,
+              "norm_ratio": 0.9966317266377215,
+              "max_abs": 0.00287502259016037,
+              "degenerate": false
+            },
+            "block_05": {
+              "first_norm": 0.5965156627786823,
+              "reference_norm": 0.5965774430024021,
+              "relative_l2": 0.009379092313849705,
+              "cosine": 0.9999560171210053,
+              "norm_ratio": 0.9998964422399061,
+              "max_abs": 0.0006672563031315804,
+              "degenerate": false
+            },
+            "block_06": {
+              "first_norm": 0.3360025182756239,
+              "reference_norm": 0.33631284666267286,
+              "relative_l2": 0.01235315059116156,
+              "cosine": 0.9999240554804133,
+              "norm_ratio": 0.9990772627625485,
+              "max_abs": 0.0003372691571712494,
+              "degenerate": false
+            },
+            "block_07": {
+              "first_norm": 0.19678251414990497,
+              "reference_norm": 0.1976733454062833,
+              "relative_l2": 0.01931844398777117,
+              "cosine": 0.999822754733863,
+              "norm_ratio": 0.9954934174127149,
+              "max_abs": 0.0005814284086227417,
+              "degenerate": false
+            },
+            "block_08": {
+              "first_norm": 0.1654559940482589,
+              "reference_norm": 0.1659799428936203,
+              "relative_l2": 0.018766253529342646,
+              "cosine": 0.9998283544073658,
+              "norm_ratio": 0.9968433002432274,
+              "max_abs": 0.00020024459809064865,
+              "degenerate": false
+            },
+            "block_09": {
+              "first_norm": 0.1053940626276897,
+              "reference_norm": 0.10569457584531512,
+              "relative_l2": 0.02342235564998705,
+              "cosine": 0.9997289679811348,
+              "norm_ratio": 0.9971567772970183,
+              "max_abs": 0.000290735624730587,
+              "degenerate": false
+            },
+            "block_10": {
+              "first_norm": 0.1953398518484535,
+              "reference_norm": 0.19598566312504506,
+              "relative_l2": 0.010236536770325705,
+              "cosine": 0.9999528805497067,
+              "norm_ratio": 0.9967048034723871,
+              "max_abs": 0.0004288703203201294,
+              "degenerate": false
+            },
+            "block_11": {
+              "first_norm": 0.0636860933614357,
+              "reference_norm": 0.06398974991746934,
+              "relative_l2": 0.022584539498297394,
+              "cosine": 0.9997550663619975,
+              "norm_ratio": 0.9952546063013955,
+              "max_abs": 9.248394053429365e-05,
+              "degenerate": false
+            },
+            "fc": {
+              "first_norm": 0.8326933613972679,
+              "reference_norm": 0.8347630910049131,
+              "relative_l2": 0.02151282567096312,
+              "cosine": 0.9997711054052919,
+              "norm_ratio": 0.9975205784372263,
+              "max_abs": 0.0015215273015201092,
+              "degenerate": false
+            }
+          },
+          "accepted": false,
+          "actual_plus_delta_vs_h_d": {
+            "first_norm": 2.3469644650515486e-05,
+            "reference_norm": 2.3469121462739187e-05,
+            "relative_l2": 0.010765271806333758,
+            "cosine": 0.9999420560016709,
+            "norm_ratio": 1.0000222926016693,
+            "max_abs": 7.048249244689926e-09,
+            "degenerate": false
+          },
+          "actual_minus_delta_vs_h_d": {
+            "first_norm": 2.3469644527262424e-05,
+            "reference_norm": 2.3469121462739187e-05,
+            "relative_l2": 0.010765271741688197,
+            "cosine": 0.9999420560019453,
+            "norm_ratio": 1.0000222873499576,
+            "max_abs": 7.048249244689926e-09,
+            "degenerate": false
+          },
+          "effective_direction_vs_d": {
+            "first_norm": 0.23469644588595537,
+            "reference_norm": 0.23469121462739187,
+            "relative_l2": 0.010765270612631515,
+            "cosine": 0.9999420560143092,
+            "norm_ratio": 1.000022289963311,
+            "max_abs": 7.048249244689941e-05,
+            "degenerate": false
+          },
+          "midpoint_drift_norm": 1.1735764577766452e-10,
+          "nominal_offset_norm": 2.3469121462739187e-05,
+          "gp_report": {
+            "backend": "math",
+            "ce": 0.4840282201766968,
+            "ce_forward_count": 1,
+            "first_derivative_passes": 1,
+            "second_derivative_passes": 0,
+            "direction_detached": false,
+            "direction_norm": null,
+            "direction_radius_multiplier": 1.0,
+            "gradient_norm": 1.2381392110083922,
+            "hvp_norm": null,
+            "seconds": 0.6025914270430803,
+            "fallback_used": false,
+            "attention_backend_flags": {
+              "flash": false,
+              "math": true,
+              "mem_efficient": false,
+              "cudnn": false,
+              "fused_attn_true_modules": 0
+            },
+            "entry_state_restore": {
+              "trainable_parameters_exact": true,
+              "frozen_versions_exact": true,
+              "gradients_exact": true,
+              "buffers_exact": true,
+              "modes_exact": true,
+              "controls_caches_exact": true,
+              "rng_exact": true
+            }
+          },
+          "gm_report": {
+            "backend": "math",
+            "ce": 0.484007328748703,
+            "ce_forward_count": 1,
+            "first_derivative_passes": 1,
+            "second_derivative_passes": 0,
+            "direction_detached": false,
+            "direction_norm": null,
+            "direction_radius_multiplier": 1.0,
+            "gradient_norm": 1.2380158184023469,
+            "hvp_norm": null,
+            "seconds": 0.6131903538480401,
+            "fallback_used": false,
+            "attention_backend_flags": {
+              "flash": false,
+              "math": true,
+              "mem_efficient": false,
+              "cudnn": false,
+              "fused_attn_true_modules": 0
+            },
+            "entry_state_restore": {
+              "trainable_parameters_exact": true,
+              "frozen_versions_exact": true,
+              "gradients_exact": true,
+              "buffers_exact": true,
+              "modes_exact": true,
+              "controls_caches_exact": true,
+              "rng_exact": true
+            }
+          },
+          "plus_unchanged_fraction": 0.387864635173417,
+          "tensor_file": "float32_h1e-04.pt"
+        }
+      ],
+      "two_adjacent_h_accepted": false
+    }
+  },
+  "optimizer_updates": 0,
+  "d12_norm": 0.23469121462739187,
+  "original_hvp_norm_match": 0.0,
+  "error": "OutOfMemoryError('CUDA out of memory. Tried to allocate 444.00 MiB. GPU 0 has a total capacity of 47.40 GiB of which 270.44 MiB is free. Including non-PyTorch memory, this process has 47.13 GiB memory in use. Of the allocated memory 39.05 GiB is allocated by PyTorch, and 7.52 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)')",
+  "entry_state_restore": {
+    "trainable_parameters_exact": true,
+    "frozen_versions_exact": true,
+    "gradients_exact": true,
+    "buffers_exact": true,
+    "modes_exact": true,
+    "controls_caches_exact": true,
+    "rng_exact": true
+  },
+  "model_unchanged": true,
+  "source_unchanged": true,
+  "checkpoint_unchanged": true,
+  "seconds": 24.175239079864696
+}

@@ -1,0 +1,42 @@
+--- /data/140-1/users/liying/Flatness_CV/optimer_PerturabtionType/gam.py
++++ /data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/gam.py
+@@ -125,8 +125,11 @@
+             for p in group['params']:
+                 if p.grad is None: continue
+-                # update the weighted sum of grads
++                # Save g_3 (gradient at θ̃_{t,3}) before overwriting p.grad.
++                self.state[p]['g_3'] = p.grad.data.detach().clone()
++                # h_minus = g_0 + |β2| * g_2
+                 self.state[p]['pro_m'] = self.state[p]['g_0'] + abs(args.grad_beta_2) * self.state[p]['g_2']
++                # h_plus = β1 * g_1 + β3 * g_3
+                 p.grad.data = args.grad_beta_1 * self.state[p][
+-                    "g_1"] + args.grad_beta_3 * p.grad.data.detach().clone()
++                    "g_1"] + args.grad_beta_3 * self.state[p]['g_3']
+                 inner_prod += torch.sum(
+                     self.state[p]['pro_m'] * p.grad.data
+@@ -140,5 +143,5 @@
+         cosine = inner_prod / (new_grad_norm * old_grad_norm + self.perturb_eps)
+ 
+-        # gradient decomposition
++        # gradient decomposition: h_final = h_plus - γ * h_minus_perp
+         for group in self.param_groups:
+             for p in group['params']:
+@@ -147,4 +150,18 @@
+                         new_grad_norm + self.perturb_eps)
+                 p.grad.data.add_(vertical, alpha=-args.grad_gamma)
++
++        # Squared-Gradient Variation (SGV) proxy:
++        #   s_t = 0.5*(g1² - g0²) + 0.5*(g3² - g2²)
++        #   h_final += λ_s * s_t
++        if getattr(args, 'use_sgv', False):
++            lambda_s = float(getattr(args, 'sgv_lambda', 0.0))
++            if lambda_s != 0.0:
++                for group in self.param_groups:
++                    for p in group['params']:
++                        if p.grad is None: continue
++                        st = self.state[p]
++                        s_t = 0.5 * (st['g_1'].pow(2) - st['g_0'].pow(2)) \
++                            + 0.5 * (st['g_3'].pow(2) - st['g_2'].pow(2))
++                        p.grad.data.add_(s_t, alpha=lambda_s)
+ 
+     @torch.no_grad()

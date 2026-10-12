@@ -1,0 +1,416 @@
+{
+  "status": "passed",
+  "generated_utc": "2026-09-22T04:51:00.236955+00:00",
+  "scope": "Random-direction training loss and accuracy, raw recomputation only; no GPU rerun",
+  "rows": 522,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "methods": [
+    "sgd",
+    "gam"
+  ],
+  "measured_radii": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0,
+    2.25,
+    2.5,
+    2.75,
+    3.0,
+    3.25,
+    3.5,
+    3.75,
+    4.0,
+    4.25,
+    4.5,
+    4.75,
+    5.0,
+    5.25,
+    5.5,
+    5.75,
+    6.0,
+    6.25,
+    6.5,
+    6.75,
+    7.0,
+    7.25,
+    7.5,
+    7.75,
+    8.0,
+    8.25,
+    8.5,
+    8.75,
+    9.0,
+    9.25,
+    9.5,
+    9.75,
+    10.0,
+    10.25,
+    10.5,
+    10.75,
+    11.0,
+    11.25,
+    11.5,
+    11.75,
+    12.0,
+    12.25,
+    12.5,
+    12.75,
+    13.0,
+    13.25,
+    13.5,
+    13.75,
+    14.0,
+    14.25,
+    14.5,
+    14.75,
+    15.0,
+    15.25,
+    15.5,
+    15.75,
+    16.0,
+    16.25,
+    16.5,
+    16.75,
+    17.0,
+    17.25,
+    17.5,
+    17.75,
+    18.0,
+    18.25,
+    18.5,
+    18.75,
+    19.0,
+    19.25,
+    19.5,
+    19.75,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0
+  ],
+  "gradient_direction_count_nonzero": 100,
+  "direction_library_seed": 20260920,
+  "direction_index_seed_formula": "20260920 + 104729 * index",
+  "same_library_sha_across_seeds_methods_radii_and_extensions": true,
+  "unique_direction_hashes": 100,
+  "all_raw_anchor_restorations_passed": true,
+  "same_origin_between_original_and_extension": true,
+  "effective_coordinate_numel": 14155776,
+  "train_samples": 1259,
+  "dataset_root": "/data/115-2/users/liying/datasets/imagenet-a",
+  "definitions": {
+    "D_signed_train": "mean_k (L0(theta+r*u_k)-L0(theta)), where L0 is mean CE over all 1259 old-task training images",
+    "G_positive_train": "mean_k max(L0(theta+r*u_k)-L0(theta), 0); clamp after per-direction dataset-mean CE difference",
+    "train_accuracy_percent": "mean_k accuracy_percent on the same 1259 old-task training images",
+    "negative_directions": "number of per-direction signed dataset-mean CE changes strictly less than zero; no tolerance clipping",
+    "seed_aggregation": "First average the 100 directions within each seed; then average the 3 paired seeds; the same 100 directions are reused across all seeds",
+    "count_warning": "Radius counts describe the measured grid, not independent replicates or probabilities"
+  },
+  "source_counts": {
+    "original_dense_jobs": 6,
+    "extension_dense_jobs": 6,
+    "unique_evaluated_states_including_one_origin_per_seed_method": 51606
+  },
+  "max_absolute_validation_errors": {
+    "D_signed_vs_original_summary": 1.1102230246251565e-16,
+    "G_vs_original_summary": 1.1102230246251565e-16,
+    "G_vs_published": 1.1102230246251565e-16,
+    "accuracy_vs_published": 4.263256414560601e-14
+  },
+  "ordering_counts": {
+    "D_signed_train": {
+      "nonzero_radii": 86,
+      "mean_across_3_seeds": {
+        "FS_lower": 82,
+        "FS_higher": 4,
+        "ties": 0
+      },
+      "per_seed": {
+        "0": {
+          "FS_lower": 77,
+          "FS_higher": 9,
+          "ties": 0
+        },
+        "1": {
+          "FS_lower": 82,
+          "FS_higher": 4,
+          "ties": 0
+        },
+        "2": {
+          "FS_lower": 85,
+          "FS_higher": 1,
+          "ties": 0
+        }
+      },
+      "FS_higher_radii_mean": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    "G_positive_train": {
+      "nonzero_radii": 86,
+      "mean_across_3_seeds": {
+        "FS_lower": 86,
+        "FS_higher": 0,
+        "ties": 0
+      },
+      "per_seed": {
+        "0": {
+          "FS_lower": 86,
+          "FS_higher": 0,
+          "ties": 0
+        },
+        "1": {
+          "FS_lower": 86,
+          "FS_higher": 0,
+          "ties": 0
+        },
+        "2": {
+          "FS_lower": 86,
+          "FS_higher": 0,
+          "ties": 0
+        }
+      },
+      "FS_higher_radii_mean": []
+    }
+  },
+  "selected_radii_mean_across_seeds": [
+    {
+      "radius": 0.25,
+      "method": "sgd",
+      "D_signed_train": -3.514529278787204e-06,
+      "G_positive_train": 2.5741530624707788e-05,
+      "train_accuracy_percent": 97.98808578236695,
+      "negative_direction_evaluations_out_of_300": 159
+    },
+    {
+      "radius": 0.25,
+      "method": "gam",
+      "D_signed_train": -8.119365090436075e-07,
+      "G_positive_train": 1.8707874324020575e-05,
+      "train_accuracy_percent": 99.16070955785014,
+      "negative_direction_evaluations_out_of_300": 148
+    },
+    {
+      "radius": 1.0,
+      "method": "sgd",
+      "D_signed_train": 3.019489668798318e-05,
+      "G_positive_train": 0.00012511511634071156,
+      "train_accuracy_percent": 97.94201747418586,
+      "negative_direction_evaluations_out_of_300": 135
+    },
+    {
+      "radius": 1.0,
+      "method": "gam",
+      "D_signed_train": 3.224504218075618e-05,
+      "G_positive_train": 9.482677830446252e-05,
+      "train_accuracy_percent": 99.14191157002912,
+      "negative_direction_evaluations_out_of_300": 125
+    },
+    {
+      "radius": 20.0,
+      "method": "sgd",
+      "D_signed_train": 0.04678328071745838,
+      "G_positive_train": 0.04678328071745838,
+      "train_accuracy_percent": 96.32856764628012,
+      "negative_direction_evaluations_out_of_300": 0
+    },
+    {
+      "radius": 20.0,
+      "method": "gam",
+      "D_signed_train": 0.03397110804664408,
+      "G_positive_train": 0.03397110804664408,
+      "train_accuracy_percent": 98.16123907863384,
+      "negative_direction_evaluations_out_of_300": 0
+    },
+    {
+      "radius": 50.0,
+      "method": "sgd",
+      "D_signed_train": 0.7630281518079595,
+      "G_positive_train": 0.7630281518079595,
+      "train_accuracy_percent": 72.7940164151443,
+      "negative_direction_evaluations_out_of_300": 0
+    },
+    {
+      "radius": 50.0,
+      "method": "gam",
+      "D_signed_train": 0.6413453943152667,
+      "G_positive_train": 0.6413453943152667,
+      "train_accuracy_percent": 77.7445062218692,
+      "negative_direction_evaluations_out_of_300": 0
+    }
+  ],
+  "source_files": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/sgd/dense/states.jsonl",
+      "sha256": "3f802ed75be23e89ea9302bf42411814991b18c557df9f641f08ca804a66b3da"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/sgd/dense/manifest.json",
+      "sha256": "df910711f304598db2d9f5fc8240c5aac8ffc773a2bbeda2e01178ad92ff9b20"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/sgd/dense/summary.json",
+      "sha256": "060cf457a8f0251d6ae8b000609fafb403f33c89127447bc6e19752362aeff9f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed0/sgd/dense/states.jsonl",
+      "sha256": "9a2fb958c5919f269d8cd011a66298290e241e9f301fe5f0363ae2b908fab984"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed0/sgd/dense/manifest.json",
+      "sha256": "5002d18debb642eedd6bfb2096a6340c18e06958cf7ef35cae122959f968c211"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed0/sgd/dense/summary.json",
+      "sha256": "e354d891e86d712a19c1ec352626744a52a9aa81388d9d0c64d73741440a6249"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/gam/dense/states.jsonl",
+      "sha256": "5a2708b9bd707729359029c394979cc92db05563ba78d9ea191e471f87c386fe"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/gam/dense/manifest.json",
+      "sha256": "cf9436b45c4a2132627643ee313e3b9f71748b9d8aea0afff40db79ce0c24a22"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/gam/dense/summary.json",
+      "sha256": "bb962e49df0f58060758bde396e6de0b07253de403f4fa8519f4eb485fc1b8c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed0/gam/dense/states.jsonl",
+      "sha256": "3b26a733a703433606cd52d4671c32cf9436d471680ed5075b470ee07522ba30"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed0/gam/dense/manifest.json",
+      "sha256": "1856854653caec9275329f3cff308bed4ffa4f0815c15c1de2b29a5c94dcef70"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed0/gam/dense/summary.json",
+      "sha256": "cb942121ff19cce6a7c8fd67f99481c0fef377b2cc7e20b26afcd3c9f8dab99f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/sgd/dense/states.jsonl",
+      "sha256": "a538418a0cf2188e7371c74f7e183c8df1ed9fe5f19ecfd300e8fdfa7eda5f10"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/sgd/dense/manifest.json",
+      "sha256": "d0f7de0cf11d0395f86e718b94601a8cc4db4b65be274b008c7ec1fb0ee456c8"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/sgd/dense/summary.json",
+      "sha256": "be6664e88b0e9abdf38eb289ca677eeb7e7798f66692b2a55c1e456145ccde37"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed1/sgd/dense/states.jsonl",
+      "sha256": "e83ef454071620c0d2998a131e2b9705805c0255cbee575e2c0c32e176c6a96e"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed1/sgd/dense/manifest.json",
+      "sha256": "b556d3b7ccca842cff87b4cdd21dae2b41a877f9f40673b22466782b5d2447e1"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed1/sgd/dense/summary.json",
+      "sha256": "6d655e054e54d7daf3b62549a54c86570cb461fabd5132327f22cfabb13de4b6"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/gam/dense/states.jsonl",
+      "sha256": "0fd6dbc280e16b7521d776aaa45ef3f2da5bdc1e2e358b87b633c9f8c1df50f5"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/gam/dense/manifest.json",
+      "sha256": "ea79cdd974919fca77f5f477c8e5cb451f4f1a8937ae29133936f4797e634cb2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/gam/dense/summary.json",
+      "sha256": "3b63d7707470f7e10bbea89042545719655cea01db6fff3ed5130eff75086a0d"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed1/gam/dense/states.jsonl",
+      "sha256": "ff1030ccc94b582c56bd6ffd7ac3ce5d8274ba5833cd3281ab008f99e309150d"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed1/gam/dense/manifest.json",
+      "sha256": "46ec3b5dc4a8311226b6f26e5de3308a7e71601772b1690f41a2aafbdba5c794"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed1/gam/dense/summary.json",
+      "sha256": "4ce1de85cb1876c22868d3c80c06d041a26b9c60ca39991abfd3713a8a2b57ee"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/sgd/dense/states.jsonl",
+      "sha256": "c59e9d5a1b649ea33857d5fcb9ad478060029b15b46f90c6afd19424c7ef6fb3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/sgd/dense/manifest.json",
+      "sha256": "90a10ee840b65bbeba2fe88072ef8d95d534349dc7e741e0f2d7045d3e91f753"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/sgd/dense/summary.json",
+      "sha256": "36b2dbbef10700a1cb469c901663089300dc03037cb0be3081cd529db7b9c415"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed2/sgd/dense/states.jsonl",
+      "sha256": "962227de11ec7b07986067d4e76f8b28797eb33c9aaf81d52df9329d3a40b167"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed2/sgd/dense/manifest.json",
+      "sha256": "f7b5e7d1c097ad108bed537a1e672a657188ae4ecfa89c29f7e058b9d68c9a42"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed2/sgd/dense/summary.json",
+      "sha256": "bf0c9512e0c950b808bc2cd41395620cec963ddca6c0142b81b8a29ba05eb739"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/gam/dense/states.jsonl",
+      "sha256": "ce2559a29e2e0b37c8788182e375ee5fdf1f3066788550ea889c610d7fa84001"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/gam/dense/manifest.json",
+      "sha256": "f7d53428122383d9d98cfb9a549d0c8542ce53d21fd4851cf4c61af40e8812f5"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/gam/dense/summary.json",
+      "sha256": "20246d248e027e8b9220af5c17314e5042d1d8a6788e3929d2c9dfc9f6976243"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed2/gam/dense/states.jsonl",
+      "sha256": "b26a540e93d80b3d0a32dfbb9ae9435e32fb1a7d400fec3e94bc4a493147f455"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed2/gam/dense/manifest.json",
+      "sha256": "f621e6c59edd7602142e983871f27ccd7c9ea34cfd57ca4c6d7b55c5bfd57733"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/results/seed2/gam/dense/summary.json",
+      "sha256": "85132a36ad6aa5271d365bf522bd287b6f48c5f81b22a23d238f7d6eabccf5be"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/figures/radius50/dense_training_per_seed.csv",
+      "sha256": "e94be3c7ac73ac10db28ad8cda96b1fd16c310c855189e77ca1cbadcd83e5c8c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/radius50_extension_20260921/report/radius50_complete.json",
+      "sha256": "a49aa05b06a630ee2c8e61b076560b694db63563bf4d0486beaa13d2cea55d28"
+    }
+  ],
+  "output_csv": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/direction_comparison_20260922/random_raw_per_seed.csv",
+    "sha256": "d021e0e9b0a686a5eb980abd0c792628370be5b5c7ed3d40cc7422a2ba558340"
+  }
+}

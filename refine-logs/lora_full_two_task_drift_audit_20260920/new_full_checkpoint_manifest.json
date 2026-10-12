@@ -1,0 +1,269 @@
+{
+  "protocol": "ImageNet-R full model SGD/GAM, ncm_empirical EWC, June22/23 historical sequence; not the earlier six-row table",
+  "rows": [
+    {
+      "method": "sgd",
+      "config": {
+        "dataset": "imagenetr",
+        "seed": "0",
+        "model_name": "ewcon_probe",
+        "optimizer_type": "sgd",
+        "use_ewc": "True",
+        "ewc_lambda": "2000",
+        "ewc_gamma": "0.9",
+        "fisher_mode": "ncm_empirical",
+        "ncm_fisher_tau": "16.0",
+        "epochs": "50",
+        "lrate": "0.01",
+        "batch_size": "128",
+        "resume_from_checkpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage1_task0/task0_fm_lam2000_lr0p01_e50/sgd/seed0/checkpoints",
+        "config": "config_Expand/sgd_gam_s1c_fullmodel/base_s1c_fullmodel_imagenetr_e50_lr001.yaml"
+      },
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/trainer_outputs/logs_inc/ewcon_probe/sgd_fm_T10_lr0.01_e50/imagenetr/0/s1c_fm_sgd_T10_e50_lam2000_s0/exp_run/20/s1c_fm_sgd_T10_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "48f112424ac5fd99444c402d0a6d30bf4a504fbf15f81e6e6c38e5e52ed3b2db",
+      "anchor_metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage1_task0/task0_fm_lam2000_lr0p01_e50/trainer_outputs/logs_inc/ewcon_probe/sgd_fm_task0_lr0.01_e50/imagenetr/0/s1c_fm_sgd_task0_e50_lam2000_s0/exp_run/20/s1c_fm_sgd_task0_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "log_path": "/data/140-1/users/liying/CopyFlatCV/logs/sgd_gam_s1c_fullmodel/staged/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/shell/sgd_T10_seed0.log",
+      "log_sha256": "6b7f08abdee2b9dfe6c012a23ee355134cc8a2c9663ae1e7e486bf8ae0660a18",
+      "anchor_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage1_task0/task0_fm_lam2000_lr0p01_e50/sgd/seed0/checkpoints/task_00.pt",
+      "anchor_sha256": "3a2e658f930490dfc2f5e3ff1db30aab74da220a48d60f56656aa14cfcbff511",
+      "anchor_fisher_mass": 70.51880628530769,
+      "anchor_accuracy": 92.92,
+      "anchor_params_numel": 85798656,
+      "kv_numel": 14155776,
+      "checkpoints": [
+        {
+          "task": 1,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_01.pt",
+          "sha256": "1b72528c468453bbf678e93fa2d83b7606caf8551ec515dceebe7a55a52fb6ff",
+          "mtime_utc": "2026-06-22T18:32:47.458509+00:00",
+          "logged_save": "2026-06-22 20:32:47,853 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 1 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_01.pt (known_classes=40)",
+          "save_time_delta_sec": 0.394491,
+          "backbone_drift_log_error": -3.568120821029197e-08,
+          "fisher_trace": 121.56207073079494,
+          "fisher_trace_log_error": 5.6062832243242156e-06
+        },
+        {
+          "task": 2,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_02.pt",
+          "sha256": "8e12377d76910be4cdba9e21999eb6b221527fbd14e7b1268d127537b2986455",
+          "mtime_utc": "2026-06-22T18:59:12.685549+00:00",
+          "logged_save": "2026-06-22 20:59:12,958 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 2 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_02.pt (known_classes=60)",
+          "save_time_delta_sec": 0.272451,
+          "backbone_drift_log_error": 1.228099710814945e-08,
+          "fisher_trace": 166.76547080089543,
+          "fisher_trace_log_error": 1.3647575116237931e-05
+        },
+        {
+          "task": 3,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_03.pt",
+          "sha256": "d004b52e7d1b3b0a9be3d0200207077aa3bbee715d040ee9669085dabcdbefcf",
+          "mtime_utc": "2026-06-22T19:34:30.744145+00:00",
+          "logged_save": "2026-06-22 21:34:31,070 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 3 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_03.pt (known_classes=80)",
+          "save_time_delta_sec": 0.325855,
+          "backbone_drift_log_error": 8.220619740484381e-10,
+          "fisher_trace": 211.3520981906641,
+          "fisher_trace_log_error": 1.6330469065906073e-06
+        },
+        {
+          "task": 4,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_04.pt",
+          "sha256": "dfcda5a833bd1fc49f60c64d46def18f782111753689fc70a6148a78d9def87c",
+          "mtime_utc": "2026-06-22T20:17:10.707976+00:00",
+          "logged_save": "2026-06-22 22:17:11,029 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 4 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_04.pt (known_classes=100)",
+          "save_time_delta_sec": 0.321024,
+          "backbone_drift_log_error": 3.921063473910635e-09,
+          "fisher_trace": 291.629331650904,
+          "fisher_trace_log_error": -1.845189729010599e-06
+        },
+        {
+          "task": 5,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_05.pt",
+          "sha256": "e17068660b0029fbc001595c2f5f1113ea31cd0d8155ede78bef1112e2458227",
+          "mtime_utc": "2026-06-22T20:54:12.418618+00:00",
+          "logged_save": "2026-06-22 22:54:12,740 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 5 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_05.pt (known_classes=120)",
+          "save_time_delta_sec": 0.321382,
+          "backbone_drift_log_error": -2.027210133093149e-08,
+          "fisher_trace": 331.2077152378754,
+          "fisher_trace_log_error": 1.2601156640812405e-05
+        },
+        {
+          "task": 6,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_06.pt",
+          "sha256": "00c6163a79c6e0b19aee9e6d05ed99955c175df93bd5851b7f6703ef86cc41ab",
+          "mtime_utc": "2026-06-22T21:33:11.004622+00:00",
+          "logged_save": "2026-06-22 23:33:11,305 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 6 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_06.pt (known_classes=140)",
+          "save_time_delta_sec": 0.300378,
+          "backbone_drift_log_error": -4.220968463641839e-09,
+          "fisher_trace": 365.5726181072419,
+          "fisher_trace_log_error": -1.3728695591908036e-05
+        },
+        {
+          "task": 7,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_07.pt",
+          "sha256": "8b26a251be0fa61aeda2b594018c88a7137ce1a048a44368c81cb0635feadda0",
+          "mtime_utc": "2026-06-22T22:08:31.566660+00:00",
+          "logged_save": "2026-06-23 00:08:31,906 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 7 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_07.pt (known_classes=160)",
+          "save_time_delta_sec": 0.33934,
+          "backbone_drift_log_error": -2.138092369818878e-09,
+          "fisher_trace": 405.4603067280439,
+          "fisher_trace_log_error": 1.0097184542701143e-05
+        },
+        {
+          "task": 8,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_08.pt",
+          "sha256": "c14462e9ddba9b252d9889090849bceb24ec169bc2f9ea680a6cfc8568cfed1b",
+          "mtime_utc": "2026-06-22T22:53:34.270075+00:00",
+          "logged_save": "2026-06-23 00:53:34,612 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 8 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_08.pt (known_classes=180)",
+          "save_time_delta_sec": 0.341925,
+          "backbone_drift_log_error": -2.8728298850921874e-08,
+          "fisher_trace": 429.1417860710759,
+          "fisher_trace_log_error": -2.9114470976310258e-05
+        },
+        {
+          "task": 9,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_09.pt",
+          "sha256": "5bad55913d2a643165d46a42f02e166e4f6069b9ea2720990f0b72444531a008",
+          "mtime_utc": "2026-06-22T23:44:51.618579+00:00",
+          "logged_save": "2026-06-23 01:44:51,863 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 9 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/sgd/T10/seed0/checkpoints/task_09.pt (known_classes=200)",
+          "save_time_delta_sec": 0.244421,
+          "backbone_drift_log_error": 2.7237812005864726e-09,
+          "fisher_trace": 439.24613955430993,
+          "fisher_trace_log_error": -1.5230846315716917e-05
+        }
+      ]
+    },
+    {
+      "method": "gam",
+      "config": {
+        "dataset": "imagenetr",
+        "seed": "0",
+        "model_name": "ewcon_probe",
+        "optimizer_type": "gam",
+        "use_ewc": "True",
+        "ewc_lambda": "2000",
+        "ewc_gamma": "0.9",
+        "fisher_mode": "ncm_empirical",
+        "ncm_fisher_tau": "16.0",
+        "epochs": "50",
+        "lrate": "0.01",
+        "batch_size": "128",
+        "resume_from_checkpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage1_task0/task0_fm_lam2000_lr0p01_e50/gam/seed0/checkpoints",
+        "config": "config_Expand/sgd_gam_s1c_fullmodel/base_s1c_fullmodel_imagenetr_e50_lr001.yaml"
+      },
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/trainer_outputs/logs_inc/ewcon_probe/gam_fm_T10_lr0.01_e50/imagenetr/0/s1c_fm_gam_T10_e50_lam2000_s0/exp_run/20/s1c_fm_gam_T10_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "07d422bef62ded3503ff4c6381b5650f5a9b71faf854851ac268eb997dff29e6",
+      "anchor_metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage1_task0/task0_fm_lam2000_lr0p01_e50/trainer_outputs/logs_inc/ewcon_probe/gam_fm_task0_lr0.01_e50/imagenetr/0/s1c_fm_gam_task0_e50_lam2000_s0/exp_run/20/s1c_fm_gam_task0_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "log_path": "/data/140-1/users/liying/CopyFlatCV/logs/sgd_gam_s1c_fullmodel/staged/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/shell/gam_T10_seed0.log",
+      "log_sha256": "f121c86144877cc3c3088abf65e5dc697bb15fd14d450e0139d3376cc4d72c2d",
+      "anchor_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage1_task0/task0_fm_lam2000_lr0p01_e50/gam/seed0/checkpoints/task_00.pt",
+      "anchor_sha256": "00038c743f9d924ccc8890bc0737c99ffa36aecc7a7dc4f0b3d09cb2a6a5409a",
+      "anchor_fisher_mass": 30.96511549665084,
+      "anchor_accuracy": 93.71,
+      "anchor_params_numel": 85798656,
+      "kv_numel": 14155776,
+      "checkpoints": [
+        {
+          "task": 1,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_01.pt",
+          "sha256": "5b947689dc3f9298f2d187ae2ab6921d5a25da03c88b635ed575598319fa2719",
+          "mtime_utc": "2026-06-22T20:17:17.434098+00:00",
+          "logged_save": "2026-06-22 22:17:17,754 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 1 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_01.pt (known_classes=40)",
+          "save_time_delta_sec": 0.319902,
+          "backbone_drift_log_error": -8.219530833741828e-09,
+          "fisher_trace": 53.24832042108544,
+          "fisher_trace_log_error": -1.1121176868300608e-06
+        },
+        {
+          "task": 2,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_02.pt",
+          "sha256": "9eca7895ee5d9e9094ec589e9ff109db540a4fa65d05666235502fc48917cfe4",
+          "mtime_utc": "2026-06-22T21:47:09.174742+00:00",
+          "logged_save": "2026-06-22 23:47:09,514 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 2 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_02.pt (known_classes=60)",
+          "save_time_delta_sec": 0.339258,
+          "backbone_drift_log_error": 1.458713860813532e-08,
+          "fisher_trace": 68.59017268967845,
+          "fisher_trace_log_error": 8.75713610071216e-07
+        },
+        {
+          "task": 3,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_03.pt",
+          "sha256": "329ed12e2ced87c1859fee048772d9539b42b83fcb0a6e6329f075717716fb98",
+          "mtime_utc": "2026-06-22T23:47:50.789813+00:00",
+          "logged_save": "2026-06-23 01:47:51,051 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 3 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_03.pt (known_classes=80)",
+          "save_time_delta_sec": 0.261187,
+          "backbone_drift_log_error": -9.744409723566605e-09,
+          "fisher_trace": 81.31623022642884,
+          "fisher_trace_log_error": -8.176891469702241e-06
+        },
+        {
+          "task": 4,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_04.pt",
+          "sha256": "decbc68a3a3891262f9d43d46d50da86eaeddc464546be3fd824a5f116414554",
+          "mtime_utc": "2026-06-23T02:16:08.675281+00:00",
+          "logged_save": "2026-06-23 04:16:08,676 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 4 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_04.pt (known_classes=100)",
+          "save_time_delta_sec": 0.000719,
+          "backbone_drift_log_error": -4.7854317841711236e-08,
+          "fisher_trace": 100.47107826615638,
+          "fisher_trace_log_error": 1.3008243513468187e-06
+        },
+        {
+          "task": 5,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_05.pt",
+          "sha256": "7b757a1e0fff0fc6e451fa8b7ece4651d51a50e30b9d85683c4a6f36964cbf13",
+          "mtime_utc": "2026-06-23T04:15:43.842994+00:00",
+          "logged_save": "2026-06-23 06:15:43,844 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 5 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_05.pt (known_classes=120)",
+          "save_time_delta_sec": 0.001006,
+          "backbone_drift_log_error": -3.121640013148408e-08,
+          "fisher_trace": 110.7921176085638,
+          "fisher_trace_log_error": -1.190803776296434e-05
+        },
+        {
+          "task": 6,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_06.pt",
+          "sha256": "a4fb6ef8bcc5e2f446d3c9d33d49b6aaeafdec05d1c24e0126b3642a5680f854",
+          "mtime_utc": "2026-06-23T06:18:47.949900+00:00",
+          "logged_save": "2026-06-23 08:18:47,951 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 6 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_06.pt (known_classes=140)",
+          "save_time_delta_sec": 0.0011,
+          "backbone_drift_log_error": 9.557970415130512e-09,
+          "fisher_trace": 133.3914830461334,
+          "fisher_trace_log_error": 3.553945902012856e-06
+        },
+        {
+          "task": 7,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_07.pt",
+          "sha256": "3e1d6279d750e8db6f55f66d44eb45ccaa5acb65fe08c518461f1cf751800c76",
+          "mtime_utc": "2026-06-23T07:56:05.003496+00:00",
+          "logged_save": "2026-06-23 09:56:05,004 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 7 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_07.pt (known_classes=160)",
+          "save_time_delta_sec": 0.000504,
+          "backbone_drift_log_error": 2.7160626636657526e-08,
+          "fisher_trace": 149.3873802315813,
+          "fisher_trace_log_error": 5.353651602035825e-06
+        },
+        {
+          "task": 8,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_08.pt",
+          "sha256": "fee3e06f42003fefc507c20dd6a89cafa90ae062832145c90176d7a3384f731b",
+          "mtime_utc": "2026-06-23T09:02:29.144805+00:00",
+          "logged_save": "2026-06-23 11:02:29,146 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 8 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_08.pt (known_classes=180)",
+          "save_time_delta_sec": 0.001195,
+          "backbone_drift_log_error": -3.478178545179844e-08,
+          "fisher_trace": 157.44599352595014,
+          "fisher_trace_log_error": -5.619557668978814e-06
+        },
+        {
+          "task": 9,
+          "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_09.pt",
+          "sha256": "aa88d3f2e1416e5c33a9b2e58412207dc5f2de6b44c3dd802ce93ca0a5da344c",
+          "mtime_utc": "2026-06-23T10:18:38.817228+00:00",
+          "logged_save": "2026-06-23 12:18:38,818 [EWCon_Probe.py] => [TaskCheckpoint] Saved task 9 to /data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c_fullmodel/stage2_T/T_from_task0_fm_lam2000_lr0p01_e50/gam/T10/seed0/checkpoints/task_09.pt (known_classes=200)",
+          "save_time_delta_sec": 0.000772,
+          "backbone_drift_log_error": -1.0446538745156886e-08,
+          "fisher_trace": 161.91915206168022,
+          "fisher_trace_log_error": 8.384922409732098e-06
+        }
+      ]
+    }
+  ],
+  "new_head_distance_note": "new_head_vs_zero is zero-padding convention; actual newly initialized head snapshot was not saved, so init-to-end head movement unavailable; old head differences are exact checkpoint-to-checkpoint",
+  "identity_note": "same-run resume paths, Task0 metrics/fisher, all 18 logged step drifts, fisher traces, metadata and save timestamps matched; current SHA256 captured; no historical execution SHA"
+}

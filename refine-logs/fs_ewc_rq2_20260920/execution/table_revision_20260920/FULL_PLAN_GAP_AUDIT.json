@@ -1,0 +1,99 @@
+{
+  "created_utc": "2026-09-20T17:04:37.469600+00:00",
+  "scope": "read-only plan/receipt/code gap audit; no GPU jobs or queue edits",
+  "attachment": "/home-local/liying/.codex/attachments/6b1ad438-55a7-417b-8302-50c431b6c22a/pasted-text.txt",
+  "attachment_sha256": "0dc1316b3f8fa940705041267ff2ec9dd1a0afb4b6bc4d29448eceabb8caa1f9",
+  "campaign_status": "complete",
+  "campaign_updated_utc": "2026-09-20T15:36:08.384510+00:00",
+  "completed_campaign_jobs": 15,
+  "campaign_scope": "reduced seed0 A/B/C, not original full B1/B2/B3",
+  "blocks": [
+    {
+      "block": "B1 paired dense loss",
+      "planned": "seed0/1/2; K100; r=0:.25:20; full train1259/test307",
+      "actual": "seed0 K16 at 0,.5,1,2,5,10,20 only; historical dense is unpaired",
+      "status": "partial",
+      "missing": "paired dense K100 for all 3 seeds"
+    },
+    {
+      "block": "B1 train sparse raw trace",
+      "planned": "6 anchors x 97 states x 256 train samples",
+      "actual": "seed0 2 anchors x97 states x256 completed",
+      "status": "partial",
+      "missing": "4 anchors for seeds1/2, plus full1259 consistency at selected radii/directions"
+    },
+    {
+      "block": "B1 test raw trace",
+      "planned": "6 anchors x49 states x307 test samples; r0/1/10/20",
+      "actual": "no test gradient calls; current test metrics are forward-only loss/accuracy",
+      "status": "missing",
+      "missing": "all 294 states; reuse r0 test trace with B2 when protocol matches"
+    },
+    {
+      "block": "B1 real-direction bridge",
+      "planned": "two anchors x two t9-source directions, fixed radii + both actual drift norms; compare random response at same radii",
+      "actual": "seed0 two anchors x two directions at 0,.25,.5,1,1.5,2",
+      "status": "partial",
+      "missing": "actual-norm radii 1.197584099887894 and 1.4004725891407084; same-radius random comparison; seeds1/2"
+    },
+    {
+      "block": "B2 endpoint loss/drift",
+      "planned": "t0..9 train/test fixed-old-local loss and seen accuracy; displacement norm and square",
+      "actual": "seed0 both histories all10 endpoints reevaluated full FP32; drift saved",
+      "status": "partial",
+      "missing": "seeds1/2 histories; squares are derivable, no new GPU needed"
+    },
+    {
+      "block": "B2 endpoint raw trace",
+      "planned": "all t0..9 on full train1259; test t0/1/5/9",
+      "actual": "t0 and t9 train256 available via path; intermediate trajectory job has no Fisher calls; current t1 continuation trace is a different endpoint",
+      "status": "partial",
+      "missing": "full1259 all endpoints; test307 selected endpoints; seeds1/2"
+    },
+    {
+      "block": "B2 path",
+      "planned": "each method/seed paths to t1,t5,t9, initial9 nodes, full train1259, adaptive16/32 segments",
+      "actual": "seed0 t9 only, 9 nodes converged, train256; code supports escalation to17 nodes only and hardcodes t9",
+      "status": "partial",
+      "missing": "t1/t5; full1259; seed1/2; generic endpoint and32-segment fallback; trace-bound derived from saved nodes as applicable"
+    },
+    {
+      "block": "B3 four cells",
+      "planned": "A off/lambda0, B on/lambda0, C off/lambda2000, D on/lambda2000; futureSGD all; seeds0/1/2",
+      "actual": "C,D seed0 completed and paired; runner/evaluator hardcode lambda2000",
+      "status": "partial",
+      "missing": "seed0 A/B; all4 cells of seeds1/2; add explicit protection control and distinct run identities"
+    },
+    {
+      "block": "M4 full-model replication",
+      "planned": "conditional ImageNet-R full-model B1 from matched anchor source",
+      "actual": "not in completed campaign",
+      "status": "conditional_missing",
+      "missing": "required only if claims include cross-parameterization/dataset robustness"
+    }
+  ],
+  "asset_search": {
+    "root": "/data/140-1/users/liying/CopyFlatCV/outputs_logs",
+    "match_rule": "seed1 or seed2 in path and task_00.pt/task_01.pt/task_09.pt basename",
+    "matches": [],
+    "limitation": "does not establish absence elsewhere on server"
+  },
+  "remaining_training_task50_counts": {
+    "seed0_four_cell_table": 2,
+    "three_seed_four_cell_table_if_nonzero_anchors_missing": 14,
+    "full_three_seed_LoRA_with_existing_seed0_histories_and_current_CD_and_new_C_reuse": 48
+  },
+  "counts_assumptions": [
+    "Task50 is one 50-epoch single-task training segment, not GPU hours",
+    "Nonzero seeds need four Task0 anchors",
+    "FutureSGD C can reuse new full SGD sequence Task1 only after RNG, code, config, checkpoint and precision equality check",
+    "Existing seed0 historical chains retained as historically trained cohort, measured under current shared diagnostic precision",
+    "Common training protocol seed0 retrain if needed is additional, not covered by48"
+  ],
+  "recommended_order": [
+    "minimum complete seed0 B3 A/B plus endpoint metrics",
+    "create seeds1/2 anchors and all paired four-cell branches; sequence jobs may share C",
+    "finish dense/test-Fisher/full-sample B1 and t1/t5/all-endpoint B2",
+    "conditional full-model replication only if paper scope needs it"
+  ]
+}

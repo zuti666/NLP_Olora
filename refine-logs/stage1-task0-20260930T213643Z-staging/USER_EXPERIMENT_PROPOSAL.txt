@@ -1,0 +1,1211 @@
+可以。既然你希望 **1-task、2-task、3-task 都独立重新训练**，我建议把它们设计成三个严格递进、但研究问题不同的实验阶段。这样不会把 10-task 的历史轨迹直接拿来解释机制。
+
+整体结构建议固定为：
+
+$$
+\boxed{
+\text{Task 0: identify the useful update}
+\rightarrow
+\text{2 tasks: identify why forgetting changes}
+\rightarrow
+\text{3 tasks: test whether the effect persists}
+\rightarrow
+\text{10 tasks: full-scale validation}.
+}
+$$
+
+其中最重要的一点是，后面的 2-task 和 3-task **不要继续比较一大堆 $g_1,g_3,r,\beta$ 组合**。Task 0 负责把这些问题解决，然后冻结一个 $G^\star$，后面只研究 $S$ 与 $G^\star$。
+
+---
+
+# 一、三个阶段统一的基础协议
+
+为了让结果可以直接串起来，我建议所有阶段保持完全相同的底层设置，只改变任务数和每个 task 使用的更新规则。
+
+$$
+\boxed{
+\begin{aligned}
+&\text{Dataset: ImageNet-A, class\_shuffle=false, 20 classes/task},\\
+&\text{Model: ViT-B/16 pretrained},\\
+&\text{Trainable: Q/V LoRA rank }10+\text{classifier},\\
+&\text{Epochs: }50\text{ per task},\\
+&\text{Batch size: }128,\\
+&\eta_1=0.04,\qquad \eta_{t>1}=0.02,\\
+&\text{cosine schedule},\\
+&\text{SGD, momentum}=0,\qquad \text{weight decay}=0,\\
+&\rho=0.05,\\
+&\gamma_{\mathrm{GAM}}=0,\\
+&\text{no replay, no EWC, no Fisher, no merging},\\
+&\text{no additional orthogonal correction}.
+\end{aligned}
+}
+$$
+
+主因果实验最好保持完整 GAM probe 流程，因此定义：
+
+$$
+\boxed{
+S:=g_1\text{-only GAM pipeline}
+}
+$$
+
+而不是直接把标准两梯度 SAM 用作 $S$。
+
+原因是这样 $S$ 和后面的 $G^\star$：
+
+$$
+\text{forward/backward count},
+\quad
+\text{probe code},
+\quad
+\text{RNG consumption}
+$$
+
+全部一致，真正变化的主要就是最终更新。
+
+标准 SAM 单独作为 implementation control。
+
+---
+
+# 二、Stage 1：Task 0 单任务实验
+
+这里从同一个 pretrained checkpoint 独立训练，只学习代码中的 Task 0，也就是第一个 20-class subset。
+
+## 2.1 Task 0 只回答三个问题
+
+不要讨论 forgetting。
+
+核心问题是：
+
+$$
+\boxed{
+Q_{1.1}:
+g_3\text{ 相对 }g_1\text{ 的收益是否真实存在于单任务？}
+}
+$$
+
+$$
+\boxed{
+Q_{1.2}:
+g_1+g_3\text{ 的收益是 scale 还是 direction？}
+}
+$$
+
+$$
+\boxed{
+Q_{1.3}:
+g_3\text{ 的收益来自 probe 更远，还是来自不同的 probe direction？}
+}
+$$
+
+---
+
+# 三、Task 0 的主训练矩阵
+
+我建议分成两个 block，而不是把所有条件混为一张表。
+
+## Block A：update composition
+
+固定：
+
+$$
+r=1.
+$$
+
+比较：
+
+| ID | 最终更新 | 目的 |
+|---|---|---|
+| CE | $g_0$ | 普通优化参考 |
+| S | $g_1$ | SAM-like reference |
+| G | $g_3$ | deeper GAM probe |
+| Mix-Sum | $g_1+g_3$ | 当前最优配置 |
+| Mix-Mean | $\frac12(g_1+g_3)$ | 去除求和导致的 scale confound |
+
+这里第一核心比较：
+
+$$
+\boxed{
+g_1+g_3
+\quad\text{vs}\quad
+\frac12(g_1+g_3)
+}
+$$
+
+因为方向严格相同。
+
+如果二者表现接近：
+
+$$
+\boxed{
+\text{sum 的优势不能主要归因于更新幅值翻倍。}
+}
+$$
+
+如果差异很大，则说明 scale 是重要成分。
+
+---
+
+# 四、Task 0 的 Block B：外半径 $r$ sweep
+
+只使用：
+
+$$
+g_3.
+$$
+
+比较：
+
+$$
+\boxed{
+r\in
+\{0,0.1,0.25,0.5,1.0\}.
+}
+$$
+
+即：
+
+| ID | $r$ | Final update |
+|---|---:|---|
+| G-r0 | $0$ | $g_3$ |
+| G-r01 | $0.1$ | $g_3$ |
+| G-r025 | $0.25$ | $g_3$ |
+| G-r05 | $0.5$ | $g_3$ |
+| G-r1 | $1$ | $g_3$ |
+
+理论 sanity：
+
+$$
+\boxed{
+r=0
+\Longrightarrow
+g_3=g_1.
+}
+$$
+
+所以 G-r0 与 S 应该近似一致。
+
+如果不一致，优先检查实现或 RNG，而不是解释几何。
+
+---
+
+# 五、再加一个 implementation control
+
+单独跑：
+
+$$
+\boxed{
+\text{True SAM},\qquad \rho=0.05
+}
+$$
+
+与：
+
+$$
+S=g_1\text{-only GAM pipeline}
+$$
+
+比较。
+
+这个实验不是为了性能排名，而是确认：
+
+$$
+\boxed{
+\text{标准 SAM 更新}
+\approx
+\text{当前 }g_1\text{-only pipeline}.
+}
+$$
+
+如果两者差异明显，就不能简单把 $g_1$ 称为标准 SAM。
+
+---
+
+# 六、Task 0 的诊断不要再使用 AAA/FAA
+
+单任务没有 CL aggregation 的必要。
+
+主指标应该是：
+
+$$
+\boxed{
+a_{1,1}
+}
+$$
+
+也就是 Task 0 最终 held-out accuracy。
+
+同时记录：
+
+$$
+L_{\mathrm{train}},
+\qquad
+L_{\mathrm{eval}},
+\qquad
+a_{1,1},
+$$
+
+以及训练轨迹。
+
+建议保存：
+
+$$
+e\in\{0,10,20,30,40,50\}
+$$
+
+的 checkpoint。
+
+---
+
+# 七、Task 0 最重要的局部机制诊断
+
+在相同 checkpoint、相同 batch 下计算：
+
+$$
+g_0,\qquad
+g_1,\qquad
+g_3.
+$$
+
+然后定义：
+
+$$
+\boxed{
+g_3=ag_1+r_\perp,
+}
+$$
+
+其中：
+
+$$
+a=
+\frac{
+\langle g_3,g_1\rangle
+}{
+\|g_1\|^2
+},
+$$
+
+以及：
+
+$$
+r_\perp=g_3-ag_1.
+$$
+
+报告：
+
+$$
+\cos(g_1,g_3),
+$$
+
+$$
+a,
+$$
+
+$$
+\boxed{
+R_\perp=
+\frac{\|r_\perp\|}
+{\|g_3\|}.
+}
+$$
+
+这里真正的问题是：
+
+$$
+\boxed{
+\text{deeper probe 到底产生了多少 SAM direction 之外的新成分？}
+}
+$$
+
+---
+
+# 八、Task 0 还必须做两个匹配控制
+
+## 8.1 Matched effective update
+
+将各方向实际作用到 LoRA 后得到：
+
+$$
+\Delta W_{\mathrm{eff}}.
+$$
+
+匹配：
+
+$$
+\boxed{
+\|\Delta W_{\mathrm{eff}}\|_F=\delta.
+}
+$$
+
+然后比较：
+
+$$
+g_1,
+\qquad
+g_3,
+\qquad
+g_1+\lambda r_\perp.
+$$
+
+这样去掉最终 step size 的影响。
+
+---
+
+## 8.2 Matched function-space probe
+
+寻找 SAM radius $\rho^\star$，使：
+
+$$
+\boxed{
+D_{\mathrm{KL}}^{\mathrm{SAM}(\rho^\star)}
+\approx
+D_{\mathrm{KL}}^{g_3}.
+}
+$$
+
+然后比较其局部 loss improvement。
+
+如果匹配 probe distance 后 $g_3$ 仍然更有利，才能较有说服力地说：
+
+$$
+\boxed{
+\text{direction matters beyond probe distance}.
+}
+$$
+
+---
+
+# 九、Task 0 怎么确定后续的 $G^\star$
+
+我建议不要简单选 Task 0 accuracy 最高的那个，而预先定义选择逻辑。
+
+候选限制为：
+
+$$
+\boxed{
+G^\star
+\in
+\left\{
+g_3(r^\star),
+\frac12(g_1+g_3(r^\star))
+\right\}.
+}
+$$
+
+暂时不要直接把未经尺度控制的
+
+$$
+g_1+g_3
+$$
+
+作为机制实验的 $G^\star$。
+
+### 情况 A
+
+如果：
+
+$$
+\frac12(g_1+g_3)
+>
+g_3
+>
+g_1
+$$
+
+并且 matched-step 后组合方向仍更好，那么：
+
+$$
+\boxed{
+G^\star=\frac12(g_1+g_3).
+}
+$$
+
+### 情况 B
+
+如果：
+
+$$
+g_1+g_3
+$$
+
+的优势在除以 2 后基本消失，而 $g_3>g_1$ 稳定：
+
+$$
+\boxed{
+G^\star=g_3.
+}
+$$
+
+### 情况 C
+
+如果某个：
+
+$$
+r^\star<1
+$$
+
+稳定优于 $r=1$：
+
+$$
+\boxed{
+G^\star=g_3(r^\star).
+}
+$$
+
+选定后：
+
+$$
+\boxed{
+\text{freeze }G^\star.
+}
+$$
+
+2-task 和 3-task 不再调 $r,\rho,\beta$。
+
+---
+
+# 十、Task 0 的 seed 设计
+
+我建议采用 development + confirmation。
+
+先用：
+
+$$
+\boxed{
+\text{seed}=2
+}
+$$
+
+完成全部 composition 和 radius sweep。
+
+确定 $G^\star$ 后，再用：
+
+$$
+\boxed{
+\text{seed}\in\{0,1,2\}
+}
+$$
+
+重新确认核心三组：
+
+$$
+\text{CE},
+\qquad
+S,
+\qquad
+G^\star.
+$$
+
+必要时加：
+
+$$
+\text{Mix-Sum}
+$$
+
+用于 scale 对照。
+
+这样不会让整个 radius sweep 都乘上三倍算力。
+
+---
+
+# 十一、Stage 2：两个任务实验
+
+然后独立重新从 pretrained checkpoint 开始：
+
+$$
+\boxed{
+\text{Task 0}
+\rightarrow
+\text{Task 1}.
+}
+$$
+
+数学上记：
+
+$$
+T_1,\ T_2.
+$$
+
+这里不再研究哪个 $G$ 最好。
+
+只研究：
+
+$$
+\boxed{
+\text{为什么 }G^\star\text{ 会影响 forgetting？}
+}
+$$
+
+定义：
+
+$$
+S=g_1,
+\qquad
+G=G^\star.
+$$
+
+---
+
+# 十二、2-task 核心是完整 $2\times2$ factorial
+
+$$
+\boxed{
+\begin{array}{c|cc}
+\text{Condition}&T_1&T_2\\
+\hline
+SS&S&S\\
+GS&G&S\\
+SG&S&G\\
+GG&G&G
+\end{array}
+}
+$$
+
+四组全部重新训练。
+
+建议：
+
+$$
+\boxed{
+3\text{ seeds}
+}
+$$
+
+起步。
+
+此外可以加一个：
+
+$$
+CC:
+\quad
+g_0\rightarrow g_0
+$$
+
+作为普通 SeqLoRA/CE reference，但它不参与主要 factorial attribution。
+
+---
+
+# 十三、2-task 应该保存完整矩阵
+
+最终有：
+
+$$
+\begin{array}{c|cc}
+& T_1&T_2\\
+\hline
+\text{after }T_1&a_{1,1}&\\
+\text{after }T_2&a_{2,1}&a_{2,2}
+\end{array}
+$$
+
+核心不是只看：
+
+$$
+A_2
+=
+\frac{a_{2,1}+a_{2,2}}2.
+$$
+
+而是分开看 acquisition 与 retention。
+
+---
+
+# 十四、2-task 的 Formation effect
+
+比较：
+
+$$
+GS
+\quad\text{vs}\quad
+SS.
+$$
+
+两者第二个任务都是 $S$。
+
+定义 Task 1 retention change：
+
+$$
+R_1
+=
+a_{2,1}-a_{1,1}.
+$$
+
+因此 formation effect 定义为：
+
+$$
+\boxed{
+\Delta_{\mathrm{form}}
+=
+R_1^{GS}
+-
+R_1^{SS}.
+}
+$$
+
+如果：
+
+$$
+\Delta_{\mathrm{form}}>0,
+$$
+
+说明 Task 1 使用 $G$ 后：
+
+$$
+\boxed{
+\text{其 solution 对相同的后续学习更耐受。}
+}
+$$
+
+这比单纯比较：
+
+$$
+a_{2,1}^{GS}>a_{2,1}^{SS}
+$$
+
+更严格，因为它自动控制两组 Task 1 初始 acquisition 的差异。
+
+---
+
+# 十五、2-task 的 Continuation effect
+
+比较：
+
+$$
+SG
+\quad\text{vs}\quad
+SS.
+$$
+
+定义：
+
+$$
+\boxed{
+\Delta_{\mathrm{cont}}
+=
+R_1^{SG}
+-
+R_1^{SS}.
+}
+$$
+
+如果：
+
+$$
+\Delta_{\mathrm{cont}}>0,
+$$
+
+则说明：
+
+$$
+\boxed{
+G\text{ 用在新任务学习过程中，对旧任务造成的破坏更小。}
+}
+$$
+
+这和 formation effect 是两个不同结论。
+
+---
+
+# 十六、2-task 还要检查 plasticity
+
+不能只看到：
+
+$$
+a_{2,1}\uparrow
+$$
+
+就宣布方法更好。
+
+同时必须报告：
+
+$$
+\boxed{
+a_{2,2}.
+}
+$$
+
+因为一种极端方法可能仅仅“不学习 Task 2”，自然不会忘 Task 1。
+
+因此理想结果是：
+
+$$
+\boxed{
+a_{2,1}^{G}
+\uparrow
+\qquad
+\text{while}
+\qquad
+a_{2,2}^{G}
+\approx
+a_{2,2}^{S}.
+}
+$$
+
+最后再报告：
+
+$$
+A_2=
+\frac{a_{2,1}+a_{2,2}}2.
+$$
+
+---
+
+# 十七、2-task 可以计算 factorial interaction
+
+因为这是完整 $2\times2$ 设计，可以定义：
+
+$$
+\boxed{
+I_R
+=
+R_1^{GG}
+-
+R_1^{GS}
+-
+R_1^{SG}
++
+R_1^{SS}.
+}
+$$
+
+如果：
+
+$$
+I_R\approx0,
+$$
+
+说明 formation 与 continuation effects 大体可加。
+
+如果明显：
+
+$$
+I_R\neq0,
+$$
+
+说明两种作用之间存在 interaction。
+
+这是非常有价值的分析。
+
+---
+
+# 十八、2-task 建议记录训练中的 forgetting trajectory
+
+Task 2 的 50 epochs 中，每隔例如：
+
+$$
+10\text{ epochs}
+$$
+
+评估一次：
+
+$$
+a_{2,1}(e),
+\qquad
+a_{2,2}(e).
+$$
+
+也就是观察：
+
+$$
+\boxed{
+\text{Task 2 学习过程中旧任务究竟什么时候开始产生差异。}
+}
+$$
+
+这比只看 Task 2 终点更有机制意义。
+
+---
+
+# 十九、Stage 3：三个任务实验
+
+第三阶段重新从 pretrained checkpoint 独立训练：
+
+$$
+\boxed{
+T_1
+\rightarrow
+T_2
+\rightarrow
+T_3.
+}
+$$
+
+这里的问题不再是 formation 是否存在，而是：
+
+$$
+\boxed{
+\text{这种效应是否能跨越多个 subsequent tasks 持续？}
+}
+$$
+
+---
+
+# 二十、3-task 第一轮不要直接做全部 $2^3=8$ 组
+
+推荐核心五组：
+
+$$
+\boxed{
+\begin{array}{c|ccc}
+\text{Condition}
+&T_1&T_2&T_3\\
+\hline
+SSS&S&S&S\\
+GSS&G&S&S\\
+SGS&S&G&S\\
+SSG&S&S&G\\
+GGG&G&G&G
+\end{array}
+}
+$$
+
+全部：
+
+$$
+3\text{ seeds}.
+$$
+
+这五组已经能回答主要机制问题。
+
+如果后续发现明显 interaction，再补：
+
+$$
+GGS,\qquad
+GSG,\qquad
+SGG
+$$
+
+完成完整 $2^3$ factorial。
+
+---
+
+# 二十一、3-task 首先研究 Task 1 formation persistence
+
+比较：
+
+$$
+GSS
+\quad\text{vs}\quad
+SSS.
+$$
+
+记录：
+
+$$
+a_{1,1},
+\qquad
+a_{2,1},
+\qquad
+a_{3,1}.
+$$
+
+定义：
+
+$$
+R_{1\rightarrow2}
+=
+a_{2,1}-a_{1,1},
+$$
+
+$$
+R_{1\rightarrow3}
+=
+a_{3,1}-a_{1,1}.
+$$
+
+那么：
+
+$$
+\boxed{
+\Delta_{\mathrm{persist}}
+=
+R_{1\rightarrow3}^{GSS}
+-
+R_{1\rightarrow3}^{SSS}.
+}
+$$
+
+如果：
+
+$$
+\Delta_{\mathrm{persist}}>0,
+$$
+
+说明：
+
+$$
+\boxed{
+\text{Task 1 的 formation advantage
+不仅抵抗一个未来任务，而且能跨越两个未来任务。}
+}
+$$
+
+这是 3-task 最核心的结论。
+
+---
+
+# 二十二、SGS 是 3-task 中另一个关键条件
+
+$$
+SGS:
+\qquad
+S\rightarrow G\rightarrow S.
+$$
+
+它同时提供两个信息。
+
+## 对过去
+
+在 Task 2 后：
+
+$$
+a_{2,1}^{SGS}
+-
+a_{2,1}^{SSS}
+$$
+
+反映：
+
+$$
+\boxed{
+\text{G 用于 Task 2 时是否减少对 Task 1 的 immediate interference。}
+}
+$$
+
+## 对未来
+
+Task 3 后比较：
+
+$$
+R_{2\rightarrow3}
+=
+a_{3,2}-a_{2,2}.
+$$
+
+然后：
+
+$$
+\boxed{
+R_{2\rightarrow3}^{SGS}
+-
+R_{2\rightarrow3}^{SSS}
+}
+$$
+
+回答：
+
+$$
+\boxed{
+\text{Task 2 使用 G 形成的 solution
+是否更能抵抗 Task 3。}
+}
+$$
+
+所以同一个 Task 2 的 $G$ 同时可以研究：
+
+$$
+\boxed{
+\text{incoming interference}
++
+\text{outgoing robustness}.
+}
+$$
+
+这是 3-task 相对于 2-task 最重要的新增信息。
+
+---
+
+# 二十三、SSG 专门研究最后一次 continuation
+
+比较：
+
+$$
+SSG
+\quad\text{vs}\quad
+SSS.
+$$
+
+前两个任务完全相同。
+
+因此在 Task 3 学习完成以后：
+
+$$
+a_{3,1},
+\qquad
+a_{3,2}
+$$
+
+的变化可以直接解释为：
+
+$$
+\boxed{
+\text{最后一次使用 G 是否减少对整个 historical set 的干扰。}
+}
+$$
+
+可以定义：
+
+$$
+H_3
+=
+\frac{
+a_{3,1}+a_{3,2}
+}{2}.
+$$
+
+然后：
+
+$$
+\boxed{
+\Delta_{\mathrm{last}}
+=
+H_3^{SSG}
+-
+H_3^{SSS}.
+}
+$$
+
+---
+
+# 二十四、GGG 的作用不是单纯“看谁最高”
+
+GGG 与 SSS 的比较回答：
+
+$$
+\boxed{
+\text{formation + continuation effects
+连续叠加后是否形成累计优势。}
+}
+$$
+
+所以同时报告：
+
+$$
+\mathrm{LA}_3
+=
+\frac{
+a_{1,1}+a_{2,2}+a_{3,3}
+}{3},
+$$
+
+以及：
+
+$$
+\mathrm{FAA}_3
+=
+\frac{
+a_{3,1}+a_{3,2}+a_{3,3}
+}{3}.
+$$
+
+这时：
+
+$$
+\mathrm{LA}
+$$
+
+反映 acquisition，
+
+$$
+\mathrm{FAA}
+$$
+
+反映最终综合状态。
+
+---
+
+# 二十五、三个阶段分别不要做什么
+
+### Task 0 不要做
+
+不要提前大规模算：
+
+$$
+\text{Fisher spectrum},
+\qquad
+\text{Hessian top-}k,
+\qquad
+\text{Full vs Fixed-A}.
+$$
+
+先把 $G^\star$ 找出来。
+
+### 2-task 不要做
+
+不要重新 sweep：
+
+$$
+r,\rho,\beta.
+$$
+
+全部冻结。
+
+否则 formation 与 interference 分析会重新被超参数混淆。
+
+### 3-task 不要做
+
+不要先跑全部 8 个 factorial conditions。
+
+先跑：
+
+$$
+SSS,\ GSS,\ SGS,\ SSG,\ GGG.
+$$
+
+根据结果决定是否补交互组。
+
+---
+
+# 二十六、完整执行顺序
+
+我建议实际严格按照：
+
+$$
+\boxed{
+\begin{array}{c}
+\textbf{Stage 1: Task 0}\\
+g_1,\ g_3,\ g_1+g_3,\ (g_1+g_3)/2,\ r\text{-sweep}\\
+\downarrow\\
+\text{matched step + matched probe distance}\\
+\downarrow\\
+\boxed{\text{freeze }G^\star}\\[2mm]
+\downarrow\\
+\textbf{Stage 2: Task 0}\rightarrow\textbf{Task 1}\\
+SS,\ GS,\ SG,\ GG\\
+\downarrow\\
+\text{formation vs continuation}\\[2mm]
+\downarrow\\
+\textbf{Stage 3: Task 0}\rightarrow\textbf{Task 1}\rightarrow\textbf{Task 2}\\
+SSS,\ GSS,\ SGS,\ SSG,\ GGG\\
+\downarrow\\
+\text{persistence + accumulation}\\[2mm]
+\downarrow\\
+\textbf{10-task}\\
+\text{full CL validation}
+\end{array}
+}
+$$
+
+这套设计的优点是每增加一个 task，只新增一个科学问题：
+
+$$
+\boxed{
+\begin{array}{ccl}
+1\text{ task}
+&:&
+\text{What update is useful?}\\
+2\text{ tasks}
+&:&
+\text{Why does forgetting change?}\\
+3\text{ tasks}
+&:&
+\text{Does the effect persist?}\\
+10\text{ tasks}
+&:&
+\text{Does it scale to full CL?}
+\end{array}
+}
+$$
+
+我认为这是目前比直接继续扩展 10-task 超参数实验更合适的完整实验路线。尤其是 **2-task 中用 retention change $a_{2,1}-a_{1,1}$ 而不是仅比较最终 $a_{2,1}$**，以及 **3-task 中用 $GSS$ 和 $SGS$ 分别追踪 formation persistence 与中间任务的双重作用**，会让后面形成论文级机制结论容易很多。

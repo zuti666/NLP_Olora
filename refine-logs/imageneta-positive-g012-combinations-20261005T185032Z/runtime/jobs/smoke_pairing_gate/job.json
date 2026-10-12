@@ -1,0 +1,27 @@
+{
+  "id": "smoke_pairing_gate",
+  "kind": "pairing",
+  "phase": "acceptance",
+  "branch": "P",
+  "direction": "positive_g012_combinations",
+  "mode": "natural",
+  "backend": "native",
+  "smoke": false,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/smoke_pairing.py"
+  ],
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/gates/smoke_pairing",
+  "report_file": "smoke_pairing.json",
+  "depends_on": [
+    "smoke_sum12_r025_k10_s2",
+    "smoke_sum12_r1_k10_s2",
+    "smoke_perp0_r025_k10_s2",
+    "smoke_perp0_r1_k10_s2",
+    "smoke_sum12minus0_r025_k10_s2",
+    "smoke_sum12minus0_r1_k10_s2"
+  ],
+  "expected_tasks": 2,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/runtime/jobs/smoke_pairing_gate/cuda_witness.json"
+}

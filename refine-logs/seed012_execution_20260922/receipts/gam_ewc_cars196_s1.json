@@ -1,0 +1,73 @@
+{
+  "id": "gam_ewc_cars196_s1",
+  "method": "GAM-EWCLoRA",
+  "dataset": "cars196",
+  "seed": 1,
+  "stage": "formal",
+  "expected_tasks": 10,
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cars196_s1.json",
+  "config_sha256": "3bc9abcb0fec0f5a7fe66b6427a9e0e583b933aa53d49351444df2848530aeb2",
+  "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+  "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+  "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+  "depends_on": [
+    "smoke_gam_ewc_flowers_s0",
+    "gam_ewc_cars196_s0"
+  ],
+  "candidate_seed0": false,
+  "source_status": "historical_source_unbound_candidate",
+  "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+  "group_id": "gam_ewc_cars196",
+  "data_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_cars196.json",
+  "data_manifest_sha256": "bd19beba8bb055323ad2920c33bcfb872565169b8d1f7d2a17cabe0d674772ef",
+  "activation": "selected_20260922_fixed_protocol",
+  "status": "completed",
+  "pid": 3409422,
+  "started_unix": 1790278205.9990563,
+  "gpu_visible": "GPU-e97b92ec-d10c-0913-e3f8-67941b20ee0c",
+  "environment": {
+    "HF_HOME": "/data/115-2/users/liying/cache/huggingface",
+    "TORCH_HOME": "/data/115-2/users/liying/cache/torch",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/115-2/users/liying/datasets",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "GPU-e97b92ec-d10c-0913-e3f8-67941b20ee0c",
+    "PYTHONHASHSEED": "1"
+  },
+  "python": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+  "torch": "2.4.1+cu121",
+  "timm": "1.0.9",
+  "torchvision": "0.19.1+cu121",
+  "checkpoint_files": [
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors",
+      "sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b"
+    },
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/refs/main",
+      "sha256": "d361dc67d2468ae8af964a388852c98df10fffe1947a1159153f8e1575fa9a35"
+    }
+  ],
+  "preflight_sha256": "1f1df204e927ef4c60ebb69dcc86e6e29f3d84141629b253c310e91d825bd6e1",
+  "suite_sha256": "71faec77b2d43a2224869c954cd6278ab63b949f86fc15291b9b6ebf31968baf",
+  "runtime_manifest_sha256": "7b8b839d739449df1b05743bb98b48bfb0633038afb9f32366189da8edf140ac",
+  "exit_code": 0,
+  "finished_unix": 1790299239.9702718,
+  "metric_path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs/logs_inc_lora/ewclora_normfisher_gam/seed012_20260922/cars196/1/seed012_gam_ewc_cars196_s1/exp_run/20/seed012_gam_ewc_cars196_s1_vit_base_patch16_224_cl_metrics.json",
+  "metric_sha256": "b485721cbc0ee238224cc8213cd5daebd9f269781b91f5bdac60f67abc41b4af",
+  "log": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs/logs_inc_lora/ewclora_normfisher_gam/seed012_20260922/cars196/1/seed012_gam_ewc_cars196_s1/exp_run/20/seed012_gam_ewc_cars196_s1_vit_base_patch16_224.log",
+  "log_sha256": "4d79157abfb6e0d1f583d16be7cb54827fb55cfcd22646f99c66872ee5dca9b2",
+  "metrics": {
+    "tasks": 10,
+    "faa": 53.495000000000005,
+    "aaa_stage": 56.778798015873015
+  },
+  "peak_cuda_bytes": 11962087936,
+  "device_name": "Quadro RTX 6000"
+}

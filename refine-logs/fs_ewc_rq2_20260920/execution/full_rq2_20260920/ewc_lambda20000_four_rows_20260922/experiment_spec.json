@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "created_utc": "2026-09-22T09:08:21.588571+00:00",
+  "selection_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/SELECTION.json",
+  "selection_sha256": "f1d54dbd717baf5e6c40c576c827a5cabd4417a416fcb5628a722e59433fc2a9",
+  "lambda_star": 20000.0,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arms": [
+    {
+      "arm": "ewclora",
+      "label": "EWCLoRA",
+      "anchor_method": "sgd",
+      "future_optimizer": "sgd",
+      "task0_objective": "C",
+      "task1_objective": "C+P",
+      "preferred_gpu": 0
+    },
+    {
+      "arm": "fs_ewclora",
+      "label": "FS-EWCLoRA",
+      "anchor_method": "gam",
+      "future_optimizer": "gam",
+      "task0_objective": "C+F",
+      "task1_objective": "C+F+P",
+      "preferred_gpu": 1
+    },
+    {
+      "arm": "task1_shaping",
+      "label": "Task-1 shaping",
+      "anchor_method": "gam",
+      "future_optimizer": "sgd",
+      "task0_objective": "C+F",
+      "task1_objective": "C+P",
+      "preferred_gpu": 2
+    },
+    {
+      "arm": "task2_shaping",
+      "label": "Task-2 shaping",
+      "anchor_method": "sgd",
+      "future_optimizer": "gam",
+      "task0_objective": "C",
+      "task1_objective": "C+F+P",
+      "preferred_gpu": 5
+    }
+  ],
+  "trials": [
+    {
+      "trial_id": "ewclora_seed0",
+      "arm": "ewclora",
+      "seed": 0,
+      "anchor_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 20000.0,
+      "parent_id": "sgd_seed0",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/ewclora_seed0",
+      "preferred_gpu": 0
+    },
+    {
+      "trial_id": "ewclora_seed1",
+      "arm": "ewclora",
+      "seed": 1,
+      "anchor_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 20000.0,
+      "parent_id": "sgd_seed1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/ewclora_seed1",
+      "preferred_gpu": 0
+    },
+    {
+      "trial_id": "ewclora_seed2",
+      "arm": "ewclora",
+      "seed": 2,
+      "anchor_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 20000.0,
+      "parent_id": "sgd_seed2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/ewclora_seed2",
+      "preferred_gpu": 0
+    },
+    {
+      "trial_id": "fs_ewclora_seed0",
+      "arm": "fs_ewclora",
+      "seed": 0,
+      "anchor_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 20000.0,
+      "parent_id": "gam_seed0",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/fs_ewclora_seed0",
+      "preferred_gpu": 1
+    },
+    {
+      "trial_id": "fs_ewclora_seed1",
+      "arm": "fs_ewclora",
+      "seed": 1,
+      "anchor_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 20000.0,
+      "parent_id": "gam_seed1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/fs_ewclora_seed1",
+      "preferred_gpu": 1
+    },
+    {
+      "trial_id": "fs_ewclora_seed2",
+      "arm": "fs_ewclora",
+      "seed": 2,
+      "anchor_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 20000.0,
+      "parent_id": "gam_seed2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/fs_ewclora_seed2",
+      "preferred_gpu": 1
+    },
+    {
+      "trial_id": "task1_shaping_seed0",
+      "arm": "task1_shaping",
+      "seed": 0,
+      "anchor_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 20000.0,
+      "parent_id": "gam_seed0",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task1_shaping_seed0",
+      "preferred_gpu": 2
+    },
+    {
+      "trial_id": "task1_shaping_seed1",
+      "arm": "task1_shaping",
+      "seed": 1,
+      "anchor_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 20000.0,
+      "parent_id": "gam_seed1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task1_shaping_seed1",
+      "preferred_gpu": 2
+    },
+    {
+      "trial_id": "task1_shaping_seed2",
+      "arm": "task1_shaping",
+      "seed": 2,
+      "anchor_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 20000.0,
+      "parent_id": "gam_seed2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task1_shaping_seed2",
+      "preferred_gpu": 2
+    },
+    {
+      "trial_id": "task2_shaping_seed0",
+      "arm": "task2_shaping",
+      "seed": 0,
+      "anchor_method": "sgd",
+      "future_optimizer": "gam",
+      "ewc_lambda": 20000.0,
+      "parent_id": "sgd_seed0",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task2_shaping_seed0",
+      "preferred_gpu": 5
+    },
+    {
+      "trial_id": "task2_shaping_seed1",
+      "arm": "task2_shaping",
+      "seed": 1,
+      "anchor_method": "sgd",
+      "future_optimizer": "gam",
+      "ewc_lambda": 20000.0,
+      "parent_id": "sgd_seed1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task2_shaping_seed1",
+      "preferred_gpu": 5
+    },
+    {
+      "trial_id": "task2_shaping_seed2",
+      "arm": "task2_shaping",
+      "seed": 2,
+      "anchor_method": "sgd",
+      "future_optimizer": "gam",
+      "ewc_lambda": 20000.0,
+      "parent_id": "sgd_seed2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task2_shaping_seed2",
+      "preferred_gpu": 5
+    }
+  ],
+  "parents": [
+    {
+      "id": "sgd_seed0",
+      "anchor_method": "sgd",
+      "seed": 0,
+      "directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0",
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/task_00.pt",
+      "checkpoint_sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229",
+      "parent_manifest_sha256": "5af85e1d037a19e83f2e85cbc101c9b90f79762958bf3a19365ca2e0f3329eec",
+      "parent_complete_sha256": "00c5f062c4a44d31a31f0d75a2847568c846654daef758b3a449851e5c2a0cdc",
+      "raw_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed0/fisher_state_raw.pt",
+      "raw_fisher_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed0/PREPARED.json",
+      "action": "reuse_verified_existing_raw",
+      "task0_training": false
+    },
+    {
+      "id": "sgd_seed1",
+      "anchor_method": "sgd",
+      "seed": 1,
+      "directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1",
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/checkpoints/task_00.pt",
+      "checkpoint_sha256": "4520ca3b54f89e07042e431806885353a97ea8529c451b76068fa38c07700f9a",
+      "parent_manifest_sha256": "278f8a4ed7a2ab11a6b3fc14ad4d5b08be3d5d7f055a79cb5921baad7b7e9740",
+      "parent_complete_sha256": "fde1695db03d31ff884b66a26ee404e8db4cf693f99f3d41eb9b20a4ee3f3df2",
+      "raw_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed1/fisher_state_raw.pt",
+      "raw_fisher_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed1/PREPARED.json",
+      "action": "recompute_native_raw_once",
+      "task0_training": false
+    },
+    {
+      "id": "sgd_seed2",
+      "anchor_method": "sgd",
+      "seed": 2,
+      "directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2",
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/checkpoints/task_00.pt",
+      "checkpoint_sha256": "71a005caafe368ce3d5b18b7323b3a03f1b64df2dfdc8c834b6c4bc0a43dea59",
+      "parent_manifest_sha256": "11bd44ccb498515d1572aa7abf9b62656e1b7847bffdad6ce8d757ca5bcf6c5c",
+      "parent_complete_sha256": "b6c037db068f76cb7c8f55201b1ac4321229b981dd4b1371b2b37c4b91675d97",
+      "raw_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed2/fisher_state_raw.pt",
+      "raw_fisher_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed2/PREPARED.json",
+      "action": "recompute_native_raw_once",
+      "task0_training": false
+    },
+    {
+      "id": "gam_seed0",
+      "anchor_method": "gam",
+      "seed": 0,
+      "directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0",
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/task_00.pt",
+      "checkpoint_sha256": "c3986b8499e13d3a26bda6a9893356afd5471670bd16bbb9654956ee8b4455ff",
+      "parent_manifest_sha256": "57e80fc7e66c23b1adc0bc9a0016301dff257f5fa7852581d8ee008d498b55b4",
+      "parent_complete_sha256": "2fa0c501b0e4b7f6d9d957fa22cb5ffe9cb2952fef337c979bb06e66221f9e97",
+      "raw_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed0/fisher_state_raw.pt",
+      "raw_fisher_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed0/PREPARED.json",
+      "action": "recompute_native_raw_once",
+      "task0_training": false
+    },
+    {
+      "id": "gam_seed1",
+      "anchor_method": "gam",
+      "seed": 1,
+      "directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1",
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+      "checkpoint_sha256": "3c6a3af2066ed257baab0f0bffa774741e060f169d886e4940fae6bc9643275c",
+      "parent_manifest_sha256": "98f74077ddeb9f52c581c06b0b89f09a43ad6f6ff53cc1ffb4a7e5d10bd8c61f",
+      "parent_complete_sha256": "a80a6dd452af2b29b10b184b337505e7953130ee8f1d2c54b23dcfba9d3dc4e1",
+      "raw_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed1/fisher_state_raw.pt",
+      "raw_fisher_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed1/PREPARED.json",
+      "action": "recompute_native_raw_once",
+      "task0_training": false
+    },
+    {
+      "id": "gam_seed2",
+      "anchor_method": "gam",
+      "seed": 2,
+      "directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2",
+      "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/task_00.pt",
+      "checkpoint_sha256": "d3e17afbdc5d4fdd3302e413fccff056b97c460a94c0fdf9dbe6399da727a3c0",
+      "parent_manifest_sha256": "0e4390e8891e6151f6110f8aa0de91b18cc8c8aad73768325ed7867971bd328b",
+      "parent_complete_sha256": "57d9018584cf5886f3414069a5c54cb7e1784324e00c311f74863e176e694565",
+      "raw_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed2/fisher_state_raw.pt",
+      "raw_fisher_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed2/PREPARED.json",
+      "action": "recompute_native_raw_once",
+      "task0_training": false
+    }
+  ],
+  "protocol": {
+    "dataset": "imageneta",
+    "backbone": "ViT-B/16",
+    "lora_rank": 10,
+    "lora_targets": [
+      "Q",
+      "V"
+    ],
+    "same_adapter_continued": true,
+    "tasks_total": 2,
+    "train_task_indices": [
+      1
+    ],
+    "epochs": 50,
+    "batch_size": 128,
+    "learning_rate": 0.02,
+    "workers": 4,
+    "ewc_normalize_fisher": false,
+    "ewc_normalize_accumulated_fisher": false,
+    "fisher_mode": "batch_empirical",
+    "fisher_source": "fit",
+    "endpoint_anchor": true,
+    "trajectory_averaging": false,
+    "precision": "fp32",
+    "tf32": false,
+    "paired_task1_inputs_and_head": true
+  },
+  "resource_policy": {
+    "gpus": [
+      0,
+      1,
+      2,
+      5,
+      4,
+      6,
+      3
+    ],
+    "excluded_gpus": [],
+    "all_gpu_start_gate": false,
+    "gpu_poll_seconds": 900,
+    "max_parallel": 6,
+    "shared_uuid_locks": true,
+    "arm_gpu_preferences": {
+      "ewclora": 0,
+      "fs_ewclora": 1,
+      "task1_shaping": 2,
+      "task2_shaping": 5
+    },
+    "within_arm_seed_order": [
+      0,
+      1,
+      2
+    ]
+  },
+  "counts": {
+    "formal_continuations": 12,
+    "raw_fisher_recomputations": 5,
+    "raw_fisher_verified_reuses": 1,
+    "one_epoch_smokes": 4
+  },
+  "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source_frozen.json",
+  "source_manifest_sha256": "fe3b5ef75e89bab32010c1aa9a0581cbaeb2b068eaa2f4718f11a9cc314d0a2b"
+}

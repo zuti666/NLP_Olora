@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "dataset_verified_from_config": "ImageNet-A",
+  "training_seeds": [
+    0
+  ],
+  "training_runs_per_method": 1,
+  "all_20_rows_match_raw_JSON_exactly": true,
+  "checkpoint_path_and_hash_match_raw_JSON": true,
+  "checkpoint_weight_files_rehashed": false,
+  "fixed_Task0_head_classes": 20,
+  "Task0_test_samples": 307,
+  "T_definition": "total learned tasks = task_code + 1; T1 is Task0 anchor",
+  "source_bytes_preserved": true,
+  "signed_damage_preserved": true,
+  "smoothing_clipping_monotonic_enforcement": false,
+  "r_T": "actual cumulative distance from own Task0 effective weights, not sum of step lengths or a damage-tolerance radius",
+  "Sbar": "T10 only; I/r_T^2 on Task0-to-Task9 straight chord; training n=256; 9 Simpson nodes",
+  "Sbar_and_integral_match_raw_JSON": true,
+  "Simpson_integral_recomputed_from_raw_nodes": true,
+  "both_reported_path_numerical_gates_pass": true,
+  "optimizer_sequences": {
+    "sgd": "SGD to SGD + EWC",
+    "gam": "GAM to GAM + EWC"
+  },
+  "methods": {
+    "sgd": {
+      "actual_row_count": 10,
+      "loss_peak_T": 10,
+      "loss_peak": 0.2601305286017725,
+      "loss_endpoint": 0.2601305286017725,
+      "loss_decrease_arrival_T": [
+        2,
+        5
+      ],
+      "negative_damage_T": [
+        2
+      ],
+      "endpoint_r_T": 1.197584099887894,
+      "endpoint_Sbar": 0.3680576024116533,
+      "quadrature_relative_difference": 0.02923731377898772
+    },
+    "gam": {
+      "actual_row_count": 10,
+      "loss_peak_T": 7,
+      "loss_peak": 0.07335361887900221,
+      "loss_endpoint": 0.03434737973395435,
+      "loss_decrease_arrival_T": [
+        2,
+        4,
+        8,
+        9,
+        10
+      ],
+      "negative_damage_T": [
+        2,
+        3,
+        4
+      ],
+      "endpoint_r_T": 1.4004725891407084,
+      "endpoint_Sbar": 0.014793092786504949,
+      "quadrature_relative_difference": 0.008475074860865791
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_current_FP32_task_trajectory.csv",
+      "sha256": "d5a71364b125d17eac3dc69a8893750dca71e3d4fe3292175e7b2de74b359945"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_summary.csv",
+      "sha256": "f3fe9d0a82d9a5c47399a7c9314bcd3d6039a86a948b4eaa658583de7c6e1d57"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic_config_recovery1.json",
+      "sha256": "0869b642c97d0694597dca0c376ea235313377fb38c4c542fef8cdbd98cb2ae3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/trajectory/summary.json",
+      "sha256": "45190c88aedc0a3fd069769f51bdf605abd6b3a55f1f82dd8f059b6453e63d54"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/summary.json",
+      "sha256": "1144d5bfc41f1a9aec4069da3ceff8ba72fcff88594d466b190f113df1eb9872"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/trajectory/summary.json",
+      "sha256": "210cbc0a0dda526817e41ea17acff8993ab95587a2c65815d0a6766f3791423a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/summary.json",
+      "sha256": "869247291841b96fdba63f4919e5415962917aaaef2dbd15088bc1df61e80999"
+    }
+  ],
+  "versions": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.3.3",
+    "pandas": "2.3.3"
+  },
+  "panels": {
+    "a": "Task0 test accuracy",
+    "b": "signed Task0 test loss damage",
+    "c": "two T10-only chord-sensitivity bars",
+    "d": "actual anchor-relative r_T"
+  },
+  "plotted_source_rows_per_curve_panel": 20,
+  "no_unmeasured_Sbar_stages_drawn": true,
+  "figure": "Figure_C_stage_aware",
+  "all_plotted_line_coordinates_match_source_rows": true,
+  "text_extents_inside_canvas": true,
+  "axes_titles_empty": true,
+  "rendered_visual_review": "pending root inspection and independent figure review",
+  "outputs": {
+    "pdf": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/imagenetr_legacy_main_20260920/figures/Figure_C_stage_aware.pdf",
+      "sha256": "5aad0c0d0ff7eb8d974aaa078cdfd8e6a675cb44e9e9781ff1f7174baea6420a"
+    },
+    "png": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/imagenetr_legacy_main_20260920/figures/Figure_C_stage_aware.png",
+      "sha256": "1b7316cc3c1eb1393398542dacecdfb9becf27928a7fa28a9cc9f307ddd30916"
+    }
+  },
+  "output_format": "vector PDF with embedded text; PNG at 300 dpi"
+}

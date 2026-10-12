@@ -1,0 +1,79 @@
+{
+  "id": "ewclora_aircraft_s1",
+  "group_id": "ewclora_aircraft",
+  "method": "EWCLoRA",
+  "dataset": "aircraft",
+  "seed": 1,
+  "stage": "formal",
+  "source_id": "ewc",
+  "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/ewclora_aircraft_s1.json",
+  "config_sha256": "3715c07bdd0f3c629b5894aba59373032c1ac52c49e326513f78e3340da523e7",
+  "expected_tasks": 10,
+  "command": [
+    "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+    "-m",
+    "src.main",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/ewclora_aircraft_s1.json"
+  ],
+  "depends_on": [
+    "smoke_ewclora_flowers_s0",
+    "ewclora_aircraft_s0"
+  ],
+  "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18",
+  "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/source_manifests/ewc.json",
+  "source_manifest_sha256": "228911fb67ba645cc38f2dd5508ade60d50b8144d3e5a2a0f4cfdd1b9fe6b735",
+  "data_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_aircraft.json",
+  "data_manifest_sha256": "c607b2e4128817d8fd8313d70645e00ba08d5de96dca00eef09ec1907d3fea82",
+  "activation": "selected_20260922_fixed_protocol",
+  "status": "completed",
+  "pid": 3019611,
+  "started_unix": 1790259657.0226145,
+  "gpu_visible": "GPU-e5877974-a6a2-5864-0dde-aac439863d30",
+  "environment": {
+    "HF_HOME": "/data/115-2/users/liying/cache/huggingface",
+    "TORCH_HOME": "/data/115-2/users/liying/cache/torch",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/115-2/users/liying/datasets",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "GPU-e5877974-a6a2-5864-0dde-aac439863d30",
+    "PYTHONHASHSEED": "1"
+  },
+  "python": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+  "torch": "2.4.1+cu121",
+  "timm": "1.0.9",
+  "torchvision": "0.19.1+cu121",
+  "checkpoint_files": [
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors",
+      "sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b"
+    },
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/refs/main",
+      "sha256": "d361dc67d2468ae8af964a388852c98df10fffe1947a1159153f8e1575fa9a35"
+    }
+  ],
+  "preflight_sha256": "1f1df204e927ef4c60ebb69dcc86e6e29f3d84141629b253c310e91d825bd6e1",
+  "suite_sha256": "71faec77b2d43a2224869c954cd6278ab63b949f86fc15291b9b6ebf31968baf",
+  "runtime_manifest_sha256": "7b8b839d739449df1b05743bb98b48bfb0633038afb9f32366189da8edf140ac",
+  "exit_code": 0,
+  "finished_unix": 1790269054.3169916,
+  "metric_path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/ewclora_aircraft_s1/logs_inc/as1_normfisher_fishershape/as1fs_sgdeq_ewc_lam200/aircraft/1/seed012_ewclora_aircraft_s1/exp_run/10/seed012_ewclora_aircraft_s1_vit_base_patch16_224_cl_metrics.json",
+  "metric_sha256": "346d5b0399d036709d17a5c77424fa45264c9b9efa78a58327270799ae86bee9",
+  "log": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/ewclora_aircraft_s1/logs_inc/as1_normfisher_fishershape/as1fs_sgdeq_ewc_lam200/aircraft/1/seed012_ewclora_aircraft_s1/exp_run/10/seed012_ewclora_aircraft_s1_vit_base_patch16_224.log",
+  "log_sha256": "d8b64b735a7b2cf3f86ce1f191c4727ed04bdc233a8da0b104d34029350d86cd",
+  "metrics": {
+    "tasks": 10,
+    "faa": 40.63,
+    "aaa_stage": 37.59224444444445
+  },
+  "peak_cuda_bytes": 11943455232,
+  "device_name": "Quadro RTX 6000"
+}

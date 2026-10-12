@@ -1,0 +1,258 @@
+{
+  "time_utc": "2026-10-12T10:12:43Z",
+  "queue_status": "running",
+  "counts": {
+    "running": 3,
+    "completed": 1,
+    "pending": 8
+  },
+  "jobs": {
+    "pilot_curvature_s2": {
+      "status": "running",
+      "started_at": "2026-10-12T10:12:05Z",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_curvature_s2",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_001.pt",
+        "--pilot",
+        "--fp64-pilot-fallback"
+      ],
+      "process": {
+        "pid": 2323002,
+        "proc_starttime": "60452880"
+      },
+      "cuda_witness.json": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "runner.json": {
+        "process": {
+          "pid": 2323023,
+          "proc_starttime": "60453046"
+        },
+        "started_at": "2026-10-12T10:12:07Z",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py",
+          "--campaign",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+          "--seed",
+          "2",
+          "--output-dir",
+          "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_curvature_s2",
+          "--checkpoint",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_001.pt",
+          "--pilot",
+          "--fp64-pilot-fallback"
+        ],
+        "cuda_visible_devices": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5"
+      },
+      "tail": "\": 0.0003, \"a_norm\": 294.772688207422, \"b_norm\": 295.68939488572113, \"cosine\": 0.9999604325798785, \"relative_error\": 0.009407494995461022, \"degenerate\": false, \"degeneracy_threshold\": 0.0011279655261448712, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.001, \"a_norm\": 294.8046088760555, \"b_norm\": 295.68939488572113, \"cosine\": 0.999967392523693, \"relative_error\": 0.008600788438707803, \"degenerate\": false, \"degeneracy_threshold\": 0.0011279655261448712, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.003, \"a_norm\": 287.68944415154266, \"b_norm\": 295.68939488572113, \"cosine\": 0.9968699365790927, \"relative_error\": 0.08259990396536869, \"degenerate\": false, \"degeneracy_threshold\": 0.0011279655261448712, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.01, \"a_norm\": 285.20629100827205, \"b_norm\": 295.68939488572113, \"cosine\": 0.994254915894414, \"relative_error\": 0.11108432862292608, \"degenerate\": false, \"degeneracy_threshold\": 0.0011279655261448712, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 1e-05, \"a_norm\": 54015.576305491624, \"b_norm\": 55409.994812596975, \"cosine\": 0.999748798147807, \"relative_error\": 0.033512106914038164, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 3e-05, \"a_norm\": 54251.93085866811, \"b_norm\": 55409.994812596975, \"cosine\": 0.9999726801062842, \"relative_error\": 0.02214281138209029, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.0001, \"a_norm\": 52498.76081276441, \"b_norm\": 55409.994812596975, \"cosine\": 0.9999344286999138, \"relative_error\": 0.05370931453632781, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.0003, \"a_norm\": 36100.187636275274, \"b_norm\": 55409.994812596975, \"cosine\": 0.994100309272106, \"relative_error\": 0.3593500022368007, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.001, \"a_norm\": 28677.636289917536, \"b_norm\": 55409.994812596975, \"cosine\": 0.9818744739524153, \"relative_error\": 0.5015141992170695, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.003, \"a_norm\": 10837.237435309433, \"b_norm\": 55409.994812596975, \"cosine\": 0.2234711131669391, \"relative_error\": 0.9751094421475621, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n{\"event\": \"finite_difference_point\", \"product\": \"H_detached_H_g0\", \"precision\": \"torch.float32\", \"distance\": 0.01, \"a_norm\": 10699.904399531739, \"b_norm\": 55409.994812596975, \"cosine\": 0.1754078806852869, \"relative_error\": 0.984654882033483, \"degenerate\": false, \"degeneracy_threshold\": 0.21137235569990911, \"status\": \"finite\"}\n"
+    },
+    "pilot_matching_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:12:07Z",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_matching_s2",
+        "--pilot"
+      ],
+      "process": {
+        "pid": 2323029,
+        "proc_starttime": "60453106"
+      },
+      "completed_at": "2026-10-12T10:12:32Z",
+      "report_sha256": "a989accba760b563bec538a97f5511e7d987476d12fdb8e697e3041189f8f8ae",
+      "receipt_sha256": "0116304eb3d0af555c7fbf7a35c5787c1d2ba2a903006b4c16c41e16a8269848",
+      "items": 1,
+      "scientific_outcome": null,
+      "accepted_matches": 1,
+      "cuda_witness.json": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "runner.json": {
+        "process": {
+          "pid": 2323108,
+          "proc_starttime": "60453273"
+        },
+        "started_at": "2026-10-12T10:12:09Z",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+          "--campaign",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+          "--seed",
+          "2",
+          "--output-dir",
+          "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_matching_s2",
+          "--pilot"
+        ],
+        "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+      },
+      "exit.json": {
+        "job_id": "pilot_matching_s2",
+        "returncode": 0,
+        "runner_pid": 2323108,
+        "exited_at": "2026-10-12T10:12:23Z"
+      },
+      "tail": "WITNESS {\"status\": \"passed\", \"seed\": 2, \"device\": \"NVIDIA RTX 6000 Ada Generation\", \"shape\": [64, 64], \"loss\": 136.93104553222656, \"gradient_norm\": 9.53636646270752, \"cuda_visible_devices\": \"GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e\", \"torch\": \"2.4.1+cu121\", \"cuda\": \"12.1\", \"tf32_matmul\": false, \"tf32_cudnn\": false}\n{\"event\": \"effective_match_complete\", \"seed\": 2, \"branch\": \"S\", \"epoch\": 10, \"batch\": 0, \"status\": \"accepted\"}\n"
+    },
+    "pilot_evaluation_s2": {
+      "status": "running",
+      "started_at": "2026-10-12T10:12:09Z",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2",
+        "--pilot"
+      ],
+      "process": {
+        "pid": 2323118,
+        "proc_starttime": "60453342"
+      },
+      "cuda_witness.json": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "runner.json": {
+        "process": {
+          "pid": 2323208,
+          "proc_starttime": "60453509"
+        },
+        "started_at": "2026-10-12T10:12:11Z",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py",
+          "--campaign",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+          "--seed",
+          "2",
+          "--output-dir",
+          "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2",
+          "--pilot"
+        ],
+        "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+      },
+      "tail": "WITNESS {\"status\": \"passed\", \"seed\": 2, \"device\": \"NVIDIA RTX 6000 Ada Generation\", \"shape\": [64, 64], \"loss\": 136.93104553222656, \"gradient_norm\": 9.53636646270752, \"cuda_visible_devices\": \"GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a\", \"torch\": \"2.4.1+cu121\", \"cuda\": \"12.1\", \"tf32_matmul\": false, \"tf32_cudnn\": false}\n{\"event\": \"evaluation_complete\", \"seed\": 2, \"branch\": \"S\", \"epoch\": 1, \"FAA\": 49.227987381056195, \"restoration\": {\"trainable_parameters_exact\": true, \"frozen_versions_exact\": true, \"gradients_exact\": true, \"buffers_exact\": true, \"modes_exact\": true, \"controls_caches_exact\": true, \"rng_exact\": true}}\n"
+    },
+    "formal_matching_s2": {
+      "status": "running",
+      "started_at": "2026-10-12T10:12:34Z",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2"
+      ],
+      "process": {
+        "pid": 2323383,
+        "proc_starttime": "60455807"
+      },
+      "cuda_witness.json": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "runner.json": {
+        "process": {
+          "pid": 2323403,
+          "proc_starttime": "60455973"
+        },
+        "started_at": "2026-10-12T10:12:36Z",
+        "command": [
+          "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+          "--campaign",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+          "--seed",
+          "2",
+          "--output-dir",
+          "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2"
+        ],
+        "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+      },
+      "tail": "WITNESS {\"status\": \"passed\", \"seed\": 2, \"device\": \"NVIDIA RTX 6000 Ada Generation\", \"shape\": [64, 64], \"loss\": 136.93104553222656, \"gradient_norm\": 9.53636646270752, \"cuda_visible_devices\": \"GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e\", \"torch\": \"2.4.1+cu121\", \"cuda\": \"12.1\", \"tf32_matmul\": false, \"tf32_cudnn\": false}\n"
+    }
+  },
+  "gpu_snapshot": "0, GPU-fd7e2955-3733-e30a-dff1-5da992423839, 2, 0\n1, GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a, 2, 0\n2, GPU-fe4ca05a-b7fd-efa7-8192-201e24573825, 2, 0\n3, GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26, 2, 0\n4, GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5, 12082, 100\n5, GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e, 12066, 100\n6, GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a, 2714, 0\n",
+  "compute_pids": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5, 2323023\nGPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e, 2323403\nGPU-b74c0891-02cf-152f-704a-bd7edbd0b50a, 2323208\n",
+  "pid_namespace": "pid:[4026531836]"
+}

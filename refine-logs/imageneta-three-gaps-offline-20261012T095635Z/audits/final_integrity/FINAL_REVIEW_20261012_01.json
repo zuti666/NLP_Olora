@@ -1,0 +1,602 @@
+{
+  "protocol": "independent_final_offline_review_v1_20261012",
+  "time_utc": "2026-10-12T10:32:29.932616+00:00",
+  "status": "passed_no_concrete_blockers",
+  "cpu_only": true,
+  "source_modified": false,
+  "validator_run": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/audits/final_integrity/final_20261012_02.json",
+  "validator_sha256": "961e7d0b896e4651e99b29312e8efb311d02c3d6637d0b575647697db5c029ea",
+  "validator_exit_code": 0,
+  "collector_sha256": "4e29ca09d65bb2bd5fa19ca85cd815bfd6a53fdf9ca7fb612840ebd44a66a282",
+  "formal_counts": {
+    "curvature": 36,
+    "matching": 24,
+    "evaluation": 30
+  },
+  "original_fp32_gate_pass": 14,
+  "extended_fp32_gate_pass": 36,
+  "fp64_fallback_invocations": 0,
+  "checks": {
+    "relative_error_denominator_identity": 1051,
+    "effective_and_Q_identity_layers": 1800,
+    "evaluated_datasets_from_saved_logits": 192,
+    "collector_seed_curvature_summaries": 56,
+    "collector_paired_endpoint_summaries": 16,
+    "collector_curvature_summary_CSV": 56,
+    "collector_artifact_SHA256": 37
+  },
+  "shared_e0": {
+    "0": {
+      "verified": true,
+      "arrays_compared": 90
+    },
+    "1": {
+      "verified": true,
+      "arrays_compared": 90
+    },
+    "2": {
+      "verified": true,
+      "arrays_compared": 90
+    }
+  },
+  "curvature_epoch_branch_stats": [
+    {
+      "epoch": 1,
+      "branch_state": "S",
+      "training_phase": "probe_1_25",
+      "independent_seeds": [
+        0,
+        1,
+        2
+      ],
+      "batches_per_seed": 2,
+      "full_cosine": {
+        "values": [
+          0.44529412751362035,
+          0.33768631331227783,
+          0.022037504508610573
+        ],
+        "mean": 0.26833931511150294,
+        "sample_sd": 0.2199847650383884,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "full_relative_error": {
+        "values": [
+          0.7667228559484993,
+          0.9382625068672122,
+          0.9986165868236598
+        ],
+        "mean": 0.9012006498797904,
+        "sample_sd": 0.1203073627726808,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_cosine": {
+        "values": [
+          0.46023852093618434,
+          0.3413581937520088,
+          0.02825888945024531
+        ],
+        "mean": 0.27661853471281284,
+        "sample_sd": 0.22314797353788682,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_relative_error": {
+        "values": [
+          0.6568348810266339,
+          0.9323701138455797,
+          0.9971110030938453
+        ],
+        "mean": 0.8621053326553529,
+        "sample_sd": 0.1806925964699654,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "epoch": 1,
+      "branch_state": "R",
+      "training_phase": "probe_1_25",
+      "independent_seeds": [
+        0,
+        1,
+        2
+      ],
+      "batches_per_seed": 2,
+      "full_cosine": {
+        "values": [
+          0.68758385006806,
+          0.5235877275547983,
+          0.863924817499943
+        ],
+        "mean": 0.6916987983742671,
+        "sample_sd": 0.17020585565060456,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "full_relative_error": {
+        "values": [
+          0.7019663518679394,
+          0.6655814849708401,
+          0.6134425789036122
+        ],
+        "mean": 0.6603301385807973,
+        "sample_sd": 0.04449491065437822,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_cosine": {
+        "values": [
+          0.6977963056044844,
+          0.5584403923807838,
+          0.9037692260307866
+        ],
+        "mean": 0.7200019746720182,
+        "sample_sd": 0.17373203401091708,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_relative_error": {
+        "values": [
+          0.5719306020211471,
+          0.5919422492279698,
+          0.477096151900622
+        ],
+        "mean": 0.5469896677165796,
+        "sample_sd": 0.06135099160420493,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "epoch": 10,
+      "branch_state": "S",
+      "training_phase": "probe_1_25",
+      "independent_seeds": [
+        0,
+        1,
+        2
+      ],
+      "batches_per_seed": 2,
+      "full_cosine": {
+        "values": [
+          0.8231921588371147,
+          0.139693662032875,
+          0.4137713274682502
+        ],
+        "mean": 0.45888571611274664,
+        "sample_sd": 0.34397533317156453,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "full_relative_error": {
+        "values": [
+          0.5665020355178529,
+          0.9819981633533457,
+          0.7498376662332145
+        ],
+        "mean": 0.766112621701471,
+        "sample_sd": 0.20822563169118333,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_cosine": {
+        "values": [
+          0.8599536007777189,
+          0.11894386789780982,
+          0.4040019989589573
+        ],
+        "mean": 0.4609664892114953,
+        "sample_sd": 0.3737747596052831,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_relative_error": {
+        "values": [
+          0.5086536942714053,
+          0.9866978335133243,
+          0.7166193580648672
+        ],
+        "mean": 0.7373236286165322,
+        "sample_sd": 0.23969365840629622,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "epoch": 10,
+      "branch_state": "R",
+      "training_phase": "probe_1_25",
+      "independent_seeds": [
+        0,
+        1,
+        2
+      ],
+      "batches_per_seed": 2,
+      "full_cosine": {
+        "values": [
+          0.8419868296920393,
+          0.07818766856120887,
+          0.7498369598611343
+        ],
+        "mean": 0.5566704860381275,
+        "sample_sd": 0.4169319543917818,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "full_relative_error": {
+        "values": [
+          0.5153273780815961,
+          0.9994373939700987,
+          0.6858556233712427
+        ],
+        "mean": 0.7335401318076459,
+        "sample_sd": 0.24555241014803256,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_cosine": {
+        "values": [
+          0.8708617096846347,
+          0.061224993536340123,
+          0.7857664824992626
+        ],
+        "mean": 0.5726177285734125,
+        "sample_sd": 0.44491819080473155,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_relative_error": {
+        "values": [
+          0.45962534057613313,
+          0.9999759045594583,
+          0.6323011864787366
+        ],
+        "mean": 0.6973008105381093,
+        "sample_sd": 0.27597716634745206,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "epoch": 25,
+      "branch_state": "S",
+      "training_phase": "probe_1_25",
+      "independent_seeds": [
+        0,
+        1,
+        2
+      ],
+      "batches_per_seed": 2,
+      "full_cosine": {
+        "values": [
+          0.6206530570855191,
+          0.6597730132962607,
+          0.4935677051904741
+        ],
+        "mean": 0.5913312585240846,
+        "sample_sd": 0.08689578248564696,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "full_relative_error": {
+        "values": [
+          0.6899150716472281,
+          0.6758800749269603,
+          0.7773797729039374
+        ],
+        "mean": 0.7143916398260419,
+        "sample_sd": 0.05499885421273325,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_cosine": {
+        "values": [
+          0.6526592966994273,
+          0.7065460521871858,
+          0.5200300605513756
+        ],
+        "mean": 0.6264118031459962,
+        "sample_sd": 0.09598829080856927,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_relative_error": {
+        "values": [
+          0.6202757676809798,
+          0.5942934312976362,
+          0.7037349791487939
+        ],
+        "mean": 0.63943472604247,
+        "sample_sd": 0.05718096154435753,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "epoch": 25,
+      "branch_state": "R",
+      "training_phase": "probe_1_25",
+      "independent_seeds": [
+        0,
+        1,
+        2
+      ],
+      "batches_per_seed": 2,
+      "full_cosine": {
+        "values": [
+          0.8434813641729021,
+          0.15223026583754404,
+          0.8687167794500557
+        ],
+        "mean": 0.621476136486834,
+        "sample_sd": 0.40657468180779555,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "full_relative_error": {
+        "values": [
+          0.605126135678395,
+          0.9923289681263368,
+          0.5233296344318834
+        ],
+        "mean": 0.7069282460788717,
+        "sample_sd": 0.2505251404808576,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_cosine": {
+        "values": [
+          0.8873017393498299,
+          0.09883237977880195,
+          0.9244877082063523
+        ],
+        "mean": 0.6368739424449947,
+        "sample_sd": 0.46632846946884826,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      },
+      "half_relative_error": {
+        "values": [
+          0.48734905056031086,
+          1.0005343498606964,
+          0.38509376292377967
+        ],
+        "mean": 0.624325721114929,
+        "sample_sd": 0.32979347358534167,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "cells_per_seed": [
+          2,
+          2,
+          2
+        ]
+      }
+    }
+  ],
+  "concrete_blockers": [],
+  "important_interpretation_corrections": [
+    {
+      "id": "execution_gates",
+      "message": "Nine formal jobs and three separate pilots complete execution. Formal original FP32 HVP gate passes14/36, predeclared extended FP32 gate passes36/36. Original historical failed cell remains failed on its original grid. FP64 fallback declared in pilot, but never invoked."
+    },
+    {
+      "id": "correction_error_scope",
+      "message": "Correction relative error = ||Delta_native-Delta_quad||/(||Delta_quad||+1e-12). The supplied g0 reference norm is only for degeneracy. Accepted HVPs do not establish agreement of the finite native correction with the quadratic approximation."
+    },
+    {
+      "id": "epoch_and_seed_heterogeneity",
+      "message": "Report epoch/branch strata, not only overall averages. S-state cosine improves from e1 to e25 on average. R seed1 remains poorly aligned at e10/e25; halving increases its relative error and lowers its cosine at both epochs, despite lower across-seed mean error."
+    },
+    {
+      "id": "conditional_accuracy",
+      "message": "Fixed e50 new conditional20 accuracy differences R-S are [+0.787401575,+2.362204724,-0.787401575] pp. CE decreases in all seeds but conditional accuracy does not increase in every seed; joint40 e50 differences are [0,+3.149606299,+2.362204724] pp."
+    },
+    {
+      "id": "fit_vs_fixed",
+      "message": "The first-common-clean-CE-bin summaries are different estimands from fixed e25/e50 summaries. Fit-matched probe-only conditional accuracy mean +1.217191601 pp and full50 +1.109520401 pp must not replace fixed e25 +0.656167979 pp or e50 +0.787401575 pp."
+    },
+    {
+      "id": "effective_geometry",
+      "message": "All24 formal finite BA+fullFC matches pass and stored norm/Q/effective identities verify. This ideal FP64 finite geometry from represented FP32 parameters/gradients is not a rounded FP32 optimizer commit and cannot exclude long-term learning-rate/trajectory effects or identify a causal factor/head mechanism."
+    }
+  ],
+  "parallel_evaluation_subreview": {
+    "paired_summary_rows_checked": 924,
+    "evaluation_summary_rows_checked": 504,
+    "fit_matched_rows_checked": 59,
+    "max_per_example_npz_CE_error": 1.079e-06,
+    "max_paired_CE_decomposition_residual": 5.492e-07,
+    "shared_e0_arrays_each_seed": 90,
+    "formal_distinct_model_states": 27
+  }
+}

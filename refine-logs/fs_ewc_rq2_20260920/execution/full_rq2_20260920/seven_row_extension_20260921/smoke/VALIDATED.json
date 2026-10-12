@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "validated_smokes": 2,
+  "formal_results": false,
+  "source_train_sha256": "4e87c9312de8f40bfa5f2f6e6df15853e6ba65c7386ea8dcb4426effe8c1b492",
+  "checked": [
+    {
+      "arm": "shaping_only",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/training/shaping_only_seed0/SMOKE_COMPLETE.json",
+      "receipt_sha256": "58792a91310eb797b8f21d598c6efc93a2f06dffd6105fbd7f45a91853e029f7",
+      "witness": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/smoke_shaping_only_seed0.json",
+      "witness_sha256": "fcfe69a98c4b60db32ca56177b91cc597932d55b50e8636ab83cb82dd1011e94",
+      "validation": {
+        "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/training/shaping_only_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/shaping_only_seed0/imageneta/0/shaping_only_seed0/exp_run/20/shaping_only_seed0_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "eaff881287028f016055b41beb690b80782f04d8c878c3036641093dc15e6419",
+        "epochs_per_new_task": 1,
+        "validated_tasks": [
+          1
+        ],
+        "checkpoint_assets": {
+          "checkpoints/task_01.pt": {
+            "bytes": 688098550,
+            "sha256": "32521642f0522a36c33beb23ff4e00259336361c97174b9556dd36925947ae5d"
+          },
+          "checkpoints/fisher_state_1.pt": {
+            "bytes": 56631506,
+            "sha256": "c15816658107527961eeaf3d744871f8d4f0bbbcef631669cb4ce6a733820f7c"
+          },
+          "checkpoints/rng_state_01.pt": {
+            "bytes": 14390,
+            "sha256": "b439ae7714ab49753ebcc4432ef4575cf1366ad93ffaf1cc1eff1fa36a1a1d9f"
+          }
+        },
+        "smoke_only": true,
+        "mechanism_task1_verified": true,
+        "accuracy_CIL": {
+          "a11": 86.97,
+          "a21": 87.3,
+          "a22": 29.92
+        },
+        "effective_weight_displacement": 0.10061124642952139,
+        "pairing": {
+          "passed": true,
+          "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/rng_receipts.jsonl",
+          "reference_sha256": "2c2282cc25498d39ad6dc500cfcaef28b2e73baa7213d7c5cbdb00da6bc5a213",
+          "epochs": 1,
+          "fit_fisher_passes": 1,
+          "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+          "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+        },
+        "runtime_receipts_sha256": "4258a5a1d1a7afb698243bc220a6836a2fa7ef31a419f9c1dda810517a22d06a",
+        "rng_receipts_sha256": "02f2e2a9bf6b8397a08545d0706a2de99982572cfa5ea2c2df217f78fdfde76f"
+      },
+      "mechanism_fields": {
+        "train_clean_loss_mean": 2.3636317253112793,
+        "train_fisher_loss_mean": 0.0,
+        "grad_gam_norm_mean": 8.26641069590899,
+        "grad_fisher_norm_mean": 0.0,
+        "in_task_fisher_final_raw_trace": 44.797176510095596
+      },
+      "actual_CIL_test_evaluated": true,
+      "actual_old_task_loss_evaluated": true
+    },
+    {
+      "arm": "task2_shaping",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/training/task2_shaping_seed0/SMOKE_COMPLETE.json",
+      "receipt_sha256": "b3f4c89037267a66f0d00b9a035a93138de3214a4d882b5a355432e0f621f9ef",
+      "witness": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/witness/smoke_task2_shaping_seed0.json",
+      "witness_sha256": "e4742f435a4ab668a1c9b4657bdab617ed2b1f95f37778d9f19686bf3b03027c",
+      "validation": {
+        "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/smoke/training/task2_shaping_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/task2_shaping_seed0/imageneta/0/task2_shaping_seed0/exp_run/20/task2_shaping_seed0_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "70603e849c8ce76e91ccb8f1810b7cda8fd9e43c780b6d94776c5eecf6be79d1",
+        "epochs_per_new_task": 1,
+        "validated_tasks": [
+          1
+        ],
+        "checkpoint_assets": {
+          "checkpoints/task_01.pt": {
+            "bytes": 688098550,
+            "sha256": "0da9f6b92efd3500644961c0a3d63b442f0d9be0d3bfdb5e7a6b4db961f9bc1c"
+          },
+          "checkpoints/fisher_state_1.pt": {
+            "bytes": 56631506,
+            "sha256": "b2c9b2164e0d16517f6328345002492c39cb2c4fe42290f89ecf2469d4d2cc7a"
+          },
+          "checkpoints/rng_state_01.pt": {
+            "bytes": 14390,
+            "sha256": "b439ae7714ab49753ebcc4432ef4575cf1366ad93ffaf1cc1eff1fa36a1a1d9f"
+          }
+        },
+        "smoke_only": true,
+        "mechanism_task1_verified": true,
+        "accuracy_CIL": {
+          "a11": 87.3,
+          "a21": 86.64,
+          "a22": 38.58
+        },
+        "effective_weight_displacement": 0.15365392896602545,
+        "pairing": {
+          "passed": true,
+          "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/rng_receipts.jsonl",
+          "reference_sha256": "2c2282cc25498d39ad6dc500cfcaef28b2e73baa7213d7c5cbdb00da6bc5a213",
+          "epochs": 1,
+          "fit_fisher_passes": 1,
+          "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+          "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+        },
+        "runtime_receipts_sha256": "01619b4b266357d1f295b1f34d23bfaae55427ba6cdbe5b5e56fb928b0d69127",
+        "rng_receipts_sha256": "02f2e2a9bf6b8397a08545d0706a2de99982572cfa5ea2c2df217f78fdfde76f"
+      },
+      "mechanism_fields": {
+        "train_clean_loss_mean": 2.3257053196430206,
+        "train_fisher_loss_mean": 3.634689892351162e-05,
+        "grad_gam_norm_mean": 9.622270522808034,
+        "grad_fisher_norm_mean": 0.0010260429757128794,
+        "in_task_fisher_final_raw_trace": 60.712191328406334
+      },
+      "actual_CIL_test_evaluated": true,
+      "actual_old_task_loss_evaluated": true
+    }
+  ]
+}

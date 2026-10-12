@@ -1,0 +1,6 @@
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{Figure_B2_compact.pdf}
+  \caption{Sequential old-task diagnostics on ImageNet-A. From left to right: Task0 test accuracy, signed Task0 test loss change, effective Q/V weight drift $\delta_t=\|W_t-W_0\|_2$, and normalized directional path empirical Fisher $\overline S_{\mathrm{path},t}=I_t/\delta_t^2$, where $I_t=\int_0^1\Delta_t^\top F_{0,\mathrm{train}}^{\mathrm{emp}}(W_0+s\Delta_t)\Delta_t\,ds$. Curves show means over three training seeds; normalization precedes aggregation. Accuracy and loss use 307 Task0 test examples with each method's fixed 20-class Task0 head; path Fisher uses all 1259 Task0 training examples with true-label per-example gradients and no EWC coefficient. Each path is the straight chord from the Task0 anchor to a measured task endpoint, not the chronological optimizer path. Simpson quadrature uses 9 or 17 nodes. The task count is $T=t+1$; the normalized path metric is undefined at $T=1$.}
+  \label{fig:rq2-sequence-path}
+\end{figure*}

@@ -1,0 +1,307 @@
+{
+  "schema": "UpwardOfflineStaticReview_v1",
+  "status": "passed",
+  "reviewer": "upward_offline_diagnostics",
+  "gpu_execution": false,
+  "dry_runs": [
+    {
+      "job": "smoke_local_upward_s2",
+      "exit_code": 0,
+      "dry_run": {
+        "status": "valid",
+        "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "dev_split": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/dev_split.json",
+        "seed": 2,
+        "trajectories": [
+          {
+            "direction": "g0",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_task1_g0_s2"
+          }
+        ],
+        "epochs": [
+          1
+        ],
+        "candidates": [
+          "g0",
+          "g1",
+          "g2_minus_s",
+          "g2",
+          "g2_plus_s",
+          "g0_plus_d",
+          "g1_plus_d",
+          "g3"
+        ],
+        "fixed_train_probe_batches": 1,
+        "fixed_current_holdout_batches": 1,
+        "fixed_old_train_holdout_batches": 1,
+        "virtual_update_modes": [
+          "native",
+          "nominal_parameter_length_match"
+        ],
+        "batch_size": 128,
+        "rho": 0.05,
+        "radius": 1.0,
+        "gradient_reads_per_probe_batch": 20,
+        "loss_reads_per_probe_batch": 68,
+        "committed_training_updates": 0,
+        "benchmark": {
+          "warmup": 1,
+          "timed": 1,
+          "verification": 1,
+          "native_reads": {
+            "g0": 1,
+            "g1": 2,
+            "g2_minus_s": 3,
+            "g2": 3,
+            "g2_plus_s": 3,
+            "g0_plus_d": 4,
+            "g1_plus_d": 4,
+            "g3": 4
+          }
+        },
+        "old_data_gradient_reads": 0
+      }
+    },
+    {
+      "job": "formal_local_upward_s2",
+      "exit_code": 0,
+      "dry_run": {
+        "status": "valid",
+        "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "dev_split": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/dev_split.json",
+        "seed": 2,
+        "trajectories": [
+          {
+            "direction": "g0",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g0_s2"
+          },
+          {
+            "direction": "g1",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g1_s2"
+          },
+          {
+            "direction": "g2",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g2_s2"
+          }
+        ],
+        "epochs": [
+          1,
+          10,
+          50
+        ],
+        "candidates": [
+          "g0",
+          "g1",
+          "g2_minus_s",
+          "g2",
+          "g2_plus_s",
+          "g0_plus_d",
+          "g1_plus_d",
+          "g3"
+        ],
+        "fixed_train_probe_batches": 2,
+        "fixed_current_holdout_batches": 1,
+        "fixed_old_train_holdout_batches": 1,
+        "virtual_update_modes": [
+          "native",
+          "nominal_parameter_length_match"
+        ],
+        "batch_size": 128,
+        "rho": 0.05,
+        "radius": 1.0,
+        "gradient_reads_per_probe_batch": 20,
+        "loss_reads_per_probe_batch": 68,
+        "committed_training_updates": 0,
+        "benchmark": {
+          "warmup": 3,
+          "timed": 5,
+          "verification": 2,
+          "native_reads": {
+            "g0": 1,
+            "g1": 2,
+            "g2_minus_s": 3,
+            "g2": 3,
+            "g2_plus_s": 3,
+            "g0_plus_d": 4,
+            "g1_plus_d": 4,
+            "g3": 4
+          }
+        },
+        "old_data_gradient_reads": 0
+      }
+    },
+    {
+      "job": "formal_local_upward_s0",
+      "exit_code": 0,
+      "dry_run": {
+        "status": "valid",
+        "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "dev_split": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/dev_split.json",
+        "seed": 0,
+        "trajectories": [
+          {
+            "direction": "g0",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g0_s0"
+          },
+          {
+            "direction": "g1",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g1_s0"
+          },
+          {
+            "direction": "g2",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g2_s0"
+          }
+        ],
+        "epochs": [
+          1,
+          10,
+          50
+        ],
+        "candidates": [
+          "g0",
+          "g1",
+          "g2_minus_s",
+          "g2",
+          "g2_plus_s",
+          "g0_plus_d",
+          "g1_plus_d",
+          "g3"
+        ],
+        "fixed_train_probe_batches": 2,
+        "fixed_current_holdout_batches": 1,
+        "fixed_old_train_holdout_batches": 1,
+        "virtual_update_modes": [
+          "native",
+          "nominal_parameter_length_match"
+        ],
+        "batch_size": 128,
+        "rho": 0.05,
+        "radius": 1.0,
+        "gradient_reads_per_probe_batch": 20,
+        "loss_reads_per_probe_batch": 68,
+        "committed_training_updates": 0,
+        "benchmark": {
+          "warmup": 3,
+          "timed": 5,
+          "verification": 2,
+          "native_reads": {
+            "g0": 1,
+            "g1": 2,
+            "g2_minus_s": 3,
+            "g2": 3,
+            "g2_plus_s": 3,
+            "g0_plus_d": 4,
+            "g1_plus_d": 4,
+            "g3": 4
+          }
+        },
+        "old_data_gradient_reads": 0
+      }
+    },
+    {
+      "job": "formal_local_upward_s1",
+      "exit_code": 0,
+      "dry_run": {
+        "status": "valid",
+        "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "dev_split": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/dev_split.json",
+        "seed": 1,
+        "trajectories": [
+          {
+            "direction": "g0",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g0_s1"
+          },
+          {
+            "direction": "g1",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g1_s1"
+          },
+          {
+            "direction": "g2",
+            "reference_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_task1_g2_s1"
+          }
+        ],
+        "epochs": [
+          1,
+          10,
+          50
+        ],
+        "candidates": [
+          "g0",
+          "g1",
+          "g2_minus_s",
+          "g2",
+          "g2_plus_s",
+          "g0_plus_d",
+          "g1_plus_d",
+          "g3"
+        ],
+        "fixed_train_probe_batches": 2,
+        "fixed_current_holdout_batches": 1,
+        "fixed_old_train_holdout_batches": 1,
+        "virtual_update_modes": [
+          "native",
+          "nominal_parameter_length_match"
+        ],
+        "batch_size": 128,
+        "rho": 0.05,
+        "radius": 1.0,
+        "gradient_reads_per_probe_batch": 20,
+        "loss_reads_per_probe_batch": 68,
+        "committed_training_updates": 0,
+        "benchmark": {
+          "warmup": 3,
+          "timed": 5,
+          "verification": 2,
+          "native_reads": {
+            "g0": 1,
+            "g1": 2,
+            "g2_minus_s": 3,
+            "g2": 3,
+            "g2_plus_s": 3,
+            "g0_plus_d": 4,
+            "g1_plus_d": 4,
+            "g3": 4
+          }
+        },
+        "old_data_gradient_reads": 0
+      }
+    }
+  ],
+  "source_files_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/trainer/upward_local_audit.py": "a4abdefe57508ebc1c0e48ee9c32f016a4173f37810e225cb6ed8cbc197436d5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/validate_job.py": "ebe1c339f450c5330ea0bca9aaa49585f55cda48ca40a24135d257a43f6f4439",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/collect_results.py": "6b67904eacb07f7f3feb232060021afee168f4f6bea2e5ed458eb5c00bb4c3f3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/suite.json": "efe87067e02cc0550bdc1844a9b8a59369510a60f66010a487dbe93608d80bf5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/RUN.md": "af20d6b13bfcbec5807b7fe501325a8d6a31fa70ae951b069a601323fd15cbd3"
+  },
+  "checked_fields": [
+    "schema",
+    "status",
+    "seed",
+    "smoke",
+    "committed_training_updates",
+    "old_task_gradient_reads",
+    "no_dev_or_test_examples_used",
+    "old_examples_only_offline_no_grad",
+    "audit_sha256",
+    "dev_split_sha256",
+    "data_receipts.raw_train_indices",
+    "snapshots.source_snapshot",
+    "snapshots.source_snapshot_sha256",
+    "snapshots.source_output_dir",
+    "snapshots.source_summary_sha256"
+  ],
+  "checks": {
+    "all_registered_offline_CLIs_dryrun_passed": true,
+    "source_refs_match_registered_seed_and_budget": true,
+    "output_paths_in_exclusive_bulk_root": true,
+    "snapshot_paths_and_hash_fields_schema_compatible": true,
+    "data_receipt_fields_schema_compatible": true,
+    "formal_training_collection_excludes_offline_and_smoke": true,
+    "probe_and_virtual_update_expected_budgets_consistent": true,
+    "matching_named_nominal_parameter_length_not_BA": true,
+    "old_data_no_gradient_or_training_feedback": true
+  },
+  "recommendation": "Strengthen independent validator to check the exact trajectory/epoch/probe/method-mode/cartesian grid and native benchmark phase/read counts, rather than only total counters and source hashes. Root notified before freeze.",
+  "no_execution_code_edited": true
+}

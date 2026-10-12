@@ -1,0 +1,194 @@
+{
+  "checked_at": "2026-10-11T19:47:38.723364+00:00",
+  "timezone": "Europe/Madrid",
+  "local_time": "2026-10-11T21:47:38.723364+02:00",
+  "queue_root": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2",
+  "status": "running_formal",
+  "active_stage": "inclora_g2_llama1b_order1:s0:formal:1",
+  "actual_step": 138,
+  "expected_active_updates": 218,
+  "formal_completed": 0,
+  "smoke_completed": 2,
+  "complete_orders": 0,
+  "observed_formal_trace_rows": 138,
+  "all_observed_normal_clean_g2": true,
+  "final_metrics_available": false,
+  "controller_state_snapshot": {
+    "schema": "CurrentG2SixOrderQueue_v1",
+    "status": "running_formal",
+    "prepared_at": "2026-10-11T19:37:34+00:00",
+    "completed_stages": [
+      {
+        "key": "inclora_g2_llama1b_order1:s0:smoke:1",
+        "job": "inclora_g2_llama1b_order1",
+        "smoke": true,
+        "stage": 1,
+        "receipt": {
+          "status": "pass",
+          "method": "Current-G2-Llama",
+          "seed": 0,
+          "stage": 1,
+          "order": 1,
+          "model_size": "1B",
+          "task": "dbpedia",
+          "smoke": true,
+          "global_step": 2,
+          "saved_rank": 8,
+          "prediction_samples": 16,
+          "prediction_task_counts": {
+            "dbpedia": 16
+          },
+          "optimizer_class": "transformers.AdamW",
+          "g2_fallback_steps": 0,
+          "g2_trace_sha256": "10a98abfd733987ba33b9a32749fe91fd756e097300baa1e314759e7674357fd",
+          "adapter_sha256": "bf16983ae825b5c551640fcb5241412cd42bb85184d3da807e19e3922d14019e",
+          "prediction_sha256": "6a137416643e3c618859a3a95631b5c42c9b2cc0c11ee50a0cf5841d743a534d",
+          "prediction_results": {
+            "epoch": 1.0,
+            "predict_exact_match": 50.0,
+            "predict_exact_match_for_TC": 50.0,
+            "predict_exact_match_for_dbpedia": 50.0,
+            "predict_gen_len": 168.125,
+            "predict_global_step": 2,
+            "predict_loss": 0.0,
+            "predict_rouge1": 50.0,
+            "predict_rouge1_for_TC": 50.0,
+            "predict_rouge1_for_dbpedia": 50.0,
+            "predict_rougeL": 50.0,
+            "predict_rougeL_for_TC": 50.0,
+            "predict_rougeL_for_dbpedia": 50.0,
+            "predict_runtime": 0.3285,
+            "predict_samples": 16,
+            "predict_samples_per_second": 48.699,
+            "predict_steps_per_second": 3.044
+          },
+          "adapter_tensor_count": 64,
+          "adapter_pair_count": 32,
+          "adapter_finite_fp32": true,
+          "historical_prefix_exact": null,
+          "g2_runtime_audit_sha256": "c1bf21f8ac7fa9852ebb46a31e07f8e95e6a577fae0ea535a4b46dda81972b54",
+          "actual_base_optimizer": "transformers.optimization.AdamW",
+          "actual_base_optimizer_param_groups": [
+            {
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-06,
+              "lr": 0.001,
+              "weight_decay": 0.0
+            }
+          ],
+          "trainable_elements": 851968
+        },
+        "completed_at": "2026-10-11T19:41:09+00:00"
+      },
+      {
+        "key": "inclora_g2_llama1b_order1:s0:smoke:2",
+        "job": "inclora_g2_llama1b_order1",
+        "smoke": true,
+        "stage": 2,
+        "receipt": {
+          "status": "pass",
+          "method": "Current-G2-Llama",
+          "seed": 0,
+          "stage": 2,
+          "order": 1,
+          "model_size": "1B",
+          "task": "amazon",
+          "smoke": true,
+          "global_step": 2,
+          "saved_rank": 16,
+          "prediction_samples": 16,
+          "prediction_task_counts": {
+            "amazon": 16
+          },
+          "optimizer_class": "transformers.AdamW",
+          "g2_fallback_steps": 0,
+          "g2_trace_sha256": "553659b5a5bfbd75cf792181f6fe38ded37b2b62572f0aad02effe81fbab8f2b",
+          "adapter_sha256": "9175eafe2ba42f0fbd3180a8a868055681ed8df83d329963eab31bc81c90ff05",
+          "prediction_sha256": "c4345bb7d078599ff411053fcfd2c9c5d9f33217809e4b111d20df53eafdf4db",
+          "prediction_results": {
+            "epoch": 1.0,
+            "predict_exact_match": 12.5,
+            "predict_exact_match_for_SC": 12.5,
+            "predict_exact_match_for_amazon": 12.5,
+            "predict_gen_len": 174.375,
+            "predict_global_step": 2,
+            "predict_loss": 0.0,
+            "predict_rouge1": 29.1667,
+            "predict_rouge1_for_SC": 29.1667,
+            "predict_rouge1_for_amazon": 29.1667,
+            "predict_rougeL": 29.1667,
+            "predict_rougeL_for_SC": 29.1667,
+            "predict_rougeL_for_amazon": 29.1667,
+            "predict_runtime": 0.155,
+            "predict_samples": 16,
+            "predict_samples_per_second": 103.239,
+            "predict_steps_per_second": 6.452
+          },
+          "adapter_tensor_count": 64,
+          "adapter_pair_count": 32,
+          "adapter_finite_fp32": true,
+          "historical_prefix_exact": true,
+          "g2_runtime_audit_sha256": "10704207ca654b2e7fbdebd310b8ed050978cd4acea7529eddf39c6f782d20ba",
+          "actual_base_optimizer": "transformers.optimization.AdamW",
+          "actual_base_optimizer_param_groups": [
+            {
+              "betas": [
+                0.9,
+                0.999
+              ],
+              "eps": 1e-06,
+              "lr": 0.0001,
+              "weight_decay": 0.0
+            }
+          ],
+          "trainable_elements": 851968
+        },
+        "completed_at": "2026-10-11T19:41:47+00:00"
+      }
+    ],
+    "formal_completed": 0,
+    "smoke_completed": 2,
+    "heartbeat_at": "2026-10-11T19:47:28+00:00",
+    "controller_pid": 1627079,
+    "child_pid": 1627876,
+    "started_at": "2026-10-11T19:40:13+00:00",
+    "active_stage": "inclora_g2_llama1b_order1:s0:formal:1",
+    "active_global_step": 133,
+    "gpu_reservation": [
+      {
+        "index": 0,
+        "uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+        "memory_mib": 2,
+        "utilization": 0,
+        "has_compute_process": false
+      },
+      {
+        "index": 1,
+        "uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+        "memory_mib": 2,
+        "utilization": 0,
+        "has_compute_process": false
+      },
+      {
+        "index": 2,
+        "uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "memory_mib": 2,
+        "utilization": 0,
+        "has_compute_process": false
+      },
+      {
+        "index": 3,
+        "uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "memory_mib": 2,
+        "utilization": 0,
+        "has_compute_process": false
+      }
+    ],
+    "active_output": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/1-dbpedia",
+    "active_log": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/logs/inclora_g2_llama1b_order1_s0_formal_1.log",
+    "stage_started_at": "2026-10-11T19:41:58+00:00"
+  }
+}

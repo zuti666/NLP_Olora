@@ -1,0 +1,28 @@
+{
+  "status": "pass",
+  "llama_order_cells": 30,
+  "llama_matching_order_cells": 30,
+  "llama_average_cells": 10,
+  "llama_matching_average_cells": 10,
+  "llama_training_stages_with_matched_console": 120,
+  "t5_expected_order_cells": 30,
+  "t5_actual_model_verified_order_cells": 29,
+  "t5_missing": [
+    {
+      "model": "t5-large",
+      "method": "IncLoRA",
+      "order": 1,
+      "reason": "available label is actual t5-small, duplicate adapters and predictions"
+    }
+  ],
+  "t5_small_successful_training_console_orders": 0,
+  "t5_large_successful_training_console_orders": 7,
+  "checked_files": [
+    "llama_table_evidence.csv",
+    "llama_average_evidence.csv",
+    "t5_table_evidence.csv"
+  ],
+  "scope": "File existence, recorded numerical agreement, and evidence counts. Semantic integrity judgement is separate.",
+  "review_independence": "deterministic",
+  "acceptance_status": "accepted"
+}

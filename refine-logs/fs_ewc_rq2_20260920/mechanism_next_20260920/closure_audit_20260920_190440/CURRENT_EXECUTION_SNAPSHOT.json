@@ -1,0 +1,117 @@
+{
+  "captured_utc": "2026-09-20T19:12:31.478316+00:00",
+  "scope": "read-only snapshot; concurrent development and training can change after this time",
+  "queues": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/campaign_seed0_dualline_recovery1/pipeline_state.json",
+      "status": "complete",
+      "updated_utc": "2026-09-20T15:36:08.384510+00:00",
+      "jobs": {
+        "sanity_sgd": "complete",
+        "sanity_gam": "complete",
+        "neighborhood_sgd": "complete",
+        "neighborhood_gam": "complete",
+        "training_sgd": "complete",
+        "training_gam": "complete",
+        "bridge_sgd": "complete",
+        "bridge_gam": "complete",
+        "table_a_sgd": "complete",
+        "table_a_gam": "complete",
+        "trajectory_sgd": "complete",
+        "trajectory_gam": "complete",
+        "path_sgd": "complete",
+        "path_gam": "complete",
+        "report_seed0": "complete"
+      },
+      "sha256": "67cb680ed897aeebc983e627d68ed500ff1ee26b52b7043746130d78bf54420c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/pilot_queue/pipeline_state.json",
+      "status": "superseded",
+      "updated_utc": "2026-09-20T19:10:11.136904+00:00",
+      "jobs": {
+        "B3_A_sgd_lam0_seed0": "superseded",
+        "B3_B_gam_lam0_seed0": "superseded"
+      },
+      "sha256": "705c53fe5c73371e803c8a70b87d45f63b20cb656cd08345c38e3068ff3ff02e"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/pilot_queue_paired/pipeline_state.json",
+      "status": "running",
+      "updated_utc": "2026-09-20T19:12:03.898186+00:00",
+      "jobs": {
+        "B3_A_sgd_lam0_seed0": "running",
+        "B3_B_gam_lam0_seed0": "running"
+      },
+      "sha256": "7441ae03938abba61eb571340f2f7d0b55fad1f3d66c2263e35777e4469d3ead"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/smoke_queue/pipeline_state.json",
+      "status": "complete",
+      "updated_utc": "2026-09-20T19:07:23.240131+00:00",
+      "jobs": {
+        "smoke_dense": "complete",
+        "smoke_sparse_train": "complete"
+      },
+      "sha256": "c46b4a3eb015807c3ae5d1a664830ebe9243c208d5e9018ee145c17fc89120d1"
+    }
+  ],
+  "completed_training_receipts": [],
+  "diagnostic_summaries": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/smoke_results/gam/sparse_train/summary.json",
+      "status": "complete",
+      "seed": 0,
+      "method": "gam",
+      "job": "sparse_train",
+      "states_completed": 1,
+      "forward_only": false,
+      "gradient_scope": [
+        "subset"
+      ],
+      "radii": [
+        0
+      ],
+      "is_smoke_path": true,
+      "sha256": "b991cd2a0f197cfe167f173c05cb7793d0710c8082f95f1ccc623036871372b6"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/smoke_results/sgd/dense/summary.json",
+      "status": "complete",
+      "seed": 0,
+      "method": "sgd",
+      "job": "dense",
+      "states_completed": 2,
+      "forward_only": true,
+      "gradient_scope": [],
+      "radii": [
+        0,
+        0.25
+      ],
+      "is_smoke_path": true,
+      "sha256": "a79db7fd8d33d9f8f0dd0dcf2f1401d8bc983bc5c2124d6bfb36fb25a1ced937"
+    }
+  ],
+  "formal_plan": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_plan.json",
+    "purpose": "Full RQ2 B1/B2/B3; homogeneous fresh FP32/RNG seeds 0,1,2; historical pilot kept separate",
+    "workload": {
+      "training_jobs": 21,
+      "training_task_segments": 69,
+      "epochs_per_segment": 50,
+      "diagnostic_jobs": 54,
+      "B3_endpoint_jobs": 12,
+      "report_jobs": 1,
+      "total_jobs": 88
+    },
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "stage_count": 88,
+    "job_count": 88,
+    "state_exists": false,
+    "sha256": "fcbf7e4c53c26e48cec12c82a22774f55f79147bb982f51375a9a99b5efecdeb"
+  }
+}

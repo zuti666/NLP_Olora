@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "checks": {
+    "previous_frozen_run_unchanged": true,
+    "ongoing_g0sum_frozen_run_unchanged": true,
+    "scientific_support_modules_unchanged": true,
+    "same_environment_spec": true,
+    "frozen_190_source_files_match": true,
+    "only_gpu_0_1_max_parallel_2": true,
+    "shared_gpu_locks": true,
+    "two_smokes_two_formal_requested_grid": true,
+    "pairing_gates_both_formals": true,
+    "smoke_budget_two_tasks_one_epoch_one_batch": true,
+    "formal_budget_ten_tasks_fifty_epochs_2550_updates": true,
+    "all_configs_match_scientific_protocol": true,
+    "config_hashes_match": true,
+    "collector_six_control_keys_compatible": true,
+    "historical_six_controls_hashes_metrics_and_exit_receipts": true,
+    "collector_controls_loader_matches_inventory": true,
+    "docs_match_positive_formula_and_natural_budget": true,
+    "prerequisite_is_ongoing_g0sum_two_formals": true,
+    "prerequisite_gates_all_gpu_admission": true,
+    "prerequisite_nine_fixtures_pass": true,
+    "validator_fixtures_all_pass": true,
+    "independently_rerun_cpu_9_tests_pass": true,
+    "collector_same_state_direction_wording_correct": true
+  },
+  "evidence": {
+    "previous_pin_count": 36,
+    "previous_pin_mismatches": [],
+    "ongoing_g0sum_pin_count": 28,
+    "ongoing_g0sum_pin_mismatches": [],
+    "source_file_count": 190,
+    "cpu_gate": {
+      "status": "passed",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "device": "cpu",
+      "cuda_visible_devices": "",
+      "radii": [
+        0.25,
+        1.0
+      ],
+      "directions": [
+        "half_g1_plus_g2"
+      ],
+      "formulas": {
+        "half_g1_plus_g2": "(g1_plus+g2)/2"
+      },
+      "g3_unused_final_verified": true,
+      "no_projection_verified": true,
+      "twice_half_equals_old_sum_verified": true,
+      "same_gradient_half_lr_equivalence_verified": true,
+      "nominal_lr_not_halved_verified": true,
+      "nonlinear_analytic_locations": true,
+      "four_gradient_one_sgd_verified": true,
+      "rng_replay_R0_final_R1_verified": true
+    },
+    "reviewed_file_hashes": {
+      "suite.json": "0d3a6a91f9ad18c8ca887e8b9f2f87e3f4accd5c2ea4e9a1d1f8babc3a3ac040",
+      "common.py": "8f24d2d363ca27d2a365766c06d8f06d1d5d3c7ac7dd4e4ecd9bc751a48e219f",
+      "run_queue.py": "f76dadea9afc4dced8c658c834ae3a5ee085691eb3d2b48bbd7b2bee50246d99",
+      "job_worker.py": "270e0e2a8b5204d8a0dcb9ed61efec0f6ea3d12e6923039d3d145b1749129dff",
+      "smoke_pairing.py": "a3901fbc64e38e0a2bc4e96f3f95fe3c6d787c8bfe34a4fda9906dfd264fa798",
+      "validate_job.py": "86ea4d9c9f82d2859e6ec9ec82781accf9e88569b7299b0e36411991ce8c90fd",
+      "collect_results.py": "9c80f6e89070dd60fb801242283dc576b537e66b533d61eb200b0d554e5342dc",
+      "historical_inventory.json": "25d7237d7c7a608ef9c60312a523084b860e70c969972f16735c2a1914099a6a",
+      "EXPERIMENT_PLAN.md": "b1aa3565e3d544d63fc0951ef25f898a398d64df955976e7ae094fd85a851d41",
+      "RUN.md": "88cc173182f26ed70623755564d57b6501195d40a7093b313da15ea2f70e2109",
+      "ENVIRONMENT.md": "be30dcac95d164167a51826f7549a3bc9c7d342259097c8f0ea84898ce20a08a",
+      "trainer/direction_step.py": "d9c39224b4e572b4dd57765ecac3e96c149ca718ff0dc9ff6b6da536b265c602",
+      "trainer/four_probe_train.py": "28ab4cefab315cb6a3e199f2943e70e6193cb4debab84666ea68e90986215861",
+      "trainer/test_four_probe_cpu.py": "f6225009db917561b98a430005f1d307487e2e219a45c1e930d0d01bcf7db209"
+    },
+    "prose_only_refresh": "Collector clarifies half-sum scalar preserves common-state direction; science/runtime files unchanged."
+  },
+  "fixture_report": "gates/INDEPENDENT_VALIDATOR_FIXTURES.json",
+  "scope": "Read-only independent review of scientific engine, schema, source/config/environment identity, and GPU queue policy; no launch performed."
+}

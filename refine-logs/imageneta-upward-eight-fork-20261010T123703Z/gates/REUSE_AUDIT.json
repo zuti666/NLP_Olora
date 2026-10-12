@@ -1,0 +1,1793 @@
+{
+  "status": "passed",
+  "audited_at_utc": "2026-10-10T12:41:18.607644+00:00",
+  "scope": "Read-only CPU revalidation; no old source/config/output mutations or GPU training",
+  "old_run": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z",
+  "new_run": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z",
+  "old_run_pins_sha256": "374c138d4ef5e77e4608e6475c666ddc586a112e0ab4ea2466c3457c4563a0f3",
+  "old_execution_pins_verified": 57,
+  "old_source_files_verified": 190,
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "dev_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a",
+  "split_task_counts": {
+    "0": {
+      "train": 1141,
+      "dev": 118
+    },
+    "1": {
+      "train": 906,
+      "dev": 91
+    }
+  },
+  "parent_reuse_accepted": true,
+  "rows": {
+    "formal_parent_sgd_s2": {
+      "accepted": true,
+      "independent_old_validator_result": {
+        "summary_sha256": "f58b84a7228e41c927493842af67efb8074b11616833c601e390033e7ac4c78b",
+        "trace_sha256": "4baff63ab8c67c459087470f7fe9779a9e7dae58926960239027290b1114c0da",
+        "updates": 450,
+        "tasks": 1,
+        "trained_task_ids": [
+          0
+        ],
+        "shared_parent_verified": false,
+        "metric_recomputation": true,
+        "full_formal_training": true
+      },
+      "completion_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_parent_sgd_s2/completed.json",
+      "completion_sha256": "8f4f69091cef49f0ff44d4afa6f2a0466838ed46bbdb0bbe49652250bd85a5a6",
+      "final_summary_sha256": "f58b84a7228e41c927493842af67efb8074b11616833c601e390033e7ac4c78b",
+      "final_parameter_sha256": "3ea5e21a4218bc07bb98ab7e233f61169dbf28f3c2a4ab987917881496785837",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "update_direction": "sgd",
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "response_layout": "cl10",
+        "history_source": null,
+        "old_fc_rows_inherited_exact": true,
+        "history_reset": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "R0 replay; one g0/R1 advance; passive diagnostic restored",
+        "study_condition_id": "parent_sgd",
+        "study_role": "parent",
+        "probe_variant": "parent_sgd",
+        "fork_method": "parent_sgd",
+        "response_probe_variant": "parent_sgd",
+        "radius_variant": "sgd_direction",
+        "probe_mode": "sgd_step",
+        "inner_probe_radius_mode": null,
+        "outer_probe_radius_mode": null,
+        "inner_rho": null,
+        "outer_R": null,
+        "normal_gradient_calls": 1,
+        "gam_radii_active": false,
+        "probe_radius_coordinates": "global trainable LoRA+FC parameter L2",
+        "dev_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a",
+        "parent_receipt": null
+      },
+      "checkpoint_manifest": {
+        "task": 0,
+        "epoch": 50,
+        "seed": 2,
+        "response_method": "sgd",
+        "response_layout": "cl10",
+        "history_source": null,
+        "class_range": [
+          0,
+          20
+        ],
+        "current_task_class_range": [
+          0,
+          20
+        ],
+        "model_sha256": "3ea5e21a4218bc07bb98ab7e233f61169dbf28f3c2a4ab987917881496785837",
+        "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+        "fc_shape": [
+          20,
+          768
+        ],
+        "backbone_task_id": 1,
+        "native_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/native/checkpoints",
+        "files_sha256": {
+          "lora_w_a_0.pt": "068ab4462063ccd9943443916d32c563ca691f22f5e0d2658a6194908d79ffde",
+          "lora_w_b_0.pt": "05169aa4136b6ae760c12add9fa7c5991282adb84115356c21e2dc397d6758f3",
+          "lora_meta_0.json": "8efa6e4d62a27ab534be80dc36b605b8f61fa75c801c191216a9a12cfadaa0b4",
+          "fc_state_0.pt": "c697cfbaf9d6c8f3d9144016c5978ac947bb2fc94457cbe8e9a4c098d179695e",
+          "training_state.pt": "266a319d3623322e8d1691c0ae4ec2a1cb4d2e781fa400c5a7689cbdcc2a472c",
+          "shared_parent.pt": "4a10149a64f62647fbd673df3bab7d34ef83115316a1c5c0963044655ee35cde"
+        },
+        "loader": "learner.load_task_checkpoint(checkpoint_dir, task, data_manager); cumulative current single adapter",
+        "study_condition_id": "parent_sgd",
+        "study_role": "parent",
+        "probe_variant": "parent_sgd",
+        "fork_method": "parent_sgd",
+        "response_probe_variant": "parent_sgd",
+        "radius_variant": "sgd_direction",
+        "probe_mode": "sgd_step",
+        "inner_probe_radius_mode": null,
+        "outer_probe_radius_mode": null,
+        "inner_rho": null,
+        "outer_R": null,
+        "normal_gradient_calls": 1,
+        "gam_radii_active": false,
+        "probe_radius_coordinates": "global trainable LoRA+FC parameter L2",
+        "dev_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a",
+        "algorithm": "sgd",
+        "algorithm_cache_in_training_state": true,
+        "shared_parent_after_task_complete": true,
+        "shared_parent_rng_sha256": "f96068268aaed8bc28cd7a21dcadadcb635ec6a5aafeec04f1524c821e41f8f9"
+      },
+      "training_ce_scope": "native current-task 20-logit slice; targets shifted by class_offset",
+      "dev_scope": "current-task 20 logits; train-only dev holdout",
+      "test_scope": "native CNN argmax across all seen classes (20 at parent, 40 at Task1)",
+      "initial_lr": 0.04,
+      "final_training_epoch_lr": 0.004035518888291112,
+      "epochs": 50,
+      "updates": 450,
+      "actual_training_gradient_reads": 450,
+      "diagnostic_post_update_reads": 450,
+      "strict_deterministic_every_step": true,
+      "full_state_rng_restore_every_step": true,
+      "natural_sgd_every_step": true,
+      "first_g0_sha256": "340b0564713506a95870df661a6023b008155f2875a4a4287059fbe1aeabdf07",
+      "first_batch_identity": {
+        "input_sha256": "bce2f3e2d5a0cd7758f3cb56f345c79e38af1ddc27842e954fbdcd5bf9625d18",
+        "target_sha256": "14463603024c35047afb6114e868a3b39fc97c5a6e1b80eaca0ef548d0512f05",
+        "indices_sha256": "be3f62b1d4eabd8339905c1ad0a85136343f69bf4b66a7104d935ce6e4f32a85",
+        "indices": [
+          271,
+          748,
+          76,
+          665,
+          452,
+          886,
+          810,
+          538,
+          746,
+          208,
+          967,
+          722,
+          514,
+          158,
+          970,
+          655,
+          217,
+          959,
+          190,
+          197,
+          1133,
+          1064,
+          60,
+          915,
+          38,
+          159,
+          592,
+          364,
+          1026,
+          645,
+          388,
+          347,
+          913,
+          65,
+          866,
+          332,
+          808,
+          998,
+          563,
+          466,
+          877,
+          213,
+          426,
+          1139,
+          186,
+          772,
+          121,
+          397,
+          952,
+          249,
+          590,
+          463,
+          350,
+          313,
+          832,
+          620,
+          583,
+          939,
+          51,
+          1125,
+          1066,
+          919,
+          825,
+          618,
+          349,
+          386,
+          13,
+          323,
+          334,
+          828,
+          1122,
+          451,
+          1085,
+          414,
+          615,
+          63,
+          455,
+          901,
+          110,
+          246,
+          1020,
+          486,
+          662,
+          102,
+          71,
+          602,
+          119,
+          596,
+          322,
+          731,
+          814,
+          750,
+          248,
+          549,
+          798,
+          493,
+          193,
+          318,
+          325,
+          778,
+          378,
+          584,
+          1107,
+          761,
+          841,
+          23,
+          164,
+          459,
+          630,
+          947,
+          1137,
+          524,
+          230,
+          383,
+          243,
+          107,
+          958,
+          711,
+          470,
+          359,
+          353,
+          160,
+          920,
+          977,
+          589,
+          702,
+          780,
+          404
+        ],
+        "data_seed": 200001
+      },
+      "first_base_parameter_sha256": "9630124682173c366614a03fd696c2b5da0dd601d24af85a4332d67d401a1407",
+      "final_metrics": {
+        "matrix": [
+          [
+            84.69
+          ]
+        ],
+        "response_layout": "cl10",
+        "task_boundaries": [
+          [
+            0,
+            20
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            40,
+            60
+          ],
+          [
+            60,
+            80
+          ],
+          [
+            80,
+            100
+          ],
+          [
+            100,
+            120
+          ],
+          [
+            120,
+            140
+          ],
+          [
+            140,
+            160
+          ],
+          [
+            160,
+            180
+          ],
+          [
+            180,
+            200
+          ]
+        ],
+        "matrix_scope": "native CNN argmax over all seen classes; rows=completed stage, columns=task",
+        "AAA_task_macro": 84.69,
+        "FAA_task_macro": 84.69,
+        "LA": 84.69,
+        "BWT": null,
+        "forgetting": null,
+        "final_test_accuracy": 84.69,
+        "sample_accuracy_curve": [
+          84.69
+        ],
+        "FAA_sample_weighted": 84.69,
+        "AAA_sample_weighted": 84.69,
+        "AAA_definition": "mean over completed task stages; not the epoch accuracy curve",
+        "single_task_metrics_note": null,
+        "epoch_test_curve": []
+      }
+    },
+    "formal_task1_B0_s2": {
+      "accepted": true,
+      "independent_old_validator_result": {
+        "summary_sha256": "44cee029b1a3f058207e7043e8beee18b4a3e770596b272702ab1cceafffc818",
+        "trace_sha256": "c1b11a400c9ace4a25418e8ceb1fb99e91f347fe2328604975a1bbb5919c7865",
+        "updates": 400,
+        "tasks": 2,
+        "trained_task_ids": [
+          1
+        ],
+        "shared_parent_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": true
+      },
+      "completion_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_task1_B0_s2/completed.json",
+      "completion_sha256": "b5f53d9c0a5978e398a81c3e5c777511a74a3770635d785d772f03bba56f8403",
+      "final_summary_sha256": "44cee029b1a3f058207e7043e8beee18b4a3e770596b272702ab1cceafffc818",
+      "final_parameter_sha256": "0eb683a9d6bf86e0b4226c0eca4f525a1d883ea26b4328b3bb651733c66be3cd",
+      "initial_identity": {
+        "task": 1,
+        "seed": 2,
+        "update_direction": "sgd",
+        "class_slice": [
+          20,
+          40
+        ],
+        "fc_shape": [
+          40,
+          768
+        ],
+        "response_layout": "cl10",
+        "history_source": null,
+        "old_fc_rows_inherited_exact": true,
+        "history_reset": true,
+        "new_fc_rows_sha256": {
+          "weight": "0c83a103d91922b48cdd07cb1f722deb491ea3cc5de5ce78d87a9f6db0e67da2",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "1341b66dcfd5c0a9a25c4e509213a81bb512cea27db059f861c7998ed0714ea6",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "R0 replay; one g0/R1 advance; passive diagnostic restored",
+        "study_condition_id": "B0",
+        "study_role": "branch",
+        "probe_variant": "B0",
+        "fork_method": "B0",
+        "response_probe_variant": "B0",
+        "radius_variant": "sgd_direction",
+        "probe_mode": "sgd_step",
+        "inner_probe_radius_mode": null,
+        "outer_probe_radius_mode": null,
+        "inner_rho": null,
+        "outer_R": null,
+        "normal_gradient_calls": 1,
+        "gam_radii_active": false,
+        "probe_radius_coordinates": "global trainable LoRA+FC parameter L2",
+        "dev_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a",
+        "parent_receipt": {
+          "parent_output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2",
+          "parent_completion_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_parent_sgd_s2/completed.json",
+          "parent_completion_receipt_sha256": "8f4f69091cef49f0ff44d4afa6f2a0466838ed46bbdb0bbe49652250bd85a5a6",
+          "parent_summary_sha256": "f58b84a7228e41c927493842af67efb8074b11616833c601e390033e7ac4c78b",
+          "parent_checkpoint_manifest_sha256": "aea3c0a57ac857cfd8d8855b745248ccbc62bccf10c9065955f57cdc8e11fb84",
+          "shared_parent_sha256": "4a10149a64f62647fbd673df3bab7d34ef83115316a1c5c0963044655ee35cde",
+          "parent_model_sha256": "3ea5e21a4218bc07bb98ab7e233f61169dbf28f3c2a4ab987917881496785837",
+          "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+          "parent_rng_sha256": "f96068268aaed8bc28cd7a21dcadadcb635ec6a5aafeec04f1524c821e41f8f9",
+          "complete_network_restored": true,
+          "native_checkpoint_loader_used": true,
+          "parameter_identity_verified": true,
+          "parent_test_prefix_inherited_exact": true
+        }
+      },
+      "checkpoint_manifest": {
+        "task": 1,
+        "epoch": 50,
+        "seed": 2,
+        "response_method": "sgd",
+        "response_layout": "cl10",
+        "history_source": null,
+        "class_range": [
+          0,
+          40
+        ],
+        "current_task_class_range": [
+          20,
+          40
+        ],
+        "model_sha256": "0eb683a9d6bf86e0b4226c0eca4f525a1d883ea26b4328b3bb651733c66be3cd",
+        "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+        "fc_shape": [
+          40,
+          768
+        ],
+        "backbone_task_id": 2,
+        "native_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/native/checkpoints",
+        "files_sha256": {
+          "lora_w_a_1.pt": "5b17536ae5376c7ea5695da4363da8503527c5976ec204b8c6e48f2591c0adb6",
+          "lora_w_b_1.pt": "16e815f2fc3b680bb2efc7255a9233076d2d6f28d6bb3c367c0388517a6043ba",
+          "lora_meta_1.json": "8efa6e4d62a27ab534be80dc36b605b8f61fa75c801c191216a9a12cfadaa0b4",
+          "fc_state_1.pt": "a6894c343f920540f7dc90e3bb4d9be3befad8a89989638efb4eef19c126661d",
+          "training_state.pt": "42850e7b984f2cbae2bf9a8933d3298a79706aed8e20cb648e87bd9ac030fba1"
+        },
+        "loader": "learner.load_task_checkpoint(checkpoint_dir, task, data_manager); cumulative current single adapter",
+        "study_condition_id": "B0",
+        "study_role": "branch",
+        "probe_variant": "B0",
+        "fork_method": "B0",
+        "response_probe_variant": "B0",
+        "radius_variant": "sgd_direction",
+        "probe_mode": "sgd_step",
+        "inner_probe_radius_mode": null,
+        "outer_probe_radius_mode": null,
+        "inner_rho": null,
+        "outer_R": null,
+        "normal_gradient_calls": 1,
+        "gam_radii_active": false,
+        "probe_radius_coordinates": "global trainable LoRA+FC parameter L2",
+        "dev_split_sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a",
+        "algorithm": "sgd",
+        "algorithm_cache_in_training_state": true
+      },
+      "training_ce_scope": "native current-task 20-logit slice; targets shifted by class_offset",
+      "dev_scope": "current-task 20 logits; train-only dev holdout",
+      "test_scope": "native CNN argmax across all seen classes (20 at parent, 40 at Task1)",
+      "initial_lr": 0.02,
+      "final_training_epoch_lr": 0.002017759444145556,
+      "epochs": 50,
+      "updates": 400,
+      "actual_training_gradient_reads": 400,
+      "diagnostic_post_update_reads": 400,
+      "strict_deterministic_every_step": true,
+      "full_state_rng_restore_every_step": true,
+      "natural_sgd_every_step": true,
+      "first_g0_sha256": "a4ff17218046864e0058a873ab3a87b63e01cfe7db3475cfc805800327ae836d",
+      "first_batch_identity": {
+        "input_sha256": "5eadad84abf82e562d5b4eecc338eef8ff0aa71a55b325054ffefac2205041d0",
+        "target_sha256": "80fe3d5a921328660f457d5e4e3d859aa3d797b80e42cda55b54ae38ba27589d",
+        "indices_sha256": "381796345670ef610c56923b46a55717ceb998ba57191a1749f21a5d603acca1",
+        "indices": [
+          551,
+          758,
+          38,
+          729,
+          232,
+          607,
+          875,
+          87,
+          40,
+          246,
+          392,
+          419,
+          560,
+          231,
+          178,
+          586,
+          793,
+          450,
+          858,
+          217,
+          456,
+          163,
+          457,
+          162,
+          182,
+          403,
+          801,
+          159,
+          104,
+          693,
+          192,
+          538,
+          601,
+          498,
+          817,
+          776,
+          353,
+          652,
+          827,
+          112,
+          610,
+          494,
+          569,
+          651,
+          127,
+          534,
+          273,
+          389,
+          714,
+          219,
+          107,
+          333,
+          111,
+          620,
+          490,
+          772,
+          395,
+          590,
+          141,
+          747,
+          838,
+          679,
+          281,
+          93,
+          489,
+          393,
+          282,
+          720,
+          19,
+          184,
+          194,
+          80,
+          745,
+          581,
+          767,
+          26,
+          731,
+          503,
+          298,
+          409,
+          83,
+          690,
+          835,
+          782,
+          195,
+          862,
+          247,
+          633,
+          64,
+          485,
+          656,
+          374,
+          428,
+          660,
+          688,
+          445,
+          442,
+          870,
+          227,
+          207,
+          130,
+          844,
+          675,
+          589,
+          761,
+          4,
+          181,
+          666,
+          18,
+          493,
+          249,
+          680,
+          131,
+          252,
+          759,
+          315,
+          89,
+          491,
+          803,
+          612,
+          404,
+          7,
+          454,
+          484,
+          168,
+          243,
+          431,
+          81
+        ],
+        "data_seed": 201001
+      },
+      "first_base_parameter_sha256": "e55f9f9d2c0e6b38e2940baae39f1d75d2456add81d515c53e9560b10870e1f2",
+      "final_metrics": {
+        "matrix": [
+          [
+            84.69
+          ],
+          [
+            81.43,
+            75.98
+          ]
+        ],
+        "response_layout": "cl10",
+        "task_boundaries": [
+          [
+            0,
+            20
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            40,
+            60
+          ],
+          [
+            60,
+            80
+          ],
+          [
+            80,
+            100
+          ],
+          [
+            100,
+            120
+          ],
+          [
+            120,
+            140
+          ],
+          [
+            140,
+            160
+          ],
+          [
+            160,
+            180
+          ],
+          [
+            180,
+            200
+          ]
+        ],
+        "matrix_scope": "native CNN argmax over all seen classes; rows=completed stage, columns=task",
+        "AAA_task_macro": 81.6975,
+        "FAA_task_macro": 78.70500000000001,
+        "LA": 80.33500000000001,
+        "BWT": -3.259999999999991,
+        "forgetting": 3.259999999999991,
+        "final_test_accuracy": 78.97,
+        "sample_accuracy_curve": [
+          84.69,
+          78.97
+        ],
+        "FAA_sample_weighted": 78.97,
+        "AAA_sample_weighted": 81.83,
+        "AAA_definition": "mean over completed task stages; not the epoch accuracy curve",
+        "single_task_metrics_note": null,
+        "epoch_test_curve": []
+      }
+    }
+  },
+  "old_B0_usage": "Equivalence oracle only: new Task1 SGD rerun must pair all 400 realized input/target/index/LR records and final parameter hash; not a new full-epoch trajectory",
+  "old_B0_full_epoch_test_curve_available": false,
+  "old_B0_retention_auc_50_epochs_reconstructible": false,
+  "old_B0_snapshots": [
+    {
+      "epoch": 0,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_000.pt",
+      "sha256": "c241be25dda57648488e09d914d25a068b78310e3100ef1ef0f0e7bf522afd7b",
+      "full_model_parameter_sha256": "1341b66dcfd5c0a9a25c4e509213a81bb512cea27db059f861c7998ed0714ea6",
+      "current_optimizer_lr": 0.02
+    },
+    {
+      "epoch": 1,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_001.pt",
+      "sha256": "c398edc395739dd7383446163ea972886312ed06eabf0708cb3b216ca9651d24",
+      "full_model_parameter_sha256": "3a776beb3456c64bf43f1dd51751d516ecda5ed5e3faecb9518cd2e5fb1780cb",
+      "current_optimizer_lr": 0.019982240555854444
+    },
+    {
+      "epoch": 10,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_010.pt",
+      "sha256": "953c81bbb044225a50f60af7603d4001a65d4764b66c26e983e7769cc7f6a312",
+      "full_model_parameter_sha256": "b09e56d86f3ca015f484273114ae105488f181f71becc9ca64774731ec1a2c17",
+      "current_optimizer_lr": 0.018281152949374505
+    },
+    {
+      "epoch": 25,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_025.pt",
+      "sha256": "77054f8c74560226034dad1d10a4168a7c3ab3edbac54c301de63031a538b1e2",
+      "full_model_parameter_sha256": "5da0c12ab1c5e5d7182c4ac0fcb52a6b312fdf7345968747d5d65090369ee98b",
+      "current_optimizer_lr": 0.010999999999999985
+    },
+    {
+      "epoch": 49,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_049.pt",
+      "sha256": "6d47635033105432025cf5d025ec18674a28dcae177237aa6ef488249f07b148",
+      "full_model_parameter_sha256": "8bf684e919a2e859dba970c628e933caf730c49312089104a2af494f3a913e9c",
+      "current_optimizer_lr": 0.002017759444145556
+    }
+  ],
+  "new_parent_policy": "seed2 reuses accepted old SGD Task0; seeds0/1 each train a new SGD Task0 parent",
+  "new_training_policy": "24 new r=1 Task1 forks (8 methods x 3 seeds), 1 seed2 upward r=.25 g2 bridge, 2 new Task0 parents, 18 new full200 single-task trainings (6 methods x 3 seeds): 45 new formal trainings",
+  "reuse_admission_requirements": [
+    "new seed2 forks bind accepted parent receipt, shared_parent.pt and all native checkpoint files",
+    "same train/dev manifest, current20 CE and all-seen40 test definitions",
+    "same FC20->40 expansion parameter hash and new FC rows hash",
+    "same first realized minibatch and g0 hash after exact parent RNG restore",
+    "400 per-fork updates, LR=.02 epoch-cosine50 floor .1, full LoRA+FC scope",
+    "all new final results validated against method-specific native read budget and forbidden-work guards"
+  ],
+  "excluded_reuse": [
+    "old full-training 10-task SGD/SAM rows: different dev membership, parent/fork protocol and budgets",
+    "old 20-class Task0 row as full200 single-task result",
+    "descending g2 R25/R100/S_F under same upward g2 method name"
+  ],
+  "evidence_hashes": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_parent_sgd_s2/completed.json": "8f4f69091cef49f0ff44d4afa6f2a0466838ed46bbdb0bbe49652250bd85a5a6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/final_summary.json": "f58b84a7228e41c927493842af67efb8074b11616833c601e390033e7ac4c78b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/task_matrix.json": "85517bfcf2899e6ccbcf3867dce7324578fb55ffb5b47836b05b62aad312f8a9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/effective_config.json": "f3c22a3999c56c1c48bb4273dc417f5a3bd491079a7b80ea3dfa8fb66f9ec02d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/task_identities.json": "af1229ffff7be064e6c79999e9de9cc62687d907137437a78363e5e030d65825",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/step_trace.jsonl": "4baff63ab8c67c459087470f7fe9779a9e7dae58926960239027290b1114c0da",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/dev_curve.json": "4cc3b415e468b7ef9348d4914330e3d9f2e51f15b28de3dc82fe1e429496b458",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/manifest.json": "aea3c0a57ac857cfd8d8855b745248ccbc62bccf10c9065955f57cdc8e11fb84",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/lora_w_a_0.pt": "068ab4462063ccd9943443916d32c563ca691f22f5e0d2658a6194908d79ffde",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/lora_w_b_0.pt": "05169aa4136b6ae760c12add9fa7c5991282adb84115356c21e2dc397d6758f3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/lora_meta_0.json": "8efa6e4d62a27ab534be80dc36b605b8f61fa75c801c191216a9a12cfadaa0b4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/fc_state_0.pt": "c697cfbaf9d6c8f3d9144016c5978ac947bb2fc94457cbe8e9a4c098d179695e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/training_state.pt": "266a319d3623322e8d1691c0ae4ec2a1cb4d2e781fa400c5a7689cbdcc2a472c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_parent_sgd_s2/checkpoints/task_000/shared_parent.pt": "4a10149a64f62647fbd673df3bab7d34ef83115316a1c5c0963044655ee35cde",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_parent_sgd_s2/cuda_witness.json": "c7499aa997d9c34e79e3c95cfb0c5f65a4183be18242f374e41d1830cd8b978e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_task1_B0_s2/completed.json": "b5f53d9c0a5978e398a81c3e5c777511a74a3770635d785d772f03bba56f8403",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/final_summary.json": "44cee029b1a3f058207e7043e8beee18b4a3e770596b272702ab1cceafffc818",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/task_matrix.json": "31c9a944f95ae173b3ae0a4653d7d14fdab47b59e6c64468d740aaa6e79d3be0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/effective_config.json": "e0ef8bddeb354e99b0583344639ca7d6ee63eb8805e4da85ceb30f6db2e75985",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/task_identities.json": "9cc9e4fc3a1345ff882aaf2d7f4339a27158aa516b759f4a7dc56052dc78e098",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/step_trace.jsonl": "c1b11a400c9ace4a25418e8ceb1fb99e91f347fe2328604975a1bbb5919c7865",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/dev_curve.json": "09920698056f4e956755088b0e8f6d7212d42b3dd3d53e6bba1c83b861d86bfc",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/checkpoints/task_001/manifest.json": "f8f75c5d3bb858760af471be922130566c68d976ecba593f7f33ed7ad062a1d5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/checkpoints/task_001/lora_w_a_1.pt": "5b17536ae5376c7ea5695da4363da8503527c5976ec204b8c6e48f2591c0adb6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/checkpoints/task_001/lora_w_b_1.pt": "16e815f2fc3b680bb2efc7255a9233076d2d6f28d6bb3c367c0388517a6043ba",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/checkpoints/task_001/lora_meta_1.json": "8efa6e4d62a27ab534be80dc36b605b8f61fa75c801c191216a9a12cfadaa0b4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/checkpoints/task_001/fc_state_1.pt": "a6894c343f920540f7dc90e3bb4d9be3befad8a89989638efb4eef19c126661d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/checkpoints/task_001/training_state.pt": "42850e7b984f2cbae2bf9a8933d3298a79706aed8e20cb648e87bd9ac030fba1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_task1_B0_s2/cuda_witness.json": "c7499aa997d9c34e79e3c95cfb0c5f65a4183be18242f374e41d1830cd8b978e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_000.pt": "c241be25dda57648488e09d914d25a068b78310e3100ef1ef0f0e7bf522afd7b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_001.pt": "c398edc395739dd7383446163ea972886312ed06eabf0708cb3b216ca9651d24",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_010.pt": "953c81bbb044225a50f60af7603d4001a65d4764b66c26e983e7769cc7f6a312",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_025.pt": "77054f8c74560226034dad1d10a4168a7c3ab3edbac54c301de63031a538b1e2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_B0_s2/snapshots/epoch_049.pt": "6d47635033105432025cf5d025ec18674a28dcae177237aa6ef488249f07b148"
+  },
+  "old_execution_pin_ledger": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/validate_job.py",
+      "sha256": "d89b0957a2450e82332f906297f5152355475e40b2c66b3e079f55a071f71e4a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/collect_results.py",
+      "sha256": "865131856f0a09e8f706b8cb08b9f36632a2991314d4c0c93744510119f02ec6"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/job_worker.py",
+      "sha256": "270e0e2a8b5204d8a0dcb9ed61efec0f6ea3d12e6923039d3d145b1749129dff"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/smoke_pairing.py",
+      "sha256": "21c6fa370928ace3d55693b7090860c826a5a0a7fc43bd3f78420d495e12dbcc"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/common.py",
+      "sha256": "af32b6937f0aea9db30d404bfcacd39a8251481fa1228b203b985d54609fd0f9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/run_queue.py",
+      "sha256": "8f98c8bc0aa2b03b30df3e6b87c54221d69cc59ccb0c44c618e30cd7e885aece"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/suite.json",
+      "sha256": "6e97e37ee3a3ecfe276193d827e90279bd3d98cb6bf6d4eca54be697d0f15790"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/source_manifest.json",
+      "sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/environment_spec.json",
+      "sha256": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/USER_PROPOSAL.txt",
+      "sha256": "4374d82a019acd9b339c15cd3a2e79add987168832c9f607b5bc5e42bac7598c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/dev_split.json",
+      "sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/EXPERIMENT_PLAN.md",
+      "sha256": "7c8c403f26ad4b7cce688c3fb1123b9461d86454a4a593ff094bb3d7d0397548"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/RUN.md",
+      "sha256": "c4b0ee7b71a12ffe8a04d8e5a11cea51778e7cd6324debe6b0bc516dea2a0630"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_S_F_s2.json",
+      "sha256": "38987c4e1892ba8fb889e6be9097eb3ca28be5da4a7b4990faeecebb11e28655"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_S_F_s2.json",
+      "sha256": "d73b2b86feaed7ddc4888452341434e4c77d608f96df587d2797cf1516180164"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_F_S_s2.json",
+      "sha256": "173e9811d9fd8a1bd615d76044f0d7f327d50b11348f0f447644d3871ff9d16a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_S_S_s2.json",
+      "sha256": "b83c7f8fb34929983bdf6269c0aa4980d502c2fcc3500f0e99a83333cbb58efd"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_F_S_s2.json",
+      "sha256": "f55e825f8c543e82845b1fd2119d20b17b081a9c0c2db4fb797381fc33758a16"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_parent_sgd_s2.json",
+      "sha256": "3d469d6951ad7797b1e5870ef68c95a1f9221fb1382bb5fada8203aceb8f8c65"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_parent_sgd_s2.json",
+      "sha256": "d685535a1bfc3a656538a090a310e453793ff4e8db358ea2c4e7bd8f61fe8edf"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_R100_s2.json",
+      "sha256": "74579783641de76e2e21f747efc253db6b0b39f768c667b16900f5e0f383853a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_R100_s2.json",
+      "sha256": "bfb1439743fe3e608e56402cba3d4f7431ab9e7bcc685f299aedba52497fa744"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_R25_s2.json",
+      "sha256": "43377bd2a574650cf917faaf86df0dff9f217778d6a04cb3aa1ece9044a0ea2d"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_R25_s2.json",
+      "sha256": "d22ba048e829ee01d7b0db76643d959a59eabfbb37c29794990714541d6340d1"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_S_S_s2.json",
+      "sha256": "e2f6a079c0ed8291cfa0b0d3a334d93b777412701bc858e1fcb75c30beaee3c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_B0_s2.json",
+      "sha256": "87c753a490d10c973b5e0d9e53a656501a2362e7d39b4a9dcd4f1b44d2da8872"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/smoke_task1_B0_s2.json",
+      "sha256": "58bea97a604c0261d4fc7bbbf48ae81f04a41b70073a73a39f5b9b3067fdfe3b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/docs/EXPERIMENT_SETTINGS.csv",
+      "sha256": "13dea7d7ff87b7e81ea5fef67f7e3b083114787ec83d0d2127f7c4cd8df9ed33"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/docs/EXPERIMENT_PLAN_20261009T223549Z.md",
+      "sha256": "7c8c403f26ad4b7cce688c3fb1123b9461d86454a4a593ff094bb3d7d0397548"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/docs/CLAIM_EXPERIMENT_MAP.json",
+      "sha256": "3f4bedeee3cef609b19423779d12fb1e81b18f808dafceada25eeb2d7bec8e83"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/test_independent_radius_driver_cpu.py",
+      "sha256": "15bdb8a3e59fe4ef1d5652c5b8650de7e4f58953af4e83f10f662ceb47ffb3a0"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/layout_lifecycle.py",
+      "sha256": "7035b192aea68782b10e84df983deea15227c132312fee6b3e9138425d17d103"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/test_response_lifecycle_cpu.py",
+      "sha256": "178769fa9645e210bc5cfb5e2774d98cb81c260b48aa6d34776a23753512869e"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/effective_step.py",
+      "sha256": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/response_train.py",
+      "sha256": "8c46880b596b276500b9af043a24470dfb5a8ccd46a2136aa5ea47e90858fa7f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+      "sha256": "7278c8d974e5c851e2e39bd14edd12cc0644fb123236a927b031596d015c619e"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/response_step.py",
+      "sha256": "fe5b2056df14ba10eb8a00722b126986fc83b19cd66905b5bfe7dcfd30eb2e70"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/test_response_step_cpu.py",
+      "sha256": "906bd2460b0a339f564da70c4bca2bf44a103da764785b502b11d6d35c0ed454"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/test_probe_study_cpu.py",
+      "sha256": "4eb9423f5db83406d72c141cf1171a5ab938db03cab3997890ddc198e85e5037"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/local_probe_audit.py",
+      "sha256": "1301e8c4883dd9064d6c8032d2e6101b715adf4e122ce8e01253e57b362aa3e5"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/independent_response_step.py",
+      "sha256": "59d5b622c861043ef0c3b9e552993ec4ca4bd30077a7004803d3a86de9ffe18a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_data.py",
+      "sha256": "4f941df406ca7dcd88f87d9fa343a044b1080d4118d205071ac18c6c2a71d473"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/native_lifecycle.py",
+      "sha256": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/audit_core.py",
+      "sha256": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/test_local_probe_audit_cpu.py",
+      "sha256": "0fd8880d21a07fba5dd2e3df9a0a1f9d8954108b2576c6dcb9c2cb1525d5efec"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/task0_trainer_base_v2.py",
+      "sha256": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/cuda_witness.py",
+      "sha256": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/state_transaction.py",
+      "sha256": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/test_independent_response_step_cpu.py",
+      "sha256": "d8b1cd68e30fd7f7407aa12ca727ff7009c54983e85fefb078d42b10807d2a93"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/FORK_CPU_TESTS.log",
+      "sha256": "203def87ed04450c18f0816e9b27632740787d8853e751c8bc1127e0b80877b6"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/LOCAL_PROBE_CPU_TESTS.log",
+      "sha256": "6835b2ee33be2aa5425455954be3f604549cd4dec4f82d6ec74ae1a9f77d2e9b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/DESIGN_REVIEW.md",
+      "sha256": "9502cc703419ab12faf1645144b5c8a1245109e6d2b7e34d99fc0dbd1b1c59c2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/DESIGN_REVIEW.json",
+      "sha256": "1d62cfb93731adf93498f841a1494c58276722855460fd2eff793ee0e6f7a4b6"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/INDEPENDENT_CORE_QUADRATIC_ORACLE.json",
+      "sha256": "67174ec98f6b47b12d2956f28bea1daaa4eb56d0cf2a248be6d2e17446e5c59b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/INDEPENDENT_IMPLEMENTATION_REVIEW.json",
+      "sha256": "ee9e36c2b612a9d9b921d12da87c49b9c00d47e99d414ae1bdabc5843feee58c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/INDEPENDENT_IMPLEMENTATION_REVIEW.md",
+      "sha256": "55577407247f7d59d6722fd437537e2970f14d850bfe184f3850dfaa467471ee"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/CPU_IMPLEMENTATION_ACCEPTED.json",
+      "sha256": "e9f0f0f7df3e4cef9bcb886110fe004627b4889676fbe40939d1fc440167c5d2"
+    }
+  ],
+  "old_frozen_source_ledger": [
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/base_vit.py",
+      "sha256": "f9a6dab65aa81c0806942888536ac124c93a2bfbbe782cd500a3ebf270f35653"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/linears.py",
+      "sha256": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/lora.py",
+      "sha256": "303ed752ccf68b3a42106aedfc134e97e4305af0b013a45aea7f41ea7665dc86"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/lora_upload.py",
+      "sha256": "4a0ecea4691ff2f7ed0e3e3aac73b4bf8c010e0c66de6726995b5da44a417f27"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/net_ewclora.py",
+      "sha256": "98e85ad1e01aa4ba0297cb3b5926b9db010356b5c7bd6aee2768d03615d4698a"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/prompt.py",
+      "sha256": "ce57c5a4aa5c9c5ab9d7eb70ae27cb5a966ac2a1d9a540b45b55dfcd46ff2b04"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/resnet.py",
+      "sha256": "d65ea92bd544f1b501e3e096abc92c5c08b838e1e9cf9d3a3d930d17b56d0cae"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_adapter.py",
+      "sha256": "5152da2450ff30e4d14015366e78157e0d5ee1fcc52a6cd7527c2a7d025230fb"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_coda_promtpt.py",
+      "sha256": "9e4d1582b7c4e607567166a40297dac98a8e61adae29727559f4a5b7c456626e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_dualprompt.py",
+      "sha256": "08639e36d76ef39003d29182f61c269fe6ef47f92b750033d6c5ab958786d4ba"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_ease.py",
+      "sha256": "6192da266ed89b0278de79d88cdb877b8fbd68a49ef4c4b195fe639abe3da9ca"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_ewclora.py",
+      "sha256": "e0bb70bfbdaa1381c049682fd1d8955bd83760364b0ecea5c5c2e861dd7017c7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_inflora.py",
+      "sha256": "7f963cb0b533f72f3cdea673aec8485bc576befb4c44e064b9534cbd9584cf7f"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_l2p.py",
+      "sha256": "b8182697307204737d364a1e754a5763ba1cbf08f4b935e31c0e8855b0ef687b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_lae.py",
+      "sha256": "1d490dc38c9d07db76d189fc660527762f3641cbf4326534fbc318e3c08299b6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_memo.py",
+      "sha256": "62271cef93d59cd4a1c06603040eb3cabdbdcd5e401b4352221100d7aca88bce"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_mos.py",
+      "sha256": "d493c3fcb97b075a749769e3c8cce7038ac20f9d38fc6c30abc3e9718cbbf2e0"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_ssf.py",
+      "sha256": "9bdbdc0e0c6be3f42c4edeb8c2819148127668e56b07cc07be3d9597241f6721"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vit_tuna.py",
+      "sha256": "be59fd0ef53b116c99f16eb68d0275f82cf2fe0386ce252cea9ec3a0f9248f1d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/backbone/vpt.py",
+      "sha256": "6a4809a3fc06de1164e5b52f04425abfcd39bde8a4d328d9c2fa9d925f682be5"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/eval_flat/__init__.py",
+      "sha256": "485129df24dbbfc9818ceec46cbb95b51da917aa673372182a0e64cb3fd2475d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/eval_flat/eval_flat_feature.py",
+      "sha256": "1eabc78c00dba88c85d271587e789c27cf246e3d4fcb35e1851f35c7f1151064"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/eval_flat/eval_flatness_weight_Loss.py",
+      "sha256": "c513355d4c26d7cfaad4d092035246d213945110468647abe52f6cc955f5db9c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/eval_flat/param_utils.py",
+      "sha256": "157e4edce1b8c675c1a0a5edc5315e66e7a24bc5050f9963c43867c1b7f9f26d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation/__init__.py",
+      "sha256": "4120ec97ccf3c1d203dae1d5446ba547814972aeabbfb394ceeac3e5ccbfa221"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation/metrics.py",
+      "sha256": "1f41122f6b42eadff40edb8870e563ea6bcaec1994f12ca787450d9bfbf96c91"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation/probe.py",
+      "sha256": "b1a09ef536deb12f68369a033251c51d31055672854a89007240e2e0c7fda7c4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_attention/__init__.py",
+      "sha256": "ec9eb9944dfeb716fdb6b9e6522b40bc71bb7505f4031f92bcda8586016b9cd5"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_attention/attention_probe.py",
+      "sha256": "7b4d3dd7f56d5ad783cba7d9c1bae951a9bfbeb206f7a14617e9c478adca0f51"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_feature/eval_flat_feature.py",
+      "sha256": "72573f27103df2c425b04a9398a31c04f2c96a2658b48a62a9e9f3f29c6dad9d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_feature/feature_drift.py",
+      "sha256": "4a5a162303627ddf171e31078101f528f1754446f38017b566e5559ac2efc8ad"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_ood/__init__.py",
+      "sha256": "7c197bedf72ac15a1dfcfd94c615d9ca954ecf404ae262ec3595fa0ea721b9d4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_ood/ood_eval.py",
+      "sha256": "6141a57cbc92aa19ffcd78370898ac7d98d751e4d6813b8cbc1a4f83d4be26e6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_performance/__init__.py",
+      "sha256": "b4701d784567b8b7c9ac7a9bcd71a00832a565b23599aa8b53f61b792834b7c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_performance/eval_ood.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_performance/metrics.py",
+      "sha256": "661c53510d8a4ae10f40c76db9d43266dedacf59cc8701c3d4c8907467b1222a"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_performance/probe.py",
+      "sha256": "992c7f11ae26707d4dcc6e92988a918cfa944369818a134a8e31337a2f487c86"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/__init__.py",
+      "sha256": "44982143a620ac83c0974f1ced031b046ca59eb0d0b73747631a6e1b1b03d5d4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/attn_utils.py",
+      "sha256": "18cad8178ee84ca855f1d123d032339b12de906d709a2773606ec292ceb07a0c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/curv_localization.py",
+      "sha256": "dc74114a5ba06cf34ba1df34e15f9c7087d91f7eba4d4cd7b58de2b534716c6b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/eval_flatness_weight_Loss.py",
+      "sha256": "5ba47f5c4b914b4cca182c1af3cc537fe2321002f99c4ba4b8b111448e4213b2"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/eval_flatness_weight_Loss_save.py",
+      "sha256": "328143283a6b1d0ea71109c49b563abbd1cfb6319adc21f042a0b896e1a04984"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/eval_flatness_weight_Loss_upload.py",
+      "sha256": "dc56d1cae293bd178da5ab0e1bb009abe1940ec4b490c34b74484c63a83536c6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/io_utils.py",
+      "sha256": "627cadb788161c0b0f9883aeb2fd4bfaf640ef5b0a24d36a9addf2cf0893eb3c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/lanczos_iter.py",
+      "sha256": "0f4f90717b5cb34f170187654e2e4772f73f5cd52b8101b385ad983cdfd85f7c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/loss_landscape.py",
+      "sha256": "74b7e232682dea698c69c78ad69b22a9c73ab9d54e45546b424c40f834bce451"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/loss_utils.py",
+      "sha256": "da466f5d5d35f0fd7d3bf113b0903bf68bac96ad343aed0fc7efa32e0849a83d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/param_utils.py",
+      "sha256": "c79c10e9135055f0ba183d820a44f7144ca0f6c2fd8746c577ce3db218f6d8ad"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/power_iter.py",
+      "sha256": "91cb9b20dda06f91d4d17e48f2adf99b871daba26f84e3ea11ccb1d7242917cf"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/sharpness_evaluation_core/__init__.py",
+      "sha256": "e44b85d59b15b8acf8bc19781c073f376d425c053b7780fc27b570f482f24890"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/sharpness_evaluation_core/curvature.py",
+      "sha256": "5420f5fcca704aa7265356a4140d86242c11f5fc84c226a22e1c0b07cae6d2f4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/sharpness_evaluation_core/drift.py",
+      "sha256": "e3733e85070e4f9f687ad3e733d6d1edcf30d29d6755ba67f0c0379a34ff5651"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/sharpness_evaluation_core/landscape.py",
+      "sha256": "5c813ec2586014954483c036aae9b8219b3b4b28353fe70a53c5aab1a8db58cc"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/sharpness_evaluation_core/probe.py",
+      "sha256": "b51ec9cc3875817427e6fcf6489d5d421f19591705867652764429e8eadceb9e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/evaluation_weight_sharpness/visualize_attention.py",
+      "sha256": "6a0f1349609a6e24a785026f91b6302744f18b2e0cb0facc32287607fa9c3bb9"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/gpu_matmul.py",
+      "sha256": "3ccc1b06bc50661d7a866e2821d36a74d5cd08ff63b8a36d4b0afe4bccf05755"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/EWC.py",
+      "sha256": "03c22eb48015d5afc58734d2e0c924d9aed46630d7e498c5cc0f178475492cb7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/EWCon.py",
+      "sha256": "a915646f438ed655e2991d95d41ce022f74afb810a59d198f95daf2dad4356ee"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/EWConProbe_FisherShape.py",
+      "sha256": "062439f1e3d708cb482dcdfe2f135369b9e83b8848dc09ef75adc5be496fabd8"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/EWConProbe_FisherShapeFactored.py",
+      "sha256": "5b2650305fd87ba6787aa068db3cc468681c8392e09bea6bef3d495e55357bd4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/EWConProbe_GAMFactored.py",
+      "sha256": "d841fc2a059c63f76d8a46611701592dc816eb51ad0f7d234de6635aaa61289e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/EWCon_Probe.py",
+      "sha256": "8bee805629fe6b9d00e0faa3c1e8625f14664e931c29eda5971a148bb8a91427"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/FisherSAM-EWC-lambda-KFACFisherSAM.py",
+      "sha256": "1a6420897c81113b358f62d9d1f4f3480481a016defe9dbf31d31a8a1d9d158e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/FisherSAM-EWC-lambda.py",
+      "sha256": "6cb00d16c3e8bba025d50eaa4075fdbfc3491e458953d48e42573d6012649b01"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/as1_normfisher_gam_intask_damp.py",
+      "sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/baseLearner.py",
+      "sha256": "0fd284d7e6c0fa7f4af861b13dd6440e5683e3f3d66fe281fcf229ca76fce9b7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/coda_prompt.py",
+      "sha256": "9b8c0b1440d767ca46df9cb2f37cf3349de4384ad916a7b98b3714399d389989"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/coda_prompt.json",
+      "sha256": "6884793fb74d16d550744aefd080932a03c09aaa7c24e3db4b3a45d828c91772"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/coda_prompt_cub200.json",
+      "sha256": "f1877ecfdb7983e1c0cc60327936ed107ae1549db5655962e75dfa89ff89f169"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/coda_prompt_inr.json",
+      "sha256": "32d36955ea0bbf4dc4562622875b5094e5acb46db45e6f04294e7f74e1df453f"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/coda_prompt_pets.json",
+      "sha256": "d3163c8e24bde6a001bddd29b1119ed7e0a689d2556793db5e27d522158609c7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/dualprompt.json",
+      "sha256": "adbf4b3e7b3cc84e9c06398fc3a4a83990f0666308f515900bbbe50f3aac6972"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/dualprompt_cub200.json",
+      "sha256": "30c72bb01bc78afa70148e9b8da7fe31ac4493e6fdb4c7afcd6fc275e7860bb6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/dualprompt_inr.json",
+      "sha256": "51460dc353fcac444e04396e291d6c922ae14de822619ebb917b0e82f27491fd"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/dualprompt_pets.json",
+      "sha256": "baed0f755c74d2cbebd5ad734aaff1e9fe43ea6dd8e604b29b7c95f373d82d50"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/ewc.json",
+      "sha256": "3f262f076255eb9be5fdb7593dea361080b7e76d733d8c362e9dcfa8cb3b530b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/ewc_cub200.json",
+      "sha256": "341d400d0bb1dd0e393a07d8ed32c28b6a2c63b0a362f070d152b1602b0476b0"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/ewc_pets.json",
+      "sha256": "600c07ec513bd1047d5c2db51dd69711d0abe90923bdf1563244dc992a7af581"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/finetune.json",
+      "sha256": "044ecaeb3301e298143c69960ccc3b384a74607eda038fc26d6f5ceb179d5dee"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/finetune_cub200.json",
+      "sha256": "37ab1b04888c53261cebef6217f4c4ab5600aa585f50af909010d97eaf2b0fa1"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/finetune_inr.json",
+      "sha256": "6cbd9db1d612d9f3a4d2360ada2b549d09f6b83d910fea296d72942b3eeb1f9a"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/finetune_pets.json",
+      "sha256": "37dbe99420fd522103db1bbfcc85cdcbd67ce13f7e5c54a2d7b8973a4dccb063"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/l2p.json",
+      "sha256": "9e8984f86a637f1158ce285c9a5122c270dea16fc583e8dab0716a65a29c047e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/l2p_cub200.json",
+      "sha256": "f776609d1235b9fe081c78680880ed804cb991de146f9c97e606a186f40778b4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/l2p_inr.json",
+      "sha256": "b74369dd0cdb76140379fe22a55b496305e365b54158162a54e18b30e93e0eea"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/config_FullModel/l2p_pets.json",
+      "sha256": "6e1f7cb0bdf3934cc80144773dcb8b13cc4ac3c7f1c51a6ceb2148a8edc4c7d0"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/dualprompt.py",
+      "sha256": "9460f9fe7d39e771da2c2792b0723c1ca5de6b2f44a4a6d0cc0f66701f444e18"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/ewc.py",
+      "sha256": "bec3335ba5b9c25fd5b6e956b9c0ed6b24023409b92946c812352e2ad6cff081"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/ewc_gam_merged_intask_euc.py",
+      "sha256": "c1cb2c92d3b80a0f717bf87c48638100918ca3ad42da60f9bfddf9bafe7f4263"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/ewc_gam_mergedintask_multifisher_norm.py",
+      "sha256": "ca65c3adba6dea3ce6d1115d6bce5d636bdbb5baca8ac762a103426fd7a634a3"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/ewc_gam_mergedintask_multifisher_norm_weightmergethenfisher.py",
+      "sha256": "f5b265531a2a415826caf8fe467209a148b01879f38096c315e292b855e61b43"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/ewc_gam_projected.py",
+      "sha256": "ba22057f35bf1256eb1182e2bbdef8d2a84d3dcf7dd93f4aecfdb2fc7415b868"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/finetune.py",
+      "sha256": "eae34d7f65b1a5910da40578256a98966828f945c6cc54e4d526052f9df38e3b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/finetune1.py",
+      "sha256": "7f89e1db0134da6fad967b3cde406cbb2e0948f89d3b0be4dea5ea577a2c890e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/finetune_origin.py",
+      "sha256": "3e5139df60fd4652130cb9b3765dcd4e09c651059ed5e568ab5422fd6161dda8"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/l2p.py",
+      "sha256": "0ef8d437a677d6ea89cadb2f39adba19d3b484b9160e38225e59e944eb7d5f2b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda.py",
+      "sha256": "a062495a38dd0a73b5da57a4e1e167bd88cdee4ebb96968e50e1c9564282daea"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_KFACFisherSAM.py",
+      "sha256": "9b9a51939a27ad170b5cef267dc5f51753ad7d73d1453a8997adfacb19ae9e20"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_project.py",
+      "sha256": "2760a1746613372f1b67b24e7274b73c14ec7b1cfaf7abc0a7d43582de5233aa"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/GAM_EWCLoRA_NCL-KFAC.py",
+      "sha256": "3302fc719307e20dd704c46eb7a6fa25ba653004685b454a984df60b7f6ba15f"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/GAM_EWCLoRA_NCL.py",
+      "sha256": "710c5ee38f37ff78ea6ad601fdbaab065841d67f1e38990213fb67f38817b080"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda.py",
+      "sha256": "c3fc0f88a55e42f7e3153b626b034e2640eed1e172c2f623454e0be101857513"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_norm.py",
+      "sha256": "37729f2241101a77357797a2ec2385a22da2585cf37e1137e925ebd16db9c112"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_origin.py",
+      "sha256": "b8e7cc0f927205a6b1cd030ddec7885af1a5646e895f0166a24a0c14d54b917d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_project.py",
+      "sha256": "9e10de2a02540acbb6900f9b46d4e0e81c7d0cd032a9f9d44db45318f0e16d13"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/NCL-KFA.py",
+      "sha256": "286d1eb0620caed61371d0c2b361b44e668a8165275fe59f74077a5366d9f777"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape.py",
+      "sha256": "d8711707ad4fd5d2c828e4b5cf6c0397170c143b082ce0621184b330e06cb4ba"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_central.py",
+      "sha256": "e15b5a2c75473dd5e23179baf8a31244649ca715bbe0596fd381539029f004b7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_decoupled.py",
+      "sha256": "98473a3e98e7995222a90caa4619c82498af99284310f6e1164d74f210f907a4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_efficient.py",
+      "sha256": "687602b8fce3e3dda54f151d0f228e6e71f4e2a35ac43c40b48c93d50fa01f6a"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge.py",
+      "sha256": "a07cef404047a661d3315beeb7c048e94fdf24a57c2ce6b4abe8f52aecf9bf30"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge_factor.py",
+      "sha256": "465dd9ea5e164c80be01bf1072a4e14605c19f34598cf9af2810e0507116915c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_multidirectional.py",
+      "sha256": "6db87c2a04dcf6d15a66793d25832bcbd0b28b2ed50388c8214088706cea10ae"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_fishershape_richardson.py",
+      "sha256": "def566bfd6540a9baa8efbf32655e0b8b9ea64d4d69ae808a3977f3095778509"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam.py",
+      "sha256": "39bce968dece86804e1d2e19898f775ec92e2af05311a7316c1e8775f286c54e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+      "sha256": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py",
+      "sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher-project.py",
+      "sha256": "125bc719cc76e798282a9d45ea3ad0cb188aad72004464152f77b12c2d2b2c21"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py",
+      "sha256": "b089024027a877b38febcb4e789c71c1ea0be3e5bb76d3e929a3d904194e4d17"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam_intask_euc.py",
+      "sha256": "217ad6d7d9dfacc7bb2dff7664abdcdca72a4edc40ad07bf66b060875289312b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_gam_intask_lambda_project.py",
+      "sha256": "f4892a5d0cd96e517d455da90f91a22231be09f5c2c9ed6cc0e4bd2136b96a11"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/as1_normfisher_sam.py",
+      "sha256": "f2157e6ec02649160b44e682a0239ae5a4370cfeead9975b581ae657c73b47c2"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/baseLoRA.py",
+      "sha256": "1400adfc9512a710ea8001d31f45af800588c9c92307b80b95233cf7f24e6d24"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/cllora.py",
+      "sha256": "40828d0724b784677c09b2151785d836e7d4ae2a940f39c7f586837c2254dbf4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/eflora.py",
+      "sha256": "f0231ae9665910960f43e957fc33550e671a3cd131ccf43ad2d0d7db1d03e0b0"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+      "sha256": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+      "sha256": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/inclora.py",
+      "sha256": "c11308b54c943a6333e36ccd669c38f6400dec7c62c3e006540b9976bac0b04d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/olora.py",
+      "sha256": "670636e21573b001e39ad7e614c0ba7fc642a87a1ed04868b78c1842cceb9394"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/sdlora.py",
+      "sha256": "6c6a4715ba6c0e0f6410d59a12ec0aae332efa2001355b5fd4708be4ca21c1eb"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_LoRAbasedCL/seqlora.py",
+      "sha256": "479e2eb20fd536ddd5e803a44b15c88fcdae7a3574d62a07fb7ae020cb9402c2"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/ARWP_cos.py",
+      "sha256": "9142a0094c944015e5deb347b68df1473046373e55d22d5e949b8e1b3298fe79"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/__init__.py",
+      "sha256": "5e1afb186f7d3f3d1792153a9de1059c215f9033183f3c32836484c8e64f47f8"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/c_flat.py",
+      "sha256": "7fe6c1eeff15727d4a974164709fe6a326a3b8cdf4feb1ee9d2d2d7f319cad0b"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/ekfac.py",
+      "sha256": "270c953815abe266d8aef9ed67d5bc54ece0dd42517b23d5cd190ebb497bd3ed"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/fishershape.py",
+      "sha256": "668cdee1d106c6ce796eb44462aab384dc09d355d8d33af4186c096128ad9a5f"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/fishershape_central.py",
+      "sha256": "ec3835b930d6885824bfefa9c1f87c472896f70aed7de51fe375d7fa5d935e79"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/fishershape_efficient.py",
+      "sha256": "d20565324e64cce710f24bb0207df74e8f58f4563cb8ffa1e6f5c5dc8d0b4d10"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/fishershape_multidirectional.py",
+      "sha256": "e4f9b285365e4549443628934a83f9e25d00209351c214dfbdb89f48c50c7830"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/fishershape_richardson.py",
+      "sha256": "3f20fdf7cb70dac41abb93df88a8dff49e24a8bd218964bff0ff38e102d388fa"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/gam.py",
+      "sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/kfac.py",
+      "sha256": "f1e6f4985276e7fafd4346ed773470b5bbd948929205b01a0e9c2938f507ae9c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/kfac_utils.py",
+      "sha256": "400c3e6a5912c521c828843c9792247c49461e04e9e5f1aae570a893b0c6c5e4"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/natural_gradient.py",
+      "sha256": "97fe5dc524f6e77b66702760d04890c886901825132a92fe38e878d296fbfde1"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/ogd_projected.py",
+      "sha256": "4f36c10ea73062f0dc339b0e9e0522e1c3d75532f9d142e532369f3b34c56162"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/optimer_fishersam_diagonal.py",
+      "sha256": "2807241e0e0529b910340980e40f64bb5f66222a73f9b8395aa3f843036031a7"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/optimer_fishersam_kfac.py",
+      "sha256": "4f15e68cd0f8a9d46d8e8b93e977af06d5197a7f5bc3607275574a5c6b6b7900"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/optimer_gam_filiter.py",
+      "sha256": "78a128311ae62c973551484265f50825011ff4171cd9d8a792c57ac1c85ed9c0"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/optimer_sam.py",
+      "sha256": "2605c34ead816a8d7ebc28dcc659e137788c3bcb0f830ce84d56c3a37ee06ec1"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/optimer_sam_filiter.py",
+      "sha256": "5d6878af26101cfa56d97c8401614bbdfdb81efd0df358436b4259354b731f81"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/optimer_PerturabtionType/util.py",
+      "sha256": "c0ebe73bb176d2adbc91070f21ca9bc6369cdf90c1f7003f87f7981de322da86"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/parse_eval_table.py",
+      "sha256": "b093e7490e377b47c0781f50dc8e0f983ae4c0c4290cd8705b3e15b89a71e65f"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/sharpness_evaluation_core/__init__.py",
+      "sha256": "75f69b61ac52625d8271b001091189a75599e9c4adacef6a42afb31ff90f17bd"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/sharpness_evaluation_core/curvature.py",
+      "sha256": "6f0a88bdaaa7556567d67ff7050c98c56c83220d650b11ad23b4ec2b185540e5"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/__init__.py",
+      "sha256": "266a0a81b767875cc1d9296a168586a6f612b815aa85bb609275b778900a672e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/__main__.py",
+      "sha256": "55d870f180352b7c0f3256c94182f95aabd1cc0295799d7a9994053bd551982a"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "sha256": "c364dfec13009b6be936b9010d7f45bc59ee9ef79ee619f94b44ce60b0703272"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/trainer.py",
+      "sha256": "e59acaac94189a75f3b9342dd5e183ff39daa2c3b5ba23cfa6776d1cac6b33cc"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/trainer_allData.py",
+      "sha256": "7d201f383c58a29ff3a25de1f423347b4ff7b5f2efe2065ec0b7a7d092740b47"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/aggregate_multiseed_results.py",
+      "sha256": "e3eea339ac5e6302d312656f5c0ed839be3d3f139a6b8411ecb69f0cc66fe635"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/analyze_cl_logs.py",
+      "sha256": "d534d6899e82fe4942f940df5d665d78e23c759eae46c336f8d28c1f88abf48d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/collect_imageneta_factorfs_excel.py",
+      "sha256": "02279d3e81ec58920e1e97778f74d9983a3f63d723c244c46e39488d9731fed3"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/collect_imagenetr_factorfs_excel.py",
+      "sha256": "11fdd88dbb7f11daa9268b8bdf79aa8d85000562caf554aa230cec22f9ee9b2d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/config.py",
+      "sha256": "7388d8a500ff855f661f1033e4fbc0a69091e2015352a1b489cc8431647654a9"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/data.py",
+      "sha256": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/data_manager.py",
+      "sha256": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/endpoint_region.py",
+      "sha256": "1c13d592f234ff0c6855e3da2367e9380b2cc72c07deb378f4b64de252203da3"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/endpoint_region_protocol.py",
+      "sha256": "09e5454bc6cf8e72f143404907bab34bbd7954515176a7c6ade532769ac9902e"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/export_task0_trajectory.py",
+      "sha256": "e4a8eac71ad12916a57cbc78e04801104eb5a43f20d87b16f90a53c30ba00bd5"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/extract_cnn_accuracy_matrices.py",
+      "sha256": "de2e6a2dc9822d96a39e074b851d0213482b3a5c1ccc6f3b987628dd616c0421"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/extract_fisher_compare.py",
+      "sha256": "637d47bae6df1b74550ab821964347fd38712204094c1e9c3f5568e3fb27cf01"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/factory.py",
+      "sha256": "dc7a7ef2972652d9c51c6ad060e005150bbc21c73bab7f974504886332746b64"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/inc_net.py",
+      "sha256": "173d1a92350771616368c30e4e0d9a451d69baa1f7058de0d2bf22fc5e21b600"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/mechanism_eval.py",
+      "sha256": "d8bdb55361c52c1dec16f79d3d9cc8250664179e4ffee44f5fa68f573078af05"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/metrics_book.py",
+      "sha256": "68bee1200f8e225f01da4002d3360eef150d91ff463002c85a042567792db730"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/plot_endpoint_sample_fisher_pareto.py",
+      "sha256": "219047d5d1c74c2ca10ad541c42e83475f2cf8ccf684cafeab64e25c3ef8d2d3"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/plot_ewc_drift_analysis.py",
+      "sha256": "a2e5792fd843e9db547734d443017d2803828f319cb7769a6fcf2ca7d42c3f3d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/plot_ewc_lambda_sweep.py",
+      "sha256": "a6d8a298a9c88a4a4b05147d5b509cb0813c03f8190640bb3cfb93c45e2bec42"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/plot_fqa_linear_pdf.py",
+      "sha256": "d5216fd5971f1cf4a2006e0d0ae63778123a3fda4c863b71eb46a229ad7dea62"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/plot_r_sweep.py",
+      "sha256": "9e014ea56833fec5018e268b305155056da9fac1e6d6ec2cb8b21ce02230fbb6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/plot_task0_trajectory.py",
+      "sha256": "96204b43064787f989a4e84252d3b02786999028fc574c1bd60a75af3cdf6fe6"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/random_reproduce.py",
+      "sha256": "9070ff870b88c57e19e9537a31e7102636c8b8fee12ac7c12facf209df5cc52f"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/summarize_cl_metrics.py",
+      "sha256": "ef0db83cd4bb2cdd4e3591a8d2b444c37037567f4e428e89eba7c7bd842b2247"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/summarize_ewc_lambda_sweep.py",
+      "sha256": "ea5bbda86fa43adae84a94816858f6416fd1239b8feaa59f8b253c473be4ff4d"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/summarize_fqa_validity.py",
+      "sha256": "0985b89c11818f43e67e6684d65d1e0040da9d67269189954daff0ff21079500"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/summarize_stage2_T.py",
+      "sha256": "ae984184ded9611cd43e6bcc03f3b57e4f5101e52f4bd5c33d962e0a3c3bde90"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/toolkit.py",
+      "sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438"
+    }
+  ],
+  "checks": {
+    "old_pins_unchanged": true,
+    "old_source_unchanged": true,
+    "old_parent_accepted": true,
+    "old_B0_accepted": true,
+    "split_identical": true,
+    "parent_complete_state_available": true,
+    "old_head_expansion_identity_bound": true,
+    "strict_FP32_witness_bound": true,
+    "current20_train_and_dev_allseen_test_scope_checked": true,
+    "budgets_lr_rng_natural_sgd_revalidated": true,
+    "sparse_old_B0_curve_not_fabricated": true,
+    "no_old_mutations": true
+  }
+}

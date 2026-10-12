@@ -1,0 +1,326 @@
+{
+  "dataset": "imagenetr",
+  "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/results.json",
+  "test_root": "/data/140-1/datasets/imagenet-r/test",
+  "test_task_sample_counts": [
+    636,
+    717,
+    417,
+    568,
+    701,
+    577,
+    604,
+    475,
+    628,
+    677
+  ],
+  "schema_loading": {
+    "sample_weighted": "Parse final CNN top1 curve from companion .log; stages 1..10; rounded to 2 decimals in source. AAA = mean of ten stage values.",
+    "task_macro": "Read cl_metrics.json cnn.matrices.final; at stage t (zero based) mean(matrix[t][:t+1]); AAA = mean of ten row-prefix means. Do not use cnn.final.AAA, a lower-triangle element-weighted mean.",
+    "aggregation": "Mean and sample standard deviation (ddof=1) over seeds 0,1,2 at each stage; AAA standard deviation is across per-seed stage means."
+  },
+  "actual_implementation": "models_LoRAbasedCL.as1_normfisher_gam_intask_damp_weightmergethenfisher.Learner",
+  "implementation_evidence": [
+    "cl_metrics mechanism method_type",
+    "log [AS1-NormFisher-Damp-WMergeThenFisher] enabled",
+    "frozen source utils/factory.py alias dispatch lines 253-257"
+  ],
+  "runs": [
+    {
+      "seed": 0,
+      "id": "imagenetr_gam_ewc_A_r1p0_s0",
+      "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s0/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/0/imagenetr_gam_ewc_A_r1p0_s0/exp_run/20/imagenetr_gam_ewc_A_r1p0_s0_vit_base_patch16_224.log",
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s0/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/0/imagenetr_gam_ewc_A_r1p0_s0/exp_run/20/imagenetr_gam_ewc_A_r1p0_s0_vit_base_patch16_224_cl_metrics.json",
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/configs/imagenetr_gam_ewc_A_r1p0_s0.json",
+      "console_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/runtime/jobs/imagenetr_gam_ewc_A_r1p0_s0/console.log",
+      "completion_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/runtime/jobs/imagenetr_gam_ewc_A_r1p0_s0/completed.json",
+      "sha256": {
+        "log": "ff4da70277d0cb75f00730c877f5b70a5261846820604f404e68409b9a089ec0",
+        "metrics": "3a5f61da2a1bc698ca37b2022dd783e7545d6abcc87133ba047b74c060b6b139",
+        "config": "013c5ef5dab361c129ccbe0919de6178a3cf81f929ace719afbf0c39540eaf71"
+      },
+      "model_name_alias": "ewclora_normfisher_gam_intask_damp",
+      "actual_method_type": "as1_normfisher_gam_intask_damp_weightmergethenfisher",
+      "config": {
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "ewc_lambda": 2000,
+        "lora_rank": 10,
+        "in_task_weight_merge": true,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.3,
+        "ewc_fisher_damping_alpha": 0.2,
+        "in_task_path_beta": 3.0,
+        "epochs": 50,
+        "class_shuffle": false
+      },
+      "sample_weighted_curve_from_log": [
+        91.98,
+        88.17,
+        86.05,
+        84.86,
+        83.12,
+        82.19,
+        80.76,
+        79.96,
+        79.37,
+        79.87
+      ],
+      "sample_weighted_curve_reconstructed_from_integer_correct_counts": [
+        91.98113207547169,
+        88.17442719881744,
+        86.045197740113,
+        84.85885372112917,
+        83.11944718657453,
+        82.19026548672566,
+        80.75829383886256,
+        79.95740149094782,
+        79.37253428517754,
+        79.86666666666666
+      ],
+      "task_macro_curve_from_matrix": [
+        91.98,
+        88.04499999999999,
+        86.27666666666667,
+        85.075,
+        83.262,
+        82.29166666666667,
+        80.87142857142857,
+        80.1475,
+        79.43666666666667,
+        79.757
+      ],
+      "FAA_sample_weighted": 79.87,
+      "AAA_sample_weighted": 83.633,
+      "FAA_task_macro": 79.757,
+      "AAA_task_macro": 83.71429285714285,
+      "native_final_AAA_lower_triangle_mean_not_stage_AAA": 81.76436363636364,
+      "checks": {
+        "tasks": 10,
+        "unique_task_epoch_losses": 500,
+        "all_reported_train_losses_finite": true,
+        "all_logged_sample_curve_values_equal_rounded_reconstruction": true,
+        "summary_metrics_equal_raw_recomputation": true,
+        "config_and_metrics_sha256_match_manifest": true
+      }
+    },
+    {
+      "seed": 1,
+      "id": "imagenetr_gam_ewc_A_r1p0_s1",
+      "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s1/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/1/imagenetr_gam_ewc_A_r1p0_s1/exp_run/20/imagenetr_gam_ewc_A_r1p0_s1_vit_base_patch16_224.log",
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s1/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/1/imagenetr_gam_ewc_A_r1p0_s1/exp_run/20/imagenetr_gam_ewc_A_r1p0_s1_vit_base_patch16_224_cl_metrics.json",
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/configs/imagenetr_gam_ewc_A_r1p0_s1.json",
+      "console_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/runtime/jobs/imagenetr_gam_ewc_A_r1p0_s1/console.log",
+      "completion_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/runtime/jobs/imagenetr_gam_ewc_A_r1p0_s1/completed.json",
+      "sha256": {
+        "log": "808819fe075130c622f90de2f42247a3c5eea05b11d4c3ba5cd2258bb704de8a",
+        "metrics": "51aea717dc3e3da19bb22ef37b30901714a5d80480652cb134006055e3a1b2b3",
+        "config": "5aecf5839e420769ee1f63d16cbc660ba423ddbc94d62dc5ba1c3dc6e43adb2e"
+      },
+      "model_name_alias": "ewclora_normfisher_gam_intask_damp",
+      "actual_method_type": "as1_normfisher_gam_intask_damp_weightmergethenfisher",
+      "config": {
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "ewc_lambda": 2000,
+        "lora_rank": 10,
+        "in_task_weight_merge": true,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.3,
+        "ewc_fisher_damping_alpha": 0.2,
+        "in_task_path_beta": 3.0,
+        "epochs": 50,
+        "class_shuffle": false
+      },
+      "sample_weighted_curve_from_log": [
+        90.88,
+        87.88,
+        86.1,
+        84.82,
+        83.12,
+        82.38,
+        80.83,
+        79.94,
+        78.96,
+        79.58
+      ],
+      "sample_weighted_curve_reconstructed_from_integer_correct_counts": [
+        90.88050314465409,
+        87.87878787878788,
+        86.10169491525424,
+        84.81608212147134,
+        83.11944718657453,
+        82.38384955752213,
+        80.82938388625593,
+        79.93610223642173,
+        78.95923351493519,
+        79.58333333333333
+      ],
+      "task_macro_curve_from_matrix": [
+        90.88,
+        87.705,
+        86.22,
+        84.9275,
+        83.234,
+        82.46000000000001,
+        80.87285714285714,
+        80.04625,
+        79.02444444444444,
+        79.527
+      ],
+      "FAA_sample_weighted": 79.58,
+      "AAA_sample_weighted": 83.449,
+      "FAA_task_macro": 79.527,
+      "AAA_task_macro": 83.48970515873016,
+      "native_final_AAA_lower_triangle_mean_not_stage_AAA": 81.61018181818183,
+      "checks": {
+        "tasks": 10,
+        "unique_task_epoch_losses": 500,
+        "all_reported_train_losses_finite": true,
+        "all_logged_sample_curve_values_equal_rounded_reconstruction": true,
+        "summary_metrics_equal_raw_recomputation": true,
+        "config_and_metrics_sha256_match_manifest": true
+      }
+    },
+    {
+      "seed": 2,
+      "id": "imagenetr_gam_ewc_A_r1p0_s2",
+      "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/2/imagenetr_gam_ewc_A_r1p0_s2/exp_run/20/imagenetr_gam_ewc_A_r1p0_s2_vit_base_patch16_224.log",
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/outputs/imagenetr_gam_ewc_A_r1p0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr002_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imagenetr/2/imagenetr_gam_ewc_A_r1p0_s2/exp_run/20/imagenetr_gam_ewc_A_r1p0_s2_vit_base_patch16_224_cl_metrics.json",
+      "config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/configs/imagenetr_gam_ewc_A_r1p0_s2.json",
+      "console_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/runtime/jobs/imagenetr_gam_ewc_A_r1p0_s2/console.log",
+      "completion_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imagenetr-r1-seeds012-20260924/runtime/jobs/imagenetr_gam_ewc_A_r1p0_s2/completed.json",
+      "sha256": {
+        "log": "0b285b71f1527846a2a1bca4d6df0bc0e3e2b14a0cc14ee05e30bc48d42de4c8",
+        "metrics": "4230d18d6ad6041232cc676ba667bfa5821280709eba2897130b0bab05ef53ec",
+        "config": "da9a4219254638a728543c400277fadf765d9c4e3ff5a770ea2f477a7df5df7a"
+      },
+      "model_name_alias": "ewclora_normfisher_gam_intask_damp",
+      "actual_method_type": "as1_normfisher_gam_intask_damp_weightmergethenfisher",
+      "config": {
+        "gam_grad_norm_rho": 1.0,
+        "gam_grad_rho": 0.05,
+        "ewc_lambda": 2000,
+        "lora_rank": 10,
+        "in_task_weight_merge": true,
+        "in_task_fisher_interval": 20,
+        "in_task_fisher_omega": 0.3,
+        "ewc_fisher_damping_alpha": 0.2,
+        "in_task_path_beta": 3.0,
+        "epochs": 50,
+        "class_shuffle": false
+      },
+      "sample_weighted_curve_from_log": [
+        91.04,
+        88.32,
+        86.05,
+        84.13,
+        82.63,
+        81.97,
+        80.66,
+        79.79,
+        79.86,
+        79.98
+      ],
+      "sample_weighted_curve_reconstructed_from_integer_correct_counts": [
+        91.0377358490566,
+        88.32224685883223,
+        86.045197740113,
+        84.13173652694611,
+        82.62586377097729,
+        81.96902654867256,
+        80.66350710900474,
+        79.78700745473908,
+        79.8609806500094,
+        79.98333333333333
+      ],
+      "task_macro_curve_from_matrix": [
+        91.04,
+        88.155,
+        86.05666666666667,
+        84.1975,
+        82.746,
+        82.07,
+        80.79857142857142,
+        80.035,
+        79.99444444444444,
+        79.964
+      ],
+      "FAA_sample_weighted": 79.98,
+      "AAA_sample_weighted": 83.443,
+      "FAA_task_macro": 79.964,
+      "AAA_task_macro": 83.50571825396825,
+      "native_final_AAA_lower_triangle_mean_not_stage_AAA": 81.70763636363638,
+      "checks": {
+        "tasks": 10,
+        "unique_task_epoch_losses": 500,
+        "all_reported_train_losses_finite": true,
+        "all_logged_sample_curve_values_equal_rounded_reconstruction": true,
+        "summary_metrics_equal_raw_recomputation": true,
+        "config_and_metrics_sha256_match_manifest": true
+      }
+    }
+  ],
+  "aggregate": {
+    "sample_weighted": {
+      "stage_mean": [
+        91.3,
+        88.12333333333333,
+        86.06666666666666,
+        84.60333333333332,
+        82.95666666666666,
+        82.17999999999999,
+        80.75,
+        79.89666666666666,
+        79.39666666666666,
+        79.81
+      ],
+      "stage_sample_sd": [
+        0.5943063183241476,
+        0.2236813209307679,
+        0.028867513459479646,
+        0.41040630274562534,
+        0.2829016319029219,
+        0.20518284528683023,
+        0.0854400374531766,
+        0.09291573243176944,
+        0.45059220292115093,
+        0.2066397831977215
+      ],
+      "FAA_mean": 79.81,
+      "FAA_sample_sd": 0.2066397831977215,
+      "AAA_mean": 83.50833333333333,
+      "AAA_sample_sd": 0.10800617266310772
+    },
+    "task_macro": {
+      "stage_mean": [
+        91.3,
+        87.96833333333333,
+        86.18444444444445,
+        84.73333333333333,
+        83.08066666666666,
+        82.27388888888889,
+        80.84761904761905,
+        80.07625,
+        79.48518518518519,
+        79.74933333333334
+      ],
+      "stage_sample_sd": [
+        0.5943063183241476,
+        0.23459184413217146,
+        0.11422849096502945,
+        0.4698692193933654,
+        0.2901677675644458,
+        0.19560684302201697,
+        0.04248248938989053,
+        0.06196016865696605,
+        0.48681673654407476,
+        0.21860085391720877
+      ],
+      "FAA_mean": 79.74933333333334,
+      "FAA_sample_sd": 0.21860085391720877,
+      "AAA_mean": 83.56990542328042,
+      "AAA_sample_sd": 0.12529925417898188
+    }
+  }
+}

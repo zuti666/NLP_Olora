@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "reviewed_at_utc": "2026-10-08T17:51:24.435256+00:00",
+  "reviewer": "independent child agent history_response_math_review",
+  "read_only_author_files": true,
+  "gpu_execution": false,
+  "cuda_visible_devices": "",
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "files_sha256": {
+    "trainer/history_step.py": "56c201dff9cbeb3b5ce028ae7b5b2dacee9135b67d5d42a99175f074cfb0c80a",
+    "trainer/history_train.py": "0568c8a1fa9b66cc4c48b80fe64eaef5d787d38c0620d4dbf23de146c0194e00",
+    "validate_job.py": "8d88a18a38eb76238bf877e07dd07b4c482a99a08a16a6deb67279aea8785809",
+    "smoke_pairing.py": "30644a9797308a7167b494f14901f16b50fb057079e5279e5f2e9552c03aa5b1",
+    "trainer/test_history_step_cpu.py": "401f0fe1c6ba97facd526b0978bc011422ae825e66796d5ed10c515f04d89ccf",
+    "gates/independent_history_oracles.py": "becd408331d36254f40ca3157f5e14d57fc6ed95ed5567a75b35ecc485a446d7",
+    "gates/independent_cache_validation.py": "621dd06509d934566d7496421779bb19dab0e824981e6f097174225f8821347e"
+  },
+  "cpu_tests": {
+    "author_suite_repeated": {
+      "passed": 10,
+      "failed": 0,
+      "log": "gates/INDEPENDENT_CPU_RECHECK.log"
+    },
+    "independent_new_oracles": {
+      "passed": 3,
+      "failed": 0,
+      "log": "gates/INDEPENDENT_ORACLES.log",
+      "script": "gates/independent_history_oracles.py"
+    },
+    "independent_cache_validation": {
+      "passed": 7,
+      "failed": 0,
+      "log": "gates/INDEPENDENT_CACHE_VALIDATION.log",
+      "script": "gates/independent_cache_validation.py"
+    },
+    "total_passed": 20,
+    "total_failed": 0
+  },
+  "checks": {
+    "user_formula_and_difference_signs": true,
+    "variable_lr_uses_current_predictor_and_previous_actual_displacement": true,
+    "history_cached_raw_gradient_not_U_or_future_gradient": true,
+    "FP32_actual_displacement_is_measured_not_reconstructed": true,
+    "portable_history_state_dict_validates_names_shapes_dtype_hashes_and_model_continuity": true,
+    "cos_u_v_uses_negative_actual_displacement": true,
+    "complete_parameter_buffer_cache_rng_restoration": true,
+    "future_reuses_current_batch_and_R0": true,
+    "only_base_R1_rng_is_advanced": true,
+    "post_update_loss_reuses_R0_and_restores_committed_R1": true,
+    "post_update_diagnostic_does_not_change_next_training_trajectory": true,
+    "new_stepper_and_empty_batch_identity_per_task": true,
+    "classifier_expansion_invalidates_layout": true,
+    "scheduler_keeps_baseline_epoch_cadence_Tmax50": true,
+    "one_plain_SGD_update_per_step": true,
+    "no_Fisher_weightmerge_projection_HVP_QR_clipping_or_final_normalization": true,
+    "r_and_rho_explicitly_inactive_in_actual_algorithm": true,
+    "cross_minibatch_history_may_be_nonzero_with_zero_Hessian_documented_and_tested": true,
+    "real_serialized_algorithm_state_validated_against_last_trace": true,
+    "checkpoint_cache_raw_gradient_not_corrected_U_verified_by_tamper_test": true,
+    "checkpoint_actual_FP32_displacement_not_nominal_step_verified_by_tamper_test": true,
+    "missing_nonfinite_dtype_shape_distance_taskidentity_wrongcache_rejected": true,
+    "nohistory_cache_must_be_empty": true,
+    "smoke_pairing_works_with_reversed_job_order": true,
+    "checkpoint_count_task_and_all_native_file_hashes_validated": true
+  },
+  "validation_findings": [
+    {
+      "severity": "moderate",
+      "file": "validate_job.py",
+      "finding": "Checkpoint acceptance currently checks a manifest flag and file hash only, without loading training_state.pt to verify algorithm_state content and final raw-gradient/actual-displacement trace linkage. Core state_dict tests pass, but artifact acceptance does not substantiate cache presence.",
+      "recommendation": "Load checkpoint on CPU and verify format/config/layout, cache tensor digests and measured displacement norm, final raw_gradient_sha256 and actual_step_displacement_sha256 per task, real_updates and no-history cache absence before allowing formal acceptance.",
+      "status": "closed",
+      "resolution": "Author patch reviewed read-only; independent valid/corrupted cache fixtures and reversed-order smoke fixture pass."
+    },
+    {
+      "severity": "low",
+      "file": "smoke_pairing.py",
+      "finding": "history_exercised assumes the first smoke job is history_fused and second future_only. This is correct only for the current job order.",
+      "recommendation": "Index smoke rows by direction and assert both expected directions are present.",
+      "status": "closed",
+      "resolution": "Author patch reviewed read-only; independent valid/corrupted cache fixtures and reversed-order smoke fixture pass."
+    }
+  ],
+  "limitations": [
+    "GPU smoke not executed by this reviewer.",
+    "Historical minibatch gradients are not generally gradients of the current loss; no pure-curvature or unconditional-stability claim is established.",
+    "Strict deterministic execution is a new paired protocol, so old native-protocol results should not be treated as exact paired controls.",
+    "Independent GPU smoke and final formal receipts remain runtime gates; this reviewer performed CPU validation only."
+  ],
+  "initial_review_files_sha256": {
+    "trainer/history_step.py": "56c201dff9cbeb3b5ce028ae7b5b2dacee9135b67d5d42a99175f074cfb0c80a",
+    "trainer/history_train.py": "0568c8a1fa9b66cc4c48b80fe64eaef5d787d38c0620d4dbf23de146c0194e00",
+    "validate_job.py": "4f966d1b9457c83acd6aa626766efab54eeb1b418bfeead91fbeba961e64868c",
+    "smoke_pairing.py": "a579b4ae4e4e58a51f7a158ce67c3762f0ce7e264f828862d27e6e1b6b705a94",
+    "trainer/test_history_step_cpu.py": "401f0fe1c6ba97facd526b0978bc011422ae825e66796d5ed10c515f04d89ccf",
+    "gates/independent_history_oracles.py": "becd408331d36254f40ca3157f5e14d57fc6ed95ed5567a75b35ecc485a446d7"
+  }
+}

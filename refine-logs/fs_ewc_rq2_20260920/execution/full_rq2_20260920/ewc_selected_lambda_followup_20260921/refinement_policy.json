@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "updated_utc": "2026-09-21T19:52:04.212638+00:00",
+  "status": "authorized_conditional_plan_waiting_for_initial_sweep",
+  "execution_ready": false,
+  "trigger": "Initial sweep or a subsequent completed refinement round has no qualified balanced protective lambda, or efficacy/geometry evidence remains unresolved",
+  "initial_sweep_points": 14,
+  "initial_sweep_report": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/report/COMPLETE.json",
+  "actions_on_trigger": {
+    "search_state": "refinement_required",
+    "four_row_reruns_remain_gated": true,
+    "requires_repeated_user_confirmation": false,
+    "never_select_lambda0_as_success": true
+  },
+  "fixed_protocol": {
+    "seed": 0,
+    "anchor_method": "sgd",
+    "future_optimizer": "sgd",
+    "tasks_total": 2,
+    "train_task_indices": [
+      1
+    ],
+    "epochs": 50,
+    "learning_rate": 0.02,
+    "batch_size": 128,
+    "workers": 4,
+    "ewc_normalize_fisher": false,
+    "ewc_normalize_accumulated_fisher": false,
+    "reuse_exact_initial_sweep_task0_and_raw_fisher": true,
+    "same_head_and_input_RNG": true,
+    "learning_rate_changes_allowed": false,
+    "new_fisher_reestimation_per_lambda": false
+  },
+  "criteria_unchanged": {
+    "delta_a21_at_least_pp": 1.0,
+    "delta_a22_at_least_pp": -5.0,
+    "delta_A2_at_least_pp": 0.0,
+    "positive_EWC_loss_and_gradient_required": true,
+    "geometric_consistency_review_required": true
+  },
+  "cases": [
+    {
+      "case": "protection_missing_and_upper_edge_finite",
+      "condition": "The highest at least three tested positive lambdas completed stably with active EWC, retention remains below the +1pp threshold, no known numerical divergence is above the stable edge, and these points do not violate the predefined new-task/mean-accuracy cost limits",
+      "action": "Expand positive lambda logarithmically from the highest completed value by sqrt(10) and 10, within the supported upper bound; inspect this round before expanding again"
+    },
+    {
+      "case": "protection_exists_but_plasticity_or_average_fails",
+      "condition": "Some positive lambdas improve retention but none meet the balanced criteria",
+      "action": "Densify adjacent weak/strong-protection and acceptable/unacceptable-new-task transitions; also cover the nearest-to-qualified finite points to avoid assuming monotonicity"
+    },
+    {
+      "case": "numerical_divergence_boundary",
+      "condition": "A higher tested lambda diverged numerically after a lower stable lambda",
+      "action": "Refine between the stable lambda and nearest higher diverged lambda; do not blindly expand beyond the known divergent boundary or treat divergence as strong protection"
+    },
+    {
+      "case": "smallest_positive_lambda_already_overprotects",
+      "condition": "The smallest tested positive lambda is stable but causes excessive new-task or mean-accuracy loss",
+      "action": "Probe smaller positive lambda using divide-by-sqrt(10) and divide-by-10, within supported bounds; never take log(0)"
+    },
+    {
+      "case": "missing_protection_gradient_or_invalid_trial",
+      "condition": "EWC loss/gradient wiring is invalid, baseline is missing, or code/data/OOM/receipt failure prevents valid comparison",
+      "action": "Audit or repair the implementation/integration failure first, keeping a separate source revision and valid paired baseline if training logic changes; do not disguise it as a failed lambda point or fix it only by increasing lambda"
+    }
+  ],
+  "local_refinement": {
+    "spacing": "positive log-lambda space",
+    "fractions": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "formula": "lambda_j = L * (U/L)^j for j in {1/4,1/2,3/4}",
+    "max_intervals_per_round": 2,
+    "max_new_lambdas_per_round": 6,
+    "deduplicate_all_completed_and_planned_points": true,
+    "keep_candidates_strictly_inside_interval": true,
+    "candidate_ranking_when_no_threshold_crossing": "Among finite active points minimize max(0,1-delta_a21)+max(0,-5-delta_a22)+max(0,-delta_A2), then maximize A2; inspect their adjacent intervals",
+    "do_not_assume_accuracy_monotone_in_lambda": true
+  },
+  "supported_lambda_bounds": {
+    "min_positive": 1e-06,
+    "max": 1000000000.0,
+    "note": "Operational search bounds; upper bound matches current trainer validation. Do not silently change scientific settings to escape a numerical boundary."
+  },
+  "candidate_representation": "Use canonical finite numeric values and collision-free IDs; integer rounding only if still strictly interior and unique. Values below1/noninteger points require an isolated wrapper that supports them, not editing the active int-name sweep wrapper.",
+  "round_record_required": [
+    "round_id",
+    "observations_source_paths_and_sha256",
+    "trigger_case",
+    "tested_lambda_union",
+    "selected_intervals",
+    "new_lambda_values",
+    "proposal_rationale",
+    "fixed_protocol_sha256",
+    "parent_checkpoint_sha256",
+    "prepared_fisher_sha256",
+    "outcomes_and_metrics",
+    "selection_decision"
+  ],
+  "selection_pool": "All valid completed points from the initial sweep and completed refinement rounds; preserve every negative and divergent observation",
+  "stop_or_continue": {
+    "qualified_candidate_exists": "Use the existing protected-candidate ranking to lock one lambda_star, then release the four-row plan",
+    "still_unqualified_with_unresolved_intervals": "Propose another refinement round; there is no automatic one-round-only stop",
+    "boundary_resolution": "Do not infinitely subdivide an interval once U/L<=1.10 or distinct valid candidates cannot be represented. Examine remaining unresolved intervals or justified range extensions first.",
+    "no_admissible_region_left": "If all evidence-supported intervals are resolved and supported expansion is exhausted or blocked by numerical instability, report no demonstrated qualifying range at this fixed protocol, keep lambda_star unset and four-row reruns pending; do not lower thresholds or claim universal nonexistence"
+  },
+  "execution_isolation": {
+    "new_round_plan_and_result_directory_required": true,
+    "active_frozen_sweep_unmodified": true,
+    "generalize_wrapper_and_aggregate_report_before_dispatch": true,
+    "no_duplicate_baseline_or_parent_training_unless_integrity_requires_it": true
+  },
+  "resource_policy": {
+    "gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "wait_for_all_gpus_before_new_campaign": true,
+    "poll_seconds": 900,
+    "max_parallel": 6,
+    "shared_uuid_locks": true
+  }
+}

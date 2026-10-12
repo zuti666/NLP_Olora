@@ -1,0 +1,26 @@
+{
+  "id": "fork_smoke_pairing",
+  "kind": "pairing",
+  "phase": "gate",
+  "smoke": true,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/smoke_pairing.py"
+  ],
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/gates/smoke_pairing",
+  "report_file": "fork_smoke_pairing.json",
+  "expected_tasks": 2,
+  "expected_steps": 0,
+  "depends_on": [
+    "smoke_parent_sgd_s2",
+    "smoke_task1_B0_s2",
+    "smoke_task1_R25_s2",
+    "smoke_task1_S_F_s2",
+    "smoke_task1_F_S_s2",
+    "smoke_task1_S_S_s2",
+    "smoke_task1_R100_s2",
+    "smoke_local_probe_audit_s2"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/fork_smoke_pairing/cuda_witness.json"
+}

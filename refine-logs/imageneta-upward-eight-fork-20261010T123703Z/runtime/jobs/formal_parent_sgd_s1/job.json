@@ -1,0 +1,40 @@
+{
+  "id": "formal_parent_sgd_s1",
+  "kind": "training",
+  "phase": "parent",
+  "smoke": false,
+  "method": "g0",
+  "upward_direction": "g0",
+  "study_role": "parent",
+  "study_condition_id": "parent_sgd",
+  "task_id": 0,
+  "seed": 1,
+  "layout": "cl10",
+  "r": 1.0,
+  "rho": 0.05,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/trainer/upward_fork_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/configs/formal_parent_sgd_s1.json",
+    "--output-dir",
+    "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_parent_sgd_s1"
+  ],
+  "output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/formal_parent_sgd_s1",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/configs/formal_parent_sgd_s1.json",
+  "config_sha256": "bd0f8f00b5f0585489e957f5a67d4364a537c2bdc2138749b4573b4380f6aacb",
+  "expected_tasks": 1,
+  "expected_epochs_per_task": 50,
+  "expected_batches_per_epoch": 9,
+  "expected_steps": 450,
+  "expected_gradient_calls": 1,
+  "expected_train_samples": 1141,
+  "expected_dev_samples": 118,
+  "depends_on": [
+    "smoke_local_upward_s2"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/runtime/jobs/formal_parent_sgd_s1/cuda_witness.json"
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "reviewed_at": "2026-10-12T10:52:33.028826+00:00",
+  "reviewer": "independent Codex sub-agent /root/odd_even_seed_independent_review",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z",
+  "parent_run": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z",
+  "cpu_only": true,
+  "gpu_acceptance": false,
+  "gpu_calls": 0,
+  "queue_started": false,
+  "source_changes_made": false,
+  "only_written_artifact": "gates/INDEPENDENT_REVIEW.json",
+  "python_executable": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "scope": "Independent pre-freeze static review and read-only CPU evidence verification; not CUDA, GPU smoke, actual pairing or formal acceptance.",
+  "checks": [
+    {
+      "name": "authorized_manifest",
+      "status": "passed",
+      "location": "common.py:134",
+      "detail": "Exact 8 two-task smokes, seed-grouped CPU pairing, 8 formal jobs; only four directions crossed with seeds 0/1."
+    },
+    {
+      "name": "scientific_configuration",
+      "status": "passed",
+      "location": "common.py:195",
+      "detail": "All 16 configs verified exactly against paired historical config with only seed, prefix and outputs_root differences; rho=.05, no outer radius, math attention, FP32, natural SGD."
+    },
+    {
+      "name": "unchanged_math",
+      "status": "passed",
+      "location": "trainer/odd_even_step.py:120",
+      "detail": "OddEvenStep byte-identical to historical parent; plus/backward/central/base formulas and FP32 parentheses verified."
+    },
+    {
+      "name": "seed_zero_propagation",
+      "status": "passed",
+      "location": "trainer/odd_even_train.py:58",
+      "detail": "Integer 0 is preserved through config singleton, native dispatch, controller, data seed rule, summaries and per-worker CUDA witness argument; seed CPU gate has 6 passing tests and current hashes."
+    },
+    {
+      "name": "common_rng_restore",
+      "status": "passed",
+      "location": "trainer/odd_even_step.py:93",
+      "detail": "Each gradient reads a common full entry state/R0; final unique SGD occurs at theta0 with R1 from g0; no final gradient normalization."
+    },
+    {
+      "name": "actual_update_failure_and_zero_counters",
+      "status": "passed",
+      "location": "validate_job.py:37",
+      "detail": "Summary, step and task checks enforce finite complete evidence, exactly 3 ordinary gradients/forwards and 1 SGD per step, actual cosine LR, restoration and zero forbidden HVP/create_graph/projection/Fisher/merge/attempt counters."
+    },
+    {
+      "name": "within_seed_pairing",
+      "status": "passed",
+      "location": "verify_pairing.py:15",
+      "detail": "Task0 initial parameters/probes/RNG and both-task input/class/new-FC/origin identities compared separately within seed0 and seed1; no cross-seed or later-trained-state equality required."
+    },
+    {
+      "name": "smoke_before_formal",
+      "status": "passed",
+      "location": "run_queue.py:131",
+      "detail": "Every formal depends on pairing; pairing depends on all 8 validated smokes; predecessor summary hash plus current validator rechecked before launch."
+    },
+    {
+      "name": "idle_dual_lock",
+      "status": "passed",
+      "location": "run_queue.py:145",
+      "detail": "Only physical GPUs4/5/6, max3; fresh memory<500MiB and utilization<10 before and after shared numeric+UUID leases; locks inherited by worker/witness/trainer."
+    },
+    {
+      "name": "witness_cpu_pairing_and_failure_halt",
+      "status": "passed",
+      "location": "job_worker.py:17",
+      "detail": "GPU worker requires both leases and current-seed CUDA witness; CPU pairing hides GPUs; any failed worker or validation prevents subsequent launches, no automatic retries."
+    },
+    {
+      "name": "preflight_and_freeze",
+      "status": "passed",
+      "location": "common.py:336",
+      "detail": "All non-self preflight checks executed successfully read-only using actual final files; includes math19, seed6, queue46, collector14, 16 entrypoints, current assets, source190, four parent results. Independent-review self-status supplied only in memory to avoid circular dependence."
+    },
+    {
+      "name": "historical_reuse",
+      "status": "passed",
+      "location": "collect_results.py:177",
+      "detail": "All 287 bound files and four completed seed2 receipts/matrices verified read-only; only OE01-OE04 accepted, original parent validation evidence preserved."
+    },
+    {
+      "name": "new_results_revalidation",
+      "status": "passed",
+      "location": "collect_results.py:271",
+      "detail": "A completed receipt triggers current full validate_job and receipt comparison before a new result enters aggregation; unverified or failed rows remain excluded."
+    },
+    {
+      "name": "three_seed_statistics",
+      "status": "passed",
+      "location": "collect_results.py:193",
+      "detail": "Independent in-memory boundary checks confirm incomplete means/SD/wins withheld, complete sample SD uses ddof=1, paired differences use matching seeds, missing candidate seed withholds pair statistics."
+    },
+    {
+      "name": "entrypoints_assets_evidence",
+      "status": "passed",
+      "location": "gates/TRAINER_ENTRYPOINTS.json",
+      "detail": "All 16 exact registered --dry-run commands returned0 with actual seed/config/task/epoch evidence; current INPUT_ASSETS passed without GPU calls or package rebuild."
+    },
+    {
+      "name": "immutable_run_outputs",
+      "status": "passed",
+      "location": "build_suite.py:62",
+      "detail": "Freeze refuses already frozen/started run and pins configs, source/queue/trainer/docs/gates; launch refuses nonempty outputs and rechecks pins."
+    }
+  ],
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "location": "collect_results.py:186",
+      "issue": "Exact historical row comparison rejected approximately1e-14 differences when audit and collection used different Python versions.",
+      "resolution": "Parent audit and collector gate regenerated using registered Python3.11.15; audit and collection now require suite Python. Independent parent_rows() call passes with exact equality and all original hash/identity constraints retained."
+    },
+    {
+      "location": "common.py:338",
+      "issue": "Initial preflight did not explicitly check seed and collector CPU gates or parent reuse.",
+      "resolution": "Final preflight verifies all three evidence groups, current file hashes, and four historical rows; independently executed successfully."
+    }
+  ],
+  "evidence_counts": {
+    "math_cpu_tests": 19,
+    "seed_cpu_tests": 6,
+    "queue_cpu_checks": 46,
+    "collector_cpu_tests": 14,
+    "actual_trainer_dry_runs": 16,
+    "source_files": 190,
+    "parent_bound_files": 287,
+    "historical_formal_runs": 4,
+    "planned_smokes": 8,
+    "planned_formal_runs": 8
+  },
+  "current_gpu_scope": {
+    "allowed_gpus": [
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 3
+  },
+  "remaining_runtime_requirements": [
+    "Freeze RUN_PINS.json and separate fresh document invocation receipt.",
+    "Each actual GPU job must pass its current-seed FP32 CUDA witness.",
+    "All eight two-task GPU smokes and seed-grouped actual pairing must pass before any formal launch.",
+    "Formal results must pass complete receipt/trace/matrix/config/counter validation; three-seed summary statistics require all three validated seeds per condition or pair."
+  ],
+  "files_sha256": {
+    "COLLECTOR_CPU_GATE.json": "d46e6b9198d3bbc42fc2229a08e99e6fea070eb378d2ebd0f60e3053937b16fa",
+    "ENVIRONMENT.md": "032101380e5e8ff3e63c42f7f6a742b20450ff7ef9950aefa15c3303b1e4f183",
+    "EXPERIMENT_PLAN.md": "73e71923707bb527e69f6a4d9523bdf3bbe035c6f2bac60e2ac5b767e4202fd3",
+    "PARENT.json": "acc54b3a2185694e9c3b72b4b6eb0a868b27167a55f762be02b8cfbee6b652b2",
+    "PARENT_REUSE_AUDIT.json": "7037b5a2b94448c24ed44c118eccab05eedfa9a26d3932c033063f5661dd7484",
+    "RUN.md": "578e0da8a4b13874331032745e2de2cdfe7d75893c970921955dc84916544771",
+    "asset_preflight.py": "278022bb90cc456e3984e4dc27dd64527fdca622fd5c7d3da83963052d8e3533",
+    "build_suite.py": "f8e6e75baabb34f6228386a202a5b336e42ab30c42c3b6b171c142f2bd56f146",
+    "collect_results.py": "2c9ea86d799034fe1bebb707a203e4a431a5ebc8f9f833a2a9ab0bb0363cb6a2",
+    "common.py": "37c8550c81f4fd1721964c63a0ab2d018a0af24d8350fed8ca7109edd436c12a",
+    "configs/OE01_SAM_s0.json": "8882ce74b5fb65de781524992b1a8ab74e17976dca50461b2dacad71fdeca735",
+    "configs/OE01_SAM_s1.json": "8b841f0eac8899ccddf161087c20f78c187b51ec9770f224c9620bcc9230f9de",
+    "configs/OE02_Backward_s0.json": "67e644d2cc4ae05175146a8128936cb2e5b27e504bc5a673d48a6bd517e15ac0",
+    "configs/OE02_Backward_s1.json": "95ccd04317045d8234e10ca02b8701123c2481189b2d3fb64034c3d9c2888395",
+    "configs/OE03_Central_s0.json": "c86c7e3bc32f81a4ae6da6c1930d9b0fda71abe7dfede6ce2728fc659bd42cf7",
+    "configs/OE03_Central_s1.json": "a568bbd1fd0b7f4d6dd9f6929999d03a85e5d5d32dfe7dc120a1dece883b7a98",
+    "configs/OE04_CE_s0.json": "94edcc9aa56a00504d449adaa59e29448dc3e7b6f479cd5063d77fda0bbe6938",
+    "configs/OE04_CE_s1.json": "cf383627c3c54f58cdc362bc1c698796c60ec91322846f19fc7a403af4ff8aa6",
+    "configs/smoke_OE01_SAM_s0.json": "c84271b56b71257821860cad234be57f3ff4e335c7d7f954fc404975c5be7fce",
+    "configs/smoke_OE01_SAM_s1.json": "6a4dcb61c9a6de13904c89d6f9e72ea387b983b14fc555957b3fd1d251f9f649",
+    "configs/smoke_OE02_Backward_s0.json": "afee31166f8f28b91c288ef852539400948ff699ee32b9228242a9c3615ba571",
+    "configs/smoke_OE02_Backward_s1.json": "97af3c4f6484ddfc65d119dca1cbe42959646d7f00e934a7d3fab017174a6b57",
+    "configs/smoke_OE03_Central_s0.json": "945c7092391111a616927ecdc75e65a5d9fbf08605a65a7ae78b6466263ebde7",
+    "configs/smoke_OE03_Central_s1.json": "ff516a27aa5ff5a4335e1d74e701170632afc2e790fe4797d442e26d2afe41c9",
+    "configs/smoke_OE04_CE_s0.json": "76bf56053954d0f89c0eb584b615b8f88e7c70929e2aed9378d982f8d4764857",
+    "configs/smoke_OE04_CE_s1.json": "b6d966606c9ea4520cc1e1d7b2a73f8219800146ab9e565feac29a8ca13f40e5",
+    "environment_spec.json": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+    "gates/GPU_SCOPE_CHANGE.json": "b12cbde16b001ccf59d0b1185a86ed7b22dc5f3d083c30d72d0d91aec568c1ed",
+    "gates/INPUT_ASSETS.json": "f4b5f0b83c41ad4dd5183a6ec860639033e09dac21308993e363afe8632cdbcb",
+    "gates/QUEUE_CPU_GATE.json": "33ed1412407408547dd420a9380e4a6a6c8051d8b35294079f18f2f3c85e01e4",
+    "gates/TRAINER_ENTRYPOINTS.json": "cdf0c820bcc347f032b5135028b1c2de46716d38d2356eaeace41dcd5b761978",
+    "gates/queue_cpu_check.py": "cd2e9ff1f569926163127c47b1dbb022cee3cf7b71c620ca72fcd83f699fba0d",
+    "job_worker.py": "1be92d218fcf97eafa764d31ceee5079ad9ab602e12ee16bcf168c97eb29483c",
+    "run_queue.py": "0261daf2bbf81401ad5018923c3ec7f98e6092b3acd5366020912a52389a6c68",
+    "source_manifest.json": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+    "suite.json": "638ec6eff030091a1ad97bbe54f3018197eafd61819e1b4ad376be1256d1f243",
+    "test_collect_results_cpu.py": "5077846fa48a921bbec0bb12a6d8254f37611411079fee145b8b8cb55aa46d1d",
+    "trainer/ODD_EVEN_CPU_GATE.json": "10832df47093ecbc83b5d8c191e522319871b54f6328d17ca4b5f66cb8f838a6",
+    "trainer/SEED_CPU_GATE.json": "1f99cac6918cfa4b33be3ac7415f50b578d15f1eb9840cd02bbab9c75d43aaae",
+    "trainer/audit_core.py": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+    "trainer/cuda_witness.py": "d145d174120c2cc8e368ce60b60fd1fdd66f9fb48200a22e70672abc50a51742",
+    "trainer/direction_step.py": "358f7a2c6db254cc1543a8382a1ef87c72dcf20266a99eaabc26d4f9525225f9",
+    "trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "trainer/four_probe_train.py": "39d83062f4c0462836acd2d7006707f493d0791dcba11da1a3bd97953ba23e69",
+    "trainer/g2_location_diagnostics.py": "f36ac1fab216b40ad78b8cdd573e5756cec69355cb3d5120b4f0fe44a1203c18",
+    "trainer/hvp_gate.py": "27a7b9061f1fd9a4e13a0c8723d2680a3d4efeacb79aba9d634eaa81cf515c1d",
+    "trainer/mechanism_diagnostics.py": "b580accfaff3938abb2ec0822de455704fa5a7812c7aa2532a481b9a04602941",
+    "trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "trainer/odd_even_step.py": "1fac4ee30dd9307d813a941f9ccc275ee293d48427524e360be82c24de67d2ae",
+    "trainer/odd_even_train.py": "a07472c2f49cdee522bbbcc7d4a79aae2fa24870169560fc8296dc68dba34f8c",
+    "trainer/reflected_step.py": "adef913c912f994301b6999efea393e9fe7c120c0efec8f3faa3a7c7f4d19b4d",
+    "trainer/reflected_train.py": "e35b400e59d42faaafd424a40acd0ef2e238ec67cdffe63240c3660aec0396cc",
+    "trainer/response_hvp.py": "a8a27e0a28445f1224dba54c87a4e0bac0feae407cdc140a08dd847347975710",
+    "trainer/task0_trainer_base_v2.py": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659",
+    "trainer/test_direction_cpu.py": "c9c051b9ffddfee5a5bf3909b24da8b98581046008fc760b99e5ddd404892fa2",
+    "trainer/test_g2_cd_cpu.py": "f52da5ceb6987fd5559b546a8358481d9e44a8e92bfddb30814bff397c566642",
+    "trainer/test_g2_location_cpu.py": "23b6bcd0aeefe983379c7ebf4ab10b5f8bce56d662a1a557e5b0a3fcef310501",
+    "trainer/test_mechanism_cpu.py": "22e2c4cb987f6bdc6e4c6d01c1d537aa9d59de16932512f979318025c7221d42",
+    "trainer/test_odd_even_cpu.py": "3b986948c1023e569381c940587dd40f85ba23bcc7c93a980c0afc03a6cb1b89",
+    "trainer/test_reflected_cpu.py": "a0648a145f1295e862eb40422d3f85a778d467c9d729b1d889aa3778f97eef44",
+    "trainer/test_response_cpu.py": "cf77004cb253cefe8965357086e36e7b2ee081ebab80de211ad358e47d5eb22c",
+    "trainer/test_seed_cpu.py": "213c8beabda9d11550eee352804d27989ba4c710dc5823341c9eff2bfcb75624",
+    "validate_job.py": "faced9f9d274e781262ac0f59684a89a8f7d4c4c7a08cd5fcee1cfa883328262",
+    "verify_pairing.py": "f8a206d42402e4de1701e5ccb39cc32ac46ce52fd8257e6a2dbe6e17df847b13"
+  }
+}

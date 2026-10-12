@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-10-05T17:00:14.267Z",
+  "reviewer_role": "fresh_agent_document_follower",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z",
+  "guidance_read": [
+    "/home-local/liying/.codex/skills/run-experiment/SKILL.md: environment contract and agent-follows-doc requirement",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md: Pilot_new_local canonical spec 4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/ENVIRONMENT.md"
+  ],
+  "documented_invocation": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/suite.json --dry-run",
+  "actual_command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/suite.json --dry-run",
+  "invocation_verbatim": true,
+  "execution": {
+    "tool": "exec_command",
+    "sandbox_permissions": "require_escalated",
+    "real_host_route_requested": true,
+    "returncode": 0,
+    "stdout": "{\"status\": \"valid\", \"jobs\": 7, \"formal\": 2, \"smokes\": 4, \"allowed_gpus\": [2, 3, 4, 5, 6], \"max_parallel\": 2}\n",
+    "output_truncated": false
+  },
+  "expected": {
+    "status": "valid",
+    "jobs": 7,
+    "formal": 2,
+    "smokes": 4,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 2
+  },
+  "observed": {
+    "status": "valid",
+    "jobs": 7,
+    "formal": 2,
+    "smokes": 4,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 2
+  },
+  "checks": {
+    "expected_summary_matches": true,
+    "environment_ledger_document_spec_sha_matches": true,
+    "source_config_and_run_pins_consistency": {
+      "status": "PASS",
+      "evidence": "The documented read-only validator returned status valid with exit 0. ENVIRONMENT.md specifies that this invocation verifies pinned code/source/config paths and requires immutable RUN_PINS.json.",
+      "independent_source_inspection_performed": false
+    }
+  },
+  "doc_vs_reality_divergence": [],
+  "scope": {
+    "training_or_queue_started": false,
+    "gpu_tasks_run": false,
+    "source_or_document_files_modified": false,
+    "artifact_written": "gates/DOC_CHECK.json"
+  },
+  "limitations": [
+    "This receipt certifies the documented dry-run invocation and its observed output; it does not certify actual GPU smoke or training execution."
+  ]
+}

@@ -1,0 +1,671 @@
+{
+  "audited_at_utc": "2026-10-06T15:21:52.457122+00:00",
+  "scope": "read-only source suites/configs/receipts/outputs; no queue modifications",
+  "request": {
+    "dataset": "imageneta",
+    "radius": 1.0,
+    "rho": 0.05,
+    "rank": 10,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "directions": [
+      "g1_plus_g2",
+      "half_g1_plus_g2",
+      "g1_plus_second_difference"
+    ],
+    "probes": "g0,g1plus,g2,g3 all positive four-probe exact restoration R0 replay"
+  },
+  "reusable_completed": [
+    {
+      "job": "formal_sum12_r1_k10_s2",
+      "direction": "g1_plus_g2",
+      "dataset": "imageneta",
+      "seed": 2,
+      "radius": 1.0,
+      "rho": 0.05,
+      "rank": 10,
+      "state": "completed",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z",
+      "suite_protocol": "original_positive_g012_combinations_four_probes_exact_restore_rng_replay_v1",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/configs/formal_sum12_r1_k10_s2.json",
+      "config_sha256": "240afa9a008496ab660e82913291c6c4f006d75facc682f131ecb2c31126656c",
+      "metadata": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_tasks": 10,
+        "nb_classes": 200,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "attention_backend": "native",
+        "probe_branch": "P",
+        "update_direction": "g1_plus_g2",
+        "step_mode": "natural",
+        "lambda_flat": 1.0,
+        "gam_adaptive": false
+      },
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2",
+      "queue_status": "completed",
+      "metrics": {
+        "AAA_task_macro": 68.60484047619049,
+        "FAA_task_macro": 54.722,
+        "LA": 59.447,
+        "BWT": -5.250000000000001,
+        "forgetting": 5.798888888888889
+      },
+      "matrix": [
+        [
+          87.3
+        ],
+        [
+          81.11,
+          84.25
+        ],
+        [
+          80.13,
+          84.25,
+          73.26
+        ],
+        [
+          77.85,
+          83.86,
+          69.38,
+          76.36
+        ],
+        [
+          72.31,
+          79.53,
+          66.67,
+          72.73,
+          58.82
+        ],
+        [
+          74.27,
+          77.56,
+          67.44,
+          69.7,
+          49.02,
+          47.89
+        ],
+        [
+          72.64,
+          77.56,
+          66.28,
+          68.48,
+          48.04,
+          49.3,
+          42.17
+        ],
+        [
+          71.66,
+          75.59,
+          64.73,
+          68.48,
+          47.06,
+          49.3,
+          40.96,
+          32.94
+        ],
+        [
+          71.66,
+          76.38,
+          64.73,
+          67.88,
+          47.06,
+          45.07,
+          40.96,
+          35.29,
+          36.67
+        ],
+        [
+          74.27,
+          78.35,
+          65.12,
+          68.48,
+          48.04,
+          45.07,
+          42.17,
+          36.47,
+          34.44,
+          54.81
+        ]
+      ],
+      "validation": {
+        "summary_sha256": "d0e4260c713b96dd1a8466c48de7ad6627ea28abcb716bf4e07814bd91c19fe1",
+        "trace_sha256": "b60ba99df9e4fbe831fa4821cd01d9b7669ddc8c8138108ef31f0c3a09e45b5c",
+        "matrix_sha256": "ee11709d7efd8e3ca0959215caf9c7f2b8295ebb0dcb56a075006c4a3dbc80bf",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "completed_at_utc": "2026-10-06T00:49:42.762996+00:00",
+      "returncode": 0,
+      "observed_protocol": "original_positive_four_probe_g012_combinations_exact_restore_rng_replay_v1",
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "g3_computed_unused": true,
+        "original_positive_probe": true,
+        "requested_projection_only": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "P",
+        "update_direction": "g1_plus_g2",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 1.0,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "sources": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2/final_summary.json",
+        "effective_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2/effective_config.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2/task_matrix.json",
+        "trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2/step_trace.jsonl",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/runtime/jobs/formal_sum12_r1_k10_s2/exit.json"
+      },
+      "source_sha256": {
+        "summary": "d0e4260c713b96dd1a8466c48de7ad6627ea28abcb716bf4e07814bd91c19fe1",
+        "effective_config": "6f19146573560b8500419ce6c0219b600ee4e9d324e09619f35b687c1cb00450",
+        "matrix": "ee11709d7efd8e3ca0959215caf9c7f2b8295ebb0dcb56a075006c4a3dbc80bf",
+        "trace": "b60ba99df9e4fbe831fa4821cd01d9b7669ddc8c8138108ef31f0c3a09e45b5c",
+        "exit_receipt": "c59da564e966a362b820ae0496c4f683566910a0a048d18e0b4fad690a592ba3"
+      }
+    },
+    {
+      "job": "formal_g1_d32_r1_k10_s2",
+      "direction": "g1_plus_second_difference",
+      "dataset": "imageneta",
+      "seed": 2,
+      "radius": 1.0,
+      "rho": 0.05,
+      "rank": 10,
+      "state": "completed",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z",
+      "suite_protocol": "four_probe_g1_plus_second_difference_exact_restore_rng_replay_v1",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/configs/formal_g1_d32_r1_k10_s2.json",
+      "config_sha256": "fd6e3e6b5be0aee01517dc508c2ef43df139159e1ffd302249fc5400e7dd2ef1",
+      "metadata": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_tasks": 10,
+        "nb_classes": 200,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "attention_backend": "native",
+        "probe_branch": "P",
+        "update_direction": "g1_plus_second_difference",
+        "step_mode": "natural",
+        "lambda_flat": 1.0,
+        "gam_adaptive": false
+      },
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2",
+      "queue_status": "completed",
+      "metrics": {
+        "AAA_task_macro": 65.54881269841272,
+        "FAA_task_macro": 48.089,
+        "LA": 54.818000000000005,
+        "BWT": -7.476666666666663,
+        "forgetting": 7.476666666666663
+      },
+      "matrix": [
+        [
+          85.67
+        ],
+        [
+          83.71,
+          79.92
+        ],
+        [
+          83.06,
+          77.95,
+          70.16
+        ],
+        [
+          80.78,
+          74.8,
+          67.83,
+          71.52
+        ],
+        [
+          77.85,
+          73.23,
+          65.5,
+          67.88,
+          52.94
+        ],
+        [
+          77.2,
+          72.44,
+          63.18,
+          65.45,
+          44.12,
+          46.48
+        ],
+        [
+          76.87,
+          72.44,
+          63.18,
+          63.03,
+          43.14,
+          45.07,
+          38.55
+        ],
+        [
+          74.59,
+          70.47,
+          63.18,
+          62.42,
+          39.22,
+          43.66,
+          37.35,
+          35.29
+        ],
+        [
+          73.62,
+          68.11,
+          61.63,
+          61.21,
+          39.22,
+          40.85,
+          36.14,
+          32.94,
+          31.11
+        ],
+        [
+          73.29,
+          68.9,
+          60.85,
+          60.0,
+          40.2,
+          40.85,
+          36.14,
+          34.12,
+          30.0,
+          36.54
+        ]
+      ],
+      "validation": {
+        "summary_sha256": "c7a0d30e44a307b65447e802d7345f1a08925336709786bc90787c8f1cb2a4c5",
+        "trace_sha256": "cc06c3ccb74128b70f053e281995b248c3cecbf13d7d9f52a96df568d9714de4",
+        "matrix_sha256": "6be78e598907e88aa337fea2515b19ab624039ad2c74581432e26459df3efd65",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "completed_at_utc": "2026-10-05T20:43:34.124604+00:00",
+      "returncode": 0,
+      "observed_protocol": "four_probe_g1_plus_second_difference_exact_restore_rng_replay_v1",
+      "completed_tasks": 10,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "P",
+        "update_direction": "g1_plus_second_difference",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 1.0,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "sources": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/final_summary.json",
+        "effective_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/effective_config.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/task_matrix.json",
+        "trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/step_trace.jsonl",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/runtime/jobs/formal_g1_d32_r1_k10_s2/exit.json"
+      },
+      "source_sha256": {
+        "summary": "c7a0d30e44a307b65447e802d7345f1a08925336709786bc90787c8f1cb2a4c5",
+        "effective_config": "4f1cc59fc316424793a10b7d02126ed0d3df1b59870a9e258c7ef2193a6cb810",
+        "matrix": "6be78e598907e88aa337fea2515b19ab624039ad2c74581432e26459df3efd65",
+        "trace": "cc06c3ccb74128b70f053e281995b248c3cecbf13d7d9f52a96df568d9714de4",
+        "exit_receipt": "daefc178899a50ac0ef36badd3afd7d1ee131a91cb596dc92cb171a8429bf412"
+      }
+    }
+  ],
+  "pending_existing": [
+    {
+      "job": "formal_halfsum12_r1_k10_s2",
+      "direction": "half_g1_plus_g2",
+      "dataset": "imageneta",
+      "seed": [
+        2
+      ],
+      "radius": 1.0,
+      "rho": 0.05,
+      "rank": 10,
+      "state": "pending",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z",
+      "suite_protocol": "positive_half_g1_plus_g2_four_probes_exact_restore_rng_replay_v1",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+      "config_sha256": "30c77bce7f5bb427c61b8c6c8ea97a999fd5caad0265758eaec1e8aa26947481",
+      "metadata": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_tasks": 10,
+        "nb_classes": null,
+        "lora_rank": 10,
+        "seed": [
+          2
+        ],
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0,
+        "momentum": 0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "attention_backend": "native",
+        "probe_branch": "P",
+        "update_direction": "half_g1_plus_g2",
+        "step_mode": "natural",
+        "lambda_flat": 1.0,
+        "gam_adaptive": false
+      },
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2",
+      "queue_status": "waiting_for_prior_campaign",
+      "controller_record": {
+        "process": {
+          "pid": 465967,
+          "proc_starttime": "10356670"
+        },
+        "started_at": "2026-10-06T15:02:43.297920+00:00",
+        "pid_namespace": "pid:[4026531836]",
+        "command": [
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/run_queue.py",
+          "--suite",
+          "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/suite.json"
+        ]
+      },
+      "duplicate_prevention": "Preserve existing registered Mean seed2 r1 waiting job unchanged. New campaign contains only seed0/1 for each of three directions. Import this external seed2 cell only after strict full completion acceptance; no cancel or transfer."
+    }
+  ],
+  "global_suite_scan": [
+    {
+      "area": "/data/140-1/users/liying/O-LoRA/refine-logs",
+      "scanned_suites": 36,
+      "hits": [
+        {
+          "suite": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/suite.json",
+          "job": "formal_g1_d32_r1_k10_s2",
+          "direction": "g1_plus_second_difference",
+          "seed": [
+            2
+          ],
+          "radius": 1.0,
+          "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/configs/formal_g1_d32_r1_k10_s2.json"
+        },
+        {
+          "suite": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/suite.json",
+          "job": "formal_halfsum12_r1_k10_s2",
+          "direction": "half_g1_plus_g2",
+          "seed": [
+            2
+          ],
+          "radius": 1.0,
+          "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json"
+        },
+        {
+          "suite": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/suite.json",
+          "job": "formal_sum12_r1_k10_s2",
+          "direction": "g1_plus_g2",
+          "seed": [
+            2
+          ],
+          "radius": 1.0,
+          "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/configs/formal_sum12_r1_k10_s2.json"
+        }
+      ],
+      "rg_exitcode": 0
+    },
+    {
+      "area": "/data/140-1/users/liying/CopyFlatCV/refine-logs",
+      "scanned_suites": 68,
+      "hits": [],
+      "rg_exitcode": 0
+    },
+    {
+      "area": "/data/140-1/users/liying/Flatness_CV/refine-logs",
+      "scanned_suites": 0,
+      "hits": [],
+      "rg_exitcode": 1
+    }
+  ],
+  "exclusions": [
+    {
+      "campaign": "imageneta-r1-seed01-run-20261003T185852Z",
+      "conditions": {
+        "N02": "g1+g3",
+        "N07": "g0+(g3−g2)",
+        "N10": "(g1+g3)/2 LR1",
+        "N13": "(g1+g3)/2 LR2"
+      },
+      "reason": "Different final directions; not target three. P family only g0/g1plus/g1minus/g2/A, no target Sum12/Mean12/D32."
+    },
+    {
+      "area": "Flatness_CV",
+      "reason": "Found g1_plus_g2/halfsum plans under ImageNet-R, explicit dataset differs; do not reuse."
+    }
+  ],
+  "protocol_compatibility": {
+    "reuse_supported": true,
+    "common_source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "helper_hashes": {
+      "state_transaction.py": {
+        "imageneta-positive-g012-combinations-20261005T185032Z": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+        "imageneta-g1-plus-g3-minus-g2-20261005T170708Z": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+        "imageneta-half-g1-plus-g2-20261006T145451Z": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee"
+      },
+      "native_lifecycle.py": {
+        "imageneta-positive-g012-combinations-20261005T185032Z": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+        "imageneta-g1-plus-g3-minus-g2-20261005T170708Z": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+        "imageneta-half-g1-plus-g2-20261006T145451Z": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf"
+      },
+      "task0_trainer_base_v2.py": {
+        "imageneta-positive-g012-combinations-20261005T185032Z": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659",
+        "imageneta-g1-plus-g3-minus-g2-20261005T170708Z": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659",
+        "imageneta-half-g1-plus-g2-20261006T145451Z": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659"
+      },
+      "effective_step.py": {
+        "imageneta-positive-g012-combinations-20261005T185032Z": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+        "imageneta-g1-plus-g3-minus-g2-20261005T170708Z": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+        "imageneta-half-g1-plus-g2-20261006T145451Z": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3"
+      },
+      "audit_core.py": {
+        "imageneta-positive-g012-combinations-20261005T185032Z": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+        "imageneta-g1-plus-g3-minus-g2-20261005T170708Z": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+        "imageneta-half-g1-plus-g2-20261006T145451Z": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96"
+      },
+      "cuda_witness.py": {
+        "imageneta-positive-g012-combinations-20261005T185032Z": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a",
+        "imageneta-g1-plus-g3-minus-g2-20261005T170708Z": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a",
+        "imageneta-half-g1-plus-g2-20261006T145451Z": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a"
+      }
+    },
+    "helpers_all_identical": true,
+    "geometry": {
+      "phi1": "phi+rho*N(g0)",
+      "phi2": "phi+r*N(g1_plus−g0) from original phi",
+      "phi3": "phi2+rho*N(g2)"
+    },
+    "state_rng": "exact restore before every probe; replay R0; finish at R1 from g0 once; epoch data seed*100000+task*1000+epoch",
+    "gradient_budget": "4 CE probes /1 natural SGD update; g3 computed for budget even Sum/Mean omit it from final U",
+    "directions": {
+      "g1_plus_g2": "U=_combine(g1,g2)",
+      "half_g1_plus_g2": "U=_combine(g1,g2,.5,.5)",
+      "g1_plus_second_difference": "delta32=_combine(g3,g2,1,-1); U=_combine(g1,delta32)"
+    },
+    "existing_seed2_same_data_lr": true,
+    "existing_seed2_same_initial_parameters": true,
+    "field_warning": "Existing positive sum effective config compute_g3_probe=false is stale descriptive metadata; actual trainer code/counters/trace execute g3 every step (2550 times). Audit observed work, do not rely on that flag."
+  },
+  "conclusions": {
+    "completed_reusable_seed2_count": 2,
+    "completed_mean_seed2": false,
+    "target_seed0_or_1_preexisting_jobs": false,
+    "existing_mean_seed2_registered_pending": true,
+    "seed2_reuse_without_repeat": [
+      "g1_plus_g2",
+      "g1_plus_second_difference"
+    ],
+    "limits": "Bounded inventory of registered suites + keyword metadata indices. No unbounded claim of absence; no worker/controller liveness probing performed.",
+    "chosen_deduplication_strategy": "6new+2reusecompleted+1reuseexistingqueued",
+    "new_formal_jobs": 6,
+    "new_smoke_jobs": 6,
+    "new_pairing_gates": 1,
+    "existing_completed_external_cells": 2,
+    "existing_queued_external_cells": 1,
+    "total_final_seed_direction_cells": 9,
+    "existing_mean_queue_preserved": true,
+    "existing_mean_cancel_or_transfer_needed": false,
+    "existing_mean_inclusion_condition": "collector waits until old Mean seed2 has full completed exit0 receipt + raw matrix + pinned config/trainer accepted by its strict validator"
+  },
+  "strategy_updated_at_utc": "2026-10-06T15:23:05.756630+00:00"
+}

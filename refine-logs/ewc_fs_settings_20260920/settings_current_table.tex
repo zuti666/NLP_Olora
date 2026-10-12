@@ -1,0 +1,33 @@
+% This paragraph describes the actual current fine-grained table runs.
+% They are GAM-EWCLoRA, not verified implementations of the manuscript's
+% squared-gradient FS-EWC with trajectory-averaged retained anchors.
+\paragraph{EWC and GAM-EWC settings.}
+The EWC regularization coefficient $\lambda$ is benchmark-specific
+and remains fixed throughout each task stream.
+For Aircraft, Cars, CUB-200, Flowers, and 5Datasets, respectively,
+EWCLoRA uses $\lambda=200$, $80{,}000$, $200{,}000$, $10$, and
+$50{,}000$, whereas GAM-EWCLoRA uses $\lambda=2{,}000$ on all five
+benchmarks. The EWCLoRA configurations correspond to the eligible
+archived runs with the highest final average accuracy for each dataset,
+selected retrospectively using final test performance.
+Both methods use importance decay $\gamma=1$, at most 100
+current-task mini-batches for task-end Fisher estimation, and
+per-task trace normalization with numerical stabilizer $10^{-12}$.
+EWCLoRA uses zero Fisher damping.
+
+For GAM-EWCLoRA, the recorded triples
+\texttt{(gam\_grad\_rho, gam\_grad\_norm\_rho, gam\_grad\_gamma)}
+are $(0.01,0.10,0.02)$ on Aircraft,
+$(0.05,0.20,0.03)$ on Cars, and $(0.20,0.20,0.10)$ on both
+CUB-200 and 5Datasets.
+These are the gradient-probe displacement, gradient-difference ascent
+displacement, and GAM gradient-decomposition coefficient, respectively;
+the last coefficient is distinct from Fisher damping and importance decay.
+The corresponding GAM coefficients $\beta_1,\beta_2,\beta_3$ are all 1,
+adaptive perturbations are disabled, and the flatness-direction mixing
+coefficient is 1. The Flowers archive does not explicitly preserve the
+GAM probe and decomposition settings, so they are reported as unrecorded.
+Task-end Fisher estimation uses the final trained checkpoint, and the
+resulting importance is consolidated with the inherited statistic for
+the next task. These archived runs do not perform trajectory checkpoint
+averaging before Fisher estimation.

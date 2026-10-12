@@ -1,0 +1,68 @@
+"""Local shared-GPU queue: six CL smokes gate six CL runs; GAM smoke gates GAM.
+
+No preemption, no training retries, no result overwrite. Three independent lanes.
+"""
+import fcntl
+import json
+import os
+from pathlib import Path
+import subprocess
+import time
+from run_job import save,sha
+
+HERE=Path(__file__).resolve().parent
+def gpu_free(suite,active):
+    x=subprocess.run(['nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu','--format=csv,noheader,nounits'],check=True,capture_output=True,text=True,timeout=20)
+    y=subprocess.run(['nvidia-smi','--query-compute-apps=gpu_uuid','--format=csv,noheader'],check=True,capture_output=True,text=True,timeout=20)
+    busy=set(y.stdout.split())|{x[2]['uuid']for x in active.values()}
+    choices=[]
+    for line in x.stdout.splitlines():
+        idx,uid,mem,util=[s.strip()for s in line.split(',')]
+        if int(idx)in suite['allowed_gpus']and uid not in busy and int(mem)<500 and int(util)<5:
+            choices.append(dict(index=int(idx),uuid=uid))
+    return choices
+
+def main():
+    lock=(HERE/'.queue.lock').open('a+');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    assert not (HERE/'state.json').exists(),'Do not restart without reconciling old child processes'
+    suite=json.loads((HERE/'suite.json').read_text());jobs=suite['jobs']
+    assert json.loads((HERE/'preflight.json').read_text())['passed']
+    assert (HERE/'env_witness.json').exists()
+    assert all(sha(j['config'])==j['config_sha256']for j in jobs)
+    state=dict(pid=os.getpid(),status='running',started_unix=time.time(),suite_sha256=sha(HERE/'suite.json'),jobs={j['id']:dict(status='pending',stage=j['stage'],method=j['method'],dataset=j['dataset'])for j in jobs})
+    active={}
+    while True:
+        for name,(proc,stream,gpu)in list(active.items()):
+            code=proc.poll()
+            if code is None:continue
+            stream.close();rpath=HERE/'receipts'/(name+'.json');r=json.loads(rpath.read_text())if rpath.exists()else{}
+            okay=(code==0 and r.get('status')=='completed'and sha(r['metric_path'])==r['metric_sha256'])
+            state['jobs'][name].update(status='completed'if okay else'failed',exit_code=code,finished_unix=time.time())
+            del active[name];print('FINISH',name,code,flush=True)
+        for job in jobs:
+            row=state['jobs'][job['id']]
+            if row['status']!='pending':continue
+            needs=[j['id']for j in jobs if j['stage']=='smoke'and j['method']==job['method']]if job['stage']=='formal'else[]
+            if any(state['jobs'][k]['status']=='failed'for k in needs):
+                row.update(status='held_failed_smoke');continue
+            if not all(state['jobs'][k]['status']=='completed'for k in needs):continue
+            if len(active)>=suite['max_parallel']:break
+            free=gpu_free(suite,active)
+            if not free:break
+            # Re-check immediately before spawning, using UUID to bind the device.
+            gpu=free[0]
+            if gpu not in gpu_free(suite,active):continue
+            env=os.environ.copy();env.update(suite['environment']);env['CUDA_VISIBLE_DEVICES']=gpu['uuid'];env['PYTHONHASHSEED']=str(job['seed'])
+            stream=(HERE/'logs'/(job['id']+'.log')).open('x')
+            cmd=[suite['python'],str(HERE/'run_job.py'),'--job',job['id']]
+            proc=subprocess.Popen(cmd,cwd=HERE,env=env,stdin=subprocess.DEVNULL,stdout=stream,stderr=subprocess.STDOUT,start_new_session=True)
+            active[job['id']]=(proc,stream,gpu)
+            row.update(status='running',pid=proc.pid,gpu=gpu,started_unix=time.time(),command=cmd)
+            save(HERE/'state.json',state);print('START',job['id'],gpu,proc.pid,flush=True)
+        state['updated_unix']=time.time();save(HERE/'state.json',state)
+        if not active and not any(r['status']=='pending'for r in state['jobs'].values()):break
+        time.sleep(10)
+    state.update(status='completed'if all(r['status']=='completed'for r in state['jobs'].values())else'partial_failure',finished_unix=time.time())
+    save(HERE/'state.json',state)
+    subprocess.run([suite['python'],str(HERE/'collect.py')],cwd=HERE,check=True)
+if __name__=='__main__':main()

@@ -1,0 +1,498 @@
+{
+  "audit_date": "2026-09-22",
+  "scope": "Read-only static implementation forensics; no imports triggering model download, no training/source mutation.",
+  "versions": {
+    "flatness_working": "/data/140-1/users/liying/Flatness_CV",
+    "copy_working": "/data/140-1/users/liying/CopyFlatCV",
+    "copy_HEAD": "git HEAD:/data/140-1/users/liying/CopyFlatCV",
+    "formal_sep18": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code",
+    "rngctl_sep16": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code"
+  },
+  "file_inventory": "implementation_file_inventory.json",
+  "methods": [
+    {
+      "label": "Vanilla LoRA",
+      "factory": "seqlora",
+      "learner": "models_LoRAbasedCL.seqlora.Learner",
+      "network": "utils.inc_net.IncrementalNet → get_convnet / backbone.lora.LoRA_ViT_timm → _LoRA_qkv_timm_train",
+      "base": "LoraBaseLearner",
+      "optimizer": "SGD for table",
+      "loader": "DataManager.build_dataloader",
+      "source": "Flatness historical; Copy/formal available but RNG traversal differs"
+    },
+    {
+      "label": "InfLoRA",
+      "factory": "inflora",
+      "learner": "models_LoRAbasedCL.inflora.Learner",
+      "network": "utils.inc_net.SiNet → _build_inflora_backbone → LoRA_ViT_timm",
+      "base": "LoraBaseLearner",
+      "optimizer": "SGD for table",
+      "loader": "direct DataLoader",
+      "source": "Flatness only in inspected repos; Copy import target absent"
+    },
+    {
+      "label": "OLoRA",
+      "factory": "olora",
+      "learner": "models_LoRAbasedCL.olora.Learner",
+      "network": "IncrementalNet → per-task LoRA_ViT_timm(learn_alpha=False)",
+      "base": "LoraBaseLearner",
+      "optimizer": "SGD",
+      "loader": "direct DataLoader",
+      "source": "learner files byte-identical across Flatness/Copy/formal; imported backbone can differ"
+    },
+    {
+      "label": "SDLoRA",
+      "factory": "sdlora",
+      "learner": "models_LoRAbasedCL.sdlora.Learner",
+      "network": "IncrementalNet → per-task LoRA_ViT_timm(learn_alpha=True)",
+      "base": "LoraBaseLearner",
+      "optimizer": "SGD",
+      "loader": "direct DataLoader",
+      "source": "learner files byte-identical across Flatness/Copy/formal; imported backbone can differ"
+    },
+    {
+      "label": "CL-LoRA",
+      "factory": "cllora_aligned",
+      "learner": "models_LoRAbasedCL.cllora_aligned.Learner",
+      "network": "backbone.cllora_aligned.CLLoRANet → Encoder → backbone.cllora_archived_vit",
+      "base": "models_CL.baseLearner.BaseLearner",
+      "optimizer": "torch.optim.SGD, KD step then CE step after task0",
+      "loader": "direct DataLoader",
+      "source": "Copy/formal byte-identical; no Flatness implementation"
+    },
+    {
+      "label": "EWCLoRA (current best row)",
+      "factory": "as1_normfisher_fishershape",
+      "learner": "as1_normfisher_fishershape → as1_normfisher_gam → ewclora_youyue_fitArchitechture_gam → ewclora_youyue_fitArchitechture → seqlora",
+      "network": "IncrementalNet → LoRA_ViT_timm",
+      "optimizer": "FisherShape(alpha0, 2 CE probes) or native_sgd(1 CE pass) + explicit Fisher gradient",
+      "loader": "DataManager.build_dataloader",
+      "source": "Copy; actual chosen campaign flags differ by dataset"
+    },
+    {
+      "label": "GAM-EWCLoRA",
+      "factory": "ewclora_normfisher_gam",
+      "learner": "as1_normfisher_gam → ewclora_youyue_fitArchitechture_gam → ewclora_youyue_fitArchitechture → seqlora",
+      "network": "IncrementalNet → LoRA_ViT_timm",
+      "optimizer": "GAM(SGD base): one clean cache + four GAM CE passes, explicit Fisher add",
+      "loader": "DataManager.build_dataloader",
+      "source": "Historical four cells not immutable source-bound; Het5 formal Sep18 exact snapshot"
+    }
+  ],
+  "findings": [
+    {
+      "id": "flatness_uncommitted_data",
+      "category": "inactive_for_requested_datasets",
+      "scope": "Five fine-grained datasets and Het5",
+      "finding": "Flatness git diff utils/data.py contains only optional ImageNet-R dataset_exclude_manifest. It is scoped to iImageNetR and disabled absent path; does not modify sample lists, labels, preprocessing for this table.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/utils/data.py",
+          "line": 708
+        }
+      ]
+    },
+    {
+      "id": "flowers_mapping",
+      "category": "same_current_membership",
+      "scope": "Flowers and Flowers component of Het5",
+      "finding": "Flatness uses sorted directory index, Copy/formal uses canonical image_ID filename and missing-file check. Current 8189 files and 8189 frozen split entries give zero mapping mismatches. Does not establish historical image bytes or imply prior labels were wrong.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/utils/data.py",
+          "line": 55
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data.py",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "id": "data_guards",
+      "category": "validation_only_on_valid_data",
+      "scope": "CUB/Cars/Het5",
+      "finding": "Copy/formal add class_to_idx equality guards and Het5 component label/count validation. Existing valid memberships unchanged; failures now explicit. Same Het5 order/offsets and transforms retained.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data.py",
+          "line": 956
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data.py",
+          "line": 990
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data.py",
+          "line": 1286
+        }
+      ]
+    },
+    {
+      "id": "data_root",
+      "category": "potentially_active_default",
+      "scope": "All dataset loading",
+      "finding": "Flatness DataManager injects data_root=/data/140-0/datasets if absent; Copy/formal remove this default. Explicit run data_root/environment and realpaths must be checked before claiming same inputs.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/utils/data_manager.py",
+          "line": 20
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data_manager.py",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "id": "temporary_linear_versions",
+      "category": "active_rng_side_effect",
+      "scope": "Shared training LoRA backbone, all seven except CL-LoRA",
+      "finding": "Flatness, Copy HEAD and Sep18 formal train forward create four temporary random Linear modules unconditionally, even task_id=0. Copy working and Sep16 RNG-controlled code replace historical-factor application with F.linear and remove that CPU RNG consumption. Fixed weights and factors retain same intended forward algebra, but subsequent RNG trajectory is not guaranteed equal.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/backbone/lora.py",
+          "line": 174
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/backbone/lora.py",
+          "line": 174
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/backbone/lora.py",
+          "line": 174
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code/backbone/lora.py",
+          "line": 174
+        }
+      ]
+    },
+    {
+      "id": "eval_class_unmodified",
+      "category": "unchanged_scope",
+      "scope": "Shared LoRA evaluation class",
+      "finding": "The independent _LoRA_qkv_timm_eval class is unchanged across all five versions and still creates temporary Linear modules. Do not describe working-tree train-forward change as fixing all evaluation RNG consumption.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/backbone/lora.py",
+          "line": 229
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/backbone/lora.py",
+          "line": 233
+        }
+      ]
+    },
+    {
+      "id": "external_delta",
+      "category": "inactive_default",
+      "scope": "Shared training LoRA",
+      "finding": "Copy HEAD/formal vs Flatness add external_delta_w_q/v=None and conditional additions. Unset for ordinary methods; optional diagnostic/structured perturbation paths activate only when assigning tensors.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/backbone/lora.py",
+          "line": 166
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/backbone/lora.py",
+          "line": 216
+        }
+      ]
+    },
+    {
+      "id": "extra_eval_rng",
+      "category": "active_extra_traversal",
+      "scope": "Vanilla SeqLoRA and inheriting EWC/GAM, not independent Inf/OLoRA/SDLoRA/CL learners",
+      "finding": "Copy HEAD/formal/working SeqLoRA add current-task local accuracy passes every five epochs and at task end versus Flatness. These are not behind optional flag. They traverse loaders and forward modules; with global RNG/default generator and temporary-Linears code they may shift subsequent sampling/augmentation RNG. For persistent workers iterator reuse differs, so do not claim identical base-seed redraw on every reused iteration.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 437
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 1750
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 2152
+        },
+        {
+          "path": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/utils/data/dataloader.py",
+          "line": 601
+        }
+      ]
+    },
+    {
+      "id": "fisher_split",
+      "category": "inactive_default",
+      "scope": "SeqLoRA and inheriting EWC/GAM",
+      "finding": "Copy adds heldout Fisher split and class-order override support, but with absent/false split parameters and class_order_override absent, training set still uses all current-task examples. ewc_fisher_source default string heldout does not create heldout data: getter falls back to train_loader.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 215
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 341
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+          "line": 135
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data_manager.py",
+          "line": 384
+        }
+      ]
+    },
+    {
+      "id": "min_lr",
+      "category": "same_default_different_api",
+      "scope": "Baseline and GAM schedulers",
+      "finding": "Flatness Vanilla/Inf/OLoRA/SDLoRA default min_lr=.1*LR. Copy/formal Seq support new ratio/absolute overrides but same default .1*LR. CL directly calls CosineAnnealingLR without eta_min, so min LR is zero. Merely adding min_lr to CL config is ignored by current CL implementation.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/seqlora.py",
+          "line": 1341
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/inflora.py",
+          "line": 390
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/olora.py",
+          "line": 194
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/sdlora.py",
+          "line": 230
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 288
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/models_LoRAbasedCL/cllora_aligned.py",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "id": "worker_real_settings",
+      "category": "active_dataset_method_difference",
+      "scope": "Aircraft especially; all datasets loader route",
+      "finding": "Seq/EWC/GAM use DataManager.build_dataloader with workers=train_num_workers(default8). Aircraft loader_options set pin_memory=true,persistent_workers=true and DataManager does not read top-level persistent_workers; explicit false JSON alone is ineffective here. Inf/OLoRA/SDLoRA construct DataLoader directly with default pin=false,persistent=false. CL constructs directly workers2,pin=true,persistent=false. Het5 uses own empty loader_options.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data.py",
+          "line": 110
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data_manager.py",
+          "line": 406
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py",
+          "line": 398
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/inflora.py",
+          "line": 269
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/olora.py",
+          "line": 112
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/sdlora.py",
+          "line": 122
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/models_LoRAbasedCL/cllora_aligned.py",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "id": "rng_flags",
+      "category": "effective_vs_ignored",
+      "scope": "EWC/GAM and DataManager",
+      "finding": "ewc_preserve_fisher_rng read and implemented in Copy/formal, default false. ewc_isolate_clean_rng not read anywhere in Copy working/HEAD/formal GAM learner; Het5 true config therefore ineffective. deterministic_loader_rng/loader_seed not implemented in Copy/formal DataManager. Sep16 rngctl has real implementations for clean isolation and per-loader generators, so differs in actual protocol.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+          "line": 89
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+          "line": 338
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+          "line": 494
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/data_manager.py",
+          "line": 417
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+          "line": 39
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code/utils/data_manager.py",
+          "line": 428
+        }
+      ]
+    },
+    {
+      "id": "seeding_equal",
+      "category": "unchanged",
+      "scope": "Python NumPy Torch seeding",
+      "finding": "utils/random_reproduce.py and toolkit.py byte-identical across Flatness, Copy, formal, rngctl. set_random seeds Python, NumPy, Torch CPU/CUDA and configures deterministic cuDNN; trainer calls it before DataManager/model creation in both repos. Extra reseeding sites are under disabled linear-probe workflows. Different RNG consumption, not a different initial seed function, is the concern.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/utils/random_reproduce.py",
+          "line": 24
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/src/trainer.py",
+          "line": 268
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/src/trainer.py",
+          "line": 910
+        }
+      ]
+    },
+    {
+      "id": "trainer_changes",
+      "category": "inactive_for_table",
+      "scope": "Training entrypoint/trainer",
+      "finding": "Copy main adds local tmpdir and multiprocessing-cleanup handling. Trainer adds opt-in pretrained checkpoint loading, resumed-only evaluation, task0 diagnostics, epoch dynamics, staged checkpoints. Default off / no path in table configs. The normal incremental_train→eval_task→write_metrics→after_task ordering is retained. File diff alone is not evidence of different training updates.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/src/main.py",
+          "line": 14
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/src/trainer.py",
+          "line": 976
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/src/trainer.py",
+          "line": 1116
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/src/trainer.py",
+          "line": 1224
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/src/trainer.py",
+          "line": 1263
+        }
+      ]
+    },
+    {
+      "id": "formal_current_new_branches",
+      "category": "inactive_for_table",
+      "scope": "Copy working vs Sep18 formal",
+      "finding": "Aside from shared backbone train-forward RNG change, targeted active files differ only in factory/inc_net KFAC/complementarity registrations and baseLoRA extra Fisher checkpoint save/restore hooks. These new branches do not change selected method mapping, and hooks are not called when staged save/resume absent.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/factory.py",
+          "line": 195
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/inc_net.py",
+          "line": 31
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/baseLoRA.py",
+          "line": 338
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/baseLoRA.py",
+          "line": 428
+        }
+      ]
+    },
+    {
+      "id": "gam_extended_math",
+      "category": "default_core_retained",
+      "scope": "GAM-EWC",
+      "finding": "Copy GAM optimizer saves g3 clone and introduces use_sgv gate(defaultfalse); core projected direction unchanged with gate off. AS1 learner adds selectable Fisher modes, accumulated normalization and MC Fisher; default batch_empirical plus normalize_accumulated=false preserves intended batch-mean-gradient-square Fisher trace-normalization formula. Zero-lambda fast path irrelevant to GAM lambda2000 table row. Avoid claiming bitwise historical parity: code and RNG traversal differ.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/gam.py",
+          "line": 128
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/gam.py",
+          "line": 158
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam.py",
+          "line": 129
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam.py",
+          "line": 381
+        }
+      ]
+    },
+    {
+      "id": "missing_inflora",
+      "category": "cannot_launch_from_copy_as_is",
+      "scope": "InfLoRA",
+      "finding": "Copy working, Copy HEAD and Sep18 formal factory retain import models_LoRAbasedCL.inflora but module file is missing. Flatness has full InfLoRA implementation. Need explicit source resolution/port and frozen import proof for future Copy campaign; this does not invalidate prior Flatness result.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/factory.py",
+          "line": 371
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/utils/factory.py",
+          "line": 182
+        },
+        {
+          "path": "/data/140-1/users/liying/Flatness_CV/models_LoRAbasedCL/inflora.py",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "id": "ewc_label_not_factory",
+      "category": "method_name_mapping",
+      "scope": "Current selected EWC row",
+      "finding": "Current EWC table sources use model_name=as1_normfisher_fishershape. CUB/Aircraft/Cars/Flowers are alpha0 two-probe wrapper; Het5 fs_direction_mode=native_sgd uses one CE gradient. They are not factory(\"ewclora\")→ewclora_origin and cannot blindly switch to that label. fs_preserve_probe_rng is a real implemented flag distinct from ignored GAM clean-isolation flag.",
+      "evidence": [
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/utils/factory.py",
+          "line": 188
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_fishershape.py",
+          "line": 87
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_fishershape.py",
+          "line": 377
+        },
+        {
+          "path": "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/fishershape.py",
+          "line": 287
+        }
+      ]
+    }
+  ],
+  "correction": "An initial inter-agent note incorrectly applied Copy working F.linear change to Sep18 formal. This was retracted. Definitive five-version hash inventory shows formal=CopyHEAD train backbone with temporary Linear modules.",
+  "limitations": [
+    "Current source differences do not timestamp historical changes or disprove archived numeric results.",
+    "Equal learner files are insufficient if imported shared backbone or loader differs.",
+    "Missing historical source binding differs from observed active training behavior; no blanket invalidation of all old rows."
+  ]
+}

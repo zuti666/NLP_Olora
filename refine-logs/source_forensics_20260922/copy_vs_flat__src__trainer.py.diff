@@ -1,0 +1,887 @@
+--- /data/140-1/users/liying/Flatness_CV/src/trainer.py
++++ /data/140-1/users/liying/CopyFlatCV/src/trainer.py
+@@ -177,6 +177,648 @@
+         curve.append(float(np.nanmean(arr)) if arr.size else float("nan"))
+     return curve
+ 
++
++def _as_bool(value, default=False):
++    if value is None:
++        return bool(default)
++    if isinstance(value, bool):
++        return value
++    if isinstance(value, str):
++        return value.strip().lower() in {"1", "true", "yes", "y", "on"}
++    return bool(value)
++
++
++def _parse_max_batches(value, default=None):
++    if value is None:
++        return default
++    if isinstance(value, str) and value.strip().lower() in {"", "none", "all", "full"}:
++        return None
++    value = int(value)
++    return None if value <= 0 else value
++
++
++def _collect_task_fixed_batches_cpu(data_manager, task_start, task_end, split, batch_size, num_workers, max_batches):
++    source = "train" if split == "train" else "test"
++    mode = "train" if split == "train" else "test"
++    dataset = data_manager.get_dataset(
++        np.arange(int(task_start), int(task_end)),
++        source=source,
++        mode=mode,
++    )
++    loader = data_manager.build_dataloader(
++        dataset,
++        batch_size=int(batch_size),
++        shuffle=False,
++        num_workers=int(num_workers),
++    )
++    fixed = []
++    for _, inputs, targets in loader:
++        mask = ((targets >= int(task_start)) & (targets < int(task_end))).nonzero().view(-1)
++        if mask.numel() == 0:
++            continue
++        fixed.append((
++            torch.index_select(inputs, 0, mask).detach().cpu(),
++            torch.index_select(targets, 0, mask).detach().cpu(),
++        ))
++        if max_batches is not None and len(fixed) >= int(max_batches):
++            break
++    return fixed
++
++
++def _evaluate_fixed_task_batches(model, fixed_batches, task_start, task_end):
++    net = getattr(model, "_network", model)
++    was_training = bool(getattr(net, "training", False))
++    net.eval()
++    total = 0
++    local_loss_sum = 0.0
++    full_loss_sum = 0.0
++    local_correct = 0
++    full_correct = 0
++    device = getattr(model, "_device", torch.device("cuda" if torch.cuda.is_available() else "cpu"))
++    try:
++        with torch.no_grad():
++            for inputs_cpu, targets_cpu in fixed_batches:
++                inputs = inputs_cpu.to(device, non_blocking=True)
++                targets = targets_cpu.to(device, non_blocking=True)
++                try:
++                    outputs = net(inputs, use_new=True)
++                except TypeError:
++                    outputs = net(inputs)
++                logits = outputs["logits"] if isinstance(outputs, dict) else outputs
++                local_targets = targets - int(task_start)
++                local_logits = logits[:, int(task_start): int(task_end)]
++                local_loss_sum += float(
++                    torch.nn.functional.cross_entropy(
++                        local_logits,
++                        local_targets,
++                        reduction="sum",
++                    ).detach().item()
++                )
++                full_loss_sum += float(
++                    torch.nn.functional.cross_entropy(
++                        logits,
++                        targets,
++                        reduction="sum",
++                    ).detach().item()
++                )
++                local_correct += int(local_logits.argmax(dim=1).eq(local_targets).sum().item())
++                full_correct += int(logits.argmax(dim=1).eq(targets).sum().item())
++                total += int(targets.numel())
++    finally:
++        net.train(was_training)
++
++    denom = max(1, total)
++    return {
++        "samples": int(total),
++        "local_loss": float(local_loss_sum / denom),
++        "full_loss": float(full_loss_sum / denom),
++        "local_acc": float(100.0 * local_correct / denom),
++        "full_acc": float(100.0 * full_correct / denom),
++    }
++
++
++def _snapshot_delta_terms_cpu(model):
++    base_model = model._unwrap_network() if hasattr(model, "_unwrap_network") else getattr(model, "_network", model)
++    if hasattr(model, "_iter_delta_terms"):
++        return {
++            key: delta.detach().cpu().clone()
++            for key, delta in model._iter_delta_terms(base_model)
++        }
++    if hasattr(model, "_iter_trainable"):
++        return {
++            key: param.detach().cpu().clone()
++            for key, param in model._iter_trainable(base_model)
++        }
++    return {
++        key: param.detach().cpu().clone()
++        for key, param in base_model.named_parameters()
++        if param.requires_grad
++    }
++
++
++def _fisher_quadratic_from_delta(delta_terms, fisher_delta, eps=1e-12):
++    if not delta_terms:
++        return {
++            "available": 0,
++            "delta_tensors": 0,
++            "delta_norm_sq": 0.0,
++            "delta_norm": 0.0,
++            "fisher_raw_quadratic": 0.0,
++            "fisher_quad": 0.0,
++            "normalized_fisher_drift": 0.0,
++        }
++
++    delta_norm_sq = sum(
++        float(delta.detach().cpu().float().pow(2).sum().item())
++        for delta in delta_terms.values()
++    )
++    if not fisher_delta:
++        return {
++            "available": int(bool(delta_terms)),
++            "delta_tensors": int(len(delta_terms)),
++            "delta_norm_sq": float(delta_norm_sq),
++            "delta_norm": float(delta_norm_sq ** 0.5),
++            "fisher_raw_quadratic": 0.0,
++            "fisher_quad": 0.0,
++            "normalized_fisher_drift": 0.0,
++        }
++
++    fisher_raw = 0.0
++    tensors = 0
++    with torch.no_grad():
++        for key, delta in delta_terms.items():
++            fisher = fisher_delta.get(key)
++            if fisher is None:
++                continue
++            delta_t = delta.detach().cpu().float()
++            fisher_t = _match_tensor_shape_cpu(fisher, delta_t).float().clamp_min(0)
++            update_sq = delta_t.pow(2)
++            fisher_raw += float((fisher_t * update_sq).sum().item())
++            tensors += 1
++
++    return {
++        "available": int(tensors > 0),
++        "delta_tensors": int(tensors),
++        "delta_norm_sq": float(delta_norm_sq),
++        "delta_norm": float(delta_norm_sq ** 0.5),
++        "fisher_raw_quadratic": float(fisher_raw),
++        "fisher_quad": float(0.5 * fisher_raw),
++        "normalized_fisher_drift": float(fisher_raw / (delta_norm_sq + float(eps))),
++    }
++
++
++def _delta_terms_between(current_terms, reference_terms):
++    out = {}
++    for key, cur in current_terms.items():
++        ref = reference_terms.get(key)
++        if ref is None:
++            continue
++        ref_t = _match_tensor_shape_cpu(ref, cur.detach().cpu())
++        out[key] = cur.detach().cpu().float() - ref_t.float()
++    return out
++
++
++def _task0_fisher_quadratic_from_anchor(model, anchor_delta, fisher_delta, eps=1e-12):
++    current_terms = _snapshot_delta_terms_cpu(model)
++    return _fisher_quadratic_from_delta(
++        _delta_terms_between(current_terms, anchor_delta),
++        fisher_delta,
++        eps=eps,
++    )
++
++
++def _clone_fisher_cpu(fisher):
++    if not fisher:
++        return {}
++    return {
++        key: value.detach().cpu().clone()
++        for key, value in fisher.items()
++        if hasattr(value, "detach")
++    }
++
++
++def _get_accumulated_fisher_for_task0(model):
++    fisher = getattr(model, "_fisher_past_delta", None)
++    if fisher:
++        return fisher
++    fisher = getattr(model, "_fisher", None)
++    if fisher:
++        return fisher
++    return {}
++
++
++def _fisher_trace_cpu(fisher):
++    return sum(float(value.detach().cpu().float().sum().item()) for value in fisher.values())
++
++
++def _normalize_fisher_cpu(fisher, eps=1e-12):
++    if not fisher:
++        return {}
++    denom = _fisher_trace_cpu(fisher) + float(eps)
++    return {key: value.detach().cpu() / denom for key, value in fisher.items()}
++
++
++def _fisher_stats(prefix, fisher):
++    if not fisher:
++        return {
++            f"{prefix}_available": 0,
++            f"{prefix}_num_tensors": 0,
++            f"{prefix}_numel": 0,
++            f"{prefix}_trace": 0.0,
++            f"{prefix}_fro": 0.0,
++            f"{prefix}_l1": 0.0,
++        }
++    flat = torch.cat([value.detach().cpu().float().reshape(-1) for value in fisher.values()])
++    return {
++        f"{prefix}_available": 1,
++        f"{prefix}_num_tensors": int(len(fisher)),
++        f"{prefix}_numel": int(flat.numel()),
++        f"{prefix}_trace": float(flat.sum().item()),
++        f"{prefix}_fro": float(flat.pow(2).sum().sqrt().item()),
++        f"{prefix}_l1": float(flat.abs().sum().item()),
++    }
++
++
++def _match_tensor_shape_cpu(value, reference):
++    value_cpu = value.detach().cpu().to(dtype=reference.dtype)
++    ref_cpu = reference.detach().cpu()
++    if tuple(value_cpu.shape) == tuple(ref_cpu.shape):
++        return value_cpu
++    if value_cpu.ndim != ref_cpu.ndim:
++        flat_value = value_cpu.reshape(-1)
++        matched_flat = torch.zeros(ref_cpu.numel(), dtype=ref_cpu.dtype)
++        n = min(int(flat_value.numel()), int(matched_flat.numel()))
++        if n > 0:
++            matched_flat[:n] = flat_value[:n]
++        return matched_flat.view_as(ref_cpu)
++    matched = torch.zeros_like(ref_cpu)
++    slices = tuple(
++        slice(0, min(int(value_cpu.shape[dim]), int(ref_cpu.shape[dim])))
++        for dim in range(value_cpu.ndim)
++    )
++    matched[slices] = value_cpu[slices]
++    return matched
++
++
++def _flatten_fisher_pair(lhs, rhs):
++    lhs_vals, rhs_vals = [], []
++    for key in sorted(set(lhs.keys()) | set(rhs.keys())):
++        left = lhs.get(key)
++        right = rhs.get(key)
++        if left is None and right is None:
++            continue
++        if left is None:
++            right_cpu = right.detach().cpu().float()
++            left_cpu = torch.zeros_like(right_cpu)
++        else:
++            left_cpu = left.detach().cpu().float()
++        if right is None:
++            right_cpu = torch.zeros_like(left_cpu)
++        else:
++            right_cpu = _match_tensor_shape_cpu(right, left_cpu).float()
++        lhs_vals.append(left_cpu.reshape(-1))
++        rhs_vals.append(right_cpu.reshape(-1))
++    if not lhs_vals:
++        return None, None
++    return torch.cat(lhs_vals), torch.cat(rhs_vals)
++
++
++def _fisher_pair_metrics(prefix, current, reference, eps=1e-12):
++    cur_flat, ref_flat = _flatten_fisher_pair(current, reference)
++    if cur_flat is None or ref_flat is None:
++        return {
++            f"{prefix}_available": 0,
++            f"{prefix}_cosine_sim": 0.0,
++            f"{prefix}_mismatch": 1.0,
++            f"{prefix}_rel_fro_wrt_ref": 0.0,
++            f"{prefix}_rel_l1_wrt_ref": 0.0,
++            f"{prefix}_trace_ratio_current_to_ref": 0.0,
++            f"{prefix}_top1pct_ref_coverage": 0.0,
++        }
++
++    cur_fro = float(cur_flat.pow(2).sum().sqrt().item())
++    ref_fro = float(ref_flat.pow(2).sum().sqrt().item())
++    cur_l1 = float(cur_flat.abs().sum().item())
++    ref_l1 = float(ref_flat.abs().sum().item())
++    diff = cur_flat - ref_flat
++    cosine = float((cur_flat * ref_flat).sum().item() / max(cur_fro * ref_fro, float(eps)))
++    cosine = max(-1.0, min(1.0, cosine))
++    k = max(1, int(ref_flat.numel() * 0.01))
++    ref_top_idx = ref_flat.topk(k, largest=True).indices
++    ref_top_sum = float(ref_flat[ref_top_idx].sum().item())
++    cur_on_ref_top_sum = float(cur_flat[ref_top_idx].sum().item())
++    return {
++        f"{prefix}_available": 1,
++        f"{prefix}_cosine_sim": cosine,
++        f"{prefix}_mismatch": float(1.0 - cosine),
++        f"{prefix}_rel_fro_wrt_ref": float(diff.pow(2).sum().sqrt().item() / max(ref_fro, float(eps))),
++        f"{prefix}_rel_l1_wrt_ref": float(diff.abs().sum().item() / max(ref_l1, float(eps))),
++        f"{prefix}_trace_ratio_current_to_ref": float(cur_l1 / max(ref_l1, float(eps))),
++        f"{prefix}_top1pct_ref_coverage": float(cur_on_ref_top_sum / max(ref_top_sum, float(eps))),
++    }
++
++
++def _compute_task0_local_delta_fisher(model, fixed_batches, task_start, task_end, normalize=True, eps=1e-12):
++    if not fixed_batches:
++        return {}, 0
++
++    net = model._unwrap_network() if hasattr(model, "_unwrap_network") else getattr(model, "_network", model)
++    device = getattr(model, "_device", torch.device("cuda" if torch.cuda.is_available() else "cpu"))
++    was_training = bool(getattr(net, "training", False))
++    fisher = {}
++    total = 0
++
++    net.eval()
++    use_delta_hooks = all(
++        hasattr(model, name)
++        for name in ("_set_delta_hook_state", "_clear_delta_hook_grads", "_iter_hook_grads")
++    )
++    if use_delta_hooks:
++        model._set_delta_hook_state(net, True)
++    try:
++        for inputs_cpu, targets_cpu in fixed_batches:
++            inputs = inputs_cpu.to(device, non_blocking=True)
++            targets = targets_cpu.to(device, non_blocking=True)
++            local_targets = targets - int(task_start)
++
++            net.zero_grad(set_to_none=True)
++            if use_delta_hooks:
++                model._clear_delta_hook_grads(net)
++            with torch.enable_grad():
++                try:
++                    outputs = net(inputs, use_new=True)
++                except TypeError:
++                    outputs = net(inputs)
++                logits = outputs["logits"] if isinstance(outputs, dict) else outputs
++                local_logits = logits[:, int(task_start): int(task_end)]
++                torch.nn.functional.cross_entropy(local_logits, local_targets).backward()
++
++            batch_size = int(inputs.size(0))
++            total += batch_size
++            if use_delta_hooks:
++                grad_iter = model._iter_hook_grads(net)
++            elif hasattr(model, "_iter_trainable"):
++                grad_iter = (
++                    (name, param.grad)
++                    for name, param in model._iter_trainable(net)
++                    if param.grad is not None
++                )
++            else:
++                grad_iter = (
++                    (name, param.grad)
++                    for name, param in net.named_parameters()
++                    if param.requires_grad and param.grad is not None
++                )
++            for key, grad in grad_iter:
++                grad_sq = (grad.detach().cpu() ** 2) * batch_size
++                fisher[key] = grad_sq if key not in fisher else fisher[key] + grad_sq
++    finally:
++        if use_delta_hooks:
++            model._set_delta_hook_state(net, False)
++            model._clear_delta_hook_grads(net)
++        net.zero_grad(set_to_none=True)
++        net.train(was_training)
++
++    if total > 0:
++        for key in fisher:
++            fisher[key] = fisher[key] / float(total)
++    if normalize:
++        fisher = _normalize_fisher_cpu(fisher, eps=eps)
++    return fisher, int(total)
++
++
++def _init_task0_trajectory_eval(args, data_manager, model):
++    if not _as_bool(args.get("task0_trajectory_eval", False)):
++        return None
++
++    task_idx = int(args.get("task0_trajectory_task", 0))
++    task_start, task_end = data_manager.get_task_class_range(task_idx)
++    batch_size = int(args.get("task0_trajectory_batch_size", args.get("batch_size", 128)))
++    num_workers = int(args.get("task0_trajectory_num_workers", args.get("eval_num_workers", 8)))
++    max_batches = _parse_max_batches(args.get("task0_trajectory_max_batches", 20), default=20)
++    splits = [
++        item.strip().lower()
++        for item in str(args.get("task0_trajectory_splits", "train,test")).split(",")
++        if item.strip()
++    ]
++    fixed = {
++        split: _collect_task_fixed_batches_cpu(
++            data_manager,
++            task_start,
++            task_end,
++            split,
++            batch_size,
++            num_workers,
++            max_batches,
++        )
++        for split in splits
++    }
++    anchor_metrics = {
++        split: _evaluate_fixed_task_batches(model, batches, task_start, task_end)
++        for split, batches in fixed.items()
++    }
++    fisher_delta = _clone_fisher_cpu(_get_accumulated_fisher_for_task0(model))
++    task0_fisher_eval = _as_bool(args.get("task0_fisher_recompute_eval", False))
++    task0_fisher_split = str(args.get("task0_fisher_split", "train")).strip().lower()
++    task0_fisher_batch_size = int(args.get("task0_fisher_batch_size", args.get("batch_size", batch_size)))
++    task0_fisher_num_workers = int(args.get("task0_fisher_num_workers", args.get("eval_num_workers", num_workers)))
++    task0_fisher_max_batches = _parse_max_batches(
++        args.get("task0_fisher_max_batches", args.get("ewc_max_batches", None)),
++        default=None,
++    )
++    task0_fisher_normalize = _as_bool(
++        args.get("task0_fisher_normalize", args.get("ewc_normalize_fisher", True))
++    )
++    task0_fisher_fixed = []
++    task0_fisher_anchor = {}
++    task0_fisher_anchor_samples = 0
++    if task0_fisher_eval:
++        task0_fisher_fixed = _collect_task_fixed_batches_cpu(
++            data_manager,
++            task_start,
++            task_end,
++            task0_fisher_split,
++            task0_fisher_batch_size,
++            task0_fisher_num_workers,
++            task0_fisher_max_batches,
++        )
++        task0_fisher_anchor, task0_fisher_anchor_samples = _compute_task0_local_delta_fisher(
++            model,
++            task0_fisher_fixed,
++            task_start,
++            task_end,
++            normalize=task0_fisher_normalize,
++            eps=float(args.get("mechanism_eps", 1e-12)),
++        )
++    ctx = {
++        "task_idx": int(task_idx),
++        "task_start": int(task_start),
++        "task_end": int(task_end),
++        "fixed": fixed,
++        "anchor_metrics": anchor_metrics,
++        "anchor_delta": _snapshot_delta_terms_cpu(model),
++        "fisher_delta": fisher_delta,
++        "lambda_ewc": float(args.get("ewc_lambda", args.get("lambda", 0.0))),
++        "eps": float(args.get("mechanism_eps", 1e-12)),
++        "task0_fisher_eval": bool(task0_fisher_eval),
++        "task0_fisher_split": task0_fisher_split,
++        "task0_fisher_fixed": task0_fisher_fixed,
++        "task0_fisher_anchor": task0_fisher_anchor,
++        "task0_fisher_anchor_samples": int(task0_fisher_anchor_samples),
++        "task0_fisher_batch_size": int(task0_fisher_batch_size),
++        "task0_fisher_max_batches": task0_fisher_max_batches,
++        "task0_fisher_normalize": bool(task0_fisher_normalize),
++    }
++    logging.info(
++        "[Task0Trajectory] initialized task=%d classes=%d-%d splits=%s max_batches=%s fisher_tensors=%d task0_fisher_eval=%s task0_fisher_anchor_tensors=%d samples=%d",
++        task_idx,
++        task_start,
++        task_end,
++        ",".join(sorted(fixed.keys())),
++        "all" if max_batches is None else str(max_batches),
++        len(fisher_delta),
++        bool(task0_fisher_eval),
++        len(task0_fisher_anchor),
++        int(task0_fisher_anchor_samples),
++    )
++    return ctx
++
++
++def _evaluate_task0_trajectory(model, ctx, step):
++    eps = ctx.get("eps", 1e-12)
++    current_terms = _snapshot_delta_terms_cpu(model)
++    anchor_terms = ctx.get("anchor_delta", {})
++    prev_terms = ctx.get("prev_terms", anchor_terms)
++    cum_delta_terms = _delta_terms_between(current_terms, anchor_terms)
++    step_delta_terms = _delta_terms_between(current_terms, prev_terms)
++    accum_fisher = _clone_fisher_cpu(_get_accumulated_fisher_for_task0(model))
++    loaded_anchor_fisher = ctx.get("fisher_delta", {})
++
++    quad = _fisher_quadratic_from_delta(
++        cum_delta_terms,
++        loaded_anchor_fisher,
++        eps=eps,
++    )
++    step_sq = _fisher_quadratic_from_delta(step_delta_terms, {}, eps=eps)
++    cum_accum_quad = _fisher_quadratic_from_delta(cum_delta_terms, accum_fisher, eps=eps)
++    step_loaded_anchor_quad = _fisher_quadratic_from_delta(
++        step_delta_terms,
++        loaded_anchor_fisher,
++        eps=eps,
++    )
++    step_accum_quad = _fisher_quadratic_from_delta(step_delta_terms, accum_fisher, eps=eps)
++    out = {
++        "anchor_task": int(ctx["task_idx"]),
++        "anchor_task_start": int(ctx["task_start"]),
++        "anchor_task_end": int(ctx["task_end"]),
++        "eval_step": int(step),
++        "fisher_available": int(bool(quad["available"])),
++        "fisher_delta_tensors": int(quad["delta_tensors"]),
++        "delta_norm_sq": float(quad["delta_norm_sq"]),
++        "delta_norm": float(quad["delta_norm"]),
++        "fisher_raw_quadratic": float(quad["fisher_raw_quadratic"]),
++        "fisher_quad": float(quad["fisher_quad"]),
++        "lambda_fisher_quad": float(ctx.get("lambda_ewc", 0.0) * quad["fisher_quad"]),
++        "normalized_fisher_drift": float(quad["normalized_fisher_drift"]),
++        "step_delta_sq": float(step_sq["delta_norm_sq"]),
++        "cum_delta0_sq": float(quad["delta_norm_sq"]),
++        "step_delta_F0_loaded_anchor_delta": float(step_loaded_anchor_quad["fisher_raw_quadratic"]),
++        "step_delta_Facc_delta": float(step_accum_quad["fisher_raw_quadratic"]),
++        "cum_delta0_F0_loaded_anchor_delta0": float(quad["fisher_raw_quadratic"]),
++        "cum_delta0_Facc_delta0": float(cum_accum_quad["fisher_raw_quadratic"]),
++        "norm_cum_delta0_F0_loaded_anchor_delta0": float(quad["normalized_fisher_drift"]),
++        "norm_cum_delta0_Facc_delta0": float(cum_accum_quad["normalized_fisher_drift"]),
++    }
++    if ctx.get("task0_fisher_eval", False):
++        current_fisher, current_samples = _compute_task0_local_delta_fisher(
++            model,
++            ctx.get("task0_fisher_fixed", []),
++            ctx["task_start"],
++            ctx["task_end"],
++            normalize=bool(ctx.get("task0_fisher_normalize", True)),
++            eps=ctx.get("eps", 1e-12),
++        )
++        out.update({
++            "task0_fisher_eval": 1,
++            "task0_fisher_split": ctx.get("task0_fisher_split", "train"),
++            "task0_fisher_head_scope": "local_task_head",
++            "task0_fisher_batch_size": int(ctx.get("task0_fisher_batch_size", 0)),
++            "task0_fisher_max_batches": (
++                "all" if ctx.get("task0_fisher_max_batches", None) is None
++                else int(ctx.get("task0_fisher_max_batches"))
++            ),
++            "task0_fisher_normalized": int(bool(ctx.get("task0_fisher_normalize", True))),
++            "task0_fisher_current_num_samples": int(current_samples),
++            "task0_fisher_anchor_num_samples": int(ctx.get("task0_fisher_anchor_samples", 0)),
++        })
++        out.update(_fisher_stats("task0_fisher_current", current_fisher))
++        task0_anchor_fisher = ctx.get("task0_fisher_anchor", {})
++        prev_task0_fisher = ctx.get("prev_task0_fisher", task0_anchor_fisher)
++        cum_anchor_quad = _fisher_quadratic_from_delta(
++            cum_delta_terms,
++            task0_anchor_fisher,
++            eps=eps,
++        )
++        cum_dynamic_quad = _fisher_quadratic_from_delta(
++            cum_delta_terms,
++            current_fisher,
++            eps=eps,
++        )
++        step_anchor_quad = _fisher_quadratic_from_delta(
++            step_delta_terms,
++            task0_anchor_fisher,
++            eps=eps,
++        )
++        step_dynamic_prev_quad = _fisher_quadratic_from_delta(
++            step_delta_terms,
++            prev_task0_fisher,
++            eps=eps,
++        )
++        step_dynamic_current_quad = _fisher_quadratic_from_delta(
++            step_delta_terms,
++            current_fisher,
++            eps=eps,
++        )
++        out.update({
++            "step_delta_F0_anchor_delta": float(step_anchor_quad["fisher_raw_quadratic"]),
++            "step_delta_F0_dynamic_prev_delta": float(step_dynamic_prev_quad["fisher_raw_quadratic"]),
++            "step_delta_F0_dynamic_current_delta": float(step_dynamic_current_quad["fisher_raw_quadratic"]),
++            "cum_delta0_F0_anchor_delta0": float(cum_anchor_quad["fisher_raw_quadratic"]),
++            "cum_delta0_F0_dynamic_delta0": float(cum_dynamic_quad["fisher_raw_quadratic"]),
++            "norm_cum_delta0_F0_anchor_delta0": float(cum_anchor_quad["normalized_fisher_drift"]),
++            "norm_cum_delta0_F0_dynamic_delta0": float(cum_dynamic_quad["normalized_fisher_drift"]),
++        })
++        out.update(_fisher_pair_metrics(
++            "task0_fisher_anchor",
++            current_fisher,
++            task0_anchor_fisher,
++            eps=eps,
++        ))
++        out.update(_fisher_pair_metrics(
++            "task0_fisher_loaded_anchor",
++            current_fisher,
++            loaded_anchor_fisher,
++            eps=eps,
++        ))
++        out.update(_fisher_pair_metrics(
++            "task0_fisher_accum",
++            current_fisher,
++            accum_fisher,
++            eps=eps,
++        ))
++        ctx["prev_task0_fisher"] = _clone_fisher_cpu(current_fisher)
++    else:
++        out["task0_fisher_eval"] = 0
++    ctx["prev_terms"] = _clone_fisher_cpu(current_terms)
++
++    denom_quad = abs(float(quad["fisher_quad"])) + float(eps)
++    for split, batches in ctx["fixed"].items():
++        cur = _evaluate_fixed_task_batches(
++            model,
++            batches,
++            ctx["task_start"],
++            ctx["task_end"],
++        )
++        base = ctx["anchor_metrics"][split]
++        for key, value in cur.items():
++            out[f"{split}_{key}"] = float(value)
++        out[f"{split}_base_local_loss"] = float(base["local_loss"])
++        out[f"{split}_base_full_loss"] = float(base["full_loss"])
++        out[f"{split}_base_local_acc"] = float(base["local_acc"])
++        out[f"{split}_base_full_acc"] = float(base["full_acc"])
++        local_delta = float(cur["local_loss"] - base["local_loss"])
++        full_delta = float(cur["full_loss"] - base["full_loss"])
++        out[f"{split}_local_loss_delta"] = local_delta
++        out[f"{split}_full_loss_delta"] = full_delta
++        out[f"{split}_local_signed_error"] = float(local_delta - quad["fisher_quad"])
++        out[f"{split}_local_abs_error"] = float(abs(local_delta - quad["fisher_quad"]))
++        out[f"{split}_local_relative_error"] = float(abs(local_delta - quad["fisher_quad"]) / (abs(local_delta) + denom_quad))
++        out[f"{split}_full_signed_error"] = float(full_delta - quad["fisher_quad"])
++        out[f"{split}_full_abs_error"] = float(abs(full_delta - quad["fisher_quad"]))
++        out[f"{split}_full_relative_error"] = float(abs(full_delta - quad["fisher_quad"]) / (abs(full_delta) + denom_quad))
++    logging.info("[Task0Trajectory] step=%d metrics=%s", int(step), out)
++    return out
++
+ def train(args):
+     seed_list = copy.deepcopy(args["seed"])
+     device = copy.deepcopy(args["device"])
+@@ -330,12 +972,96 @@
+             nb_tasks - 1,
+         )
+ 
++    # Load pre-trained weights from a final_model.pt (eval-only workflow).
++    # Training is then skipped by setting init_epoch=0 epochs=0; after_task()
++    # still runs to compute Fisher and all evaluations from scratch.
++    _pretrained_path = args.get("pretrained_model_path", None)
++    if _pretrained_path:
++        if not os.path.exists(_pretrained_path):
++            raise FileNotFoundError(f"pretrained_model_path not found: {_pretrained_path}")
++        _ckpt = torch.load(_pretrained_path, map_location="cpu", weights_only=False)
++        _sd = _ckpt.get("model_state_dict", _ckpt.get("network_state", {}))
++        _net = getattr(model, "_network", None)
++        if _net is not None:
++            if hasattr(_net, "module"):
++                _net = _net.module
++            _missing, _unexpected = _net.load_state_dict(_sd, strict=False)
++            if _missing:
++                logging.warning("[Pretrained] Missing keys: %s", _missing[:5])
++            logging.info(
++                "[Pretrained] Loaded %d params from %s (missing=%d unexpected=%d)",
++                len(_sd), _pretrained_path, len(_missing), len(_unexpected),
++            )
++
+     for name, _param in net_obj.named_parameters():
+-        logging.info("[LoRA] net_obj param name: %s", name)
++        logging.info(" net_obj param name: %s", name)
+ 
+     class_ranges = [data_manager.get_task_class_range(task_idx) for task_idx in range(nb_tasks)]
+     flat_eval_tasks = _resolve_task_indices(args.get("flat_eval_task_indices", None), nb_tasks)
+     feature_eval_tasks = _resolve_task_indices(args.get("feature_flat_task_indices", None), nb_tasks)
++    task0_trajectory_ctx = None
++    if start_task > 0 and resume_task == int(args.get("task0_trajectory_task", 0)):
++        try:
++            task0_trajectory_ctx = _init_task0_trajectory_eval(args, data_manager, model)
++            if task0_trajectory_ctx is not None:
++                baseline_metrics = _evaluate_task0_trajectory(model, task0_trajectory_ctx, resume_task)
++                write_step_metrics(
++                    metrics_path,
++                    section="task0_trajectory",
++                    step=resume_task,
++                    metrics=baseline_metrics,
++                    matrix=None,
++                    json_safe=json_safe,
++                )
++        except Exception as _traj_init_exc:
++            task0_trajectory_ctx = None
++            logging.exception("[Task0Trajectory] Failed to initialize: %s", _traj_init_exc)
++
++    if start_task > 0 and bool(args.get("eval_only_after_resume", False)):
++        logging.info("[ResumeEval] Evaluating resumed task %d without additional training", resume_task)
++        if not getattr(model, "test_loader", None):
++            _batch_size = int(args.get("batch_size", 128))
++            _num_workers = int(args.get("eval_num_workers", 8))
++            _task_start, _task_end = data_manager.get_task_class_range(resume_task)
++            _train_ds = data_manager.get_dataset(
++                np.arange(_task_start, _task_end), source="train", mode="train"
++            )
++            model.train_loader = data_manager.build_dataloader(
++                _train_ds, batch_size=_batch_size, shuffle=True, num_workers=_num_workers,
++            )
++            _test_ds = data_manager.get_dataset(
++                np.arange(0, _task_end), source="test", mode="test"
++            )
++            model.test_loader = data_manager.build_dataloader(
++                _test_ds, batch_size=_batch_size, shuffle=False, num_workers=_num_workers,
++            )
++            logging.info(
++                "[ResumeEval] Built data loaders for task %d (classes %d–%d)",
++                resume_task, _task_start, _task_end,
++            )
++        cnn_accy, nme_accy = model.eval_task()
++        logging.info("[ResumeEval] CNN: %s", cnn_accy["grouped"])
++        if nme_accy is not None:
++            logging.info("[ResumeEval] NME: %s", nme_accy["grouped"])
++        try:
++            if hasattr(model, "evaluate_loaded_checkpoint"):
++                mechanism_metrics = model.evaluate_loaded_checkpoint(resume_task)
++            elif hasattr(model, "get_mechanism_metrics"):
++                mechanism_metrics = model.get_mechanism_metrics()
++            else:
++                mechanism_metrics = {}
++            if mechanism_metrics:
++                write_step_metrics(
++                    metrics_path,
++                    section="mechanism",
++                    step=resume_task,
++                    metrics=mechanism_metrics,
++                    matrix=None,
++                    json_safe=json_safe,
++                )
++        except Exception as _resume_eval_exc:
++            logging.exception("[ResumeEval] Failed mechanism evaluation: %s", _resume_eval_exc)
++        return
+     
+     # ---------------------------
+ 
+@@ -358,6 +1084,7 @@
+     cnn_curve, nme_curve = {"top1": [], "top5": []}, {"top1": [], "top5": []}
+     cnn_matrix, nme_matrix = [], []
+     mechanism_curve = []
++    epoch_dynamics_curve = []
+ 
+     if start_task > 0:
+         resume_metrics_json = args.get("resume_from_metrics_json", None)
+@@ -457,8 +1184,45 @@
+                 json_safe=json_safe,
+             )
+ 
++        if task0_trajectory_ctx is not None:
++            try:
++                trajectory_metrics = _evaluate_task0_trajectory(model, task0_trajectory_ctx, task)
++                write_step_metrics(
++                    metrics_path,
++                    section="task0_trajectory",
++                    step=task,
++                    metrics=trajectory_metrics,
++                    matrix=None,
++                    json_safe=json_safe,
++                )
++            except Exception as _traj_exc:
++                logging.exception("[Task0Trajectory] Failed at task %d: %s", task, _traj_exc)
++
++        # Save the final trained model BEFORE evaluation (FQA/Hessian may take hours;
++        # saving first ensures the checkpoint survives even if eval is interrupted).
++        try:
++            if (task == nb_tasks - 1) and bool(args.get("save_final_model", False)):
++                net_to_save = getattr(model, "_network", None)
++                if net_to_save is not None:
++                    if hasattr(net_to_save, "module"):
++                        net_to_save = net_to_save.module
++                    final_ckpt = {
++                        "method": args.get("model_name", "model_name"),
++                        "dataset": args.get("dataset", "dataset"),
++                        "init_cls": args.get("init_cls", "init_cls"),
++                        "increment": args.get("init_cls", "init_cls"),
++                        "seed": args.get("seed", "seed"),
++                        "tasks": int(nb_tasks - 1),
++                        "model_state_dict": net_to_save.state_dict(),
++                    }
++                    final_path = os.path.join(checkpoint_dir, "final_model.pt")
++                    torch.save(final_ckpt, final_path)
++                    logging.info("[FinalSave] Saved final model to %s (before eval)", final_path)
++        except Exception as _save_exc:
++            logging.exception("[FinalSave] Failed to save final model: %s", _save_exc)
++
+         model.after_task()
+-        if bool(args.get("mechanism_eval", False)) and hasattr(model, "get_mechanism_metrics"):
++        if (bool(args.get("mechanism_eval", False)) or bool(args.get("compute_full_fisher", False))) and hasattr(model, "get_mechanism_metrics"):
+             try:
+                 mechanism_metrics = model.get_mechanism_metrics()
+                 if mechanism_metrics:
+@@ -473,32 +1237,41 @@
+                     )
+             except Exception as _mech_exc:
+                 logging.exception("[MechanismEval] Failed to write mechanism metrics: %s", _mech_exc)
+-        gc.collect(); 
+-        torch.cuda.empty_cache(); 
++
++        if bool(args.get("epoch_dynamics_eval", args.get("train_dynamics_eval", False))) and hasattr(model, "get_epoch_dynamics_metrics"):
++            try:
++                epoch_dynamics = model.get_epoch_dynamics_metrics()
++                if epoch_dynamics:
++                    epoch_dynamics_curve.extend(epoch_dynamics)
++                    write_step_metrics(
++                        metrics_path,
++                        section="epoch_dynamics",
++                        step=task,
++                        metrics={
++                            "task": int(task),
++                            "epochs": epoch_dynamics,
++                        },
++                        matrix=None,
++                        json_safe=json_safe,
++                    )
++            except Exception as _epoch_dyn_exc:
++                logging.exception("[EpochDynamics] Failed to write epoch dynamics: %s", _epoch_dyn_exc)
++                if bool(args.get("epoch_dynamics_required", False)):
++                    raise
++
++        # Save per-task checkpoint for staged / shared-stage-1 workflows.
++        _staged_ckpt_dir = args.get("save_task_checkpoint_dir", None)
++        if _staged_ckpt_dir and hasattr(model, "save_task_checkpoint"):
++            try:
++                model.save_task_checkpoint(str(_staged_ckpt_dir), task)
++            except Exception as _ck_exc:
++                logging.exception("[TaskCheckpoint] Failed to save task %d: %s", task, _ck_exc)
++                if bool(args.get("save_task_checkpoint_required", False)):
++                    raise
++
++        gc.collect();
++        torch.cuda.empty_cache();
+         torch.cuda.ipc_collect()
+-        # ---------------------------
+-        #
+-        # Save the final trained model once (backbone + head)
+-        try:
+-            if (task == nb_tasks - 1) and bool(args.get("save_final_model", False)) :
+-                net_to_save = getattr(model, "_network", None)
+-                if net_to_save is not None:
+-                    if hasattr(net_to_save, "module"):
+-                        net_to_save = net_to_save.module
+-                    final_ckpt = {
+-                        "method": args.get("model_name","model_name"),
+-                        "dataset": args.get("dataset","dataset"),
+-                        "init_cls":args.get("init_cls","init_cls"),
+-                        "increment":args.get("init_cls","init_cls"),
+-                        "seed":args.get("seed","seed"),
+-                        "tasks": int(nb_tasks - 1),
+-                        "model_state_dict": net_to_save.state_dict(),
+-                    }
+-                    final_path = os.path.join(checkpoint_dir, "final_model.pt")
+-                    torch.save(final_ckpt, final_path)
+-                    logging.info("Saved final model to %s", final_path)
+-        except Exception as _save_exc:
+-            logging.exception("[FinalSave] Failed to save final model: %s", _save_exc)
+ 
+ 
+         # Optional per-task linear probe at final step (disabled by default)
+@@ -1337,3 +2110,15 @@
+                 final_matrix=None,
+                 json_safe=json_safe,
+             )
++
++        if epoch_dynamics_curve:
++            write_final_metrics(
++                metrics_path,
++                "epoch_dynamics",
++                final_metrics={
++                    "epochs": epoch_dynamics_curve,
++                    "last": epoch_dynamics_curve[-1],
++                },
++                final_matrix=None,
++                json_safe=json_safe,
++            )

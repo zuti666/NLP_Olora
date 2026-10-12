@@ -1,0 +1,922 @@
+下面这五个设置应该围绕一个单一问题组织，而不是再作为五个新的方法比较：
+
+$$
+\boxed{
+\text{为什么由第一次 curvature probe 选择的 relocation point 会产生更好的 }g_2?
+}
+$$
+
+建议第一阶段全部固定在当前已经出现清晰现象的 $r=0.25$ 设置上，不先扩展到 $r=1$。这样可以直接复用现有 $g_0,g_1,g_2,g_3$ 结果作为基准。
+
+```latex
+\section{Mechanistic Ablation of the Relocated Gradient $g_2$}
+
+\subsection{Research question}
+
+The completed $r=0.25$ experiments show that the relocated gradient
+$g_2$ already achieves essentially the full benefit observed with
+$g_3$, whereas the additional inner probe from $g_2$ to $g_3$ provides
+no clear improvement after matching the effective update magnitude.
+We therefore focus on the earlier transition
+$$
+g_0
+\longrightarrow
+g_1-g_0
+\longrightarrow
+\theta_r
+\longrightarrow
+g_2,
+$$
+and ask
+$$
+\boxed{
+\text{What property of the first curvature-derived relocation
+makes $g_2$ a better continual-learning update?}
+}
+$$
+
+The original construction is
+$$
+g_0
+=
+\nabla_\phi L(\phi),
+$$
+$$
+u_0
+=
+\frac{g_0}{\|g_0\|_2},
+$$
+$$
+g_1
+=
+\nabla_\phi L(\phi+\rho u_0),
+$$
+$$
+c_{10}
+:=
+g_1-g_0,
+$$
+$$
+v_{\mathrm{FD}}
+=
+\frac{c_{10}}{\|c_{10}\|_2},
+$$
+$$
+\phi_r
+=
+\phi+r v_{\mathrm{FD}},
+$$
+$$
+g_2
+=
+\nabla_\phi L(\phi_r).
+$$
+
+We additionally define
+$$
+c_{21}
+:=
+g_2-g_1,
+$$
+and
+$$
+c_{20}
+:=
+g_2-g_0
+=
+c_{10}+c_{21}.
+$$
+
+Under a local Taylor approximation,
+$$
+c_{10}
+=
+\rho H_\phi u_0
++
+O(\rho^2),
+$$
+whereas
+$$
+c_{20}
+\approx
+r H_\phi
+\frac{H_\phi u_0}{\|H_\phi u_0\|_2}.
+$$
+Hence, in the idealized local quadratic regime, $c_{10}$ approximately
+contains one application of the curvature operator, while $c_{20}$
+contains a stronger spectral filtering effect.
+
+\subsection{Common experimental protocol}
+
+All five experiments use exactly the completed $r=0.25$ protocol:
+$$
+r=0.25,
+\qquad
+\rho=0.05,
+\qquad
+\operatorname{rank}=10,
+\qquad
+\operatorname{batch}=128,
+$$
+with seed $2$, $50$ epochs per task, the same task ordering, the same
+task and epoch specific data RNG streams, and isolated evaluation RNG.
+
+The optimizer configuration is unchanged:
+$$
+\eta_1=0.04,
+\qquad
+\eta_{t>1}=0.02,
+$$
+with cosine decay to $0.1$ of the initial learning rate, no momentum,
+no weight decay, and no Fisher, EWC, weight merging, or orthogonal
+correction.
+
+The five new configurations must reuse exactly the same minibatch for
+all gradient evaluations involved in constructing one update. This is
+necessary to prevent minibatch variation from being mistaken for a
+geometric effect.
+
+Two results are recorded for every direction based experiment:
+
+\begin{enumerate}
+    \item the native update produced by the corresponding construction;
+    \item an effective-step-matched update, where the final effective
+    LoRA weight displacement is matched to the designated baseline.
+\end{enumerate}
+
+For a LoRA layer
+$$
+W=W_0+sBA,
+$$
+the effective update magnitude is measured using
+$$
+\|\Delta W\|_F,
+$$
+rather than only the Euclidean norm of the factor update
+$(\Delta A,\Delta B)$.
+
+The primary performance metrics remain
+$$
+\mathrm{AAA},
+\qquad
+\mathrm{FAA},
+$$
+with learning accuracy reported as a control to distinguish retention
+improvement from impaired current-task acquisition.
+
+\subsection{Experiment A: isolate the relocation-specific correction}
+
+The first experiment asks whether the information newly introduced
+between $g_1$ and $g_2$ is useful even when it is detached from $g_1$.
+
+Define
+$$
+c_{21}
+=
+g_2-g_1.
+$$
+
+Construct
+$$
+\boxed{
+d_A
+=
+g_0+c_{21}.
+}
+$$
+
+The direct comparison is
+$$
+g_0
+\quad\text{vs.}\quad
+g_0+c_{21}
+\quad\text{vs.}\quad
+g_1
+\quad\text{vs.}\quad
+g_2.
+$$
+
+This experiment isolates the information contributed specifically by
+the curvature-guided relocation:
+$$
+\boxed{
+g_2-g_1.
+}
+$$
+
+It should be contrasted with
+$$
+g_0+(g_3-g_2),
+$$
+which was already tested.
+
+\paragraph{Hypothesis A.}
+If
+$$
+g_0+(g_2-g_1)
+$$
+substantially improves retention over $g_0$, then the relocation from
+the first probe to the outer point creates a useful directional signal
+that can be transferred independently of the $g_1$ base direction.
+
+If
+$$
+g_0+(g_2-g_1)
+\approx
+g_0,
+$$
+while $g_2$ remains substantially better, then the benefit cannot be
+attributed to the additive correction $g_2-g_1$ alone. The complete
+gradient evaluated at the relocated point is then important.
+
+\subsection{Experiment B: test whether gradient rotation is sufficient}
+
+The second experiment separates the directional rotation introduced by
+$c_{21}$ from its component that merely rescales $g_1$.
+
+Decompose
+$$
+c_{21}
+=
+c_{21}^{\parallel}
++
+c_{21}^{\perp},
+$$
+where
+$$
+c_{21}^{\parallel}
+=
+\frac{
+g_1^\top c_{21}
+}{
+\|g_1\|_2^2
+}
+g_1,
+$$
+and
+$$
+c_{21}^{\perp}
+=
+c_{21}
+-
+c_{21}^{\parallel}.
+$$
+
+Construct
+$$
+\boxed{
+d_B
+=
+g_1+c_{21}^{\perp}.
+}
+$$
+
+Since
+$$
+g_2
+=
+g_1+c_{21}^{\parallel}+c_{21}^{\perp},
+$$
+the comparison
+$$
+g_1
+\quad\text{vs.}\quad
+g_1+c_{21}^{\perp}
+\quad\text{vs.}\quad
+g_2
+$$
+directly tests whether the useful part of $g_2-g_1$ is a rotation
+rather than a change in update magnitude.
+
+We additionally record
+$$
+R_{21}^{\perp}
+=
+\frac{
+\|c_{21}^{\perp}\|_2
+}{
+\|c_{21}\|_2
+},
+$$
+and
+$$
+\cos(g_1,g_2)
+=
+\frac{
+g_1^\top g_2
+}{
+\|g_1\|_2\|g_2\|_2
+}.
+$$
+
+\paragraph{Hypothesis B.}
+If
+$$
+\operatorname{Perf}
+\left(
+g_1+c_{21}^{\perp}
+\right)
+\approx
+\operatorname{Perf}(g_2),
+$$
+then most of the benefit of $g_2$ is explained by a rotation of the
+gradient direction.
+
+If removing $c_{21}^{\parallel}$ substantially reduces the gain, then
+gradient rescaling and rotation both contribute.
+
+\subsection{Experiment C: random relocation control}
+
+The third experiment tests whether the benefit comes from
+curvature-specific relocation or merely from evaluating the gradient
+at another nearby point.
+
+Replace
+$$
+v_{\mathrm{FD}}
+=
+N(g_1-g_0)
+$$
+with a random direction
+$$
+v_{\mathrm{rand}}.
+$$
+
+The random direction must lie in the same trainable LoRA parameter
+space and should preserve the layerwise scale of the original
+relocation direction. A suitable construction is
+$$
+\widetilde v_{\mathrm{rand}}^{(\ell)}
+\sim
+\mathcal N(0,I),
+$$
+followed by blockwise normalization
+$$
+v_{\mathrm{rand}}^{(\ell)}
+=
+\frac{
+\|v_{\mathrm{FD}}^{(\ell)}\|_2
+}{
+\|\widetilde v_{\mathrm{rand}}^{(\ell)}\|_2
+}
+\widetilde v_{\mathrm{rand}}^{(\ell)}.
+$$
+
+Then define
+$$
+\phi_r^{\mathrm{rand}}
+=
+\phi+r v_{\mathrm{rand}},
+$$
+and
+$$
+\boxed{
+g_2^{\mathrm{rand}}
+=
+\nabla_\phi
+L(\phi_r^{\mathrm{rand}}).
+}
+$$
+
+The outer radius $r$ is identical to the original construction.
+
+Because a single random direction is a noisy control in high
+dimensions, checkpoint-level diagnostics should use at least
+$$
+K=8
+$$
+random directions. For the full training run, a deterministic random
+direction stream fixed by seed is used, with optional replication using
+two additional random-direction seeds if the result is ambiguous.
+
+\paragraph{Hypothesis C.}
+If
+$$
+g_2^{\mathrm{rand}}
+\approx
+g_2,
+$$
+then curvature information is not necessary and the main mechanism is
+generic neighborhood relocation followed by gradient reevaluation.
+
+If
+$$
+g_2^{\mathrm{rand}}
+\approx
+g_0
+\quad\text{or}\quad
+g_1
+$$
+and is clearly worse than $g_2$, then the direction encoded by
+$g_1-g_0$ contains task-relevant geometric information.
+
+\subsection{Experiment D: replace finite differences by an exact HVP}
+
+The fourth experiment directly tests whether the original finite
+difference
+$$
+g_1-g_0
+$$
+works because it approximates the Hessian-vector product.
+
+Using automatic differentiation, compute
+$$
+\boxed{
+h_{\mathrm{HVP}}
+=
+H_\phi(\phi)u_0,
+}
+$$
+where
+$$
+H_\phi(\phi)
+=
+\nabla_\phi^2L(\phi).
+$$
+
+For the first diagnostic, the HVP must be computed in exactly the same
+LoRA factor coordinates as the original finite difference. This avoids
+changing both the estimator and the geometry simultaneously.
+
+Define
+$$
+v_{\mathrm{HVP}}
+=
+\frac{
+h_{\mathrm{HVP}}
+}{
+\|h_{\mathrm{HVP}}\|_2
+},
+$$
+$$
+\phi_r^{\mathrm{HVP}}
+=
+\phi+r v_{\mathrm{HVP}},
+$$
+and
+$$
+\boxed{
+g_2^{\mathrm{HVP}}
+=
+\nabla_\phi
+L(\phi_r^{\mathrm{HVP}}).
+}
+$$
+
+At fixed checkpoints, measure
+$$
+C_{\mathrm{FD,HVP}}
+=
+\cos
+\left(
+g_1-g_0,
+\rho h_{\mathrm{HVP}}
+\right),
+$$
+and the relative approximation error
+$$
+E_{\mathrm{FD,HVP}}
+=
+\frac{
+\|
+(g_1-g_0)-\rho h_{\mathrm{HVP}}
+\|_2
+}{
+\|g_1-g_0\|_2
+}.
+$$
+
+\paragraph{Hypothesis D.}
+If
+$$
+C_{\mathrm{FD,HVP}}\approx1
+$$
+and
+$$
+g_2^{\mathrm{HVP}}
+\approx
+g_2,
+$$
+both geometrically and in AAA/FAA, then the local Hessian mechanism
+receives strong support.
+
+If the HVP direction differs substantially from the finite difference,
+and replacing the finite difference by the exact HVP removes the
+retention gain, then the original mechanism cannot be explained by a
+local Hessian-vector product alone.
+
+\subsection{Experiment E: replace one-sided FD by central differences}
+
+The fifth experiment distinguishes a genuine local Hessian effect from
+finite-radius asymmetric higher-order effects.
+
+The original one-sided finite difference is
+$$
+h_{\mathrm{FD}}
+=
+\frac{
+g(\phi+\rho u_0)-g(\phi)
+}{
+\rho
+}.
+$$
+
+Its expansion is
+$$
+h_{\mathrm{FD}}
+=
+H_\phi u_0
++
+\frac{\rho}{2}
+\mathcal T_\phi[u_0,u_0]
++
+O(\rho^2),
+$$
+where $\mathcal T_\phi$ denotes the third derivative tensor of the
+loss.
+
+Instead use the central difference
+$$
+\boxed{
+h_{\mathrm{CD}}
+=
+\frac{
+g(\phi+\rho u_0)
+-
+g(\phi-\rho u_0)
+}{
+2\rho
+}.
+}
+$$
+
+Its leading approximation error is
+$$
+h_{\mathrm{CD}}
+=
+H_\phi u_0
++
+O(\rho^2).
+$$
+
+Define
+$$
+v_{\mathrm{CD}}
+=
+\frac{
+h_{\mathrm{CD}}
+}{
+\|h_{\mathrm{CD}}\|_2
+},
+$$
+$$
+\phi_r^{\mathrm{CD}}
+=
+\phi+r v_{\mathrm{CD}},
+$$
+and
+$$
+\boxed{
+g_2^{\mathrm{CD}}
+=
+\nabla_\phi
+L(\phi_r^{\mathrm{CD}}).
+}
+$$
+
+At the same checkpoints record
+$$
+C_{\mathrm{CD,HVP}}
+=
+\cos
+\left(
+h_{\mathrm{CD}},
+h_{\mathrm{HVP}}
+\right),
+$$
+and compare it against
+$$
+C_{\mathrm{FD,HVP}}.
+$$
+
+\paragraph{Hypothesis E.}
+Three outcomes are particularly informative.
+
+\begin{enumerate}
+    \item If
+    $$
+    h_{\mathrm{FD}}
+    \approx
+    h_{\mathrm{CD}}
+    \approx
+    h_{\mathrm{HVP}}
+    $$
+    and
+    $$
+    g_2
+    \approx
+    g_2^{\mathrm{CD}}
+    \approx
+    g_2^{\mathrm{HVP}},
+    $$
+    the mechanism is consistent with a local Hessian effect.
+
+    \item If
+    $$
+    h_{\mathrm{CD}}
+    \approx
+    h_{\mathrm{HVP}},
+    $$
+    but the original one-sided finite difference differs and only
+    $g_2$ preserves the retention gain, then finite-radius asymmetric
+    higher-order geometry is likely important.
+
+    \item If all three relocation directions differ substantially but
+    all produce similar retention gains, then the mechanism is better
+    described as a broad useful relocation region rather than a precise
+    Hessian direction.
+\end{enumerate}
+
+\subsection{Primary comparison matrix}
+
+The five new settings are summarized as follows:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Setting & Update or relocation & Main question \\
+\hline
+A &
+$g_0+(g_2-g_1)$ &
+Is the relocation-specific correction independently useful? \\
+
+B &
+$g_1+(g_2-g_1)_{\perp g_1}$ &
+Is gradient rotation sufficient for the gain? \\
+
+C &
+$g_2^{\mathrm{rand}}$ &
+Is any relocation sufficient? \\
+
+D &
+$g_2^{\mathrm{HVP}}$ &
+Is the original FD effect genuinely Hessian-driven? \\
+
+E &
+$g_2^{\mathrm{CD}}$ &
+Are higher-order asymmetric finite-radius terms important? \\
+\hline
+\end{tabular}
+\end{center}
+
+Existing completed runs
+$$
+g_0,\qquad g_1,\qquad g_2,\qquad g_3,
+\qquad g_0+(g_3-g_2)
+$$
+serve as reference baselines and do not need to be rerun as long as
+the exact same RNG protocol and optimization configuration are reused.
+
+\subsection{Mechanistic diagnostics}
+
+Performance alone is insufficient to identify the mechanism.
+At fixed checkpoints, we therefore record the following quantities.
+
+First, the basic directional relations:
+$$
+\cos(g_0,g_1),
+\qquad
+\cos(g_1,g_2),
+\qquad
+\cos(c_{10},c_{21}),
+$$
+$$
+\frac{\|c_{10}\|_2}{\|g_0\|_2},
+\qquad
+\frac{\|c_{21}\|_2}{\|g_1\|_2},
+\qquad
+R_{21}^{\perp}.
+$$
+
+Second, for each candidate direction $d$, evaluate the actual
+one-step counterfactual at a matched effective-weight step:
+$$
+\Delta L_{\mathrm{new}}(d)
+=
+L_{\mathrm{new}}(\phi-\eta_d d)
+-
+L_{\mathrm{new}}(\phi),
+$$
+and
+$$
+\Delta L_{\mathrm{old}}(d)
+=
+L_{\mathrm{old}}(\phi-\eta_d d)
+-
+L_{\mathrm{old}}(\phi).
+$$
+
+Here $\eta_d$ is selected only for the diagnostic so that
+$$
+\|\Delta W(d)\|_F
+$$
+is identical across candidate directions.
+
+The old-task data are used only for post-hoc auditing and never enter
+the training update.
+
+Third, where computationally feasible, decompose the local historical
+response into first- and second-order components:
+$$
+\Delta L_j
+\approx
+-\eta_d g_j^\top d
++
+\frac{\eta_d^2}{2}
+d^\top H_j d.
+$$
+
+Report the harmful first-order interference
+$$
+I_j^+(d)
+=
+[-g_j^\top d]_+,
+$$
+and positive-curvature exposure
+$$
+C_j^+(d)
+=
+d^\top H_{j,+}d.
+$$
+
+For a Fisher-based functional diagnostic, additionally report
+$$
+Q_j(d)
+=
+d^\top F_jd.
+$$
+
+These quantities distinguish three possible explanations:
+$$
+\boxed{
+\text{gradient conflict reduction}
+}
+$$
+from
+$$
+\boxed{
+\text{curvature avoidance}
+}
+$$
+from
+$$
+\boxed{
+\text{smaller functional disturbance}.
+}
+$$
+
+\subsection{Decision logic}
+
+The experiments should be interpreted jointly rather than ranked only
+by final accuracy.
+
+\paragraph{Case 1: A and B succeed.}
+If
+$$
+g_0+(g_2-g_1)
+$$
+improves substantially over $g_0$, and
+$$
+g_1+(g_2-g_1)_{\perp g_1}
+\approx
+g_2,
+$$
+then the main effect is a relocation-induced gradient rotation.
+
+\paragraph{Case 2: C also succeeds.}
+If
+$$
+g_2^{\mathrm{rand}}
+\approx
+g_2,
+$$
+then the curvature-derived direction is not necessary.
+The mechanism should instead be described as neighborhood relocation
+followed by gradient reevaluation.
+
+\paragraph{Case 3: C fails and D succeeds.}
+If random relocation fails but
+$$
+g_2^{\mathrm{HVP}}
+\approx
+g_2,
+$$
+then the result supports a genuine local curvature-guided relocation
+mechanism.
+
+\paragraph{Case 4: D and E agree, while FD also agrees.}
+If
+$$
+g_2
+\approx
+g_2^{\mathrm{CD}}
+\approx
+g_2^{\mathrm{HVP}},
+$$
+then the simplest explanation is
+$$
+\boxed{
+\text{local Hessian-guided relocation}.
+}
+$$
+
+\paragraph{Case 5: CD and HVP agree but FD is uniquely better.}
+If
+$$
+g_2^{\mathrm{CD}}
+\approx
+g_2^{\mathrm{HVP}}
+<
+g_2,
+$$
+then the one-sided finite difference is exploiting finite-radius
+higher-order geometry rather than merely estimating $H_\phi u_0$.
+
+\subsection{Execution order}
+
+The five experiments should not be treated equally in computational
+priority.
+
+First run the two low-cost component interventions:
+$$
+\boxed{
+A:\ g_0+(g_2-g_1)
+}
+$$
+and
+$$
+\boxed{
+B:\ g_1+(g_2-g_1)_{\perp g_1}.
+}
+$$
+
+These directly determine whether the gain from $g_1$ to $g_2$ is
+carried by an additive correction and whether that correction acts
+primarily through rotation.
+
+Next run
+$$
+\boxed{
+C:\ g_2^{\mathrm{rand}},
+}
+$$
+because this is the strongest null control for the entire
+curvature-guided interpretation.
+
+Only after establishing that the relocation direction matters, run
+$$
+\boxed{
+D:\ g_2^{\mathrm{HVP}}
+}
+$$
+and
+$$
+\boxed{
+E:\ g_2^{\mathrm{CD}},
+}
+$$
+which distinguish local Hessian geometry from higher-order
+finite-radius geometry.
+
+The first stage should remain at
+$$
+r=0.25,\qquad \text{seed}=2.
+$$
+
+Only after this mechanism is identified should the selected
+configurations be repeated across additional seeds and at
+$$
+r=1.
+$$
+
+The $r=1$ experiment should then be interpreted as a nonlocality test,
+rather than as another independent method comparison.
+```
+
+这五组的逻辑可以进一步压缩成一个决策树：
+
+$$
+\boxed{
+g_2\text{ 好}
+\Rightarrow
+\begin{cases}
+\text{A: }g_2-g_1\text{ 本身有用吗？}\\
+\text{B: 有用部分是否只是方向旋转？}\\
+\text{C: 任意 relocation 都可以吗？}\\
+\text{D: 必须是 }Hu_0\text{ 吗？}\\
+\text{E: 真正需要的是 }Hu_0\text{，还是有限距离的高阶非线性？}
+\end{cases}
+}
+$$
+
+其中 **A+B 是解释 $g_2$ 本身，C 是最重要的反事实控制，D+E 才是在确认“Hessian”这个具体机制**。因此执行顺序建议严格按 $A\rightarrow B\rightarrow C\rightarrow D\rightarrow E$，而不是一开始把 HVP 当作默认正确解释。

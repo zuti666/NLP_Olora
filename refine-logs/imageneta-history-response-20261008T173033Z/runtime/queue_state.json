@@ -1,0 +1,58 @@
+{
+  "run_id": "imageneta-history-response-20261008T173033Z",
+  "created_at": "2026-10-08T17:52:03.094497+00:00",
+  "jobs": {
+    "smoke_history_fused_k10_s2": {
+      "status": "failed",
+      "started_at": "2026-10-08T17:52:03.424527+00:00",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/trainer/history_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/configs/smoke_history_fused_k10_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/outputs/smoke_history_fused_k10_s2",
+        "--max-tasks",
+        "2",
+        "--max-epochs",
+        "2",
+        "--max-batches",
+        "2"
+      ],
+      "process": {
+        "pid": 318968,
+        "proc_starttime": "28652688"
+      },
+      "failed_at": "2026-10-08T17:53:49.384941+00:00",
+      "error": "RuntimeError(\"Worker failed: {'job_id': 'smoke_history_fused_k10_s2', 'returncode': -15, 'exited_at': '2026-10-08T17:53:43.446265+00:00', 'origin': 'supervised_own_process_group_stop', 'reason': 'DataLoader AF_UNIX path too long before first SGD', 'group_members': [{'pid': 318968, 'proc_starttime': '28652688'}, {'pid': 318987, 'proc_starttime': '28652847'}, {'pid': 322151, 'proc_starttime': '28653338'}, {'pid': 322214, 'proc_starttime': '28653339'}, {'pid': 322278, 'proc_starttime': '28653340'}, {'pid': 322342, 'proc_starttime': '28653341'}, {'pid': 322405, 'proc_starttime': '28653342'}, {'pid': 322470, 'proc_starttime': '28653342'}, {'pid': 322536, 'proc_starttime': '28653343'}, {'pid': 322600, 'proc_starttime': '28653344'}]}\")"
+    },
+    "smoke_future_only_k10_s2": {
+      "status": "pending"
+    },
+    "smoke_pairing": {
+      "status": "pending"
+    },
+    "formal_history_fused_k10_s2": {
+      "status": "pending"
+    },
+    "formal_future_only_k10_s2": {
+      "status": "pending"
+    }
+  },
+  "controller": {
+    "pid": 318959,
+    "proc_starttime": "28652650"
+  },
+  "status": "halted_failure",
+  "suite_sha256": "a4636a11fe28914485592e42a624f965429b6abec66d2ad3cd1a89b5c4c434c8",
+  "updated_at": "2026-10-08T17:53:49.422458+00:00",
+  "paused": false,
+  "counts": {
+    "running": 1,
+    "pending": 4
+  }
+}

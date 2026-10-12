@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\caption{Historical seed0 four-cell ImageNet-A control. Task~2 always uses SGD. Both raw Fisher traces use the same 256 old-task training examples and fixed old-task head; the endpoint trace is an old-task statistic measured after Task~2. Effective Q/V drift excludes the classifier. This single-seed pilot is separate from the ongoing fresh three-seed experiment.}
+\label{tab:rq2_pilot_complete}
+\scriptsize
+\begin{tabular}{llrrrrrrrrr}
+\toprule
+Branch & Task-1 anchor & $\lambda_2$ & $a_{11}$ & $a_{21}$ & $a_{22}$ & BWT & Avg. & $T_0(\theta_0)$ & $T_0(\theta_1)$ & $\|\Delta W_{QV}\|_F$ \\
+\midrule
+A & SGD & 0 & 85.67 & 84.36 & 74.41 & -1.31 & 79.385 & 1465.497 & 1922.363 & 0.377296 \\
+B & GAM & 0 & 87.62 & 84.36 & 72.05 & -3.26 & 78.205 & 761.901 & 949.020 & 0.350921 \\
+C & SGD & 2000 & 85.67 & 84.36 & 74.80 & -1.31 & 79.580 & 1465.497 & 2008.388 & 0.374950 \\
+D & GAM & 2000 & 87.62 & 84.04 & 72.05 & -3.58 & 78.045 & 761.901 & 940.413 & 0.349876 \\
+\bottomrule
+\end{tabular}
+\end{table*}

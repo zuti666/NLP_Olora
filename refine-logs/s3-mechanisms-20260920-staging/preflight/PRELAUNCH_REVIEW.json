@@ -1,0 +1,824 @@
+{
+  "timestamp_utc": "2026-09-20T19:19:53.328024+00:00",
+  "reviewer": "/root/fusion_source_audit",
+  "review_type": "independent read-only static prelaunch review",
+  "deployed_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920",
+  "static_passed": true,
+  "formal_launch_ready": false,
+  "smoke_passed": false,
+  "static_failures": [],
+  "checks": [
+    {
+      "check": "190 parent files unchanged",
+      "passed": true,
+      "evidence": {
+        "count": 190,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "191 listed source files and only one added hook",
+      "passed": true,
+      "evidence": {
+        "count": 191,
+        "added": [
+          "utils/s3_mechanism_controls.py"
+        ],
+        "hash_mismatches": [],
+        "unlisted_files": []
+      }
+    },
+    {
+      "check": "parent manifest pinned",
+      "passed": true,
+      "evidence": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2"
+    },
+    {
+      "check": "deployed runtime matches runtime manifest",
+      "passed": true,
+      "evidence": {
+        "listed_runtime_files": 16,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "suite hashes pinned",
+      "passed": true,
+      "evidence": {
+        "formal_sha256": "abc6cf3114c1d29441b84b5131a2471a71813c19d28dbc865006baf949a95d63",
+        "smoke_sha256": "0a86780484fb1a52647f7512ec0d1ccdaf3dd2b132124a811543cdaf4bc2a53f"
+      }
+    },
+    {
+      "check": "18 formal and 20 smoke configs",
+      "passed": true,
+      "evidence": {
+        "formal": 18,
+        "smoke": 20
+      }
+    },
+    {
+      "check": "only GPUs4/5/6 max3",
+      "passed": true,
+      "evidence": {
+        "allowed": [
+          4,
+          5,
+          6
+        ],
+        "max_parallel": 3
+      }
+    },
+    {
+      "check": "formal config s3_mech_a_nomerge_matched_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "23f83c09cd43f0fa59ab510acc0146313670fb89837d95981fe04c47451927fd",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_gam_half_direction_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "6b0d242369abedf038d526a012d8da27e1e2e3795487184aa3b1beafa71e0a48",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_sgd_ewc_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "e23f0997e98bcd7579f710ba5fb2ffaf0baf48c0b496f1b1fa4638a1238a2b2a",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_center_s1",
+      "passed": true,
+      "evidence": {
+        "sha256": "e3692be855c79a1e2156a0e71b54e7c65374ca6ea71683aed5ca099aa45f0db0",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_a_nomerge_matched_s1",
+      "passed": true,
+      "evidence": {
+        "sha256": "48b29a10993b5824914558201c6c2b6708047b876f2b9026adc9527e9552eca0",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_a_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "f2f05379ecc6e0652a509c4071e994cb3bce0f7e11a11c76f95c1d68592b1898",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_center_s3",
+      "passed": true,
+      "evidence": {
+        "sha256": "34488edf20e3d484fcad4f7fc7916652cdc0e113d515f3984be64944bda62ae6",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_a_nomerge_matched_s3",
+      "passed": true,
+      "evidence": {
+        "sha256": "1b8314e8d84ae84f8ed717b8cceaedb1e7be097b7970dec42e589bff69f19294",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_fisher_endpoint_anchor_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "8839bf152e5d886e8aa487e05cb1526f3c927634029878bb738789799c7fe82c",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_a_uniform_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "ace649c7d6dcf2c89f7143443dbb2bffd11cf44801e2823a3518f10fe713cc7e",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_a_latest_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "54ee56fd263274a8af1f458a10fde75178967c089632475de5f3217776eaf1de",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_fisher_alpha0_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "e321bdce9076852941cacbe9209dc749d749505d8aedd9985c93306bba337d3f",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_fisher_alpha1_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "8ff95ac011b491ea36c2a4adda75e4db14cc83c6746cbce1a43f011548c69b2c",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_fisher_gamma0_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "0ba6da077ce1b306357306597d7f1467602f8bd19451b26b306083351426ace6",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_fisher_gamma1_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "65a63ad67a215be181efd3223f68da230186607eba3e1b21d2e5fb5da4972c01",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_fisher_tasknorm_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "a79fa3a9d6667ce915078ba61ca8882b0223f96d88005f57375c1f28a20f50bb",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_gam_projection_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "fcfd9349114ec7571413e62452ebfaf648e220c7898b9bfe308e20975c2ca785",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "formal config s3_mech_gam_rho025_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "57980741fa374c3ed9a7143871e10c4f9c8068967bcf7aeed47be12cb33c46f3",
+        "unexpected_keys": []
+      }
+    },
+    {
+      "check": "smoke config smoke_observer_on_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "0e34e27c45c853f87971cab1b7d0cc7feee673aff9a442100394a437f2f0302e"
+      }
+    },
+    {
+      "check": "smoke config smoke_observer_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "b2d4769aea7f4ddc8570a722a706adc668181df223d7f931e87b36176a0c1af0"
+      }
+    },
+    {
+      "check": "smoke config smoke_s3_mech_a_nomerge_matched_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "63aa51ec2bb08c84e1ec4ecd6ae7aaa1059aaf7d0fef4304ac9d9877d31ec86d"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_a_nomerge_matched_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_gam_half_direction_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "762948ab51aab56d854fa4c40f5d0811bb3fba6d836a4864206755e7e3a090c2"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_gam_half_direction_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_sgd_ewc_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "be05deec132622831d030642b106cc49d35378d94aa7703b29561465f32eee0d"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_sgd_ewc_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_center_s1",
+      "passed": true,
+      "evidence": {
+        "sha256": "a0b2f3f6ce808b4313c8de437fbcf9b1984d7ee59cc9108441d6689ce08cd535"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_center_s1",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_a_nomerge_matched_s1",
+      "passed": true,
+      "evidence": {
+        "sha256": "54fcc0b383acf9a3d67fb4beb130caf713591f41baa1de25b629013b50a972cc"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_a_nomerge_matched_s1",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_a_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "023752e43967d0a908a06b151c82f1a8433f39b85b8cef7bce5554858c6bacde"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_a_off_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_center_s3",
+      "passed": true,
+      "evidence": {
+        "sha256": "c919053c99133452459bdd4698a575431862abac7712ee940917b8256d2bd968"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_center_s3",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_a_nomerge_matched_s3",
+      "passed": true,
+      "evidence": {
+        "sha256": "29e9c0749badd9cb71cfeed6a8910a02bcf6fa537e18c808f8ef92c0e1b94355"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_a_nomerge_matched_s3",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_fisher_endpoint_anchor_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "4f9d894280e44ad8381b3a73cecfde170f8b6dd45d8ac099cc9889f7b48870a8"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_fisher_endpoint_anchor_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_a_uniform_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "f7a7b69e3f80df5b86431fbbd0741eccc618aa10c038c73d4b23376d696061e7"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_a_uniform_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_a_latest_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "b0f6538c059d211d6c2b9dcfc980634a544c16aa67690ec92a2ecb7a39b091a8"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_a_latest_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_fisher_alpha0_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "4f9b8d83b78f863bc16e23013b67264ec8fba514da3512fbde7a3c6c9a228be1"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_fisher_alpha0_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_fisher_alpha1_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "04a3fbfaf6d96b74d07d1f3df0466349baf4129d77652c6b1ba031b772fa9ef8"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_fisher_alpha1_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_fisher_gamma0_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "6dc4f3b27dd851276700f7b06839b9ce300711d3a90fb416cfe8ce1710bc2694"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_fisher_gamma0_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_fisher_gamma1_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "8302b91f96a230d10a5055a1b630c13caa8ecf0d0c8c990e2322f9f7297e0a63"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_fisher_gamma1_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_fisher_tasknorm_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "15724faf8db60eb959ba460d2e25bfc67f3aa57462e01a3e38a06bd0a9e2a39c"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_fisher_tasknorm_off_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_gam_projection_off_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "aa190a2a832a35433ce4fbbf11e173bfa51a2ccc34a0b852d9a85cab61540a8a"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_gam_projection_off_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "smoke config smoke_s3_mech_gam_rho025_s2",
+      "passed": true,
+      "evidence": {
+        "sha256": "241a2331c5b2d0cad391b08a999240e20f3caa721275e6cc2abfccd87f010c89"
+      }
+    },
+    {
+      "check": "smoke covers exact formal control smoke_s3_mech_gam_rho025_s2",
+      "passed": true,
+      "evidence": {}
+    },
+    {
+      "check": "observer pair differs only capture and output identity",
+      "passed": true,
+      "evidence": {
+        "s3_boundary_capture": [
+          true,
+          false
+        ],
+        "prefix": [
+          "smoke_observer_on_s2",
+          "smoke_observer_off_s2"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2"
+        ]
+      }
+    },
+    {
+      "check": "formal native common.validate read-only",
+      "passed": true,
+      "evidence": {
+        "configs": 18,
+        "source_files": 191
+      }
+    },
+    {
+      "check": "smoke native common.validate read-only",
+      "passed": true,
+      "evidence": {
+        "configs": 20,
+        "source_files": 191
+      }
+    }
+  ],
+  "operational_control_audit": [
+    {
+      "control": "native SGD",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/as1_normfisher_gam_intask.py:1180",
+        "models_CL/baseLearner.py:765"
+      ],
+      "effect": "optimizer_type=sgd takes one-forward CE + Fisher penalty branch; GAM probe execution removed"
+    },
+    {
+      "control": "half full GAM direction",
+      "status": "operational from source and CPU algebra witness",
+      "evidence": [
+        "models_LoRAbasedCL/seqlora.py:83",
+        "optimer_PerturabtionType/gam.py:132",
+        "optimer_PerturabtionType/gam.py:151",
+        "models_LoRAbasedCL/as1_normfisher_gam_intask.py:1058"
+      ],
+      "effect": "beta1=beta3=.5, beta2=1, gammaG=.05, lambda_flat=1; GAM component half up to normalization-epsilon rounding; Fisher added unchanged"
+    },
+    {
+      "control": "GAM projection off",
+      "status": "operational from source",
+      "evidence": [
+        "optimer_PerturabtionType/gam.py:151"
+      ],
+      "effect": "gammaG=0 removes perpendicular subtraction; retains probes and plus direction"
+    },
+    {
+      "control": "GAM inner radius half",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/seqlora.py:80",
+        "models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py:54"
+      ],
+      "effect": "rho=.025, outer radius=.2; no as1_rho override masks flag"
+    },
+    {
+      "control": "matched no merge",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py:166",
+        "models_LoRAbasedCL/as1_normfisher_gam_intask.py:887"
+      ],
+      "effect": "start_task=10 disables application for task0..9, keeps epoch20/40 snapshots and CE; CPU path-average reductions omitted"
+    },
+    {
+      "control": "uniform and latest fusion",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py:322",
+        "models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py:282"
+      ],
+      "effect": "weighted=true beta0 keeps CE budget and yields equal weights; start_ratio=.6 selects40 formally and2 in smoke"
+    },
+    {
+      "control": "Fisher damping",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py:435"
+      ],
+      "effect": "alpha0 removes floor; alpha1 makes accumulated normalized geometry exactly I/d"
+    },
+    {
+      "control": "Fisher history",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/as1_normfisher_gam_intask.py:822"
+      ],
+      "effect": "gamma0 drops older history before normalization; gamma1 removes exponential forgetting"
+    },
+    {
+      "control": "task Fisher normalization off",
+      "status": "operational from source",
+      "evidence": [
+        "models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py:493",
+        "models_LoRAbasedCL/as1_normfisher_gam_intask.py:822"
+      ],
+      "effect": "raw task Fisher trace changes relative task contribution; accumulated normalization remains enabled"
+    },
+    {
+      "control": "endpoint Fisher",
+      "status": "hook implemented; integration pending",
+      "evidence": [
+        "utils/s3_mechanism_controls.py"
+      ],
+      "effect": "one existing pass reads premerge A/B, restores retained model; storedsource metrics corrected"
+    },
+    {
+      "control": "observer neutrality",
+      "status": "CPU tests passed; native integration pending",
+      "evidence": [
+        "preflight/test_controls.py",
+        "models_LoRAbasedCL/seqlora.py:1560"
+      ],
+      "effect": "observer pair can compare native per-task A/B + FC and complete accuracy matrix; no formal claims before equality verified"
+    }
+  ],
+  "formal_configs": [
+    {
+      "id": "s3_mech_a_nomerge_matched_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "in_task_weight_merge_start_task": 10,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "23f83c09cd43f0fa59ab510acc0146313670fb89837d95981fe04c47451927fd"
+    },
+    {
+      "id": "s3_mech_gam_half_direction_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "gam_grad_beta_1": 0.5,
+        "gam_grad_beta_3": 0.5,
+        "gam_grad_gamma": 0.05,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "6b0d242369abedf038d526a012d8da27e1e2e3795487184aa3b1beafa71e0a48"
+    },
+    {
+      "id": "s3_mech_sgd_ewc_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "optimizer_type": "sgd",
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "e23f0997e98bcd7579f710ba5fb2ffaf0baf48c0b496f1b1fa4638a1238a2b2a"
+    },
+    {
+      "id": "s3_mech_center_s1",
+      "seed": 1,
+      "overrides_from_reference": {
+        "seed": [
+          1
+        ],
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "e3692be855c79a1e2156a0e71b54e7c65374ca6ea71683aed5ca099aa45f0db0"
+    },
+    {
+      "id": "s3_mech_a_nomerge_matched_s1",
+      "seed": 1,
+      "overrides_from_reference": {
+        "seed": [
+          1
+        ],
+        "in_task_weight_merge_start_task": 10,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "48b29a10993b5824914558201c6c2b6708047b876f2b9026adc9527e9552eca0"
+    },
+    {
+      "id": "s3_mech_a_off_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "in_task_weight_merge": false,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "f2f05379ecc6e0652a509c4071e994cb3bce0f7e11a11c76f95c1d68592b1898"
+    },
+    {
+      "id": "s3_mech_center_s3",
+      "seed": 3,
+      "overrides_from_reference": {
+        "seed": [
+          3
+        ],
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "34488edf20e3d484fcad4f7fc7916652cdc0e113d515f3984be64944bda62ae6"
+    },
+    {
+      "id": "s3_mech_a_nomerge_matched_s3",
+      "seed": 3,
+      "overrides_from_reference": {
+        "seed": [
+          3
+        ],
+        "in_task_weight_merge_start_task": 10,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "1b8314e8d84ae84f8ed717b8cceaedb1e7be097b7970dec42e589bff69f19294"
+    },
+    {
+      "id": "s3_mech_fisher_endpoint_anchor_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "endpoint"
+      },
+      "config_sha256": "8839bf152e5d886e8aa487e05cb1526f3c927634029878bb738789799c7fe82c"
+    },
+    {
+      "id": "s3_mech_a_uniform_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "in_task_path_beta": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "ace649c7d6dcf2c89f7143443dbb2bffd11cf44801e2823a3518f10fe713cc7e"
+    },
+    {
+      "id": "s3_mech_a_latest_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "in_task_path_start_ratio": 0.6,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "54ee56fd263274a8af1f458a10fde75178967c089632475de5f3217776eaf1de"
+    },
+    {
+      "id": "s3_mech_fisher_alpha0_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "ewc_fisher_damping_alpha": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "e321bdce9076852941cacbe9209dc749d749505d8aedd9985c93306bba337d3f"
+    },
+    {
+      "id": "s3_mech_fisher_alpha1_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "ewc_fisher_damping_alpha": 1.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "8ff95ac011b491ea36c2a4adda75e4db14cc83c6746cbce1a43f011548c69b2c"
+    },
+    {
+      "id": "s3_mech_fisher_gamma0_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "ewc_gamma": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "0ba6da077ce1b306357306597d7f1467602f8bd19451b26b306083351426ace6"
+    },
+    {
+      "id": "s3_mech_fisher_gamma1_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "ewc_gamma": 1.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "65a63ad67a215be181efd3223f68da230186607eba3e1b21d2e5fb5da4972c01"
+    },
+    {
+      "id": "s3_mech_fisher_tasknorm_off_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "ewc_normalize_fisher": false,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "a79fa3a9d6667ce915078ba61ca8882b0223f96d88005f57375c1f28a20f50bb"
+    },
+    {
+      "id": "s3_mech_gam_projection_off_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "gam_grad_gamma": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "fcfd9349114ec7571413e62452ebfaf648e220c7898b9bfe308e20975c2ca785"
+    },
+    {
+      "id": "s3_mech_gam_rho025_s2",
+      "seed": 2,
+      "overrides_from_reference": {
+        "gam_grad_rho": 0.025,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "config_sha256": "57980741fa374c3ed9a7143871e10c4f9c8068967bcf7aeed47be12cb33c46f3"
+    }
+  ],
+  "smoke_observed_status": {
+    "pending": 20
+  },
+  "smoke_state_timestamp": "2026-09-20T19:19:47.391752+00:00",
+  "runtime_gate_requirements": [
+    "All20 native smoke runs must complete and pass immutable receipt/config/source/boundary checks.",
+    "Observer on/off A/B + FC tensors and full accuracy matrix must compare exactly before reusing old seed2 center.",
+    "Smoke effect checker must pass all specific control assertions.",
+    "Outer fail-closed smoke-to-formal gate and checker must be finalized and included in final runtime hashes before starting formal18.",
+    "After GPU0/1 authorization migration, refresh runtime_manifest and gate_manifest so suite and runtime hashes match; old4/5/6 checks are historical pre-migration evidence only."
+  ],
+  "limitations": [
+    "No GPU was queried or used in this review; GPU occupancy info came from parent, not independent measurement.",
+    "Native smoke execution is pending; static code audit does not establish empirical integration success.",
+    "Latest smoke snapshot epoch2 equals endpoint; its merge shift can be zero legitimately. Formal latest snapshot epoch40 differs from endpoint50.",
+    "No paired endpoint/retained Fisher estimates or Fisher cosine were collected.",
+    "Matched no-merge preserves neural forwards and RNG budget, but skips final CPU path-mean reductions.",
+    "Fisher diagnostics in this protocol are batch-gradient-square proxies, not per-sample empirical Fisher."
+  ],
+  "artifact_hashes": {
+    "source_manifest": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+    "runtime_manifest": "02fed40d84525e6a8146eb19707c292d83cf12cb54290250548e8c9cc5ee081d",
+    "formal_suite": "abc6cf3114c1d29441b84b5131a2471a71813c19d28dbc865006baf949a95d63",
+    "smoke_suite": "0a86780484fb1a52647f7512ec0d1ccdaf3dd2b132124a811543cdaf4bc2a53f"
+  },
+  "gpu_authorization_update": {
+    "timestamp_utc": "2026-09-20T19:23:02.772563+00:00",
+    "authorization": "User explicitly authorized GPUs0/1 per parent relay; previous190frozen source unchanged",
+    "formal_allowed_gpus": [
+      0,
+      1
+    ],
+    "smoke_allowed_gpus": [
+      0,
+      1
+    ],
+    "max_parallel": 2,
+    "passed": true,
+    "new_formal_suite_sha256": "87ea3f30a34ee40c9672720a4431a12448e570bb4b6749522f4f83f4a2497909",
+    "new_smoke_suite_sha256": "683cca0a358b6f1a198c92967dbe84459166834c65ceb70e6e071df1f0fd918f",
+    "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+    "runtime_pin_refresh_pending": true,
+    "runtime_mismatches_observed": [
+      "build_campaign.py",
+      "common.py",
+      "launch_queue.py",
+      "preflight/smoke_campaign/common.py"
+    ],
+    "gate_manifest_present": false
+  },
+  "status": "config_and_source_static_passed; GPU0/1 migration observed; final runtime pins and native smoke gate pending"
+}

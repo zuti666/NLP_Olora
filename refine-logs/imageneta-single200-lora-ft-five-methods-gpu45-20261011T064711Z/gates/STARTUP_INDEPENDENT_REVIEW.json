@@ -1,0 +1,667 @@
+{
+  "status": "passed",
+  "reviewer": "independent_single200_launch_review",
+  "reviewed_at_utc": "2026-10-11 07:07:48 UTC",
+  "scope": "Startup acceptance of real GPU smokes, CPU pairing, and actual early FT SGD/g2 updates; formal 50-epoch completion is not asserted.",
+  "checks": {
+    "all10_gpu_smokes_independently_reaccepted": true,
+    "each_smoke_has2_real_exact_sgd_updates_and_native_reads": true,
+    "all_completed_smoke_summary_exit_and_state_receipts_match": true,
+    "cpu_pairing_accepted_all95_checks": true,
+    "cpu_pairing_used_no_gpu_and_performed_no_updates": true,
+    "formal_sgd_and_g2_admitted_after_all_dependencies_completed": true,
+    "actual_host_and_controller_pid_starttime_match": true,
+    "actual_formal_worker_and_runner_pid_starttimes_match": true,
+    "cuda_witness_pid_is_the_actual_runner": true,
+    "cuda_witness_uuid_and_physical_assignment_match_nvidia_smi": true,
+    "sgd_running_on_physical_gpu4": true,
+    "g2_running_on_physical_gpu5": true,
+    "both_formal_runs_have_at_least2_real_exact_sgd_updates": true,
+    "sgd_gradient_budget_is1_and_g2_is3_per_update": true,
+    "submitted_sgd_g0_and_g2_gradient_hashes_match": true,
+    "runtime_measured_forward_counts_match_native_budget": true,
+    "all_reviewed_steps_restore_state_and_only_base_R1_advances": true,
+    "both_fullft_models_have_no_lora_and_no_frozen_parameters": true,
+    "both_fullft_first_updates_actually_change_backbone_and_fc": true,
+    "both_formal_first2_updates_exactly_match_accepted_smokes": true,
+    "no_forbidden_work_in_reviewed_formal_trace_prefixes": true,
+    "workers_and_trainers_retain_index_and_uuid_lease_file_descriptors": true,
+    "all44_frozen_execution_pins_unchanged": true,
+    "no_repeat_launch_or_training_mutation_by_reviewer": true
+  },
+  "evidence_hashes": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_g2_s2/final_summary.json": "8f10fd04f59f126367c2aca9f59724ac81e150f8208572e730cc7ae04af5a15f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_g2_s2/step_trace.jsonl": "92b1be42c372f1c6810d55795fcc81098c860c332d1db90067376dac3d75fe29",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_g2_s2/cuda_witness.json": "5c0db90cf6ad8f55b8dd3911c2c6909edf8070c667ce7305aa1ff8215b8e39a4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_g2_s2/model_scope_receipt.json": "cf15b0bcc084ac40e9d77d2e5a40460b38eb7cb469a8ca93d4eb7a1b85cbe30d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_g2_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_g2_s2/effective_config.json": "9e1a90534a7f0a922825d1c7002833e3aaf4b3288ebf50d9ad1c6fafe399f33c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_g2_s2/completed.json": "50c639c01bc438d63871286f29d710dfc23f32322687d434d69242ab0feb42a7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_g2_s2/exit.json": "db59836cb24bde5560a24780dbe9210c0381e3c235c914543d9f405eb172209d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_g2_s2/job.json": "104af580eabfe3662a1af79ff69f4dab7801ae09d8e232a34127428519e3eabb",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_g2_s2/worker_identity.json": "28b0b1ccbadecedf49121dd351765af70ad2f4a15fe2a1c36aae5f8df6cec4b2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_g2_s2/runner_identity.json": "27f9792241ff59607f537b0345bb96a54462963478c682212029bcc2f1805c21",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_gam_s2/final_summary.json": "e21e812a9ab769fbc5c57377196a1d10946cf95113347c80f3a4e05f763280e7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_gam_s2/step_trace.jsonl": "5ef12cc7829801b01a9ce1aa9092a0eb909ede4646e5f1d2043b16206721671b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_gam_s2/cuda_witness.json": "2b7591decce0d279dc11e0dfb393fbe59fdb27418e9418e258c82e11aaf9b658",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_gam_s2/model_scope_receipt.json": "cf15b0bcc084ac40e9d77d2e5a40460b38eb7cb469a8ca93d4eb7a1b85cbe30d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_gam_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_gam_s2/effective_config.json": "f3f754ec52c565edb0ffd60f3d7189cf1b8274f2e50f569c48d3503d72e1af7c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_gam_s2/completed.json": "c10a52c887b92d4405f06d75e5a42b90855780134e98946be97f4bd72611b841",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_gam_s2/exit.json": "adf653bfd94018c848d5a82ca6764af06dc41acfb80f55432eff52a53949be81",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_gam_s2/job.json": "80fd22c229e5779c13412725953151c4f269ddd2197d17404445e7f49de97103",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_gam_s2/worker_identity.json": "a89d7baacf49ec00f6cb2e1b8bbccd1b3ec088415910c05cf4930ef9bc8136bb",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_gam_s2/runner_identity.json": "87d2748176fec87b63998d692fdbe8b9a452a20bd6825556d8aa095a30d05130",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_mirror_s2/final_summary.json": "b9c542bb3e2cb49da48bf0340be7932f31cf18b5c99dbcf35b9bfe8da06ce02f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_mirror_s2/step_trace.jsonl": "7efcf88041ce6086c049a8d54b980b1bdafcc867348cd751bd6f9f9a6564eeb5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_mirror_s2/cuda_witness.json": "0b212bb1a0cb82a7d2dd480516277b8ff4601ed9b7cac32cec52e4252a5b0b51",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_mirror_s2/model_scope_receipt.json": "cf15b0bcc084ac40e9d77d2e5a40460b38eb7cb469a8ca93d4eb7a1b85cbe30d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_mirror_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_mirror_s2/effective_config.json": "c5e08d3010f08a0ed6c28ffeb7ecda4ab394927775b3eea345c600703728fc16",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_mirror_s2/completed.json": "cfdc0782d3aaceaba69d7671a53c2c75aacf2a77dcba012223b5912a8b371ed1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_mirror_s2/exit.json": "f2aa0dbfbef68602a7f34f9a4cafdff7def7be6b4d5570d2e2516ec00e3da23d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_mirror_s2/job.json": "a4269ec3e9c319cb7320f339fa05d0bf311e2045161e151bd837a244a9cf0f7e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_mirror_s2/worker_identity.json": "10fb16553818729eedacbd63c785888cd945285cb50b8c4b0e2582c84593524d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_mirror_s2/runner_identity.json": "2c104d897629b0f5e4ebaca4ee84c5d98815c8296cc98fd2ecc706942cec80c9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sam_s2/final_summary.json": "d7f4543aa3296c7f369d8990c96f66227aa53027ae03ec538c69f1849f579a25",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sam_s2/step_trace.jsonl": "781047987b6acb159555a45b59a3a6a93b673f939a6f032b1723ca7293a27839",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sam_s2/cuda_witness.json": "5e7f7fa30c0d9155566316e6955cac6a7f8fc053438308cb0a4870361ca107f9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sam_s2/model_scope_receipt.json": "cf15b0bcc084ac40e9d77d2e5a40460b38eb7cb469a8ca93d4eb7a1b85cbe30d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sam_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sam_s2/effective_config.json": "29d1b47a9dc8f5e00b958fc0973d57a2ac60200844b44275dc3bfc8a5d34e7ed",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sam_s2/completed.json": "dc1ab26f0596dc12c8d76019613163a521679627b80ad528909d80de06528665",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sam_s2/exit.json": "f039086249d086380e2933647c17c3a98f2fb6b2bb503a01b8d2c2b6a89c50d5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sam_s2/job.json": "c9c665df97b3b2ab439f75b62beaed3cb584e7fd4f1e6ef13cbcacdb4fe05192",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sam_s2/worker_identity.json": "092ddcab4f1f208518e227445fd397da9f4ee10ce12a41c07299217bc2628979",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sam_s2/runner_identity.json": "1d1671a501dd604702720d3b66da95b1533164d5d650d109f443b90408a445f3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sgd_s2/final_summary.json": "da3bf981f8c82d1684146d4a6deec81f659a9af4e63bfa779d68eed5d2b073fa",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sgd_s2/step_trace.jsonl": "a29eff821c4955c908399f26063112ca88df59213ab97c5c67ab03e3191e7d81",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sgd_s2/cuda_witness.json": "c064a6e39c8cf3eeb8a80212357bcc5eafc8d8a01520a2feb2ae95bbc90ea62a",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sgd_s2/model_scope_receipt.json": "cf15b0bcc084ac40e9d77d2e5a40460b38eb7cb469a8ca93d4eb7a1b85cbe30d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sgd_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_lora_sgd_s2/effective_config.json": "540769208013bc08b740dc84423abb7c132ef5c825f92353a1c30551618f28cf",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sgd_s2/completed.json": "59fe636b47e1f833639f7b246e250fc32e8289ad3fcd195012c385f1bbd0eac0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sgd_s2/exit.json": "e34c2eb9fdc55fb5c489925e8436621d8b73cd57571d09bc30d19d7fd7a3867e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sgd_s2/job.json": "dbda03da56f7c957700afdeff889b1e70c821761b215d851cea195e2bb20d3de",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sgd_s2/worker_identity.json": "28c1f9ecac72738cfa897f5b9cafb85345746d1b1a06a334814397f39925713f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_lora_sgd_s2/runner_identity.json": "9953d49220c66cb3bc68c446d97d70295654a42b0862f3735826a03fadb542f0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_g2_s2/final_summary.json": "7d58503dc96a6fa91d5a5057b0af509675c4a82f357134d44dd72a53f8b1f140",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_g2_s2/step_trace.jsonl": "647514ec167989eed2e97cd2f111eec8bf312b87a27ce9bba446fea9d2abfc08",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_g2_s2/cuda_witness.json": "900f8e20eec13fad8d3e44d413afebd795950d895ec8e6b3b7e86a7f59cd35cd",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_g2_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_g2_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_g2_s2/effective_config.json": "cfc00594a899e0187b162a5f02ef83262c75aae103ab58f1ee609a46cd068e32",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_g2_s2/completed.json": "4cd89f28aad0f648dd4caad03b81531061fd8b32b92756abf0ea96a61e5f78c4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_g2_s2/exit.json": "53717c4e6f3058ce40bb035a694e4e6552f50a89d137b38252801114d71cf5c1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_g2_s2/job.json": "040613ff19665814925fd84841c588ab979daf8e420b412c43b177530e3c83d1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_g2_s2/worker_identity.json": "f1e70eae2baeebbb169c5fa68189a42a4cc87d2f46fa589b9ece9e3236efc1c4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_g2_s2/runner_identity.json": "83c0ff49c86b4d179bbbd10f57e0fca6d62ebad8cb33d1bfba0ba0a511933154",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_gam_s2/final_summary.json": "7ee414535f741066562ebd5f396060e339e00a86af439722580ff1625695d09b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_gam_s2/step_trace.jsonl": "e2b6dd40fd27a15d28d61129dc4d9d6c44d39ba7f0f13a44deac948653ba6d39",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_gam_s2/cuda_witness.json": "f21540f155f887f61853383995d15305e71285e92f4a0db4598b7e7793b75136",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_gam_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_gam_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_gam_s2/effective_config.json": "d8377462b9046779d1f25cf51d0c09bdfeaaa35229eccb36723e2ab548b213a9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_gam_s2/completed.json": "c090d84d09fdd87c118a637f19ab06fcd4a9e02fa11f6c7a85ad35f46467fbcb",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_gam_s2/exit.json": "9f4ed2cf703b61f1f866efbd254529e416121799467b938a3fc79e5e1010b514",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_gam_s2/job.json": "c9426b902542efc6ddcd2272a46b2ae466d657cae2ba20b606de52c982cb25d6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_gam_s2/worker_identity.json": "adcbbe5c529a9410a9f455086a158a7c5218694031fcf98de838707693c8680a",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_gam_s2/runner_identity.json": "48a81c64dabb7b76910e7fb3c3b8c65c373f19d458e6dcf456f538b031ef9b62",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_mirror_s2/final_summary.json": "0f49619fa24ebc68d37151d01b576976796c0ebe6575444896a20fa9cc00dae7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_mirror_s2/step_trace.jsonl": "dfdbce3ea4c2126925c0a5a64ec420c5137532348b6ca74ef3a3bd30a137c083",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_mirror_s2/cuda_witness.json": "28495b57d0d558312173f8dfdd97ee80d24b51b8fd3f90b3bd71a78cfdf8d7e2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_mirror_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_mirror_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_mirror_s2/effective_config.json": "446f074302a7d84ba9ed2cc86c76ca458c735bb4fa39d02aa94ff18bd11cb3d8",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_mirror_s2/completed.json": "928befa11fec2df833b660c085c0c3d13be6c30b3acdb412fc079f02be3e4fe7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_mirror_s2/exit.json": "e866aff68bd81c1bd0a13beaaab080ea4c8517f6e056d1a8f82a2c253f34003c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_mirror_s2/job.json": "365a5ce5d8170befd5708b79c2c242c49c0606f84463d77ead55c5d9a099308d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_mirror_s2/worker_identity.json": "b9543643ebc0e6f01d56ee73a11e2504606a42be98306cba37e9384ffce452a7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_mirror_s2/runner_identity.json": "3c855c1eb33ad62bfaee2a2bba8328eb58a1e46ae1f247a909b326aad42d2d81",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sam_s2/final_summary.json": "d5d5f3c7937fe5fa728c36cad99e0b0495eea5777cc812345b4fc450cdd7a40c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sam_s2/step_trace.jsonl": "be38a11c0a202574c38f9d3ad2452b5bd184bb033619c26d53f84d05c981a9eb",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sam_s2/cuda_witness.json": "6c3342002e8306b10e8b07e6ba1a28d97e4c2bf4b0c296dc4353891e4660a6f1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sam_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sam_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sam_s2/effective_config.json": "f74f3ec3913ab46c2c01918dbb37c68aa721bdf407f50c86a70fe2d6b4a7a14f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sam_s2/completed.json": "b9d1f192ac41116542538cf48ea0f5b6c4ce65a911f512987a8fa33d2ba83c3f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sam_s2/exit.json": "504d194a14269f9824826a8de61bdfefc9e9519f565e3f2ffbd0b092db1c1ee2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sam_s2/job.json": "684c8c5f863858e206c14ef750bca12b57a09e9747975f9334f37c907a77e3ac",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sam_s2/worker_identity.json": "61541beb43a41f46bb50360a3bf85d4315a9adf8f8f305a83859784a157f4eee",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sam_s2/runner_identity.json": "eadab8a6911ed2158cfaf58a0a4e28bc54874734c14bd530840c6048467afc72",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sgd_s2/final_summary.json": "140810ab270be159ea2f846f0ae7eff3fd3cfe40f59e9c151403cd6981bbc053",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sgd_s2/step_trace.jsonl": "77850c78e499d0f35d0a6c9387d62460e669c6320365949a7deb4df8b26cd969",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sgd_s2/cuda_witness.json": "be69aff5903d402095e6bda8aeb2461f848e32ab4d7bcc91aeacf2994d80ab5f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sgd_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sgd_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/smoke_full_ft_sgd_s2/effective_config.json": "340bd8ed05fb6a32650a6bae5d07d39654aec0baff057ee43128d7c95ca695bc",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sgd_s2/completed.json": "01f9cf5a534842b8a12830d169194945329b4a8a5d9ee3d53408940e885b7228",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sgd_s2/exit.json": "0bb53165bcde9ce0746d0962126a1fdcd9c88c6633ac76192994bb693a117cc5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sgd_s2/job.json": "c8c73e04f1996381c56ad74ca374f5cd01459267d845b46a4aa6be5c8401385a",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sgd_s2/worker_identity.json": "8e086a823d14d7338c9df1c86426753820a02b6dbd5f48c65edf92d92a598c50",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_full_ft_sgd_s2/runner_identity.json": "f058a0e3fbfd5806483997faf9d2ffe6b16172d1fb4356ede9f6519caa50b734",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/gates/pairing/final_summary.json": "45c95d9362cf9cfe79c2e89fc200462a94a0e608bb815fee29862ccf7d355c09",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_pairing/completed.json": "dc78ead0387a620133b2a3355469f6b4739038676e3453a28f85a37d798ea80f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_pairing/exit.json": "64ae818ff87b46ad9dab4de8b7ad006a2ebb15708d772bd762f703ed16b15ee1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_pairing/job.json": "b4dbd54d86f11da6ac16497f85e3c1100fc5b36a6ced2d823bd3ddda2105c2b3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_pairing/worker_identity.json": "2dbf3f419e6686964ce6256965cd4690c92dd39aab59c3103dc031f3ba0aaeba",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/smoke_pairing/runner_identity.json": "a7de066a18e86b6740e4285014daf1b1143fe5833007b343df3f3a65dea29cb2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/suite.json": "abcfe74d856917ec212adbf1a9be3c3897b1628234c20fee7c8200c9dc92b714",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/RUN_PINS.json": "9982fb5916ab2903361033779fd0717ec005409a40cc483982ccbe013465018f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/gates/FRESH_DOC_CHECK.json": "56c83c03708f4cf6f8b8f03e435c72e5ae273082f476445103d24037e885b2ba",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_sgd_s2/job.json": "5cc70052aac066c53693d20d8eff52f0ca497c0b58e91f24d9eef556d27a6f1c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_sgd_s2/worker_identity.json": "e528e33ec38868e4e233b89d422850ad19097a9f84656ff1e64808008d4f0c3b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_sgd_s2/runner_identity.json": "745bdc29cc22fa086113ac1cabd3f52895b1950277faf2128b866f60a9d85336",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_sgd_s2/launched.json": "4d114603d1b24b4dcc9724d916700c8c23f9b5d6dc3cd633be8d1fb6d4bc2786",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_sgd_s2/cuda_witness.json": "5df5cfddfb8d6eb7b94361b32d0ce8e611354205a67c7d1ea0e1088998dc2080",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_sgd_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_sgd_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_sgd_s2/effective_config.json": "63c0e09ebac5d2fab47557610ec544987e07424d970733004b025d4ff8141960",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_g2_s2/job.json": "ef168cb0567ac8fa89acc694a845ca28cf914bc9a07149156e11d9ae47cf2196",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_g2_s2/worker_identity.json": "3ce85d750b5b3cd2f0fef3731e2aa850116eb726719cf964d6ddadf1d32892bf",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_g2_s2/runner_identity.json": "a9cd457140f1d9b6a3b1b12f0eb11349382d8abf76529689cb88abf44d430244",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/runtime/jobs/formal_full_ft_g2_s2/launched.json": "fb4d78319f74d0b7c47f4c3709ad4898814ee1cb6b583e37dfa6963009c9b1e4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_g2_s2/cuda_witness.json": "d811c059726df9007cf9f5a31213525237031d6c634eeeea8ed6f4b71e77885a",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_g2_s2/model_scope_receipt.json": "d6110aee933a3dd0373b78ab04813adfc7b92aa175ef50ae03fdc407ddad1a87",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_g2_s2/initial_identity.json": "cd0e3c64a75381676d94771ac84f158fae2f888a63faac1306470099adf44fa0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-single200-lora-ft-five-methods-gpu45-20261011T064711Z/outputs/formal_full_ft_g2_s2/effective_config.json": "7e02368491074513785016b212ec9edbc2b9e0156b71ddae9923fe4750a7a7ee"
+  },
+  "actual_host": {
+    "hostname": "cudahpc40.cvc.uab.es",
+    "pid_namespace": "pid:[4026531836]",
+    "controller": {
+      "pid": 1117704,
+      "proc_starttime": "50674568",
+      "state": "S",
+      "identity_match": true
+    }
+  },
+  "completed_smoke_and_pairing_jobs": [
+    {
+      "job": "smoke_lora_g2_s2",
+      "status": "accepted",
+      "summary_sha256": "8f10fd04f59f126367c2aca9f59724ac81e150f8208572e730cc7ae04af5a15f",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "updates": 2,
+      "gradient_reads": 6,
+      "cuda_runner_pid": 1117721,
+      "actual_ft_first_update": null
+    },
+    {
+      "job": "smoke_lora_gam_s2",
+      "status": "accepted",
+      "summary_sha256": "e21e812a9ab769fbc5c57377196a1d10946cf95113347c80f3a4e05f763280e7",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "updates": 2,
+      "gradient_reads": 8,
+      "cuda_runner_pid": 1117736,
+      "actual_ft_first_update": null
+    },
+    {
+      "job": "smoke_lora_mirror_s2",
+      "status": "accepted",
+      "summary_sha256": "b9c542bb3e2cb49da48bf0340be7932f31cf18b5c99dbcf35b9bfe8da06ce02f",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "updates": 2,
+      "gradient_reads": 4,
+      "cuda_runner_pid": 1120161,
+      "actual_ft_first_update": null
+    },
+    {
+      "job": "smoke_lora_sam_s2",
+      "status": "accepted",
+      "summary_sha256": "d7f4543aa3296c7f369d8990c96f66227aa53027ae03ec538c69f1849f579a25",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "updates": 2,
+      "gradient_reads": 4,
+      "cuda_runner_pid": 1121284,
+      "actual_ft_first_update": null
+    },
+    {
+      "job": "smoke_lora_sgd_s2",
+      "status": "accepted",
+      "summary_sha256": "da3bf981f8c82d1684146d4a6deec81f659a9af4e63bfa779d68eed5d2b073fa",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "updates": 2,
+      "gradient_reads": 2,
+      "cuda_runner_pid": 1122441,
+      "actual_ft_first_update": null
+    },
+    {
+      "job": "smoke_full_ft_g2_s2",
+      "status": "accepted",
+      "summary_sha256": "7d58503dc96a6fa91d5a5057b0af509675c4a82f357134d44dd72a53f8b1f140",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "updates": 2,
+      "gradient_reads": 6,
+      "cuda_runner_pid": 1123779,
+      "actual_ft_first_update": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.12013579247907902,
+        "fc_parameter_displacement_norm": 0.008870650113461732,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      }
+    },
+    {
+      "job": "smoke_full_ft_gam_s2",
+      "status": "accepted",
+      "summary_sha256": "7ee414535f741066562ebd5f396060e339e00a86af439722580ff1625695d09b",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "updates": 2,
+      "gradient_reads": 8,
+      "cuda_runner_pid": 1124366,
+      "actual_ft_first_update": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.09829981306570229,
+        "fc_parameter_displacement_norm": 0.015305815419692165,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      }
+    },
+    {
+      "job": "smoke_full_ft_mirror_s2",
+      "status": "accepted",
+      "summary_sha256": "0f49619fa24ebc68d37151d01b576976796c0ebe6575444896a20fa9cc00dae7",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "updates": 2,
+      "gradient_reads": 4,
+      "cuda_runner_pid": 1126138,
+      "actual_ft_first_update": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.06481278698353118,
+        "fc_parameter_displacement_norm": 0.004610188012974947,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      }
+    },
+    {
+      "job": "smoke_full_ft_sam_s2",
+      "status": "accepted",
+      "summary_sha256": "d5d5f3c7937fe5fa728c36cad99e0b0495eea5777cc812345b4fc450cdd7a40c",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "updates": 2,
+      "gradient_reads": 4,
+      "cuda_runner_pid": 1126708,
+      "actual_ft_first_update": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.03846675147315603,
+        "fc_parameter_displacement_norm": 0.004238441946222767,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      }
+    },
+    {
+      "job": "smoke_full_ft_sgd_s2",
+      "status": "accepted",
+      "summary_sha256": "140810ab270be159ea2f846f0ae7eff3fd3cfe40f59e9c151403cd6981bbc053",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "updates": 2,
+      "gradient_reads": 2,
+      "cuda_runner_pid": 1127879,
+      "actual_ft_first_update": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.03159403370711286,
+        "fc_parameter_displacement_norm": 0.003643168850892341,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      }
+    },
+    {
+      "job": "smoke_pairing",
+      "status": "accepted",
+      "summary_sha256": "45c95d9362cf9cfe79c2e89fc200462a94a0e608bb815fee29862ccf7d355c09",
+      "gpu": null,
+      "gpu_uuid": null,
+      "checks": 95,
+      "all_checks_passed": true,
+      "training_updates": 0,
+      "gpu_used": false
+    }
+  ],
+  "pairing_completed_at": "2026-10-11T07:04:44.183240+00:00",
+  "gpu_snapshot": [
+    {
+      "physical_gpu": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 16778,
+      "utilization_percent": 5,
+      "compute_pids": [
+        1129944
+      ]
+    },
+    {
+      "physical_gpu": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 18340,
+      "utilization_percent": 100,
+      "compute_pids": [
+        1129984
+      ]
+    }
+  ],
+  "formal_snapshot_time": "2026-10-11T07:06:15.865197+00:00",
+  "formal_runs": [
+    {
+      "job": "formal_full_ft_sgd_s2",
+      "status": "running_verified",
+      "method": "sgd",
+      "physical_gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "worker": {
+        "pid": 1129941,
+        "proc_starttime": "50689141",
+        "state": "S",
+        "identity_match": true
+      },
+      "runner": {
+        "pid": 1129944,
+        "proc_starttime": "50689150",
+        "state": "R",
+        "identity_match": true
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "pid": 1129944,
+        "process_starttime": "50689150",
+        "pid_namespace": "pid:[4026531836]",
+        "expected_physical_gpu": "4",
+        "expected_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+        "cuda_logical_device": 0,
+        "visible_device_count": 1,
+        "assigned_device_match": true
+      },
+      "verified_trace_update_count": 27,
+      "verified_training_gradient_reads": 27,
+      "first_update_actual_motion": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.03159403370711286,
+        "fc_parameter_displacement_norm": 0.003643168850892341,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      },
+      "first_two_trace_rows": [
+        {
+          "step_index": 0,
+          "epoch": 1,
+          "batch": 0,
+          "ordinary_gradient_calls": 1,
+          "sgd_updates": 1,
+          "real_sgd_update": true,
+          "exact_torch_sgd_update": true,
+          "actual_parameter_step_norm": 0.031803390466462786,
+          "actual_model_forward_count": 2,
+          "actual_model_forward_count_measured": true,
+          "base_parameter_sha256": "f1a0ce13beff7ae700ce0f638aff31a4df1fdf63d9590a95c45b21045d9a56e6",
+          "g0_sha256": "98e2e058bb9fc23d85e0002edd5d748371269cc2f750973073202b1fbc984ce3",
+          "U_sha256": "98e2e058bb9fc23d85e0002edd5d748371269cc2f750973073202b1fbc984ce3",
+          "updated_parameter_sha256": "e2d0f5b91c85b2a2088e282a87a76a50b187288ae82f983c4f41c1d73d30bbb2",
+          "final_gradient_sha256": "98e2e058bb9fc23d85e0002edd5d748371269cc2f750973073202b1fbc984ce3",
+          "state_restore_checks": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "diagnostic_state_restoration": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "only_base_R1_rng_advance": true
+        },
+        {
+          "step_index": 1,
+          "epoch": 1,
+          "batch": 1,
+          "ordinary_gradient_calls": 1,
+          "sgd_updates": 1,
+          "real_sgd_update": true,
+          "exact_torch_sgd_update": true,
+          "actual_parameter_step_norm": 0.03147080494383931,
+          "actual_model_forward_count": 2,
+          "actual_model_forward_count_measured": true,
+          "base_parameter_sha256": "e2d0f5b91c85b2a2088e282a87a76a50b187288ae82f983c4f41c1d73d30bbb2",
+          "g0_sha256": "1edf11ac6c58431e9639b4056332bbd9926111934c66b30d277fdcae81ee6d4b",
+          "U_sha256": "1edf11ac6c58431e9639b4056332bbd9926111934c66b30d277fdcae81ee6d4b",
+          "updated_parameter_sha256": "1e6f9ceb583e12f35c6ded9f690895acbbeead00808f9e3f903a784dbf49b201",
+          "final_gradient_sha256": "1edf11ac6c58431e9639b4056332bbd9926111934c66b30d277fdcae81ee6d4b",
+          "state_restore_checks": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "diagnostic_state_restoration": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "only_base_R1_rng_advance": true
+        }
+      ],
+      "first_two_trace_prefix_sha256": "77850c78e499d0f35d0a6c9387d62460e669c6320365949a7deb4df8b26cd969",
+      "snapshot_trace_complete_bytes": 118469,
+      "snapshot_trace_prefix_sha256": "e62febe491081ccbafd3a6ecf570bdb1378476395fdca2f8bc66b201280a8a01",
+      "dependencies_completed_before_start": true,
+      "formal_vs_smoke_first_two_exact": true
+    },
+    {
+      "job": "formal_full_ft_g2_s2",
+      "status": "running_verified",
+      "method": "g2",
+      "physical_gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "worker": {
+        "pid": 1129983,
+        "proc_starttime": "50689511",
+        "state": "S",
+        "identity_match": true
+      },
+      "runner": {
+        "pid": 1129984,
+        "proc_starttime": "50689519",
+        "state": "R",
+        "identity_match": true
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false,
+        "pid": 1129984,
+        "process_starttime": "50689519",
+        "pid_namespace": "pid:[4026531836]",
+        "expected_physical_gpu": "5",
+        "expected_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "cuda_logical_device": 0,
+        "visible_device_count": 1,
+        "assigned_device_match": true
+      },
+      "verified_trace_update_count": 13,
+      "verified_training_gradient_reads": 39,
+      "first_update_actual_motion": {
+        "measurement": "FP64 norm of actual rounded FP32 parameter deltas from entry base",
+        "backbone_parameter_displacement_norm": 0.12013579247907902,
+        "fc_parameter_displacement_norm": 0.008870650113461732,
+        "backbone_nonzero_updated_tensor_count": 150,
+        "fc_nonzero_updated_tensor_count": 2,
+        "backbone_and_fc_both_updated": true
+      },
+      "first_two_trace_rows": [
+        {
+          "step_index": 0,
+          "epoch": 1,
+          "batch": 0,
+          "ordinary_gradient_calls": 3,
+          "sgd_updates": 1,
+          "real_sgd_update": true,
+          "exact_torch_sgd_update": true,
+          "actual_parameter_step_norm": 0.12046284517647671,
+          "actual_model_forward_count": 4,
+          "actual_model_forward_count_measured": true,
+          "base_parameter_sha256": "f1a0ce13beff7ae700ce0f638aff31a4df1fdf63d9590a95c45b21045d9a56e6",
+          "g0_sha256": "98e2e058bb9fc23d85e0002edd5d748371269cc2f750973073202b1fbc984ce3",
+          "U_sha256": "c62538e061dd5786491b1d7d41d88d241b44303bed29d7b8d0cfae50961b3e88",
+          "updated_parameter_sha256": "9f79dd9d27bb5f27451040f58d666f6d1e52f0e707151601400cc84c116419ac",
+          "final_gradient_sha256": "c62538e061dd5786491b1d7d41d88d241b44303bed29d7b8d0cfae50961b3e88",
+          "state_restore_checks": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "diagnostic_state_restoration": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "only_base_R1_rng_advance": true
+        },
+        {
+          "step_index": 1,
+          "epoch": 1,
+          "batch": 1,
+          "ordinary_gradient_calls": 3,
+          "sgd_updates": 1,
+          "real_sgd_update": true,
+          "exact_torch_sgd_update": true,
+          "actual_parameter_step_norm": 0.0685003442880094,
+          "actual_model_forward_count": 4,
+          "actual_model_forward_count_measured": true,
+          "base_parameter_sha256": "9f79dd9d27bb5f27451040f58d666f6d1e52f0e707151601400cc84c116419ac",
+          "g0_sha256": "1fb710b32e379681f8ae21077dd491543127ca8066223ace70f28f312587e242",
+          "U_sha256": "68299489febaea51d172b5108adf965bc8e3decd6c0a02b8f2f635efc187498a",
+          "updated_parameter_sha256": "10fdf82b5c0655647ad0d4aed2f2f8b15154a5d210371989bc44a3e58e4ceb6d",
+          "final_gradient_sha256": "68299489febaea51d172b5108adf965bc8e3decd6c0a02b8f2f635efc187498a",
+          "state_restore_checks": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "diagnostic_state_restoration": {
+            "trainable_parameters_exact": true,
+            "frozen_versions_exact": true,
+            "gradients_exact": true,
+            "buffers_exact": true,
+            "modes_exact": true,
+            "controls_caches_exact": true,
+            "rng_exact": true
+          },
+          "only_base_R1_rng_advance": true
+        }
+      ],
+      "first_two_trace_prefix_sha256": "647514ec167989eed2e97cd2f111eec8bf312b87a27ce9bba446fea9d2abfc08",
+      "snapshot_trace_complete_bytes": 65642,
+      "snapshot_trace_prefix_sha256": "62abab86134c9186588a4c9ae4ca6e57e0be5b9cad7a792f31aaba1b5eecc333",
+      "dependencies_completed_before_start": true,
+      "formal_vs_smoke_first_two_exact": true
+    }
+  ],
+  "actual_retained_leases": {
+    "formal_full_ft_sgd_s2": {
+      "worker": {
+        "pid": 1129941,
+        "retained_gpu_lease_fds": {
+          "4": "/tmp/olora_gamfs_gpu_locks/gpu4.lock",
+          "5": "/tmp/olora_gamfs_gpu_locks/GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5.lock"
+        }
+      },
+      "runner": {
+        "pid": 1129944,
+        "retained_gpu_lease_fds": {
+          "4": "/tmp/olora_gamfs_gpu_locks/gpu4.lock",
+          "5": "/tmp/olora_gamfs_gpu_locks/GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5.lock"
+        }
+      }
+    },
+    "formal_full_ft_g2_s2": {
+      "worker": {
+        "pid": 1129983,
+        "retained_gpu_lease_fds": {
+          "6": "/tmp/olora_gamfs_gpu_locks/gpu5.lock",
+          "7": "/tmp/olora_gamfs_gpu_locks/GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e.lock"
+        }
+      },
+      "runner": {
+        "pid": 1129984,
+        "retained_gpu_lease_fds": {
+          "6": "/tmp/olora_gamfs_gpu_locks/gpu5.lock",
+          "7": "/tmp/olora_gamfs_gpu_locks/GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e.lock"
+        }
+      }
+    }
+  },
+  "unresolved_issues": [],
+  "formal_training_complete": false,
+  "notes": [
+    "At the captured snapshot FT SGD had 27 exact SGD updates on physical GPU4 and FT g2 had 13 exact SGD updates on physical GPU5; their traces continue growing.",
+    "Active formal trace evidence is a recorded complete prefix with byte length and SHA256. It is intentionally not treated as an immutable whole-file hash.",
+    "Running formal jobs have launch, worker and runner receipts; successful exit/completed receipts are expected only after the 50-epoch endpoint.",
+    "The reviewer did not create, stop, restart, or modify any GPU workload, frozen code, configuration, source or execution pin."
+  ]
+}

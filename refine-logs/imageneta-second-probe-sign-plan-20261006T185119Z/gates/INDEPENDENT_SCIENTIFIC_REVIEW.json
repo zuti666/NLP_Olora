@@ -1,0 +1,51 @@
+{
+  "status": "passed_scientific_code_cpu_review",
+  "reviewed_at_utc": "2026-10-06T19:26:09.442929+00:00",
+  "reviewer": "second_probe_execution_review",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-plan-20261006T185119Z",
+  "read_only_campaign": true,
+  "documented_cpu_command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -m unittest discover -s /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-plan-20261006T185119Z/tests -p test_second_probe_cpu.py -v",
+  "cpu_exit_code": 0,
+  "cpu_tests": 11,
+  "cpu_failures": 0,
+  "cpu_errors": 0,
+  "extra_checks": {
+    "isolated_diagnostic_exception_first_side_restore": true,
+    "isolated_diagnostic_exception_second_side_restore": true
+  },
+  "checks": {
+    "first_probe_fixed_positive": true,
+    "outer_from_original_base_and_g1_minus_g0": true,
+    "second_probe_normalized_signed_g2_only": true,
+    "g2_unchanged": true,
+    "anchor_residual_sign_independent": true,
+    "four_training_ce_one_sgd": true,
+    "full_state_rng_restore_before_update": true,
+    "rng_final_only_g0_R1": true,
+    "separate_two_side_diagnostic_counts": true,
+    "diagnostics_no_training_or_rng_change": true,
+    "old_B1_fp32_stochastic_equivalence_two_radii": true,
+    "clean_no_fisher_merge_projection_hvp": true,
+    "all16_config_factor_strictness": true
+  },
+  "substantive_failures": [],
+  "limitations": [
+    "GPU kernel/model smoke not performed by this reviewer; waiting for idle allocation.",
+    "Final queue implementation/pins still in progress; this is not fresh documented queue dry-run acceptance.",
+    "Single seed and natural SGD retain amplitude confounding; no experimental performance/causal mechanism claim."
+  ],
+  "files_sha256": {
+    "trainer/direction_step.py": "3bd73b5b18feef67bc56e8649b7ede48b6105eb50652e9ad6d5596c8484a84ff",
+    "trainer/four_probe_train.py": "e1496bc9be5a42b731e0ebbd737047cc2e805c379d15bceeb28e231aedb1d25f",
+    "trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "tests/test_second_probe_cpu.py": "224a92d69d565363bb362556917a5469816276aa37ff022c9fe7a7c4761af4a5",
+    "ENVIRONMENT.md": "02c5049323075856388cea2e1e4a6561be88b24311206010cd3963ab921fcc9b"
+  },
+  "findings": [
+    "Finite difference sign and probe sign are factored independently; neither changes g0/g1/g2 construction.",
+    "Third point normalizes all trainable LoRA and seen FC gradients; r/rho multipliers and final normalization remain absent.",
+    "Controller measures each side only in isolated diagnostic records on first batch of each task and restores pending U, full model state and R1.",
+    "Native resolver sets legacy beta3=0 in effective config; direct FourProbeStep ignores beta fields, so U is still selected exclusively by explicit factors."
+  ]
+}

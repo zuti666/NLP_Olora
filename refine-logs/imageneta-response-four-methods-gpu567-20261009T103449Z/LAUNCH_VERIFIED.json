@@ -1,0 +1,109 @@
+{
+  "status": "passed_actual_formal_launch",
+  "at": "2026-10-09T10:42:15.960472+00:00",
+  "controller": {
+    "pid": 1465667,
+    "proc_starttime": "34706187"
+  },
+  "allowed_gpus": [
+    5,
+    6,
+    7
+  ],
+  "present_running_gpus": [
+    5,
+    6
+  ],
+  "gpu7_absent": true,
+  "own_gpu_processes": [
+    {
+      "gpu": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "runner": {
+        "pid": 1465719,
+        "proc_starttime": "34706419"
+      },
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json --output-dir /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2 "
+    },
+    {
+      "gpu": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "runner": {
+        "pid": 1465720,
+        "proc_starttime": "34706430"
+      },
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json --output-dir /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2 "
+    }
+  ],
+  "first_updates": [
+    {
+      "job": "formal_single200_sgd_s2",
+      "method": "sgd",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "worker": {
+        "pid": 1465680,
+        "proc_starttime": "34706237"
+      },
+      "at_least_actual_updates": 10,
+      "first10_trace_sha256": "b0c51f37649eb75c9c918429df9f26635b97ff08ca4caf70cac26be8cead3bf3",
+      "last_observed_loss": 5.568172931671143,
+      "normal_gradient_reads": 1,
+      "full_epochs": 50,
+      "formal": true,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    },
+    {
+      "job": "formal_single200_current_g2_s2",
+      "method": "current_g2",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "worker": {
+        "pid": 1465686,
+        "proc_starttime": "34706257"
+      },
+      "at_least_actual_updates": 10,
+      "first10_trace_sha256": "6cec376c399eef7710e0fda6091b327827a259a27342348916e39144817eeec7",
+      "last_observed_loss": 5.561788082122803,
+      "normal_gradient_reads": 3,
+      "full_epochs": 50,
+      "formal": true,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    }
+  ],
+  "completed_new_full_runs": 0,
+  "pending_new_formal_runs": 5,
+  "source_files": 190,
+  "execution_pins": 34,
+  "validation": "fresh doc, prior34CPU+8smokes+pairing, new scheduler and collector integrity checks, current actual CUDA witnesses and finite updates; no new endpoint performance claim"
+}

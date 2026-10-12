@@ -1,0 +1,29 @@
+% Paths assume compilation from the repository root.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/llama_1b_taskwise_orders.pdf}
+\caption{Task-wise normalized exact-match accuracy with Llama-3.2-1B across three task orders. Dataset colors are consistent across panels; line styles and markers identify methods. Each point evaluates 7,600 examples from a dataset after completing the indicated training stage; curves begin when the dataset is first learned. One seed is available per method: 42 for SeqLoRA, IncLoRA, TreeLoRA and EWCLoRA, and 1993 for FS-EWCLoRA (the implemented GAM-EWC branch). All runs use nominal batch64, with DDP8/GA8 for SeqLoRA and IncLoRA and DDP4/GA16 for TreeLoRA, EWCLoRA and FS-EWCLoRA. Optimizer defaults and adapter budgets also differ, as detailed in the implementation appendix. The updated OLoRA results lack a matching source and are omitted.}
+\label{fig:llama1b_taskwise_orders}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/llama_3b_taskwise_orders.pdf}
+\caption{Task-wise normalized exact-match accuracy with Llama-3.2-3B across three task orders. Dataset colors are consistent across panels; line styles and markers identify methods. Each point evaluates 7,600 examples from a dataset after completing the indicated training stage; curves begin when the dataset is first learned. One seed is available per method: 42 for SeqLoRA, IncLoRA, OLoRA and TreeLoRA, and 1993 for EWCLoRA and FS-EWCLoRA (the implemented GAM-EWC branch). All runs use nominal batch64; TreeLoRA uses DDP4/GA16 and the other methods use DDP8/GA8. Optimizer defaults and adapter budgets differ, as detailed in the implementation appendix.}
+\label{fig:llama3b_taskwise_orders}
+\end{figure*}
+
+% Optional first-table-row-only (SeqLoRA) versions:
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/llama_1b_seqlora_taskwise_orders.pdf}
+\caption{Task-wise normalized exact-match accuracy of SeqLoRA with Llama-3.2-1B across the three task orders. Colors identify datasets; each curve begins when its dataset is first learned. Every point evaluates 7,600 examples from that dataset. All three orders use one seed (42), DDP8, per-device batch1, GA8, and nominal global batch64.}
+\label{fig:llama1b_seqlora_taskwise_orders}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/llama_3b_seqlora_taskwise_orders.pdf}
+\caption{Task-wise normalized exact-match accuracy of SeqLoRA with Llama-3.2-3B across the three task orders. Colors identify datasets; each curve begins when its dataset is first learned. Every point evaluates 7,600 examples from that dataset. All three orders use one seed (42), DDP8, per-device batch1, GA8, and nominal global batch64.}
+\label{fig:llama3b_seqlora_taskwise_orders}
+\end{figure*}

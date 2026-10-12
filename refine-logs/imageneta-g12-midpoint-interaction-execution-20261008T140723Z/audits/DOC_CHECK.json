@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-10-08 15:47:34 UTC",
+  "reviewer": "fresh minimal-context agent /root/midpoint_verbatim_doc_check",
+  "scope": "Recheck latest RUN.md verbatim after adding one native/audit model gate. Dry-run only; no launch, GPU computation, code repair, or broad environment revalidation. Previous environment verification is retained with its original timestamp.",
+  "skill": "/home-local/liying/.codex/skills/run-experiment/SKILL.md",
+  "environment_ledger": "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md",
+  "document": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/RUN.md",
+  "documented_command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/run_queue.py --dry-run",
+  "executed_verbatim": true,
+  "execution_route": "exec_command require_escalated; documented host hostname/PID namespace checks passed",
+  "dry_run": {
+    "exit_code": 0,
+    "stdout": "{\"status\": \"valid\", \"jobs\": 12, \"smoke\": 4, \"formal\": 4, \"pairing\": 1, \"diagnostic\": 2, \"model_gate\": 1, \"reused\": 0, \"allowed_gpus\": [2, 3, 4, 5, 6], \"max_parallel\": 4, \"idle_rule\": \"memory<500MiB/util<5%/no compute PID\", \"upstream\": {\"ready\": true, \"reason\": \"No pending upstream campaign; existing results are frozen references only\"}}\n",
+    "errors": [],
+    "result": {
+      "status": "valid",
+      "jobs": 12,
+      "smoke": 4,
+      "formal": 4,
+      "pairing": 1,
+      "diagnostic": 2,
+      "model_gate": 1,
+      "reused": 0,
+      "allowed_gpus": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "max_parallel": 4,
+      "idle_rule": "memory<500MiB/util<5%/no compute PID",
+      "upstream": {
+        "ready": true,
+        "reason": "No pending upstream campaign; existing results are frozen references only"
+      }
+    }
+  },
+  "checks": {
+    "documented_job_counts_match": true,
+    "smoke": 4,
+    "formal": 4,
+    "pairing": 1,
+    "diagnostic": 2,
+    "total_jobs": 12,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "forbidden_gpus": [
+      0,
+      1
+    ],
+    "max_parallel": 4,
+    "frozen_pins": {
+      "count": 40,
+      "all_sha256_match": true,
+      "errors": [],
+      "verification_method": "Latest documented dry-run invokes verify_pins before returning."
+    },
+    "source_manifest": {
+      "count": 190,
+      "all_source_sha256_match": true,
+      "manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "errors": [],
+      "verification_method": "Latest documented dry-run invokes verify_pins before returning."
+    },
+    "suite_sha256": "f418e906667de947e7fa8f609eae5f68999292de5f97ae24bf93adfe1d1f326e",
+    "environment": {
+      "canonical_spec_sha256": "4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+      "matches_ledger": true,
+      "prior_spec_exact_bytes_same": true,
+      "unchanged": true,
+      "actual_python": "3.11.15",
+      "distribution_versions": {
+        "torch": "2.4.1",
+        "torchvision": "0.19.1",
+        "timm": "1.0.9",
+        "numpy": "2.2.6",
+        "Pillow": "12.1.1",
+        "scipy": "1.17.1",
+        "scikit-learn": "1.8.0",
+        "tqdm": "4.66.5",
+        "PyYAML": "6.0.2",
+        "matplotlib": "3.10.6",
+        "safetensors": "0.4.5",
+        "huggingface_hub": "1.7.2",
+        "packaging": "24.1",
+        "einops": "0.8.0"
+      },
+      "package_versions_match_spec": true,
+      "package_changes_by_reviewer": false,
+      "verified_at_utc": "2026-10-08 15:41:43 UTC",
+      "rechecked_in_this_revision": false
+    },
+    "model_gate": 1
+  },
+  "doc_reality_divergence": [],
+  "limitations": "This check validates the documented dry-run and provenance only. No CUDA kernel or actual GPU model acceptance was performed or claimed.",
+  "previous_documented_checks": [
+    {
+      "checked_at_utc": "2026-10-08 15:41:43 UTC",
+      "total_jobs": 11,
+      "pins_count": 38,
+      "suite_sha256": "dc58c17ce6b512a892a30db1312966ae03608e2abf5a42622f54d7ef50e9905f",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "document_sha256": "cdb6a320b5cf026752035182d699931b261514b197805b9fd1dcd52aeaadfdfb"
+}

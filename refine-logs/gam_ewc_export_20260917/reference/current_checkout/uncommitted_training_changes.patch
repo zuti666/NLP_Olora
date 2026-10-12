@@ -1,0 +1,1916 @@
+diff --git a/src/peft/tuners/lora.py b/src/peft/tuners/lora.py
+index f79b3c6..f8b0504 100644
+--- a/src/peft/tuners/lora.py
++++ b/src/peft/tuners/lora.py
+@@ -86,6 +86,7 @@ class LoraConfig(PeftConfig):
+     )
+     r_sum: int = field(default=0) # modified. This argument represents the dim of the previous LoRA parameters. 
+     save_loranew: bool = field(default=False) # modified. This arguments represents whether modules named of 'loranew_A/B' are saved independently, rather than being combined with "lora_A/B".  
++    save_lora_only: bool = field(default=False) # Keep a fixed shared adapter without concatenating the unused fresh branch (SeqLoRA).
+ 
+     def __post_init__(self):
+         self.peft_type = PeftType.LORA
+@@ -448,10 +449,19 @@ class LoraLayer:
+         # The flag keeps normal training on the cheap low-rank path.
+         self.ewclora_register_hook = False
+         self.ewclora_delta_grad = None
++        # SeqLoRA-EWC estimates Fisher in the effective cumulative Delta-W
++        # space.  Unlike EWCLoRA's fresh branch, that space is represented by
++        # lora_B @ lora_A once a historical adapter exists (and by the fresh
++        # branch for the very first task, where r_sum == 0).
++        self.seqlora_ewc_register_hook = False
++        self.seqlora_ewc_delta_grad = None
+ 
+     def _save_ewclora_delta_grad(self, grad):
+         self.ewclora_delta_grad = grad.detach()
+ 
++    def _save_seqlora_ewc_delta_grad(self, grad):
++        self.seqlora_ewc_delta_grad = grad.detach()
++
+     def update_layer(self, adapter_name, r, lora_alpha, lora_dropout, init_lora_weights, r_sum): # modified 
+         self.r[adapter_name] = r
+         self.lora_alpha[adapter_name] = lora_alpha
+@@ -589,15 +599,37 @@ class Linear(nn.Linear, LoraLayer):
+             x = x.to(self.lora_A[self.active_adapter].weight.dtype)
+             x = self.lora_dropout[self.active_adapter](x)
+ 
+-            result += (
+-                self.lora_B[self.active_adapter](
+-                    self.lora_A[self.active_adapter](x)
+-                )
+-                * self.scaling[self.active_adapter]
++            seqlora_ewc_hook = bool(
++                getattr(self, "seqlora_ewc_register_hook", False)
++            )
++            has_cumulative_rank = (
++                self.lora_A[self.active_adapter].weight.shape[0] > 0
+             )
+ 
++            if seqlora_ewc_hook and has_cumulative_rank:
++                delta_w_seq = (
++                    self.lora_B[self.active_adapter].weight
++                    @ self.lora_A[self.active_adapter].weight
++                )
++                delta_w_seq.register_hook(self._save_seqlora_ewc_delta_grad)
++                result += F.linear(x, delta_w_seq) * self.scaling[self.active_adapter]
++            else:
++                result += (
++                    self.lora_B[self.active_adapter](
++                        self.lora_A[self.active_adapter](x)
++                    )
++                    * self.scaling[self.active_adapter]
++                )
++
+             # modified
+-            if getattr(self, "ewclora_register_hook", False):
++            if seqlora_ewc_hook and not has_cumulative_rank:
++                delta_w_seq = (
++                    self.loranew_B[self.active_adapter].weight
++                    @ self.loranew_A[self.active_adapter].weight
++                )
++                delta_w_seq.register_hook(self._save_seqlora_ewc_delta_grad)
++                result += F.linear(x, delta_w_seq) * self.scaling[self.active_adapter]
++            elif getattr(self, "ewclora_register_hook", False):
+                 delta_w_new = (
+                     self.loranew_B[self.active_adapter].weight
+                     @ self.loranew_A[self.active_adapter].weight
+diff --git a/src/peft/utils/save_and_load.py b/src/peft/utils/save_and_load.py
+index 4285988..552daf8 100644
+--- a/src/peft/utils/save_and_load.py
++++ b/src/peft/utils/save_and_load.py
+@@ -33,7 +33,7 @@ def get_peft_model_state_dict(model, state_dict=None, adapter_name="default"):
+         state_dict = model.state_dict()
+         
+         # modified
+-        if config.save_loranew == False:
++        if config.save_loranew == False and not getattr(config, "save_lora_only", False):
+             flag = 1 # this is a switch represents whether 'r_sum' is written to the config file
+             for k in state_dict:
+                 if "lora_A" in k:
+@@ -59,7 +59,9 @@ def get_peft_model_state_dict(model, state_dict=None, adapter_name="default"):
+ 
+         # modified
+         if bias == "none":
+-            if config.save_loranew: 
++            if getattr(config, "save_lora_only", False):
++                to_return = {k: state_dict[k] for k in state_dict if "lora_" in k}
++            elif config.save_loranew:
+                 to_return = {k: state_dict[k] for k in state_dict if "lora_" in k or "loranew_" in k} # modified
+             else:
+                 to_return = {k: state_dict[k] for k in state_dict if "lora_" in k}
+@@ -165,4 +167,4 @@ def set_peft_model_state_dict(model, peft_model_state_dict, adapter_name="defaul
+     if isinstance(config, PromptLearningConfig):
+         model.prompt_encoder[adapter_name].embedding.load_state_dict(
+             {"weight": peft_model_state_dict["prompt_embeddings"]}, strict=True
+-        )
+\ No newline at end of file
++        )
+diff --git a/src/run_uie_lora.py b/src/run_uie_lora.py
+index a6378db..5f86b70 100644
+--- a/src/run_uie_lora.py
++++ b/src/run_uie_lora.py
+@@ -277,7 +277,7 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
+     lora_strategy: str = field(default="lora")  # 'lora', 'Nlora', 'er'
+     ewclora_lambda: float = field(
+         default=1.0,
+-        metadata={"help": "EWC penalty weight for lora_strategy=ewclora/ewclora_gam."},
++        metadata={"help": "EWC penalty weight for EWCLoRA, EWCLoRA-GAM, and EWCLoRA-FisherShape."},
+     )
+     ewclora_gamma: float = field(
+         default=1.0,
+@@ -295,6 +295,94 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
+         default=1e-12,
+         metadata={"help": "Numerical epsilon for EWCLoRA+GAM gradient projection."},
+     )
++    ewclora_normalize_fisher: bool = field(
++        default=False,
++        metadata={"help": "Trace-normalize each post-task full-Delta-W Fisher before accumulation."},
++    )
++    ewclora_normalize_accumulated_fisher: bool = field(
++        default=False,
++        metadata={"help": "Trace-normalize accumulated EWCLoRA Fisher after applying gamma."},
++    )
++    ewclora_fisher_damping_beta: float = field(
++        default=0.0,
++        metadata={"help": "Isotropic damping beta applied after per-task Fisher trace normalization."},
++    )
++    ewclora_fisher_eps: float = field(
++        default=1e-12,
++        metadata={"help": "Numerical epsilon for EWCLoRA Fisher normalization."},
++    )
++    ewclora_allow_state_mismatch: bool = field(
++        default=False,
++        metadata={"help": "Allow loading a Fisher sidecar whose normalization mode differs from this run."},
++    )
++
++    # ===== FisherShape optimizer hyperparameters =====
++    fs_rho: float = field(
++        default=0.05,
++        metadata={"help": "Finite-difference probing radius for FisherShape."},
++    )
++    fs_alpha: float = field(
++        default=0.2,
++        metadata={"help": "FisherShape strength: relative c in ratio mode or absolute alpha in fixed mode."},
++    )
++    fs_alpha_mode: str = field(
++        default="ratio",
++        metadata={"help": "FisherShape coefficient mode: 'ratio' (recommended) or 'fixed'."},
++    )
++    fs_xi: float = field(
++        default=1e-12,
++        metadata={"help": "Numerical epsilon for FisherShape norm divisions."},
++    )
++    fs_sam_equivalent: bool = field(
++        default=False,
++        metadata={"help": "Use coefficient 1 so FisherShape exactly reduces to the CE-SAM direction."},
++    )
++    fs_adaptive: bool = field(
++        default=False,
++        metadata={"help": "Use SAM-style parameter-adaptive probing (off for the FisherShape method)."},
++    )
++    fs_grad_reduce: str = field(
++        default="mean",
++        metadata={"help": "Final FisherShape gradient reduction across workers: 'mean' or 'sum'."},
++    )
++    fs_replay_rng_state: bool = field(
++        default=True,
++        metadata={"help": "Replay each micro-batch with its clean-pass RNG state so dropout masks match."},
++    )
++    fs_include_olora_regularization: bool = field(
++        default=False,
++        metadata={"help": "Optionally add the legacy EWCLoRA OLoRA-base gradient at the clean point, outside both CE probes."},
++    )
++
++    # ===== GAMFisherShape-SAM optimizer hyperparameters =====
++    gamfs_mode: str = field(
++        default="sam",
++        metadata={"help": "GAMFisherShape mode. Phase 1 supports only 'sam'."},
++    )
++    gamfs_rho: float = field(
++        default=0.05,
++        metadata={"help": "SAM probing radius for GAMFisherShape-SAM."},
++    )
++    gamfs_adaptive: bool = field(
++        default=False,
++        metadata={"help": "Use parameter-adaptive probing in GAMFisherShape-SAM."},
++    )
++    gamfs_xi: float = field(
++        default=1e-12,
++        metadata={"help": "Numerical epsilon for GAMFisherShape norm divisions."},
++    )
++    gamfs_grad_reduce: str = field(
++        default="mean",
++        metadata={"help": "Final GAMFisherShape gradient reduction: 'mean' or 'sum'."},
++    )
++    gamfs_replay_rng_state: bool = field(
++        default=False,
++        metadata={"help": "Replay clean-pass RNG during the probe. False matches the legacy SAM dropout behavior."},
++    )
++    gamfs_include_olora_regularization: bool = field(
++        default=False,
++        metadata={"help": "Add legacy OLoRA at the clean point; keep false for SAM equivalence."},
++    )
+     # optimizer_type: str = field(default="sam-adam")  # 'sgd' 或 'sam'
+     # momentum: float = field(default=0)          # 仅用于 sgd 或 sam
+     sam_rho: float = field(default=0.05)              # sam 特有超参数
+@@ -599,7 +687,7 @@ def main():
+     logger.info(f"data_args parameters {data_args}")
+     logger.info(f"Training/evaluation parameters {training_args}")
+     if (
+-        training_args.lora_strategy.lower() in {"ewclora", "ewclora_gam", "ewclora-gam"}
++        training_args.lora_strategy.lower() in UIETrainer.EWCLORA_STRATEGIES
+         and not training_args.ewclora_fisher_path
+         and "adapter" in model_args.model_name_or_path
+     ):
+@@ -627,15 +715,27 @@ def main():
+ 
+ 
+ 
++    # Keep the historical location as the default, but allow launchers on a
++    # different checkout/mount to select a writable cache root.
++    data_cache_root = os.environ.get(
++        "UIE_DATA_CACHE_ROOT",
++        "/data/140-0/users/liying/O-LoRA/data_cache",
++    )
+     # data_cache_dir = gen_cache_path('logs_and_outputs/order_1', data_args)
+     # if getattr(training_args, "use_probe", False):
+     # 这个设定下 训练集和测试集都只有一个  /data/140-0/users/liying/O-LoRA/src
+     # 当进行flat 的评估的时候，应该也只在训练集上可视化 计算 lossland 信息
+     # zero-shot 的时候，评估也是在所有测试集上的
+     if training_args.train_method.lower() == 'use_probe' or training_args.do_flatminal :
+-        data_cache_dir = gen_cache_path('/data/140-0/users/liying/O-LoRA/data_cache/eval_one_task/order_1', data_args)
++        data_cache_dir = gen_cache_path(
++            os.path.join(data_cache_root, 'eval_one_task/order_1'),
++            data_args,
++        )
+     else:
+-        data_cache_dir = gen_cache_path('/data/140-0/users/liying/O-LoRA/data_cache/eval_all_task/order_1', data_args)
++        data_cache_dir = gen_cache_path(
++            os.path.join(data_cache_root, 'eval_all_task/order_1'),
++            data_args,
++        )
+ 
+     # Get the UIE dataset
+     # 输出所有传入参数信息
+@@ -888,6 +988,27 @@ def main():
+ ###################################################################################
+ 
+     config, tokenizer, resolved_model_source, is_adapter_model, is_llama_model = _load_model_config_and_tokenizer(model_args)
++    sequential_sam_ewc = (
++        training_args.lora_strategy.lower()
++        in UIETrainer.SEQLORA_SAM_EWC_STRATEGIES
++    )
++
++    def build_lora_config(task_type):
++        kwargs = dict(
++            task_type=task_type,
++            inference_mode=False,
++            r=model_args.lora_dim,
++            lora_alpha=32,
++            lora_dropout=0.1,
++        )
++        if sequential_sam_ewc:
++            # SeqLoRA updates one fixed-rank shared adapter.  The fresh branch
++            # remains frozen and must not be concatenated at save time.
++            kwargs.update(
++                r_sum=model_args.lora_dim,
++                save_lora_only=True,
++            )
++        return LoraConfig(**kwargs)
+ 
+     logger.info('*****2***Load model_class**')
+     if is_llama_model:  # add llama
+@@ -948,9 +1069,7 @@ def main():
+                     param.requires_grad = False
+ 
+ 
+-        peft_config = LoraConfig(
+-            task_type=TaskType.CAUSAL_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
+-        )
++        peft_config = build_lora_config(TaskType.CAUSAL_LM)
+         model = get_peft_model(model, peft_config)
+     else:
+         logger.info(f'***3***--3-else  {model_args.model_name_or_path}')
+@@ -982,15 +1101,43 @@ def main():
+                 
+         logger.info(
+             f'***3***--3- LoraConfig** task_type:{TaskType.SEQ_2_SEQ_LM},  ')
+-        peft_config = LoraConfig(
+-            task_type=TaskType.SEQ_2_SEQ_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
+-        )
++        peft_config = build_lora_config(TaskType.SEQ_2_SEQ_LM)
+         logger.info(f'***3***--3- LoraConfig** peft_config:{peft_config},  ')
+ 
+         # logger.info(f'***3***--3- isinstance(peft_config, PromptLearningConfig):{isinstance(peft_config, PromptLearningConfig)},  ')
+ 
+         model = get_peft_model(model, peft_config)
+ 
++    if sequential_sam_ewc:
++        peft_config = model.peft_config.get("default")
++        if not bool(getattr(peft_config, "save_lora_only", False)):
++            raise ValueError(
++                "SeqLoRA-SAM-EWC requires a fixed-rank adapter created with "
++                "save_lora_only=true; the supplied adapter is incompatible."
++            )
++        if not is_adapter_model:
++            # LoraLayer initializes the shared branch to zeros because it is
++            # normally historical state.  For the first SeqLoRA task, copy the
++            # standard fresh-A initialization into shared A while keeping B=0.
++            with torch.no_grad():
++                for module in model.modules():
++                    if not (
++                        hasattr(module, "lora_A")
++                        and hasattr(module, "lora_B")
++                        and hasattr(module, "loranew_A")
++                    ):
++                        continue
++                    adapter_name = getattr(module, "active_adapter", "default")
++                    if (
++                        adapter_name in module.lora_A
++                        and adapter_name in module.lora_B
++                        and adapter_name in module.loranew_A
++                    ):
++                        module.lora_A[adapter_name].weight.copy_(
++                            module.loranew_A[adapter_name].weight
++                        )
++                        module.lora_B[adapter_name].weight.zero_()
++
+     model.resize_token_embeddings(len(tokenizer))
+ 
+     if is_llama_model:
+@@ -1042,7 +1189,23 @@ def main():
+                     elif name.find("shared") != -1:
+                         param.requires_grad = False
+                     logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+-            elif training_args.lora_strategy.lower() in {'ewclora', 'ewclora_gam', 'ewclora-gam'}:
++            elif training_args.lora_strategy.lower() in UIETrainer.SEQLORA_SAM_EWC_STRATEGIES:
++                logger.debug(f'---set parameter:seqlora_sam_ewc---')
++                shared_trainable_numel = 0
++                for name, param in model.named_parameters():
++                    if name.find("loranew_") != -1:
++                        param.requires_grad = False
++                    elif name.find("lora_") != -1:
++                        param.requires_grad = True
++                        shared_trainable_numel += param.numel()
++                    elif name.find("shared") != -1:
++                        param.requires_grad = False
++                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
++                if shared_trainable_numel == 0:
++                    raise ValueError(
++                        "SeqLoRA-SAM-EWC found no non-empty shared lora_A/B parameters."
++                    )
++            elif training_args.lora_strategy.lower() in UIETrainer.EWCLORA_STRATEGIES:
+                 logger.debug(f'---set paramter:ewclora---')
+                 for name, param in model.named_parameters():
+                     if name.find("loranew_") != -1:
+@@ -1375,14 +1538,21 @@ def main():
+ 
+         # 默认只保存 adapter
+         if training_args.train_method.lower() == 'seqlora':
+-            peft_model_id = training_args.output_dir + "/Seq_adapter"
+-            trainer.model.save_pretrained(peft_model_id)
+-            tokenizer.save_pretrained(peft_model_id)
++            if trainer.is_world_process_zero():
++                peft_model_id = training_args.output_dir + "/Seq_adapter"
++                trainer.model.save_pretrained(peft_model_id)
++                tokenizer.save_pretrained(peft_model_id)
+         elif training_args.train_method.lower() == 'lora':
+-            peft_model_id = training_args.output_dir + "/adapter"
+-            trainer.model.save_pretrained(peft_model_id)
+-            tokenizer.save_pretrained(peft_model_id)
+-            trainer.save_ewclora_state(peft_model_id)
++            if trainer.is_world_process_zero():
++                peft_model_id = training_args.output_dir + "/adapter"
++                trainer.model.save_pretrained(peft_model_id)
++                tokenizer.save_pretrained(peft_model_id)
++                trainer.save_ewclora_state(peft_model_id)
++        if torch.distributed.is_available() and torch.distributed.is_initialized():
++            # Fisher computation is collective on every rank, but adapter and
++            # tokenizer files must have exactly one writer.  Synchronize before
++            # any rank continues into prediction or process teardown.
++            torch.distributed.barrier()
+         
+ 
+         # 修改保存新的模型 
+diff --git a/src/uie_trainer_lora.py b/src/uie_trainer_lora.py
+index 40a17c4..caad5fe 100644
+--- a/src/uie_trainer_lora.py
++++ b/src/uie_trainer_lora.py
+@@ -7,7 +7,8 @@ from absl import logging
+ logging.set_verbosity(logging.ERROR)
+ 
+ import logging
+-from contextlib import nullcontext
++import math
++from contextlib import contextmanager, nullcontext
+ import torch
+ from transformers import GenerationConfig
+ from transformers.trainer_seq2seq import Seq2SeqTrainer
+@@ -21,6 +22,13 @@ from uie_dataset_lora import ANSWER_PREFIX
+ 
+ from optimer_sam import SAM, disable_running_stats, enable_running_stats
+ from optimer_gam import GAM
++from optimer_fishershape import (
++    FisherShape,
++    damp_trace_normalized_fisher,
++    fisher_trace,
++    normalize_fisher_by_trace,
++)
++from optimer_gamfishershape import GAMFisherShapeSAM
+ from optimer_rwp import RWP, RWPAdamW, generate_pertubation
+ # disable_running_stats
+ 
+@@ -76,11 +84,48 @@ class DenserEvalCallback(TrainerCallback):
+ 
+ 
+ class UIETrainer(Seq2SeqTrainer):
+-    EWCLORA_STRATEGIES = {"ewclora", "ewclora_gam", "ewclora-gam"}
++    BASE_EWCLORA_STRATEGIES = {"ewclora", "ewclora_gam", "ewclora-gam"}
++    INCLORA_SAM_EWC_STRATEGIES = {
++        "inclora_sam_ewc",
++        "inclora-sam-ewc",
++    }
++    SEQLORA_SAM_EWC_STRATEGIES = {
++        "seqlora_sam_ewc",
++        "seqlora-sam-ewc",
++    }
++    BASE_FISHERSHAPE_EWCLORA_STRATEGIES = {
++        "ewclora_fishershape",
++        "ewclora-fishershape",
++        "fs_ewclora",
++    } | INCLORA_SAM_EWC_STRATEGIES | SEQLORA_SAM_EWC_STRATEGIES
++    GAMFISHERSHAPE_EWCLORA_STRATEGIES = {
++        "ewclora_gamfishershape",
++        "ewclora_gam_fishershape",
++        "ewclora-gam-fishershape",
++        "ewclora_gamfishershape_sam",
++        "ewclora-gamfishershape-sam",
++    }
++    FISHERSHAPE_EWCLORA_STRATEGIES = (
++        BASE_FISHERSHAPE_EWCLORA_STRATEGIES
++        | GAMFISHERSHAPE_EWCLORA_STRATEGIES
++    )
++    EWCLORA_STRATEGIES = BASE_EWCLORA_STRATEGIES | FISHERSHAPE_EWCLORA_STRATEGIES
++    GAMFISHERSHAPE_OPTIMIZERS = {
++        "gamfishershape-adamw_hf",
++        "gamfishershape_adamw_hf",
++    }
+ 
+     def __init__(self, *args, **kwargs):
+         super().__init__(*args, **kwargs)
+ 
++        # Older Trainer versions expose these flags directly; newer
++        # Accelerate-based versions do not.  The custom loop still references
++        # them, so provide the no-scaling defaults used by fp32/bf16 runs.
++        if not hasattr(self, "do_grad_scaling"):
++            self.do_grad_scaling = False
++        if not hasattr(self, "use_apex"):
++            self.use_apex = False
++
+         # logger.debug("UIETrainer args: %r", args)
+         # logger.debug("UIETrainer kwargs: %r", kwargs)
+ 
+@@ -168,10 +213,75 @@ class UIETrainer(Seq2SeqTrainer):
+             logger.info(f"use_probe, probe_num_classes: {probe_num_classes}; probe_feature_mode:{probe_feature_mode}")
+ 
+         self.ewclora_omega = {}
++        self.ewclora_reference = {}
+         self.ewclora_count_updates = 0
+         self._last_ewclora_fisher_info = ""
++        self._last_fishershape_step_info = {}
++        if self._is_fishershape_ewclora_strategy() and bool(
++            getattr(self.args, "do_train", False)
++        ):
++            optimizer_family = self._optimizer_family(
++                getattr(self.args, "optimizer_type", "")
++            )
++            expected_family = (
++                "gamfishershape"
++                if self._is_gamfishershape_ewclora_strategy()
++                else "fishershape"
++            )
++            if optimizer_family != expected_family:
++                raise ValueError(
++                    f"lora_strategy={self._lora_strategy()} requires optimizer "
++                    f"family {expected_family!r}; got "
++                    f"{getattr(self.args, 'optimizer_type', '')!r}."
++                )
++        damping_beta = float(
++            getattr(self.args, "ewclora_fisher_damping_beta", 0.0)
++        )
++        if not math.isfinite(damping_beta) or not 0.0 <= damping_beta <= 1.0:
++            raise ValueError(
++                "ewclora_fisher_damping_beta must be in [0, 1], "
++                f"got {damping_beta}."
++            )
++        fisher_eps = float(getattr(self.args, "ewclora_fisher_eps", 1e-12))
++        if not math.isfinite(fisher_eps) or fisher_eps <= 0.0:
++            raise ValueError(
++                f"ewclora_fisher_eps must be positive, got {fisher_eps}."
++            )
++        normalize_per_task = bool(
++            getattr(self.args, "ewclora_normalize_fisher", False)
++        )
++        if damping_beta > 0.0 and not normalize_per_task:
++            raise ValueError(
++                "ewclora_fisher_damping_beta > 0 requires "
++                "--ewclora_normalize_fisher true so damping has the documented "
++                "trace-preserving meaning."
++            )
++        ewclora_gamma = float(getattr(self.args, "ewclora_gamma", 1.0))
++        if not math.isfinite(ewclora_gamma) or ewclora_gamma < 0.0:
++            raise ValueError(
++                f"ewclora_gamma must be finite and non-negative, got {ewclora_gamma}."
++            )
++        if (
++            self._is_fishershape_ewclora_strategy()
++            and not self._is_gamfishershape_ewclora_strategy()
++            and str(getattr(self.args, "fs_alpha_mode", "ratio")).lower() == "fixed"
++            and float(getattr(self.args, "fs_alpha", 0.2)) >= 1e-2
++        ):
++            logger.warning(
++                "FisherShape fixed alpha=%s is large; the reference implementation "
++                "diverged at fixed alpha=0.2. Prefer ratio mode or sweep fixed alpha "
++                "from roughly 1e-5 to 1e-3.",
++                self.args.fs_alpha,
++            )
+         if self._is_ewclora_strategy():
+             self._load_ewclora_state()
++        if self._is_seqlora_sam_ewc_strategy():
++            self._initialize_seqlora_ewc_reference()
++        if (
++            self._is_inclora_sam_ewc_strategy()
++            or self._is_seqlora_sam_ewc_strategy()
++        ):
++            self._validate_sam_ewc_state_against_model()
+ 
+     def _lora_strategy(self):
+         return str(getattr(self.args, "lora_strategy", "")).lower()
+@@ -182,6 +292,39 @@ class UIETrainer(Seq2SeqTrainer):
+     def _is_ewclora_gam_strategy(self):
+         return self._lora_strategy() in {"ewclora_gam", "ewclora-gam"}
+ 
++    def _is_inclora_sam_ewc_strategy(self):
++        return self._lora_strategy() in self.INCLORA_SAM_EWC_STRATEGIES
++
++    def _is_seqlora_sam_ewc_strategy(self):
++        return self._lora_strategy() in self.SEQLORA_SAM_EWC_STRATEGIES
++
++    def _is_fishershape_ewclora_strategy(self):
++        return self._lora_strategy() in self.FISHERSHAPE_EWCLORA_STRATEGIES
++
++    def _is_gamfishershape_ewclora_strategy(self):
++        return self._lora_strategy() in self.GAMFISHERSHAPE_EWCLORA_STRATEGIES
++
++    @classmethod
++    def _optimizer_family(cls, optimizer_type):
++        """Return one mutually exclusive custom-optimizer family."""
++
++        name = str(optimizer_type or "").lower()
++        if name in cls.GAMFISHERSHAPE_OPTIMIZERS:
++            return "gamfishershape"
++        if name.startswith("fishershape-") or name.startswith("fishershape_"):
++            return "fishershape"
++        if name.startswith("sam-") or name.startswith("sam_"):
++            return "sam"
++        if name.startswith("gam-") or name.startswith("gam_"):
++            return "gam"
++        return "standard"
++
++    def _shaped_arg(self, suffix, default):
++        """Read independent GAMFisherShape or FisherShape settings."""
++
++        prefix = "gamfs" if self._is_gamfishershape_ewclora_strategy() else "fs"
++        return getattr(self.args, f"{prefix}_{suffix}", default)
++
+     @staticmethod
+     def _resolve_ewclora_state_file(path):
+         if not path:
+@@ -196,25 +339,183 @@ class UIETrainer(Seq2SeqTrainer):
+         return prefix
+ 
+     def _load_ewclora_state(self):
+-        state_file = self._resolve_ewclora_state_file(getattr(self.args, "ewclora_fisher_path", ""))
+-        if not state_file or not os.path.isfile(state_file):
++        requested_path = getattr(self.args, "ewclora_fisher_path", "")
++        state_file = self._resolve_ewclora_state_file(requested_path)
++        if not state_file:
++            logger.info("EWCLoRA starts without previous full-Delta-W Fisher.")
++            return
++        if not os.path.isfile(state_file):
++            if (
++                self._is_inclora_sam_ewc_strategy()
++                or self._is_seqlora_sam_ewc_strategy()
++            ):
++                raise FileNotFoundError(
++                    "A Fisher path was explicitly requested for "
++                    f"{self._lora_strategy()}, but no sidecar exists at "
++                    f"{state_file}. Only an empty path denotes the first task."
++                )
+             logger.info("EWCLoRA starts without previous full-Delta-W Fisher.")
+             return
+ 
+         payload = torch.load(state_file, map_location="cpu")
++        if not isinstance(payload, dict):
++            raise ValueError(
++                f"EWCLoRA Fisher sidecar must contain a dictionary, got {type(payload).__name__}."
++            )
++        state_format = str(payload.get("format", "legacy"))
++        supported_formats = {
++            "legacy",
++            "full_delta_w_fisher_v1",
++            "full_delta_w_fisher_v2",
++            "full_delta_w_fisher_v3",
++        }
++        if state_format not in supported_formats:
++            raise ValueError(
++                f"Unsupported EWCLoRA Fisher format {state_format!r}; "
++                f"expected one of {sorted(supported_formats)}."
++            )
++        if state_format in {"full_delta_w_fisher_v2", "full_delta_w_fisher_v3"}:
++            fisher_space = payload.get("fisher_space")
++            estimator = payload.get("estimator")
++            if fisher_space != "full_delta_w":
++                raise ValueError(
++                    "EWCLoRA Fisher v2 sidecar must use fisher_space='full_delta_w', "
++                    f"got {fisher_space!r}."
++                )
++            if estimator != "batch_empirical":
++                raise ValueError(
++                    "EWCLoRA Fisher v2 sidecar must use estimator='batch_empirical', "
++                    f"got {estimator!r}."
++                )
++        if self._is_seqlora_sam_ewc_strategy():
++            if state_format != "full_delta_w_fisher_v3":
++                raise ValueError(
++                    "SeqLoRA-SAM-EWC requires a v3 Fisher sidecar with a "
++                    "task-start effective-Delta-W reference."
++                )
++            if payload.get("anchor_mode") != "task_start_effective_delta_w":
++                raise ValueError(
++                    "SeqLoRA-SAM-EWC v3 sidecar must use "
++                    "anchor_mode='task_start_effective_delta_w'."
++                )
++            if payload.get("adapter_update_space") != "sequential_shared":
++                raise ValueError(
++                    "SeqLoRA-SAM-EWC v3 sidecar must use "
++                    "adapter_update_space='sequential_shared'."
++                )
++            if payload.get("reference_encoding") != "lora_factors_v1":
++                raise ValueError(
++                    "SeqLoRA-SAM-EWC v3 sidecar must use the compact "
++                    "reference_encoding='lora_factors_v1'."
++                )
++        elif state_format == "full_delta_w_fisher_v3":
++            raise ValueError(
++                "A SeqLoRA anchored Fisher sidecar cannot initialize a fresh-branch "
++                f"EWCLoRA strategy ({self._lora_strategy()!r})."
++            )
+         omega = payload.get("omega", payload)
+         if isinstance(omega, list):
+             names = payload.get("names", [str(i) for i in range(len(omega))])
+             omega = dict(zip(names, omega))
++        if not isinstance(omega, dict):
++            raise ValueError("EWCLoRA Fisher omega must be a dictionary or named list.")
++        if (
++            not omega
++            and (
++                self._is_inclora_sam_ewc_strategy()
++                or self._is_seqlora_sam_ewc_strategy()
++            )
++        ):
++            raise ValueError(
++                f"Explicit {self._lora_strategy()} Fisher sidecar has an empty omega."
++            )
++        for key, value in omega.items():
++            if not torch.is_tensor(value):
++                raise ValueError(
++                    f"EWCLoRA Fisher block {key!r} is not a tensor."
++                )
++            if not torch.isfinite(value).all() or (value < 0).any():
++                raise ValueError(
++                    f"EWCLoRA Fisher block {key!r} must be finite and non-negative."
++                )
+         self.ewclora_omega = {
+             self._normalize_lora_prefix(str(k)): v.detach().cpu().float()
+             for k, v in omega.items()
+         }
++        if self._is_seqlora_sam_ewc_strategy():
++            reference = payload.get("reference")
++            if not isinstance(reference, dict) or not reference:
++                raise ValueError(
++                    "SeqLoRA-SAM-EWC v3 sidecar must contain a non-empty "
++                    "reference Delta-W dictionary."
++                )
++            normalized_reference = {}
++            for key, value in reference.items():
++                if not isinstance(value, dict):
++                    raise ValueError(
++                        f"SeqLoRA EWC reference block {key!r} is not a factor dictionary."
++                    )
++                a_ref = value.get("a")
++                b_ref = value.get("b")
++                if not torch.is_tensor(a_ref) or not torch.is_tensor(b_ref):
++                    raise ValueError(
++                        f"SeqLoRA EWC reference block {key!r} must contain tensor factors a/b."
++                    )
++                if not torch.isfinite(a_ref).all() or not torch.isfinite(b_ref).all():
++                    raise ValueError(
++                        f"SeqLoRA EWC reference factors {key!r} must be finite."
++                    )
++                normalized_reference[self._normalize_lora_prefix(str(key))] = {
++                    "a": a_ref.detach().cpu().float(),
++                    "b": b_ref.detach().cpu().float(),
++                }
++            self.ewclora_reference = normalized_reference
+         self.ewclora_count_updates = int(payload.get("count_updates", 0))
++        normalization = payload.get("normalization", {}) if isinstance(payload, dict) else {}
++        stored_per_task_norm = bool(normalization.get("per_task_trace", False))
++        stored_accumulated_norm = bool(normalization.get("accumulated_trace", False))
++        stored_damping_beta = float(normalization.get("damping_beta", 0.0))
++        requested_per_task_norm = bool(
++            getattr(self.args, "ewclora_normalize_fisher", False)
++        )
++        requested_accumulated_norm = bool(
++            getattr(self.args, "ewclora_normalize_accumulated_fisher", False)
++        )
++        requested_damping_beta = float(
++            getattr(self.args, "ewclora_fisher_damping_beta", 0.0)
++        )
++        mode_mismatch = (
++            stored_per_task_norm != requested_per_task_norm
++            or stored_accumulated_norm != requested_accumulated_norm
++            or abs(stored_damping_beta - requested_damping_beta) > 1e-12
++        )
++        if self.ewclora_omega and mode_mismatch:
++            message = (
++                "EWCLoRA Fisher normalization mismatch: sidecar uses "
++                f"per_task={stored_per_task_norm}, accumulated={stored_accumulated_norm}; "
++                f"damping_beta={stored_damping_beta}; "
++                f"this run requests per_task={requested_per_task_norm}, "
++                f"accumulated={requested_accumulated_norm}, "
++                f"damping_beta={requested_damping_beta}. Mixing these states changes "
++                "the EWC geometry."
++            )
++            continuing_training = bool(getattr(self.args, "do_train", False))
++            if continuing_training and not bool(
++                getattr(self.args, "ewclora_allow_state_mismatch", False)
++            ):
++                raise ValueError(
++                    message
++                    + " Pass --ewclora_allow_state_mismatch true only for an intentional ablation."
++                )
++            if continuing_training:
++                logger.warning(message)
++            else:
++                logger.info("Ignoring Fisher normalization mismatch for prediction-only load: %s", message)
+         logger.info(
+-            "Loaded EWCLoRA Fisher from %s with %d Delta-W blocks.",
++            "Loaded EWCLoRA Fisher from %s with %d Delta-W blocks (format=%s).",
+             state_file,
+             len(self.ewclora_omega),
++            state_format,
+         )
+ 
+     def _iter_loranew_pairs(self, model):
+@@ -240,6 +541,137 @@ class UIETrainer(Seq2SeqTrainer):
+                 if active_adapter in module.loranew_A and active_adapter in module.loranew_B:
+                     yield self._normalize_lora_prefix(f"{module_name}."), module
+ 
++    def _iter_seqlora_delta_modules(self, model):
++        """Yield the factor pair defining SeqLoRA's effective trainable Delta-W."""
++
++        for module_name, module in model.named_modules():
++            if not (
++                hasattr(module, "lora_A")
++                and hasattr(module, "lora_B")
++                and hasattr(module, "loranew_A")
++                and hasattr(module, "loranew_B")
++            ):
++                continue
++            active_adapter = getattr(module, "active_adapter", "default")
++            if (
++                active_adapter in module.lora_A
++                and active_adapter in module.lora_B
++                and module.lora_A[active_adapter].weight.shape[0] > 0
++            ):
++                a_param = module.lora_A[active_adapter].weight
++                b_param = module.lora_B[active_adapter].weight
++                source = "shared"
++            elif (
++                active_adapter in module.loranew_A
++                and active_adapter in module.loranew_B
++            ):
++                # Compatibility fallback for a first task created with r_sum=0.
++                a_param = module.loranew_A[active_adapter].weight
++                b_param = module.loranew_B[active_adapter].weight
++                source = "fresh"
++            else:
++                continue
++            yield (
++                self._normalize_lora_prefix(f"{module_name}."),
++                module,
++                a_param,
++                b_param,
++                source,
++            )
++
++    def _snapshot_seqlora_ewc_reference(self, model):
++        return {
++            prefix: {
++                "a": a_param.detach().cpu().float().clone(),
++                "b": b_param.detach().cpu().float().clone(),
++            }
++            for prefix, _, a_param, b_param, _ in self._iter_seqlora_delta_modules(model)
++        }
++
++    def _initialize_seqlora_ewc_reference(self):
++        current = self._snapshot_seqlora_ewc_reference(self.model)
++        if not current:
++            raise ValueError(
++                "SeqLoRA-SAM-EWC found no effective shared LoRA factor pairs."
++            )
++        if not self.ewclora_reference:
++            self.ewclora_reference = current
++            return
++
++        if set(current) != set(self.ewclora_reference):
++            raise ValueError(
++                "SeqLoRA-SAM-EWC sidecar reference modules do not match the loaded adapter."
++            )
++        for prefix, factors in current.items():
++            stored = self.ewclora_reference[prefix]
++            for factor_name in ("a", "b"):
++                actual = factors[factor_name]
++                expected = stored[factor_name]
++                if tuple(actual.shape) != tuple(expected.shape):
++                    raise ValueError(
++                        f"SeqLoRA EWC reference shape mismatch for {prefix}{factor_name}: "
++                        f"adapter={tuple(actual.shape)}, sidecar={tuple(expected.shape)}."
++                    )
++                if not torch.allclose(actual, expected, rtol=1e-5, atol=1e-7):
++                    raise ValueError(
++                        "SeqLoRA EWC task-start reference does not match the loaded "
++                        f"adapter factors for {prefix}{factor_name}."
++                    )
++            fisher = self.ewclora_omega.get(prefix)
++            expected_delta_shape = (factors["b"].shape[0], factors["a"].shape[1])
++            if fisher is not None and tuple(fisher.shape) != tuple(expected_delta_shape):
++                raise ValueError(
++                    f"SeqLoRA EWC Fisher shape mismatch for {prefix}: "
++                    f"Fisher={tuple(fisher.shape)}, Delta-W={tuple(expected_delta_shape)}."
++                )
++
++    def _set_seqlora_delta_hooks(self, model, enabled):
++        for _, module, _, _, _ in self._iter_seqlora_delta_modules(model):
++            module.seqlora_ewc_register_hook = enabled
++            module.seqlora_ewc_delta_grad = None
++
++    def _validate_sam_ewc_state_against_model(self):
++        """Reject partial or mis-shaped Fisher state for the public methods."""
++
++        if not self.ewclora_omega:
++            return
++        if self._is_seqlora_sam_ewc_strategy():
++            expected_shapes = {
++                prefix: (int(b_param.shape[0]), int(a_param.shape[1]))
++                for prefix, _, a_param, b_param, _
++                in self._iter_seqlora_delta_modules(self.model)
++            }
++            reference_keys = set(self.ewclora_reference)
++            if reference_keys != set(expected_shapes):
++                missing = sorted(set(expected_shapes) - reference_keys)
++                extra = sorted(reference_keys - set(expected_shapes))
++                raise ValueError(
++                    "SeqLoRA-SAM-EWC reference coverage mismatch: "
++                    f"missing={missing}, extra={extra}."
++                )
++        else:
++            expected_shapes = {
++                prefix: (int(p_b.shape[0]), int(p_a.shape[1]))
++                for prefix, p_a, p_b in self._iter_loranew_pairs(self.model)
++            }
++
++        actual_keys = set(self.ewclora_omega)
++        expected_keys = set(expected_shapes)
++        if actual_keys != expected_keys:
++            missing = sorted(expected_keys - actual_keys)
++            extra = sorted(actual_keys - expected_keys)
++            raise ValueError(
++                f"{self._lora_strategy()} Fisher coverage mismatch: "
++                f"missing={missing}, extra={extra}."
++            )
++        for prefix, expected_shape in expected_shapes.items():
++            actual_shape = tuple(self.ewclora_omega[prefix].shape)
++            if actual_shape != expected_shape:
++                raise ValueError(
++                    f"{self._lora_strategy()} Fisher shape mismatch for {prefix!r}: "
++                    f"Fisher={actual_shape}, Delta-W={expected_shape}."
++                )
++
+     def _empty_ewclora_scalar(self, model):
+         try:
+             device = next(model.parameters()).device
+@@ -248,6 +680,8 @@ class UIETrainer(Seq2SeqTrainer):
+         return torch.zeros((), device=device)
+ 
+     def _compute_ewclora_loss(self, model):
++        if self._is_seqlora_sam_ewc_strategy():
++            return self._compute_seqlora_ewc_loss(model)
+         if not self.ewclora_omega:
+             return self._empty_ewclora_scalar(model)
+ 
+@@ -258,6 +692,11 @@ class UIETrainer(Seq2SeqTrainer):
+                 continue
+             delta_w = p_b @ p_a
+             fisher = fisher.to(device=delta_w.device, dtype=delta_w.dtype)
++            if tuple(fisher.shape) != tuple(delta_w.shape):
++                raise ValueError(
++                    f"EWCLoRA Fisher shape mismatch for {prefix!r}: "
++                    f"Fisher={tuple(fisher.shape)}, Delta-W={tuple(delta_w.shape)}."
++                )
+             term = (fisher * delta_w.pow(2)).sum()
+             penalty = term if penalty is None else penalty + term
+ 
+@@ -265,6 +704,38 @@ class UIETrainer(Seq2SeqTrainer):
+             return self._empty_ewclora_scalar(model)
+         return 0.5 * float(getattr(self.args, "ewclora_lambda", 1.0)) * penalty
+ 
++    def _compute_seqlora_ewc_loss(self, model):
++        if not self.ewclora_omega:
++            return self._empty_ewclora_scalar(model)
++        if not self.ewclora_reference:
++            raise RuntimeError(
++                "SeqLoRA-SAM-EWC has Fisher state but no task-start Delta-W reference."
++            )
++
++        penalty = None
++        for prefix, _, a_param, b_param, _ in self._iter_seqlora_delta_modules(model):
++            fisher = self.ewclora_omega.get(prefix)
++            reference = self.ewclora_reference.get(prefix)
++            if fisher is None or reference is None:
++                continue
++            delta_w = b_param @ a_param
++            a_ref = reference["a"].to(device=delta_w.device, dtype=delta_w.dtype)
++            b_ref = reference["b"].to(device=delta_w.device, dtype=delta_w.dtype)
++            delta_ref = b_ref @ a_ref
++            fisher = fisher.to(device=delta_w.device, dtype=delta_w.dtype)
++            if tuple(fisher.shape) != tuple(delta_w.shape):
++                raise ValueError(
++                    f"SeqLoRA EWC Fisher shape mismatch for {prefix!r}: "
++                    f"Fisher={tuple(fisher.shape)}, Delta-W={tuple(delta_w.shape)}."
++                )
++            delta_update = delta_w - delta_ref
++            term = (fisher * delta_update.pow(2)).sum()
++            penalty = term if penalty is None else penalty + term
++
++        if penalty is None:
++            return self._empty_ewclora_scalar(model)
++        return 0.5 * float(getattr(self.args, "ewclora_lambda", 1.0)) * penalty
++
+     def _set_ewclora_delta_hooks(self, model, enabled):
+         for _, module in self._iter_loranew_modules(model):
+             module.ewclora_register_hook = enabled
+@@ -297,6 +768,8 @@ class UIETrainer(Seq2SeqTrainer):
+         return {k: (v / denom).detach().cpu() for k, v in fisher_sums.items()}
+ 
+     def _compute_ewclora_fisher(self, model, max_batches=None):
++        if self._is_seqlora_sam_ewc_strategy():
++            return self._compute_seqlora_ewc_fisher(model, max_batches=max_batches)
+         modules = list(self._iter_loranew_modules(model))
+         fisher_sums = {}
+         for prefix, module in modules:
+@@ -345,6 +818,61 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+         return self._distributed_average_fisher(fisher_sums, sample_count)
+ 
++    def _compute_seqlora_ewc_fisher(self, model, max_batches=None):
++        modules = list(self._iter_seqlora_delta_modules(model))
++        fisher_sums = {
++            prefix: torch.zeros(
++                (b_param.shape[0], a_param.shape[1]),
++                dtype=torch.float32,
++                device=a_param.device,
++            )
++            for prefix, _, a_param, b_param, _ in modules
++        }
++        if not fisher_sums:
++            logger.warning(
++                "SeqLoRA EWC Fisher skipped because no effective shared Delta-W blocks were found."
++            )
++            return {}
++
++        max_batches = None if max_batches in (None, 0) else int(max_batches)
++        sample_count = 0
++        was_training = model.training
++        model.eval()
++        self._set_seqlora_delta_hooks(model, True)
++        dataloader = self.get_train_dataloader()
++        try:
++            for step, inputs in enumerate(dataloader):
++                if max_batches is not None and step >= max_batches:
++                    break
++                local_inputs = self._prepare_inputs(inputs)
++                batch_size = self._infer_batch_size(local_inputs)
++                model.zero_grad()
++                for _, module, _, _, _ in modules:
++                    module.seqlora_ewc_delta_grad = None
++
++                with self.compute_loss_context_manager():
++                    # As in fresh EWCLoRA, estimate only the current-task CE
++                    # Fisher in full effective Delta-W space.
++                    loss = self.compute_loss(model, local_inputs)
++                if self.args.n_gpu > 1:
++                    loss = loss.mean()
++                loss.backward()
++
++                for prefix, module, _, _, _ in modules:
++                    grad = getattr(module, "seqlora_ewc_delta_grad", None)
++                    if grad is not None:
++                        fisher_sums[prefix] += (
++                            grad.detach().float().pow(2) * batch_size
++                        )
++                sample_count += batch_size
++                model.zero_grad()
++        finally:
++            self._set_seqlora_delta_hooks(model, False)
++            if was_training:
++                model.train()
++
++        return self._distributed_average_fisher(fisher_sums, sample_count)
++
+     def maybe_update_ewclora_fisher(self):
+         if not self._is_ewclora_strategy():
+             return
+@@ -353,18 +881,72 @@ class UIETrainer(Seq2SeqTrainer):
+             self.model,
+             max_batches=getattr(self.args, "ewclora_fisher_max_batches", None),
+         )
++        if not fisher_current:
++            logger.warning("EWCLoRA Fisher update produced no Delta-W blocks; state was not changed.")
++            return
++
++        eps = float(getattr(self.args, "ewclora_fisher_eps", 1e-12))
++        raw_trace = fisher_trace(fisher_current)
++        normalize_per_task = bool(
++            getattr(self.args, "ewclora_normalize_fisher", False)
++        )
++        if normalize_per_task:
++            fisher_current, _ = normalize_fisher_by_trace(fisher_current, eps=eps)
++
++        damping_beta = float(
++            getattr(self.args, "ewclora_fisher_damping_beta", 0.0)
++        )
++        if damping_beta > 0.0:
++            if not normalize_per_task:
++                logger.warning(
++                    "ewclora_fisher_damping_beta is being applied to a non-normalized "
++                    "Fisher; the trace-preserving interpretation no longer holds."
++                )
++            fisher_current = damp_trace_normalized_fisher(
++                fisher_current,
++                beta=damping_beta,
++            )
++
++        task_trace = fisher_trace(fisher_current)
+         gamma = float(getattr(self.args, "ewclora_gamma", 1.0))
+-        updated = {}
++        # Preserve historical blocks if a target-module set changes, while
++        # still decaying them according to online EWC.
++        updated = {
++            prefix: gamma * fisher
++            for prefix, fisher in self.ewclora_omega.items()
++        }
+         for prefix, fisher in fisher_current.items():
+-            old = self.ewclora_omega.get(prefix)
+-            updated[prefix] = fisher if old is None else gamma * old + fisher
++            previous = updated.get(prefix)
++            updated[prefix] = fisher if previous is None else previous + fisher
++
++        normalize_accumulated = bool(
++            getattr(self.args, "ewclora_normalize_accumulated_fisher", False)
++        )
++        if normalize_accumulated:
++            updated, _ = normalize_fisher_by_trace(updated, eps=eps)
+         self.ewclora_omega = updated
++        if self._is_seqlora_sam_ewc_strategy():
++            # Online EWC anchors the next task at the adapter produced by the
++            # task whose Fisher was just estimated.  Store compact factors
++            # rather than another full Delta-W tensor per target module.
++            self.ewclora_reference = self._snapshot_seqlora_ewc_reference(
++                self.model
++            )
++        if (
++            self._is_inclora_sam_ewc_strategy()
++            or self._is_seqlora_sam_ewc_strategy()
++        ):
++            self._validate_sam_ewc_state_against_model()
+         self.ewclora_count_updates += 1
+         if updated:
+             means = [v.float().mean().item() for v in updated.values()]
+             maxs = [v.float().max().item() for v in updated.values()]
++            accumulated_trace = fisher_trace(updated)
+             self._last_ewclora_fisher_info = (
+-                f"blocks={len(updated)}, mean={sum(means) / len(means):.3e}, max={max(maxs):.3e}"
++                f"blocks={len(updated)}, raw_task_trace={raw_trace:.3e}, "
++                f"task_trace={task_trace:.3e}, accumulated_trace={accumulated_trace:.3e}, "
++                f"mean={sum(means) / len(means):.3e}, max={max(maxs):.3e}, "
++                f"normalized={normalize_per_task}, damping_beta={damping_beta:.3g}"
+             )
+             logger.info("EWCLoRA Fisher updated: %s", self._last_ewclora_fisher_info)
+ 
+@@ -375,16 +957,77 @@ class UIETrainer(Seq2SeqTrainer):
+             return
+         os.makedirs(save_directory, exist_ok=True)
+         state_file = os.path.join(save_directory, "ewclora_fisher.pt")
+-        torch.save(
+-            {
+-                "omega": {k: v.detach().cpu() for k, v in self.ewclora_omega.items()},
+-                "count_updates": self.ewclora_count_updates,
+-                "lambda": float(getattr(self.args, "ewclora_lambda", 1.0)),
+-                "gamma": float(getattr(self.args, "ewclora_gamma", 1.0)),
+-                "format": "full_delta_w_fisher_v1",
+-            },
+-            state_file,
++        payload = {
++            "omega": {k: v.detach().cpu() for k, v in self.ewclora_omega.items()},
++            "count_updates": self.ewclora_count_updates,
++            "lambda": float(getattr(self.args, "ewclora_lambda", 1.0)),
++            "gamma": float(getattr(self.args, "ewclora_gamma", 1.0)),
++            "format": "full_delta_w_fisher_v1",
++        }
++        uses_shaped_fisher_state = (
++            self._is_fishershape_ewclora_strategy()
++            or bool(getattr(self.args, "ewclora_normalize_fisher", False))
++            or bool(
++                getattr(self.args, "ewclora_normalize_accumulated_fisher", False)
++            )
++            or float(getattr(self.args, "ewclora_fisher_damping_beta", 0.0)) != 0.0
+         )
++        if uses_shaped_fisher_state:
++            payload.update(
++                {
++                    "format": "full_delta_w_fisher_v2",
++                    "fisher_space": "full_delta_w",
++                    "estimator": "batch_empirical",
++                    "strategy": self._lora_strategy(),
++                    "normalization": {
++                        "per_task_trace": bool(
++                            getattr(self.args, "ewclora_normalize_fisher", False)
++                        ),
++                        "accumulated_trace": bool(
++                            getattr(
++                                self.args,
++                                "ewclora_normalize_accumulated_fisher",
++                                False,
++                            )
++                        ),
++                        "damping_beta": float(
++                            getattr(
++                                self.args,
++                                "ewclora_fisher_damping_beta",
++                                0.0,
++                            )
++                        ),
++                        "eps": float(
++                            getattr(self.args, "ewclora_fisher_eps", 1e-12)
++                        ),
++                    },
++                }
++            )
++        if self._is_seqlora_sam_ewc_strategy():
++            if not self.ewclora_reference:
++                raise RuntimeError(
++                    "SeqLoRA-SAM-EWC cannot save Fisher state without an "
++                    "effective-Delta-W reference."
++                )
++            payload.update(
++                {
++                    "format": "full_delta_w_fisher_v3",
++                    "fisher_space": "full_delta_w",
++                    "estimator": "batch_empirical",
++                    "strategy": self._lora_strategy(),
++                    "adapter_update_space": "sequential_shared",
++                    "anchor_mode": "task_start_effective_delta_w",
++                    "reference_encoding": "lora_factors_v1",
++                    "reference": {
++                        prefix: {
++                            "a": factors["a"].detach().cpu(),
++                            "b": factors["b"].detach().cpu(),
++                        }
++                        for prefix, factors in self.ewclora_reference.items()
++                    },
++                }
++            )
++        torch.save(payload, state_file)
+         logger.info("Saved EWCLoRA Fisher state to %s", state_file)
+ 
+     @staticmethod
+@@ -421,6 +1064,123 @@ class UIETrainer(Seq2SeqTrainer):
+             if grad is not None
+         }
+ 
++    def _compute_fishershape_regularization_grad_cache(self, model, params):
++        """Build clean-point EWC/OLoRA gradients outside both FS probes."""
++
++        regularization = None
++        metrics = {"ewc_loss": 0.0, "olora_loss": 0.0}
++        with torch.enable_grad():
++            # lambda=0 is the phase-1 SAM-equivalence path.  Skip the EWC
++            # graph entirely even when a historical sidecar was loaded, so
++            # the training direction is exactly the two-pass task gradient.
++            if self.ewclora_omega and float(
++                getattr(self.args, "ewclora_lambda", 1.0)
++            ) != 0.0:
++                ewc_loss = self._compute_ewclora_loss(model)
++                metrics["ewc_loss"] = float(ewc_loss.detach().float().item())
++                if ewc_loss.requires_grad:
++                    regularization = ewc_loss
++
++            if bool(self._shaped_arg("include_olora_regularization", False)):
++                orthogonal_loss, l2_loss = self._compute_olora_regularization_terms(model)
++                lambda_1 = float(getattr(self.args, "olora_lamda_1", 0.0))
++                lambda_2 = float(getattr(self.args, "olora_lamda_2", 0.0))
++                olora_loss = None
++                if lambda_1 != 0.0:
++                    olora_loss = lambda_1 * orthogonal_loss
++                if lambda_2 != 0.0:
++                    weighted_l2 = lambda_2 * l2_loss
++                    olora_loss = weighted_l2 if olora_loss is None else olora_loss + weighted_l2
++                if olora_loss is not None:
++                    metrics["olora_loss"] = float(olora_loss.detach().float().item())
++                    regularization = (
++                        olora_loss
++                        if regularization is None
++                        else regularization + olora_loss
++                    )
++
++        if regularization is None or not regularization.requires_grad:
++            return {}, metrics
++        grads = torch.autograd.grad(
++            regularization,
++            params,
++            allow_unused=True,
++            retain_graph=False,
++        )
++        cache = {
++            id(param): grad.detach().clone()
++            for param, grad in zip(params, grads)
++            if grad is not None
++        }
++        return cache, metrics
++
++    def _build_fishershape_additive_projector(self, regularization_grad_cache, metrics):
++        """Compose g_final = g_FS + g_EWC (+ optional clean OLoRA)."""
++
++        def projector(param_groups):
++            fs_norm_sq = 0.0
++            regularization_norm_sq = 0.0
++            combined_norm_sq = 0.0
++            dot = 0.0
++            with torch.no_grad():
++                for group in param_groups:
++                    for param in group["params"]:
++                        fs_grad = None if param.grad is None else param.grad.detach().clone()
++                        regularization_grad = regularization_grad_cache.get(id(param))
++                        if regularization_grad is not None:
++                            regularization_grad = regularization_grad.to(
++                                device=param.device,
++                                dtype=param.dtype,
++                            )
++                        if fs_grad is None and regularization_grad is None:
++                            continue
++                        if fs_grad is None:
++                            combined = regularization_grad.clone()
++                        elif regularization_grad is None:
++                            combined = fs_grad
++                        else:
++                            combined = fs_grad + regularization_grad
++
++                        if param.grad is None:
++                            param.grad = combined.clone()
++                        else:
++                            param.grad.copy_(combined)
++
++                        if fs_grad is not None:
++                            fs_norm_sq += float(fs_grad.detach().float().pow(2).sum().item())
++                        if regularization_grad is not None:
++                            regularization_norm_sq += float(
++                                regularization_grad.detach().float().pow(2).sum().item()
++                            )
++                        if fs_grad is not None and regularization_grad is not None:
++                            dot += float(
++                                (fs_grad.detach().float() * regularization_grad.detach().float())
++                                .sum()
++                                .item()
++                            )
++                        combined_norm_sq += float(
++                            combined.detach().float().pow(2).sum().item()
++                        )
++
++            fs_norm = fs_norm_sq ** 0.5
++            regularization_norm = regularization_norm_sq ** 0.5
++            metrics.update(
++                {
++                    "fs_direction_norm": fs_norm,
++                    "regularization_grad_norm": regularization_norm,
++                    "combined_grad_norm": combined_norm_sq ** 0.5,
++                    "regularization_to_fs_ratio": regularization_norm
++                    / (fs_norm + float(self._shaped_arg("xi", 1e-12))),
++                    "cos_fs_regularization": dot
++                    / (
++                        fs_norm * regularization_norm
++                        + float(self._shaped_arg("xi", 1e-12))
++                    ),
++                }
++            )
++
++        return projector
++
+     def _build_ewclora_gam_projector(self, ewc_grad_cache):
+         eps = float(getattr(self.args, "ewclora_project_eps", 1e-12))
+ 
+@@ -440,6 +1200,37 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+         return projector
+ 
++    def _compute_olora_regularization_terms(self, model):
++        orthogonal_loss = self._empty_ewclora_scalar(model)
++        l2_loss = self._empty_ewclora_scalar(model)
++        named_params = list(model.named_parameters())
++
++        for name, param in named_params:
++            if "lora_A" not in name:
++                continue
++            prefix = name.split("lora_A")[0]
++            for name_, param_ in named_params:
++                if "loranew_A" in name_ and prefix == name_.split("loranew_A")[0]:
++                    orthogonal_loss = orthogonal_loss + torch.abs(torch.mm(param, param_.T)).sum()
++                    break
++
++        for name, param in named_params:
++            if "loranew_" in name:
++                l2_loss = l2_loss + torch.norm(param, p=2)
++
++        return orthogonal_loss, l2_loss
++
++    def _apply_olora_regularization(self, model, loss, log_prefix="", label="OLoRA"):
++        orthogonal_loss, l2_loss = self._compute_olora_regularization_terms(model)
++        lamda_1 = self.args.olora_lamda_1
++        lamda_2 = self.args.olora_lamda_2
++        logger.info(
++            f"{log_prefix}{label} orthogonal_loss: {orthogonal_loss.item():.4f}; "
++            f"l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; "
++            f"lambda_olora_1: {lamda_1}; lambda_olora_2: {lamda_2}"
++        )
++        return loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
++
+     def _is_deepspeed_enabled_compat(self, args):
+         return bool(getattr(self, "is_deepspeed_enabled", False) or getattr(args, "deepspeed", None))
+ 
+@@ -843,7 +1634,15 @@ class UIETrainer(Seq2SeqTrainer):
+         len_dataloader = None
+         if has_length(train_dataloader):
+             len_dataloader = len(train_dataloader)
+-            num_update_steps_per_epoch = len_dataloader // args.gradient_accumulation_steps
++            if "fishershape" in str(getattr(args, "optimizer_type", "")).lower():
++                # FisherShape caches and replays a complete effective batch.
++                # Keep the final short window instead of silently carrying it
++                # into the next epoch or dropping it at the end of training.
++                num_update_steps_per_epoch = math.ceil(
++                    len_dataloader / args.gradient_accumulation_steps
++                )
++            else:
++                num_update_steps_per_epoch = len_dataloader // args.gradient_accumulation_steps
+             num_update_steps_per_epoch = max(num_update_steps_per_epoch, 1)
+             num_examples = self.num_examples(train_dataloader)
+             if args.max_steps > 0:
+@@ -1038,14 +1837,33 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+         total_batched_samples = 0
+         optimizer_type_name = str(getattr(self.args, "optimizer_type", "")).lower()
+-        sam_optimizer_active = "sam" in optimizer_type_name
+-        gam_optimizer_active = "gam" in optimizer_type_name
++        optimizer_family = self._optimizer_family(optimizer_type_name)
++        sam_optimizer_active = optimizer_family == "sam"
++        gam_optimizer_active = optimizer_family == "gam"
++        fishershape_optimizer_active = optimizer_family in {
++            "fishershape",
++            "gamfishershape",
++        }
+         sam_accumulated_inputs = []
+         gam_accumulated_inputs = []
++        fishershape_accumulated_inputs = []
++        fishershape_accumulated_rng_states = []
+         if sam_optimizer_active and self.deepspeed:
+             raise NotImplementedError("Accumulation-aware SAM currently supports the standard/DDP path only, not DeepSpeed.")
+         if gam_optimizer_active and self.deepspeed:
+             raise NotImplementedError("Accumulation-aware GAM currently supports the standard/DDP path only, not DeepSpeed.")
++        if fishershape_optimizer_active and self.deepspeed:
++            raise NotImplementedError(
++                "Accumulation-aware FisherShape currently supports the standard/DDP path only, not DeepSpeed."
++            )
++        if fishershape_optimizer_active and (
++            bool(getattr(self.args, "fp16", False))
++            or self.do_grad_scaling
++            or self.use_apex
++        ):
++            raise NotImplementedError(
++                "FisherShape currently supports fp32/bf16 autocast, but not fp16/Apex gradient scaling."
++            )
+         for epoch in range(epochs_trained, num_train_epochs):
+             if isinstance(train_dataloader, DataLoader) and isinstance(train_dataloader.sampler, DistributedSampler):
+                 train_dataloader.sampler.set_epoch(epoch)
+@@ -1110,6 +1928,33 @@ class UIETrainer(Seq2SeqTrainer):
+                     # GAM needs the whole accumulation window so each closure replay sees the same effective batch.
+                     gam_accumulated_inputs.append(inputs)
+ 
++                if fishershape_optimizer_active:
++                    # Both FisherShape probes must replay the same effective
++                    # batch, including every micro-batch in this accumulation window.
++                    fishershape_accumulated_inputs.append(inputs)
++                    fishershape_accumulated_rng_states.append(
++                        self._capture_fishershape_rng_state()
++                        if bool(self._shaped_arg("replay_rng_state", True))
++                        else None
++                    )
++
++                # skip_first_batches() restarts enumerate() at zero on resume;
++                # account for the consumed prefix when locating the epoch tail.
++                is_last_micro_batch = (
++                    step + 1 + steps_skipped
++                ) == steps_in_epoch
++                fishershape_window_size = len(fishershape_accumulated_inputs)
++                flush_fishershape_remainder = (
++                    fishershape_optimizer_active
++                    and is_last_micro_batch
++                    and fishershape_window_size < args.gradient_accumulation_steps
++                )
++                accumulation_window_incomplete = (
++                    fishershape_window_size < args.gradient_accumulation_steps
++                    if fishershape_optimizer_active
++                    else total_batched_samples % args.gradient_accumulation_steps != 0
++                )
++
+ 
+ 
+                 if self.args.gradient_accumulation_steps == 1 and  ("rpw_single_jiou" in self.args.rwp_type):
+@@ -1125,7 +1970,8 @@ class UIETrainer(Seq2SeqTrainer):
+                 else :
+ 
+                     if (
+-                        (total_batched_samples % args.gradient_accumulation_steps != 0)
++                        accumulation_window_incomplete
++                        and not flush_fishershape_remainder
+                         and args.local_rank != -1
+                         and args._no_sync_in_gradient_accumulation
+                         
+@@ -1739,10 +2585,24 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+ 
+                 # 真正进行梯度更新的地方
+-                if total_batched_samples % args.gradient_accumulation_steps == 0 or (
+-                    # last step in epoch but step is always smaller than gradient_accumulation_steps
+-                    steps_in_epoch <= args.gradient_accumulation_steps
+-                    and (step + 1) == steps_in_epoch
++                standard_optimizer_step_due = (
++                    total_batched_samples % args.gradient_accumulation_steps == 0
++                    or (
++                        # Preserve the legacy short-epoch behavior for the
++                        # existing optimizers.
++                        steps_in_epoch <= args.gradient_accumulation_steps
++                        and (step + 1) == steps_in_epoch
++                    )
++                )
++                fishershape_optimizer_step_due = (
++                    fishershape_optimizer_active
++                    and (
++                        fishershape_window_size >= args.gradient_accumulation_steps
++                        or is_last_micro_batch
++                    )
++                )
++                if fishershape_optimizer_step_due or (
++                    not fishershape_optimizer_active and standard_optimizer_step_due
+                 ):
+                     
+                     # total_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), float('inf'))
+@@ -1750,7 +2610,13 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+                     # Gradient clipping
+                     # 进行梯度裁剪
+-                    if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed and not gam_optimizer_active:
++                    if (
++                        args.max_grad_norm is not None
++                        and args.max_grad_norm > 0
++                        and not self.deepspeed
++                        and not gam_optimizer_active
++                        and not fishershape_optimizer_active
++                    ):
+                         self._clip_gradients_for_step(model)
+ 
+                     
+@@ -1783,7 +2649,7 @@ class UIETrainer(Seq2SeqTrainer):
+                     # else:
+                     #     self.optimizer.step()
+                     # elif hasattr(self.optimizer, "first_step") and hasattr(self.optimizer, "second_step"):
+-                    elif 'sam' in self.args.optimizer_type:
++                    elif sam_optimizer_active:
+                         # === For SAM Optimizer: first_step-second_step two phases ===
+                         logger.debug(f"SAM优化器训练步骤开始,参数 rho={self.args.sam_rho}")
+                         if not sam_accumulated_inputs:
+@@ -1823,7 +2689,137 @@ class UIETrainer(Seq2SeqTrainer):
+                     
+                     
+                     
+-                    elif 'gam' in self.args.optimizer_type:
++                    elif fishershape_optimizer_active:
++                        if not fishershape_accumulated_inputs:
++                            raise RuntimeError(
++                                "FisherShape accumulation window is empty before optimizer replay."
++                            )
++                        if not self._is_fishershape_ewclora_strategy():
++                            raise ValueError(
++                                "A FisherShape-family optimizer requires a "
++                                "FisherShape EWCLoRA strategy."
++                            )
++
++                        params = self._flatten_optimizer_params(self.optimizer)
++                        actual_window_size = len(fishershape_accumulated_inputs)
++                        if actual_window_size < args.gradient_accumulation_steps:
++                            # The first pass divided every micro-loss by the
++                            # configured GA.  Rescale the short final window to
++                            # its actual mean before constructing the probe.
++                            remainder_scale = (
++                                float(args.gradient_accumulation_steps)
++                                / float(actual_window_size)
++                            )
++                            with torch.no_grad():
++                                for param in params:
++                                    if param.grad is not None:
++                                        param.grad.mul_(remainder_scale)
++                        regularization_grad_cache, fs_step_metrics = (
++                            self._compute_fishershape_regularization_grad_cache(
++                                model,
++                                params,
++                            )
++                        )
++                        self.optimizer.set_direction_projector(
++                            self._build_fishershape_additive_projector(
++                                regularization_grad_cache,
++                                fs_step_metrics,
++                            )
++                        )
++
++                        def fishershape_closure():
++                            self.optimizer.zero_grad(set_to_none=True)
++                            total_fs_loss = self._run_fishershape_replay_pass(
++                                model,
++                                fishershape_accumulated_inputs,
++                                fishershape_accumulated_rng_states,
++                            )
++                            return None, total_fs_loss
++
++                        try:
++                            _, fs_loss_value = self.optimizer.step(
++                                closure=fishershape_closure,
++                                first_grad_ready=True,
++                                clip_grad_norm=(
++                                    args.max_grad_norm
++                                    if args.max_grad_norm is not None
++                                    and args.max_grad_norm > 0
++                                    and not self.deepspeed
++                                    else None
++                                ),
++                            )
++                            fs_step_metrics.update(
++                                dict(getattr(self.optimizer, "last_stats", {}) or {})
++                            )
++                            self._last_fishershape_step_info = fs_step_metrics
++                            if optimizer_family == "gamfishershape":
++                                method_label = (
++                                    "GAMFisherShape-SAM-OLoRA"
++                                    if bool(
++                                        self._shaped_arg(
++                                            "include_olora_regularization",
++                                            False,
++                                        )
++                                    )
++                                    else "GAMFisherShape-SAM"
++                                )
++                            else:
++                                method_label = "FisherShape"
++                            logger.info(
++                                "%s step: probe_loss=%.6f g0=%.3e delta_g=%.3e "
++                                "rF=%.3e cos(g0,rF)=%.3e coeff=%.3e shape/g0=%.3e ewc_loss=%.3e "
++                                "olora_loss=%.3e reg_grad=%.3e reg/fs=%.3e "
++                                "cos(fs,reg)=%.3e gam_probes=%.0f",
++                                method_label,
++                                float(
++                                    fs_loss_value.detach().float().item()
++                                    if torch.is_tensor(fs_loss_value)
++                                    else fs_loss_value
++                                ),
++                                float(fs_step_metrics.get("fs_g0_norm", 0.0)),
++                                float(fs_step_metrics.get("fs_delta_grad_norm", 0.0)),
++                                float(fs_step_metrics.get("fs_rf_norm", 0.0)),
++                                float(fs_step_metrics.get("fs_cos_g0_rf", 0.0)),
++                                float(fs_step_metrics.get("fs_coefficient", 0.0)),
++                                float(
++                                    fs_step_metrics.get(
++                                        "fs_shaping_to_g0_ratio",
++                                        0.0,
++                                    )
++                                ),
++                                float(fs_step_metrics.get("ewc_loss", 0.0)),
++                                float(fs_step_metrics.get("olora_loss", 0.0)),
++                                float(
++                                    fs_step_metrics.get(
++                                        "regularization_grad_norm",
++                                        0.0,
++                                    )
++                                ),
++                                float(
++                                    fs_step_metrics.get(
++                                        "regularization_to_fs_ratio",
++                                        0.0,
++                                    )
++                                ),
++                                float(
++                                    fs_step_metrics.get(
++                                        "cos_fs_regularization",
++                                        0.0,
++                                    )
++                                ),
++                                float(
++                                    fs_step_metrics.get(
++                                        "gamfs_gam_probe_count",
++                                        0.0,
++                                    )
++                                ),
++                            )
++                        finally:
++                            self.optimizer.set_direction_projector(None)
++                            fishershape_accumulated_inputs.clear()
++                            fishershape_accumulated_rng_states.clear()
++
++                    elif gam_optimizer_active:
+                         # === GAM Optimizer: multi-step closure-based update ===
+                         logger.debug("GAM优化器训练步骤开始")
+                         if not gam_accumulated_inputs:
+@@ -2205,6 +3201,84 @@ class UIETrainer(Seq2SeqTrainer):
+                     args=gam_args,
+                     grad_reduce=str(getattr(self.args, "gam_grad_reduce", "mean")),
+                 )
++            elif optim_name in self.GAMFISHERSHAPE_OPTIMIZERS:
++                trainable_params = [
++                    param for param in self.model.parameters() if param.requires_grad
++                ]
++                if not trainable_params:
++                    raise ValueError(
++                        "GAMFisherShape-SAM found no trainable model parameters."
++                    )
++                base_opt = torch.optim.AdamW(
++                    trainable_params,
++                    lr=self.args.learning_rate,
++                    betas=(
++                        float(getattr(self.args, "adam_beta1", 0.9)),
++                        float(getattr(self.args, "adam_beta2", 0.999)),
++                    ),
++                    eps=float(getattr(self.args, "adam_epsilon", 1e-8)),
++                    weight_decay=float(getattr(self.args, "weight_decay", 0.0)),
++                )
++                self.optimizer = GAMFisherShapeSAM(
++                    trainable_params,
++                    base_optimizer=base_opt,
++                    model=self.model,
++                    rho=float(getattr(self.args, "gamfs_rho", 0.05)),
++                    mode=str(getattr(self.args, "gamfs_mode", "sam")),
++                    adaptive=bool(getattr(self.args, "gamfs_adaptive", False)),
++                    perturb_eps=float(getattr(self.args, "gamfs_xi", 1e-12)),
++                    grad_reduce=str(
++                        getattr(self.args, "gamfs_grad_reduce", "mean")
++                    ),
++                )
++                logger.info(
++                    "Created GAMFisherShape-SAM AdamW: mode=%s rho=%s "
++                    "adaptive=%s; GAM four-probe path disabled",
++                    self.args.gamfs_mode,
++                    self.args.gamfs_rho,
++                    self.args.gamfs_adaptive,
++                )
++            elif optim_name == "fishershape-adamw_hf":
++                trainable_params = [
++                    param for param in self.model.parameters() if param.requires_grad
++                ]
++                if not trainable_params:
++                    raise ValueError("FisherShape found no trainable model parameters.")
++                # torch.optim.AdamW remains available across Transformers
++                # versions, including releases that removed transformers.AdamW.
++                base_opt = torch.optim.AdamW(
++                    trainable_params,
++                    lr=self.args.learning_rate,
++                    betas=(
++                        float(getattr(self.args, "adam_beta1", 0.9)),
++                        float(getattr(self.args, "adam_beta2", 0.999)),
++                    ),
++                    eps=float(getattr(self.args, "adam_epsilon", 1e-8)),
++                    weight_decay=float(getattr(self.args, "weight_decay", 0.0)),
++                )
++                self.optimizer = FisherShape(
++                    trainable_params,
++                    base_optimizer=base_opt,
++                    model=self.model,
++                    rho=float(getattr(self.args, "fs_rho", 0.05)),
++                    alpha=float(getattr(self.args, "fs_alpha", 0.2)),
++                    alpha_mode=str(getattr(self.args, "fs_alpha_mode", "ratio")),
++                    sam_equivalent=bool(
++                        getattr(self.args, "fs_sam_equivalent", False)
++                    ),
++                    adaptive=bool(getattr(self.args, "fs_adaptive", False)),
++                    perturb_eps=float(getattr(self.args, "fs_xi", 1e-12)),
++                    grad_reduce=str(getattr(self.args, "fs_grad_reduce", "mean")),
++                )
++                logger.info(
++                    "Created FisherShape-AdamW: rho=%s alpha=%s alpha_mode=%s "
++                    "sam_equivalent=%s adaptive=%s",
++                    self.args.fs_rho,
++                    self.args.fs_alpha,
++                    self.args.fs_alpha_mode,
++                    self.args.fs_sam_equivalent,
++                    self.args.fs_adaptive,
++                )
+             elif optim_name == "rwp-adamw_hf":
+                 # RWP wrapping AdamW — single-class convenience variant
+                 self.optimizer = RWPAdamW(
+@@ -2239,7 +3313,7 @@ class UIETrainer(Seq2SeqTrainer):
+             from transformers.optimization import get_constant_schedule
+             self.lr_scheduler = get_constant_schedule(
+                 self.optimizer.base_optimizer)
+-        elif 'gam' in optim_name:
++        elif 'gam' in optim_name or 'fishershape' in optim_name:
+             from transformers.optimization import get_constant_schedule
+             self.lr_scheduler = get_constant_schedule(self.optimizer.base_optimizer)
+         else:
+@@ -2253,27 +3327,7 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+         strategy = self.args.lora_strategy.lower()
+         if strategy == "olora":
+-            orthogonal_loss = 0.
+-            for name, param in model.named_parameters():
+-                if "lora_A" in name:
+-                    for name_, param_ in model.named_parameters():
+-                        if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
+-                            orthogonal_loss += torch.abs(torch.mm(param, param_.T)).sum()
+-                            break
+-
+-            l2_loss = 0.
+-            for name, param in model.named_parameters():
+-                if "loranew_" in name:
+-                    l2_loss += torch.norm(param, p=2)
+-
+-            lamda_1 = self.args.olora_lamda_1
+-            lamda_2 = self.args.olora_lamda_2
+-            logger.info(
+-                f"{log_prefix}orthogonal_loss: {orthogonal_loss.item():.4f}; "
+-                f"l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; "
+-                f"λ1: {lamda_1}; λ2: {lamda_2}"
+-            )
+-            loss = loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
++            loss = self._apply_olora_regularization(model, loss, log_prefix=log_prefix)
+         elif strategy == "nlora":
+             l1_loss = 0.
+             loranew_A_params = {}
+@@ -2294,13 +3348,31 @@ class UIETrainer(Seq2SeqTrainer):
+         elif strategy == "inclora":
+             logger.debug(f"{log_prefix}inclora accuracy_loss: {loss.item():.4f}")
+         elif strategy in self.EWCLORA_STRATEGIES:
++            if self._is_fishershape_ewclora_strategy():
++                # The actual FS update replays this accumulation window twice
++                # with CE only. EWC and optional OLoRA gradients are evaluated
++                # once at the clean point and injected after direction compose.
++                logger.debug(
++                    "%sFisherShape-EWCLoRA defers EWC/OLoRA to its clean-point additive projector.",
++                    log_prefix,
++                )
++                return loss
++            loss = self._apply_olora_regularization(
++                model,
++                loss,
++                log_prefix=log_prefix,
++                label="EWCLoRA OLoRA-base",
++            )
+             if self._is_ewclora_gam_strategy() and "gam" in str(getattr(self.args, "optimizer_type", "")).lower():
+-                logger.debug(f"{log_prefix}ewclora_gam uses projected EWC gradient outside the GAM CE closure.")
++                logger.info(
++                    f"{log_prefix}EWCLoRA-GAM uses OLoRA-base loss here and projected EWC gradient "
++                    f"outside the GAM closure; ewc_lambda: {self.args.ewclora_lambda}"
++                )
+             else:
+                 ewc_loss = self._compute_ewclora_loss(model)
+                 logger.info(
+                     f"{log_prefix}EWCLoRA ewc_loss: {ewc_loss.item():.4f}; "
+-                    f"accuracy_loss: {loss.item():.4f}; lambda: {self.args.ewclora_lambda}"
++                    f"olora_base_loss: {loss.item():.4f}; lambda: {self.args.ewclora_lambda}"
+                 )
+                 loss = loss + ewc_loss
+         elif strategy == "seqlora":
+@@ -2421,6 +3493,99 @@ class UIETrainer(Seq2SeqTrainer):
+ 
+         return total_gam_loss
+ 
++    def _capture_fishershape_rng_state(self):
++        """Capture the local RNG streams used by model dropout on this rank."""
++
++        state = {"cpu": torch.get_rng_state().clone()}
++        device = getattr(self.args, "device", None)
++        if (
++            torch.cuda.is_available()
++            and device is not None
++            and torch.device(device).type == "cuda"
++        ):
++            device_index = torch.device(device).index
++            if device_index is None:
++                device_index = torch.cuda.current_device()
++            state["cuda_device"] = int(device_index)
++            state["cuda"] = torch.cuda.get_rng_state(device_index).clone()
++        return state
++
++    @contextmanager
++    def _fishershape_rng_replay_context(self, state):
++        """Temporarily restore a clean-pass RNG state without rewinding training."""
++
++        if state is None:
++            yield
++            return
++        devices = []
++        if "cuda" in state:
++            devices.append(int(state["cuda_device"]))
++        with torch.random.fork_rng(devices=devices, enabled=True):
++            torch.set_rng_state(state["cpu"])
++            if "cuda" in state:
++                torch.cuda.set_rng_state(
++                    state["cuda"],
++                    device=int(state["cuda_device"]),
++                )
++            yield
++
++    def _run_fishershape_replay_pass(
++        self,
++        model,
++        fishershape_micro_batches,
++        fishershape_rng_states=None,
++    ):
++        """Replay one effective batch using the task CE only.
++
++        EWC and the optional OLoRA-base term are deliberately absent here.
++        Their clean-point gradients are added after the two-pass FisherShape
++        direction has been composed.
++        """
++
++        if not fishershape_micro_batches:
++            raise RuntimeError(
++                "FisherShape replay requires the cached micro-batches from the "
++                "current accumulation window."
++            )
++        if fishershape_rng_states is None:
++            fishershape_rng_states = [None] * len(fishershape_micro_batches)
++        if len(fishershape_rng_states) != len(fishershape_micro_batches):
++            raise ValueError(
++                "FisherShape RNG-state count must match the cached micro-batch count."
++            )
++
++        model.train()
++        total_loss = None
++        accumulation_denominator = float(len(fishershape_micro_batches))
++        use_no_sync = (
++            self.args.local_rank != -1
++            and self.args._no_sync_in_gradient_accumulation
++            and hasattr(model, "no_sync")
++        )
++        for micro_step, (micro_inputs, rng_state) in enumerate(
++            zip(fishershape_micro_batches, fishershape_rng_states)
++        ):
++            should_sync = (not use_no_sync) or (
++                micro_step == len(fishershape_micro_batches) - 1
++            )
++            sync_context = nullcontext() if should_sync else model.no_sync()
++            with sync_context, self._fishershape_rng_replay_context(rng_state):
++                local_inputs = self._prepare_inputs(micro_inputs)
++                with self.compute_loss_context_manager():
++                    loss = self.compute_loss(model, local_inputs)
++                if self.args.n_gpu > 1:
++                    loss = loss.mean()
++                if accumulation_denominator > 1.0 and not self.deepspeed:
++                    loss = loss / accumulation_denominator
++                total_loss = (
++                    loss.detach()
++                    if total_loss is None
++                    else total_loss + loss.detach()
++                )
++                self._backward_loss(loss)
++                self.current_flos += float(self.floating_point_ops(local_inputs))
++        return total_loss
++
+     def print_trainable_parameters(self,model):
+         total_params = 0
+         trainable_params = 0

@@ -1,0 +1,33 @@
+{
+  "id": "formal_halfsum12_r1_k10_s2",
+  "kind": "training",
+  "phase": "formal",
+  "branch": "P",
+  "direction": "half_g1_plus_g2",
+  "mode": "natural",
+  "backend": "native",
+  "radius": 1.0,
+  "rho": 0.05,
+  "smoke": false,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/trainer/four_probe_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2"
+  ],
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+  "config_sha256": "30c77bce7f5bb427c61b8c6c8ea97a999fd5caad0265758eaec1e8aa26947481",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2",
+  "depends_on": [
+    "smoke_pairing_gate"
+  ],
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/runtime/jobs/formal_halfsum12_r1_k10_s2/cuda_witness.json"
+}

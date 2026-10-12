@@ -1,0 +1,353 @@
+{
+  "status": "passed",
+  "dataset": "ImageNet-A",
+  "training_seeds": [
+    0
+  ],
+  "method_names": {
+    "sgd": "EWCLoRA",
+    "gam": "FS-EWCLoRA"
+  },
+  "raw_state_count_per_method": 97,
+  "positive_radius_K": 16,
+  "radius_zero_is_one_reused_origin": true,
+  "radii": [
+    0.0,
+    0.5,
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "fixed_Task0_head_classes": 20,
+  "train_evaluation_samples": 1259,
+  "test_evaluation_samples": 307,
+  "raw_Fisher_train_samples": 256,
+  "raw_damage_signed_mean_positive_mean_and_linear_Q95_match_all_report_rows": true,
+  "raw_Fisher_mean_matches_all_report_rows": true,
+  "raw_Fisher_Q95_and_sample_max_recomputed_from_all_raw_states": true,
+  "raw_Fisher_normalization_floor_regularizer": [
+    false,
+    null,
+    null
+  ],
+  "checkpoint_and_coordinate_hashes_match_manifest": true,
+  "checkpoint_weight_files_rehashed": false,
+  "paired_direction_hashes_match_methods_and_radii": true,
+  "shared_data_manifest_hash_matches_methods_and_all_states": true,
+  "all_40_prefix_safe_radii_and_censoring_flags_recomputed": true,
+  "Gmean_method_ties_at_all_sampled_thresholds": true,
+  "sample_max_preserved_in_CSV_but_not_plotted": true,
+  "original_report_CSV_bytes_preserved": true,
+  "point_jitter_displacement_clipping_smoothing": false,
+  "CPU_only_redraw": true,
+  "sources": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_neighborhood_deterministic.csv",
+      "sha256": "552c5a2ea3dc5633f9aaecdebef6ab1e7e7aeece0767ab1cb714f034093be2b0"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_tolerance_deterministic.csv",
+      "sha256": "c60baf481e6bb888a4517b6d9f37b62b60d72fc859f34dff60b26cbbab3b03ba"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic_config_recovery1.json",
+      "sha256": "0869b642c97d0694597dca0c376ea235313377fb38c4c542fef8cdbd98cb2ae3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/neighborhood/states.jsonl",
+      "sha256": "8492a4f5253bd67768b213d740e5b9457c08bef6c6a97d851b800b37eaecf76c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/neighborhood/manifest.json",
+      "sha256": "3d09e91e95999c8084c37a2106d1eb0169d0da14f7d5ad55bf9170cc69794563"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/neighborhood/states.jsonl",
+      "sha256": "e6c2378714e18ecac17626e3b31c346474a06f464720d07f14fa7d2e0d3d58f8"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/neighborhood/manifest.json",
+      "sha256": "1a9f1a3d36f4a288fe295cdee0112a5b97a56125917bb8d3ba4a428e5c95ed5c"
+    }
+  ],
+  "versions": {
+    "matplotlib": "3.10.6",
+    "numpy": "2.2.6",
+    "pandas": "2.3.2"
+  },
+  "axis_scales": {
+    "all_axes": "linear"
+  },
+  "tolerance_interpretation": "Largest sampled radius whose entire sampled prefix meets Gmean <= epsilon; train points at epsilon=.05 are right-censored at rmax=20; connecting lines guide the eye.",
+  "figure_inches": [
+    7.6,
+    1.85
+  ],
+  "layout": "one row, four columns",
+  "font_family": "Times New Roman",
+  "font_path": "/home-local/liying/.fonts/times.ttf",
+  "font_sha256": "f2cb777422a10368904d3f691e650e39da862fe723389056324927df540a35ec",
+  "minimum_native_font_pt": 8,
+  "subplot_letters": false,
+  "plotted_series_per_panel": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "plotted_split": "train",
+  "test_and_Q95_plotted": false,
+  "accuracy_recomputed_from_raw_train_metrics": true,
+  "mean_accuracy_is_percent_not_fraction": true,
+  "tolerance_curves_coincide_without_jitter": true,
+  "radius_positions_proportional_to_numeric_distance": true,
+  "y_ranges": {
+    "G": {
+      "data_min": 0.0,
+      "data_max": 0.04993347871974521,
+      "axis_min": -0.0019973391487898085,
+      "axis_max": 0.05193081786853502
+    },
+    "accuracy_mean_train": {
+      "data_min": 95.9739872915012,
+      "data_max": 99.11139793486895,
+      "axis_min": 95.8484908657665,
+      "axis_max": 99.23689436060366
+    },
+    "trace_mean": {
+      "data_min": 706.5339599065603,
+      "data_max": 2837.329979752846,
+      "axis_min": 0,
+      "axis_max": 2922.5618205466976
+    }
+  },
+  "legends_inside_without_curve_overlap": true,
+  "axis_limits_expanded_for_legends": false,
+  "plotted_data": [
+    {
+      "panel": 1,
+      "method": "sgd",
+      "split": "train",
+      "column": "G",
+      "x": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ],
+      "y": [
+        0.0,
+        7.00637012913518e-05,
+        0.000162938410910707,
+        0.0004205227778492134,
+        0.0020837031028497714,
+        0.009386365153069863,
+        0.04993347871974521
+      ]
+    },
+    {
+      "panel": 1,
+      "method": "gam",
+      "split": "train",
+      "column": "G",
+      "x": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ],
+      "y": [
+        0.0,
+        4.6529059380652753e-05,
+        0.00011329813847122576,
+        0.000294617227422606,
+        0.0014386097575076985,
+        0.006566436491614516,
+        0.03710814989534082
+      ]
+    },
+    {
+      "panel": 2,
+      "method": "sgd",
+      "split": "train",
+      "column": "accuracy_mean_train",
+      "x": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ],
+      "y": [
+        97.69658459094519,
+        97.69162033359808,
+        97.6568705321684,
+        97.65190627482129,
+        97.59233518665607,
+        97.38383637807783,
+        95.9739872915012
+      ]
+    },
+    {
+      "panel": 2,
+      "method": "gam",
+      "split": "train",
+      "column": "accuracy_mean_train",
+      "x": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ],
+      "y": [
+        99.04686258935664,
+        99.09154090548054,
+        99.11139793486895,
+        99.08657664813344,
+        99.03693407466244,
+        98.8631850675139,
+        97.81572676727562
+      ]
+    },
+    {
+      "panel": 3,
+      "method": "sgd",
+      "split": "train",
+      "column": "trace_mean",
+      "x": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ],
+      "y": [
+        1465.4969269027679,
+        1471.1987910609614,
+        1478.8668921978342,
+        1476.013234291009,
+        1498.5279611664528,
+        1760.348789742397,
+        2837.329979752846
+      ]
+    },
+    {
+      "panel": 3,
+      "method": "gam",
+      "split": "train",
+      "column": "trace_mean",
+      "x": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ],
+      "y": [
+        761.9007743249618,
+        747.1063937638448,
+        727.4934547485245,
+        706.5339599065603,
+        710.4997554700666,
+        823.0387799035323,
+        1452.409608613228
+      ]
+    },
+    {
+      "panel": 4,
+      "method": "sgd",
+      "split": "train",
+      "column": "prefix_radius",
+      "x": [
+        0.001,
+        0.005,
+        0.01,
+        0.02,
+        0.05
+      ],
+      "y": [
+        2,
+        5,
+        10,
+        10,
+        20
+      ],
+      "right_censored": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "panel": 4,
+      "method": "gam",
+      "split": "train",
+      "column": "prefix_radius",
+      "x": [
+        0.001,
+        0.005,
+        0.01,
+        0.02,
+        0.05
+      ],
+      "y": [
+        2,
+        5,
+        10,
+        10,
+        20
+      ],
+      "right_censored": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ]
+    }
+  ],
+  "script": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/figures_redesign_20260920/gen_fig_B_neighborhood_merged.py",
+    "sha256": "8a33e89ee101808468dc06474600fcb43ef0e0a2bbe0f9545e1586efea1cbdd6"
+  },
+  "figure": "Figure_B_neighborhood_merged",
+  "all_plotted_line_coordinates_match_source_rows": true,
+  "text_extents_inside_canvas": true,
+  "axes_titles_empty": true,
+  "rendered_visual_review": "PASS: root render inspection and independent gpt-5.6-sol xhigh review",
+  "outputs": {
+    "pdf": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/figures_redesign_20260920/Figure_B_neighborhood_merged.pdf",
+      "sha256": "a8b796f0b9868df3cfa5b4c78f1ca57795899f140c87b9fcb1dbcd3cc83daa13"
+    },
+    "png": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/figures_redesign_20260920/Figure_B_neighborhood_merged.png",
+      "sha256": "7f9194b56802ec23f861054e8b7a21b45de716fcb24161435e9e2aac89d0b452"
+    }
+  },
+  "output_format": "vector PDF with embedded text; PNG at 300 dpi",
+  "original_measurement_file_hashes_unchanged": true,
+  "embedded_pdf_fonts": [
+    "BHPGQY+TimesNewRomanPSMT"
+  ],
+  "published_aliases_identical": true
+}

@@ -1,0 +1,87 @@
+{
+  "checked_at_utc": "2026-09-18T14:28:15.841500+00:00",
+  "training_launched": false,
+  "confirmed_precision": "bf16",
+  "minimum_missing_orders": [
+    2,
+    3
+  ],
+  "conditional_order": 1,
+  "five_gpu_settings": {
+    "seed": 1993,
+    "world_size": 5,
+    "per_device_batch": 1,
+    "gradient_accumulation": 8,
+    "global_batch": 40,
+    "ewc_lambda": 1.0,
+    "ewc_gamma": 1.0,
+    "olora_lambda1": 0,
+    "olora_lambda2": 0
+  },
+  "host_gpu_query": "nvidia-smi --query-gpu=index,name,compute_cap,memory.total,memory.used,utilization.gpu --format=csv,noheader,nounits",
+  "host_gpu_hardware": [
+    {
+      "index": 0,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 1,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 2,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 3,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 4,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 5,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 6,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 7,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 8,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    },
+    {
+      "index": 9,
+      "name": "Quadro RTX 6000",
+      "compute_capability": "7.5",
+      "memory_total_mib": 24576
+    }
+  ],
+  "bf16_check_source": "torch 2.1.1+cu121 local torch.cuda.is_bf16_supported implementation requires CUDA>=11 and device major>=8",
+  "snapshot_relative_to_project": "experiment_queue/inclora_ewc_supplement_20260916T213647Z/source",
+  "protocol_warning": "Old successful source/model/environment identity not fully proven; two missing orders alone do not automatically establish a homogeneous three-order baseline."
+}

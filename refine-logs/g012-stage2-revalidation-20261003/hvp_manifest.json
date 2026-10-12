@@ -1,0 +1,104 @@
+{
+  "execution_hostname": "cudahpc40.cvc.uab.es",
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/140-1/datasets",
+    "OMP_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HOME": "/home-local/liying/.cache/huggingface",
+    "TORCH_HOME": "/home-local/liying/.cache/torch",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/tmp/g012-two-stage-20261002T122014Z",
+    "TMP": "/tmp/g012-two-stage-20261002T122014Z",
+    "TEMP": "/tmp/g012-two-stage-20261002T122014Z"
+  },
+  "allowed_gpus": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "gpu_lock_dir": "/tmp/olora_gamfs_gpu_locks",
+  "run_id": "g012-stage2-HVP-revalidation-20261003",
+  "runtime": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/hvp_runtime",
+  "jobs": [
+    {
+      "id": "hvp_task0",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task0",
+      "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task0/hvp_revalidation_report.json",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/code/hvp_full_revalidation.py",
+        "--task",
+        "0",
+        "--device",
+        "cuda:0",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task0"
+      ]
+    },
+    {
+      "id": "hvp_task4",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task4",
+      "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task4/hvp_revalidation_report.json",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/code/hvp_full_revalidation.py",
+        "--task",
+        "4",
+        "--device",
+        "cuda:0",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task4"
+      ]
+    },
+    {
+      "id": "hvp_task9",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task9",
+      "report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task9/hvp_revalidation_report.json",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/code/hvp_full_revalidation.py",
+        "--task",
+        "9",
+        "--device",
+        "cuda:0",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/verification/hvp_task9"
+      ]
+    }
+  ],
+  "pins": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/validation_queue.py": "b2d485de44e996085b19f4b1761b2f206150bd8dc82c15321cb0e18f2ee1af7e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/EXPERIMENT_PLAN.md": "fbe8897fc73b38c8bd5b1437f90f22d9712d23e97a041e8c4da338cfa39dd7b7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-stage2-revalidation-20261003/code/hvp_full_revalidation.py": "c743478aa94a0e7ae9827af2da324f020f1a34d2769181fe97dd6ca2e18fbcfe",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/common.py": "402391f3753335107a21bc7f2fef8a3c682619b175e76d453d5174f2905f6b26",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/job_worker.py": "270e0e2a8b5204d8a0dcb9ed61efec0f6ea3d12e6923039d3d145b1749129dff",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/cuda_witness.py": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/environment_spec.json": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/gates/DOCUMENTED_INVOCATION_WITNESS.json": "5144fcc27230b2ec9d12d120bf78d71753fb72e786e23d19936ff26197ad13c3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/suite.json": "7fbf5889587c39341388ba889dac269b20014a3b88ffe5a2f034dd152646c5b1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/runtime/queue_state.json": "7836270753a6e0b41fa55ca4f46393818d1b4556bf06143da818db4fee88f3e0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/HVP_full_gate/hvp_gate_report.json": "a85b86f4aab941f07c6b86feb4927bd926d8d2d9c64a6017741434fadd671214",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/direction_step.py": "58c22a1befd238552a1ea3bdb72b81e72ecc55fe2775705b5867416fd5215583",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/response_hvp.py": "a8a27e0a28445f1224dba54c87a4e0bac0feae407cdc140a08dd847347975710",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/four_probe_train.py": "bea9194a0ba4b73ae569f47d01da54dac0fd694519e9fb71b7740a124964d7ef",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/test_mechanism_cpu.py": "22e2c4cb987f6bdc6e4c6d01c1d537aa9d59de16932512f979318025c7221d42",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/test_direction_cpu.py": "c9c051b9ffddfee5a5bf3909b24da8b98581046008fc760b99e5ddd404892fa2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/hvp_gate.py": "27a7b9061f1fd9a4e13a0c8723d2680a3d4efeacb79aba9d634eaa81cf515c1d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/test_response_cpu.py": "cf77004cb253cefe8965357086e36e7b2ee081ebab80de211ad358e47d5eb22c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/audit_core.py": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/task0_trainer_base_v2.py": "1c6cc0b2e18073eea3aabd972c16b1ecceb3e12110d4fd70d17fbcff64c75659",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/trainer/mechanism_diagnostics.py": "b580accfaff3938abb2ec0822de455704fa5a7812c7aa2532a481b9a04602941"
+  }
+}

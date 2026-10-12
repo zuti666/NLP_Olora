@@ -1,0 +1,652 @@
+{
+  "scope": "Read-only inspection of existing training artifacts and frozen source. No GPU work or model forward.",
+  "config_differences": {
+    "optimizer_tag_override": [
+      "A_sgd_to_sgd_seed0",
+      "A_gam_to_sgd_seed0"
+    ],
+    "outputs_root": [
+      "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_sgd_to_sgd_seed0/trainer_outputs",
+      "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed0/trainer_outputs"
+    ],
+    "prefix": [
+      "A_sgd_to_sgd_seed0",
+      "A_gam_to_sgd_seed0"
+    ],
+    "resume_from_checkpoint_dir": [
+      "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/sgd/seed0/checkpoints",
+      "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/gam/seed0/checkpoints"
+    ],
+    "resume_from_metrics_json": [
+      "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sgd_initlr0.04_lr0.02_e50_task0_shared/imageneta/0/s1c_sgd_task0_shared_e50_lam2000_s0/exp_run/20/s1c_sgd_task0_shared_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json",
+      "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/gam_initlr0.04_lr0.02_e50_task0_shared/imageneta/0/s1c_gam_task0_shared_e50_lam2000_s0/exp_run/20/s1c_gam_task0_shared_e50_lam2000_s0_vit_base_patch16_224_cl_metrics.json"
+    ],
+    "save_task_checkpoint_dir": [
+      "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_sgd_to_sgd_seed0/checkpoints",
+      "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed0/checkpoints"
+    ]
+  },
+  "runs": {
+    "sgd": {
+      "source_manifest_hash_matches": true,
+      "runner_hash_matches": true,
+      "checkpoint_keys_before": 350,
+      "checkpoint_keys_after": 350,
+      "frozen_key_count": 300,
+      "frozen_unchanged_exactly": true,
+      "old_head_unchanged_exactly": true,
+      "fisher_tensor_count": 24,
+      "fisher_numel": 14155776,
+      "fisher_trace_float64": 0.999999995168322,
+      "fisher_nonfinite_count": 0,
+      "fisher_negative_count": 0,
+      "loader_event_counts": {
+        "task_rng_reset": 1,
+        "head_initialized": 1,
+        "loader_created": 2,
+        "loader_iteration": 51
+      },
+      "head_initialization_receipt": {
+        "event": "head_initialized",
+        "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+        "old_classes": 20,
+        "task": 1,
+        "task_seed": 20261929,
+        "total_classes": 40
+      },
+      "loader_creation_receipts": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30261948,
+          "loader_serial": 0,
+          "num_workers": 8,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30269867,
+          "loader_serial": 1,
+          "num_workers": 8,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "loader_passes": [
+        {
+          "iteration": 0,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 1,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 2,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 3,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 4,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 5,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 6,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 7,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 8,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 9,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 10,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 11,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 12,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 13,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 14,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 15,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 16,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 17,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 18,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 19,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 20,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 21,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 22,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 23,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 24,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 25,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 26,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 27,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 28,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 29,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 30,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 31,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 32,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 33,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 34,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 35,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 36,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 37,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 38,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 39,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 40,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 41,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 42,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 43,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 44,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 45,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 46,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 47,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 48,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 49,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 50,
+          "batches": 8,
+          "samples": 997
+        }
+      ],
+      "anchor_checkpoint_hash_matches_receipt": true,
+      "anchor_fisher_hash_matches_receipt": true
+    },
+    "gam": {
+      "source_manifest_hash_matches": true,
+      "runner_hash_matches": true,
+      "checkpoint_keys_before": 350,
+      "checkpoint_keys_after": 350,
+      "frozen_key_count": 300,
+      "frozen_unchanged_exactly": true,
+      "old_head_unchanged_exactly": true,
+      "fisher_tensor_count": 24,
+      "fisher_numel": 14155776,
+      "fisher_trace_float64": 0.9999999790550963,
+      "fisher_nonfinite_count": 0,
+      "fisher_negative_count": 0,
+      "loader_event_counts": {
+        "task_rng_reset": 1,
+        "head_initialized": 1,
+        "loader_created": 2,
+        "loader_iteration": 51
+      },
+      "head_initialization_receipt": {
+        "event": "head_initialized",
+        "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+        "old_classes": 20,
+        "task": 1,
+        "task_seed": 20261929,
+        "total_classes": 40
+      },
+      "loader_creation_receipts": [
+        {
+          "dataset_ids_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255",
+          "event": "loader_created",
+          "generator_seed": 30261948,
+          "loader_serial": 0,
+          "num_workers": 8,
+          "sample_count": 997,
+          "shuffle": true,
+          "task": 1
+        },
+        {
+          "dataset_ids_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c",
+          "event": "loader_created",
+          "generator_seed": 30269867,
+          "loader_serial": 1,
+          "num_workers": 8,
+          "sample_count": 561,
+          "shuffle": false,
+          "task": 1
+        }
+      ],
+      "loader_passes": [
+        {
+          "iteration": 0,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 1,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 2,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 3,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 4,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 5,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 6,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 7,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 8,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 9,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 10,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 11,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 12,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 13,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 14,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 15,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 16,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 17,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 18,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 19,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 20,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 21,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 22,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 23,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 24,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 25,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 26,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 27,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 28,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 29,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 30,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 31,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 32,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 33,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 34,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 35,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 36,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 37,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 38,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 39,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 40,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 41,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 42,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 43,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 44,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 45,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 46,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 47,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 48,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 49,
+          "batches": 8,
+          "samples": 997
+        },
+        {
+          "iteration": 50,
+          "batches": 8,
+          "samples": 997
+        }
+      ],
+      "anchor_checkpoint_hash_matches_receipt": true,
+      "anchor_fisher_hash_matches_receipt": true
+    }
+  },
+  "frozen_source_file_count": 199,
+  "frozen_source_mismatches": [],
+  "rng_receipts_exactly_equal": true
+}

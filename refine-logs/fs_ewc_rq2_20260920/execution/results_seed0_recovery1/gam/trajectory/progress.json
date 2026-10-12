@@ -1,0 +1,495 @@
+{
+  "input_transform": "deterministic test transforms on both train and test",
+  "job": "trajectory",
+  "local_scope": "old Task0 examples with fixed original 20-class head",
+  "method": "gam",
+  "precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+  "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+  "seen_scope": "old Task0 examples classified among all 20*(task+1) seen classes",
+  "states_completed": 11,
+  "status": "complete",
+  "task_count": 10,
+  "tasks": [
+    {
+      "D0": {
+        "test": 0.0,
+        "train": 0.0
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/gam/seed0/checkpoints/task_00.pt",
+      "checkpoint_sha256": "268cfd8575a779078a327be281ef616eac3d77f618831c284e6d4aafa769701a",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 0.0,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 87.62214983713355,
+            "classes": 20,
+            "loss": 0.41362068068775243,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 87.62214983713355,
+            "classes": 20,
+            "loss": 0.41362068068775243,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 99.04686258935664,
+            "classes": 20,
+            "loss": 0.059321165499603125,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 99.04686258935664,
+            "classes": 20,
+            "loss": 0.059321165499603125,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 0.09161964303348213,
+      "source": "reused current FP32 sanity anchor",
+      "state_id": "task00",
+      "task": 0
+    },
+    {
+      "D0": {
+        "test": -0.015379114623092605,
+        "train": 0.010036611035254793
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_01.pt",
+      "checkpoint_sha256": "d4b167e9543ea02bb79272a75535b42e25b366a0cb1c667c16a416e5b5d953cb",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 0.5037783653580257,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 86.31921824104235,
+            "classes": 20,
+            "loss": 0.3982415660646598,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 81.75895765472313,
+            "classes": 40,
+            "loss": 0.6161124902519136,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.2525814138205,
+            "classes": 20,
+            "loss": 0.06935777653485792,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 95.63145353455123,
+            "classes": 40,
+            "loss": 0.17429554241211964,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.114263187977485,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task01",
+      "task": 1
+    },
+    {
+      "D0": {
+        "test": -0.009111533362115232,
+        "train": 0.02012011095496697
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_02.pt",
+      "checkpoint_sha256": "ed8440bcb81bc2aa8c87b796a4bc93d347bbf7a6c8b78f3ffd3309e83ac024b7",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 0.8174269280408035,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 88.27361563517915,
+            "classes": 20,
+            "loss": 0.4045091473256372,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 80.13029315960912,
+            "classes": 60,
+            "loss": 0.7312694567830926,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.57029388403495,
+            "classes": 20,
+            "loss": 0.0794412764545701,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 93.64575059571088,
+            "classes": 60,
+            "loss": 0.2644598350720184,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.111569893953856,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task02",
+      "task": 2
+    },
+    {
+      "D0": {
+        "test": -0.011773466825195478,
+        "train": 0.022877727869127694
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_03.pt",
+      "checkpoint_sha256": "e9f21c1f026ba822a200f7a6d2347c3ad50885ac3183f52a7aecaa51b190c7ac",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 0.962518864578575,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 89.57654723127035,
+            "classes": 20,
+            "loss": 0.40184721386255695,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 79.80456026058631,
+            "classes": 80,
+            "loss": 0.821525159915712,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.49086576648133,
+            "classes": 20,
+            "loss": 0.08219889336873082,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 91.89833200953137,
+            "classes": 80,
+            "loss": 0.3312141715543939,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.3295301659964025,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task03",
+      "task": 3
+    },
+    {
+      "D0": {
+        "test": 0.0239168118616232,
+        "train": 0.017143257490654366
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_04.pt",
+      "checkpoint_sha256": "9de517bc5d1c5a6445e9a9fe0cd84429ab87c18c2d11802d6088c0a86a799cd0",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 0.9936437967693424,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 85.66775244299674,
+            "classes": 20,
+            "loss": 0.43753749254937563,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 75.57003257328991,
+            "classes": 100,
+            "loss": 0.9020057942428935,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.57029388403495,
+            "classes": 20,
+            "loss": 0.07646442299025749,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 92.77204130262113,
+            "classes": 100,
+            "loss": 0.33472434360501313,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.21657111501554,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task04",
+      "task": 4
+    },
+    {
+      "D0": {
+        "test": 0.06382193278831966,
+        "train": 0.09158210278282566
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_05.pt",
+      "checkpoint_sha256": "6b21088cc78f75860b85938d86347c8d965b55b7fcfaf233d9330d0a41b8ac38",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 1.2159859334492098,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 84.03908794788273,
+            "classes": 20,
+            "loss": 0.4774426134760721,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 71.33550488599349,
+            "classes": 120,
+            "loss": 1.1014679956935491,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 97.53772835583797,
+            "classes": 20,
+            "loss": 0.15090326828242878,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 89.43606036536934,
+            "classes": 120,
+            "loss": 0.5788075490819543,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.26525862904964,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task05",
+      "task": 5
+    },
+    {
+      "D0": {
+        "test": 0.07335361887900221,
+        "train": 0.05764665977768591
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_06.pt",
+      "checkpoint_sha256": "36fa136caa6de22db0d637451963ae5f7de570b9649dbe83856c1cee94770cae",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 1.2242748633185194,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 84.03908794788273,
+            "classes": 20,
+            "loss": 0.48697429956675464,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 70.35830618892508,
+            "classes": 140,
+            "loss": 1.1200444759461263,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 97.93486894360603,
+            "classes": 20,
+            "loss": 0.11696782527728904,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 89.43606036536934,
+            "classes": 140,
+            "loss": 0.5072680837751238,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.275437235017307,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task06",
+      "task": 6
+    },
+    {
+      "D0": {
+        "test": 0.06704069706387134,
+        "train": 0.05017350643386962
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_07.pt",
+      "checkpoint_sha256": "1089e71f0c8035ff53e19e34bb4ccb312c0768960ddb5d17704da96f2718daf7",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 1.257976308429512,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 83.71335504885994,
+            "classes": 20,
+            "loss": 0.48066137775162376,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 70.03257328990227,
+            "classes": 160,
+            "loss": 1.1282284258647157,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.01429706115965,
+            "classes": 20,
+            "loss": 0.10949467193347275,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 89.1977760127085,
+            "classes": 160,
+            "loss": 0.5055853653571278,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.294257441011723,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task07",
+      "task": 7
+    },
+    {
+      "D0": {
+        "test": 0.050186773863330425,
+        "train": 0.04905564716380171
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_08.pt",
+      "checkpoint_sha256": "942246d722da9fc270cf85f6e20b3f0d91ff69b7abf03067b46f61041bbcc0da",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 1.3517437067608842,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 84.69055374592834,
+            "classes": 20,
+            "loss": 0.46380745455108285,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 71.66123778501628,
+            "classes": 180,
+            "loss": 1.1480365337270042,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 97.69658459094519,
+            "classes": 20,
+            "loss": 0.10837681266340483,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 89.03891977760127,
+            "classes": 180,
+            "loss": 0.5313147675090472,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.300497052958235,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task08",
+      "task": 8
+    },
+    {
+      "D0": {
+        "test": 0.03434737973395435,
+        "train": 0.03428445772349024
+      },
+      "checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_09.pt",
+      "checkpoint_sha256": "6bb7c283e0e3fa8d37c1ae5ee7f41eaf47f20af986b5fbfa7c02b0ba45e1b6b4",
+      "data_manifest_sha256": "be9cf89b2bfbd5a9bc207d9755deb2d3a9bcbd6190a24b3a9c05ead97bfddecb",
+      "effective_weight_drift": 1.4004725891407084,
+      "head_sha256": "d9a85ceb3842089dd7507b51fc2f8228ef1eadfabc190bf76d0f785a4783817a",
+      "method": "gam",
+      "metrics": {
+        "test": {
+          "local": {
+            "accuracy": 85.99348534201954,
+            "classes": 20,
+            "loss": 0.4479680604217068,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 72.9641693811075,
+            "classes": 200,
+            "loss": 1.1273715389636119,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.17315329626688,
+            "classes": 20,
+            "loss": 0.09360562322309336,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 89.8332009531374,
+            "classes": 200,
+            "loss": 0.4979707581078748,
+            "samples": 1259
+          }
+        }
+      },
+      "production_precision": "full FP32; cuDNN TF32 and matmul TF32 disabled; no operand emulation",
+      "protocol_sha256": "ff15bfca86bed6204a85ff8ebf956183923759c9029df635efcf6bf6799cd145",
+      "seconds": 4.366251474013552,
+      "source": "direct full-checkpoint forward",
+      "state_id": "task09",
+      "task": 9
+    }
+  ],
+  "updated_unix": 1789918066.4261496
+}

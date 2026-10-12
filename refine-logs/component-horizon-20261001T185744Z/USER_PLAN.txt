@@ -1,0 +1,1364 @@
+可以。结合现有结果，我现在更推荐：
+
+$$
+\boxed{
+10\text{-task：先判断“哪个 GAM 分量真的产生长期 CL 效果”}
+\rightarrow
+2\text{-task：做因果分解}
+\rightarrow
+3\text{-task：验证机制能否持续}
+}
+$$
+
+这里的关键变化是：**10-task 不负责证明 Hessian 机制，只负责筛选真正值得解释的更新分量。** 然后再用 2-task 和 3-task 做机制验证。
+
+下面是我建议的完整实验计划。
+
+```latex
+\section*{Experimental Plan: Decomposing the Long-Horizon Effect of GAM}
+
+\subsection*{1. Core decomposition}
+
+当前 GAM 的四个梯度定义为
+
+$$
+g_0=\nabla L(\theta),
+$$
+
+$$
+g_1=
+\nabla L\left(
+\theta+\rho N(g_0)
+\right),
+$$
+
+$$
+v=N(g_1-g_0),
+\qquad
+\theta_r=\theta+rv,
+$$
+
+$$
+g_2=\nabla L(\theta_r),
+$$
+
+以及
+
+$$
+g_3=
+\nabla L\left(
+\theta_r+\rho N(g_2)
+\right).
+$$
+
+定义三个增量：
+
+$$
+\boxed{
+\delta_{\mathrm S}=g_1-g_0
+}
+$$
+
+$$
+\boxed{
+\delta_{\mathrm O}=g_2-g_0
+}
+$$
+
+$$
+\boxed{
+\delta_{\mathrm G}=g_3-g_2.
+}
+$$
+
+它们分别表示：
+
+$$
+\delta_{\mathrm S}
+:
+\text{原始状态上的 SAM-like local curvature response},
+$$
+
+$$
+\delta_{\mathrm O}
+:
+\text{curvature-guided outer relocation 后产生的梯度变化},
+$$
+
+以及
+
+$$
+\delta_{\mathrm G}
+:
+\text{outer state 上第二次 local curvature response}.
+$$
+
+对于小 $\rho$，
+
+$$
+\boxed{
+\frac{\delta_{\mathrm S}}{\rho}
+\approx
+H(\theta)N(g_0)
+}
+$$
+
+以及
+
+$$
+\boxed{
+\frac{\delta_{\mathrm G}}{\rho}
+\approx
+H(\theta_r)N(g_2).
+}
+$$
+
+因此当前最重要的问题不再只是
+
+$$
+g_1
+\quad\text{vs}\quad
+g_3,
+$$
+
+而是：
+
+$$
+\boxed{
+\text{完整 GAM 的长期收益究竟来自 }
+\delta_{\mathrm O},
+\delta_{\mathrm G},
+\text{ 还是二者的组合？}
+}
+$$
+
+
+\section*{2. Stage I: 10-task full-horizon screening}
+
+第一阶段仍然使用完整 ImageNet-A 十任务：
+
+$$
+T_0\rightarrow T_1\rightarrow\cdots\rightarrow T_9.
+$$
+
+固定：
+
+$$
+\rho=0.05,
+\qquad
+r=0.25
+$$
+
+作为主机制设置。
+
+选择 $r=0.25$ 的原因不是宣称其最优，
+而是现有十任务结果已经显示
+
+$$
+r=0.25\sim1
+$$
+
+基本进入性能平台，
+因此 $r=0.25$ 是较小且已经产生明显长期效应的非零 outer probe。
+
+$r=1$ 后续作为 robustness control。
+
+
+\subsection*{2.1 Five principal update rules}
+
+定义：
+
+$$
+\boxed{
+U_0=g_0
+}
+$$
+
+$$
+\boxed{
+U_{\mathrm S}
+=
+g_0+\delta_{\mathrm S}
+=
+g_1
+}
+$$
+
+$$
+\boxed{
+U_{\mathrm G}
+=
+g_0+\delta_{\mathrm G}
+=
+g_0+(g_3-g_2)
+}
+$$
+
+$$
+\boxed{
+U_{\mathrm O}
+=
+g_0+\delta_{\mathrm O}
+=
+g_2
+}
+$$
+
+以及
+
+$$
+\boxed{
+U_{\mathrm{Full}}
+=
+g_0+\delta_{\mathrm O}+\delta_{\mathrm G}
+=
+g_3.
+}
+$$
+
+因此实验矩阵为
+
+$$
+\boxed{
+\begin{array}{c|l}
+\text{Method}
+&
+\text{Meaning}
+\\
+\hline
+U_0
+&
+\text{clean gradient}
+\\
+U_{\mathrm S}
+&
+\text{SAM local Hessian correction}
+\\
+U_{\mathrm G}
+&
+\text{outer-state Hessian correction only}
+\\
+U_{\mathrm O}
+&
+\text{outer relocation effect only}
+\\
+U_{\mathrm{Full}}
+&
+\text{complete pure-GAM update}
+\end{array}
+}
+$$
+
+
+\subsection*{2.2 Why these five conditions are sufficient for the first screen}
+
+比较
+
+$$
+U_{\mathrm S}
+\quad\text{vs}\quad
+U_{\mathrm G}
+$$
+
+直接回答：
+
+$$
+\boxed{
+\text{在相同 clean-gradient base 上，
+outer-state Hessian response 是否比
+SAM Hessian response 更有长期价值？}
+}
+$$
+
+比较
+
+$$
+U_0
+\quad\text{vs}\quad
+U_{\mathrm O}
+$$
+
+回答：
+
+$$
+\boxed{
+\text{仅仅 curvature-guided relocation 是否已经足够？}
+}
+$$
+
+比较
+
+$$
+U_{\mathrm O}
+\quad\text{vs}\quad
+U_{\mathrm{Full}}
+$$
+
+回答：
+
+$$
+\boxed{
+\text{到达 outer state 后，
+第二次 local Hessian correction 是否进一步有价值？}
+}
+$$
+
+比较
+
+$$
+U_{\mathrm S}
+\quad\text{vs}\quad
+U_{\mathrm{Full}}
+$$
+
+则恢复最原始的：
+
+$$
+\boxed{
+\text{SAM-like vs GAM}
+}
+$$
+
+长期比较。
+
+
+\section*{3. Step-size control must be part of the 10-task experiment}
+
+现有 Sum--Mean 实验已经说明，
+固定学习率下 update magnitude 对十任务结果影响很大。
+
+因此新实验不能只使用相同 learning rate 比较上述五个方向。
+
+主机制结果应采用
+
+$$
+\boxed{
+\text{per-step matched effective update magnitude}.
+}
+$$
+
+
+\subsection*{3.1 Effective model state}
+
+定义
+
+$$
+\Psi(\theta)
+=
+\operatorname{concat}
+\left(
+B_1A_1,\ldots,B_mA_m,
+W_{\mathrm{FC}},
+b_{\mathrm{FC}}
+\right).
+$$
+
+对于每一个 candidate method $m$，
+在自己的当前状态 $\theta_t^m$ 上，
+首先计算 baseline SAM step：
+
+$$
+\delta_t^{\mathrm{ref}}
+=
+\left\|
+\Psi\left(
+\theta_t^m-\eta_t g_{1,t}^m
+\right)
+-
+\Psi(\theta_t^m)
+\right\|_2.
+$$
+
+然后对于 candidate direction
+
+$$
+U_t^m
+$$
+
+搜索正标量 $c_t^m$，使
+
+$$
+\boxed{
+\left\|
+\Psi\left(
+\theta_t^m-c_t^mU_t^m
+\right)
+-
+\Psi(\theta_t^m)
+\right\|_2
+=
+\delta_t^{\mathrm{ref}}.
+}
+$$
+
+实际训练更新使用
+
+$$
+\theta_{t+1}^m
+=
+\theta_t^m-c_t^mU_t^m.
+$$
+
+这样每个 candidate 在自己的状态上，
+都与 $g_1$ baseline 具有相同的实际
+LoRA-$BA$ 加 classifier 更新长度。
+
+
+\subsection*{3.2 Two parallel interpretations}
+
+建议区分两类结果。
+
+第一类为已有或新增的 same-LR practical result：
+
+$$
+\boxed{
+\text{natural-scale performance}.
+}
+$$
+
+第二类为新的 matched-step result：
+
+$$
+\boxed{
+\text{direction-controlled performance}.
+}
+$$
+
+论文机制结论主要依据第二类。
+
+如果
+
+$$
+U_{\mathrm{Full}}
+>
+U_{\mathrm S}
+$$
+
+只在 same-LR 下出现，
+
+但 matched-step 后消失，
+
+则应解释为
+
+$$
+\boxed{
+\text{step-size effect}.
+}
+$$
+
+如果 matched-step 后仍然存在，
+
+才进入 Hessian-response / trajectory mechanism。
+
+
+\section*{4. 10-task metrics}
+
+十任务不只报告 AAA 和 FAA。
+
+主要指标为：
+
+$$
+\mathrm{AAA},
+$$
+
+$$
+\mathrm{FAA},
+$$
+
+$$
+\mathrm{LA}
+=
+\frac1{10}
+\sum_{t=0}^{9}a_{t,t},
+$$
+
+以及
+
+$$
+\mathrm{BWT}
+=
+\frac1{9}
+\sum_{j=0}^{8}
+\left(
+a_{9,j}-a_{j,j}
+\right).
+$$
+
+同时保留 forgetting：
+
+$$
+F
+=
+\frac1{9}
+\sum_{j=0}^{8}
+\left(
+\max_{k\geq j}a_{k,j}
+-
+a_{9,j}
+\right).
+$$
+
+必须把
+
+$$
+\boxed{
+\text{acquisition}
+}
+$$
+
+和
+
+$$
+\boxed{
+\text{retention}
+}
+$$
+
+分开分析。
+
+
+\section*{5. Decision rules after the 10-task experiment}
+
+十任务的作用不是找到最高数字，
+而是决定后续 2-task 应该分析哪个机制。
+
+
+\subsection*{Case A: outer-state Hessian correction matters}
+
+如果
+
+$$
+U_{\mathrm G}
+>
+U_{\mathrm S}
+$$
+
+在 matched-step 条件下仍成立，
+
+则优先假设：
+
+$$
+\boxed{
+H(\theta_r)N(g_2)
+\text{ 提供了原始 SAM local correction 中没有的长期信息。}
+}
+$$
+
+后续两任务使用
+
+$$
+X=U_{\mathrm G}.
+$$
+
+
+\subsection*{Case B: outer relocation dominates}
+
+如果
+
+$$
+U_{\mathrm O}
+\approx
+U_{\mathrm{Full}}
+>
+U_{\mathrm S},
+$$
+
+但
+
+$$
+U_{\mathrm G}
+\approx
+U_{\mathrm S},
+$$
+
+则说明主要效应来自
+
+$$
+\boxed{
+\delta_{\mathrm O}=g_2-g_0.
+}
+$$
+
+此时后续使用
+
+$$
+X=U_{\mathrm O}.
+$$
+
+
+\subsection*{Case C: second Hessian correction adds to relocation}
+
+如果
+
+$$
+U_{\mathrm{Full}}
+>
+U_{\mathrm O}
+>
+U_{\mathrm S},
+$$
+
+则表明：
+
+$$
+\boxed{
+\text{outer relocation 和 outer-state Hessian response 都有贡献。}
+}
+$$
+
+
+\subsection*{Case D: neither component alone is sufficient}
+
+如果
+
+$$
+U_{\mathrm G}
+\approx
+U_{\mathrm S},
+$$
+
+$$
+U_{\mathrm O}
+\approx
+U_{\mathrm S},
+$$
+
+但是
+
+$$
+U_{\mathrm{Full}}
+>
+U_{\mathrm S},
+$$
+
+这是尤其有意思的结果。
+
+它意味着：
+
+$$
+\boxed{
+\text{GAM 的长期价值来自
+outer relocation 与 second curvature response 的组合，
+而不是某一个静态 ``better direction''.}
+}
+$$
+
+这会强烈支持 trajectory-composition interpretation。
+
+
+\subsection*{Case E: matched-step advantage disappears}
+
+如果
+
+$$
+U_{\mathrm{Full}}
+\approx
+U_{\mathrm S}
+$$
+
+在 matched-step 条件下成立，
+
+则不应继续强调 Hessian direction mechanism。
+
+应该转向：
+
+$$
+\boxed{
+\text{effective step size / optimization schedule interaction}.
+}
+$$
+
+
+\section*{6. Hessian audit during the 10-task stage}
+
+这一阶段不需要 Hessian spectrum。
+
+只在代表性 checkpoint：
+
+$$
+T_0,\qquad T_4,\qquad T_9
+$$
+
+验证 finite-difference interpretation。
+
+
+\subsection*{6.1 Original-state response}
+
+计算
+
+$$
+h_{\mathrm S}
+=
+H(\theta)N(g_0).
+$$
+
+检查
+
+$$
+\boxed{
+A_{\mathrm S}
+=
+\cos
+\left(
+\frac{g_1-g_0}{\rho},
+h_{\mathrm S}
+\right).
+}
+$$
+
+
+\subsection*{6.2 Outer-state response}
+
+计算
+
+$$
+h_{\mathrm G}
+=
+H(\theta_r)N(g_2).
+$$
+
+检查
+
+$$
+\boxed{
+A_{\mathrm G}
+=
+\cos
+\left(
+\frac{g_3-g_2}{\rho},
+h_{\mathrm G}
+\right).
+}
+$$
+
+如果
+
+$$
+A_{\mathrm S},
+A_{\mathrm G}
+$$
+
+都较高，
+才有充分依据把
+
+$$
+g_1-g_0
+$$
+
+和
+
+$$
+g_3-g_2
+$$
+
+解释为两个不同状态上的 finite-difference HVP。
+
+
+\subsection*{6.3 Direct comparison}
+
+报告：
+
+$$
+\boxed{
+C_H
+=
+\cos
+\left(
+g_1-g_0,
+g_3-g_2
+\right)
+}
+$$
+
+以及：
+
+$$
+\boxed{
+R_H
+=
+\frac{
+\|g_3-g_2\|
+}{
+\|g_1-g_0\|
+}.
+}
+$$
+
+但这些只作为几何诊断，
+不能直接作为性能解释。
+
+
+\section*{7. Optional location--direction Hessian decomposition}
+
+如果十任务显示
+
+$$
+U_{\mathrm G}
+$$
+
+确实具有价值，
+再进一步区分：
+
+$$
+\text{Hessian changed because location changed}
+$$
+
+还是
+
+$$
+\text{because probe direction changed}.
+$$
+
+定义
+
+$$
+\mathcal C(x,u)
+=
+g(x+\rho u)-g(x).
+$$
+
+比较：
+
+$$
+\boxed{
+\begin{array}{c|cc}
+&
+u_0
+&
+u_2
+\\
+\hline
+\theta
+&
+\mathcal C(\theta,u_0)
+&
+\mathcal C(\theta,u_2)
+\\
+\theta_r
+&
+\mathcal C(\theta_r,u_0)
+&
+\mathcal C(\theta_r,u_2)
+\end{array}
+}
+$$
+
+其中：
+
+$$
+\mathcal C(\theta,u_0)
+=
+g_1-g_0,
+$$
+
+以及：
+
+$$
+\mathcal C(\theta_r,u_2)
+=
+g_3-g_2.
+$$
+
+这样可以把
+
+$$
+\boxed{
+\text{location effect}
+}
+$$
+
+和
+
+$$
+\boxed{
+\text{probe-direction effect}
+}
+$$
+
+进一步分开。
+
+
+\section*{8. Stage II: 2-task causal analysis}
+
+完成 10-task screening 后，
+只选择一个最有解释价值的 candidate：
+
+$$
+X
+\in
+\{
+U_{\mathrm G},
+U_{\mathrm O},
+U_{\mathrm{Full}}
+\}.
+$$
+
+然后重新独立训练：
+
+$$
+T_0\rightarrow T_1.
+$$
+
+baseline 为：
+
+$$
+S=U_{\mathrm S}=g_1.
+$$
+
+运行完整 $2\times2$：
+
+$$
+\boxed{
+\begin{array}{c|cc}
+&
+T_0&T_1\\
+\hline
+SS&S&S\\
+XS&X&S\\
+SX&S&X\\
+XX&X&X
+\end{array}
+}
+$$
+
+全部使用 matched-effective-step 版本。
+
+
+\subsection*{8.1 Formation effect}
+
+比较：
+
+$$
+XS
+\quad\text{vs}\quad
+SS.
+$$
+
+定义：
+
+$$
+F_{0\rightarrow1}
+=
+a_{0,0}-a_{1,0}.
+$$
+
+如果：
+
+$$
+\boxed{
+F_{0\rightarrow1}^{XS}
+<
+F_{0\rightarrow1}^{SS},
+}
+$$
+
+则说明：
+
+$$
+\boxed{
+X
+\text{ 在 Task 0 上形成了对完全相同未来学习更耐受的状态。}
+}
+$$
+
+
+\subsection*{8.2 Continuation effect}
+
+比较：
+
+$$
+SX
+\quad\text{vs}\quad
+SS.
+$$
+
+如果：
+
+$$
+\boxed{
+F_{0\rightarrow1}^{SX}
+<
+F_{0\rightarrow1}^{SS},
+}
+$$
+
+说明：
+
+$$
+\boxed{
+X
+\text{ 本身在学习新任务时产生更少 backward interference。}
+}
+$$
+
+
+\subsection*{8.3 Acquisition control}
+
+同时必须报告：
+
+$$
+a_{0,0},
+\qquad
+a_{1,1}.
+$$
+
+不能把
+
+$$
+a_{1,0}
+$$
+
+单独作为 retention 结论。
+
+特别关注：
+
+$$
+\boxed{
+a_{0,0}^{XS}
+\approx
+a_{0,0}^{SS}
+}
+$$
+
+但
+
+$$
+\boxed{
+a_{1,0}^{XS}
+>
+a_{1,0}^{SS}.
+}
+$$
+
+这是 formation hypothesis 最强的结果模式。
+
+
+\section*{9. Record the full Task-1 forgetting trajectory}
+
+在第二个任务训练过程中，
+于
+
+$$
+e=
+0,5,10,20,30,40,50
+$$
+
+记录：
+
+$$
+L_0(e),
+\qquad
+a_0(e),
+$$
+
+以及
+
+$$
+L_1(e),
+\qquad
+a_1(e).
+$$
+
+同时画：
+
+$$
+\boxed{
+a_{\mathrm{old}}
+\text{ vs }
+a_{\mathrm{new}}
+}
+$$
+
+而不仅仅是 epoch curve。
+
+这样可以判断：
+
+$$
+\boxed{
+\text{X 是真正改善 stability--plasticity frontier，
+还是仅仅降低了新任务学习速度。}
+}
+$$
+
+
+\section*{10. Stage III: 3-task persistence}
+
+只有 2-task 出现清楚信号后，
+再进入
+
+$$
+T_0\rightarrow T_1\rightarrow T_2.
+$$
+
+不立即跑全部 $2^3$ 条件。
+
+
+\subsection*{10.1 If formation effect dominates}
+
+如果：
+
+$$
+XS>SS
+$$
+
+但
+
+$$
+SX\approx SS,
+$$
+
+只需要优先运行：
+
+$$
+\boxed{
+SSS
+\quad\text{vs}\quad
+XSS.
+}
+$$
+
+观察：
+
+$$
+a_{0,0}
+\rightarrow
+a_{1,0}
+\rightarrow
+a_{2,0}.
+$$
+
+若：
+
+$$
+\boxed{
+a_{2,0}^{XSS}
+>
+a_{2,0}^{SSS},
+}
+$$
+
+说明 formation advantage 能够跨越两个 future tasks。
+
+
+\subsection*{10.2 If continuation effect dominates}
+
+如果：
+
+$$
+SX>SS,
+$$
+
+优先比较：
+
+$$
+\boxed{
+SSS,
+\qquad
+SXS,
+\qquad
+SSX.
+}
+$$
+
+用于判断 effect 是否只作用于当前 transition。
+
+
+\subsection*{10.3 If both effects exist}
+
+则运行：
+
+$$
+\boxed{
+SSS,\quad
+XSS,\quad
+SXS,\quad
+SSX,\quad
+XXX.
+}
+$$
+
+这样分别观察：
+
+$$
+\text{formation},
+$$
+
+$$
+\text{intermediate continuation},
+$$
+
+$$
+\text{last-task continuation},
+$$
+
+以及
+
+$$
+\text{cumulative effect}.
+$$
+
+
+\section*{11. Seed strategy}
+
+第一轮 10-task mechanism screen 可以继续使用
+
+$$
+\boxed{
+\text{seed}=2
+}
+$$
+
+因为目的是从已有现象中筛选 component。
+
+但只要确定候选 $X$，
+2-task 核心实验必须至少：
+
+$$
+\boxed{
+s\in\{0,1,2\}.
+}
+$$
+
+如果
+
+$$
+XS\text{ vs }SS
+$$
+
+支持 formation effect，
+建议扩展到
+
+$$
+\boxed{
+5\text{ seeds}.
+}
+$$
+
+3-task 的最终核心比较同样至少使用 3 seeds。
+
+
+\section*{12. Recommended execution order}
+
+最终建议严格按照：
+
+$$
+\boxed{
+\begin{array}{c}
+\textbf{10-task decomposition}
+\\
+U_0,\;
+U_{\mathrm S},\;
+U_{\mathrm G},\;
+U_{\mathrm O},\;
+U_{\mathrm{Full}}
+\\
+\downarrow\\
+\text{matched effective step}
+\\
+\downarrow\\
+\text{identify which component reproduces the long-horizon gain}
+\\[2mm]
+\downarrow\\
+\textbf{2-task causal factorial}
+\\
+SS,\;
+XS,\;
+SX,\;
+XX
+\\
+\downarrow\\
+\text{formation vs continuation}
+\\[2mm]
+\downarrow\\
+\textbf{3-task targeted test}
+\\
+\text{persistence / accumulation}
+\\[2mm]
+\downarrow\\
+\textbf{Hessian interpretation of the verified mechanism}.
+\end{array}
+}
+$$
+```
+
+### 我最推荐的实际执行方式
+
+第一轮 **10-task 不必重新跑很多旧 baseline**。你已有 $g_0$、$g_1$、$g_3$ 结果，因此最先新增的两个自然方向其实就是：
+
+$$
+\boxed{
+g_0+(g_3-g_2)
+}
+$$
+
+和
+
+$$
+\boxed{
+g_2.
+}
+$$
+
+它们分别回答：
+
+$$
+\text{outer-state Hessian correction alone 是否有价值}
+$$
+
+和
+
+$$
+\text{outer relocation alone 是否有价值}.
+$$
+
+但考虑到你已经发现**步长影响非常强**，我建议随后必须补一套 matched-effective-step 的
+
+$$
+g_1,\qquad
+g_0+(g_3-g_2),\qquad
+g_2,\qquad
+g_3.
+$$
+
+这是最有解释力的四组。
+
+最终可能出现四种很有区分度的结果：
+
+$$
+\boxed{
+\begin{array}{ll}
+g_0+(g_3-g_2)>g_1
+&
+\Rightarrow
+\text{outer-state Hessian response matters};
+\\[1mm]
+g_2>g_1
+&
+\Rightarrow
+\text{outer relocation matters};
+\\[1mm]
+g_3>g_2>g_1
+&
+\Rightarrow
+\text{both contribute};
+\\[1mm]
+g_3>g_1,\;
+g_2\approx g_1,\;
+g_0+(g_3-g_2)\approx g_1
+&
+\Rightarrow
+\text{the composition itself matters}.
+\end{array}
+}
+$$
+
+最后一种尤其有价值，因为它会直接支持你现在越来越清楚的故事：
+
+$$
+\boxed{
+\text{GAM 的长期优势不是一个单独的 ``better Hessian direction''，
+而是多阶段 curvature probing 共同改变训练轨迹。}
+}
+$$
+
+所以我赞成：**先用 10-task 看这些新梯度构造是否真的具有长期价值，然后再用 2-task 拆 formation / continuation，最后用 3-task 检验这种状态效应是否跨多个任务持续。** 这比一开始就在 2-task 上穷举所有梯度组合更有效，也更符合你目前已经观察到的“单步弱、单任务弱、多任务强”的现象。

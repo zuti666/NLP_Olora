@@ -1,0 +1,1531 @@
+{
+  "audit_time_utc": "2026-09-20T20:27:25.691621+00:00",
+  "audit_kind": "read_only_observer_neutrality_after_failed_protocol_scope",
+  "original_smoke_passed": false,
+  "original_expected_tasks": 2,
+  "observed_tasks": 10,
+  "epochs_per_task": 2,
+  "original_failure": "Both observer runs trained 10 tasks rather than expected 2; post-training scope validation failed. This audit does not convert their original status to passed.",
+  "cuda_visible_devices": "",
+  "cuda_available": false,
+  "jobs": {
+    "on": {
+      "id": "smoke_observer_on_s2",
+      "original_receipt_status": "failed",
+      "original_receipt_error": "ValueError('Wrong task count 10, expected 2')",
+      "receipt_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/runtime/jobs/smoke_observer_on_s2/failed.json",
+      "receipt_sha256": "8f65ecf889838d7dbf6b820d785d7138705d8fc21d61094b751bdf6c89fcf773",
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/20/smoke_observer_on_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "58f88c4c45ba11fdf3531e079d6e0ceb0efc21ff696e5f625ba886bf51d3ff66",
+      "config_sha256": "0e34e27c45c853f87971cab1b7d0cc7feee673aff9a442100394a437f2f0302e",
+      "console_sha256": "7220480ceddd5de74d66ba298e7a9feae98bd1ecbd556511ce35256ba03798db",
+      "sample_curve": [
+        77.52,
+        59.0,
+        53.24,
+        50.0,
+        46.41,
+        43.91,
+        41.21,
+        38.64,
+        35.69,
+        34.17
+      ],
+      "effect_checks": {
+        "capture": true,
+        "fisher_location": "retained",
+        "tasks": [
+          {
+            "task": 0,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999974388629,
+            "fisher_mass": 0.9999999974388629,
+            "train_ce": 1.6085240691900253,
+            "train_ewc": 0.0,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.002472623156800084
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768431998
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 1,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999990686774,
+            "fisher_mass": 1.899999996763654,
+            "train_ce": 1.9867461696267128,
+            "train_ewc": 2.517305901506006e-06,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.0024726231567237258
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768432763
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 2,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.0000000153668225,
+            "fisher_mass": 2.7100000124541115,
+            "train_ce": 2.313944384455681,
+            "train_ewc": 1.3059334236231734e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.0024726231567251977
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768432747
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 3,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999671708792,
+            "fisher_mass": 3.4389999783795795,
+            "train_ce": 2.2083549022674562,
+            "train_ewc": 5.178533619982772e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.002472623156713008
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768432869
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 4,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999755527824,
+            "fisher_mass": 4.095099956094404,
+            "train_ce": 2.9576733708381653,
+            "train_ewc": 3.87139587587626e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.0024726231567190333
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.997527376843281
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 5,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.0000000288709998,
+            "fisher_mass": 4.685589989355964,
+            "train_ce": 3.115787982940674,
+            "train_ewc": 0.00011369571950581303,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.0024726231567149277
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768432851
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 6,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.0000000116415322,
+            "fisher_mass": 5.2170310020618995,
+            "train_ce": 2.946311632792155,
+            "train_ewc": 3.2952793674212444e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.00247262315671247
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768432875
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 7,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.0000000139698386,
+            "fisher_mass": 5.6953279158255485,
+            "train_ce": 2.8789106607437134,
+            "train_ewc": 1.5610893494037253e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.0024726231567307705
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.9975273768432692
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 8,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999997671694,
+            "fisher_mass": 6.125795124010163,
+            "train_ce": 2.8691648840904236,
+            "train_ewc": 4.313558349622326e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.002472623156702163
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.997527376843298
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          },
+          {
+            "task": 9,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999906867743,
+            "fisher_mass": 6.513215602295921,
+            "train_ce": 2.7190513610839844,
+            "train_ewc": 1.1350366510972284e-05,
+            "snapshot_epochs": [
+              1,
+              2
+            ],
+            "quality_evaluations": 2,
+            "selected_weights": [
+              {
+                "index": 0,
+                "epoch": 1,
+                "weight": 0.0024726231567790188
+              },
+              {
+                "index": 1,
+                "epoch": 2,
+                "weight": 0.997527376843221
+              }
+            ],
+            "reconstruction_max_abs_error": 0.0
+          }
+        ],
+        "boundary_validation": {
+          "passed": true,
+          "tasks": 10,
+          "expected_tasks": 10,
+          "fisher_location": "retained",
+          "files": {
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_00.pt": "5827a480aaca18c1f2b4e359e75f3f420e4903305403ede71d814d4285763698",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_01.pt": "a1eedd84d5a71e8be55dfd49fc34ba24e33ad43c56b4da39ab33d377aca3e194",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_02.pt": "ec0347971c58f1109f7f7bdda55500705db798a34d6ee0702aa1f32010e90204",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_03.pt": "62f901a98f3c53a264d3e62a1eec134b17ebb67fae4d463a0b453b1cfcf6abc3",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_04.pt": "88ead77c012f6927a64f960e4d0c15a43344622cac42639194359ff400170bf7",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_05.pt": "6fea1f14c9bb79cc61ad544dc9572a7d4d2c3df96930fb4f17122a1b31a02635",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_06.pt": "a023181223e317a244cae0392516a7c94f2c77ebd0170e11f434438c7733667a",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_07.pt": "9fac4cf5ee8d4b6d73ae7417ec9276dd7afd4c2f12684fb93ec4a2346d3e434c",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_08.pt": "70ce6085e68d004020b561b6d5db6f805119303f7465d95350f1368ae1940a4b",
+            "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/mechanism_states/task_09.pt": "1f0d27c7cbccc5e183ac7ae3413d832bb70e08aa473319a20cc0de075807b49b"
+          },
+          "per_task": [
+            {
+              "task": 0,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 0,
+              "total_classes": 20
+            },
+            {
+              "task": 1,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 20,
+              "total_classes": 40
+            },
+            {
+              "task": 2,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 40,
+              "total_classes": 60
+            },
+            {
+              "task": 3,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 60,
+              "total_classes": 80
+            },
+            {
+              "task": 4,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 80,
+              "total_classes": 100
+            },
+            {
+              "task": 5,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 100,
+              "total_classes": 120
+            },
+            {
+              "task": 6,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 120,
+              "total_classes": 140
+            },
+            {
+              "task": 7,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 140,
+              "total_classes": 160
+            },
+            {
+              "task": 8,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 160,
+              "total_classes": 180
+            },
+            {
+              "task": 9,
+              "passed": true,
+              "factor_tensors": 48,
+              "snapshot_epochs": [
+                1,
+                2
+              ],
+              "selected_epochs": [
+                1,
+                2
+              ],
+              "merge_applied": true,
+              "reconstruction": "observed_factor_merge",
+              "reconstruction_max_abs_error": 0.0,
+              "rng_unchanged": true,
+              "known_classes": 180,
+              "total_classes": 200
+            }
+          ],
+          "dual_fisher_cosine": {
+            "collected": false,
+            "reason": "Sidecars store A/B factors and merge metadata, not paired endpoint/retained Fisher estimates. No Fisher cosine was measured."
+          }
+        },
+        "native_log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/20/smoke_observer_on_s2_vit_base_patch16_224.log",
+        "native_log_sha256": "a7075ad51d2dfadba645d0e83b4852a1ce71b50f8ebe8756ca224e60a56c1f1e"
+      }
+    },
+    "off": {
+      "id": "smoke_observer_off_s2",
+      "original_receipt_status": "failed",
+      "original_receipt_error": "ValueError('Wrong task count 10, expected 2')",
+      "receipt_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/runtime/jobs/smoke_observer_off_s2/failed.json",
+      "receipt_sha256": "c12661f791aa80fbfc0d3bbc10e88b0d4394d9bbcdcaee026b34574578608b8f",
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/20/smoke_observer_off_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "ecb42f1efbc10b307e45a3fffdb668cc4a68ff8e08ae1bfc7e8121b66f0efe0b",
+      "config_sha256": "b2d4769aea7f4ddc8570a722a706adc668181df223d7f931e87b36176a0c1af0",
+      "console_sha256": "807e8be77587846d0882a19556d8c799d6fbec61eda8f79ecf5683ef12930443",
+      "sample_curve": [
+        77.52,
+        58.82,
+        53.36,
+        49.49,
+        46.41,
+        43.56,
+        40.97,
+        38.19,
+        35.97,
+        34.23
+      ],
+      "effect_checks": {
+        "capture": false,
+        "fisher_location": "retained",
+        "tasks": [
+          {
+            "task": 0,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.0000000474974513,
+            "fisher_mass": 1.0000000474974513,
+            "train_ce": 1.60936419069767,
+            "train_ewc": 0.0
+          },
+          {
+            "task": 1,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999937135726,
+            "fisher_mass": 1.9000000364612788,
+            "train_ce": 1.9851953610777855,
+            "train_ewc": 1.4926973062046045e-06
+          },
+          {
+            "task": 2,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.000000043772161,
+            "fisher_mass": 2.710000076587312,
+            "train_ce": 2.312045454978943,
+            "train_ewc": 5.658640073846755e-06
+          },
+          {
+            "task": 3,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999990686774,
+            "fisher_mass": 3.439000067997258,
+            "train_ce": 2.212125265598297,
+            "train_ewc": 2.755879685878426e-06
+          },
+          {
+            "task": 4,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999371357262,
+            "fisher_mass": 4.095099998333259,
+            "train_ce": 2.953002482652664,
+            "train_ewc": 9.312302879038725e-06
+          },
+          {
+            "task": 5,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999883584678,
+            "fisher_mass": 4.6855899868584014,
+            "train_ce": 3.125376343727112,
+            "train_ewc": 1.786587108654203e-05
+          },
+          {
+            "task": 6,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 1.000000050291419,
+            "fisher_mass": 5.217031038463981,
+            "train_ce": 2.942142685254415,
+            "train_ewc": 1.2390457717022704e-05
+          },
+          {
+            "task": 7,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999776482582,
+            "fisher_mass": 5.695327912265841,
+            "train_ce": 2.8749282360076904,
+            "train_ewc": 1.3228774776052887e-05
+          },
+          {
+            "task": 8,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999704305083,
+            "fisher_mass": 6.125795091469765,
+            "train_ce": 2.865566909313202,
+            "train_ewc": 3.5632036656352284e-05
+          },
+          {
+            "task": 9,
+            "merge_applied": true,
+            "fisher_source": "post_weight_merge",
+            "fisher_trace": 0.9999999615829438,
+            "fisher_mass": 6.513215543905733,
+            "train_ce": 2.7175179719924927,
+            "train_ewc": 6.743156935347845e-06
+          }
+        ],
+        "native_log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/20/smoke_observer_off_s2_vit_base_patch16_224.log",
+        "native_log_sha256": "f732bfe01771420ae41bd42693e73ef65d495328e6d096b6c9e92ce5558511f5"
+      }
+    }
+  },
+  "errors": [
+    "Observer pair differs in observed CNN matrices, sample curve and all 30 checkpoint file tensor sets; exact trajectory-neutrality gate is not satisfied."
+  ],
+  "scope_limits": [
+    "This is an observer-neutrality check of the realized 10-task x 2-epoch trajectory, not successful validation of the intended two-task smoke protocol.",
+    "The paired 50-epoch main experiment protocol is not tested by these runs.",
+    "Fisher tensors were not archived; exact Fisher tensor equality was not directly checked.",
+    "Boundary RNG equality verifies the boundary observer; exact saved parameter equality additionally checks observer neutrality over the realized training trajectory."
+  ],
+  "config_differences": [
+    "outputs_root",
+    "prefix",
+    "s3_boundary_capture"
+  ],
+  "cnn_all_matrices_exact": false,
+  "sample_curve_exact": false,
+  "matrix_bank_keys": [
+    "final",
+    "t00",
+    "t01",
+    "t02",
+    "t03",
+    "t04",
+    "t05",
+    "t06",
+    "t07",
+    "t08",
+    "t09"
+  ],
+  "tensor_comparisons": [
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_0.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_0.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "9d3dfc26e6ea6b12fbc29f23145ec27ad8fcc827babdeab3ef969c6c228e1a15",
+      "tensor_state_sha256_off": "3603fa09533b731ae0af71dad259c938129906a48e367d5f78955db2d57904b3"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_0.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_0.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "2dc3e336f518d40fb896e269c71f02543461bc6af6c150412c45de445ceebe30",
+      "tensor_state_sha256_off": "2fb848d1559b84025d18e1692a1491245b907731c13137d27da82811df5cdf94"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_0.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_0.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "8c33ac80924219c1eada5c2afbb7a2d78c2bc230fa47abc8bec1155f9ec509f8",
+      "tensor_state_sha256_off": "fd740b40faa6f93e00314a31e761f7fab7728ff1c8a3fae16d3cc86f6dd9169b"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_1.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_1.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "81521ed22c4a03150a0305c3c810e681645d1dbc90f972d404e160e1e5b58712",
+      "tensor_state_sha256_off": "61effe78e87c4e7677f2d0ecc9333546c8e532a69ef4fafc41ab06952b2d5089"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_1.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_1.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "2d965034e3af8c1255bece45107a2bbee781ddeb07ce80228de11df7f99278e4",
+      "tensor_state_sha256_off": "54aed1b88826c86e5c13eb37c9fc6cb3ef260982dc36f5b69d19340f0ba7d486"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_1.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_1.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "d677ccc7100cc40b97697d684e10dd1434f7f71b9c74016b7f2cd64ed1da5cec",
+      "tensor_state_sha256_off": "ccf0d7b489f0bd038d4422e7a406daf41999a268ab4c1894faa242176b453421"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_2.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_2.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "dfa22de68ae1ee4a6c6afbb030c89f3b24b2516f0eb87eb216daf68d7afef049",
+      "tensor_state_sha256_off": "835cfb5c3e755f069dd201f95aa9ee36cbf74d833e02b939f25afb45599f76e3"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_2.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_2.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "9bf763641e810860b8592d243665072c85b9ca64136319c7509b2dbff2ba5cca",
+      "tensor_state_sha256_off": "5691df5ea476ed37b1667fac1804c3fa077873295efaf60132b02bbb436e816f"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_2.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_2.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "181e56d7603c2286c08aa2673c5b44acffb589463556ca85d30c89a2086a6b5e",
+      "tensor_state_sha256_off": "1ee61d614089579e6e6614c1da7c195afc764a53f8e87d9b88cbc325254a4eaa"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_3.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_3.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "0a1bb534aa159600eb7fd19a89a2c47544250341f81603679903dbed67085e7c",
+      "tensor_state_sha256_off": "96e9a95e054ac3f30c15cddf2f914639cb06d50482760129e08731b6508c8cb8"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_3.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_3.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "1da2d3e72d4b9abc1d722042358c5e0e06421bd14026591a576d5ecee6f0dab6",
+      "tensor_state_sha256_off": "1f3071e8da6df6df2416923916b0b05a3127df246ece3acd19115fe026f1cbaa"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_3.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_3.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "b2b58db5782f53f11974ef657f2e1321889bafd4bf954a55e91c584910b5651c",
+      "tensor_state_sha256_off": "5f7f1ca697aa92b4436ddb305777f444f88500d054b5895fe0d0da49b43da43c"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_4.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_4.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "88ce26c77823001833006c8af720883f71b17719e7dc3812df2459d14edd7c5d",
+      "tensor_state_sha256_off": "0a58c04482fb4469fec13aa3109e25fcc0fa959607ee9cc48fdb190e76175f70"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_4.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_4.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "01f24b2e988fa5a376c2757f774a44379263f94ef3af24ae2f9cb1313d258472",
+      "tensor_state_sha256_off": "508bf592df4d45f4e7456e122c5587416ae284df856e8ddf47216be36f254aa0"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_4.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_4.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "ac52fb04918d2e816706b56dab1a1573c5defda9bd81e8a4ffcdbcd4cb64a1c3",
+      "tensor_state_sha256_off": "9485cfd7e82627b5707569d676d77a838277d0daf7a63eff9ee43d8c387b2843"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_5.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_5.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "d87b45526f5daef40446eb76a2ce9110e87c69de0a485f8c9af094ef29beb760",
+      "tensor_state_sha256_off": "58d3fafca04bc79cc5ccf45be41e49b59b4f85eede6344ff27c7622000db0927"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_5.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_5.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "0a74447b207a19e38bfb4f2aa1a296b3e26eae9cbed6890fcee4590ed255f61c",
+      "tensor_state_sha256_off": "e18b1da20aea895bdde503bf80bf5ea82f5d54ea0eb5a0fc6f84d6a90424a307"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_5.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_5.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "5409a695a43bc48601e6b439b3816a8c09354d452a727cb4caa7d708122690c8",
+      "tensor_state_sha256_off": "1d06f21ac4d5c54c16360547561f1b0b761a068e3af282dce1b5656dfbec02a8"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_6.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_6.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "7ea770c9cbbd11a851d038bf3e9d6898892de4d03eaa419450eaef8f0f692579",
+      "tensor_state_sha256_off": "8fb8414934440a20d3300f05a3941a43417ec31c3f69bf0076028334e3bc6cce"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_6.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_6.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "98735e4ab63a322cfaf3d6bd382ea9598400077458400746acd934e18e7252b0",
+      "tensor_state_sha256_off": "1b8582e586c48f13fe206effbc0e885528a58d6ab418ff11de9e7065b6778fc9"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_6.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_6.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "5fab143324217107eeb15d3a8927abaac33b7052c6def27f7de419fa9133b182",
+      "tensor_state_sha256_off": "4da7c6c94e27d0718ae569cac9b57db3a8b971a71d6f7270546f85a1fc4e5475"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_7.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_7.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "9fd099f645cda76e46eb454fc6006787f03db75fa4f32defdd323ba74ece3cb1",
+      "tensor_state_sha256_off": "2dcb14a9ed05b599acc6de176f351d12fcf7f75f1cce33fe83b58032533e7c7c"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_7.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_7.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "a8f82c60a18fb39a0ad5bf9e5c69a7e896811036d3f8822ba2db3b844052afc9",
+      "tensor_state_sha256_off": "b79df8100ea77ef195bb710cb018e3efd7e39f2cd7a50bfeb2c55d720a7d498e"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_7.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_7.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "ad1be2833b89774d7c7f1ffffa532daf3438145b9c4168e35e49f25459876e0b",
+      "tensor_state_sha256_off": "cb91489abf3a45a166e05603e9f05c31abba86fff2ba891d6214705d19d701ba"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_8.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_8.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "92e82d5dbec17d8a2c84da75638075f9080b4ca7c1ca89772ae6f0968c7133a6",
+      "tensor_state_sha256_off": "21cd4c7cdf3b2ea252821c63be2845a61982906ce0c3a0461630eeafb9b8892e"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_8.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_8.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "b1e31ac36083f2a57c745111fda22bcd85556f0879837fd33a9aff10d41db7e8",
+      "tensor_state_sha256_off": "03c4638a4cf27c89ced4d12a98365c7e59fc95419b3d583d0092c76ee4b1393c"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_8.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_8.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "44fe155c688bc18b645e7a7a1d7eb83f12c3548ed407e8e56c6eb7f95d2a3679",
+      "tensor_state_sha256_off": "640235b33f0b2ee9405e26c9c93bd831db2ae4379534c7e258b32126654c0ced"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_a_9.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_a_9.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "d8fda37ac77e232e980cba2868545295678a7a6e27aa8e77098b457edf7c7da9",
+      "tensor_state_sha256_off": "f11c99343685210c8c8af1489d02ba92cb35f639ec17d20cae6af76cdcabc282"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/lora_w_b_9.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/lora_w_b_9.pt",
+      "tensor_count": 24,
+      "equal": false,
+      "mismatch_keys": [
+        "/0/weight",
+        "/1/weight",
+        "/2/weight",
+        "/3/weight",
+        "/4/weight",
+        "/5/weight",
+        "/6/weight",
+        "/7/weight",
+        "/8/weight",
+        "/9/weight",
+        "/10/weight",
+        "/11/weight",
+        "/12/weight",
+        "/13/weight",
+        "/14/weight",
+        "/15/weight",
+        "/16/weight",
+        "/17/weight",
+        "/18/weight",
+        "/19/weight",
+        "/20/weight",
+        "/21/weight",
+        "/22/weight",
+        "/23/weight"
+      ],
+      "tensor_state_sha256_on": "d536a913b5e1b50d7ce6e020a350f9ded063a90ed3619a5319edfd6c5d293e68",
+      "tensor_state_sha256_off": "b639f751ecdb299168484cbf9d5f43fd88e6e0966001741561f129c3a62b464a"
+    },
+    {
+      "file_on": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_on_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_on_s2/exp_run/checkpoints/fc_state_9.pt",
+      "file_off": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/outputs/smoke_observer_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_mechanism_smoke/imageneta/2/smoke_observer_off_s2/exp_run/checkpoints/fc_state_9.pt",
+      "tensor_count": 2,
+      "equal": false,
+      "mismatch_keys": [
+        "/bias",
+        "/weight"
+      ],
+      "tensor_state_sha256_on": "215bd336984050fc731942864b995b78e4aa4718afb8161ef45d3e66f5c8e6f0",
+      "tensor_state_sha256_off": "0edc8b4b66a3ec6b0e68868ebde8e0f0bc7f9e6ee2e04ce1cdd211e32bdec36d"
+    }
+  ],
+  "task_checkpoint_groups": 10,
+  "checkpoint_file_pairs": 30,
+  "tensor_count": 500,
+  "all_saved_parameters_bitwise_equal": false,
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 45, in <module>\nAssertionError\n",
+  "realized_trajectory_observer_neutrality_verified": false,
+  "helper_sources": {
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/verify_smoke.py": "7a59ed3ee2c5c7d340ce3fd83bdb0e7b02e4d5c56ceee2aa865775f6378742cf",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/verify_boundaries.py": "ac9986a0b4395796729f3b0cd317819dfa5381d6e05788a52305ab563e3743da",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_campaign/common.py": "cdc3a294ca83b53fe03945fcf94aa46d561bb4a0d99c5f61b11cbc6346e4e5ac"
+  },
+  "preboundary_difference_evidence": {
+    "on": {
+      "task_0_preboundary_training_statistics": {
+        "train_clean_loss_mean": 1.6085240691900253,
+        "train_gam_mean": 2.2087215065956114,
+        "grad_clean_norm_mean": 2.7739998864647837,
+        "in_task_weight_final_l2": 8.957319486592823,
+        "in_task_path_loss_min": 0.9595999251858784,
+        "in_task_path_loss_max": 1.1386460120759379
+      },
+      "task_0_checkpoint_log_entries": [
+        "[Checkpoint] task=0 epoch=1 count=1 quality_split=train ce=1.13865 acc=66.243 samples=1259 batches=10 lora_tensors=48 weight_tensors=48 weight_l2=8.95427",
+        "[Checkpoint] task=0 epoch=2 count=2 quality_split=train ce=0.9596 acc=71.644 samples=1259 batches=10 lora_tensors=48 weight_tensors=48 weight_l2=8.95732"
+      ]
+    },
+    "off": {
+      "task_0_preboundary_training_statistics": {
+        "train_clean_loss_mean": 1.60936419069767,
+        "train_gam_mean": 2.212815535068512,
+        "grad_clean_norm_mean": 2.7759756386737435,
+        "in_task_weight_final_l2": 8.957290706905015,
+        "in_task_path_loss_min": 0.9596467205131688,
+        "in_task_path_loss_max": 1.1409520032010068
+      },
+      "task_0_checkpoint_log_entries": [
+        "[Checkpoint] task=0 epoch=1 count=1 quality_split=train ce=1.14095 acc=66.561 samples=1259 batches=10 lora_tensors=48 weight_tensors=48 weight_l2=8.95426",
+        "[Checkpoint] task=0 epoch=2 count=2 quality_split=train ce=0.959647 acc=71.644 samples=1259 batches=10 lora_tensors=48 weight_tensors=48 weight_l2=8.95729"
+      ]
+    }
+  },
+  "boundary_observer_local_checks": {
+    "observer_on_valid_boundary_archives": 10,
+    "observer_on_rng_unchanged_at_all_boundaries": true,
+    "observer_off_boundary_archives": 0,
+    "observer_on_capture_extra_forward_count": 0,
+    "observer_on_capture_extra_fisher_count": 0
+  },
+  "interpretation": "Local boundary RNG/no-extra-forward/no-extra-Fisher/reconstruction checks pass for all 10 observer-on boundaries. However, these two runs are not an exact reproducibility pair. Differences already appear at Task 0 epoch 1 snapshot CE, before the first task-end boundary capture. This rules out attributing all observed differences to the boundary observer from this pair alone. Training nondeterminism or another upstream execution difference remains unresolved. The intended two-task smoke and whole-trajectory neutrality are not certified.",
+  "recommended_followup": "Use same-trajectory before/after RNG/parameters/state checks for the observer and investigate upstream reproducibility; if demanding cross-run bitwise equality, first establish an observer-off repeat baseline on the same device and runtime.",
+  "finalized_time_utc": "2026-09-20T20:28:42.483933+00:00"
+}

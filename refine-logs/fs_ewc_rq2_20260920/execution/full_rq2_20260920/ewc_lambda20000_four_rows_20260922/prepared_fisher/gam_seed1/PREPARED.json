@@ -1,0 +1,489 @@
+{
+  "admission": {
+    "all_gpu_gate_required": false,
+    "expected_gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+    "memory_mib": 2,
+    "physical_gpu": "5",
+    "poll_seconds": 900,
+    "scope": "selected_gpu_only",
+    "shared_lock": {
+      "exclusive_lock_verified": true,
+      "inherited_fd": 7,
+      "path": "/data/140-1/users/liying/O-LoRA/.cache/gpu_locks/GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e.lock"
+    },
+    "status": "admitted",
+    "utilization": 0
+  },
+  "anchor_method": "gam",
+  "ewc_normalize_accumulated_fisher": false,
+  "ewc_normalize_fisher": false,
+  "exact_inputs_receipt": {
+    "all_batch_pixels_targets_sha256": "53f540d80487d26f0b2ab2f075e1dd1a866b1073b8aaa761417766a3a13c3576",
+    "batches": 10,
+    "dataset_ids_sha256": "02b461539dc31835ad90f8a47e7bb576953c8d7971a2a849312a829434ff6911",
+    "first_batch_pixels_targets_sha256": "e37fca9dcffafce0421561a5f1136328b739fb2de9f284b57eeb32717a75e91f",
+    "generator_seed": 30360942,
+    "indices_sha256": "7f43bb537e2af6d376b2c5e7dd0a667831d7ea1c03d1615e722fa7faf1bdcec3",
+    "iteration": 50,
+    "matched": true,
+    "num_workers": 4,
+    "original_full_pixel_digest_available": false,
+    "sample_count": 1259,
+    "samples": 1259
+  },
+  "expected_parent_raw_trace": 18.866997465491295,
+  "fisher_estimation_metrics": {
+    "fisher_estimator": "batch_empirical",
+    "fisher_estimator_display": "batch-gradient delta-W Fisher proxy",
+    "fisher_estimator_family": "batch_gradient_square_proxy",
+    "fisher_gradient_aggregation": "square_of_batch_mean_delta_w_gradients",
+    "fisher_is_per_sample_empirical": false,
+    "fisher_loss_reduction": "cross_entropy_mean",
+    "fisher_mode": "batch_empirical",
+    "fisher_num_samples": 1259,
+    "fisher_space": "delta_w"
+  },
+  "fisher_mode": "batch_empirical",
+  "fisher_source": "fit",
+  "formal_runner_sha256": "a4de971877e8bee0f7da9efbb010fb2f7c7df30a7920286ee3196cbe4dc4afe8",
+  "full_checkpoint_restoration_verified": true,
+  "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+  "mean": 1.3328126497189963e-06,
+  "model_training_steps": 0,
+  "native_fisher_passes": 1,
+  "network_state_after_sha256": "ad21dc334f3b1391389f1fcdec3a770e0052f277b4eae03d3d704ddf59af46be",
+  "network_state_before_sha256": "ad21dc334f3b1391389f1fcdec3a770e0052f277b4eae03d3d704ddf59af46be",
+  "numel": 14155776,
+  "original_normalized_fisher_used_for_computation": false,
+  "parent_asset_sha256": {
+    "checkpoints/fisher_state_0.pt": "f3f2efb1772d0504d00501272d4949c91103adef2dc5fd9f3cb2a687854f123f",
+    "checkpoints/rng_state_00.pt": "79a7f52f62fc1d4c55effc12a0ea528fb8dabe855342d80c0bd3a787ba11510d",
+    "checkpoints/task_00.pt": "3c6a3af2066ed257baab0f0bffa774741e060f169d886e4940fae6bc9643275c"
+  },
+  "parent_checkpoint_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+  "parent_checkpoint_sha256": "3c6a3af2066ed257baab0f0bffa774741e060f169d886e4940fae6bc9643275c",
+  "parent_fisher_sha256": "f3f2efb1772d0504d00501272d4949c91103adef2dc5fd9f3cb2a687854f123f",
+  "parent_manifest_sha256": "98f74077ddeb9f52c581c06b0b89f09a43ad6f6ff53cc1ffb4a7e5d10bd8c61f",
+  "parent_rng_receipts_sha256": "3838396ad3be1acf42de385e242b54c857528edd97204b7d4aae406a8d7436a5",
+  "payload_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/gam_seed1/fisher_state_raw.pt",
+  "payload_sha256": "b5ecf66386222f15bc8054003fc2aad1e9fbd7ce1cc1f980aacbc3923df6a999",
+  "preparation_kind": "native_fit_fisher_recomputation",
+  "prepare_script_sha256": "81e41d54a709b43f31547ed8528cf673f7b79f502c0ec3fa85cbd4c15528fa4e",
+  "producer_runner_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepare_fisher.py",
+  "producer_runner_sha256": "81e41d54a709b43f31547ed8528cf673f7b79f502c0ec3fa85cbd4c15528fa4e",
+  "protocol": "rq2_raw_fit_fisher_replay_multiseed_v1",
+  "raw_trace": 18.866997319388574,
+  "raw_trace_tolerance": {
+    "atol": 1e-05,
+    "rtol": 0.0001
+  },
+  "sampler_replay": {
+    "generator_state_before_fisher_sha256": "ec2ddadcc16228412080c982f09356067f62b191b020cb9de8a232e5f06713ad",
+    "iterations_verified": 51,
+    "sampler_indices_matched": true
+  },
+  "seed": 1,
+  "source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source",
+  "source_manifest_sha256": "fe3b5ef75e89bab32010c1aa9a0581cbaeb2b068eaa2f4718f11a9cc314d0a2b",
+  "stats": {
+    "max": 0.03915451467037201,
+    "mean": 1.3328126497189963e-06,
+    "numel": 14155776,
+    "sum": 18.866997319388574,
+    "tensors": 24
+  },
+  "status": "complete",
+  "task": 0,
+  "tensor_count": 24,
+  "tensor_shapes": {
+    "backbone.lora_vit.blocks.0.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.0.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.1.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.1.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.10.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.10.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.11.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.11.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.2.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.2.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.3.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.3.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.4.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.4.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.5.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.5.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.6.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.6.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.7.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.7.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.8.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.8.attn.qkv.v": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.9.attn.qkv.q": [
+      768,
+      768
+    ],
+    "backbone.lora_vit.blocks.9.attn.qkv.v": [
+      768,
+      768
+    ]
+  },
+  "tensor_stats": {
+    "backbone.lora_vit.blocks.0.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.005185250658541918,
+      "mean": 5.101912263863843e-07,
+      "min": 1.281718840692754e-17,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.3009230299121227
+    },
+    "backbone.lora_vit.blocks.0.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.03915451467037201,
+      "mean": 6.1940747097507e-06,
+      "min": 1.143964158562558e-15,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 3.653413921603997
+    },
+    "backbone.lora_vit.blocks.1.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.00023379770573228598,
+      "mean": 1.1481293470587071e-07,
+      "min": 3.913559561088845e-17,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.06771942439995549
+    },
+    "backbone.lora_vit.blocks.1.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.009164606221020222,
+      "mean": 3.181581979914248e-06,
+      "min": 6.5009808347920705e-15,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.8765734097209414
+    },
+    "backbone.lora_vit.blocks.10.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.0003753333876375109,
+      "mean": 2.0898915237706568e-07,
+      "min": 1.1372522923380757e-09,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.12326681781165039
+    },
+    "backbone.lora_vit.blocks.10.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.0007721762522123754,
+      "mean": 1.2280818040803254e-06,
+      "min": 7.644449517840712e-09,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.7243521220098739
+    },
+    "backbone.lora_vit.blocks.11.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.0002518825058359653,
+      "mean": 9.506323496878946e-08,
+      "min": 6.712740779901694e-11,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.056070577502231274
+    },
+    "backbone.lora_vit.blocks.11.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.00021270656725391746,
+      "mean": 9.542973613920678e-07,
+      "min": 1.4783626545167294e-09,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.562867486885715
+    },
+    "backbone.lora_vit.blocks.2.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.00038305402267724276,
+      "mean": 1.2018686076183108e-07,
+      "min": 3.748266481267207e-15,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.07088909496198625
+    },
+    "backbone.lora_vit.blocks.2.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.0038600927218794823,
+      "mean": 3.2716431567283467e-06,
+      "min": 3.730166403623919e-13,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.9296936532741404
+    },
+    "backbone.lora_vit.blocks.3.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.0006512232939712703,
+      "mean": 1.8353929321119924e-07,
+      "min": 2.2016358191840474e-14,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.10825588007900237
+    },
+    "backbone.lora_vit.blocks.3.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.008583814837038517,
+      "mean": 2.774967280543708e-06,
+      "min": 1.2876109683687686e-12,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.636742301279412
+    },
+    "backbone.lora_vit.blocks.4.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.00015923954197205603,
+      "mean": 1.7610340237962548e-07,
+      "min": 7.624329376088761e-16,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.10387001320516022
+    },
+    "backbone.lora_vit.blocks.4.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.006480079144239426,
+      "mean": 2.461379549710399e-06,
+      "min": 1.197483003598579e-13,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.4517807315283864
+    },
+    "backbone.lora_vit.blocks.5.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.0002459338866174221,
+      "mean": 1.935062293486033e-07,
+      "min": 7.862842863783082e-14,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.11413461821931059
+    },
+    "backbone.lora_vit.blocks.5.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.0011526410235092044,
+      "mean": 2.2170747628756225e-06,
+      "min": 2.8460955380643638e-12,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.307683904938351
+    },
+    "backbone.lora_vit.blocks.6.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.0010053484002128243,
+      "mean": 2.4236161814451753e-07,
+      "min": 1.3163274723698715e-12,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.14295069906047192
+    },
+    "backbone.lora_vit.blocks.6.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.001309073530137539,
+      "mean": 2.124467455841865e-06,
+      "min": 3.401418383064403e-11,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.2530618926744723
+    },
+    "backbone.lora_vit.blocks.7.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.00034741120180115104,
+      "mean": 2.069831783118624e-07,
+      "min": 4.0502218007394675e-13,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.12208364616461592
+    },
+    "backbone.lora_vit.blocks.7.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.0006630616262555122,
+      "mean": 2.1332766940651253e-06,
+      "min": 2.4274070600793785e-11,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 1.2582577928002685
+    },
+    "backbone.lora_vit.blocks.8.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 6.994736759224907e-05,
+      "mean": 1.5603887961208443e-07,
+      "min": 1.376711505213235e-11,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.09203547612831808
+    },
+    "backbone.lora_vit.blocks.8.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.0008502568234689534,
+      "mean": 1.6209846299705728e-06,
+      "min": 2.8979091348801944e-10,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.9560956383877631
+    },
+    "backbone.lora_vit.blocks.9.attn.qkv.q": {
+      "dtype": "torch.float32",
+      "max": 0.00020704104099422693,
+      "mean": 2.2578499075696544e-07,
+      "min": 6.744646507961249e-10,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.13317340638823638
+    },
+    "backbone.lora_vit.blocks.9.attn.qkv.v": {
+      "dtype": "torch.float32",
+      "max": 0.000691361608915031,
+      "mean": 1.3921132074181276e-06,
+      "min": 1.007401806418784e-08,
+      "numel": 589824,
+      "shape": [
+        768,
+        768
+      ],
+      "trace": 0.8211017804521896
+    }
+  },
+  "time_unix": 1790069378.5628104,
+  "torch_version": "2.4.1+cu121",
+  "weights_unchanged": true
+}

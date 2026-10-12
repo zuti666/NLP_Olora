@@ -1,0 +1,4704 @@
+{
+  "audit_date": "2026-09-22",
+  "scope": [
+    "SeqLoRA",
+    "IncLoRA",
+    "OLoRA+GAM",
+    "TreeLoRA"
+  ],
+  "target_seeds": [
+    0,
+    42,
+    1993
+  ],
+  "selected_runs": [
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "Inclora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "b7fbad4e3d73412a56550d456a6caa686f8f9675cee2ce39fea96c17daba8efd",
+          "train_runtime": 87.2618,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T21:55:48+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "b3b929cb015a9e5e7043862df7437e760ac76dbbcaac28996d03b12cb2bb5db3",
+          "train_runtime": 31.9417,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T21:58:18+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/trainer_state.json",
+          "predict_sha256": "765576ac064a55548f1d2a40b4825eb085de7d0eda2a1c47435139602f2a24d2",
+          "train_runtime": 66.054,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T22:03:13+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/trainer_state.json",
+          "predict_sha256": "b891a30093fdac9bb7bcd2261ad48f1c4775e34e1b9a7998ae90e239b5f1de72",
+          "train_runtime": 24.9624,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T22:07:59+00:00",
+          "FAA": 64.523025
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "Inclora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "96031bb29b3516cafec5df8f3dfaca5747e40715a30fdfd36c0fa1002104bf37",
+          "train_runtime": 86.1465,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T23:05:24+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "8b9b9a6aa6e9c82266e3cb0d2319c20872a200c70683bf8fbe921cdc0969c99a",
+          "train_runtime": 31.3919,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T23:07:56+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "2ce0dbd0ee6f4568f4a22cadefc5af46b4301c456e54bcfaa53df9112519a2b5",
+          "train_runtime": 25.2046,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T23:10:53+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/trainer_state.json",
+          "predict_sha256": "03dc7e38d7e7dc842dbdce0f77edcd4c8d35719a71bcf45e4558e6919a9fad2b",
+          "train_runtime": 64.0954,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T23:16:14+00:00",
+          "FAA": 56.1941
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "Inclora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/trainer_state.json",
+          "predict_sha256": "c238d8655e551f0e8dcc90e1129b5135520805c4c2045b2f050bf789e40bed95",
+          "train_runtime": 62.789,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T00:10:39+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "c1e78da81664c28a63b240732d803a6d089f1e9524ba9c784c0cdf6223ca7bba",
+          "train_runtime": 30.8756,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T00:14:59+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "cceb8abb048c34fa1952b7e09f2e2a3b519261af34935b3e9c2f50067fec504d",
+          "train_runtime": 25.1966,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T00:19:47+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/trainer_state.json",
+          "predict_sha256": "4d84bf2073ea8812dd915ee4b15fdfead905a794ab7dc2a2b24d95bffc226478",
+          "train_runtime": 88.5977,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T00:26:33+00:00",
+          "FAA": 65.44409999999999
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "seqlora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "0a9e09ec574ed472387b14ffc003676936705d020b9584f811682e76ba32464a",
+          "train_runtime": 79.0316,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T19:24:01+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "3426420bda563d18d80423af7a8e99fe179440759aec0375740c63171a4f1d3f",
+          "train_runtime": 29.0929,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T19:26:25+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/trainer_state.json",
+          "predict_sha256": "4bde55ddd6b1779831c189807734a194de452497e550e20cf7320a972e4e3191",
+          "train_runtime": 58.8408,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T19:31:22+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/trainer_state.json",
+          "predict_sha256": "6d54ac0b266ac0a2f1000ed0c367bd05cce4cbd12e13d2caa94f9b0a399c2e83",
+          "train_runtime": 23.0491,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T19:36:09+00:00",
+          "FAA": 66.9013
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "seqlora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "e822f684477482744ef7738bc1ed3b18f140cead6009d9705179a03f4557d883",
+          "train_runtime": 79.904,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T19:57:17+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "8116849c14894dedbc2375d1c61a3db50880f67a86622628909dec2f4085a968",
+          "train_runtime": 29.1001,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T19:59:45+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "c367356450d2da8638e4fc25a965bdb3deaafe37087e0cc2101d92c9ac2f788c",
+          "train_runtime": 22.8734,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T20:02:38+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/trainer_state.json",
+          "predict_sha256": "ce0ca3dbe78ac547e5f4d762ca611171441d8045d3bde2518b1209c2aa3e95ef",
+          "train_runtime": 58.2918,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T20:07:50+00:00",
+          "FAA": 55.710525
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "seqlora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/trainer_state.json",
+          "predict_sha256": "94b027086b6a0fd38e9afc40b96a7c8a2977480041dcc2987cde4af4d1d62a3d",
+          "train_runtime": 58.4084,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T20:28:23+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "12dc24990ce9bef059dd1a7de158c71dde215beef85a014246dba2394b3de07b",
+          "train_runtime": 28.4454,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T20:32:35+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "b94ec7217116ede98e126f238cf4641ffecd0f6b2bd7a812e154340a903cf999",
+          "train_runtime": 24.6423,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T20:37:14+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/trainer_state.json",
+          "predict_sha256": "0608ac7c3c6ae6a1675644564052dfd33c9c8b53408058a2adc5e6cd018101e9",
+          "train_runtime": 79.1819,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T20:43:37+00:00",
+          "FAA": 68.0625
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order1_1-dbpedia.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order1_2-amazon.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order1_3-yahoo.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order1_4-agnews.log"
+      ],
+      "seed": "42",
+      "world_size": "4",
+      "ga": "16",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "16"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "treelora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.0"
+        ],
+        "olora_lamda_2": [
+          "0.0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": [
+          "0.5"
+        ]
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/1-dbpedia/trainer_state.json",
+          "predict_sha256": "0d1f31fa5dee0b8231fe9db157fe8760d5ee1e61bc21429bd6b045cb7d3adce0",
+          "train_runtime": 174.3284,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:14:18.600876+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/2-amazon/trainer_state.json",
+          "predict_sha256": "39c1c3353beb93271b3769bcab109c03e217af67224d16b1080ea64a90a228a3",
+          "train_runtime": 71.1784,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:18:35.895193+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/3-yahoo/trainer_state.json",
+          "predict_sha256": "ae0da8be04013987e86cf095ca819c2a6895fc494fbc96c9f4edb49b3c84c8b9",
+          "train_runtime": 140.9197,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:27:21.195212+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/4-agnews/trainer_state.json",
+          "predict_sha256": "33c01ff658263dfd356a4a5b0e87246384e6e4504d7479e2cc0a8b04b59ba005",
+          "train_runtime": 55.4797,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:35:28.376446+00:00",
+          "FAA": 66.9309
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": true
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order2_1-dbpedia.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order2_2-amazon.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order2_3-agnews.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order2_4-yahoo.log"
+      ],
+      "seed": "42",
+      "world_size": "4",
+      "ga": "16",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "16"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "treelora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.0"
+        ],
+        "olora_lamda_2": [
+          "0.0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": [
+          "0.5"
+        ]
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/1-dbpedia/trainer_state.json",
+          "predict_sha256": "2b2c3da317ba9dc118ef1e3fa9b54fa7d1d8448ca92263b05553a347bd0b936f",
+          "train_runtime": 178.5286,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:40:06.867919+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/2-amazon/trainer_state.json",
+          "predict_sha256": "623d2a96634dbe345555d3a12ce84af6679b0a15c03614c4741a9f4d9fc17aa8",
+          "train_runtime": 71.7014,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:44:27.396752+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/3-agnews/trainer_state.json",
+          "predict_sha256": "ecb9d30e719d9ad29a81ed147269f8de6467dafadaa577fa745bebdfa6a0ec7f",
+          "train_runtime": 60.6087,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:49:33.460944+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/4-yahoo/trainer_state.json",
+          "predict_sha256": "53f8359313420b0d748f983c6af789e4c76f4e240f3af12c24e25064c57daa4a",
+          "train_runtime": 151.9908,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T08:59:31.326070+00:00",
+          "FAA": 61.5296
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": true
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order3_1-yahoo.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order3_2-amazon.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order3_3-agnews.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order3_4-dbpedia.log"
+      ],
+      "seed": "42",
+      "world_size": "4",
+      "ga": "16",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "16"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "treelora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.0"
+        ],
+        "olora_lamda_2": [
+          "0.0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": [
+          "0.5"
+        ]
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/1-yahoo/trainer_state.json",
+          "predict_sha256": "2b34848e35289f1f2bbb5e335b19ddb6f240f5ee97fae1c47b810d313a1f80c8",
+          "train_runtime": 128.1052,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T09:05:18.272605+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/2-amazon/trainer_state.json",
+          "predict_sha256": "2536cf0863cbe73773ebcb844730badfd1713a912e3edf9dbea33d95e65f4b22",
+          "train_runtime": 68.6419,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T09:11:37.817626+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/3-agnews/trainer_state.json",
+          "predict_sha256": "7a3d3caf424097e51ed6f87f16b727d42ed459ad0d518b75427fcbda1246d61f",
+          "train_runtime": 56.5048,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T09:18:49.966740+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/4-dbpedia/trainer_state.json",
+          "predict_sha256": "14e8e2f7e0a386bb35e7ee565524e0e419f42425f63659017035f963e8b5968f",
+          "train_runtime": 203.9273,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T09:30:00.819790+00:00",
+          "FAA": 66.164475
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": true
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "Inclora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "35bb8c42da2e8af24c46fd5c7babefc41c4230cbb3ac1aacc67dd28a7f4ba8be",
+          "train_runtime": 152.6399,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T01:39:11+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "644d710897e5240f7dab5799ef553f7dacd646ce54a2a0b3fe6f43f14f1c6caf",
+          "train_runtime": 55.9275,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T01:44:26+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/trainer_state.json",
+          "predict_sha256": "df7899f0a311f9702cf450d0eeebd9738b225b3e31e1a52374563f5b735ecfa0",
+          "train_runtime": 116.8725,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T01:55:16+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/trainer_state.json",
+          "predict_sha256": "8aff689918e00d282e85bdd946f4d8bbeca6f7a4b9dfccdabc9dbbd6a209d683",
+          "train_runtime": 43.1193,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T02:06:23+00:00",
+          "FAA": 65.230225
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "Inclora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "7262e2cb3f901b5daacca1443d8eddcccb5751b27db45b59f002d3c0ab5113fd",
+          "train_runtime": 152.9829,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T04:09:58+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "2962475941a1d3a97a4fb2828492053177cd902cb4a7c09e491edd180911dd9f",
+          "train_runtime": 56.3162,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T04:15:13+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "b1700998dcc396ff3d362d67e011329aee6c433cb3380025284806481a07a39c",
+          "train_runtime": 43.6609,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T04:21:31+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/trainer_state.json",
+          "predict_sha256": "19830b704ef148f477dc99d9ca9013187961a743ee283380596076aa8486cad4",
+          "train_runtime": 116.3519,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T04:33:52+00:00",
+          "FAA": 66.7434
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "Inclora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/trainer_state.json",
+          "predict_sha256": "8abda3bf51aa68feb6804488408bd9a7d857330a5ebdcf02e5fb2b3531291056",
+          "train_runtime": 115.1112,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T06:27:33+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "d0b515c05b5b38403952d69e54d72e9517a86d66baa54e79d843605a43b88b69",
+          "train_runtime": 56.208,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T06:35:56+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "fda61f9a884015e739b2a84d7191fe97ac343364f26b63a310e56041436dc365",
+          "train_runtime": 43.6253,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T06:45:28+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/trainer_state.json",
+          "predict_sha256": "f66bb6932e6bee6d036c49a5f887ea6fbc925b730c2b4ef79cf7deb1246d29f2",
+          "train_runtime": 153.973,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T06:58:47+00:00",
+          "FAA": 69.54935
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "seqlora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "d9001b3db1198c5c5e6f8e19d5763bf764786421cf6b78b0856afe32cc8a66ec",
+          "train_runtime": 144.0326,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T14:02:11+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "1bbeeca325eb5f5ab2b4f460dc191528b29a68e5397139036d4926ef6e756199",
+          "train_runtime": 55.0603,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T14:14:27+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/trainer_state.json",
+          "predict_sha256": "d96683791a70b8df6a78f39ba1b3373b0dd2dec1fd53593f35368ef9cf08bbab",
+          "train_runtime": 109.1179,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T14:26:32+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/trainer_state.json",
+          "predict_sha256": "2f50e1f25acdd90d1bd1e7a2b2ccddb8b6498b00c85cf9e43cf569ad3ef75300",
+          "train_runtime": 40.5958,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T14:37:47+00:00",
+          "FAA": 67.85525
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "seqlora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "16ecf3b602a2c01baffb7ffc1a33889c40abef820f7294f9e71c4f108dda2396",
+          "train_runtime": 144.7526,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T15:41:24+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "96c97626ccf9b7b11ed38f60e7fa98a2fa923d23f89096321804b5277c4bba7d",
+          "train_runtime": 52.692,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T15:46:33+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "bcdd1ff86f75a0c2e62b90be9273899f8d684d941f41dee63dd5aded98aa8638",
+          "train_runtime": 40.4582,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T15:53:09+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/trainer_state.json",
+          "predict_sha256": "1dc06cfa891ef41a980397f7543c4641dcb2f5237c31c778916364cb4a1826ab",
+          "train_runtime": 126.1365,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T16:06:06+00:00",
+          "FAA": 67.26315000000001
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "seqlora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/trainer_state.json",
+          "predict_sha256": "0dcbeb066990fceec2673513156cf811cd33f2370d70717bc31c82dc71411f1a",
+          "train_runtime": 108.648,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T16:47:40+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "27d0c777d60808e130679c96656d4be31758a783290505f0dcc293759d0725dc",
+          "train_runtime": 52.5755,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T16:56:05+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "f773d0b343a540e60c78b043cdcf2ca780ea3e7621f9a7c76004d77cd78ba5aa",
+          "train_runtime": 41.3421,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T17:05:28+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/trainer_state.json",
+          "predict_sha256": "5b08984537916ad387722e0e43d97c62b2026af3dd2c8946b5f2ad9e1a675240",
+          "train_runtime": 144.9778,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-05T17:18:22+00:00",
+          "FAA": 67.4046
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order1_1-dbpedia.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order1_2-amazon.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order1_3-yahoo.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order1_4-agnews.log"
+      ],
+      "seed": "42",
+      "world_size": "4",
+      "ga": "16",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "16"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "treelora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.0"
+        ],
+        "olora_lamda_2": [
+          "0.0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": [
+          "0.5"
+        ]
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/1-dbpedia/trainer_state.json",
+          "predict_sha256": "60184fd0a67da5d0000ad9e5546845f7dfeadcb8347e2825d7afa438bfb6e793",
+          "train_runtime": 334.1218,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T09:39:23.548419+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/2-amazon/trainer_state.json",
+          "predict_sha256": "580f401dff97906caacdd68f79381b64842649857ed48c352d354472290764d5",
+          "train_runtime": 121.0701,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T09:48:49.474798+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/3-yahoo/trainer_state.json",
+          "predict_sha256": "40a99bbc8f219e20f52dc0f61ded57775e77cb6690c5b1c960f6b96f9634b73f",
+          "train_runtime": 256.7432,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T10:09:10.944503+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/4-agnews/trainer_state.json",
+          "predict_sha256": "68aa2f7f4fea633c107b2edfd8f50cffe37b416323790472ad250ceb6ee396a5",
+          "train_runtime": 104.2707,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T10:29:42.249338+00:00",
+          "FAA": 72.01645
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": true
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order2_1-dbpedia.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order2_2-amazon.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order2_3-agnews.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order2_4-yahoo.log"
+      ],
+      "seed": "42",
+      "world_size": "4",
+      "ga": "16",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "16"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "treelora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.0"
+        ],
+        "olora_lamda_2": [
+          "0.0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": [
+          "0.5"
+        ]
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/1-dbpedia/trainer_state.json",
+          "predict_sha256": "35ed0675b9a1e474c5b2f0b6dce9075403c40b4edfaf944dd1574519ab9a4aa6",
+          "train_runtime": 321.4687,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T10:38:54.869433+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/2-amazon/trainer_state.json",
+          "predict_sha256": "b5a2606bec2896412543f7adae13b018d1e6fc26cf75eb8453b0ad7b769a6cab",
+          "train_runtime": 125.6137,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T10:48:26.871824+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/3-agnews/trainer_state.json",
+          "predict_sha256": "84df94a5f52a1462ff75f3a6df00cb85d3b66aea1dfd4dee5603942fa58ef7f5",
+          "train_runtime": 101.7028,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T10:59:54.806426+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/4-yahoo/trainer_state.json",
+          "predict_sha256": "6101294126e038ee03af6cad821b2ea63ff2929af6c71fd879a59e2e316f38aa",
+          "train_runtime": 270.4903,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T11:22:51.861944+00:00",
+          "FAA": 69.013175
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": true
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order3_1-yahoo.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order3_2-amazon.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order3_3-agnews.log",
+        "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama3b_full_order3_4-dbpedia.log"
+      ],
+      "seed": "42",
+      "world_size": "4",
+      "ga": "16",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "16"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "treelora"
+        ],
+        "optimizer_type": [
+          "adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.0"
+        ],
+        "olora_lamda_2": [
+          "0.0"
+        ],
+        "gam_grad_rho": [
+          "0.2"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.1"
+        ],
+        "treelora_reg": [
+          "0.5"
+        ]
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/1-yahoo/trainer_state.json",
+          "predict_sha256": "fa3839e693e54ab0a9345f9ef5600d45cbe7fb962fc42a808e32331cd9962010",
+          "train_runtime": 245.0875,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T11:35:11.031647+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/2-amazon/trainer_state.json",
+          "predict_sha256": "7733d81a507a7645b5a162b77a969b1bd18701ca76aa97ec8aab7054e42058ee",
+          "train_runtime": 130.0812,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T11:50:10.233214+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/3-agnews/trainer_state.json",
+          "predict_sha256": "8fe0b59c34ef8fd2471758f79d8bfd92375932d2ccfd1bca5b6bb0a1e38f1e38",
+          "train_runtime": 96.6528,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T12:06:59.928126+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/4-dbpedia/trainer_state.json",
+          "predict_sha256": "c83f84b6e88c8063cd975301148e7c28ab7f43d7f01e5292b360e6d6370f3a9d",
+          "train_runtime": 356.0027,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-09-20T12:31:27.491915+00:00",
+          "FAA": 73.457225
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": true
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/OLoRA-GAM_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "olora"
+        ],
+        "optimizer_type": [
+          "gam-adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.02"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.03"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "320802f2f6a7ddfa69b8d655176dbb2614837e41d1fe08d1e9ee75a7006f204c",
+          "train_runtime": 493.6544,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T21:05:19+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "77c13143b8d876b2ffb9949aaf536f134bf6cd0b7495ce91700a2aeed762434e",
+          "train_runtime": 183.3031,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T21:10:24+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/trainer_state.json",
+          "predict_sha256": "49845cd5b58f429451a86796c7c30ff95528b08f20df11f9708b95681edd6f0a",
+          "train_runtime": 366.7873,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T21:20:56+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/trainer_state.json",
+          "predict_sha256": "2571f594c9e5a3d694c60914d1ece2af1a9699fd735445a84923cc8df11cda0d",
+          "train_runtime": 155.3344,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T21:28:31+00:00",
+          "FAA": 65.8059
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/OLoRA-GAM_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "olora"
+        ],
+        "optimizer_type": [
+          "gam-adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.02"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.03"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "b0f0eb19937d9dda1dc73d7391145b2eeb4c401a417d39233e5e89c8006ca59b",
+          "train_runtime": 488.9329,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T22:03:42+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "fbd4b3fbbe8689dac8d031379b53cb483b1154d930388ed854e9c0879a018eef",
+          "train_runtime": 182.5242,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T22:08:46+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "4c1c3350b9b8549701ccb5ab000f68bf05388eac93c1bad8af2f678f368363d8",
+          "train_runtime": 145.0293,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T22:13:43+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/trainer_state.json",
+          "predict_sha256": "ef98f39003d50158320b89d394a5a64f2f88e50405ce176e74fff23104f0da25",
+          "train_runtime": 364.1639,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T22:24:48+00:00",
+          "FAA": 58.2796
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/OLoRA-GAM_LLaMA2-1b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "olora"
+        ],
+        "optimizer_type": [
+          "gam-adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.02"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.03"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/trainer_state.json",
+          "predict_sha256": "3da9170cbfbc2e218e00626c92d819a4033c2009ad619896c87a446a7659d57d",
+          "train_runtime": 358.0144,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T23:06:03+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "d58bd6f7eeb6814e5801bba310863a779545a184df092a82b5f5830e26c962a5",
+          "train_runtime": 182.6858,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T23:13:04+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "00c2fa75da2e6df82364feba88d3727cbe65e742aaa1f509b2cda209ffe727bd",
+          "train_runtime": 144.4706,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T23:20:02+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/trainer_state.json",
+          "predict_sha256": "43dc3b77c3d3e1d7d8420103a62dca1cf6bb61e52e39b82b1865b7ee6adbabdb",
+          "train_runtime": 513.6225,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-06T23:33:58+00:00",
+          "FAA": 66.917775
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "order": "1",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/OLoRA-GAM_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "olora"
+        ],
+        "optimizer_type": [
+          "gam-adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.02"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.03"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "5029794fc49d19a646d0cc391717829a46fe2f3c397c8d5b7e4bb3ab25a1fe16",
+          "train_runtime": 1000.7716,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T00:48:57+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "85b92fa2676b90f5698f6b16e192d8863f547038322ccf01fca353465af8ad26",
+          "train_runtime": 365.0205,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T00:59:20+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/trainer_state.json",
+          "predict_sha256": "b177d8ce6c417d877175805c240f2b114216b71bb0e217d7ef48273e19d62edd",
+          "train_runtime": 753.6739,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T01:22:01+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/trainer_state.json",
+          "predict_sha256": "1ba259c79bd8d77ec22138e7244aa1164588acc6bf738721066f5b389c146f61",
+          "train_runtime": 287.9342,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T01:38:18+00:00",
+          "FAA": 71.615125
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "order": "2",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/OLoRA-GAM_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "olora"
+        ],
+        "optimizer_type": [
+          "gam-adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.02"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.03"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/trainer_state.json",
+          "predict_sha256": "d05d586895299bc7250a8ebc2e8316a1c4790adee5a82b236b1260879e6abbed",
+          "train_runtime": 1003.0408,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T02:48:31+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "4665c45841cca570904b7095f6c23c1a2de8eb61141b2cb79523d97a53db95be",
+          "train_runtime": 367.9801,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T02:58:58+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "6c279d9a6c82d417e646c096954dd358ea584569fedd012e4b62ec2a8db31784",
+          "train_runtime": 286.9543,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T03:09:22+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/trainer_state.json",
+          "predict_sha256": "95ad047f5979c40fcedffaab806326ae7588842b36e66b49bbf0110574fdacca",
+          "train_runtime": 747.9572,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T03:33:15+00:00",
+          "FAA": 70.944075
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "order": "3",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "logs": [
+        "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/OLoRA-GAM_LLaMA2-3b.log"
+      ],
+      "seed": "42",
+      "world_size": "8",
+      "ga": "8",
+      "parsed_log_settings": {
+        "seed": [
+          "42"
+        ],
+        "data_seed": [
+          "None"
+        ],
+        "bf16": [
+          "True"
+        ],
+        "fp16": [
+          "False"
+        ],
+        "gradient_accumulation_steps": [
+          "8"
+        ],
+        "per_device_train_batch_size": [
+          "1"
+        ],
+        "num_train_epochs": [
+          "1.0"
+        ],
+        "lora_strategy": [
+          "olora"
+        ],
+        "optimizer_type": [
+          "gam-adamw_hf"
+        ],
+        "learning_rate": [
+          "0.0001",
+          "0.001"
+        ],
+        "lora_dim": [],
+        "lora_alpha": [],
+        "lora_dropout": [],
+        "olora_lamda_1": [
+          "0.5"
+        ],
+        "olora_lamda_2": [
+          "0"
+        ],
+        "gam_grad_rho": [
+          "0.02"
+        ],
+        "gam_grad_norm_rho": [
+          "0.2"
+        ],
+        "gam_grad_gamma": [
+          "0.03"
+        ],
+        "treelora_reg": []
+      },
+      "stages": [
+        {
+          "stage": 1,
+          "task": "yahoo",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/trainer_state.json",
+          "predict_sha256": "ecbbf01871b0fd681ec0e72b3745c123dbbf01101bf4b70d75eb390a05c3ebca",
+          "train_runtime": 733.3624,
+          "runtime_match_in_training_log": true,
+          "global_step": 156,
+          "train_samples": 10000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T04:57:45+00:00"
+        },
+        {
+          "stage": 2,
+          "task": "amazon",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/trainer_state.json",
+          "predict_sha256": "51161173e6c7c96f1c3fbecfb83cbd25c791527c7c3758d62d02a077197d99ce",
+          "train_runtime": 368.1613,
+          "runtime_match_in_training_log": true,
+          "global_step": 78,
+          "train_samples": 5000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T05:12:45+00:00"
+        },
+        {
+          "stage": 3,
+          "task": "agnews",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/trainer_state.json",
+          "predict_sha256": "009c60c28d36b86ee4bef2658ea46e65bb10e14b6a066fcb7a80db959ae1d361",
+          "train_runtime": 288.0488,
+          "runtime_match_in_training_log": true,
+          "global_step": 62,
+          "train_samples": 4000,
+          "train_epoch": 0.99,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T05:27:46+00:00"
+        },
+        {
+          "stage": 4,
+          "task": "dbpedia",
+          "predict_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+          "train_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+          "state_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/trainer_state.json",
+          "predict_sha256": "3c12d931aee3ab32af85e35a4dc18b8a6fe0083357536961e3d0824b9711e991",
+          "train_runtime": 1024.706,
+          "runtime_match_in_training_log": true,
+          "global_step": 218,
+          "train_samples": 14000,
+          "train_epoch": 1.0,
+          "seen_task_metrics_present": true,
+          "predict_mtime_utc": "2026-04-07T05:56:50+00:00",
+          "FAA": 72.049325
+        }
+      ],
+      "complete_4stage": true,
+      "logs_runtime_matched_4stage": true,
+      "seed_verified_in_logs": true,
+      "data_seed_verified_in_logs": true,
+      "target_ddp4_ga16_match": false
+    }
+  ],
+  "selected_protocols": [
+    {
+      "method_in_user_table": "SeqLoRA",
+      "model": "Llama-3.2-1B",
+      "result_mapping": "matched",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "seqlora",
+      "world_size": "8",
+      "gradient_accumulation_steps": "8",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_adam_epsilon": "1e-6",
+      "actual_weight_decay": "0.0",
+      "optimizer_evidence": "historical_source_inference_no_runtime_object",
+      "rank_after_task_4": "8",
+      "method_parameters": "",
+      "evidence": "refine-logs/nlp_table_audit_20260919/llama_table_evidence.csv"
+    },
+    {
+      "method_in_user_table": "SeqLoRA",
+      "model": "Llama-3.2-3B",
+      "result_mapping": "matched",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "seqlora",
+      "world_size": "8",
+      "gradient_accumulation_steps": "8",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_adam_epsilon": "1e-6",
+      "actual_weight_decay": "0.0",
+      "optimizer_evidence": "historical_source_inference_no_runtime_object",
+      "rank_after_task_4": "8",
+      "method_parameters": "",
+      "evidence": "refine-logs/nlp_table_audit_20260919/llama_table_evidence.csv"
+    },
+    {
+      "method_in_user_table": "IncLoRA",
+      "model": "Llama-3.2-1B",
+      "result_mapping": "matched",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "Inclora",
+      "world_size": "8",
+      "gradient_accumulation_steps": "8",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_adam_epsilon": "1e-6",
+      "actual_weight_decay": "0.0",
+      "optimizer_evidence": "historical_source_inference_no_runtime_object",
+      "rank_after_task_4": "32",
+      "method_parameters": "",
+      "evidence": "refine-logs/nlp_table_audit_20260919/llama_table_evidence.csv"
+    },
+    {
+      "method_in_user_table": "IncLoRA",
+      "model": "Llama-3.2-3B",
+      "result_mapping": "matched",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "Inclora",
+      "world_size": "8",
+      "gradient_accumulation_steps": "8",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_adam_epsilon": "1e-6",
+      "actual_weight_decay": "0.0",
+      "optimizer_evidence": "historical_source_inference_no_runtime_object",
+      "rank_after_task_4": "32",
+      "method_parameters": "",
+      "evidence": "refine-logs/nlp_table_audit_20260919/llama_table_evidence.csv"
+    },
+    {
+      "method_in_user_table": "OLoRA+GAM",
+      "model": "Llama-3.2-1B",
+      "result_mapping": "matched_user_selected_OLoRA_GAM",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "olora",
+      "world_size": "8",
+      "gradient_accumulation_steps": "8",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "GAM(torch.optim.AdamW)",
+      "actual_adam_epsilon": "1e-8",
+      "actual_weight_decay": "0.01",
+      "optimizer_evidence": "historical_source_inference_no_runtime_object",
+      "rank_after_task_4": "32",
+      "method_parameters": "olora_lamda_1=0.5;olora_lamda_2=0;gam_grad_rho=0.02;gam_grad_norm_rho=0.2;gam_grad_gamma=0.03;gam_grad_beta_1/2/3=1;adaptive=false;grad_reduce=mean;perturb_eps=1e-12",
+      "evidence": "source_manifest.json: selection_references contains logs and hashes"
+    },
+    {
+      "method_in_user_table": "OLoRA+GAM",
+      "model": "Llama-3.2-3B",
+      "result_mapping": "matched_user_selected_OLoRA_GAM",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "olora",
+      "world_size": "8",
+      "gradient_accumulation_steps": "8",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "GAM(torch.optim.AdamW)",
+      "actual_adam_epsilon": "1e-8",
+      "actual_weight_decay": "0.01",
+      "optimizer_evidence": "historical_source_inference_no_runtime_object",
+      "rank_after_task_4": "32",
+      "method_parameters": "olora_lamda_1=0.5;olora_lamda_2=0;gam_grad_rho=0.02;gam_grad_norm_rho=0.2;gam_grad_gamma=0.03;gam_grad_beta_1/2/3=1;adaptive=false;grad_reduce=mean;perturb_eps=1e-12",
+      "evidence": "source_manifest.json: selection_references contains logs and hashes"
+    },
+    {
+      "method_in_user_table": "TreeLoRA",
+      "model": "Llama-3.2-1B",
+      "result_mapping": "matched_with_table_correction",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "treelora",
+      "world_size": "4",
+      "gradient_accumulation_steps": "16",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_adam_epsilon": "1e-6",
+      "actual_weight_decay": "0.0",
+      "optimizer_evidence": "runtime_object",
+      "rank_after_task_4": "8",
+      "method_parameters": "treelora_reg=0.5;num_tasks=4;within_epoch_linear_ramp;A_parameter_history",
+      "evidence": "experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json"
+    },
+    {
+      "method_in_user_table": "TreeLoRA",
+      "model": "Llama-3.2-3B",
+      "result_mapping": "matched_with_table_correction",
+      "precision": "BF16 AMP",
+      "per_device_train_batch_size": "1",
+      "global_batch": "64",
+      "lora_r": "8",
+      "lora_alpha": "32",
+      "lora_dropout": "0.1",
+      "target_modules": "q_proj;v_proj",
+      "num_train_epochs": "1",
+      "learning_rate_first_task": "1e-3",
+      "learning_rate_later_tasks": "1e-4",
+      "lr_scheduler_type": "constant",
+      "warmup_steps": "0",
+      "max_source_length": "512",
+      "max_target_length": "50",
+      "generation_max_length": "50",
+      "per_device_eval_batch_size": "4",
+      "max_grad_norm": "1.0",
+      "adam_betas": "0.9;0.999",
+      "strategy": "treelora",
+      "world_size": "4",
+      "gradient_accumulation_steps": "16",
+      "seed": "42",
+      "data_seed": "None",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_adam_epsilon": "1e-6",
+      "actual_weight_decay": "0.0",
+      "optimizer_evidence": "runtime_object",
+      "rank_after_task_4": "8",
+      "method_parameters": "treelora_reg=0.5;num_tasks=4;within_epoch_linear_ramp;A_parameter_history",
+      "evidence": "experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json"
+    }
+  ],
+  "searched_method_logs": [
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA-SAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/OLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "olora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA-RWP_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA-SAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/OLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "olora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA-RWP_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA-SAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/OLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "olora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA-RWP_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/OLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "olora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA-RWP_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA-SAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/OLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "olora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA-RWP_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA-SAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/OLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "olora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA-RWP_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA-SAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "Inclora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA-SAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA-RWP_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA-SAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA-RWP_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA-SAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA-RWP_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA-GAM_LLaMA2-3b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA-RWP_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA-SAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA-RWP_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA-SAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA-RWP_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA-SAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "sam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA-GAM_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "gam-adamw_hf"
+      ]
+    },
+    {
+      "log": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed_values": [
+        "42"
+      ],
+      "strategies": [
+        "seqlora"
+      ],
+      "optimizers": [
+        "adamw_hf"
+      ]
+    }
+  ],
+  "archive_rows": [
+    {
+      "run_id": "legacy_064",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA+GAM",
+      "order": "1",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_066",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA+SAM",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA-SAM-005_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_067",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_068",
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "order": "1",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_072",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA+GAM",
+      "order": "1",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_075",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA+SAM",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA-SAM-005_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_076",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_080",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA+GAM",
+      "order": "2",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_082",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA+SAM",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA-SAM-005_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_083",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_084",
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "order": "2",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_088",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA+GAM",
+      "order": "2",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_091",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA+SAM",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA-SAM-005_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_092",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_095",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA+GAM",
+      "order": "3",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_097",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA+SAM",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA-SAM-005_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_098",
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_099",
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "order": "3",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/OLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_103",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA+GAM",
+      "order": "3",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA-GAM-002_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_106",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA+SAM",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA-SAM-005_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_107",
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_111",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA+GAM",
+      "order": "1",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_113",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA+SAM",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA-SAM-005_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_114",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_115",
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "order": "1",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_119",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA+GAM",
+      "order": "1",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_122",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA+SAM",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA-SAM-005_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_123",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": "1",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_127",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA+GAM",
+      "order": "2",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_129",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA+SAM",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA-SAM-005_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_130",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_131",
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "order": "2",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_135",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA+GAM",
+      "order": "2",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_138",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA+SAM",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA-SAM-005_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_139",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": "2",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_143",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA+GAM",
+      "order": "3",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_145",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA+SAM",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA-SAM-005_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_146",
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_147",
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "order": "3",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_151",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA+GAM",
+      "order": "3",
+      "seed": "42",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA-GAM-002_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_154",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA+SAM",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA-SAM-005_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    },
+    {
+      "run_id": "legacy_155",
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": "3",
+      "seed": "",
+      "source_run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "byte_identical_archived_metrics": true
+    }
+  ],
+  "existing_unique_seed_summary": {
+    "SeqLoRA": {
+      "Llama-3.2-1B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      },
+      "Llama-3.2-3B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      }
+    },
+    "IncLoRA": {
+      "Llama-3.2-1B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      },
+      "Llama-3.2-3B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      }
+    },
+    "OLoRA+GAM": {
+      "Llama-3.2-1B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      },
+      "Llama-3.2-3B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      }
+    },
+    "TreeLoRA": {
+      "Llama-3.2-1B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      },
+      "Llama-3.2-3B": {
+        "verified_seeds": [
+          42
+        ],
+        "complete_orders_for_seed42": [
+          1,
+          2,
+          3
+        ],
+        "missing_seeds": [
+          0,
+          1993
+        ]
+      }
+    }
+  },
+  "search_roots": [
+    "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B",
+    "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B",
+    "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper",
+    "/data/140-1/users/liying/O-LoRA/experiment_queue",
+    "/data/140-1/users/liying/O-LoRA/Logs_RedoOlora/run_logs",
+    "/data/140-1/users/liying/CopyFlatCV/GAM-EWC/NLP_O-LoRA"
+  ],
+  "exclusions": [
+    {
+      "path": "logs_and_outputs_llama_1B/full_gpu6_20260811_seed42/order_1/IncLoRA-SAM-via-FisherShape_*",
+      "reason": "SAM/FisherShape variant, not plain IncLoRA; seed42 only and single-order."
+    },
+    {
+      "path": "experiment_queue/direct_1b_seed1993",
+      "reason": "Only cache metadata, no train/predict results."
+    },
+    {
+      "path": "experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama*/smoke",
+      "reason": "Smoke 3-stage runs, not complete four-task order; same seed42."
+    },
+    {
+      "path": "logs_and_outputs_llama_{1B,3B}/order_*/{SeqLoRA-GAM,SeqLoRA-SAM,SeqLoRA-RWP,IncLoRA-GAM,IncLoRA-SAM,IncLoRA-RWP,OLoRA-SAM,OLoRA-RWP,pure OLoRA}*",
+      "reason": "Different algorithm/optimizer from current selected four baselines; cannot count as missing target seed."
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/GAM-EWC/NLP_O-LoRA",
+      "reason": "Archive references existing source results; duplicate metrics not independent seeds."
+    }
+  ],
+  "scope_limit": "No evidence of seed0 or seed1993 complete same-configuration results within these explicit NLP roots. This is scoped nonexistence, not a search of all mounted disks; visual/T5 logs not read. New campaign root names and source metric mtimes were checked; no distinct baseline completion after selected TreeLoRA 20260920 campaign was found.",
+  "post_20260920_candidate_predict_files": []
+}

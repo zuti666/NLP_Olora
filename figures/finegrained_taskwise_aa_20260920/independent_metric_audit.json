@@ -1,0 +1,4809 @@
+{
+  "generated_at_utc": "2026-09-20T13:07:41.873213+00:00",
+  "audit_role": "independent metric/source audit; no plot-generation or main-table code reused",
+  "scope": {
+    "dataset_order": [
+      "aircraft",
+      "cars196",
+      "cub200",
+      "flowers",
+      "het5"
+    ],
+    "method_order": [
+      "Vanilla LoRA",
+      "InfLoRA",
+      "OLoRA",
+      "SDLoRA",
+      "CL-LoRA",
+      "EWCLoRA",
+      "GAM-EWCLoRA"
+    ],
+    "excluded_dataset": "pets",
+    "record_count": 35,
+    "all_single_runs": true,
+    "error_bars_generated": false
+  },
+  "metric_definition": {
+    "source_field": "cnn.matrices.final",
+    "AA_t": "arithmetic mean(matrix[t][0:t+1]), zero-based t; includes current task",
+    "FAA": "last stage_AA value",
+    "AAA_stage": "arithmetic mean(stage_AA), each stage equal weight",
+    "units": "percent",
+    "unused_metrics": [
+      "nme",
+      "sample-pooled total accuracy",
+      "cnn.final.AAA / lower-triangle pooled AAA"
+    ],
+    "upper_triangle_policy": "unused future-task entries may be NaN; required lower triangle must be finite"
+  },
+  "selection_policy": {
+    "base": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+    "EWCLoRA_override": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+    "GAM_EWCLoRA_het5_addition": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/gam_ewc_het5_s0.json",
+    "GAM_EWCLoRA_het5_collection_confirmation": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/collected.json",
+    "no_reselection_performed": true,
+    "ewc_best_selection_caveat": "Maximum FAA over audited eligible archived runs; paired AAA from the same run. Retrospective test-score selection across configurations and seeds."
+  },
+  "inputs": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+      "sha256": "612cbdd98246c1307edbcd7706bccfff77d93a18dcb2b55f2f08b2e45c21bd05"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+      "sha256": "23855a2c0bbd4b36e55bb6266288ebc1980fa63e4bf5aa07a1f8a60d28e04ad8"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/finegrained_complete.tex",
+      "sha256": "871d1298b57dfd461b2acd4f055ae2b1c5acfbb7e8738487e72eecc3bb184ffb"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/gam_ewc_het5_s0.json",
+      "sha256": "c28329a1d348561550ae9fd9fef85f720692a7e73268a0b21ee075034e345f2c"
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/collected.json",
+      "sha256": "d63ed6046ad9fbe42219a632679c0434fb206ea951c6010def8ea6d882e0d036"
+    }
+  ],
+  "tolerances": {
+    "selected_full_precision_absolute": 1e-09,
+    "table_two_decimal_absolute": 0.01,
+    "note": "Original table formatting retained, including half-rounding display differences such as InfLoRA Cars FAA 34.345 versus 34.34. EWC Cars uses ROUND_HALF_UP 34.555 -> 34.56."
+  },
+  "summary": {
+    "passed": true,
+    "records_checked": 35,
+    "records_passed": 35,
+    "unique_metric_files": 35,
+    "metric_hashes_matched": 35,
+    "complete_finite_lower_triangles": 35,
+    "finite_lower_triangle_cells": 1645,
+    "stage_points": 315,
+    "FAA_table_matches": 35,
+    "AAA_table_matches": 35,
+    "max_absolute_FAA_table_difference": 0.005000000000002558,
+    "max_absolute_AAA_table_difference": 0.004934523809531299,
+    "failures": []
+  },
+  "records": [
+    {
+      "method": "Vanilla LoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/seqlora/sgd/aircraft/0/seqlora_inr_sgd_aircraft_t20_rank16_lr005-E40_epoch40/exp_run/10/seqlora_inr_sgd_aircraft_t20_rank16_lr005-E40_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "3fb85079ed680248a3e08ead12aad9b1afe77590690e716e23ad0e1520c21e7b",
+        "metric_sha256_actual": "3fb85079ed680248a3e08ead12aad9b1afe77590690e716e23ad0e1520c21e7b"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        51.05,
+        39.34,
+        34.0,
+        32.5675,
+        38.248000000000005,
+        38.751666666666665,
+        38.88285714285714,
+        39.91625,
+        41.70444444444444,
+        40.660000000000004
+      ],
+      "FAA": 40.660000000000004,
+      "AAA_stage": 39.51207182539683,
+      "selected_manifest_FAA": 40.66,
+      "selected_manifest_AAA_stage": 39.51207182539682,
+      "current_table": {
+        "FAA": 40.66,
+        "AAA_stage": 39.51
+      },
+      "difference_from_table": {
+        "FAA": 7.105427357601002e-15,
+        "AAA_stage": 0.002071825396832594
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          51.05
+        ],
+        [
+          41.44,
+          37.24
+        ],
+        [
+          38.74,
+          29.43,
+          33.83
+        ],
+        [
+          33.63,
+          20.72,
+          17.66,
+          58.26
+        ],
+        [
+          31.53,
+          18.02,
+          16.47,
+          54.95,
+          70.27
+        ],
+        [
+          25.53,
+          17.72,
+          9.88,
+          50.75,
+          61.56,
+          67.07
+        ],
+        [
+          26.43,
+          18.62,
+          11.68,
+          48.35,
+          57.66,
+          54.79,
+          54.65
+        ],
+        [
+          24.62,
+          13.21,
+          9.28,
+          45.95,
+          54.05,
+          51.2,
+          48.05,
+          72.97
+        ],
+        [
+          23.72,
+          17.72,
+          8.68,
+          47.45,
+          56.76,
+          47.9,
+          50.15,
+          66.07,
+          56.89
+        ],
+        [
+          19.52,
+          15.32,
+          5.39,
+          42.94,
+          51.05,
+          50.0,
+          46.25,
+          65.47,
+          51.2,
+          59.46
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "InfLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/inflora/sgd/aircraft/0/inflora_inr_sgd_aircraft_t20-E40_rank16_lr005_epoch40/exp_run/10/inflora_inr_sgd_aircraft_t20-E40_rank16_lr005_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "1d5f0f33622bce776173614670be77cc8f4d53275f07ab0f560bc03215a407ee",
+        "metric_sha256_actual": "1d5f0f33622bce776173614670be77cc8f4d53275f07ab0f560bc03215a407ee"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        55.56,
+        37.989999999999995,
+        38.28666666666667,
+        37.8125,
+        40.406,
+        39.498333333333335,
+        40.037142857142854,
+        41.23,
+        40.50111111111111,
+        40.958
+      ],
+      "FAA": 40.958,
+      "AAA_stage": 41.22797539682539,
+      "selected_manifest_FAA": 40.958,
+      "selected_manifest_AAA_stage": 41.2279753968254,
+      "current_table": {
+        "FAA": 40.96,
+        "AAA_stage": 41.23
+      },
+      "difference_from_table": {
+        "FAA": -0.0020000000000024443,
+        "AAA_stage": -0.002024603174604067
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          55.56
+        ],
+        [
+          39.94,
+          36.04
+        ],
+        [
+          32.43,
+          34.53,
+          47.9
+        ],
+        [
+          27.93,
+          25.53,
+          35.63,
+          62.16
+        ],
+        [
+          30.33,
+          22.82,
+          26.05,
+          55.56,
+          67.27
+        ],
+        [
+          25.23,
+          18.02,
+          18.56,
+          51.05,
+          59.46,
+          64.67
+        ],
+        [
+          23.72,
+          15.92,
+          17.07,
+          51.65,
+          52.25,
+          56.89,
+          62.76
+        ],
+        [
+          18.92,
+          15.32,
+          16.77,
+          52.55,
+          50.75,
+          52.1,
+          55.86,
+          67.57
+        ],
+        [
+          18.32,
+          14.71,
+          15.27,
+          46.85,
+          53.45,
+          51.8,
+          50.15,
+          64.26,
+          49.7
+        ],
+        [
+          15.32,
+          13.21,
+          12.87,
+          45.05,
+          48.95,
+          52.69,
+          48.95,
+          60.36,
+          43.11,
+          69.07
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "OLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/olora/sgd/aircraft/0/olora_inr_sgd_aircraft_t20-E40_rank16_lr005_epoch40/exp_run/10/olora_inr_sgd_aircraft_t20-E40_rank16_lr005_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "763dffb0a0065fa94026d2dccd45380a5a2b402179b924a041fe73ba5f9b63d1",
+        "metric_sha256_actual": "763dffb0a0065fa94026d2dccd45380a5a2b402179b924a041fe73ba5f9b63d1"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        52.55,
+        35.285,
+        33.096666666666664,
+        34.1425,
+        37.104,
+        37.300000000000004,
+        37.68285714285714,
+        38.301249999999996,
+        36.50222222222222,
+        36.098
+      ],
+      "FAA": 36.098,
+      "AAA_stage": 37.80624960317461,
+      "selected_manifest_FAA": 36.098,
+      "selected_manifest_AAA_stage": 37.8062496031746,
+      "current_table": {
+        "FAA": 36.1,
+        "AAA_stage": 37.81
+      },
+      "difference_from_table": {
+        "FAA": -0.0020000000000024443,
+        "AAA_stage": -0.0037503968253957964
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          52.55
+        ],
+        [
+          32.43,
+          38.14
+        ],
+        [
+          30.33,
+          33.63,
+          35.33
+        ],
+        [
+          27.93,
+          26.13,
+          23.65,
+          58.86
+        ],
+        [
+          23.12,
+          21.32,
+          19.76,
+          54.95,
+          66.37
+        ],
+        [
+          18.92,
+          18.62,
+          14.07,
+          47.45,
+          62.76,
+          61.98
+        ],
+        [
+          16.82,
+          15.62,
+          11.08,
+          45.95,
+          59.16,
+          56.89,
+          58.26
+        ],
+        [
+          14.11,
+          12.91,
+          7.19,
+          44.44,
+          54.95,
+          55.69,
+          55.26,
+          61.86
+        ],
+        [
+          14.41,
+          12.31,
+          8.08,
+          44.14,
+          54.35,
+          53.89,
+          54.95,
+          54.35,
+          32.04
+        ],
+        [
+          13.51,
+          11.41,
+          6.89,
+          39.94,
+          52.25,
+          51.5,
+          52.25,
+          44.74,
+          32.93,
+          55.56
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "SDLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/sdlora/sgd/aircraft/0/sdlora_inr_sgd_aircraft_t20_rank16_lr002-E40_epoch40/exp_run/10/sdlora_inr_sgd_aircraft_t20_rank16_lr002-E40_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "d729a9712aa5b61bf0ed93fa51ff71da5ba69159d45fd95d5c697cba14869b41",
+        "metric_sha256_actual": "d729a9712aa5b61bf0ed93fa51ff71da5ba69159d45fd95d5c697cba14869b41"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        37.24,
+        25.675,
+        21.69666666666667,
+        22.21,
+        25.642000000000003,
+        26.14833333333333,
+        28.334285714285716,
+        27.42375,
+        26.003333333333334,
+        25.959000000000003
+      ],
+      "FAA": 25.959000000000003,
+      "AAA_stage": 26.633236904761908,
+      "selected_manifest_FAA": 25.959,
+      "selected_manifest_AAA_stage": 26.633236904761905,
+      "current_table": {
+        "FAA": 25.96,
+        "AAA_stage": 26.63
+      },
+      "difference_from_table": {
+        "FAA": -0.0009999999999976694,
+        "AAA_stage": 0.0032369047619091873
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          37.24
+        ],
+        [
+          18.32,
+          33.03
+        ],
+        [
+          21.02,
+          19.52,
+          24.55
+        ],
+        [
+          20.42,
+          11.41,
+          12.87,
+          44.14
+        ],
+        [
+          15.32,
+          7.81,
+          6.59,
+          44.44,
+          54.05
+        ],
+        [
+          12.31,
+          5.41,
+          3.29,
+          34.23,
+          49.25,
+          52.4
+        ],
+        [
+          12.61,
+          4.5,
+          3.29,
+          35.44,
+          46.25,
+          48.2,
+          48.05
+        ],
+        [
+          8.71,
+          3.6,
+          1.5,
+          28.23,
+          42.04,
+          41.62,
+          42.04,
+          51.65
+        ],
+        [
+          9.61,
+          3.0,
+          1.5,
+          30.93,
+          41.14,
+          43.11,
+          43.24,
+          42.34,
+          19.16
+        ],
+        [
+          8.41,
+          3.3,
+          1.8,
+          26.13,
+          38.14,
+          39.22,
+          38.74,
+          37.24,
+          19.76,
+          46.85
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "c482e852b79c32bf2a83a49e483018b9924f2b5ed9503a89f7cb916be0c48e36",
+        "metric_sha256_actual": "c482e852b79c32bf2a83a49e483018b9924f2b5ed9503a89f7cb916be0c48e36",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224.log",
+        "log_sha256_expected": "6bd7d7ddb43c61fff5db6944aaf01716b48eb78abdbb97a9af23808a9e3dbbfa",
+        "log_sha256_actual": "6bd7d7ddb43c61fff5db6944aaf01716b48eb78abdbb97a9af23808a9e3dbbfa"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        25.83,
+        21.17,
+        18.7,
+        23.035,
+        28.46,
+        29.746666666666666,
+        30.47,
+        29.89375,
+        28.700000000000003,
+        29.284000000000002
+      ],
+      "FAA": 29.284000000000002,
+      "AAA_stage": 26.528941666666668,
+      "selected_manifest_FAA": 29.284,
+      "selected_manifest_AAA_stage": 26.528941666666668,
+      "current_table": {
+        "FAA": 29.28,
+        "AAA_stage": 26.53
+      },
+      "difference_from_table": {
+        "FAA": 0.004000000000001336,
+        "AAA_stage": -0.0010583333333329392
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          25.83
+        ],
+        [
+          20.42,
+          21.92
+        ],
+        [
+          18.32,
+          18.92,
+          18.86
+        ],
+        [
+          18.32,
+          18.32,
+          17.66,
+          37.84
+        ],
+        [
+          19.22,
+          16.82,
+          17.37,
+          37.24,
+          51.65
+        ],
+        [
+          15.62,
+          15.02,
+          16.77,
+          34.23,
+          44.44,
+          52.4
+        ],
+        [
+          14.71,
+          14.71,
+          14.07,
+          33.33,
+          42.94,
+          52.69,
+          40.84
+        ],
+        [
+          11.41,
+          12.91,
+          13.77,
+          26.73,
+          36.04,
+          48.5,
+          35.14,
+          54.65
+        ],
+        [
+          9.31,
+          11.41,
+          11.98,
+          25.53,
+          34.83,
+          42.22,
+          36.64,
+          51.95,
+          34.43
+        ],
+        [
+          8.71,
+          10.51,
+          12.57,
+          18.62,
+          29.73,
+          38.92,
+          33.33,
+          48.35,
+          32.34,
+          59.76
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true,
+        "receipt_completed_exit_zero": true,
+        "receipt_metric_matches_selected": true,
+        "receipt_config_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "EWCLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_sgd_ewc_lambda_sweep/logs_inc/as1_normfisher_fishershape/as1fs_sgdeq_ewc_lam200/aircraft/0/as1fs_aircraft_sgdeq_r16_lr005_e40_ewc_lam200/exp_run/10/as1fs_aircraft_sgdeq_r16_lr005_e40_ewc_lam200_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "b2c3d886ebc33ddc45e672b534d25278f7c58e510c59b8a4e72b0a9c8d548e22",
+        "metric_sha256_actual": "b2c3d886ebc33ddc45e672b534d25278f7c58e510c59b8a4e72b0a9c8d548e22",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_sgd_ewc_lambda_sweep/logs_inc/as1_normfisher_fishershape/as1fs_sgdeq_ewc_lam200/aircraft/0/as1fs_aircraft_sgdeq_r16_lr005_e40_ewc_lam200/exp_run/10/as1fs_aircraft_sgdeq_r16_lr005_e40_ewc_lam200_vit_base_patch16_224.log",
+        "log_sha256_expected": "52329f5ceff2a69755fb6ecb94d2a87e0ec6eb8689c3d0f9b3342347e6902278",
+        "log_sha256_actual": "52329f5ceff2a69755fb6ecb94d2a87e0ec6eb8689c3d0f9b3342347e6902278"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        50.15,
+        40.239999999999995,
+        33.50333333333334,
+        33.769999999999996,
+        36.088,
+        38.80166666666667,
+        40.93857142857143,
+        39.65375,
+        41.97333333333333,
+        41.832
+      ],
+      "FAA": 41.832,
+      "AAA_stage": 39.69506547619047,
+      "selected_manifest_FAA": 41.832,
+      "selected_manifest_AAA_stage": 39.69506547619048,
+      "current_table": {
+        "FAA": 41.83,
+        "AAA_stage": 39.7
+      },
+      "difference_from_table": {
+        "FAA": 0.0020000000000024443,
+        "AAA_stage": -0.004934523809531299
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          50.15
+        ],
+        [
+          42.94,
+          37.54
+        ],
+        [
+          40.24,
+          29.73,
+          30.54
+        ],
+        [
+          33.33,
+          25.83,
+          17.96,
+          57.96
+        ],
+        [
+          27.03,
+          24.92,
+          11.38,
+          52.85,
+          64.26
+        ],
+        [
+          25.53,
+          21.32,
+          8.38,
+          54.95,
+          55.26,
+          67.37
+        ],
+        [
+          29.43,
+          24.62,
+          12.28,
+          49.85,
+          50.75,
+          62.28,
+          57.36
+        ],
+        [
+          24.92,
+          15.92,
+          6.29,
+          49.85,
+          41.74,
+          56.29,
+          51.35,
+          70.87
+        ],
+        [
+          25.83,
+          27.03,
+          6.89,
+          48.65,
+          48.65,
+          54.79,
+          51.95,
+          65.77,
+          48.2
+        ],
+        [
+          26.13,
+          21.62,
+          6.89,
+          52.25,
+          47.75,
+          52.1,
+          45.65,
+          57.66,
+          44.61,
+          63.66
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "GAM-EWCLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/logs_inc_lora/ewclora_normfisher_gam/gam/aircraft/0/paperA_as1normfisher_lam2000_aircraft_t10c10_r16_s0/exp_run/10/paperA_as1normfisher_lam2000_aircraft_t10c10_r16_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "b624e99fb2d1bbd08118bd1cfd1616e759e50eb18f4641c74a9ed54c38d20280",
+        "metric_sha256_actual": "b624e99fb2d1bbd08118bd1cfd1616e759e50eb18f4641c74a9ed54c38d20280"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        53.15,
+        41.89,
+        38.6,
+        36.9175,
+        41.128,
+        42.25,
+        45.611428571428576,
+        45.69375,
+        44.60444444444445,
+        46.660000000000004
+      ],
+      "FAA": 46.660000000000004,
+      "AAA_stage": 43.650512301587305,
+      "selected_manifest_FAA": 46.660000000000004,
+      "selected_manifest_AAA_stage": 43.650512301587305,
+      "current_table": {
+        "FAA": 46.66,
+        "AAA_stage": 43.65
+      },
+      "difference_from_table": {
+        "FAA": 7.105427357601002e-15,
+        "AAA_stage": 0.0005123015873067516
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          53.15
+        ],
+        [
+          43.84,
+          39.94
+        ],
+        [
+          40.24,
+          35.44,
+          40.12
+        ],
+        [
+          34.23,
+          29.43,
+          24.85,
+          59.16
+        ],
+        [
+          31.83,
+          27.33,
+          20.96,
+          53.75,
+          71.77
+        ],
+        [
+          25.83,
+          22.52,
+          17.96,
+          55.86,
+          64.86,
+          66.47
+        ],
+        [
+          30.33,
+          24.02,
+          22.46,
+          54.35,
+          63.66,
+          55.09,
+          69.37
+        ],
+        [
+          27.03,
+          21.62,
+          16.47,
+          52.55,
+          61.26,
+          54.19,
+          58.86,
+          73.57
+        ],
+        [
+          25.53,
+          17.42,
+          16.17,
+          46.55,
+          60.66,
+          52.1,
+          55.26,
+          67.57,
+          60.18
+        ],
+        [
+          24.62,
+          17.42,
+          13.17,
+          52.55,
+          59.76,
+          53.59,
+          51.05,
+          69.37,
+          52.1,
+          72.97
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "Vanilla LoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/seqlora/sgd/cars196/0/seqlora_inr_sgd_cars196_t20_rank16_lr005-E40_train-eval-paer/exp_run/20/seqlora_inr_sgd_cars196_t20_rank16_lr005-E40_train-eval-paer_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "4831ba2c1b057fe740d85871efd96a825a3b63c9fb0fab8102810ce99723a81b",
+        "metric_sha256_actual": "4831ba2c1b057fe740d85871efd96a825a3b63c9fb0fab8102810ce99723a81b"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        75.23,
+        52.025000000000006,
+        48.70333333333334,
+        32.8375,
+        31.802,
+        33.48833333333334,
+        28.84,
+        31.86375,
+        30.83888888888889,
+        28.52
+      ],
+      "FAA": 28.52,
+      "AAA_stage": 39.414880555555555,
+      "selected_manifest_FAA": 28.52,
+      "selected_manifest_AAA_stage": 39.414880555555555,
+      "current_table": {
+        "FAA": 28.52,
+        "AAA_stage": 39.41
+      },
+      "difference_from_table": {
+        "FAA": 0.0,
+        "AAA_stage": 0.004880555555558885
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          75.23
+        ],
+        [
+          68.73,
+          35.32
+        ],
+        [
+          65.79,
+          30.82,
+          49.5
+        ],
+        [
+          48.14,
+          19.85,
+          27.89,
+          35.47
+        ],
+        [
+          47.83,
+          18.64,
+          22.99,
+          24.14,
+          45.41
+        ],
+        [
+          54.64,
+          20.58,
+          29.4,
+          20.32,
+          36.23,
+          39.76
+        ],
+        [
+          47.68,
+          15.59,
+          21.11,
+          21.8,
+          33.73,
+          25.58,
+          36.39
+        ],
+        [
+          47.68,
+          18.27,
+          25.75,
+          21.67,
+          33.25,
+          31.39,
+          36.63,
+          40.27
+        ],
+        [
+          53.56,
+          22.17,
+          29.77,
+          18.23,
+          29.32,
+          27.39,
+          26.14,
+          28.15,
+          42.82
+        ],
+        [
+          48.45,
+          17.78,
+          23.49,
+          15.27,
+          29.08,
+          25.09,
+          27.71,
+          29.74,
+          40.61,
+          27.98
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "InfLoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/inflora/sgd/cars196/0/inflora_inr_sgd_cars196_t20-E40_rank16_lr005/exp_run/20/inflora_inr_sgd_cars196_t20-E40_rank16_lr005_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "46e33b3b2919d02fa988485dc3be86b021a33d65ede90902a128c086a161d7a4",
+        "metric_sha256_actual": "46e33b3b2919d02fa988485dc3be86b021a33d65ede90902a128c086a161d7a4"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        74.61,
+        49.599999999999994,
+        49.02,
+        36.355000000000004,
+        34.946,
+        38.17166666666667,
+        35.61857142857143,
+        35.04375,
+        34.303333333333335,
+        34.345
+      ],
+      "FAA": 34.345,
+      "AAA_stage": 42.20133214285714,
+      "selected_manifest_FAA": 34.345,
+      "selected_manifest_AAA_stage": 42.20133214285714,
+      "current_table": {
+        "FAA": 34.34,
+        "AAA_stage": 42.2
+      },
+      "difference_from_table": {
+        "FAA": 0.0049999999999954525,
+        "AAA_stage": 0.0013321428571373417
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          74.61
+        ],
+        [
+          62.54,
+          36.66
+        ],
+        [
+          60.68,
+          33.74,
+          52.64
+        ],
+        [
+          42.11,
+          22.17,
+          30.03,
+          51.11
+        ],
+        [
+          34.83,
+          19.12,
+          28.39,
+          41.5,
+          50.89
+        ],
+        [
+          45.98,
+          22.05,
+          35.05,
+          35.71,
+          39.57,
+          50.67
+        ],
+        [
+          42.72,
+          18.15,
+          31.03,
+          29.19,
+          41.12,
+          40.61,
+          46.51
+        ],
+        [
+          43.19,
+          19.0,
+          32.29,
+          23.28,
+          36.47,
+          35.52,
+          44.58,
+          46.02
+        ],
+        [
+          47.83,
+          19.49,
+          34.05,
+          19.33,
+          30.39,
+          34.06,
+          40.24,
+          37.33,
+          46.01
+        ],
+        [
+          45.67,
+          19.0,
+          34.17,
+          18.84,
+          31.82,
+          30.79,
+          38.8,
+          38.8,
+          42.7,
+          42.86
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "OLoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/olora/sgd/cars196/0/olora_inr_sgd_cars196_t20-E40_rank16_lr005_train-eval-paer/exp_run/20/olora_inr_sgd_cars196_t20-E40_rank16_lr005_train-eval-paer_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "febe09a2abcaaca5687193efc03406601fd1970276e40daf50956825ecd00f4c",
+        "metric_sha256_actual": "febe09a2abcaaca5687193efc03406601fd1970276e40daf50956825ecd00f4c"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        76.47,
+        51.459999999999994,
+        48.25,
+        39.7325,
+        37.176,
+        36.276666666666664,
+        33.607142857142854,
+        33.44125,
+        33.712222222222216,
+        32.855000000000004
+      ],
+      "FAA": 32.855000000000004,
+      "AAA_stage": 42.29807817460317,
+      "selected_manifest_FAA": 32.855,
+      "selected_manifest_AAA_stage": 42.29807817460318,
+      "current_table": {
+        "FAA": 32.85,
+        "AAA_stage": 42.3
+      },
+      "difference_from_table": {
+        "FAA": 0.005000000000002558,
+        "AAA_stage": -0.0019218253968276144
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          76.47
+        ],
+        [
+          64.55,
+          38.37
+        ],
+        [
+          61.92,
+          38.73,
+          44.1
+        ],
+        [
+          52.01,
+          32.76,
+          38.69,
+          35.47
+        ],
+        [
+          49.23,
+          30.09,
+          33.79,
+          31.53,
+          41.24
+        ],
+        [
+          51.86,
+          32.52,
+          34.92,
+          26.11,
+          35.04,
+          37.21
+        ],
+        [
+          48.3,
+          29.6,
+          31.78,
+          25.0,
+          34.45,
+          34.55,
+          31.57
+        ],
+        [
+          46.44,
+          29.48,
+          31.66,
+          24.51,
+          35.28,
+          33.58,
+          31.33,
+          35.25
+        ],
+        [
+          48.76,
+          32.28,
+          34.92,
+          21.67,
+          33.97,
+          35.15,
+          30.0,
+          33.41,
+          33.25
+        ],
+        [
+          48.45,
+          32.4,
+          35.55,
+          21.06,
+          33.13,
+          32.73,
+          28.92,
+          32.68,
+          34.23,
+          29.4
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "SDLoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/sdlora/sgd/cars196/0/sdlora_inr_sgd_cars196_t20_rank16_lr0025-E40_train-eval-paer/exp_run/20/sdlora_inr_sgd_cars196_t20_rank16_lr0025-E40_train-eval-paer_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "a08f411c9c95d7fd0c4590173b0cb448ff7abe8f3fc20ae3d8f79ccce4a9f864",
+        "metric_sha256_actual": "a08f411c9c95d7fd0c4590173b0cb448ff7abe8f3fc20ae3d8f79ccce4a9f864"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        75.23,
+        52.985,
+        51.843333333333334,
+        39.2,
+        37.602000000000004,
+        36.845,
+        34.20285714285715,
+        34.38875,
+        35.57555555555555,
+        34.891
+      ],
+      "FAA": 34.891,
+      "AAA_stage": 43.27634960317461,
+      "selected_manifest_FAA": 34.891,
+      "selected_manifest_AAA_stage": 43.2763496031746,
+      "current_table": {
+        "FAA": 34.89,
+        "AAA_stage": 43.28
+      },
+      "difference_from_table": {
+        "FAA": 0.0009999999999976694,
+        "AAA_stage": -0.003650396825392477
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          75.23
+        ],
+        [
+          70.28,
+          35.69
+        ],
+        [
+          69.5,
+          33.01,
+          53.02
+        ],
+        [
+          53.72,
+          23.75,
+          38.44,
+          40.89
+        ],
+        [
+          48.92,
+          19.73,
+          33.92,
+          36.45,
+          48.99
+        ],
+        [
+          52.79,
+          23.75,
+          36.93,
+          29.19,
+          36.47,
+          41.94
+        ],
+        [
+          49.38,
+          20.34,
+          32.41,
+          28.94,
+          37.78,
+          34.18,
+          36.39
+        ],
+        [
+          47.52,
+          18.39,
+          31.16,
+          26.6,
+          38.62,
+          33.09,
+          35.18,
+          44.55
+        ],
+        [
+          51.86,
+          21.32,
+          37.06,
+          24.51,
+          34.8,
+          35.52,
+          33.37,
+          41.62,
+          40.12
+        ],
+        [
+          52.48,
+          21.68,
+          35.55,
+          23.52,
+          34.09,
+          32.61,
+          32.65,
+          40.39,
+          39.39,
+          36.55
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "056ce8a6da0ac389e7200a661955b9337cd63131fa62dd2bd32ce034ed2eeb13",
+        "metric_sha256_actual": "056ce8a6da0ac389e7200a661955b9337cd63131fa62dd2bd32ce034ed2eeb13",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224.log",
+        "log_sha256_expected": "5edac776a7e34b99ccaae660cde286d933613c20f4c9eca29b8b5d23c2936e29",
+        "log_sha256_actual": "5edac776a7e34b99ccaae660cde286d933613c20f4c9eca29b8b5d23c2936e29"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        63.31,
+        44.765,
+        44.42666666666667,
+        42.6325,
+        41.11,
+        40.24833333333333,
+        37.77285714285714,
+        36.8725,
+        36.04666666666667,
+        34.507999999999996
+      ],
+      "FAA": 34.507999999999996,
+      "AAA_stage": 42.16925238095238,
+      "selected_manifest_FAA": 34.508,
+      "selected_manifest_AAA_stage": 42.16925238095238,
+      "current_table": {
+        "FAA": 34.51,
+        "AAA_stage": 42.17
+      },
+      "difference_from_table": {
+        "FAA": -0.0020000000000024443,
+        "AAA_stage": -0.0007476190476225497
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          63.31
+        ],
+        [
+          50.31,
+          39.22
+        ],
+        [
+          43.96,
+          36.3,
+          53.02
+        ],
+        [
+          40.71,
+          34.71,
+          45.85,
+          49.26
+        ],
+        [
+          38.24,
+          30.21,
+          43.72,
+          46.06,
+          47.32
+        ],
+        [
+          33.44,
+          29.84,
+          40.83,
+          42.73,
+          43.5,
+          51.15
+        ],
+        [
+          29.57,
+          27.04,
+          37.94,
+          38.18,
+          40.17,
+          49.82,
+          41.69
+        ],
+        [
+          25.54,
+          25.58,
+          33.54,
+          35.1,
+          38.38,
+          48.97,
+          39.4,
+          48.47
+        ],
+        [
+          22.29,
+          22.41,
+          30.9,
+          33.99,
+          36.0,
+          47.39,
+          38.31,
+          47.98,
+          45.15
+        ],
+        [
+          20.9,
+          20.22,
+          27.14,
+          32.27,
+          34.68,
+          45.33,
+          36.27,
+          45.9,
+          43.44,
+          38.93
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true,
+        "receipt_completed_exit_zero": true,
+        "receipt_metric_matches_selected": true,
+        "receipt_config_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "EWCLoRA",
+      "dataset": "cars196",
+      "seed": 1,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_ratiofs_ewc_paper/ratiofs_paper_v1_20260826/logs_inc/as1_normfisher_fishershape/as1fs_g0_ewc_c000_rho005_lam80000_beta000/cars196/1/cars196_g0_ewc_c000_rho005_lam80000_beta000_s1_ratiofs_paper_v1_20260826/exp_run/20/cars196_g0_ewc_c000_rho005_lam80000_beta000_s1_ratiofs_paper_v1_20260826_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "bc4631a37db5cbced49aa0b4b6345f803213e64ba57b7802c44bae76e7e494a0",
+        "metric_sha256_actual": "bc4631a37db5cbced49aa0b4b6345f803213e64ba57b7802c44bae76e7e494a0",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_ratiofs_ewc_paper/ratiofs_paper_v1_20260826/logs_inc/as1_normfisher_fishershape/as1fs_g0_ewc_c000_rho005_lam80000_beta000/cars196/1/cars196_g0_ewc_c000_rho005_lam80000_beta000_s1_ratiofs_paper_v1_20260826/exp_run/20/cars196_g0_ewc_c000_rho005_lam80000_beta000_s1_ratiofs_paper_v1_20260826_vit_base_patch16_224.log",
+        "log_sha256_expected": "18e224a063782f522ca51262d20f53434205df0bac3f6d0aed8d85b536cd7db1",
+        "log_sha256_actual": "18e224a063782f522ca51262d20f53434205df0bac3f6d0aed8d85b536cd7db1"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        78.02,
+        51.68000000000001,
+        51.096666666666664,
+        38.69,
+        36.666000000000004,
+        38.968333333333334,
+        36.39142857142857,
+        36.51375,
+        36.84,
+        34.555
+      ],
+      "FAA": 34.555,
+      "AAA_stage": 43.94211785714286,
+      "selected_manifest_FAA": 34.555,
+      "selected_manifest_AAA_stage": 43.942117857142854,
+      "current_table": {
+        "FAA": 34.56,
+        "AAA_stage": 43.94
+      },
+      "difference_from_table": {
+        "FAA": -0.005000000000002558,
+        "AAA_stage": 0.0021178571428634996
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          78.02
+        ],
+        [
+          67.18,
+          36.18
+        ],
+        [
+          64.09,
+          31.91,
+          57.29
+        ],
+        [
+          53.25,
+          22.41,
+          33.04,
+          46.06
+        ],
+        [
+          49.54,
+          17.42,
+          25.13,
+          42.61,
+          48.63
+        ],
+        [
+          53.25,
+          24.0,
+          30.78,
+          36.08,
+          43.03,
+          46.67
+        ],
+        [
+          51.08,
+          21.56,
+          30.53,
+          33.74,
+          41.48,
+          33.58,
+          42.77
+        ],
+        [
+          49.54,
+          20.83,
+          29.52,
+          32.51,
+          40.76,
+          35.03,
+          40.96,
+          42.96
+        ],
+        [
+          52.94,
+          24.24,
+          38.82,
+          30.42,
+          35.28,
+          32.48,
+          36.99,
+          39.41,
+          40.98
+        ],
+        [
+          53.1,
+          23.75,
+          36.18,
+          27.09,
+          33.13,
+          27.76,
+          34.22,
+          40.02,
+          38.28,
+          32.02
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "GAM-EWCLoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/logs_inc_lora/ewclora_normfisher_gam/gam/cars196/0/paperA_as1normfisher_lam2000_cars196_t10c20_r16_s0/exp_run/20/paperA_as1normfisher_lam2000_cars196_t10c20_r16_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "c61f7c415f63eccb1209da4e844dc3bb13ea0bfecbbdcbb8b20dd4ac1b0f0247",
+        "metric_sha256_actual": "c61f7c415f63eccb1209da4e844dc3bb13ea0bfecbbdcbb8b20dd4ac1b0f0247"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        80.5,
+        60.06999999999999,
+        59.59,
+        47.4025,
+        45.448,
+        53.056666666666665,
+        51.221428571428575,
+        51.39125,
+        53.941111111111105,
+        51.741
+      ],
+      "FAA": 51.741,
+      "AAA_stage": 55.43619563492064,
+      "selected_manifest_FAA": 51.741,
+      "selected_manifest_AAA_stage": 55.43619563492064,
+      "current_table": {
+        "FAA": 51.74,
+        "AAA_stage": 55.44
+      },
+      "difference_from_table": {
+        "FAA": 0.0009999999999976694,
+        "AAA_stage": -0.003804365079361105
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          80.5
+        ],
+        [
+          74.46,
+          45.68
+        ],
+        [
+          72.76,
+          44.95,
+          61.06
+        ],
+        [
+          56.5,
+          28.26,
+          39.7,
+          65.15
+        ],
+        [
+          50.62,
+          21.8,
+          34.42,
+          59.73,
+          60.67
+        ],
+        [
+          66.1,
+          34.96,
+          47.36,
+          53.08,
+          50.54,
+          66.3
+        ],
+        [
+          58.2,
+          27.89,
+          42.09,
+          51.85,
+          57.33,
+          56.97,
+          64.22
+        ],
+        [
+          56.04,
+          27.65,
+          42.59,
+          48.89,
+          53.16,
+          54.06,
+          62.89,
+          65.85
+        ],
+        [
+          65.94,
+          34.96,
+          53.52,
+          47.29,
+          48.51,
+          60.36,
+          49.76,
+          59.0,
+          66.13
+        ],
+        [
+          61.3,
+          31.67,
+          48.62,
+          44.95,
+          49.23,
+          55.39,
+          51.81,
+          58.63,
+          63.07,
+          52.74
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "Vanilla LoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/seqlora/sgd/cub200/0/seqlora_inr_sgd_cub200_t20-E40_rank16_train-eval-paer/exp_run/20/seqlora_inr_sgd_cub200_t20-E40_rank16_train-eval-paer_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "ec67d60e0fdc182328f54a9db174c66095332f92bdc7a29a776118b9581bcab5",
+        "metric_sha256_actual": "ec67d60e0fdc182328f54a9db174c66095332f92bdc7a29a776118b9581bcab5"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        85.28,
+        79.61,
+        76.02,
+        72.4325,
+        73.9,
+        70.29,
+        65.82428571428571,
+        60.589999999999996,
+        58.275555555555556,
+        57.79299999999999
+      ],
+      "FAA": 57.79299999999999,
+      "AAA_stage": 70.00153412698413,
+      "selected_manifest_FAA": 57.793,
+      "selected_manifest_AAA_stage": 70.00153412698413,
+      "current_table": {
+        "FAA": 57.79,
+        "AAA_stage": 70.0
+      },
+      "difference_from_table": {
+        "FAA": 0.0029999999999930083,
+        "AAA_stage": 0.0015341269841258054
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          85.28
+        ],
+        [
+          84.85,
+          74.37
+        ],
+        [
+          74.46,
+          68.49,
+          85.11
+        ],
+        [
+          74.03,
+          68.49,
+          82.98,
+          64.23
+        ],
+        [
+          74.89,
+          67.65,
+          79.15,
+          61.38,
+          86.43
+        ],
+        [
+          75.76,
+          66.39,
+          77.87,
+          62.6,
+          85.52,
+          53.6
+        ],
+        [
+          76.62,
+          60.08,
+          77.87,
+          60.16,
+          83.71,
+          48.2,
+          54.13
+        ],
+        [
+          75.32,
+          54.62,
+          76.6,
+          57.72,
+          80.54,
+          47.3,
+          52.89,
+          39.73
+        ],
+        [
+          74.46,
+          54.2,
+          71.91,
+          55.28,
+          82.35,
+          48.2,
+          53.31,
+          41.07,
+          43.7
+        ],
+        [
+          74.03,
+          55.46,
+          70.64,
+          56.1,
+          77.83,
+          45.95,
+          51.65,
+          42.86,
+          40.55,
+          62.86
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "InfLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/inflora/sgd/cub200/0/inflora_inr_sgd_cub200_t20-E40_rank16/exp_run/20/inflora_inr_sgd_cub200_t20-E40_rank16_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "04da4084b6f8a02d2b52a3d69a08fcac29930ce032f5b4a82a8a03e86551faf5",
+        "metric_sha256_actual": "04da4084b6f8a02d2b52a3d69a08fcac29930ce032f5b4a82a8a03e86551faf5"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        87.45,
+        78.57,
+        74.78333333333333,
+        72.5575,
+        73.55199999999999,
+        68.30333333333333,
+        66.39571428571428,
+        63.239999999999995,
+        60.55222222222223,
+        60.608000000000004
+      ],
+      "FAA": 60.608000000000004,
+      "AAA_stage": 70.60121031746031,
+      "selected_manifest_FAA": 60.608,
+      "selected_manifest_AAA_stage": 70.60121031746031,
+      "current_table": {
+        "FAA": 60.61,
+        "AAA_stage": 70.6
+      },
+      "difference_from_table": {
+        "FAA": -0.001999999999995339,
+        "AAA_stage": 0.001210317460319743
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          87.45
+        ],
+        [
+          85.71,
+          71.43
+        ],
+        [
+          78.35,
+          63.45,
+          82.55
+        ],
+        [
+          78.35,
+          63.03,
+          83.4,
+          65.45
+        ],
+        [
+          78.35,
+          62.18,
+          81.28,
+          61.79,
+          84.16
+        ],
+        [
+          74.89,
+          57.56,
+          79.57,
+          60.98,
+          73.76,
+          63.06
+        ],
+        [
+          75.76,
+          56.72,
+          77.87,
+          60.16,
+          72.4,
+          59.46,
+          62.4
+        ],
+        [
+          74.03,
+          58.4,
+          77.02,
+          57.32,
+          72.85,
+          57.66,
+          59.09,
+          49.55
+        ],
+        [
+          71.86,
+          56.3,
+          75.74,
+          54.88,
+          71.04,
+          55.41,
+          61.16,
+          51.34,
+          47.24
+        ],
+        [
+          69.7,
+          56.3,
+          76.6,
+          56.1,
+          70.14,
+          54.05,
+          61.98,
+          48.21,
+          46.06,
+          66.94
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "OLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/olora/sgd/cub200/0/olora_inr_sgd_cub200_t20-E40_rank16_train-eval-paer/exp_run/20/olora_inr_sgd_cub200_t20-E40_rank16_train-eval-paer_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "3b1a6b6d76565cf7ce147297a7e7f5e7aa57a9284af3123feb0290cb4504bac9",
+        "metric_sha256_actual": "3b1a6b6d76565cf7ce147297a7e7f5e7aa57a9284af3123feb0290cb4504bac9"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        86.15,
+        77.095,
+        74.77,
+        70.555,
+        71.978,
+        67.82166666666667,
+        65.98571428571428,
+        63.46875,
+        61.471111111111114,
+        62.376
+      ],
+      "FAA": 62.376,
+      "AAA_stage": 70.1671242063492,
+      "selected_manifest_FAA": 62.376,
+      "selected_manifest_AAA_stage": 70.16712420634921,
+      "current_table": {
+        "FAA": 62.38,
+        "AAA_stage": 70.17
+      },
+      "difference_from_table": {
+        "FAA": -0.0040000000000048885,
+        "AAA_stage": -0.0028757936508014836
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          86.15
+        ],
+        [
+          85.28,
+          68.91
+        ],
+        [
+          75.76,
+          63.87,
+          84.68
+        ],
+        [
+          70.56,
+          63.87,
+          86.81,
+          60.98
+        ],
+        [
+          69.7,
+          64.29,
+          83.4,
+          68.29,
+          74.21
+        ],
+        [
+          71.0,
+          61.34,
+          81.7,
+          65.04,
+          81.0,
+          46.85
+        ],
+        [
+          71.86,
+          59.66,
+          80.85,
+          65.85,
+          78.73,
+          54.95,
+          50.0
+        ],
+        [
+          70.56,
+          58.4,
+          78.3,
+          67.07,
+          78.28,
+          50.9,
+          58.26,
+          45.98
+        ],
+        [
+          69.7,
+          60.92,
+          79.57,
+          67.07,
+          76.92,
+          50.0,
+          59.5,
+          54.91,
+          34.65
+        ],
+        [
+          67.1,
+          60.92,
+          76.6,
+          65.85,
+          76.92,
+          50.45,
+          53.72,
+          54.02,
+          49.61,
+          68.57
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "SDLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/sdlora/sgd/cub200/0/sdlora_inr_sgd_cub200_t20-E40_rank16_train-eval-paer/exp_run/20/sdlora_inr_sgd_cub200_t20-E40_rank16_train-eval-paer_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "2770ae8045a9b87d9fc28626c90680a1b9410a38535b03a6c8035d8cab7c12ea",
+        "metric_sha256_actual": "2770ae8045a9b87d9fc28626c90680a1b9410a38535b03a6c8035d8cab7c12ea"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        86.15,
+        77.295,
+        72.06333333333333,
+        69.98,
+        71.22,
+        67.43166666666667,
+        64.57142857142857,
+        63.59,
+        60.940000000000005,
+        62.00599999999999
+      ],
+      "FAA": 62.00599999999999,
+      "AAA_stage": 69.52474285714285,
+      "selected_manifest_FAA": 62.006,
+      "selected_manifest_AAA_stage": 69.52474285714285,
+      "current_table": {
+        "FAA": 62.01,
+        "AAA_stage": 69.52
+      },
+      "difference_from_table": {
+        "FAA": -0.0040000000000048885,
+        "AAA_stage": 0.00474285714285827
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          86.15
+        ],
+        [
+          84.42,
+          70.17
+        ],
+        [
+          70.56,
+          58.82,
+          86.81
+        ],
+        [
+          70.56,
+          56.72,
+          86.38,
+          66.26
+        ],
+        [
+          71.0,
+          53.78,
+          80.85,
+          65.85,
+          84.62
+        ],
+        [
+          71.43,
+          50.42,
+          80.43,
+          65.45,
+          83.26,
+          53.6
+        ],
+        [
+          70.56,
+          50.84,
+          80.43,
+          65.45,
+          82.81,
+          53.15,
+          48.76
+        ],
+        [
+          71.86,
+          50.0,
+          79.15,
+          65.85,
+          82.81,
+          52.7,
+          48.76,
+          57.59
+        ],
+        [
+          70.13,
+          51.26,
+          79.57,
+          64.63,
+          83.26,
+          53.6,
+          50.0,
+          56.25,
+          39.76
+        ],
+        [
+          70.13,
+          51.68,
+          78.72,
+          64.63,
+          83.26,
+          54.05,
+          50.41,
+          56.25,
+          35.83,
+          75.1
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "83d195e85541323948f2f309c01fdf7da8800f21b9f71596da594c573c388aef",
+        "metric_sha256_actual": "83d195e85541323948f2f309c01fdf7da8800f21b9f71596da594c573c388aef",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224.log",
+        "log_sha256_expected": "6c1334fd18f4d847149672a5e75ab18b0b3d44db7d9ab385b9e99b4d0a44f2ae",
+        "log_sha256_actual": "6c1334fd18f4d847149672a5e75ab18b0b3d44db7d9ab385b9e99b4d0a44f2ae"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        90.91,
+        82.57,
+        81.71333333333332,
+        80.3675,
+        81.89,
+        79.34666666666668,
+        78.67142857142858,
+        77.84,
+        77.18111111111111,
+        78.291
+      ],
+      "FAA": 78.291,
+      "AAA_stage": 80.87810396825397,
+      "selected_manifest_FAA": 78.291,
+      "selected_manifest_AAA_stage": 80.87810396825397,
+      "current_table": {
+        "FAA": 78.29,
+        "AAA_stage": 80.88
+      },
+      "difference_from_table": {
+        "FAA": 0.000999999999990564,
+        "AAA_stage": -0.0018960317460283704
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          90.91
+        ],
+        [
+          86.15,
+          78.99
+        ],
+        [
+          84.85,
+          77.31,
+          82.98
+        ],
+        [
+          85.28,
+          77.73,
+          80.0,
+          78.46
+        ],
+        [
+          84.42,
+          76.89,
+          80.0,
+          77.64,
+          90.5
+        ],
+        [
+          83.55,
+          71.43,
+          80.0,
+          77.64,
+          89.59,
+          73.87
+        ],
+        [
+          83.55,
+          71.01,
+          79.57,
+          77.64,
+          89.59,
+          72.07,
+          77.27
+        ],
+        [
+          83.55,
+          70.59,
+          79.57,
+          77.24,
+          88.69,
+          72.52,
+          76.45,
+          74.11
+        ],
+        [
+          83.12,
+          70.59,
+          79.57,
+          77.24,
+          88.69,
+          72.97,
+          75.62,
+          73.21,
+          73.62
+        ],
+        [
+          83.12,
+          70.59,
+          79.57,
+          77.24,
+          89.14,
+          72.97,
+          74.79,
+          73.66,
+          72.44,
+          89.39
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true,
+        "receipt_completed_exit_zero": true,
+        "receipt_metric_matches_selected": true,
+        "receipt_config_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "EWCLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_sgd_ewc_lambda_sweep_round2/logs_inc/as1_normfisher_fishershape/as1fs_sgdeq_ewc_lam200000/cub200/0/as1fs_cub200_sgdeq_r16_lr001_e40_ewc_lam200000/exp_run/20/as1fs_cub200_sgdeq_r16_lr001_e40_ewc_lam200000_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "a98ef00ff6d108b4d64c2aa772ddaaa7d4707ec20b75db7e34bc21470a421f04",
+        "metric_sha256_actual": "a98ef00ff6d108b4d64c2aa772ddaaa7d4707ec20b75db7e34bc21470a421f04",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_sgd_ewc_lambda_sweep_round2/logs_inc/as1_normfisher_fishershape/as1fs_sgdeq_ewc_lam200000/cub200/0/as1fs_cub200_sgdeq_r16_lr001_e40_ewc_lam200000/exp_run/20/as1fs_cub200_sgdeq_r16_lr001_e40_ewc_lam200000_vit_base_patch16_224.log",
+        "log_sha256_expected": "6ec60694e35c4c51432448431166c1e6de7e8c46b8aba4725840662f901c9138",
+        "log_sha256_actual": "6ec60694e35c4c51432448431166c1e6de7e8c46b8aba4725840662f901c9138"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        85.71,
+        78.15,
+        73.33,
+        69.265,
+        71.37,
+        67.80666666666667,
+        65.54857142857144,
+        62.6075,
+        59.80555555555556,
+        60.40599999999999
+      ],
+      "FAA": 60.40599999999999,
+      "AAA_stage": 69.39992936507937,
+      "selected_manifest_FAA": 60.406,
+      "selected_manifest_AAA_stage": 69.39992936507937,
+      "current_table": {
+        "FAA": 60.41,
+        "AAA_stage": 69.4
+      },
+      "difference_from_table": {
+        "FAA": -0.0040000000000048885,
+        "AAA_stage": -7.063492063252852e-05
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          85.71
+        ],
+        [
+          85.71,
+          70.59
+        ],
+        [
+          70.13,
+          60.5,
+          89.36
+        ],
+        [
+          67.97,
+          57.14,
+          88.94,
+          63.01
+        ],
+        [
+          69.26,
+          57.98,
+          85.96,
+          62.2,
+          81.45
+        ],
+        [
+          68.83,
+          53.78,
+          84.68,
+          61.79,
+          81.0,
+          56.76
+        ],
+        [
+          66.67,
+          53.78,
+          82.55,
+          62.2,
+          78.28,
+          60.81,
+          54.55
+        ],
+        [
+          65.37,
+          51.68,
+          80.43,
+          60.16,
+          77.83,
+          60.81,
+          54.13,
+          50.45
+        ],
+        [
+          66.23,
+          51.26,
+          77.87,
+          61.38,
+          77.83,
+          59.01,
+          56.61,
+          52.23,
+          35.83
+        ],
+        [
+          68.4,
+          51.68,
+          77.87,
+          61.79,
+          76.92,
+          60.36,
+          54.96,
+          54.91,
+          32.68,
+          64.49
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "GAM-EWCLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/logs_inc_lora/ewclora_normfisher_gam/gam/cub200/0/paperA_as1normfisher_lam2000_cub200_t20/exp_run/20/paperA_as1normfisher_lam2000_cub200_t20_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "aa2cfb4d1b7c68af6d569fa68b734e51804f93f45e35d5d8e20a0650f724c80c",
+        "metric_sha256_actual": "aa2cfb4d1b7c68af6d569fa68b734e51804f93f45e35d5d8e20a0650f724c80c"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        92.21,
+        82.36500000000001,
+        75.11666666666666,
+        73.3775,
+        74.07000000000001,
+        73.61166666666666,
+        73.10428571428572,
+        73.565,
+        73.10444444444445,
+        74.224
+      ],
+      "FAA": 74.224,
+      "AAA_stage": 76.47485634920636,
+      "selected_manifest_FAA": 74.224,
+      "selected_manifest_AAA_stage": 76.47485634920635,
+      "current_table": {
+        "FAA": 74.22,
+        "AAA_stage": 76.47
+      },
+      "difference_from_table": {
+        "FAA": 0.0040000000000048885,
+        "AAA_stage": 0.004856349206363575
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          92.21
+        ],
+        [
+          86.58,
+          78.15
+        ],
+        [
+          65.8,
+          68.91,
+          90.64
+        ],
+        [
+          62.34,
+          66.39,
+          85.11,
+          79.67
+        ],
+        [
+          61.9,
+          63.03,
+          80.85,
+          73.17,
+          91.4
+        ],
+        [
+          64.5,
+          59.24,
+          80.43,
+          69.51,
+          91.86,
+          76.13
+        ],
+        [
+          63.64,
+          57.98,
+          79.57,
+          67.48,
+          88.69,
+          72.97,
+          81.4
+        ],
+        [
+          63.2,
+          56.3,
+          77.02,
+          67.89,
+          89.14,
+          73.42,
+          78.51,
+          83.04
+        ],
+        [
+          61.47,
+          55.04,
+          78.3,
+          68.7,
+          87.33,
+          71.62,
+          76.86,
+          76.34,
+          82.28
+        ],
+        [
+          62.77,
+          54.2,
+          74.89,
+          69.11,
+          85.52,
+          73.42,
+          79.34,
+          76.34,
+          74.41,
+          92.24
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "Vanilla LoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/seqlora/sgd/flowers/0/seqlora_inr_sgd_flowers_ep40_lr00025_t20_rank16_eval2/exp_run/10/seqlora_inr_sgd_flowers_ep40_lr00025_t20_rank16_eval2_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "5a4b736e2135671129ac34e8e1cca986d3fae25b4a2c24c1d77171ff236f651c",
+        "metric_sha256_actual": "5a4b736e2135671129ac34e8e1cca986d3fae25b4a2c24c1d77171ff236f651c"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        92.54,
+        82.695,
+        76.55,
+        67.7975,
+        62.44,
+        61.711666666666666,
+        59.722857142857144,
+        57.723749999999995,
+        54.81333333333333,
+        53.052
+      ],
+      "FAA": 53.052,
+      "AAA_stage": 66.90461071428572,
+      "selected_manifest_FAA": 53.052,
+      "selected_manifest_AAA_stage": 66.90461071428571,
+      "current_table": {
+        "FAA": 53.05,
+        "AAA_stage": 66.9
+      },
+      "difference_from_table": {
+        "FAA": 0.0020000000000024443,
+        "AAA_stage": 0.004610714285718132
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          92.54
+        ],
+        [
+          86.62,
+          78.77
+        ],
+        [
+          83.77,
+          72.91,
+          72.97
+        ],
+        [
+          78.07,
+          69.83,
+          67.45,
+          55.84
+        ],
+        [
+          74.56,
+          63.41,
+          65.35,
+          52.81,
+          56.07
+        ],
+        [
+          73.25,
+          61.17,
+          64.04,
+          50.65,
+          55.05,
+          66.11
+        ],
+        [
+          70.18,
+          49.16,
+          62.73,
+          48.27,
+          51.87,
+          63.76,
+          72.09
+        ],
+        [
+          69.74,
+          48.32,
+          62.2,
+          47.62,
+          50.62,
+          61.58,
+          71.21,
+          50.5
+        ],
+        [
+          69.74,
+          44.13,
+          61.94,
+          48.05,
+          49.94,
+          61.07,
+          71.43,
+          50.58,
+          36.44
+        ],
+        [
+          67.11,
+          43.02,
+          61.68,
+          47.4,
+          49.38,
+          60.57,
+          70.77,
+          50.42,
+          34.47,
+          45.7
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "InfLoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/inflora/sgd/flowers/0/inflora_inr_sgd_flowers_ep40_lr00025_t20_rank16/exp_run/10/inflora_inr_sgd_flowers_ep40_lr00025_t20_rank16_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "d98299a03f7febf0c135e941933c4fb9eb7f8cf688072a5db2666b53f6f0767e",
+        "metric_sha256_actual": "d98299a03f7febf0c135e941933c4fb9eb7f8cf688072a5db2666b53f6f0767e"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        94.96,
+        86.7,
+        82.82666666666667,
+        77.6325,
+        70.408,
+        66.61333333333333,
+        64.82714285714286,
+        63.36625,
+        62.40555555555555,
+        60.06
+      ],
+      "FAA": 60.06,
+      "AAA_stage": 72.97994484126984,
+      "selected_manifest_FAA": 60.06,
+      "selected_manifest_AAA_stage": 72.97994484126984,
+      "current_table": {
+        "FAA": 60.06,
+        "AAA_stage": 72.98
+      },
+      "difference_from_table": {
+        "FAA": 0.0,
+        "AAA_stage": -5.5158730162929714e-05
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          94.96
+        ],
+        [
+          89.04,
+          84.36
+        ],
+        [
+          83.55,
+          79.89,
+          85.04
+        ],
+        [
+          82.24,
+          77.09,
+          82.15,
+          69.05
+        ],
+        [
+          80.48,
+          74.58,
+          82.15,
+          68.18,
+          46.65
+        ],
+        [
+          78.51,
+          72.35,
+          80.31,
+          67.53,
+          44.27,
+          56.71
+        ],
+        [
+          79.82,
+          72.91,
+          77.95,
+          69.48,
+          43.7,
+          55.2,
+          54.73
+        ],
+        [
+          79.61,
+          72.35,
+          77.69,
+          68.4,
+          43.13,
+          55.03,
+          52.75,
+          57.97
+        ],
+        [
+          75.44,
+          65.64,
+          76.12,
+          64.5,
+          41.54,
+          52.85,
+          52.09,
+          57.06,
+          76.41
+        ],
+        [
+          75.44,
+          63.13,
+          71.13,
+          63.85,
+          38.14,
+          49.33,
+          50.33,
+          55.32,
+          74.57,
+          59.36
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "OLoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/olora/sgd/flowers/0/olora_inr_sgd_flowers_ep40_lr00025_t20_rank16_eval2/exp_run/10/olora_inr_sgd_flowers_ep40_lr00025_t20_rank16_eval2_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "74818e57720367258149f552348ef11406236882e4ac67aa79fd987f71d10f3c",
+        "metric_sha256_actual": "74818e57720367258149f552348ef11406236882e4ac67aa79fd987f71d10f3c"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        92.32,
+        81.95,
+        75.02666666666667,
+        69.0475,
+        63.176,
+        57.708333333333336,
+        51.800000000000004,
+        51.5725,
+        51.07666666666667,
+        48.898
+      ],
+      "FAA": 48.898,
+      "AAA_stage": 64.25756666666666,
+      "selected_manifest_FAA": 48.897999999999996,
+      "selected_manifest_AAA_stage": 64.25756666666666,
+      "current_table": {
+        "FAA": 48.9,
+        "AAA_stage": 64.26
+      },
+      "difference_from_table": {
+        "FAA": -0.001999999999995339,
+        "AAA_stage": -0.0024333333333430573
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          92.32
+        ],
+        [
+          89.04,
+          74.86
+        ],
+        [
+          78.29,
+          66.48,
+          80.31
+        ],
+        [
+          77.19,
+          66.48,
+          79.27,
+          53.25
+        ],
+        [
+          68.86,
+          60.89,
+          75.07,
+          50.22,
+          60.84
+        ],
+        [
+          66.89,
+          60.06,
+          73.23,
+          49.78,
+          60.05,
+          36.24
+        ],
+        [
+          66.23,
+          60.89,
+          72.44,
+          50.43,
+          60.16,
+          36.41,
+          16.04
+        ],
+        [
+          65.57,
+          60.34,
+          71.39,
+          49.78,
+          59.36,
+          36.91,
+          15.82,
+          53.41
+        ],
+        [
+          63.6,
+          57.82,
+          64.57,
+          50.22,
+          58.23,
+          35.74,
+          15.6,
+          51.66,
+          62.25
+        ],
+        [
+          61.18,
+          56.7,
+          64.3,
+          47.62,
+          57.66,
+          33.72,
+          15.6,
+          51.5,
+          62.25,
+          38.45
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "SDLoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/sdlora/sgd/flowers/0/sdlora_inr_sgd_flowers_ep40_lr00025_t20_rank16_eval2/exp_run/10/sdlora_inr_sgd_flowers_ep40_lr00025_t20_rank16_eval2_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "f45fc6cb7c22f648662e7ec8723104b155c864358332e56b5aecda7994f509ae",
+        "metric_sha256_actual": "f45fc6cb7c22f648662e7ec8723104b155c864358332e56b5aecda7994f509ae"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        92.32,
+        82.41499999999999,
+        75.69,
+        69.355,
+        63.42,
+        58.291666666666664,
+        52.09571428571429,
+        52.015,
+        51.23111111111111,
+        49.047000000000004
+      ],
+      "FAA": 49.047000000000004,
+      "AAA_stage": 64.58804920634921,
+      "selected_manifest_FAA": 49.047,
+      "selected_manifest_AAA_stage": 64.58804920634921,
+      "current_table": {
+        "FAA": 49.05,
+        "AAA_stage": 64.59
+      },
+      "difference_from_table": {
+        "FAA": -0.0029999999999930083,
+        "AAA_stage": -0.001950793650792093
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          92.32
+        ],
+        [
+          89.69,
+          75.14
+        ],
+        [
+          80.26,
+          66.76,
+          80.05
+        ],
+        [
+          79.17,
+          66.48,
+          78.74,
+          53.03
+        ],
+        [
+          70.18,
+          61.17,
+          74.8,
+          50.0,
+          60.95
+        ],
+        [
+          69.08,
+          60.89,
+          73.49,
+          50.0,
+          60.05,
+          36.24
+        ],
+        [
+          67.98,
+          60.61,
+          72.7,
+          50.0,
+          60.27,
+          36.41,
+          16.7
+        ],
+        [
+          67.76,
+          60.61,
+          72.18,
+          49.57,
+          59.25,
+          37.25,
+          16.26,
+          53.24
+        ],
+        [
+          65.13,
+          57.82,
+          64.3,
+          49.78,
+          58.0,
+          35.91,
+          16.04,
+          51.58,
+          62.52
+        ],
+        [
+          62.72,
+          56.15,
+          64.04,
+          47.62,
+          57.55,
+          34.06,
+          15.82,
+          51.5,
+          62.39,
+          38.62
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "9a32a632493fb6f5fbc1457112f5be29433ee2902bbf81d43cdd1afe57a9ddbb",
+        "metric_sha256_actual": "9a32a632493fb6f5fbc1457112f5be29433ee2902bbf81d43cdd1afe57a9ddbb",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224.log",
+        "log_sha256_expected": "ec52648e2d70479a5528d8ad16cb42ef0bc06f76af4ac3184c12f829ee743497",
+        "log_sha256_actual": "ec52648e2d70479a5528d8ad16cb42ef0bc06f76af4ac3184c12f829ee743497"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        98.46,
+        98.94999999999999,
+        98.26333333333332,
+        98.465,
+        98.11999999999999,
+        98.295,
+        98.35714285714286,
+        98.3725,
+        98.23888888888888,
+        97.822
+      ],
+      "FAA": 97.822,
+      "AAA_stage": 98.3343865079365,
+      "selected_manifest_FAA": 97.822,
+      "selected_manifest_AAA_stage": 98.3343865079365,
+      "current_table": {
+        "FAA": 97.82,
+        "AAA_stage": 98.33
+      },
+      "difference_from_table": {
+        "FAA": 0.0020000000000095497,
+        "AAA_stage": 0.004386507936501971
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          98.46
+        ],
+        [
+          98.46,
+          99.44
+        ],
+        [
+          98.25,
+          99.16,
+          97.38
+        ],
+        [
+          98.25,
+          98.88,
+          97.38,
+          99.35
+        ],
+        [
+          97.81,
+          98.32,
+          97.38,
+          99.13,
+          97.96
+        ],
+        [
+          97.81,
+          98.32,
+          97.38,
+          98.92,
+          97.84,
+          99.5
+        ],
+        [
+          97.81,
+          98.32,
+          97.38,
+          98.7,
+          97.84,
+          99.33,
+          99.12
+        ],
+        [
+          97.59,
+          98.32,
+          97.38,
+          98.7,
+          97.62,
+          99.33,
+          99.12,
+          98.92
+        ],
+        [
+          97.59,
+          98.04,
+          97.38,
+          98.48,
+          97.16,
+          99.16,
+          99.12,
+          98.92,
+          98.3
+        ],
+        [
+          97.59,
+          97.77,
+          97.38,
+          98.48,
+          96.94,
+          99.16,
+          99.12,
+          98.84,
+          98.17,
+          94.77
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true,
+        "receipt_completed_exit_zero": true,
+        "receipt_metric_matches_selected": true,
+        "receipt_config_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "EWCLoRA",
+      "dataset": "flowers",
+      "seed": 1,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_ratiofs_ewc_paper/ratiofs_paper_v1_20260826/logs_inc/as1_normfisher_fishershape/as1fs_g0_ewc_c000_rho005_lam10_beta000/flowers/1/flowers102_g0_ewc_c000_rho005_lam10_beta000_s1_ratiofs_paper_v1_20260826/exp_run/10/flowers102_g0_ewc_c000_rho005_lam10_beta000_s1_ratiofs_paper_v1_20260826_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "c87fa771b4e4d984d9f510fbc67077af33fe970693927134d57e2433d3a201ac",
+        "metric_sha256_actual": "c87fa771b4e4d984d9f510fbc67077af33fe970693927134d57e2433d3a201ac",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_ratiofs_ewc_paper/ratiofs_paper_v1_20260826/logs_inc/as1_normfisher_fishershape/as1fs_g0_ewc_c000_rho005_lam10_beta000/flowers/1/flowers102_g0_ewc_c000_rho005_lam10_beta000_s1_ratiofs_paper_v1_20260826/exp_run/10/flowers102_g0_ewc_c000_rho005_lam10_beta000_s1_ratiofs_paper_v1_20260826_vit_base_patch16_224.log",
+        "log_sha256_expected": "ee0489d6e869c1bc33926e6872a49655942e1a07830921d27ee3642c76292eb8",
+        "log_sha256_actual": "ee0489d6e869c1bc33926e6872a49655942e1a07830921d27ee3642c76292eb8"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        90.35,
+        80.58500000000001,
+        72.44,
+        64.9025,
+        59.912,
+        60.18,
+        58.924285714285716,
+        57.5925,
+        56.17333333333333,
+        53.434000000000005
+      ],
+      "FAA": 53.434000000000005,
+      "AAA_stage": 65.4493619047619,
+      "selected_manifest_FAA": 53.434,
+      "selected_manifest_AAA_stage": 65.4493619047619,
+      "current_table": {
+        "FAA": 53.43,
+        "AAA_stage": 65.45
+      },
+      "difference_from_table": {
+        "FAA": 0.0040000000000048885,
+        "AAA_stage": -0.0006380952381022098
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          90.35
+        ],
+        [
+          85.75,
+          75.42
+        ],
+        [
+          78.51,
+          68.99,
+          69.82
+        ],
+        [
+          69.96,
+          58.38,
+          63.52,
+          67.75
+        ],
+        [
+          65.57,
+          54.47,
+          60.63,
+          64.29,
+          54.6
+        ],
+        [
+          63.82,
+          51.68,
+          58.27,
+          63.2,
+          54.14,
+          69.97
+        ],
+        [
+          62.5,
+          49.16,
+          57.48,
+          59.96,
+          52.89,
+          67.62,
+          62.86
+        ],
+        [
+          58.33,
+          46.93,
+          56.69,
+          56.06,
+          50.17,
+          65.44,
+          58.68,
+          68.44
+        ],
+        [
+          56.36,
+          45.81,
+          48.82,
+          56.06,
+          48.01,
+          63.59,
+          57.8,
+          67.77,
+          61.34
+        ],
+        [
+          54.82,
+          44.41,
+          48.82,
+          56.06,
+          46.65,
+          59.73,
+          56.48,
+          65.86,
+          61.21,
+          40.3
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "GAM-EWCLoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "task_count": 10,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/logs_inc_lora/ewclora_normfisher_gam/gam/flowers/0/paperA_as1normfisher_lam2000_flowers_t10c10_r16_s0/exp_run/10/paperA_as1normfisher_lam2000_flowers_t10c10_r16_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "fd031037c95bd89b137e6926d95f83bf591aa87dac95e70fa98a7bb2878f6f92",
+        "metric_sha256_actual": "fd031037c95bd89b137e6926d95f83bf591aa87dac95e70fa98a7bb2878f6f92"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "stage_AA": [
+        98.68,
+        97.595,
+        96.06,
+        92.905,
+        89.654,
+        90.20166666666667,
+        88.79857142857144,
+        88.57,
+        88.34444444444445,
+        86.747
+      ],
+      "FAA": 86.747,
+      "AAA_stage": 91.75556825396825,
+      "selected_manifest_FAA": 86.747,
+      "selected_manifest_AAA_stage": 91.75556825396825,
+      "current_table": {
+        "FAA": 86.75,
+        "AAA_stage": 91.76
+      },
+      "difference_from_table": {
+        "FAA": -0.0030000000000001137,
+        "AAA_stage": -0.004431746031755779
+      },
+      "finite_lower_triangle_count": 55,
+      "expected_lower_triangle_count": 55,
+      "lower_triangle": [
+        [
+          98.68
+        ],
+        [
+          97.15,
+          98.04
+        ],
+        [
+          96.71,
+          97.77,
+          93.7
+        ],
+        [
+          95.18,
+          97.21,
+          92.65,
+          86.58
+        ],
+        [
+          94.96,
+          96.37,
+          90.03,
+          87.23,
+          79.68
+        ],
+        [
+          93.64,
+          95.25,
+          89.76,
+          88.74,
+          80.36,
+          93.46
+        ],
+        [
+          90.79,
+          94.97,
+          87.93,
+          85.28,
+          79.68,
+          91.95,
+          90.99
+        ],
+        [
+          89.69,
+          94.41,
+          87.14,
+          85.5,
+          78.89,
+          90.77,
+          91.21,
+          90.95
+        ],
+        [
+          90.13,
+          92.74,
+          86.35,
+          85.71,
+          76.28,
+          91.11,
+          91.87,
+          91.53,
+          89.38
+        ],
+        [
+          86.84,
+          91.62,
+          86.09,
+          87.66,
+          74.69,
+          86.91,
+          90.33,
+          91.11,
+          89.25,
+          82.97
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "Vanilla LoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/seqlora/sgd/het5/0/seqlora_inr_sgd_het5_t5_rank16_lr002_epoch30/exp_run/1/seqlora_inr_sgd_het5_t5_rank16_lr002_epoch30_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "d8796325a85b978c6d59243ceefde3b0408beb3d023803565696eac91497f51e",
+        "metric_sha256_actual": "d8796325a85b978c6d59243ceefde3b0408beb3d023803565696eac91497f51e"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        83.21,
+        70.005,
+        58.75,
+        65.2625,
+        66.804
+      ],
+      "FAA": 66.804,
+      "AAA_stage": 68.8063,
+      "selected_manifest_FAA": 66.804,
+      "selected_manifest_AAA_stage": 68.8063,
+      "current_table": {
+        "FAA": 66.8,
+        "AAA_stage": 68.81
+      },
+      "difference_from_table": {
+        "FAA": 0.0040000000000048885,
+        "AAA_stage": -0.0037000000000091404
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          83.21
+        ],
+        [
+          73.58,
+          66.43
+        ],
+        [
+          65.06,
+          35.7,
+          75.49
+        ],
+        [
+          65.99,
+          35.46,
+          68.51,
+          91.09
+        ],
+        [
+          68.45,
+          26.49,
+          62.45,
+          87.01,
+          89.62
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "InfLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/inflora/sgd/het5/0/inflora_inr_sgd_het5_t5_rank16_lr002_epoch40/exp_run/1/inflora_inr_sgd_het5_t5_rank16_lr002_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "2d046b352c5ba30899295991d174e86aaca61afa9b0a542ab943399c1f781977",
+        "metric_sha256_actual": "2d046b352c5ba30899295991d174e86aaca61afa9b0a542ab943399c1f781977"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        84.65,
+        75.51499999999999,
+        70.90333333333334,
+        76.265,
+        77.748
+      ],
+      "FAA": 77.748,
+      "AAA_stage": 77.01626666666667,
+      "selected_manifest_FAA": 77.748,
+      "selected_manifest_AAA_stage": 77.01626666666667,
+      "current_table": {
+        "FAA": 77.75,
+        "AAA_stage": 77.02
+      },
+      "difference_from_table": {
+        "FAA": -0.001999999999995339,
+        "AAA_stage": -0.0037333333333293695
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          84.65
+        ],
+        [
+          80.07,
+          70.96
+        ],
+        [
+          77.06,
+          57.82,
+          77.83
+        ],
+        [
+          77.18,
+          56.29,
+          76.83,
+          94.76
+        ],
+        [
+          76.0,
+          51.82,
+          75.91,
+          93.98,
+          91.03
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "OLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/olora/sgd/het5/0/olora_inr_sgd_het5_t5_rank16_lr002_epoch40/exp_run/1/olora_inr_sgd_het5_t5_rank16_lr002_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "ec96a4d497129ed08581f8cdb384cd16ad363e637801634f892073ce488a047c",
+        "metric_sha256_actual": "ec96a4d497129ed08581f8cdb384cd16ad363e637801634f892073ce488a047c"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        84.01,
+        68.71000000000001,
+        68.16,
+        74.1575,
+        77.58
+      ],
+      "FAA": 77.58,
+      "AAA_stage": 74.5235,
+      "selected_manifest_FAA": 77.58,
+      "selected_manifest_AAA_stage": 74.5235,
+      "current_table": {
+        "FAA": 77.58,
+        "AAA_stage": 74.52
+      },
+      "difference_from_table": {
+        "FAA": 0.0,
+        "AAA_stage": 0.003500000000002501
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          84.01
+        ],
+        [
+          71.2,
+          66.22
+        ],
+        [
+          71.42,
+          58.48,
+          74.58
+        ],
+        [
+          71.67,
+          58.72,
+          74.31,
+          91.93
+        ],
+        [
+          72.14,
+          58.57,
+          74.13,
+          92.0,
+          91.06
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "SDLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/Flatness_CV/outputs_logs/logs_inc_lora/sdlora/sgd/het5/0/sdlora_inr_sgd_het5_t5_rank16_lr002_epoch40/exp_run/1/sdlora_inr_sgd_het5_t5_rank16_lr002_epoch40_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "fd12d482eb91853fd95c6ebf52650896e6029d667fb275e7511cf0c05eedf4c3",
+        "metric_sha256_actual": "fd12d482eb91853fd95c6ebf52650896e6029d667fb275e7511cf0c05eedf4c3"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        84.73,
+        74.91,
+        65.56,
+        70.875,
+        74.42
+      ],
+      "FAA": 74.42,
+      "AAA_stage": 74.099,
+      "selected_manifest_FAA": 74.42,
+      "selected_manifest_AAA_stage": 74.099,
+      "current_table": {
+        "FAA": 74.42,
+        "AAA_stage": 74.1
+      },
+      "difference_from_table": {
+        "FAA": 0.0,
+        "AAA_stage": -0.000999999999990564
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          84.73
+        ],
+        [
+          79.22,
+          70.6
+        ],
+        [
+          76.38,
+          41.94,
+          78.36
+        ],
+        [
+          80.7,
+          46.47,
+          63.89,
+          92.44
+        ],
+        [
+          80.58,
+          44.25,
+          63.81,
+          92.26,
+          91.2
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true
+      },
+      "passed": true
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/cllora_comparison_20260918/results.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "0cf62c9df0247efd3296001828c1f446a4d48a8d0e6528803915cb6866a7fea6",
+        "metric_sha256_actual": "0cf62c9df0247efd3296001828c1f446a4d48a8d0e6528803915cb6866a7fea6",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224.log",
+        "log_sha256_expected": "d0c205eecca623602c477a3218a7548983c417a802203ad2103874afd64ef54d",
+        "log_sha256_actual": "d0c205eecca623602c477a3218a7548983c417a802203ad2103874afd64ef54d"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        77.78,
+        54.985,
+        48.949999999999996,
+        61.235,
+        66.98400000000001
+      ],
+      "FAA": 66.98400000000001,
+      "AAA_stage": 61.9868,
+      "selected_manifest_FAA": 66.984,
+      "selected_manifest_AAA_stage": 61.986799999999995,
+      "current_table": {
+        "FAA": 66.98,
+        "AAA_stage": 61.99
+      },
+      "difference_from_table": {
+        "FAA": 0.0040000000000048885,
+        "AAA_stage": -0.0031999999999996476
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          77.78
+        ],
+        [
+          77.78,
+          32.19
+        ],
+        [
+          77.86,
+          32.37,
+          36.62
+        ],
+        [
+          77.91,
+          32.37,
+          36.6,
+          98.06
+        ],
+        [
+          77.35,
+          32.13,
+          36.28,
+          98.21,
+          90.95
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true,
+        "receipt_completed_exit_zero": true,
+        "receipt_metric_matches_selected": true,
+        "receipt_config_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "EWCLoRA",
+      "dataset": "het5",
+      "seed": 2,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/finegrained_complete_20260919/ewc_best_selection.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_fivearm_native_controls/fivearm_native_v1_20260826/logs_inc/as1_normfisher_fishershape/as1fs_native_ewc_rho005_lam50000_beta000/het5/2/het5_native_ewc_rho005_lam50000_beta000_s2_fivearm_native_v1_20260826/exp_run/1/het5_native_ewc_rho005_lam50000_beta000_s2_fivearm_native_v1_20260826_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "3d19fa0b0daaeef68a0959a9ed1db66a9bdb68767b2d2054d663ddee07e295ca",
+        "metric_sha256_actual": "3d19fa0b0daaeef68a0959a9ed1db66a9bdb68767b2d2054d663ddee07e295ca",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/5datasets_as1_fivearm_native_controls/fivearm_native_v1_20260826/logs_inc/as1_normfisher_fishershape/as1fs_native_ewc_rho005_lam50000_beta000/het5/2/het5_native_ewc_rho005_lam50000_beta000_s2_fivearm_native_v1_20260826/exp_run/1/het5_native_ewc_rho005_lam50000_beta000_s2_fivearm_native_v1_20260826_vit_base_patch16_224.log",
+        "log_sha256_expected": "afa87ddb36e20fe92d8f212183dd996beb08bd14e755f3a544b579b856cfe975",
+        "log_sha256_actual": "afa87ddb36e20fe92d8f212183dd996beb08bd14e755f3a544b579b856cfe975"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        84.78,
+        70.695,
+        64.65666666666667,
+        71.34,
+        73.86800000000001
+      ],
+      "FAA": 73.86800000000001,
+      "AAA_stage": 73.06793333333334,
+      "selected_manifest_FAA": 73.868,
+      "selected_manifest_AAA_stage": 73.06793333333333,
+      "current_table": {
+        "FAA": 73.87,
+        "AAA_stage": 73.07
+      },
+      "difference_from_table": {
+        "FAA": -0.001999999999995339,
+        "AAA_stage": -0.0020666666666500078
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          84.78
+        ],
+        [
+          76.97,
+          64.42
+        ],
+        [
+          72.22,
+          47.07,
+          74.68
+        ],
+        [
+          74.13,
+          47.16,
+          70.07,
+          94.0
+        ],
+        [
+          74.77,
+          43.41,
+          66.98,
+          92.93,
+          91.25
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true
+      },
+      "passed": true
+    },
+    {
+      "method": "GAM-EWCLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "task_count": 5,
+      "single_run": true,
+      "error_bars": false,
+      "source": {
+        "selection_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/gam_ewc_het5_s0.json",
+        "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224_cl_metrics.json",
+        "metric_sha256_expected": "5c758db92e3b0d8b78b8cabd3255fa9a1f9cac0ff4eeea88a5add43ef1bbc446",
+        "metric_sha256_actual": "5c758db92e3b0d8b78b8cabd3255fa9a1f9cac0ff4eeea88a5add43ef1bbc446",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224.log",
+        "log_sha256_expected": "d5d57680431a30a6f46f84e67358df164dc86cf85335b58d09a519ff50825482",
+        "log_sha256_actual": "d5d57680431a30a6f46f84e67358df164dc86cf85335b58d09a519ff50825482"
+      },
+      "stage_index_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "stage_AA": [
+        87.19,
+        76.985,
+        76.72333333333334,
+        81.50999999999999,
+        83.37
+      ],
+      "FAA": 83.37,
+      "AAA_stage": 81.15566666666666,
+      "selected_manifest_FAA": 83.37,
+      "selected_manifest_AAA_stage": 81.15566666666666,
+      "current_table": {
+        "FAA": 83.37,
+        "AAA_stage": 81.16
+      },
+      "difference_from_table": {
+        "FAA": 0.0,
+        "AAA_stage": -0.0043333333333350765
+      },
+      "finite_lower_triangle_count": 15,
+      "expected_lower_triangle_count": 15,
+      "lower_triangle": [
+        [
+          87.19
+        ],
+        [
+          85.11,
+          68.86
+        ],
+        [
+          85.03,
+          62.92,
+          82.22
+        ],
+        [
+          85.24,
+          61.42,
+          80.36,
+          99.02
+        ],
+        [
+          85.24,
+          60.1,
+          78.54,
+          98.42,
+          94.55
+        ]
+      ],
+      "checks": {
+        "source_exists": true,
+        "metric_sha256_matches": true,
+        "matrix_has_expected_square_shape": true,
+        "lower_triangle_complete": true,
+        "lower_triangle_all_finite": true,
+        "lower_triangle_in_0_100": true,
+        "task_count_matches_selection": true,
+        "FAA_matches_selected_full_precision": true,
+        "AAA_stage_matches_selected_full_precision": true,
+        "curve_last_point_matches_table_FAA_within_0_01": true,
+        "curve_mean_matches_table_AAA_within_0_01": true,
+        "FAA_matches_source_cnn_final_FAA": true,
+        "stage_AA_matches_source_prefix_mean_t": true,
+        "log_sha256_matches": true,
+        "receipt_completed_exit_zero": true,
+        "receipt_metric_matches_selected": true,
+        "receipt_config_sha256_matches": true,
+        "receipt_equals_collected_formal_record": true
+      },
+      "passed": true
+    }
+  ]
+}

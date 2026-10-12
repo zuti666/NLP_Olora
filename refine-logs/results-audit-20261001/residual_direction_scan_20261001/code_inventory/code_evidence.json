@@ -1,0 +1,41 @@
+{
+  "source_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/diagnostics/paired_gam_diagnostic.py",
+  "source_sha256": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+  "line_references": {
+    "projection": {
+      "start": 611,
+      "end": 615,
+      "text": "611:             denominator = dot(g1, g1)\n612:             if denominator <= 1e-20:\n613:                 raise FloatingPointError(\"g1 norm is too small for an identified projection coefficient\")\n614:             a = dot(g3, g1) / denominator\n615:             residual = g3 - a * g1"
+    },
+    "reference_step": {
+      "start": 627,
+      "end": 631,
+      "text": "627:             anchor.restore()\n628:             geo.set_displacement(g1, -args.eta_ref)\n629:             target_metrics, effective_g1 = geo.displacement_metrics(with_vector=True)\n630:             target = target_metrics[\"effective_joint_norm\"]\n631:             entry[\"reference_update\"] = {\"direction\": \"g1\", \"eta\": args.eta_ref, **target_metrics}"
+    },
+    "candidate_definitions": {
+      "start": 643,
+      "end": 650,
+      "text": "643:             anchor.restore()\n644:             directions = {\"g1\": g1, \"g3\": g3, \"sum\": g1 + g3, \"half_sum\": (g1 + g3) / 2,\n645:                           \"scale_only\": (1 + a) * g1, \"g3_scale_only\": a * g1}\n646:             for lam in (0, 0.5, 1, 2):\n647:                 directions[\"g1_plus_residual_lambda_%g\" % lam] = g1 + lam * residual\n648:                 directions[\"sum_family_lambda_%g\" % lam] = (1 + a) * g1 + lam * residual\n649:             for alpha in (0, 0.25, 0.5, 0.75, 1):\n650:                 directions[\"unit_interpolation_alpha_%g\" % alpha] = unit((1 - alpha) * unit(g1) + alpha * unit(g3))"
+    },
+    "effective_polynomial": {
+      "start": 202,
+      "end": 217,
+      "text": "202:     @torch.no_grad()\n203:     def effective_polynomial(self, direction):\n204:         # theta' = theta - s*d. BA' - BA = -s*(B*dA+dB*A) + s^2*dB*dA.\n205:         c2 = c3 = c4 = fc2 = 0.0\n206:         for a, b in self.pairs:\n207:             aa, bb = self.base_map[id(a.weight)], self.base_map[id(b.weight)]\n208:             da, db = self.split(direction, a.weight), self.split(direction, b.weight)\n209:             linear = bb @ da + db @ aa\n210:             quadratic = db @ da\n211:             c2 += dot(linear, linear)\n212:             c3 -= 2 * dot(linear, quadratic)\n213:             c4 += dot(quadratic, quadratic)\n214:         for _, p in self.fc:\n215:             dp = self.split(direction, p)\n216:             fc2 += dot(dp, dp)\n217:         return c2 + fc2, c3, c4, fc2"
+    },
+    "actual_match_and_restore": {
+      "start": 387,
+      "end": 419,
+      "text": "387: def counterfactual(model, geo, anchor, direction, label, target, eta, batches, class_ranges, task, device, before, match_rtol):\n388:     c2, c3, c4, fc2 = geo.effective_polynomial(direction)\n389:     def analytic(s):\n390:         return math.sqrt(max(0.0, c2 * s * s + c3 * s ** 3 + c4 * s ** 4))\n391:     match = positive_root(target, analytic, eta, rtol=min(match_rtol / 10, 1e-5))\n392:     result = {\"label\": label, \"direction_norm\": norm(direction), \"effective_norm_polynomial\": [c2, c3, c4],\n393:               \"raw_eta\": eta, \"raw_effective_joint_norm_analytic\": analytic(eta), \"match\": match}\n394:     derivative_roots = np.roots([4 * c4, 3 * c3, 2 * c2]) if c4 != 0 or c3 != 0 else []\n395:     result[\"positive_stationary_scales\"] = sorted(float(z.real) for z in derivative_roots if abs(z.imag) < 1e-10 and z.real > 0)\n396:     result[\"norm_globally_monotonic\"] = not result[\"positive_stationary_scales\"]\n397:     try:\n398:         anchor.restore()\n399:         geo.set_displacement(direction, -eta)\n400:         result[\"raw_actual_step\"] = geo.displacement_metrics()\n401:         if not match[\"ok\"]:\n402:             return result\n403:         anchor.restore()\n404:         geo.set_displacement(direction, -match[\"scale\"])\n405:         metrics = geo.displacement_metrics()\n406:         actual_error = abs(metrics[\"effective_joint_norm\"] - target) / target\n407:         result[\"matched_actual_step\"] = metrics\n408:         match[\"actual_relative_error\"] = actual_error\n409:         match[\"ok\"] = bool(math.isfinite(actual_error) and actual_error <= match_rtol)\n410:         if not match[\"ok\"]:\n411:             match[\"reason\"] = \"actual_BA_match_tolerance_not_met\"\n412:             return result\n413:         after = eval_losses(model, batches, class_ranges, device)\n414:         result[\"loss_after\"] = after\n415:         result[\"loss_change\"] = loss_deltas(before, after, task)\n416:         return result\n417:     finally:\n418:         anchor.restore()\n419:         anchor.check()"
+    },
+    "CLI_protocol_defaults": {
+      "start": 510,
+      "end": 518,
+      "text": "510:     p.add_argument(\"--max-batches\", type=int, default=4)\n511:     p.add_argument(\"--eval-batches\", \"--eval-per-task\", dest=\"eval_batches\", type=int, default=1, help=\"held-out batches per current/old task\")\n512:     p.add_argument(\"--batch-size\", type=int, default=128)\n513:     p.add_argument(\"--seed\", type=int, default=20260930, help=\"shared diagnostic data/probe seed, not source training seed\")\n514:     p.add_argument(\"--eta-ref\", type=float, default=0.02)\n515:     p.add_argument(\"--rho\", type=float, default=0.05)\n516:     p.add_argument(\"--r-values\", default=\"0,0.1,0.25,0.5,1\")\n517:     p.add_argument(\"--match-rtol\", type=float, default=1e-3)\n518:     p.add_argument(\"--kl-match\", action=\"store_true\", help=\"also solve KL-matched SAM radius; adds metric forwards\")"
+    },
+    "evaluation_losses": {
+      "start": 360,
+      "end": 384,
+      "text": "360: \n361: @torch.no_grad()\n362: def eval_losses(model, batches, class_ranges, device):\n363:     result = {}\n364:     for task, group in batches.items():\n365:         sum_all = sum_local = 0.0\n366:         count = 0\n367:         start, end = class_ranges[task]\n368:         for x, y, _ in group:\n369:             x, y = x.to(device), y.to(device)\n370:             out = isolated_logits(model, x)\n371:             sum_all += float(F.cross_entropy(out, y, reduction=\"sum\"))\n372:             sum_local += float(F.cross_entropy(out[:, start:end], y - start, reduction=\"sum\"))\n373:             count += y.numel()\n374:         result[str(task)] = {\"all_seen_ce\": sum_all / count, \"task_local_ce\": sum_local / count, \"n\": count}\n375:     return result\n376: \n377: \n378: def loss_deltas(before, after, task):\n379:     per_task = {k: {metric: after[k][metric] - before[k][metric]\n380:                     for metric in (\"all_seen_ce\", \"task_local_ce\")} for k in before}\n381:     old = [per_task[str(j)] for j in range(task)]\n382:     return {\"per_task\": per_task, \"current\": per_task[str(task)],\n383:             \"old_task_macro\": {m: sum(v[m] for v in old) / len(old) for m in (\"all_seen_ce\", \"task_local_ce\")}\n384:             if old else None, \"old_task_status\": \"available\" if old else \"NA_no_old_task\"}"
+    }
+  }
+}

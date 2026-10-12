@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-09-20T09:45:37.243400+00:00",
+  "reviewer": "rq2_preflight",
+  "instruction_document": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/ENVIRONMENT.md",
+  "document_sha256": "2f204f2d0203c92fff6d0538b64e0f3a6f6cd33ee2dc03510ad13823a5a72194",
+  "command": "CUDA_VISIBLE_DEVICES=4 CUBLAS_WORKSPACE_CONFIG=:4096:8 OMP_NUM_THREADS=4 /data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py --output /data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_witness_gpu4.json",
+  "executed_verbatim": true,
+  "execution_route": "require_escalated; workspace sandbox cannot reach NVML",
+  "pre_execution_gpu4": {
+    "uuid": "GPU-e97b92ec-d10c-0913-e3f8-67941b20ee0c",
+    "memory_used_mib": 1,
+    "utilization_percent": 0
+  },
+  "pre_execution_gpu6": {
+    "uuid": "GPU-854d8366-b2d5-676d-1c34-70a08132c88f",
+    "memory_used_mib": 1,
+    "utilization_percent": 0
+  },
+  "checks": {
+    "exit_zero": true,
+    "visible_gpu_4": true,
+    "device_match": true,
+    "shape_match": true,
+    "finite_forward_backward": true
+  },
+  "status": "PASS",
+  "witness": {
+    "host": "cudahpc15",
+    "python": "3.11.15",
+    "executable": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+    "torch": "2.4.1+cu121",
+    "torchvision": "0.19.1+cu121",
+    "timm": "1.0.9",
+    "yaml": "6.0.2",
+    "cuda": "12.1",
+    "visible_devices": "4",
+    "device": "Quadro RTX 6000",
+    "memory_total_bytes": 25189679104,
+    "shape": [
+      8,
+      8
+    ],
+    "finite_forward_backward": true,
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true
+  },
+  "scientific_measurement_status": "NOT_YET_RUN: kernel witness only, no model/data/Fisher sanity or training"
+}

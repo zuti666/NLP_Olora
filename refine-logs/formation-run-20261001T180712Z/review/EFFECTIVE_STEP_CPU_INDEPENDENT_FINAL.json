@@ -1,0 +1,195 @@
+{
+  "status": "passed",
+  "device": "cpu",
+  "explicit_dense_cases": 16,
+  "cases": [
+    {
+      "dtype": "torch.float32",
+      "zero_b": false,
+      "scale": 0.04,
+      "gram_vs_dense_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": false,
+      "scale": 0.004,
+      "gram_vs_dense_abs_error": 1.6653345369377348e-16
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": false,
+      "scale": 1e-08,
+      "gram_vs_dense_abs_error": 3.7490631157540994e-17
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": false,
+      "scale": 0.0,
+      "gram_vs_dense_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": true,
+      "scale": 0.04,
+      "gram_vs_dense_abs_error": 2.220446049250313e-16
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": true,
+      "scale": 0.004,
+      "gram_vs_dense_abs_error": 2.7755575615628914e-17
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": true,
+      "scale": 1e-08,
+      "gram_vs_dense_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float32",
+      "zero_b": true,
+      "scale": 0.0,
+      "gram_vs_dense_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": false,
+      "scale": 0.04,
+      "gram_vs_dense_abs_error": 2.220446049250313e-16
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": false,
+      "scale": 0.004,
+      "gram_vs_dense_abs_error": 3.608224830031759e-16
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": false,
+      "scale": 1e-08,
+      "gram_vs_dense_abs_error": 1.6640502232314605e-16
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": false,
+      "scale": 0.0,
+      "gram_vs_dense_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": true,
+      "scale": 0.04,
+      "gram_vs_dense_abs_error": 0.0
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": true,
+      "scale": 0.004,
+      "gram_vs_dense_abs_error": 1.3877787807814457e-17
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": true,
+      "scale": 1e-08,
+      "gram_vs_dense_abs_error": 5.293955920339377e-23
+    },
+    {
+      "dtype": "torch.float64",
+      "zero_b": true,
+      "scale": 0.0,
+      "gram_vs_dense_abs_error": 0.0
+    }
+  ],
+  "nonmonotonic_smallest_root": {
+    "scale": 0.5,
+    "target": 0.75,
+    "predicted_norm": 0.75,
+    "relative_error": 0.0,
+    "iterations": 1,
+    "bracket": [
+      0.0,
+      1.0
+    ],
+    "stationary_points": [
+      1.0,
+      2.0
+    ],
+    "smallest_positive_root": true,
+    "max_scale": 4.0,
+    "initial_scale": 0.04,
+    "matched": true
+  },
+  "negative_cases_rejected": [
+    "zero_direction",
+    "unreachable_bound",
+    "nonfinite_target",
+    "nonfinite_coefficient",
+    "zero_target",
+    "scope_omission",
+    "nonfinite_gradient"
+  ],
+  "formation_regression": {
+    "native_frozen_GAM_and_projector": true,
+    "arms": {
+      "s": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      },
+      "s_lr15": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      },
+      "s_lr2": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      },
+      "g_raw": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      },
+      "g_r025": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      },
+      "g_match": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 1.9700560896495168e-07,
+        "all_four_closure": true
+      },
+      "sum": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      },
+      "mean_lr2": {
+        "steps": 3,
+        "all_self_spec": true,
+        "max_match_error": 0,
+        "all_four_closure": true
+      }
+    },
+    "sum_vs_mean_lr2_max_abs": 5.960464477539063e-08,
+    "schedule_cases": 24,
+    "T_max50_including_smoke": true,
+    "negative_cases_rejected": [
+      "augmentation_pairing",
+      "missing_reference_step",
+      "reference_seed",
+      "formal_rejects_smoke_reference",
+      "incomplete_reference_sequence",
+      "reference_hash_corruption"
+    ]
+  }
+}

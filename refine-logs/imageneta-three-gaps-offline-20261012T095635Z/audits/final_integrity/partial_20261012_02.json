@@ -1,0 +1,4461 @@
+{
+  "protocol": "independent_cpu_final_integrity_v1",
+  "time_utc": "2026-10-12T10:27:50.841587+00:00",
+  "status": "partial",
+  "cpu_only": true,
+  "submitted_training_updates": 0,
+  "actual_formal_scope_complete": false,
+  "planned_formal": {
+    "curvature": 36,
+    "matching": 24,
+    "evaluation": 30
+  },
+  "observed": {
+    "pilot_curvature": 1,
+    "pilot_original_fp32_gate": 0,
+    "pilot_exploratory_fp32_gate": 1,
+    "pilot_exploratory_fp64_gate": 0,
+    "pilot_matching": 1,
+    "pilot_accepted_matches": 1,
+    "pilot_evaluation": 2,
+    "formal_evaluation": 30,
+    "formal_matching": 24,
+    "formal_accepted_matches": 24,
+    "formal_curvature": 35,
+    "formal_original_fp32_gate": 14,
+    "formal_exploratory_fp32_gate": 35,
+    "formal_exploratory_fp64_gate": 0
+  },
+  "execution_receipts": [
+    {
+      "job": "pilot_curvature_s2",
+      "pilot": true,
+      "observed": 1,
+      "expected": 1,
+      "report_status": "completed_exploratory",
+      "execution_complete": true
+    },
+    {
+      "job": "pilot_matching_s2",
+      "pilot": true,
+      "observed": 1,
+      "expected": 1,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "pilot_evaluation_s2",
+      "pilot": true,
+      "observed": 2,
+      "expected": 2,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_evaluation_s2",
+      "pilot": false,
+      "observed": 10,
+      "expected": 10,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_matching_s2",
+      "pilot": false,
+      "observed": 8,
+      "expected": 8,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_curvature_s2",
+      "pilot": false,
+      "observed": 12,
+      "expected": 12,
+      "report_status": "completed_exploratory",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_evaluation_s0",
+      "pilot": false,
+      "observed": 10,
+      "expected": 10,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_matching_s0",
+      "pilot": false,
+      "observed": 8,
+      "expected": 8,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_curvature_s0",
+      "pilot": false,
+      "observed": 12,
+      "expected": 12,
+      "report_status": "completed_exploratory",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_evaluation_s1",
+      "pilot": false,
+      "observed": 10,
+      "expected": 10,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_matching_s1",
+      "pilot": false,
+      "observed": 8,
+      "expected": 8,
+      "report_status": "completed",
+      "execution_complete": true
+    },
+    {
+      "job": "formal_curvature_s1",
+      "pilot": false,
+      "observed": 11,
+      "expected": 12,
+      "report_status": "running",
+      "execution_complete": false
+    }
+  ],
+  "failures": [],
+  "checks": {
+    "relative_error_denominator_identity": 1028,
+    "effective_and_Q_identity_layers": 1800,
+    "evaluated_datasets_from_saved_logits": 192,
+    "collector_seed_curvature_summaries": 24,
+    "collector_paired_endpoint_summaries": 16
+  },
+  "shared_e0": {
+    "0": {
+      "verified": true,
+      "arrays_compared": 90
+    },
+    "1": {
+      "verified": true,
+      "arrays_compared": 90
+    },
+    "2": {
+      "verified": true,
+      "arrays_compared": 90
+    }
+  },
+  "paired_fixed_endpoints": [
+    {
+      "epoch": 25,
+      "dataset": "test_old",
+      "metric": "conditional20.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        2.6058631921824116,
+        0.6514657980456064,
+        -0.3257328990227961
+      ],
+      "mean": 0.9771986970684073,
+      "sample_sd": 1.4926956661093922
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_old",
+      "metric": "conditional20.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.025345308384600196,
+        -0.015455618743399457,
+        -0.012653270062872146
+      ],
+      "mean": -0.0178180657302906,
+      "sample_sd": 0.006667670208885306
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_old",
+      "metric": "joint40.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        2.2801302931596155,
+        -0.9771986970684026,
+        -0.3257328990227961
+      ],
+      "mean": 0.3257328990228056,
+      "sample_sd": 1.723616489292895
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_old",
+      "metric": "joint40.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.02151903034421443,
+        -0.014469625118889384,
+        0.005877261829686842
+      ],
+      "mean": -0.010037131211138991,
+      "sample_sd": 0.014225837687149544
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_new",
+      "metric": "conditional20.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        1.5748031496062964,
+        1.1811023622047259,
+        -0.7874015748031553
+      ],
+      "mean": 0.6561679790026224,
+      "sample_sd": 1.2655709660095766
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_new",
+      "metric": "conditional20.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.019729103629044675,
+        -0.015579403854730556,
+        -0.00020390608179288172
+      ],
+      "mean": -0.011837471188522705,
+      "sample_sd": 0.010286392947657935
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_new",
+      "metric": "joint40.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        1.968503937007867,
+        1.9685039370078812,
+        2.3622047244094375
+      ],
+      "mean": 2.0997375328083954,
+      "sample_sd": 0.22730325558646028
+    },
+    {
+      "epoch": 25,
+      "dataset": "test_new",
+      "metric": "joint40.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.047886014923335996,
+        -0.04172672061469607,
+        -0.031161481001245717
+      ],
+      "mean": -0.04025807217975926,
+      "sample_sd": 0.008458439861869851
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_old",
+      "metric": "conditional20.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        2.2801302931596155,
+        0.6514657980456064,
+        -0.6514657980455922
+      ],
+      "mean": 0.7600434310532099,
+      "sample_sd": 1.4688109944048497
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_old",
+      "metric": "conditional20.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.03234677516676315,
+        -0.018940307418375935,
+        -0.019231038295484892
+      ],
+      "mean": -0.023506040293541326,
+      "sample_sd": 0.007657680845704954
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_old",
+      "metric": "joint40.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        1.3029315960911987,
+        0.0,
+        0.0
+      ],
+      "mean": 0.43431053203039954,
+      "sample_sd": 0.7522479077389224
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_old",
+      "metric": "joint40.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.02268177989251452,
+        -0.01954925487406478,
+        0.000908363913868393
+      ],
+      "mean": -0.013774223617570303,
+      "sample_sd": 0.012811594776278738
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_new",
+      "metric": "conditional20.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        0.7874015748031411,
+        2.3622047244094375,
+        -0.7874015748031553
+      ],
+      "mean": 0.7874015748031411,
+      "sample_sd": 1.5748031496062964
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_new",
+      "metric": "conditional20.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.020517980019877313,
+        -0.01405909680944728,
+        -0.007453783290592708
+      ],
+      "mean": -0.0140102867066391,
+      "sample_sd": 0.006532235135462038
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_new",
+      "metric": "joint40.accuracy",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        0.0,
+        3.149606299212607,
+        2.3622047244094375
+      ],
+      "mean": 1.8372703412073481,
+      "sample_sd": 1.6391070861938069
+    },
+    {
+      "epoch": 50,
+      "dataset": "test_new",
+      "metric": "joint40.ce",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "values": [
+        -0.056874342790738774,
+        -0.04475598072442477,
+        -0.0443589818759228
+      ],
+      "mean": -0.048663101797028784,
+      "sample_sd": 0.007113913199780806
+    }
+  ],
+  "curvature_within_seed_means": [
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5719306020211471
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5919422492279698
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.477096151900622
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.6977963056044844
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.5584403923807838
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.9037692260307866
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.679711111597422
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.900539006337521
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.9892403943589283
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 4.67896872148204
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 8.241528315872156
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 4.229550580254183
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.7019663518679394
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6655814849708401
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6134425789036122
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.68758385006806
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.5235877275547983
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.863924817499943
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 3.718826009677815
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.577135947908598
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.360351092631084
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 9.35793744296408
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 16.48305663174431
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 8.459101160508366
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.45962534057613313
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9999759045594583
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6323011864787366
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8708617096846347
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.061224993536340123
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.7857664824992626
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.21433068085189
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 1.6447669632872777
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.0370517409190008
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 2.348014113282693
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 12.660128124846862
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 2.3210614935992564
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5153273780815961
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9994373939700987
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6858556233712427
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8419868296920393
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.07818766856120887
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.7498369598611343
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.153816957794375
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 3.825756919126058
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.180987474424257
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 4.696028226565386
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 25.320256249693724
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 4.642122987198513
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.48734905056031086
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 1,
+      "mean": 0.9995973291646825
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.38509376292377967
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8873017393498299
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 1,
+      "mean": 0.08890232423958447
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.9244877082063523
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 1.865593549640081
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 1,
+      "mean": 1.324243356369267
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 1.8995781723665308
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 1.9158278704640455
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 1,
+      "mean": 7.647751213535222
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 2.0051721374694256
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.605126135678395
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 1,
+      "mean": 0.9995621272818969
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5233296344318834
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8434813641729021
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 1,
+      "mean": 0.11655149856738353
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8687167794500557
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 3.9375530233718257
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 1,
+      "mean": 3.507019425705341
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.017998748556
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 3.831655740928091
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 1,
+      "mean": 15.295502427070444
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 4.010344274938851
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6568348810266339
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9323701138455797
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9971110030938453
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.46023852093618434
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.3413581937520088
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.02825888945024531
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.884406453625184
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 3.2047397454061737
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.806253150844812
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 31.703753475192233
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 9.338766654208513
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 72.02755603351426
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.7667228559484993
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9382625068672122
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9986165868236598
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.44529412751362035
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.33768631331227783
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.022037504508610573
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.056059802225392
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.898534670857913
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.062545010382044
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 63.407506950384466
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 18.677533308417026
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 144.05511206702852
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5086536942714053
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9866978335133243
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.7166193580648672
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8599536007777189
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.11894386789780982
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.4040019989589573
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.8687753865447316
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.351234160623629
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.323325651322631
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 3.0986018584779442
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 29.937818773157908
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 30.198456429035843
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5665020355178529
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.9819981633533457
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.7498376662332145
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.8231921588371147
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.139693662032875
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.4137713274682502
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 5.237157080669379
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 5.286822641405765
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 5.01826076981458
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 6.1972037169558885
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 59.875637546315815
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 60.39691285807169
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6202757676809798
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.5942934312976362
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.7037349791487939
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.6526592966994273
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.7065460521871858
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.5200300605513756
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.558284575766154
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 1.870195947041041
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 2.347275426249366
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 4.239067746527439
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 2.606616241064436
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 8.219549197995363
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6899150716472281
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.6758800749269603
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 2,
+      "mean": 0.7773797729039374
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.6206530570855191
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.6597730132962607
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 2,
+      "mean": 0.4935677051904741
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 5.043555713836571
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.063369851477167
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 2,
+      "mean": 4.959189642400387
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 0,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 8.478135493054879
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 1,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 5.213232482128872
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 2,
+      "mean": 16.439098395990726
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 1,
+      "mean": 0.9929657641370129
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 1,
+      "mean": 0.12216989670087001
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 1,
+      "mean": 3.566968507340706
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 1,
+      "mean": 23.42407153604429
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "relative_error",
+      "cells": 1,
+      "mean": 0.9965987210709134
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "cosine",
+      "cells": 1,
+      "mean": 0.08472620787297035
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_native_norm",
+      "cells": 1,
+      "mean": 4.891520823903702
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "seed": 2,
+      "metric": "delta_quadratic_norm",
+      "cells": 1,
+      "mean": 46.84814307208858
+    }
+  ],
+  "curvature_seed_summary": [
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.5719306020211471,
+        0.5919422492279698,
+        0.477096151900622
+      ],
+      "mean": 0.5469896677165796,
+      "sample_sd": 0.06135099160420493
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.6977963056044844,
+        0.5584403923807838,
+        0.9037692260307866
+      ],
+      "mean": 0.7200019746720182,
+      "sample_sd": 0.17373203401091708
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        2.679711111597422,
+        2.900539006337521,
+        2.9892403943589283
+      ],
+      "mean": 2.8564968374312905,
+      "sample_sd": 0.15939535345544678
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        4.67896872148204,
+        8.241528315872156,
+        4.229550580254183
+      ],
+      "mean": 5.716682539202793,
+      "sample_sd": 2.1980966342247137
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.7019663518679394,
+        0.6655814849708401,
+        0.6134425789036122
+      ],
+      "mean": 0.6603301385807973,
+      "sample_sd": 0.04449491065437822
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.68758385006806,
+        0.5235877275547983,
+        0.863924817499943
+      ],
+      "mean": 0.6916987983742671,
+      "sample_sd": 0.17020585565060456
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        3.718826009677815,
+        4.577135947908598,
+        4.360351092631084
+      ],
+      "mean": 4.218771016739166,
+      "sample_sd": 0.4463268711758274
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        9.35793744296408,
+        16.48305663174431,
+        8.459101160508366
+      ],
+      "mean": 11.433365078405586,
+      "sample_sd": 4.396193268449427
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.45962534057613313,
+        0.9999759045594583,
+        0.6323011864787366
+      ],
+      "mean": 0.6973008105381093,
+      "sample_sd": 0.27597716634745206
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.8708617096846347,
+        0.061224993536340123,
+        0.7857664824992626
+      ],
+      "mean": 0.5726177285734125,
+      "sample_sd": 0.44491819080473155
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        2.21433068085189,
+        1.6447669632872777,
+        2.0370517409190008
+      ],
+      "mean": 1.9653831283527228,
+      "sample_sd": 0.29146697859600973
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        2.348014113282693,
+        12.660128124846862,
+        2.3210614935992564
+      ],
+      "mean": 5.7764012439096035,
+      "sample_sd": 5.961497583613584
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.5153273780815961,
+        0.9994373939700987,
+        0.6858556233712427
+      ],
+      "mean": 0.7335401318076459,
+      "sample_sd": 0.24555241014803256
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.8419868296920393,
+        0.07818766856120887,
+        0.7498369598611343
+      ],
+      "mean": 0.5566704860381275,
+      "sample_sd": 0.4169319543917818
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        4.153816957794375,
+        3.825756919126058,
+        4.180987474424257
+      ],
+      "mean": 4.0535204504482305,
+      "sample_sd": 0.19771628383555875
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        4.696028226565386,
+        25.320256249693724,
+        4.642122987198513
+      ],
+      "mean": 11.552802487819207,
+      "sample_sd": 11.922995167227167
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        0.48734905056031086,
+        0.9995973291646825,
+        0.38509376292377967
+      ],
+      "mean": 0.6240133808829244,
+      "sample_sd": 0.3292590357417594
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        0.8873017393498299,
+        0.08890232423958447,
+        0.9244877082063523
+      ],
+      "mean": 0.6335639239319222,
+      "sample_sd": 0.4720570862771915
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        1.865593549640081,
+        1.324243356369267,
+        1.8995781723665308
+      ],
+      "mean": 1.6964716927919596,
+      "sample_sd": 0.32280673703079477
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        1.9158278704640455,
+        7.647751213535222,
+        2.0051721374694256
+      ],
+      "mean": 3.856250407156231,
+      "sample_sd": 3.2838398823771975
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        0.605126135678395,
+        0.9995621272818969,
+        0.5233296344318834
+      ],
+      "mean": 0.7093392991307251,
+      "sample_sd": 0.2546460963554931
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        0.8434813641729021,
+        0.11655149856738353,
+        0.8687167794500557
+      ],
+      "mean": 0.6095832140634471,
+      "sample_sd": 0.42716438394346046
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        3.9375530233718257,
+        3.507019425705341,
+        4.017998748556
+      ],
+      "mean": 3.820857065877722,
+      "sample_sd": 0.2747515731835374
+    },
+    {
+      "group": [
+        "formal",
+        "R",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        1,
+        2
+      ],
+      "values": [
+        3.831655740928091,
+        15.295502427070444,
+        4.010344274938851
+      ],
+      "mean": 7.712500814312462,
+      "sample_sd": 6.567679764754395
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.6568348810266339,
+        0.9323701138455797,
+        0.9971110030938453
+      ],
+      "mean": 0.8621053326553529,
+      "sample_sd": 0.1806925964699654
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.46023852093618434,
+        0.3413581937520088,
+        0.02825888945024531
+      ],
+      "mean": 0.27661853471281284,
+      "sample_sd": 0.22314797353788682
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        2.884406453625184,
+        3.2047397454061737,
+        2.806253150844812
+      ],
+      "mean": 2.96513311662539,
+      "sample_sd": 0.21115275773865555
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        31.703753475192233,
+        9.338766654208513,
+        72.02755603351426
+      ],
+      "mean": 37.690025387638336,
+      "sample_sd": 31.77023240421834
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.7667228559484993,
+        0.9382625068672122,
+        0.9986165868236598
+      ],
+      "mean": 0.9012006498797904,
+      "sample_sd": 0.1203073627726808
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.44529412751362035,
+        0.33768631331227783,
+        0.022037504508610573
+      ],
+      "mean": 0.26833931511150294,
+      "sample_sd": 0.2199847650383884
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        4.056059802225392,
+        4.898534670857913,
+        4.062545010382044
+      ],
+      "mean": 4.33904649448845,
+      "sample_sd": 0.48454182389565664
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        63.407506950384466,
+        18.677533308417026,
+        144.05511206702852
+      ],
+      "mean": 75.38005077527667,
+      "sample_sd": 63.54046480843668
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.5086536942714053,
+        0.9866978335133243,
+        0.7166193580648672
+      ],
+      "mean": 0.7373236286165322,
+      "sample_sd": 0.23969365840629622
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.8599536007777189,
+        0.11894386789780982,
+        0.4040019989589573
+      ],
+      "mean": 0.4609664892114953,
+      "sample_sd": 0.3737747596052831
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        2.8687753865447316,
+        2.351234160623629,
+        2.323325651322631
+      ],
+      "mean": 2.5144450661636637,
+      "sample_sd": 0.30717617612514087
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        3.0986018584779442,
+        29.937818773157908,
+        30.198456429035843
+      ],
+      "mean": 21.07829235355723,
+      "sample_sd": 15.571414056566883
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.5665020355178529,
+        0.9819981633533457,
+        0.7498376662332145
+      ],
+      "mean": 0.766112621701471,
+      "sample_sd": 0.20822563169118333
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.8231921588371147,
+        0.139693662032875,
+        0.4137713274682502
+      ],
+      "mean": 0.45888571611274664,
+      "sample_sd": 0.34397533317156453
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        5.237157080669379,
+        5.286822641405765,
+        5.01826076981458
+      ],
+      "mean": 5.180746830629908,
+      "sample_sd": 0.14289141664311666
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        10,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        6.1972037169558885,
+        59.875637546315815,
+        60.39691285807169
+      ],
+      "mean": 42.15658470711446,
+      "sample_sd": 31.142828113133767
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.6202757676809798,
+        0.5942934312976362,
+        0.7037349791487939
+      ],
+      "mean": 0.63943472604247,
+      "sample_sd": 0.05718096154435753
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.6526592966994273,
+        0.7065460521871858,
+        0.5200300605513756
+      ],
+      "mean": 0.6264118031459962,
+      "sample_sd": 0.09598829080856927
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        2.558284575766154,
+        1.870195947041041,
+        2.347275426249366
+      ],
+      "mean": 2.2585853163521867,
+      "sample_sd": 0.35251374716510253
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        4.239067746527439,
+        2.606616241064436,
+        8.219549197995363
+      ],
+      "mean": 5.021744395195746,
+      "sample_sd": 2.887159702376772
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.6899150716472281,
+        0.6758800749269603,
+        0.7773797729039374
+      ],
+      "mean": 0.7143916398260419,
+      "sample_sd": 0.05499885421273325
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        0.6206530570855191,
+        0.6597730132962607,
+        0.4935677051904741
+      ],
+      "mean": 0.5913312585240846,
+      "sample_sd": 0.08689578248564696
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        5.043555713836571,
+        4.063369851477167,
+        4.959189642400387
+      ],
+      "mean": 4.688705069238042,
+      "sample_sd": 0.5431965661079095
+    },
+    {
+      "group": [
+        "formal",
+        "S",
+        25,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        2,
+        2,
+        2
+      ],
+      "values": [
+        8.478135493054879,
+        5.213232482128872,
+        16.439098395990726
+      ],
+      "mean": 10.043488790391493,
+      "sample_sd": 5.774319404753544
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        0.9929657641370129
+      ],
+      "mean": 0.9929657641370129,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        0.12216989670087001
+      ],
+      "mean": 0.12216989670087001,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        3.566968507340706
+      ],
+      "mean": 3.566968507340706,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        0.5,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        23.42407153604429
+      ],
+      "mean": 23.42407153604429,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "relative_error",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        0.9965987210709134
+      ],
+      "mean": 0.9965987210709134,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "cosine",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        0.08472620787297035
+      ],
+      "mean": 0.08472620787297035,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_native_norm",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        4.891520823903702
+      ],
+      "mean": 4.891520823903702,
+      "sample_sd": null
+    },
+    {
+      "group": [
+        "pilot",
+        "S",
+        1,
+        1.0,
+        "torch.float32"
+      ],
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        2
+      ],
+      "cells_per_seed": [
+        1
+      ],
+      "values": [
+        46.84814307208858
+      ],
+      "mean": 46.84814307208858,
+      "sample_sd": null
+    }
+  ],
+  "curvature_branch_phase_summary": [
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 1.0,
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        0.6743799877045268,
+        0.865380248382506,
+        0.8419446753202706
+      ],
+      "mean": 0.7939016371357678,
+      "sample_sd": 0.10416993344176717,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 1.0,
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        0.6297131144787513,
+        0.3790509962138045,
+        0.30979217905577827
+      ],
+      "mean": 0.4395187632494447,
+      "sample_sd": 0.16831403497089856,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 1.0,
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        4.778924198910447,
+        4.7495757212469485,
+        4.679998474199003
+      ],
+      "mean": 4.736166131452133,
+      "sample_sd": 0.05080784955368632,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 1.0,
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        26.027615386798413,
+        27.92213444562057,
+        73.63037444036365
+      ],
+      "mean": 42.52670809092754,
+      "sample_sd": 26.95321587304274,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 0.5,
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        0.5952547809930063,
+        0.8377871262188468,
+        0.8058217801025022
+      ],
+      "mean": 0.7462878957714517,
+      "sample_sd": 0.13177138216564221,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 0.5,
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        0.6576171394711102,
+        0.3889493712790015,
+        0.31743031632019275
+      ],
+      "mean": 0.45466560902343484,
+      "sample_sd": 0.17936202660775374,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 0.5,
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        2.770488805312023,
+        2.4753899510236144,
+        2.492284742805603
+      ],
+      "mean": 2.5793878330470803,
+      "sample_sd": 0.16571374323753013,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "S",
+      "scale": 0.5,
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        6,
+        6
+      ],
+      "values": [
+        13.013807693399206,
+        13.961067222810286,
+        36.815187220181826
+      ],
+      "mean": 21.26335404546377,
+      "sample_sd": 13.47660793652137,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 1.0,
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        0.6074732885426435,
+        0.8659199770327548,
+        0.6075426122355795
+      ],
+      "mean": 0.6936452926036593,
+      "sample_sd": 0.14919425717098478,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 1.0,
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        0.7910173479776672,
+        0.26402045815987957,
+        0.8274928522703777
+      ],
+      "mean": 0.6275102194693082,
+      "sample_sd": 0.31531923591170413,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 1.0,
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        3.936731996948005,
+        4.062561031954931,
+        4.186445771870447
+      ],
+      "mean": 4.0619129335911275,
+      "sample_sd": 0.12485814899365132,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 1.0,
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        5.961873803485852,
+        19.780425637989303,
+        5.70385614088191
+      ],
+      "mean": 10.482051860785688,
+      "sample_sd": 8.053661245296748,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 0.5,
+      "metric": "relative_error",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        0.5063016643858637,
+        0.8366867273479077,
+        0.4981637004343794
+      ],
+      "mean": 0.6137173640560503,
+      "sample_sd": 0.19313999932536283,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 0.5,
+      "metric": "cosine",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        0.8186532515463163,
+        0.26564661921476646,
+        0.8713411389121338
+      ],
+      "mean": 0.6518803365577388,
+      "sample_sd": 0.3355240180347699,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 0.5,
+      "metric": "delta_native_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        2.253211780696464,
+        2.082971059123773,
+        2.3086234358814868
+      ],
+      "mean": 2.214935425233908,
+      "sample_sd": 0.11759489072541908,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    },
+    {
+      "stratum": "formal",
+      "phase": "probe_1_25",
+      "branch": "R",
+      "scale": 0.5,
+      "metric": "delta_quadratic_norm",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "cells_per_seed": [
+        6,
+        5,
+        6
+      ],
+      "values": [
+        2.980936901742926,
+        9.890212818994652,
+        2.851928070440955
+      ],
+      "mean": 5.241025930392844,
+      "sample_sd": 4.026830622648374,
+      "estimand": "mean over all fixed e1/e10/e25 batches within each seed, then seed mean/sample SD"
+    }
+  ],
+  "historical_original_gates_unchanged": [
+    {
+      "seed": 2,
+      "branch": "S",
+      "epoch": 1,
+      "batch": 0,
+      "accepted": false,
+      "status": "failed_hvp_finite_difference_gate"
+    }
+  ],
+  "source_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/suite.json": "a6cf961b7992ba6ba0307f737872e017d6db21d368fe4306e785959725a7bc94",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/queue_state.json": "a3fe4aac279a416119397403980d60a0f241b1c97c359427f19911a06a0820eb",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/implementation_manifest.json": "1e9cd5a93068d9e95c8a9491ea0eab264def9ec7157df194e92fb502ae40d3c6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/audits/final_integrity/validate_offline_outputs.py": "00b70604a4aeb3a1aed0eb7c7b03525b57abd6c43f880e2176400a0239e8dc25",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/collect_results.py": "4e29ca09d65bb2bd5fa19ca85cd815bfd6a53fdf9ca7fb612840ebd44a66a282",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py": "743fbf01b29dc77c8cea8061ad958be028c3d9e2e4e181e08c92ec68fd3819ee",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py": "68e0d1ee090d88fad13f75270daf76f59fecf9760e29140da0b89968a7560616",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py": "d8fe215d89043edc207fb266cd7d613cfeee252f7616f9c86fd46dc21a67fcc3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/diagnostics/offline_core.py": "ffc67d89c56bb1d14acc2153ec140445b684380fef23de18606ba50af23c3fb6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/response_chain_train.py": "f5a2232ece5065a6c31387ef099308913765cb76a7e3ee1ac99709424012041e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_curvature_s2/diagnostic_results.json": "cc4b11f26ef3f017fe1d0069ac67facb1ea047f5513093c3d886b45c736a9d18",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_curvature_s2/checkpoint00_batch00.json": "09edd6cfac8b0470fa7884386c5994656055e8081c23b8318f359b4d6d240427",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_curvature_s2/completion_receipt.json": "651a6bef24330a830d08d7d16cae500d74e51e805e650b191e4eea673ff11b64",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/pilot_curvature_s2/exit.json": "88e1fc175d7e1aa43d22b470ae6c9a864a1d455825ab91724a36b83a9c7988ea",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_matching_s2/effective_match_results.json": "a989accba760b563bec538a97f5511e7d987476d12fdb8e697e3041189f8f8ae",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_matching_s2/branchS_epoch010_batch0.json": "c32eb444ccddf8bd17ef35d06443cf0975e9687fc22cd167afcd81db9382723e",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_matching_s2/completion_receipt.json": "0116304eb3d0af555c7fbf7a35c5787c1d2ba2a903006b4c16c41e16a8269848",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/pilot_matching_s2/exit.json": "a6bb7a1f856297efb103d0a9c51bf4387462e980b1bcbeaa11aa1f4dbd35a017",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2/evaluation_results.json": "d9d82f9a1ef963d55dec3badc94049a07a4491bf64d09aa275038217d8659a36",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2/branchS_epoch001_logits.npz": "a64bdd69d47d7f30364c5995ce8b82c2cd17096b29aaaf2ad6fc209d6b7edaa6",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2/branchS_epoch001.json": "53c9ad078ebb3524f1230a1d50c44266d578c4725f3daf79de38ca1bc1d1d3bc",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2/branchR_epoch001_logits.npz": "f3809173d153318abcbb9c7f04acfd3eeab8d8647f555b50479456087fdf15e1",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2/branchR_epoch001.json": "023c21e5fe7e86e7666014cacb9557089f2ac9b7c659a9178485ad42993f9c4f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2/completion_receipt.json": "542d920e29b08841163d3f97d2961ebb88bce5b21ed0891b56cb398bf82d7694",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/pilot_evaluation_s2/exit.json": "e842eee468f0f99ef417dd8b1c419a24a8a7af3d2e15143030084a24e9056810",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/evaluation_results.json": "efa9f42feaa924a49b9489f8592f4295d93772a4cd47b0ba4abd94d451c6831e",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch000_logits.npz": "b1bcba1c72e28809d4f383ec1629eed6e5bde248185db93e7c53b5bb05008902",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch000.json": "40aabcaa93343e42207f9c50b6c3c5951c421c17b4b2cbd2a247adf5294385fa",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch001_logits.npz": "a64bdd69d47d7f30364c5995ce8b82c2cd17096b29aaaf2ad6fc209d6b7edaa6",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch001.json": "6dcef6a78e5c024654b6bf33ef95cf4ffea0d962ae5c9d0eba4f8c7dd78d1f27",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch010_logits.npz": "28df872a7cef0abbce3f0794792f624b2fbddbcee3a28416dfb2bbb9fbe889b9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch010.json": "8c641f5f605479d826a771d373637e62e87d0d829b15ae0509596865f96e4a1d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch025_logits.npz": "4152f4ccc434682c9d8c8ce0a5528720f3d729b187a48a581baa6b6b8afb7c6e",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch025.json": "86c41d09762dbede6d0365fef157c4926584b301f8178145401820d51884ffd9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch050_logits.npz": "6d17e07ac86c1453ee63494eb4fd1ecacbedd26ee7aa6139ce1543ee1a38b115",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchS_epoch050.json": "031b195382b4ac2c4c383297d53ef5891a4dbfe349a8234d412a90597dd2d6f3",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch000_logits.npz": "b1bcba1c72e28809d4f383ec1629eed6e5bde248185db93e7c53b5bb05008902",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch000.json": "6e58666e1110f07762be855b7944f55b48e0188a14c0f02837a6f10ff21a8a85",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch001_logits.npz": "f3809173d153318abcbb9c7f04acfd3eeab8d8647f555b50479456087fdf15e1",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch001.json": "8467a9fd60f4fdce0898aedc28dae2b89cfae3a79137bd2f635bfca9b3e9314f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch010_logits.npz": "21d8aa660298794e750d30b89a251263db9b3bc4c6ed95a56eabf4af0f9e4d99",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch010.json": "2f4527bc5130277154cb54f97157461ed79e1a816a40d7c1e7991a5f6bb48ede",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch025_logits.npz": "9d63ff6a242996e90f850bfabeead91de0ce5d59f653076dab6c7fc58e3fc1be",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch025.json": "368f2e16a02914540311b03d17b7c14aa52489d1150dcdca1b26107bafcc3190",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch050_logits.npz": "2ebc48b32efd56bd0936b324c622ccaff67f246b75b1ae216cb54826558b820e",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/branchR_epoch050.json": "32c816114f0d2c969114a60e88590c7f18e13cf77d45b7b72e14d205cd6ceff5",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2/completion_receipt.json": "39fb49e4121fe30996e17e8d2a9e3e1c2f10a685463ee184dd2bb88965d3719b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_evaluation_s2/exit.json": "14bc6057437ee348e9693d31d03394b08f94c9563d1dd714262b2b7db4f0467d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/effective_match_results.json": "173d2c52e9e34224479a5ad158318ece78a7d4bcdac76844422fe50dd6c821c7",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchS_epoch010_batch0.json": "a82e05a23a6dc369aaaf03875e0b6012b74ffb05a28aff2746b987746623fac9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchS_epoch010_batch1.json": "3cc08627989592293ee55a9ff7a411a74d121a918668d34b9b175591c1db1530",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchS_epoch025_batch0.json": "81184317a2d3ce4c7d2c254e98d2532998928bb49ffbec0c2356a497c9b927da",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchS_epoch025_batch1.json": "70ea7fc9042df5a355cc82bbb1e87de2be36d0a625e304eeba15af9c2f92e25e",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchR_epoch010_batch0.json": "489031a5e68f0c0bc7c2de38f10259ede4e2f0c0939b99e8c8bfcde67ab4dd2d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchR_epoch010_batch1.json": "79eeb93c036228baa8326fb02d9099bb97b8678b33386f2df45ca6ebe43bedb7",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchR_epoch025_batch0.json": "0e94efdf652bf74810cd784258341b559c4dfc6a4a148487f8ebe2bd78997d67",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/branchR_epoch025_batch1.json": "6426ae9ce24735d14be5635af722405cda3eb12fcc7c00cc4c10612ec298d5de",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2/completion_receipt.json": "c3b42dd066c4117f4e461d7efead2e61bd9cba547d8eaa13a155549e47d42b1d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_matching_s2/exit.json": "4deafd5ec0ce8a26f5095e5cfd9e0f1e09b8ae585edf0f78d254bb0b3dcbb371",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/diagnostic_results.json": "82b7634b58290001e1118dea679eb984b56dac6c3bf729d8cdb8b757662c5071",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint00_batch00.json": "c62d47a867a8812b12cdaa3f4303e666dbc9819597d0caa7262b168fcf09fe3c",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint00_batch01.json": "340821b38dcc23a1807198ef773b321182e946dad08e8157cb536c832c7008d4",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint01_batch00.json": "8305879dd2314ad8773e52c9ff5c60f2bc091f1cfc7329fcdeebb29bcc5ccc87",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint01_batch01.json": "95bef4f7bd6dfa05047c90d920c83557bf81cc11c76f7e304e674b4ab61ccd2f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint02_batch00.json": "2dc7a9f7c986f1ad4c66373e58c2e9957cf426f93e9c275d785495bc650ec7ca",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint02_batch01.json": "95c39fd738b9dafc7da75da2fc666c03ec4cf482de5d0a0965f8454c4a9674aa",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint03_batch00.json": "8fab16db16dab96dff55e4b8a65e6cbc3f4dedaee05a3b6d6c238d156b4facc8",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint03_batch01.json": "bfd9d74106f4c912a81549eddbb2d213df24db0fd16812c0e185393e3f39cb86",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint04_batch00.json": "5411701ed0c27c4ebbc80aef28801b561df76864b1506ec0021a648a612a6cbc",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint04_batch01.json": "8dca2b33c463c9e23aee09228cb86b379d57b6f685e4d71060bcc26fe6b5f125",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint05_batch00.json": "d0c52bdf48d2ff169f37c268a811d7050ab6ee9674e0f5b48d9ab37a25dccc0a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/checkpoint05_batch01.json": "f1d7917e0efd8210d2c6e0d0dbda8423ac101e7e0ee2e60eddaff838e3e523df",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2/completion_receipt.json": "5adb4d24a4e9a01f01ed22d1c15a28d8457ab46ad4dfb5c0473c90b7b13dbd43",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_curvature_s2/exit.json": "6910026d269cd6e559059fb657c27af136899724ad006a469ba7caadb4b68ec3",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/evaluation_results.json": "ebdd26c95b3c3c85b3fb0e925b519eecd2dd9d7d3d803c9b74f79b7901097cf9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch000_logits.npz": "4dd9826e642f9657f31f4e181f4ccf6f54a0835630ab0bac5d9e4230258692fb",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch000.json": "49c90aa7a16e7895357fe7f5a339ac69522f56a1bdc685d1fc3817b9a50c2723",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch001_logits.npz": "0be79c6c851f22c470f735fc17bfe1804138033e73e806ddf5d3627e1ac7a883",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch001.json": "3b8f501cfdc594998d6e95f582200d027c21f4bbdcef316a00ca5e181684b059",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch010_logits.npz": "98185d6ea48b993fe4dd534e4caeb14139931907b92a872da6c8fac97c10d891",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch010.json": "6073885132534588c5930137a271730b8e48633121be6133abcb278a6aa03c53",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch025_logits.npz": "dbc0f74c8f11cb2faacbec3526b5ceeec3988cf2d22f4a59599d3006bdd575ed",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch025.json": "1935ee4abf9c74dde34d2897e2cd4e6ec35bbf0c0332b2541572a6c0e3489ec1",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch050_logits.npz": "a11ac56a70ab8470355e2b319a3412f62719f19c207f4509371859697ea7f438",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchS_epoch050.json": "4e15e4043a22e6e7dab5b70c870e0d06ec02d3f658afa9b2f1dcba33a6776d2e",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch000_logits.npz": "4dd9826e642f9657f31f4e181f4ccf6f54a0835630ab0bac5d9e4230258692fb",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch000.json": "6a63426b2f56f3f0c866908bb25ef885c0971495116cb4ff81094e53ddecf435",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch001_logits.npz": "e3fabb1818190ce4a5c9a8de47834339400e53fe61aca81542c85f47393b2876",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch001.json": "f24d4f1d120b05cc572ad5e73c7cf8e084cd285c4ed7ed29d5eb2d4409b55b85",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch010_logits.npz": "9c79df95c76e2f177f06d708046a8d161509c761fabc6fe53958162a8965f438",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch010.json": "2be7acf9cce0e97822a2bf217f55cb0ac7fbe2ead735280befe480fd5976bf5d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch025_logits.npz": "4c5a1271dd65800c3d38f25f38170ac880230c12bf131748e725d9caf19e790f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch025.json": "24d08d4548bb16df7b31507e0e3b3bfdfbfa9793bc89ea4f10970f2fe9933c4c",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch050_logits.npz": "d05eed57c85c1807ee98174835b35e96b0d5bc457dbafa98433b0a59214fb7c2",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/branchR_epoch050.json": "5888c253307f6b1cd770d72cf22b2e8b15d26a96fd9600bc59d301fb75a095bd",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0/completion_receipt.json": "79f3e5c694b67957448669a2a56933e16ddd5694c2b6363759a9bfaf90260562",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_evaluation_s0/exit.json": "7ad7c531eaad4e414925bc3c538a6f66107c571432d028a1d9145959f47297ff",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/effective_match_results.json": "1f79cbebc11b2a1c078cb93e75c82f5747ee530b3457e7b488acc12ead1c1c49",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchS_epoch010_batch0.json": "4e91696640acbf66f58057371ed8d5bf9e33f6a1bbb9c9ed3b536c95c62be470",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchS_epoch010_batch1.json": "e32f6940600bdb74ee62e990660dfcb37eafb652234e6dbc105f31aeb71d9b5b",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchS_epoch025_batch0.json": "f1b5e09c038f5b7f1fba5fcd6205fc10bc7162bae6ca3a87e3984d82ab2e0c65",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchS_epoch025_batch1.json": "f5540455246f4d16a13590bee18ec1da8c1def992bdf3f6c7824243f284aa623",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchR_epoch010_batch0.json": "a7dbf38e183130a9e26e80392cf507d0d8d138804edfb69fc4893d567eae791f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchR_epoch010_batch1.json": "db051682d94b5714f5b6d0ef4311eb3974c0ce6dcf5cfcbf6ba07069336d3769",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchR_epoch025_batch0.json": "27cfe20886885ac8b173ba7581cc17d07ec4270ef717187b85acbcc2f4d6bc58",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/branchR_epoch025_batch1.json": "cf816ba55079fbc32c39d6b875c289162173b2b24762c62c13a2d4bb2d5450f2",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0/completion_receipt.json": "6f144143ad26871cf1785c41ce770a333de6d9ceb425a4715bd0ff9343fd4f7d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_matching_s0/exit.json": "b3f94123d46c255f39fc452fa5559eb20bbe770e8e81180c7e1d590ce69dad04",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/diagnostic_results.json": "866fc321029800a73f473fa43383811d75ca6bd3b0643d0d20f42c54de9ae574",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint00_batch00.json": "1c529bf00a82606fd117a2ad9d9c9826379c014abf6561846ec60ad402fc3e0a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint00_batch01.json": "33c190fbacc99fa4d2b5556041f743492628aa4bd78a1210a34116eb2caa2dfe",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint01_batch00.json": "7df1b3b1007f8a54fd5bac5547f4d43effe63885293232f26688371053d8686a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint01_batch01.json": "d786fd68faeec1d5e98ce004451098ca69919f3c56b38444e01cabb716d56ad9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint02_batch00.json": "644d6f7910de00eb7c704c10b04fda1559582de13ed6d81527d1681a394b3df6",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint02_batch01.json": "cb047d0734773865e8bc36fbb383282df4c2bf3836f194ea89dfa5e6cddb1569",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint03_batch00.json": "15d62cef50f1c1be09d4ba3cd04924cf92d3fe804e963b35dcb7136a95e8c7de",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint03_batch01.json": "412175190e96415538e275990bc2978977796a11d26cbb39cc34912fcefad8d9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint04_batch00.json": "ecdcce6568a8fbbf91dc127757a21f23396a4a8e00dd71aff93294b953623ed6",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint04_batch01.json": "7f7420cac26cba98736e3751b0b68a5f80e18fbc116f3b9454a4f8069121fafb",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint05_batch00.json": "c3a5de9303a4655bae424b1be11a22b23d08df11b5d2aa749993f8b873e8bd51",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/checkpoint05_batch01.json": "15d3fea1b19ed455a8416d14aa2d37c56821c848575ed077670c246df7f8e557",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0/completion_receipt.json": "74a225fd4f0806fadd97e81aaf6de33b0615dd46d5002876598ca365480aaafb",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_curvature_s0/exit.json": "7a9c92e0ec16b5e3c33346a503df26874b4defdadbca7f4f2c26323d12f6bc1d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/evaluation_results.json": "f3fd0ea48556f534c32b4997e16fb5fcbfd425534a5159e0dda7ebd2fef2ad70",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch000_logits.npz": "52565175ecd6fb05374191b649b84dec5b4546d89463df1b5dc31d41699c305f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch000.json": "8bf62a5cfe9e3f1cf26206ebf122030701df2f6268132a191734a5e1de4b2bd9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch001_logits.npz": "9996c2fb95f2cd0a50529d3044bafc17e6ed2292cd99c0ef94af8f26e038c0db",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch001.json": "01fc77bfd34cba85a358792df13074c3391d341863284cafac73a998a7878fac",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch010_logits.npz": "d54c046bf656c8ba5f7b54f27bb7bb094d44a6404b17530d2ded1bf0f271bd7b",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch010.json": "ed4a60beec0cc8a20880eef8a7df67430eadadc68d3c8c9f16eb31591b9bf060",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch025_logits.npz": "8badead550c596b45255b127eb8a008e66a2f6502d99e3ea2a0d593b9bb75a9d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch025.json": "c43871a52e0b5990d66b26888176055315c2a611531498dbc340a22e1561fdbd",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch050_logits.npz": "38c7d3ab67a547b0f0c6f2257d908f19f67ff94c3a191c29c017e39d0033f745",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchS_epoch050.json": "b8379acbf711b44983268b8f8192a63fbcb25d4c4278c743394636aec2bfa89d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch000_logits.npz": "52565175ecd6fb05374191b649b84dec5b4546d89463df1b5dc31d41699c305f",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch000.json": "1f060b0ba4b4b35f388f8408e3d2013aeeb5b5588adacef225b9b6da479f3556",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch001_logits.npz": "9c0c2d410611cbf93b9ab26663b51c9c48f065be922322e3f2d620e6af76498d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch001.json": "4ffed3f888c2946278b2b8ec6d48e5f5564394e375d5a3ab8b5f97eb0b110c05",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch010_logits.npz": "c0d9df1dc69790ebecb4c2e92dc34d0e10c1fdd32057e9308bb0562c4a2a2559",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch010.json": "57faca8427d21a6d65dbcd2709f0a5e013a2240a693cca769a15e2698673283b",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch025_logits.npz": "1e3e72104590e38b03e63ab7a07e424e4440f41cca516aae0c0a7160494b0dfd",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch025.json": "59850d53d7b686a4d8043f5d3e097a538a257afebc311a99a7cbb5b1ec0233f4",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch050_logits.npz": "10d91e5a6fe74d494548564783818a4b6fb963cec6b18cb69d83f3ef4b44d3f4",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/branchR_epoch050.json": "de79a950738a7a90d0ea19edb09f75ac7e052c649297cb1a60542b947e0d595a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1/completion_receipt.json": "74c0e04aa6376a3b0e547d194a05c1142ec447835c5c77958a46350dd7063074",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_evaluation_s1/exit.json": "b696267f2b28062cc5ca4018f20b4c4fc628bd59d88f7ad854be018c5edc71b8",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/effective_match_results.json": "d58e0708305a8403b69adb9b160bb8d66d26eb0fb810f7f04a9a64df450e8582",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchS_epoch010_batch0.json": "886b4e02409f2f9c02dd834d7cb17e353a59f03916da476555c014c65f13c7f4",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchS_epoch010_batch1.json": "b71d7308a6d2cd45465337d6d55b2235bf85ae12140f943d502d0106f08c3ba4",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchS_epoch025_batch0.json": "9f1039c011b34373553dbf9be7b22e6847f30715fc3e4561d877f01ed6f5efb6",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchS_epoch025_batch1.json": "55d67e1fd4b2676230698a24229bd9e2ee55b7cb1183a7ef35564845e1e239b0",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchR_epoch010_batch0.json": "9b967b6643fa52a8b1837c4a0c04ea15e0393bbea606f032ef525a25545e015a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchR_epoch010_batch1.json": "a9086208d7cce65f3597676dcfe8f68b42576b6c2c5252f30b69828d70b0f3fb",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchR_epoch025_batch0.json": "e89a8b282a06f299d26df219f0030ba3a6926d63e99f28bcda0bcc51d4e0fcd4",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/branchR_epoch025_batch1.json": "e268825f07da9594a229cd309714efa683b04a4f7fa1db8959922ca046c9f1ac",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1/completion_receipt.json": "aaf5a155cf0766d3c98f45fbd23f904134f9c852799be27cf760e89d50bbadfa",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/runtime/jobs/formal_matching_s1/exit.json": "58140b768c426c3ed920cc28fe2c2363d0c4333181adfd57817f432b1a2b3fea",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/diagnostic_results.json": "eedb586d1d2eb20ba6bb580aef1e458f5402c5a605dc4fb641f794cc7a661384",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint00_batch00.json": "975b8729afae40c392a39f258d9050def1bb3559484d4d9900641032e29d33d9",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint00_batch01.json": "c95b3a96cecd101b86334e8a19e94091ce32b251b9267ed0b4d2d501f2e57fd1",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint01_batch00.json": "b5519fc3fd9b261b977515711276b32d52149b96808c4a93dc8f48e7f5674a40",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint01_batch01.json": "bb1105acb8c7842f81ce29f4b49bd230d47dc8d00354d247e424293c61d9359a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint02_batch00.json": "bbc9ec3eaf555673b7dec87c278e8bc39f17bf48e7dfd587db7e4acf0975b03d",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint02_batch01.json": "02faec37f42019408fd1abfffe67ec772ccb728d460b67dc2a6ca7ab20703285",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint03_batch00.json": "8d393717d97db89261f80d4c6948d7cabdad979db064bedec63eb2818f263dfa",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint03_batch01.json": "aec4c7c33d2400c2d51fef34ff8c324b164ea764135aa7b4236f31243dc85395",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint04_batch00.json": "fc4f3d34b63664ad3956d55aebff3f4d956175dfc86b18c5c539a05d2276930a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint04_batch01.json": "f3957f740d82a9bda2bc983798b840bd9e9b15710280ae5d3622632d638d6915",
+    "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1/checkpoint05_batch00.json": "5959aeb9b295da52088de2eadb60f63586549926d7be3d0e7bf8028c1da615c9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/offline_s2/diagnostic_results.json": "577a9801619049a38cf9e790bdb569790388621b184e9745c34bce5f46be1a2c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/results/offline_analysis/OFFLINE_ANALYSIS.json": "262572c5e2152ad8920c69b92afcac5a98175fb232f19af36085b3846801c91a"
+  },
+  "interpretation": {
+    "relative_error": "||a-b||/(||b||+1e-12); reference_norm affects degeneracy only. FD b=exact HVP; correction b=Delta_quad; matched effective b=SAM.",
+    "curvature_phase": "All formal curvature e1/e10/e25 cells are in the pre-switch phase; cell means are within seed and branch/epoch/scale/precision before across-seed sample SD.",
+    "matching_geometry": "Ideal finite FP64 BA and all FC geometry from represented native FP32 parameters/gradients; not an actually rounded FP32 optimizer commit.",
+    "fixed_vs_fit": "Fixed e25/e50 paired values above are distinct estimands from the first-common-CE-bin fit matching in state_analysis.",
+    "scientific_vs_execution": "Execution receipt and exit 0 never imply HVP convergence, correction agreement, or a causal mechanism."
+  }
+}

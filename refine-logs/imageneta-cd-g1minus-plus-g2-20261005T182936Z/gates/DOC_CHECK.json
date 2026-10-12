@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-05T18:37:23Z",
+  "agent": "/root/cd_sum_documented_invocation",
+  "exact_command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-20261005T182936Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-20261005T182936Z/suite.json --dry-run",
+  "exit_code": 0,
+  "stdout": "{\"status\": \"valid\", \"jobs\": 9, \"formal\": 4, \"smokes\": 4, \"allowed_gpus\": [2, 3, 4, 5, 6], \"max_parallel\": 2}\n",
+  "observed": {
+    "status": "valid",
+    "jobs": 9,
+    "formal": 4,
+    "smokes": 4,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 2
+  },
+  "expected": {
+    "status": "valid",
+    "jobs": 9,
+    "formal": 4,
+    "smokes": 4,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 2
+  },
+  "host_evidence": {
+    "hostname": "cudahpc40.cvc.uab.es",
+    "pid": 1831269,
+    "pid_namespace": "pid:[4026531836]",
+    "nspid": "NSpid:\t1831269",
+    "pid1_comm": "systemd",
+    "execution_mode": "exec_command sandbox_permissions=require_escalated",
+    "evidence_collected_separately_after_exact_invocation": true,
+    "init_namespace_link_read": "PermissionError: [Errno 13] Permission denied: '/proc/1/ns/pid'",
+    "host_namespace_confirmation": "PID namespace pid:[4026531836]; NSpid has one entry; host PID 1 comm is systemd."
+  },
+  "fresh_context_evidence": {
+    "minimal_task_specific_agent": true,
+    "documentation_read_before_invocation": [
+      "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-20261005T182936Z/ENVIRONMENT.md",
+      "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md (tail -n 40; latest Pilot_new_local ledger block)"
+    ],
+    "source_or_config_inspected_by_agent_before_invocation": false,
+    "documented_bash_block_executed_verbatim": true,
+    "invocation_modified": false,
+    "source_config_or_pins_modified": false,
+    "training_launched": false,
+    "external_messages_sent": false
+  },
+  "provider_environment": {
+    "name": "Pilot_new_local",
+    "reuse": "warm",
+    "package_changes": false,
+    "canonical_environment_spec_sha256": "4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+    "latest_ledger_entry_read": "2026-10-05T19:22:07.299810+02:00: ImageNet-A g1+(g3−g2) idle-GPU queue"
+  },
+  "scope": "Read-only configuration/code dry-run. This receipt does not certify GPU model execution or training completion."
+}

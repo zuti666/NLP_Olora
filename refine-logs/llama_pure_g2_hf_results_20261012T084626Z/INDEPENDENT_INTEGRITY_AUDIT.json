@@ -1,0 +1,2302 @@
+{
+  "schema": "IndependentCompletedG2IntegrityAudit_v1",
+  "audited_at": "2026-10-12T08:49:27+00:00",
+  "status": "PASS",
+  "scope": "CPU-only independent reread of all 12 smoke and 24 formal stages; no GPU calls, training, signals or frozen artifact/source writes",
+  "queue_root": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2",
+  "completed_at": "2026-10-12T02:36:20+00:00",
+  "manifest_sha256": "f7f24aaa8acbbfe4571e34d4c65713540b8905807bcef364d1b81438cb9fa3ba",
+  "queue_state_sha256": "5444958ad8472c6e905e7737a30da3d100f92e692485c3f4c87b73bd8b148737",
+  "source_file_count": 112,
+  "input_file_count": 53,
+  "source_and_input_pin_verification": "PASS",
+  "source_sha256": {
+    "configs/g2_llama/inclora_g2_llama1b_order1.json": "b1f84be0d39a7bd44e42b0ed4014201efefea2c08c71f0f433ac1705a9e8659d",
+    "configs/g2_llama/inclora_g2_llama1b_order2.json": "99f2773c773890a904c6ba135ed3d2f288c9a526b0b836f1937445a1e18d7fe9",
+    "configs/g2_llama/inclora_g2_llama1b_order3.json": "1778ff09b75f814b6bc303a9dfa70d40fa6302397b258a22fd201830076c8542",
+    "configs/g2_llama/inclora_g2_llama3b_order1.json": "7b3452b73a24afa5f7515ae9c78b2763eff2570223efa2371735397ff143c88f",
+    "configs/g2_llama/inclora_g2_llama3b_order2.json": "5aebe64497ab68b782a5d56f22c6b35959600bb342ca7ec25d120d61865110b2",
+    "configs/g2_llama/inclora_g2_llama3b_order3.json": "ac0d9738f0f4d99bd9b258e6a1973dca783b6d4b17a7b5c55c6424980c623412",
+    "configs/instruction_config.json": "045a216e065357c42a6970cf5a969df8a4eb641dc9c12f01dc67ea76e7c4edd0",
+    "configs/order1_configs/agnews/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order1_configs/agnews/test_tasks.json": "ca7ed6adce112e25e49240b218d043312c57d91c223034d4cd29732b8901c4a6",
+    "configs/order1_configs/agnews/train_tasks.json": "78596454ff8f909186fef4c0a190cbcda8f97daa82b2e78abcc76a75056450dd",
+    "configs/order1_configs/amazon/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order1_configs/amazon/test_tasks.json": "b2f32f3a2a15f7a4e7c2446a6108243441b3211220a14525f750472205ebf732",
+    "configs/order1_configs/amazon/train_tasks.json": "0e4ab9da21cdd004d59703fd9e40cc1ef072aa865fd7f6767844c1620c5afdfd",
+    "configs/order1_configs/dbpedia/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order1_configs/dbpedia/test_tasks.json": "6145fab9c53367bddda83464a0b136c3a73d5f0c35aa6b13c474300985fedb23",
+    "configs/order1_configs/dbpedia/train_tasks.json": "7a92bf874a6eeedc7e90fbd16d288860223cb9b615e8e152c044e438b40b40aa",
+    "configs/order1_configs/yahoo/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order1_configs/yahoo/test_tasks.json": "d10d9ba86824faf583388bf197b88f4e761a6a837ea8d6632d88e589965c3f85",
+    "configs/order1_configs/yahoo/train_tasks.json": "519204b60d2c1e373f2cc9bd1650c96bef46d2d5d10bb82adb6822435c78892c",
+    "configs/order2_configs/agnews/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order2_configs/agnews/test_tasks.json": "31e673f918cb8fd85bac6c2054824ca25d66949ab52f4a51ba0ba94b9488277e",
+    "configs/order2_configs/agnews/train_tasks.json": "78596454ff8f909186fef4c0a190cbcda8f97daa82b2e78abcc76a75056450dd",
+    "configs/order2_configs/amazon/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order2_configs/amazon/test_tasks.json": "b2f32f3a2a15f7a4e7c2446a6108243441b3211220a14525f750472205ebf732",
+    "configs/order2_configs/amazon/train_tasks.json": "0e4ab9da21cdd004d59703fd9e40cc1ef072aa865fd7f6767844c1620c5afdfd",
+    "configs/order2_configs/dbpedia/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order2_configs/dbpedia/test_tasks.json": "6145fab9c53367bddda83464a0b136c3a73d5f0c35aa6b13c474300985fedb23",
+    "configs/order2_configs/dbpedia/train_tasks.json": "7a92bf874a6eeedc7e90fbd16d288860223cb9b615e8e152c044e438b40b40aa",
+    "configs/order2_configs/yahoo/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order2_configs/yahoo/test_tasks.json": "ca7ed6adce112e25e49240b218d043312c57d91c223034d4cd29732b8901c4a6",
+    "configs/order2_configs/yahoo/train_tasks.json": "519204b60d2c1e373f2cc9bd1650c96bef46d2d5d10bb82adb6822435c78892c",
+    "configs/order3_configs/agnews/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order3_configs/agnews/test_tasks.json": "53a90cca0b21bfdd6e9e0b5c1e661730cc82aac09115749e401064f55026ad92",
+    "configs/order3_configs/agnews/train_tasks.json": "78596454ff8f909186fef4c0a190cbcda8f97daa82b2e78abcc76a75056450dd",
+    "configs/order3_configs/amazon/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order3_configs/amazon/test_tasks.json": "a18c17acc7e71bc39568fa50ca891eea351515195ec05864bd1011a89807e407",
+    "configs/order3_configs/amazon/train_tasks.json": "0e4ab9da21cdd004d59703fd9e40cc1ef072aa865fd7f6767844c1620c5afdfd",
+    "configs/order3_configs/dbpedia/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order3_configs/dbpedia/test_tasks.json": "ca7ed6adce112e25e49240b218d043312c57d91c223034d4cd29732b8901c4a6",
+    "configs/order3_configs/dbpedia/train_tasks.json": "7a92bf874a6eeedc7e90fbd16d288860223cb9b615e8e152c044e438b40b40aa",
+    "configs/order3_configs/yahoo/dev_tasks.json": "1d029cd63ec73900fa5988abeb64a3b28070ea79ca83e526a5ee41570a50471a",
+    "configs/order3_configs/yahoo/test_tasks.json": "59e2c1badfc001ce42be98bd2ab70b306ac7713f65ebd16e231a4ddf2aa64f30",
+    "configs/order3_configs/yahoo/train_tasks.json": "519204b60d2c1e373f2cc9bd1650c96bef46d2d5d10bb82adb6822435c78892c",
+    "data/gpt2tokenizer/config.json": "55495c6256b36b6408afab38ca897afb44fd0d9e9529fd8f151bf9a681776800",
+    "data/gpt2tokenizer/merges.txt": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+    "data/gpt2tokenizer/special_tokens_map.json": "6f50ab5a5a509a1c309d6171f339b196a900dc9c99ad0408ff23bb615fdae7ad",
+    "data/gpt2tokenizer/tokenizer.json": "86f12f9648802a0c45c4b87ef2ab235e9bfdf1a43cc40571291507c81e35c4c3",
+    "data/gpt2tokenizer/tokenizer_config.json": "0f7123cb7e1be4e9c2e8770bd3c00f73d75364fb71680d0412d6263e7af2654c",
+    "data/gpt2tokenizer/vocab.json": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7",
+    "scripts_llama/collect_g2_orders_results.py": "6fc8d00f5fb528cd4646d3c4f4a6b37eef9eb84ed14954121759240bdf00047d",
+    "scripts_llama/run_g2_llama.py": "4db3083b52d30909baba8acdce7e582491c79f09ad3789bfbc0aad9c0f2cd90a",
+    "scripts_llama/run_g2_orders_queue.py": "a1bc5d1f2fdccc6eb0d84934b870d213c32166922023cd2fa48d54833ac13c5f",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/compute_metrics.py": "704b052866270fc568d11ea08bba87e6789f234c86749c8463da78522da0bbc8",
+    "src/evaluation/evaluator.py": "35c6b060c1a4bc29da3f583a9ada3aa0e0f90a4ad153a25caacfe91fdc593e6a",
+    "src/model/llama.py": "03d103797e6874c6a0efd6863f47fa37239d7bc093c369232fd643d7cb3e9aa4",
+    "src/optimer_fishershape.py": "cee687b36ceb47f8d7c05a85115231c03fe3dbffa36dd7b07884cc6983dd952e",
+    "src/optimer_g2.py": "e6103c4f596a18708b30c790ea576fe28b0e6c5623591d23effa3a9863abd260",
+    "src/optimer_gam.py": "fa2ade79c67c83bdfd920df8c674847aa79931ea220d3b970b9e45e41ea94a8e",
+    "src/optimer_gamfishershape.py": "1434a3864799a06796e5efd2505acead58ad372815f89806671100ec2659b867",
+    "src/optimer_rwp.py": "e9a3e708d090776d2809a4105fcddeb814d8c45093af7b3ae7115e6cda2caf0f",
+    "src/optimer_sam.py": "e60dc79589d039410aace26eb82fb1a9f9d101469d5e53666529d87d725ba8c7",
+    "src/peft/.vscode/settings.json": "e393d7c191f02e1a1b776aa384256b465176e44d01187b55e1f497e6559aae55",
+    "src/peft/__init__.py": "f11e699d37f77ec66f3a9e4301f81be27facadae166e22ddf3c1656ac36dce28",
+    "src/peft/import_utils.py": "1318f47203ce052affdf2e5a47ea86cfbc9eb0385aa9704a10376ebd261b85cc",
+    "src/peft/mapping.py": "913341b2ff20e8f400907b4f2fa756ae8d41db69759c23115b3e1e3c5597d36c",
+    "src/peft/peft_model.py": "56ce1b0c631878e1d8a38b928e34f805f9ad7e62b586215f49a5e6ad16abfc50",
+    "src/peft/tuners/__init__.py": "247d510ffef88038dd6e16b3c4dd2ec9d1b0bce07d83f5921d4cb04983d185fe",
+    "src/peft/tuners/adalora.py": "4030288c40ed7f75db87259c27cdfeaa5dd8c389b39b2e4c3a4f87933c78c1b2",
+    "src/peft/tuners/adaption_prompt.py": "96be2f9b0969b84dbbffe7ea1a50997e967b22fbf0f5d90e412b17e6140b15c9",
+    "src/peft/tuners/lora -030.py": "40cf393db71c91045b4b9fc152a2635b3853b2b86de9686f64aa539b585e5460",
+    "src/peft/tuners/lora-OLoRA-save.py": "999261a982e6030a99709bd66c4e47db56fb981bb81e15ffec88549a71b613a2",
+    "src/peft/tuners/lora-OLoRA-twoMehcaim.py": "7f5b8a7fb030b2c33b7483127fb995d859fd18a43c7417d42fb05d9050d69df4",
+    "src/peft/tuners/lora.py": "c038f0f63f34c7469f2fe3f32361fbfb12db01f6d8e429e9575bf530641c1e46",
+    "src/peft/tuners/p_tuning.py": "db8bbd6a0d5484c93e8e6f68ea4fbeac27cb4a851b26b7feacf16a30a374708f",
+    "src/peft/tuners/prefix_tuning.py": "ea4f31a4b210d115a877926babb9c850b1789a36737cebff4a00791d7400d96d",
+    "src/peft/tuners/prompt_tuning.py": "141071a5db404f500be163fbcfe476e2c6f72ea933d929264585ec3a12c38069",
+    "src/peft/utils/__init__.py": "15c885ec96aa9d7445693f7b9db0fc4d8bc3ae87560df82069fa696270f5c5a2",
+    "src/peft/utils/adapters_utils.py": "b396129a50ceae44551d42075b24c4d366eec7f7b2bf5527c1b354326ad19f91",
+    "src/peft/utils/config.py": "29ae138791126e2efe8797996d85b9f9adf9eeb151205aef221eeef31b623b20",
+    "src/peft/utils/other.py": "6028f676e8aad5eea237d3a37863ec92714d7464895da4d41a6652492f19c710",
+    "src/peft/utils/save_and_load-030.py": "9c4ae4660202a829f5483abcea28db1a5bee4862d89798186c619bed8ca29170",
+    "src/peft/utils/save_and_load.py": "d32fb13ba6508e55588c22c6e63dc886842da72a9e5faf6cbd831244ca8d5a30",
+    "src/peft/utils/save_and_load_OLoRA.py": "e938bc0c872591a7c2471439468453577f9bf4a906e4de5932daa1d6debcaa34",
+    "src/peft/utils/save_and_load_OLoRA_twoMechiacm.py": "69d4cb31da6e02a447d7774e013fdbf15aadc4be4a12773a0a743533e9b73e5c",
+    "src/rouge/README.md": "3601791938c5db99a503d788f7acf47a4be050a69e8730ed946a5b339c68db21",
+    "src/rouge/__init__.py": "6d23d061b8eee523e6f1f2e7a7a4fa667751cef3f54c63cae65d54ed53af4cfe",
+    "src/rouge/create_pyrouge_files.py": "87e95bf696c5ce99c1856980ea4c0ed49f4d8f1065a98618ff535e75f46ce9f1",
+    "src/rouge/io.py": "4ff66434c13464a0c9abfbc4442fc067d76e9c11ed854f6120f6febe0514041e",
+    "src/rouge/io_test.py": "4755ed2c35b15d05f28cb9be1e050af54bbdc8387ca1c8bce18e35082b490548",
+    "src/rouge/requirements.txt": "436f92e71707ed093c0e8fa4e9ad9660272878a960b36ba0125aa95947d30130",
+    "src/rouge/rouge.py": "609dccdfc2d045735cfa55cda3a481f20e5f43ce626b0fc5b0f6032a455d74b0",
+    "src/rouge/rouge_scorer.py": "d466ebff966664ccd77589635042634f6c152320a95b807978db63dbb5423708",
+    "src/rouge/rouge_scorer_test.py": "3bf52c56b8efda6a81638516554be63ece0feb42e28189126004c84d38a4ab2a",
+    "src/rouge/run.sh": "83f4bffe87cb137d9095c9c4223309ce9f62cb88bc1cc43c7fdbb9a3742148ab",
+    "src/rouge/scoring.py": "7ed8af87ee7e402eaf8fe3386f19e11f9fe316a00ff741afa439ed2f1cbb0c91",
+    "src/rouge/scoring_test.py": "48a03d5eecf4a1102a95dc13df3dc2db3d114745aeacb1b028aa7e35cf81c545",
+    "src/rouge/setup.py": "9daf081e6ef4f1d5428f3061c57dc60b1abaf147f97e70335e398a2d1606b49f",
+    "src/rouge/test_util.py": "1a48fbbc0588062670bff897f7169814044d9a2f2bf2637f0b05109980ab4d98",
+    "src/rouge/tokenize.py": "65e5173bc32c5a99a4266a10c49300f500ef35e1e68317a70c272904a567e42a",
+    "src/rouge/tokenize_test.py": "dae31c6b74d337a81729935a644ffad9ec1e19ca28be13c1e0d6455664352c66",
+    "src/rouge/tokenizers.py": "5e8a2f10e5bf3d8c35ef05237ec9a5a79441ab88445a937804017696ed6f3d54",
+    "src/rouge/tokenizers_test.py": "11ae490564f65ed15f097aac8dabb5df356bd8fb9e79e2cc00847592f0c42e43",
+    "src/run_uie_lora.py": "2f26679a889d5ba070f8a3221ac84e5a4b2242493ef15f68924017f6d336e945",
+    "src/run_uie_lora_OLoRA.py": "e18279e4e5322403096306f01369355f76379d71b10a0d8ae0cea0c9a0ace3e3",
+    "src/treelora.py": "6d7dc7e6d451a321ae4e750329bf47e6358c0c3491707a87528dd8fe3ec807e4",
+    "src/uie_collator.py": "40553e5f67d1cb5438dd781267da4a70f25a2ead787e5592970ea3e5dc778b70",
+    "src/uie_collator_OLoRA.py": "c561871e04bf21e0581b534aaddc696af6c532ac71ce8518a286bbc62ab53fb0",
+    "src/uie_dataset_lora.py": "5d4a7853b4b7a589e6d298367c4798ec2cfd04e1232e358b45cff542d665809e",
+    "src/uie_trainer_OLoRA.py": "5843626829ad3ab9d401c223965b96f80baa927023e200b15d7e79a0e4df2e15",
+    "src/uie_trainer_lora.py": "faebfb2c5f7ccebccb08ab9d96265c2934a971529ebf0bb0d27d1bd96e76a500",
+    "src/uie_trainer_treelora.py": "1b9d2417d99f8caf75f3e9e2b36336ca01a1878281b36380f3475abedda0c230"
+  },
+  "input_sha256": {
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/dev.json": {
+      "sha256": "0e3337b659505456dd62089f4099778043d409e54f6e9cacf35154e783fdb6a2",
+      "bytes": 3796075
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/labels.json": {
+      "sha256": "dfe3dbf501f9643d7f3fa24df096f925fb149fb299c1c088f802aaf1ba79050b",
+      "bytes": 69
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/test.json": {
+      "sha256": "0e3337b659505456dd62089f4099778043d409e54f6e9cacf35154e783fdb6a2",
+      "bytes": 3796075
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/train.json": {
+      "sha256": "a77b7a84773ea16b2906c16eb4de05ea87f529b91d5e3209b43060306e02c05f",
+      "bytes": 2462412
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/dev.json": {
+      "sha256": "4cbed43bd30eb2841b053a13cb7b2dc4a2692934fd03832402a53cf557778849",
+      "bytes": 2223897
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/labels.json": {
+      "sha256": "d44ba5236490d6ae5c8689fcaaae4067d95dc13b14ab41d820634ca714a44e10",
+      "bytes": 56
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/test.json": {
+      "sha256": "4cbed43bd30eb2841b053a13cb7b2dc4a2692934fd03832402a53cf557778849",
+      "bytes": 2223897
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/train.json": {
+      "sha256": "935fe86eb687d3d09f8b4035103761a94ca15df65a0980b1e7da4346a45d7a2a",
+      "bytes": 1171164
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/dev.json": {
+      "sha256": "971c1a298668385042ce02b67444e1d45773ce0b8b22abbbc39a2592bbe7c255",
+      "bytes": 2731145
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/labels.json": {
+      "sha256": "240b2344560e4d0736888d74332f78932525343a053149dfdc131ec1fc604a61",
+      "bytes": 194
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/test.json": {
+      "sha256": "971c1a298668385042ce02b67444e1d45773ce0b8b22abbbc39a2592bbe7c255",
+      "bytes": 2731145
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/train.json": {
+      "sha256": "fc5154160947f0c6ed0d8576be8eddb9078871a5f8e875cbd6abe043dc4d5073",
+      "bytes": 5039390
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/dev.json": {
+      "sha256": "ef13a28c0e9980197f20fbdf74e5ee3ca7d24914509bd471ca7044abcc1c692b",
+      "bytes": 4521852
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/labels.json": {
+      "sha256": "6cc0d1cc3efe693ab76778216b04c51728ca9a305a3d0b4128a88b965f7003d4",
+      "bytes": 213
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/test.json": {
+      "sha256": "ef13a28c0e9980197f20fbdf74e5ee3ca7d24914509bd471ca7044abcc1c692b",
+      "bytes": 4521852
+    },
+    "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/train.json": {
+      "sha256": "1debade5e795f4a3d0ffadda47d2ffce9f8ce730974e6f90a11c832a442718fd",
+      "bytes": 5998676
+    },
+    "/data/140-1/users/liying/O-LoRA/configs/instruction_config.json": {
+      "sha256": "045a216e065357c42a6970cf5a969df8a4eb641dc9c12f01dc67ea76e7c4edd0",
+      "bytes": 1230
+    },
+    "/data/140-1/users/liying/O-LoRA/data/gpt2tokenizer/config.json": {
+      "sha256": "55495c6256b36b6408afab38ca897afb44fd0d9e9529fd8f151bf9a681776800",
+      "bytes": 907
+    },
+    "/data/140-1/users/liying/O-LoRA/data/gpt2tokenizer/merges.txt": {
+      "sha256": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+      "bytes": 456356
+    },
+    "/data/140-1/users/liying/O-LoRA/data/gpt2tokenizer/special_tokens_map.json": {
+      "sha256": "6f50ab5a5a509a1c309d6171f339b196a900dc9c99ad0408ff23bb615fdae7ad",
+      "bytes": 99
+    },
+    "/data/140-1/users/liying/O-LoRA/data/gpt2tokenizer/tokenizer.json": {
+      "sha256": "86f12f9648802a0c45c4b87ef2ab235e9bfdf1a43cc40571291507c81e35c4c3",
+      "bytes": 2107625
+    },
+    "/data/140-1/users/liying/O-LoRA/data/gpt2tokenizer/tokenizer_config.json": {
+      "sha256": "0f7123cb7e1be4e9c2e8770bd3c00f73d75364fb71680d0412d6263e7af2654c",
+      "bytes": 255
+    },
+    "/data/140-1/users/liying/O-LoRA/data/gpt2tokenizer/vocab.json": {
+      "sha256": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7",
+      "bytes": 798156
+    },
+    "/data/140-1/users/liying/O-LoRA/experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/history_reuse_20260926/final_per_seed.csv": {
+      "sha256": "48d39803e48fc99f622b7d823469ef86b0215b5ccf05e9526bfc79ec5004d428",
+      "bytes": 30890
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/.gitattributes": {
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+      "bytes": 1519
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/LICENSE.txt": {
+      "sha256": "0b4284c1f87029e67654c7953afa16279961632cf73dcfe33374c4c2f298fa35",
+      "bytes": 7712
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/README.md": {
+      "sha256": "7dc455178a8c7c21f9cfe0aef0808a92e78ade6e58e04c18354c668934b929ea",
+      "bytes": 41239
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/USE_POLICY.md": {
+      "sha256": "40e2777d7faa6beaf98400654170f414d8ab29b921b5163ad4ea0a1d39894201",
+      "bytes": 6021
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/config.json": {
+      "sha256": "bfb5d39c327ee5c3a65e3574596ff30b052a445cfc59a25bdf3b4c0c5a44f4d2",
+      "bytes": 843
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/generation_config.json": {
+      "sha256": "da81b0dd4001a8e19fb5840d2b524f6957f44ddde6f5c3fe32b1f36cef5205bf",
+      "bytes": 185
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/model.safetensors": {
+      "sha256": "68a2e4be76fa709455a60272fba8e512c02d81c46e6c671cc9449e374fd6809a",
+      "bytes": 2471645608
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/original/consolidated.00.pth": {
+      "sha256": "cfa47fb7185ebd1c3712fff5fa04fdbb0675c1e345fc72e12f6c7b65b8da6f05",
+      "bytes": 2471677246
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/original/params.json": {
+      "sha256": "1df36ad4278fc38db158ddbf5799f99d383d6b96cc2d190fc0b45fa09c6f0011",
+      "bytes": 220
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/original/tokenizer.model": {
+      "sha256": "82e9d31979e92ab929cd544440f129d9ecd797b69e327f80f17e1c50d5551b55",
+      "bytes": 2183982
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/special_tokens_map.json": {
+      "sha256": "cc2e013b7545f183ef03e079a3c91c6f364fa37e4068c512d7dd843e59024535",
+      "bytes": 301
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/tokenizer.json": {
+      "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+      "bytes": 9085657
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/tokenizer_config.json": {
+      "sha256": "8004530facf809ac432114de2a4dcc65fcb632da5ec16d666091aeb6a2ee444a",
+      "bytes": 50500
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/.gitattributes": {
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+      "bytes": 1519
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/LICENSE.txt": {
+      "sha256": "0b4284c1f87029e67654c7953afa16279961632cf73dcfe33374c4c2f298fa35",
+      "bytes": 7712
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/README.md": {
+      "sha256": "2476c7b2ae2a4c5709547c341323bc10b19118ed2764f0c3e9a1ace26fd9e1e9",
+      "bytes": 41239
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/USE_POLICY.md": {
+      "sha256": "40e2777d7faa6beaf98400654170f414d8ab29b921b5163ad4ea0a1d39894201",
+      "bytes": 6021
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/config.json": {
+      "sha256": "35f063e9f381e8678eea34bc56c3ecef3c6d10149f6b2cbdf27b8ee1bad3073d",
+      "bytes": 844
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/generation_config.json": {
+      "sha256": "da81b0dd4001a8e19fb5840d2b524f6957f44ddde6f5c3fe32b1f36cef5205bf",
+      "bytes": 185
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/model-00001-of-00002.safetensors": {
+      "sha256": "584d8d3e3f82f7964955174dfe5e3b1cf117a9d859f022cfdf7fcb884856e002",
+      "bytes": 4965799096
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/model-00002-of-00002.safetensors": {
+      "sha256": "4719a04514ec2f060240711b7c33ab21187cac730ecaba3040b7a0fd95a9cefb",
+      "bytes": 1459729952
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/model.safetensors.index.json": {
+      "sha256": "0a57c30afc07c81610ae7fe013bea3b9d50365f9a8145ae98e8714220f3d7c7c",
+      "bytes": 20919
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/original/consolidated.00.pth": {
+      "sha256": "e85237a45033593adb3eb7e1a6cc5c410c4e2b360e24a422d3c1ab12a166c441",
+      "bytes": 6425581594
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/original/params.json": {
+      "sha256": "9ec1107c85b362eef64ffd7689779ee8c2b498c8055f03ad72f9fb637de82ae1",
+      "bytes": 220
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/original/tokenizer.model": {
+      "sha256": "82e9d31979e92ab929cd544440f129d9ecd797b69e327f80f17e1c50d5551b55",
+      "bytes": 2183982
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/special_tokens_map.json": {
+      "sha256": "cc2e013b7545f183ef03e079a3c91c6f364fa37e4068c512d7dd843e59024535",
+      "bytes": 301
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/tokenizer.json": {
+      "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4",
+      "bytes": 9085657
+    },
+    "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B/tokenizer_config.json": {
+      "sha256": "8004530facf809ac432114de2a4dcc65fcb632da5ec16d666091aeb6a2ee444a",
+      "bytes": 50500
+    },
+    "/data/140-1/users/liying/conda_envs/nlora_req/bin/python": {
+      "sha256": "00be2698120f412a83fdcdffaead0244b3ba62dadd0d2107978a1b4ff334257e",
+      "bytes": 17460208
+    }
+  },
+  "expected_smoke_stages": 12,
+  "expected_formal_stages": 24,
+  "passed_smoke_stages": 12,
+  "passed_formal_stages": 24,
+  "observed_formal_updates": 3084,
+  "formal_normal_three_read_steps": 3084,
+  "formal_fallback_steps": 0,
+  "smoke_fallback_steps": 0,
+  "limitations": [
+    "Only seed 0 ran; no multi-seed statistical claim.",
+    "Per-stage exit success is evidenced by frozen checked controller flow plus unmodified accepted receipts, final logs and complete outputs; no standalone OS waitpid exit-code file was retained.",
+    "Predictions predict_loss=0 is a generation evaluator placeholder; actual finite training and probe losses were audited."
+  ],
+  "failures": [],
+  "stage_ledger": [
+    {
+      "key": "inclora_g2_llama1b_order1:s0:smoke:1",
+      "kind": "smoke",
+      "model_size": "1B",
+      "order": 1,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 8,
+      "spec_sha256": "77e1178ea2ca355787693556e0b8508273481e60ba11fdd434544243cd85246f",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/smoke/seed_0/order_1/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "c73baeb5d861606c9c97b6cf9843f0e334f2945c1a7e9a6b50301df3caae2375",
+      "trace_sha256": "10a98abfd733987ba33b9a32749fe91fd756e097300baa1e314759e7674357fd",
+      "adapter_sha256": "bf16983ae825b5c551640fcb5241412cd42bb85184d3da807e19e3922d14019e",
+      "prediction_sha256": "6a137416643e3c618859a3a95631b5c42c9b2cc0c11ee50a0cf5841d743a534d",
+      "runtime_audit_sha256": "c1bf21f8ac7fa9852ebb46a31e07f8e95e6a577fae0ea535a4b46dda81972b54",
+      "train_results_sha256": "a42c2fa295c54a4c62b4c72546fb9f03df75c9eb704e35e95f1b6aecf1049a78",
+      "trainer_state_sha256": "a079706894740573cac504e75ab022ad5d38663925061fb298d827839797eb9d",
+      "log_sha256": "b4a89817b2bd1b03202f79cda9e6439207005af9551dde1e6ffea2ec99da0b5f",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 2.846461534500122,
+      "train_runtime_seconds": 5.6083,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "dbpedia": 16
+      },
+      "completed_at": "2026-10-11T19:41:09+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order1:s0:smoke:2",
+      "kind": "smoke",
+      "model_size": "1B",
+      "order": 1,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 16,
+      "spec_sha256": "b5fad47bf8d300a9fc7cabc1087dc7051d1d4c64dd8012712bc9f3d7cb91bc7c",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/smoke/seed_0/order_1/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "cae032782b4ee7331b3b0d0031e317bf5adc9c5a89d632703c65906ed1f728eb",
+      "trace_sha256": "553659b5a5bfbd75cf792181f6fe38ded37b2b62572f0aad02effe81fbab8f2b",
+      "adapter_sha256": "9175eafe2ba42f0fbd3180a8a868055681ed8df83d329963eab31bc81c90ff05",
+      "prediction_sha256": "c4345bb7d078599ff411053fcfd2c9c5d9f33217809e4b111d20df53eafdf4db",
+      "runtime_audit_sha256": "10704207ca654b2e7fbdebd310b8ed050978cd4acea7529eddf39c6f782d20ba",
+      "train_results_sha256": "77b8af3e0c216812d79ab557afc5a6094c7f7d67cfa5a8612ec1853e6b5bd05c",
+      "trainer_state_sha256": "6b486c4b520739bed288b20a5e80ee06a39d2269766ced9d8cb0db7eed1b24af",
+      "log_sha256": "82c747212103fb6b787e71a54e2646a70fedccda47d0af335bc62629ad4918a1",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.7743586301803589,
+      "train_runtime_seconds": 5.5335,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "completed_at": "2026-10-11T19:41:47+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order1:s0:formal:1",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 1,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 218,
+      "expected_saved_rank": 8,
+      "spec_sha256": "2fce3d610dbdecda51a6048acff2ff9a9538650ba649f906fa0f6b4cce74c9c6",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "3725c9cc9258e0928c2f49e14106d684871e8e6a2c450e1af05556017665e070",
+      "trace_sha256": "8e0fdbaaa51fa96eb0ef61e499982f847af33a1e2ffafcd5c72d74cab638c3db",
+      "adapter_sha256": "8e05c0e7b1dfd0b3d9c24db2f695047335432666a4cdbb99825cb9f184f66346",
+      "prediction_sha256": "f337515d686b63af04a94d578bdda3e3885f27c0db09a1a09754ed2784c4f354",
+      "runtime_audit_sha256": "2ebd3ef1df95d5918688c21228c287e9b18043579cceb2b650c0b35d9f5bb42a",
+      "train_results_sha256": "eccd3d41dae71076a8cdd18206f420367c115245fb194340f0318fcc0c4d9f00",
+      "trainer_state_sha256": "2e843abe488c7e539bd1789e9a32179e56478519b473a7d3271015432b87956d",
+      "log_sha256": "99810aae16bfa64b7e36f4fb303813392851004c142f05bae83690187a451486",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 218,
+      "normal_three_read_steps": 218,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.06801402799511722,
+      "train_runtime_seconds": 508.1718,
+      "log_history_training_loss_count": 21,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 7600,
+      "prediction_task_counts": {
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T19:52:15+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order1:s0:formal:2",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 1,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 78,
+      "expected_saved_rank": 16,
+      "spec_sha256": "5f60f9538723dd190ba8f92b4be751e3cc947099537bff192091b77f4e7f4200",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "be294e93f8039432995e3cd9911d1c2110707a394f428b5aa8dd60eacc3831f6",
+      "trace_sha256": "c1af1d5f45b06811a26c898f11a10d162b00e30f15ff6a959cc53cec4aac6d3f",
+      "adapter_sha256": "31d2d900604656ac3fa17d8d80f640990cae9480ff2d9f04dfd02b01253094a5",
+      "prediction_sha256": "d8b98a21628558451cb2cc5bd54479e508e7ce47575de2978fcef01d95d26e48",
+      "runtime_audit_sha256": "d0202b24c2e79943e8423dcb476aa5cf304d67440edeeb5cc420b258596a5353",
+      "train_results_sha256": "bf7ba775d23aa9ed6e63fac81a76bd5e08cfcda7bbf74aa99140877effe5571e",
+      "trainer_state_sha256": "824848c2c2604f25b5bb63309e7fe27ec498445b7becf30cffd6bf7230bb860e",
+      "log_sha256": "4bc297163b93c633ddda62d73e5dfdbdb611161ca4af63842237fe5b1ecb48d3",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 78,
+      "normal_three_read_steps": 78,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.6770925124486288,
+      "train_runtime_seconds": 203.0959,
+      "log_history_training_loss_count": 7,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 15200,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T19:59:23+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order1:s0:formal:3",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 1,
+      "task": "yahoo",
+      "stage": 3,
+      "seed": 0,
+      "expected_updates": 156,
+      "expected_saved_rank": 24,
+      "spec_sha256": "fcb081d6b34c41daaa3f77894485c5569034ec9e10ba4c495452804014c4931f",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/3-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "03f372176c6bee5b1ef8a247b4904e59a4900011e4ea099a2178b8eb41b77ea2",
+      "trace_sha256": "ad2583ea73da8f1cecfac99018242288ace42d1f9212c8ca686a8e256308e480",
+      "adapter_sha256": "fb6e556aff52c7dc251876bc153289ec622b386948c10dbd8b71e00402fe04c9",
+      "prediction_sha256": "33f60c603d20cd7e738f7824f5f89dd160ddb51575eceea6e4a784fa6f3cee16",
+      "runtime_audit_sha256": "291931e284b208258fc386d33ad048617ac1a3a7129983139c7a73706f0e9520",
+      "train_results_sha256": "d0ab2446cf5c66ebb26714849aec1c54c7fcd1b33310118dc9d17bc32bbead1a",
+      "trainer_state_sha256": "c81f69051985728934ffc8df590ee79143e4b0e8d3108f5b9ae725b7ebdadf47",
+      "log_sha256": "ed5c413871aff54ebc02b96a840fcf7c1fc7b1ae4b7c9e951c1a42f6cfa34c5e",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 156,
+      "normal_three_read_steps": 156,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.25867936435418254,
+      "train_runtime_seconds": 366.5249,
+      "log_history_training_loss_count": 15,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 24,
+      "prediction_samples": 22800,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T20:12:52+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order1:s0:formal:4",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 1,
+      "task": "agnews",
+      "stage": 4,
+      "seed": 0,
+      "expected_updates": 62,
+      "expected_saved_rank": 32,
+      "spec_sha256": "37c512798a6c1dd62f5865be826f440cf111817a36a1c481752ed29476bd77fa",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/full/seed_0/order_1/4-agnews",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "045c4f7f0f376e13fee81d4305aa7983b04cb6d20200d6cd699904222a1b242a",
+      "trace_sha256": "16adb481893599895dd95bf61541647c16066eebe57e70c47e7375ef93ff2abd",
+      "adapter_sha256": "e36a8caf5a41be21eb87a53e391015f4822c9b378334bd1d3dd04e342aa28f5d",
+      "prediction_sha256": "88afabeb7a7975cc704e5492c48b3a99dc80248fd25d243d04b50b14f4de44ef",
+      "runtime_audit_sha256": "ffca92987b2f4d3dcf0dbe8a97df0538208fe3ac15f9e910d3cc0bbd88a7f16e",
+      "train_results_sha256": "4a7a03873944c116344719855644d16d4f198bd7a66eaecf5edf99bb59eba045",
+      "trainer_state_sha256": "35b1f4489529fef67432f5035347d15c6e3c3f10f4d24ce9d298fdf319187b82",
+      "log_sha256": "443bb5914731c60996458f96bca9d319a663ff43342ec5f3dedea41222cb02bb",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 62,
+      "normal_three_read_steps": 62,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.2125557420715209,
+      "train_runtime_seconds": 147.0122,
+      "log_history_training_loss_count": 6,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 32,
+      "prediction_samples": 30400,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-11T20:23:46+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order2:s0:smoke:1",
+      "kind": "smoke",
+      "model_size": "1B",
+      "order": 2,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 8,
+      "spec_sha256": "b8ad8f4fe015ccd933a6e55a8a3f9c5ac12f69cff7968689c9398481015b8c7e",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/smoke/seed_0/order_2/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "acb7759976bf8e33b60e19fb5213bf6c02e105f27abb0c02dc2184cc3c51551f",
+      "trace_sha256": "10a98abfd733987ba33b9a32749fe91fd756e097300baa1e314759e7674357fd",
+      "adapter_sha256": "bf16983ae825b5c551640fcb5241412cd42bb85184d3da807e19e3922d14019e",
+      "prediction_sha256": "6a137416643e3c618859a3a95631b5c42c9b2cc0c11ee50a0cf5841d743a534d",
+      "runtime_audit_sha256": "d1df7ed3020d5373ecec747b841844380acf3d8072e2940427af5dc0c128a1a8",
+      "train_results_sha256": "a5b1e131107239535f3c6d2bb66736b3af9932ffc7543c78920d5388a22d4d13",
+      "trainer_state_sha256": "a73a8efd579e6ab56d90e303170e90418235094af35ea24541864b341d62e892",
+      "log_sha256": "e6dbddbd89a447e6a148164ced65ddc2736701453468d7dda8a9a00d4a1b4395",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 2.846461534500122,
+      "train_runtime_seconds": 5.1928,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "dbpedia": 16
+      },
+      "completed_at": "2026-10-11T20:24:25+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order2:s0:smoke:2",
+      "kind": "smoke",
+      "model_size": "1B",
+      "order": 2,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 16,
+      "spec_sha256": "18f84e2c2b1161d10fff139de94dcf8efeea493464f2cdba7d6ac011510ab7e7",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/smoke/seed_0/order_2/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "c813fe33c06318dd71782e6f7e182efc79accf3eee81f24e4bce9fd523bd00d1",
+      "trace_sha256": "553659b5a5bfbd75cf792181f6fe38ded37b2b62572f0aad02effe81fbab8f2b",
+      "adapter_sha256": "9175eafe2ba42f0fbd3180a8a868055681ed8df83d329963eab31bc81c90ff05",
+      "prediction_sha256": "c4345bb7d078599ff411053fcfd2c9c5d9f33217809e4b111d20df53eafdf4db",
+      "runtime_audit_sha256": "36de000cf62740c4759d0126633449251562479239b20fb153b592ed8f4fdb6a",
+      "train_results_sha256": "70097418efa7cc46c5e73ecb73c2603de446a11ae2c249fa51b46bab0d15bada",
+      "trainer_state_sha256": "e5f050af0c9c00cff094fa1ecfcf6d718f3ac308b6fba5d5cf3325b9a763b995",
+      "log_sha256": "6bce332156a9ba87690dc2f5080975fc1f8e664a9315a30f53ede6092776f983",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.7743586301803589,
+      "train_runtime_seconds": 5.0202,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "completed_at": "2026-10-11T20:25:03+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order2:s0:formal:1",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 2,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 218,
+      "expected_saved_rank": 8,
+      "spec_sha256": "c79f00ef28ed87f7942e98557b6fc4e5f44a32c879f0adfdc5210a9c58caa5e0",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/full/seed_0/order_2/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "c357395a578ae877d0f9cb7ca1c17a01b0d2e6451634745e884b309c170e4b91",
+      "trace_sha256": "8e0fdbaaa51fa96eb0ef61e499982f847af33a1e2ffafcd5c72d74cab638c3db",
+      "adapter_sha256": "8e05c0e7b1dfd0b3d9c24db2f695047335432666a4cdbb99825cb9f184f66346",
+      "prediction_sha256": "f337515d686b63af04a94d578bdda3e3885f27c0db09a1a09754ed2784c4f354",
+      "runtime_audit_sha256": "5835b5d38e49b914f2cd9d5c48103acdbcff37781697a05d6002a21a82774305",
+      "train_results_sha256": "16298e4e9ec5006b2c8b5cd24893280814c009e4825d340d54a5032eec1a4616",
+      "trainer_state_sha256": "c1277676c15adc083b641ca658fc7ca5ed50608b8abdb0ee4afb810a9f99fe3c",
+      "log_sha256": "6ecf23eaef3b6bf649948c2f4d1dca4d87a73aa3583db019ee02e0394f38f422",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 218,
+      "normal_three_read_steps": 218,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.06801402799511722,
+      "train_runtime_seconds": 509.458,
+      "log_history_training_loss_count": 21,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 7600,
+      "prediction_task_counts": {
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T20:35:33+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order2:s0:formal:2",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 2,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 78,
+      "expected_saved_rank": 16,
+      "spec_sha256": "88480ce4cedfe2309143b8f5c7cc7c0a3b13abba6b510f029204c0f39d77ba29",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/full/seed_0/order_2/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "85e1234f86db2d5a8b0c707d7058ab42b02df2bf3f7f7832bcc39cfa3138d89c",
+      "trace_sha256": "c1af1d5f45b06811a26c898f11a10d162b00e30f15ff6a959cc53cec4aac6d3f",
+      "adapter_sha256": "31d2d900604656ac3fa17d8d80f640990cae9480ff2d9f04dfd02b01253094a5",
+      "prediction_sha256": "d8b98a21628558451cb2cc5bd54479e508e7ce47575de2978fcef01d95d26e48",
+      "runtime_audit_sha256": "7308eab64c8ef9110509cb165ab4b71154a2384aab93a7edbafa00e46414d1cc",
+      "train_results_sha256": "90b1b325480e097f8aa5bf4edffd056b7028f6fffca33b141191368dd6780a9e",
+      "trainer_state_sha256": "262367887b1381bea9501825fba666216e8ae5e243b598eed2fe25231ca52241",
+      "log_sha256": "88ce4be8a561e7dc28aebdc3132513b21444cc60fd0ec61971c5ce9df1b28cff",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 78,
+      "normal_three_read_steps": 78,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.6770925124486288,
+      "train_runtime_seconds": 189.9509,
+      "log_history_training_loss_count": 7,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 15200,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T20:42:32+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order2:s0:formal:3",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 2,
+      "task": "agnews",
+      "stage": 3,
+      "seed": 0,
+      "expected_updates": 62,
+      "expected_saved_rank": 24,
+      "spec_sha256": "8ff76eb4ba5ab7da789de49fc60d68851c04f8665c52c6aae39bf7bb823ce1da",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/full/seed_0/order_2/3-agnews",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "86ae0eb7866c69de793d6a3d5054e3b6b5e4dff763736d6c505734f8ae7e9084",
+      "trace_sha256": "840dc7fcf3cac6348ff0fd2eb4b026afeeb70c19a642201ee7adfd7e86433ad1",
+      "adapter_sha256": "73c12fbbbe01dac807afc91ed7f179326130d4eca42541c9decca46a3305a88f",
+      "prediction_sha256": "221f2e82a3d05015f4ae14509f1e6b119b816bd283bc1adcc1e06f9b08465c8d",
+      "runtime_audit_sha256": "bf07c2f67f9daf9a2157712e53c6f9325f2c744e0d61e1afffce06d73f957fa0",
+      "train_results_sha256": "9e723ab727884ee2fe27fd6ccce876c9c52f50846b5d1e0938b3145af7e927f4",
+      "trainer_state_sha256": "97244aa71ac448e99d2f12d728f3f23b1d3631085a173ab65458deeab484541f",
+      "log_sha256": "8d0488ff6fe341f23a21802713b22fb851a66a635084f500934acd350b61e566",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 62,
+      "normal_three_read_steps": 62,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.2699857618539564,
+      "train_runtime_seconds": 151.4889,
+      "log_history_training_loss_count": 6,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 24,
+      "prediction_samples": 22800,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-11T20:50:02+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order2:s0:formal:4",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 2,
+      "task": "yahoo",
+      "stage": 4,
+      "seed": 0,
+      "expected_updates": 156,
+      "expected_saved_rank": 32,
+      "spec_sha256": "5fa16e1bacd6dcfca2213f48d17c5543d77da530ad219c2006db3c697ca3d978",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order2/full/seed_0/order_2/4-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "2ed08933a49f169164ad33d318bc9fc2a183243b552c44deff0a6b95ac613bc6",
+      "trace_sha256": "4d6d89d5b2b72f87d2b2024b3b28ff91074c3c513f3604d810321516f50964c2",
+      "adapter_sha256": "36212c0c00c7e098083045ed8142dbd62ad12517e5bf41316e0f8d971793eddd",
+      "prediction_sha256": "23822c00e4f4264ae9ac40e6a3d273838f9f48f83ce435feb0ec5a6beeb92c87",
+      "runtime_audit_sha256": "9e325400bf522af683bef66254c61c55f7ad6e19ca31071cad2a6b0e749a633e",
+      "train_results_sha256": "611859b6858bbda444ed7da906312c2da97e043e00944c26069a5e8568e2865d",
+      "trainer_state_sha256": "7f93d7e6620cd8f2b6bc4463d1bf06f8e47c8bac86834de93543948ff541fcf5",
+      "log_sha256": "c28c33cd6b6b946abd7c0ccf10e9406b003b24ef394e7af8222528aab0d593e8",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 156,
+      "normal_three_read_steps": 156,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.2237945489394359,
+      "train_runtime_seconds": 372.9062,
+      "log_history_training_loss_count": 15,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 32,
+      "prediction_samples": 30400,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-11T21:04:37+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order3:s0:smoke:1",
+      "kind": "smoke",
+      "model_size": "1B",
+      "order": 3,
+      "task": "yahoo",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 8,
+      "spec_sha256": "2024b4dc01e1f39164bb478d8d53339111a9b94d7cc19d41bf9753662d5e872d",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/smoke/seed_0/order_3/1-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "af01637f2e5e227b465c3737a2a8c7dad9de3aab3d3a5d9ec9cf10d0795353c2",
+      "trace_sha256": "f762e65cb026c93af86c66e5017b042361ee1728f6dabf4d8ca0f5a80485b797",
+      "adapter_sha256": "4ca8cc31cadc0d5b9e8790440fb6154f31902647f7b11bc9f3212f73e4eb8faa",
+      "prediction_sha256": "a6da36203f9a4f1b2faaf1d41bbc30cd285f67c46373127dd61813e56ce4d90a",
+      "runtime_audit_sha256": "a5f4dedd93ab9e976ac692f788c9334900532c732ffafcd78ccc3707b804e33f",
+      "train_results_sha256": "5c26d3cfb0bacbe7bca154c654112a91455d1e67ce3e2bca773d27c19f21c808",
+      "trainer_state_sha256": "0e513fb7dc2aba9dce9e907ca2d967193b5d1245b592eadd2181ad7c7c6505b8",
+      "log_sha256": "d07c815ed20624611ea8daa59088a8df45ef4c3864988ae40d79d5ccfd0fd5f7",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 3.2784972190856934,
+      "train_runtime_seconds": 5.3934,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "yahoo": 16
+      },
+      "completed_at": "2026-10-11T21:05:16+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order3:s0:smoke:2",
+      "kind": "smoke",
+      "model_size": "1B",
+      "order": 3,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 16,
+      "spec_sha256": "313b2d1bae6be754c2d935caaedddf7823faa29e9e46b34c73926fe86b48c720",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/smoke/seed_0/order_3/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "2d8a5b99989fc8ff30505ebd596bd595f1e7cbf141e3ffad92316b4cd7ee4ce2",
+      "trace_sha256": "fb2b54e302dd53d54f74b531c1391bb01429bf31c65aabc93843f1458648c627",
+      "adapter_sha256": "d8fa27b8402c2e2e830c2e80ac5160a16566a06b62b89b28e570dd3e920f10bc",
+      "prediction_sha256": "656dbc3b3594ebf8a6832d7edcca371afa6e83795126fcaefc4a979ea0f8bd5e",
+      "runtime_audit_sha256": "38c0307a7e7cbd92a8cde893ae12e7b39f7e7f4f2e43232be6f0d93e8a35bae1",
+      "train_results_sha256": "97da3ab7f75e793d70b2404c1ee656f482e821122316c53de43eaf7da17dbdc5",
+      "trainer_state_sha256": "cc74239f144e740dbf4776d2d2b077a71f91410aa795be89ebf1378a4bb96d19",
+      "log_sha256": "ab581c97bd9a5743cd7b4cd0f2a096afdb6135c86b584862a8e8b03f8af999ae",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.7319439351558685,
+      "train_runtime_seconds": 5.6971,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "completed_at": "2026-10-11T21:05:55+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order3:s0:formal:1",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 3,
+      "task": "yahoo",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 156,
+      "expected_saved_rank": 8,
+      "spec_sha256": "3ba8c8744593b1d81407a52759d62ae76abecf38b82a0903bfd52987a523e84b",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/full/seed_0/order_3/1-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "00ab3cb76095939ba9e1dee3cf6265facaeedb630083cb1dbfdf3de0cf2bcd66",
+      "trace_sha256": "a7a82f3126346e047e85a436d57569da4e0518c32249fa31bdc6d24ede925860",
+      "adapter_sha256": "f9ae7de1126f263116e836fd0d95f34a3a1c2c1ba8c1f8315010e220a7cf5e39",
+      "prediction_sha256": "4b1611c047a5965edcfc107bcfcc0a173b0078fce85b267ab6fe99434053bd30",
+      "runtime_audit_sha256": "184875fa1a449386fc7300173724de8aa45ba22be34a5f72eb022768bb7728e8",
+      "train_results_sha256": "20038e43e9d16fb553eac050508a8115f8da5f9972e9d4ac5481abcc1e65f825",
+      "trainer_state_sha256": "f2d1b26ea09730d0dbfd7a35ce647cbffcfa8e47ddc666833c0f1f2e73f4b705",
+      "log_sha256": "f5c4a189642e9f02525f1af0a01386d5c2318b877e0e6f86cee9d4a0f8bd6236",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 156,
+      "normal_three_read_steps": 156,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.25094036566905487,
+      "train_runtime_seconds": 404.9403,
+      "log_history_training_loss_count": 15,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 7600,
+      "prediction_task_counts": {
+        "yahoo": 7600
+      },
+      "completed_at": "2026-10-11T21:16:55+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order3:s0:formal:2",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 3,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 78,
+      "expected_saved_rank": 16,
+      "spec_sha256": "d1c0997e61387116c94337b557210fe7720c5c06014d88baa6a7a2a783573e4c",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/full/seed_0/order_3/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "8ac116599f040b8c8104f5a3e11e9f453ae8f2e1b0726f6de7a6486c5d4b9742",
+      "trace_sha256": "32aa4f06b5a132b29792023e093acbd60e74a1bbc357da146189f6f1295fba6e",
+      "adapter_sha256": "cb55a7eb3484b21116b9926cd4a2ed163ca184d6ef758d5f63890ad52e99ce51",
+      "prediction_sha256": "b73be8bf5f455021c1a0023ec674858d61493f90cb6946a219ddbc6d3960fc4a",
+      "runtime_audit_sha256": "d85cd80bd62ca22aa1fc1612d54246edf7a7e421ca56d337822c30500fc68554",
+      "train_results_sha256": "27f7ed21ae6de05d28a426e0279d6bc064170f04e5b76d6e76baef002115f5d1",
+      "trainer_state_sha256": "27c27a5eb74fe39ebedd961e771822bf3b9c6acf19ed0c9da77efb5452270bc7",
+      "log_sha256": "49f92a6aaf7bc13d1d6b565cad4334352f0bdc732414b41011ae3115652d211f",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 78,
+      "normal_three_read_steps": 78,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.892917119539701,
+      "train_runtime_seconds": 183.5524,
+      "log_history_training_loss_count": 7,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 15200,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600
+      },
+      "completed_at": "2026-10-11T21:26:30+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order3:s0:formal:3",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 3,
+      "task": "agnews",
+      "stage": 3,
+      "seed": 0,
+      "expected_updates": 62,
+      "expected_saved_rank": 24,
+      "spec_sha256": "0629cbb3c7e497640926c4f6e74a546606462fbe69f71efa7cef3fa8288a0fe5",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/full/seed_0/order_3/3-agnews",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "9eeb37b177e32886219d5ee10f53a7a7bb386406c4fed1c6fc409d0da550bd9a",
+      "trace_sha256": "70fea6829fbce77f3e7106500816294ea788f8dec3f3acd1137bb8ad07e6340c",
+      "adapter_sha256": "b6ef7e641a0f982c4ee503f8baeeb8fb3d8d1e9492bc9ca8b6293e20cb412d2b",
+      "prediction_sha256": "58106f9a7861f541a1552a983dc640421d5457367ed03cbd1dedf4d951fd5627",
+      "runtime_audit_sha256": "f65db6fb7af28eea1e9e8e83e956a39aa18a30eed7b2eb4e192c1349a84204c3",
+      "train_results_sha256": "7626b758e9fde4b15ce7f03f74dcfd3b2576940ffa582a0b9b7360f8ca03b774",
+      "trainer_state_sha256": "61a524fcd37a36adc782918804180c7da73a836b4ce664518441a2540b12d945",
+      "log_sha256": "d397348aedf7b4b09033c8da960be24710c365bab7fe38d6743a6fd1adfd178f",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 62,
+      "normal_three_read_steps": 62,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.24477910322527732,
+      "train_runtime_seconds": 144.5986,
+      "log_history_training_loss_count": 6,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 24,
+      "prediction_samples": 22800,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-11T21:36:36+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama1b_order3:s0:formal:4",
+      "kind": "formal",
+      "model_size": "1B",
+      "order": 3,
+      "task": "dbpedia",
+      "stage": 4,
+      "seed": 0,
+      "expected_updates": 218,
+      "expected_saved_rank": 32,
+      "spec_sha256": "a9ae76cdc95b6e9dce53d01ec0bcd2df5c254e1d9c01812d1ab137ce9d636a35",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order3/full/seed_0/order_3/4-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "673c5fe0f0ead36f4f27224fa618dab75ed2ee54b83c9cfc2f5a87470664e866",
+      "trace_sha256": "78f776ffa516f82d82c8fbd300dca515f44e5ea7256d3b718e5dd24815a54846",
+      "adapter_sha256": "b747fa6665b214ce33d17f6c75cd1df2b4c8457d3ac748bd48206dd0b7eedf29",
+      "prediction_sha256": "f00caa49b9689877a1f6e22373d31a0cdcaa6609290d5e1a3d16521f2819551c",
+      "runtime_audit_sha256": "80248ac6d04f478891ae4da1099b4e5421e5796a7db49eab1b70f68260a62499",
+      "train_results_sha256": "df66a28aed1f5769f1c695e50a95438db45276c4b636af90860ce7e48d0a1d3a",
+      "trainer_state_sha256": "64d94971ea40da9ad54e7dbad3c994f9168b7f04d82edc24800e9fea660d3835",
+      "log_sha256": "8f5ddbc79a52dfc9c062bae4fdd6a60c12d0eb82ce5ee1ae7cc9aff4633c3491",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 218,
+      "normal_three_read_steps": 218,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.07803237954701442,
+      "train_runtime_seconds": 560.5545,
+      "log_history_training_loss_count": 21,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 32,
+      "prediction_samples": 30400,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-11T21:55:41+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order1:s0:smoke:1",
+      "kind": "smoke",
+      "model_size": "3B",
+      "order": 1,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 8,
+      "spec_sha256": "45dec7cf8d7973b4bce43fefb841bc01f65f714a6533ec68e5e38850647ff738",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/smoke/seed_0/order_1/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "73645b8446ba985d899efb7a91db9fd5154bb4603cfc0b59706cbbc428d113bb",
+      "trace_sha256": "2f0dc293833acb4b3b04ecaa69e40ade65275212cd301e2de2e5e353b94d5c16",
+      "adapter_sha256": "d345543ae316aaec625a08030447aa50d7c1f36889c6976ee56bc0bc150d3b48",
+      "prediction_sha256": "2b13704011ec85b7dca32f20e6f9c46fa309b21f55835b40e8e7e9d4df550871",
+      "runtime_audit_sha256": "50dbd2d7d44a7901c2e4d03f3e32a2c67a3da4d7182fa0571e239d47a3235221",
+      "train_results_sha256": "a8ece2ac09bc8c9cbf6e7f09c8b832efb1dab2c1fbf2e2569bf7a68bf28d7065",
+      "trainer_state_sha256": "8c8edcd57d2228ba9cbe8379a1672733ae911978f72bae6b60184c57b6b6b5b7",
+      "log_sha256": "e3b39185b2ba9739c7a9dec02a4ac11b7905cc40f1954176584a406a5eb2b7cb",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 1.4556991159915924,
+      "train_runtime_seconds": 9.2788,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "dbpedia": 16
+      },
+      "completed_at": "2026-10-11T21:56:41+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order1:s0:smoke:2",
+      "kind": "smoke",
+      "model_size": "3B",
+      "order": 1,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 16,
+      "spec_sha256": "c7da542db796986b9f6ee65d60a47e687d2e4a76af324f41b64edfb7a33ca8a8",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/smoke/seed_0/order_1/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "7995da8ddb5ef7c89cdd95e0d77bc4bf359e5efb8aba1eabed9b2b4d25c1b023",
+      "trace_sha256": "582deb5c86af4a3282f70eae1604cc5291dd708a9527a1418fd61e5b01493523",
+      "adapter_sha256": "2f858aafa51c71102ce71c3a9056c7a8b1ff41069bb716537298a49303cb8aed",
+      "prediction_sha256": "9cd0c16a7a66c5056b331a317fc682143717c8e195bf99460763fcb82d9991a3",
+      "runtime_audit_sha256": "ecba64608f07d85c16d5bdb0dcf203907969c294d49586e9009f01546a957cc9",
+      "train_results_sha256": "66c60af29635e69a5428f05e8bf2c58e0c217558f3c7713b167e0aa02bbd72f1",
+      "trainer_state_sha256": "d680c4ec0daa750d1c9aad68d6599e3e0258a4258ae8233ee9ec34d1c23be39d",
+      "log_sha256": "d5455c0978ee8b73d51161a13d69aeae51aa10814fc51d03a02fb26f0c0c0451",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.3501879572868347,
+      "train_runtime_seconds": 9.4602,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "completed_at": "2026-10-11T21:57:42+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order1:s0:formal:1",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 1,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 218,
+      "expected_saved_rank": 8,
+      "spec_sha256": "ab743477811f8fc619f2c7daa0288542f7d10103a6342136dae5718bfd038a08",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/full/seed_0/order_1/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "e943d95d1112d00386e27a9bde8b5e9021ca6b13c5eaa9dd9ea9ca0af813bf15",
+      "trace_sha256": "b78022f61fa5e71f4af77d07e7810f9aadcbd7e71608cbf10194270c955cb850",
+      "adapter_sha256": "577d805f9ea5e8aac59c4fb3e4a3d58beb38f12211ba030d42409b1eb5666e6b",
+      "prediction_sha256": "9e3ad854f6233a42069baceef0f5998d76a90d8b1d11ca4e0f80ab641247d10c",
+      "runtime_audit_sha256": "4153542d504f817bf7a5c1961f4c50fac2cda235547d842c1c6e071a5eaedd85",
+      "train_results_sha256": "ec986fe3101313279abfc8cbbc367f20bb1a7eb00c0414294f5a27d336cb20e1",
+      "trainer_state_sha256": "c1f23c8897be8f7eff48915602f3b2aea7895b3ce03e5b099dde7e76c575e8e4",
+      "log_sha256": "4cfc381f7d63f6279ba7f08f3631abd7fd40ba67cbf014c5b12ca85fc57f0134",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 218,
+      "normal_three_read_steps": 218,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.04328908309887309,
+      "train_runtime_seconds": 885.9988,
+      "log_history_training_loss_count": 21,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 7600,
+      "prediction_task_counts": {
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T22:17:03+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order1:s0:formal:2",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 1,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 78,
+      "expected_saved_rank": 16,
+      "spec_sha256": "f98c762f575ac80dd8cf1351c2041004382721c164bc5198ee5b73a0ac4798ad",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/full/seed_0/order_1/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "d573d2c5b4e8e5ebca3a78761962c1004a85f2597964e14cacc3432523d057c0",
+      "trace_sha256": "361a8e57b786ed86a38d41caa1ea3a22ada5814b323a88bd90a7b5f875579891",
+      "adapter_sha256": "360774eb6e7e0c697ee87d80a890787b5a7e33d03762da20b6c929b52398962f",
+      "prediction_sha256": "fa6f94f585af4aa418325554d8e3851ce766e5b3da2118ea449ddb4b76d0b168",
+      "runtime_audit_sha256": "85809af095f4b272303d96b16a8257a6bc796b227b1907a50c20fa16f63f9181",
+      "train_results_sha256": "3e6ad72f94ec121302f61fafd9ba7cbc1f043dcba9323fe67034d7214a8d5c1e",
+      "trainer_state_sha256": "41331cbf914a031bd92603ffb274476d0636b3014891eec126bb85885f4211c0",
+      "log_sha256": "93394f14d455483c068c33c14a5055b928dc193459e9f24c78050fca531c5f2a",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 78,
+      "normal_three_read_steps": 78,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.35554150893138003,
+      "train_runtime_seconds": 324.3668,
+      "log_history_training_loss_count": 7,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 15200,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T22:31:29+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order1:s0:formal:3",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 1,
+      "task": "yahoo",
+      "stage": 3,
+      "seed": 0,
+      "expected_updates": 156,
+      "expected_saved_rank": 24,
+      "spec_sha256": "262151cd31dc552fcc48438c516b9ce09740569aca9be86e2906e23a76a4918b",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/full/seed_0/order_1/3-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "aeff86c75a1ae2e120a74211deb3b20d25a58211e2cc530c243fbf03a7df82d3",
+      "trace_sha256": "2eba041beed7898a2b82af0f42723067ddd040656a10cc1668b5641393bd6fc4",
+      "adapter_sha256": "bb4430490e34ae88c9d01775f97818118b6a8507c54e68135ff7f3e357e7ae9b",
+      "prediction_sha256": "01c28c612734968b2f55190a4a779b83408332b54b932dea9c78f7f218205106",
+      "runtime_audit_sha256": "bf883a04c2a70a421498405eca59204b2b42dce71103544b9a5fa868bf81eda2",
+      "train_results_sha256": "eb31bd9ab08b5a5a9a30cb006761aca678ff09efa40b64727349bd2459d9d178",
+      "trainer_state_sha256": "45b286aca2cd5f8e0b0759c0125006815baee096a8da1eb691dea931bd3ed487",
+      "log_sha256": "ec7e2d46d7ddd7bc867a448ce73f1a7d6a104980c8058f44a7fd8ed1fd071b11",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 156,
+      "normal_three_read_steps": 156,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.22744154662658006,
+      "train_runtime_seconds": 679.4349,
+      "log_history_training_loss_count": 15,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 24,
+      "prediction_samples": 22800,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T23:01:31+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order1:s0:formal:4",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 1,
+      "task": "agnews",
+      "stage": 4,
+      "seed": 0,
+      "expected_updates": 62,
+      "expected_saved_rank": 32,
+      "spec_sha256": "4c5bc91dba0b3b60c97a71decbd2cf5a1c109a8e3015fd991f4a1971311e09d6",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order1/full/seed_0/order_1/4-agnews",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "beb7eafc47f9a87df89d8a0733d3051e5909f7f4ac0adc5045e246f415adae76",
+      "trace_sha256": "b965b0c3aaa86f5d6f332426bd5b5da1a820643124588d51f2b19e315bffb13d",
+      "adapter_sha256": "6fb83c9ec4c95d8f3a4fa31fea2a2fc7734bfb3b12c191392c4ff0b405a5f38e",
+      "prediction_sha256": "87831f1c1700d4da3b2c25de6bb4060e80d025a9389fefc396ed377f819455aa",
+      "runtime_audit_sha256": "c56da37e4d2300faab93c71651e3d181f8f4a84c7a60660c4f6388bf672d6b8b",
+      "train_results_sha256": "eeecec1d70eb549cd7abc2ee1168c1cdd4d058774f61233e7fc3f951894b6112",
+      "trainer_state_sha256": "915abc7a8f88d07c3ecd8649022647c9cdb23fb2854de993d7873595e94b7806",
+      "log_sha256": "136d82ce2079aafb6e836f802b9166b49d1e2db8ea57493aaa923508267f46a0",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 62,
+      "normal_three_read_steps": 62,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.21843116273803095,
+      "train_runtime_seconds": 247.8615,
+      "log_history_training_loss_count": 6,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 32,
+      "prediction_samples": 30400,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-11T23:27:08+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order2:s0:smoke:1",
+      "kind": "smoke",
+      "model_size": "3B",
+      "order": 2,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 8,
+      "spec_sha256": "8324236d5bf961651335d3a9dc3bd0dda88c49342c8938f8b7a06d7d7df39e59",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/smoke/seed_0/order_2/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "e99e9b91bbdc13ef2d32d93eb9834ee583a61e66b2ac54e0169d1757c2ac6773",
+      "trace_sha256": "2f0dc293833acb4b3b04ecaa69e40ade65275212cd301e2de2e5e353b94d5c16",
+      "adapter_sha256": "d345543ae316aaec625a08030447aa50d7c1f36889c6976ee56bc0bc150d3b48",
+      "prediction_sha256": "2b13704011ec85b7dca32f20e6f9c46fa309b21f55835b40e8e7e9d4df550871",
+      "runtime_audit_sha256": "0826a8890c6ccf024c17dfb16e7dc2fa69698d40892247cccb15c81fe60c19d0",
+      "train_results_sha256": "60acbc357cf36c5687bc50bd5351e1ca3e99e30342506258b6c04646ac4ef7a7",
+      "trainer_state_sha256": "1618dc529c507fd38bcf7f1c61f382cef10e873383106c00fba82eaf3fa9cfc8",
+      "log_sha256": "1097568b03a02f04baad4a84be4704b70037fa938f44854e0f478632b01aa8b4",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 1.4556991159915924,
+      "train_runtime_seconds": 9.055,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "dbpedia": 16
+      },
+      "completed_at": "2026-10-11T23:28:09+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order2:s0:smoke:2",
+      "kind": "smoke",
+      "model_size": "3B",
+      "order": 2,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 16,
+      "spec_sha256": "881f551c5fb340ea9fd5d420985dce6ae461c2186ed40b0654cb38bae8e920fb",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/smoke/seed_0/order_2/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "f94eb5f51422d502f98219803d69dd26863af440a3ba829370d17fc290b6cecd",
+      "trace_sha256": "582deb5c86af4a3282f70eae1604cc5291dd708a9527a1418fd61e5b01493523",
+      "adapter_sha256": "2f858aafa51c71102ce71c3a9056c7a8b1ff41069bb716537298a49303cb8aed",
+      "prediction_sha256": "9cd0c16a7a66c5056b331a317fc682143717c8e195bf99460763fcb82d9991a3",
+      "runtime_audit_sha256": "163f1f95d57498d421d1fdf7ce2b63fca30135a6d9880aa3c66bbb594c30d1c9",
+      "train_results_sha256": "91a3d848e5a76d7b84f0f6d9f815f5642169567e3fd5c3b7c3393cf4a069a2fb",
+      "trainer_state_sha256": "7c86a635cdf57244801289cd7b1669b0bad3b595fdb26b2d823b45254c7203d1",
+      "log_sha256": "4b9df924687f420527aef0c6d18ffc28aec5bad1769470b800fa30565dbf8d3f",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.3501879572868347,
+      "train_runtime_seconds": 9.2287,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "completed_at": "2026-10-11T23:29:05+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order2:s0:formal:1",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 2,
+      "task": "dbpedia",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 218,
+      "expected_saved_rank": 8,
+      "spec_sha256": "a98bbe9b0459143ef88496c8abaa388a199966f180efaa3dce8774d0a39488c3",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/full/seed_0/order_2/1-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "12383567a149f884bba8c907e746b0ae757144c08876186f86defb28378dad2a",
+      "trace_sha256": "b78022f61fa5e71f4af77d07e7810f9aadcbd7e71608cbf10194270c955cb850",
+      "adapter_sha256": "577d805f9ea5e8aac59c4fb3e4a3d58beb38f12211ba030d42409b1eb5666e6b",
+      "prediction_sha256": "9e3ad854f6233a42069baceef0f5998d76a90d8b1d11ca4e0f80ab641247d10c",
+      "runtime_audit_sha256": "5d7a4e91bb05c5a462d28a274fd818c3fd68f76c6cf2782783580c8c4f009ee9",
+      "train_results_sha256": "c8ddd60f46eb2efefe5d6692592d42b3a545d3c30194b5382c451a81a574dd5c",
+      "trainer_state_sha256": "721f831c2925b0de540404234319d2d80060d63dc1ceefe911cc09561e6b7a16",
+      "log_sha256": "f270c5af1f7d7b7b819a10d45ac14282911b65822a6f47db4c44487b278793d2",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 218,
+      "normal_three_read_steps": 218,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.04328908309887309,
+      "train_runtime_seconds": 896.5753,
+      "log_history_training_loss_count": 21,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 7600,
+      "prediction_task_counts": {
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-11T23:48:37+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order2:s0:formal:2",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 2,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 78,
+      "expected_saved_rank": 16,
+      "spec_sha256": "cb17e368f8303429de0d72199a1029c3a986a1df477de656550b4481707764bd",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/full/seed_0/order_2/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "ae523db4fe03d39e8f7e18e80e4657fcd2fb42b38a13c98dfbb9facd4a806cf5",
+      "trace_sha256": "361a8e57b786ed86a38d41caa1ea3a22ada5814b323a88bd90a7b5f875579891",
+      "adapter_sha256": "360774eb6e7e0c697ee87d80a890787b5a7e33d03762da20b6c929b52398962f",
+      "prediction_sha256": "fa6f94f585af4aa418325554d8e3851ce766e5b3da2118ea449ddb4b76d0b168",
+      "runtime_audit_sha256": "7219a28b2b6cd910c10f143c0fd19a856ab3b497b0e6cac8f28bfbd85502faae",
+      "train_results_sha256": "6ba38b8528841eef8ee0aecff136d3777f6810667965cc2309c233bc6e31bdfc",
+      "trainer_state_sha256": "21c3f7f94bc9245ff8406f2ce02848b22c01e799cfdce530fa815f041888ef97",
+      "log_sha256": "d4ccfb1cd719eb4b688665ceb1d8e39dbd1921acf33dc730ed2e39bb49e3b8f7",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 78,
+      "normal_three_read_steps": 78,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.35554150893138003,
+      "train_runtime_seconds": 327.7607,
+      "log_history_training_loss_count": 7,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 15200,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "dbpedia": 7600
+      },
+      "completed_at": "2026-10-12T00:03:09+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order2:s0:formal:3",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 2,
+      "task": "agnews",
+      "stage": 3,
+      "seed": 0,
+      "expected_updates": 62,
+      "expected_saved_rank": 24,
+      "spec_sha256": "73256732550ba49a357893022a57b3dce0396e0086e03536455a6f206074e1d1",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/full/seed_0/order_2/3-agnews",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "3a32d425e84f508a4ff069917c45c04b3b2ef831cda412dc79a44ead1c7e988f",
+      "trace_sha256": "bd0de2bec7198f85ccf3970ffd53215f81dc1998891f873de641f6949a6e2cc5",
+      "adapter_sha256": "74796949fa462218ae6b5daadca1a373f355fc4ee3fb2744de7df3125467345c",
+      "prediction_sha256": "ef1b3ba553b3b66546489f89955054f8db4daa55b99cc50c729e4ee4591bd0fa",
+      "runtime_audit_sha256": "6298ffe0444872ec13e09b95d16735b7fb86f3a01e23c020600546685cb4c9d4",
+      "train_results_sha256": "60e503d05550c1daf3f03e3c0858338c772e500964c96e61161c175654e60140",
+      "trainer_state_sha256": "9b18b680850380bcd1b5dcdc8e6f195fe4c03762aa222ef46df8b2a2148390a3",
+      "log_sha256": "aa0eb118d0e08e296d891bf8be13a1d22745ad1ffc5fa28ca819f7ab2d14e636",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 62,
+      "normal_three_read_steps": 62,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.33557656167014954,
+      "train_runtime_seconds": 254.2654,
+      "log_history_training_loss_count": 6,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 24,
+      "prediction_samples": 22800,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-12T00:19:10+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order2:s0:formal:4",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 2,
+      "task": "yahoo",
+      "stage": 4,
+      "seed": 0,
+      "expected_updates": 156,
+      "expected_saved_rank": 32,
+      "spec_sha256": "6dcde835ad13224bb5d03f1a6639f97eea5130b346dbc420ff41a241768f2f07",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order2/full/seed_0/order_2/4-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "88260791ed55fec79f591c35339856bf2ab64be9c54a37090b209cb0780162d3",
+      "trace_sha256": "3e49df99b422afed71b5d56f9a1b6267f6189d28e8d14b9918ba81eb694dfa05",
+      "adapter_sha256": "bd88805efd0b4a5c961fbe698d21569ddf728cacb40c8dafc89adbb961609794",
+      "prediction_sha256": "35999ac9aa8d0eafdf6a186a5ad7c22fd6dcd05ca073cfbaf3b635d9ed4b361b",
+      "runtime_audit_sha256": "9d2dbeef34388043e0692b05a804e6967242f12cd0ce1a35de1a1731d342a66a",
+      "train_results_sha256": "053d669b2a38b8e5b257db2d0d1a3d77c6233ce555983781469e6d35115e98fa",
+      "trainer_state_sha256": "0e7e9ca8f9a8c6c610dd8d35f7dc6bc81e5714b9cc71140f1ba395d4759fa0b5",
+      "log_sha256": "3014353794e9751a5af1a231571b2dde5d52524a4082e87fe403f06ca1d3bc10",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 156,
+      "normal_three_read_steps": 156,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.19602464445126364,
+      "train_runtime_seconds": 674.7375,
+      "log_history_training_loss_count": 15,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 32,
+      "prediction_samples": 30400,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-12T00:51:49+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order3:s0:smoke:1",
+      "kind": "smoke",
+      "model_size": "3B",
+      "order": 3,
+      "task": "yahoo",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 8,
+      "spec_sha256": "b15f9e388731edb6d53780430ab901df5551746d9cb47473dce2562d7501e226",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/smoke/seed_0/order_3/1-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "903b0db7058c2c8b4c954014b41d0938028877df18583a7c12fac0819e8b7fc7",
+      "trace_sha256": "ddb3baa0dd7afa9d808bd99603e7a36eb6991d306b5f7e1dcde0f0c7d79d6593",
+      "adapter_sha256": "e9993660c5c2e8147af9c83e51d4c90f409f4a64f1b7b771442c926314663287",
+      "prediction_sha256": "8281d86d6dbcafd8d7d3d56f1b35be2b69bd46b94cfcb099c93280501ac3ee27",
+      "runtime_audit_sha256": "9dd8259569feffd1e72394ea3eaf1afc5e46ce91026cf6b33ebd19340fa5d8c0",
+      "train_results_sha256": "37ad9a6c3303614245f83cc094859b7d434cb6270703fdf9acb18e7619db5fbb",
+      "trainer_state_sha256": "b90ab105cec47ec15931c7deb60ebca3fe6390bfd05d3fba0213dbbfc67fdb84",
+      "log_sha256": "b6cffcd623bdd9d65706fbaec666873ece3907a81a0173a206856dca734e58df",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 2.7324891090393066,
+      "train_runtime_seconds": 9.3174,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "yahoo": 16
+      },
+      "completed_at": "2026-10-12T00:52:50+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order3:s0:smoke:2",
+      "kind": "smoke",
+      "model_size": "3B",
+      "order": 3,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 2,
+      "expected_saved_rank": 16,
+      "spec_sha256": "3020682e0aeb31ad449cda0cabb1bb369a495b4737dd282df2678ba633819c2e",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/smoke/seed_0/order_3/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "e9cdfe49c6b51bb9c2e5074cb84bcf1a0116bf9ce2874a69ca72ad12926717c3",
+      "trace_sha256": "6c25093c8377950d77b564c95fa86af9426e46db4d1dc3e6bed04fb05db89a61",
+      "adapter_sha256": "d6018f993586f6cad2ac8816aabf52167580994bf288583df8306e36b2d372ff",
+      "prediction_sha256": "a8c038d51a8b961a8fd7c02fc6065fede844d98cbf3cf3d4f55ac27c1bf5fe36",
+      "runtime_audit_sha256": "3a2c0360e80af467b8a90b408259acdce2153066c304bd8080e84906a35d35d7",
+      "train_results_sha256": "d14b399baedcd7e42f94629dedfde9066bf2098f1f699e50538c5b472738d964",
+      "trainer_state_sha256": "886619f775c8c0fe3730c9cd2974a78e55440fd74d14cb8da4b0cb677ffecca8",
+      "log_sha256": "e070289ff7cb3cbd2e5d936c7a0035c281edb6044d209e72b09a6ba2967fad47",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 2,
+      "normal_three_read_steps": 2,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.7809916138648987,
+      "train_runtime_seconds": 9.5975,
+      "log_history_training_loss_count": 2,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "completed_at": "2026-10-12T00:53:52+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order3:s0:formal:1",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 3,
+      "task": "yahoo",
+      "stage": 1,
+      "seed": 0,
+      "expected_updates": 156,
+      "expected_saved_rank": 8,
+      "spec_sha256": "b96e1827283a270828e976088850a639f44375b515ae2f386b694913ffeb0a53",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/full/seed_0/order_3/1-yahoo",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "c22ba1787a30f50246d91bd31a4f90377e0532d1a55dffbf37b6882ae8940fae",
+      "trace_sha256": "39acf029fcbcfb8dfecb0d3915b616d114e3302b699438c91bffdf697ff12c53",
+      "adapter_sha256": "7dd131d47a7e72ed5325f0913a1c40a2e13e5fd102a2e5c039dacfcb9bc4e063",
+      "prediction_sha256": "4ed2d782da78e45b9391b9a6e07256f51e02c0da64b9b4fe9aca8f9e53cbd421",
+      "runtime_audit_sha256": "7e8f27338813ee102445a20867db033914a8a83c361b54c4e59dc638079c8d39",
+      "train_results_sha256": "24051d99e59c225ef5fc71d959bff4b8769ccad76444ec186dff31e5043a3cca",
+      "trainer_state_sha256": "9cb6438b069d1cce55e36de62ae4db53720c01bf86fabf7c7ba470611e2440dc",
+      "log_sha256": "9bf8414030b09521c52c489b4bfd8a7235d2cc79b5499dbc3fadfc685adb1fbb",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 156,
+      "normal_three_read_steps": 156,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.2232640870870688,
+      "train_runtime_seconds": 657.7001,
+      "log_history_training_loss_count": 15,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": null,
+      "saved_rank": 8,
+      "prediction_samples": 7600,
+      "prediction_task_counts": {
+        "yahoo": 7600
+      },
+      "completed_at": "2026-10-12T01:15:35+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order3:s0:formal:2",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 3,
+      "task": "amazon",
+      "stage": 2,
+      "seed": 0,
+      "expected_updates": 78,
+      "expected_saved_rank": 16,
+      "spec_sha256": "09f7199d982689b356d097c8075c54d6a17419ddc0e3269c3e421ec983f1c449",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/full/seed_0/order_3/2-amazon",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "895032852323b0842ce46f38fbf2231f18c2d44de4f8cfd696750ce878f7f0cd",
+      "trace_sha256": "5505d1353131566582c6024bf1fa5e7ce863f22efdb440a59da6df63e23d9053",
+      "adapter_sha256": "13ed064fb6f7f87d597e44b6235ebc95b174d5db3d50a44966497c14ff58f682",
+      "prediction_sha256": "0184265647f3b5be94c54e10bb0100e1d357589bb90f762d8b8bf6a12414e1a4",
+      "runtime_audit_sha256": "3d4c7117a7d630cdf8a3337df793601a5d8c0a7a05544250fa1079461d911246",
+      "train_results_sha256": "bbb779f07b14d0316521d833a9392a73ff8fface61c92c661e98ec92fecc69ea",
+      "trainer_state_sha256": "0a90d255c839cb1a238a1f9a1c378f2fd406d85a3d7ab7a5015aa9bb2c5db834",
+      "log_sha256": "9125f98484663239cc6ec9063dd79d25817865c8c36ff792a32482b157c747df",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 78,
+      "normal_three_read_steps": 78,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.49147056157772356,
+      "train_runtime_seconds": 324.1911,
+      "log_history_training_loss_count": 7,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 16,
+      "prediction_samples": 15200,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600
+      },
+      "completed_at": "2026-10-12T01:36:18+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order3:s0:formal:3",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 3,
+      "task": "agnews",
+      "stage": 3,
+      "seed": 0,
+      "expected_updates": 62,
+      "expected_saved_rank": 24,
+      "spec_sha256": "bc3c9fc99587fe4c3a39151f8768b24d7d435bf6bbdd71153b148b5d18b3fc5e",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/full/seed_0/order_3/3-agnews",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "4c64f5027975ada514c4258a48d03b0e0e27e069b4b3235f6f209e626d88a39e",
+      "trace_sha256": "17b412f64cb25f75e534804a9df8617da6e7f4be8f05dd94c78b18e343b7aa13",
+      "adapter_sha256": "79936513561e2c6f3d3c3e04ea3b20794bb333d7bbd455f74413e6b7a58a26bf",
+      "prediction_sha256": "02e0ff54869e74b2560ea4f1450a64763afd9b0550e2951b632b0dfe59c12439",
+      "runtime_audit_sha256": "672762cca6a1ca318c6a6b38893b9c024404b5788007b448f135c31b7660a131",
+      "train_results_sha256": "57d48eaf59ffa4d967692061a77052b33d8288077986b1bdb1b884a43f9751fe",
+      "trainer_state_sha256": "e350bf37bd6e3fa8a7e1da279e3a583730ba758bff0e2040618717c80ea34849",
+      "log_sha256": "4ea953df95225d0f8eddb0a16ca0dc3ab06323828429272f35326585db8f6a32",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 62,
+      "normal_three_read_steps": 62,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.28541827538321096,
+      "train_runtime_seconds": 272.7937,
+      "log_history_training_loss_count": 6,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 24,
+      "prediction_samples": 22800,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-12T01:59:06+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    },
+    {
+      "key": "inclora_g2_llama3b_order3:s0:formal:4",
+      "kind": "formal",
+      "model_size": "3B",
+      "order": 3,
+      "task": "dbpedia",
+      "stage": 4,
+      "seed": 0,
+      "expected_updates": 218,
+      "expected_saved_rank": 32,
+      "spec_sha256": "48c8f9bf4bff2c5c78a5e8b6a172a0766aecf9071622083a3754badf03c94ea0",
+      "output_dir": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama3b_order3/full/seed_0/order_3/4-dbpedia",
+      "status": "PASS",
+      "native_verification": "PASS",
+      "receipt_unchanged": true,
+      "receipt_sha256": "97eb6a595512f48ab5ef68156da456b0a6aefff5c3cdc8bbcf2ec9042cba0aeb",
+      "trace_sha256": "bf68de2d13ae86e650400c5b2e2ab2fae2ed95be7137a1542f5d8f7784966bfb",
+      "adapter_sha256": "2c50cea2d3209197f7e3d930ad0085fa4a16a6051c5694276c34a2646a62d466",
+      "prediction_sha256": "d9e71222bfd78094cbc05c9b99c831ac413888359423d39f6b494a3c943692f4",
+      "runtime_audit_sha256": "f7ec5c34e588bf788b3b00327825bfadb2e5c5f84b67d58f941310f59e5d5cb9",
+      "train_results_sha256": "41295ded2a15b726db35e794ec301214ae22b80b781f052de34b95c0e473b97b",
+      "trainer_state_sha256": "8c42d148e5578eb50db21ce5294594badb29a98508bc1a16c198575b5aa74f64",
+      "log_sha256": "231987127cb1e49f23b275d67fbdae9df972bfbc17825a31c07c468f6f7dcdc9",
+      "log_final_train_and_predict_metrics": true,
+      "observed_updates": 218,
+      "normal_three_read_steps": 218,
+      "fallback_steps": 0,
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "all_recorded_numeric_diagnostics_finite": true,
+      "train_loss": 0.04613823588903344,
+      "train_runtime_seconds": 892.193,
+      "log_history_training_loss_count": 21,
+      "adapter_finite_fp32": true,
+      "historical_prefix_exact": true,
+      "saved_rank": 32,
+      "prediction_samples": 30400,
+      "prediction_task_counts": {
+        "amazon": 7600,
+        "yahoo": 7600,
+        "dbpedia": 7600,
+        "agnews": 7600
+      },
+      "completed_at": "2026-10-12T02:36:15+00:00",
+      "exit_provenance": "Frozen run_child raises on any nonzero return code; accepted completion is appended only after run_child returns and native verify_stage passes. No separate per-stage exit-code file exists."
+    }
+  ],
+  "cuda_initialized": false
+}

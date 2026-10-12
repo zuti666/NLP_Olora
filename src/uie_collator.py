@@ -21,6 +21,8 @@ def check_model(model_name, supported_models):
 
 @dataclass
 class DataCollatorForUIE:
+    # Audit metadata only; never included in model inputs.
+    decoder_pipeline_version = "decoder_token_ids_v2"
     tokenizer: PreTrainedTokenizerBase
     model: Optional[Any] = None
     padding: Union[bool, str, PaddingStrategy] = True
@@ -212,103 +214,119 @@ class DataCollatorForUIE:
         return model_inputs
 
     def decoder_call(self, batch, return_tensors):
+        """Build causal examples in token space, without a prompt/answer BPE merge.
+
+        Prompt and answer are encoded independently with automatic special tokens
+        disabled. The prompt has one explicit BOS; the answer has one explicit
+        EOS. Source and target budgets are independent, so long prompts cannot
+        remove target supervision. Source truncation keeps BOS and the prompt
+        suffix (including the answer cue), identically for training and inference.
+
+        Our Llama loss applies loss_mask to logits[:, :-1], rather than labels
+        [:, 1:]. Therefore a target at index j needs loss_mask[j - 1] = 1.
+        """
+        if not batch:
+            raise ValueError("A decoder batch must contain at least one example")
+        training = [instance['subset'] not in ['dev', 'test'] for instance in batch]
+        if any(training) and not all(training):
+            raise ValueError("Cannot mix training and inference examples in a decoder batch")
+        for name in ("max_source_length", "max_target_length"):
+            value = getattr(self, name)
+            if value is not None and value < 1:
+                raise ValueError(name + " must be positive or None")
+
         self.tokenizer.padding_side = 'left'
-        sources = []
-        label_lens = []
-        labels = []
-        max_len = -1
-        if batch[0]['subset'] == "train":
-            limit_input_len = self.max_source_length + self.max_target_length
-        else:
-            limit_input_len = self.max_source_length
-
-        for instance in batch:
+        bos_id = self.tokenizer.bos_token_id
+        eos_id = self.tokenizer.eos_token_id
+        sources, labels, sequences, prompt_lengths, target_lengths = [], [], [], [], []
+        for instance, is_train in zip(batch, training):
             label = instance['Instance']['label']
-            labels.append(label)
             instruction = self.get_instruction(instance)
-
-            # add bos and eos
-            task_input = self.tokenizer.bos_token + instruction
-            label = label + self.tokenizer.eos_token
-
-            tokenized_input = self.tokenizer(task_input)["input_ids"]
-            tokenized_label = self.tokenizer(label)["input_ids"]
-
-            # (input) for inference, (input + label) for training
-            if instance['subset'] in ['dev', 'test']:
-                label_lens.append(0)
-                if len(tokenized_input) <= limit_input_len:
-                    max_len = max(len(tokenized_input), max_len)
-                    sources.append(task_input)
+            prompt = self.tokenizer(instruction, add_special_tokens=False)["input_ids"]
+            prompt = ([bos_id] if bos_id is not None else []) + prompt
+            if self.max_source_length is not None and len(prompt) > self.max_source_length:
+                if bos_id is None:
+                    prompt = prompt[-self.max_source_length:]
                 else:
-                    max_len = limit_input_len
-                    input_wo_label = self.tokenizer.decode(
-                        tokenized_input[: limit_input_len],
-                        skip_special_tokens=False
-                    )
-                    sources.append(input_wo_label)
-            else:
-                if len(tokenized_input) + len(tokenized_label) <= limit_input_len:
-                    max_len = max(len(tokenized_input) + len(tokenized_label), max_len)
-                    label_lens.append(len(tokenized_label))
-                    sources.append(task_input + label)
-                else:
-                    max_len = self.max_source_length
-                    input_w_label = self.tokenizer.decode(
-                        (tokenized_input + tokenized_label)[: limit_input_len],
-                        skip_special_tokens=False
-                    )
-                    sources.append(input_w_label)
-                    label_lens.append(max(0, limit_input_len - len(tokenized_input)))
+                    suffix_budget = self.max_source_length - 1
+                    prompt = [bos_id] + (prompt[-suffix_budget:] if suffix_budget else [])
+            if not prompt:
+                raise ValueError("A decoder prompt needs a token to predict its first answer")
 
-        # TODO, support online demo
+            target = []
+            if is_train:
+                target = self.tokenizer(label, add_special_tokens=False)["input_ids"]
+                # Reserve EOS inside the target budget; never insert BOS in the label.
+                if eos_id is not None and target and target[-1] == eos_id:
+                    target = target[:-1]
+                if self.max_target_length is not None:
+                    content_budget = self.max_target_length - int(eos_id is not None)
+                    if target and content_budget < 1:
+                        raise ValueError("max_target_length must retain an answer token as well as EOS")
+                    target = target[:content_budget]
+                if eos_id is not None:
+                    target.append(eos_id)
+                if not target:
+                    raise ValueError("A decoder training target needs at least one token")
+
+            sequence = prompt + target
+            sequences.append(sequence)
+            prompt_lengths.append(len(prompt))
+            target_lengths.append(len(target))
+            # Decoding is for display only; these strings are never re-tokenized.
+            sources.append(self.tokenizer.decode(sequence, skip_special_tokens=False,
+                                                  clean_up_tokenization_spaces=False))
+            labels.append(label)
+
         if self.text_only:
-            model_inputs = {"inputs": sources, 'labels': labels}
-        else:
-            model_inputs = self.tokenizer(
-                sources,
-                max_length=self.max_source_length,
-                padding=self.padding,
-                return_tensors=return_tensors,
-                truncation=True,
-                pad_to_multiple_of=self.pad_to_multiple_of
-            )
+            return {"inputs": sources, "labels": labels}
 
-            label_mask = model_inputs["attention_mask"].bool()
-            model_inputs["labels"] = model_inputs['input_ids'].masked_fill(~label_mask, self.label_pad_token_id)
+        limit_input_len = self.max_source_length
+        if all(training) and limit_input_len is not None:
+            limit_input_len = (limit_input_len + self.max_target_length
+                               if self.max_target_length is not None else None)
+        model_inputs = self.tokenizer.pad(
+            {"input_ids": sequences},
+            max_length=(limit_input_len if self.padding in ("max_length", PaddingStrategy.MAX_LENGTH) else None),
+            padding=self.padding,
+            return_tensors=return_tensors,
+            pad_to_multiple_of=self.pad_to_multiple_of,
+        )
+        input_ids = model_inputs['input_ids']
+        model_inputs['labels'] = torch.full_like(input_ids, self.label_pad_token_id)
+        loss_mask = torch.zeros_like(input_ids, dtype=torch.float32)
+        width = input_ids.shape[1]
+        for row, (sequence, prompt_length, target_length) in enumerate(
+                zip(sequences, prompt_lengths, target_lengths)):
+            if not target_length:
+                continue
+            answer_start = width - len(sequence) + prompt_length
+            answer_end = answer_start + target_length
+            model_inputs['labels'][row, answer_start:answer_end] = input_ids[row, answer_start:answer_end]
+            loss_mask[row, answer_start - 1:answer_end - 1] = 1
+        model_inputs['loss_mask'] = loss_mask
 
-            # loss mask
-            max_len = min(max_len, limit_input_len)
-            loss_mask = torch.ones((label_mask.shape))
-            for k, label_len in enumerate(label_lens):
-                loss_mask[k, : max_len - label_len - 1] = 0
-            model_inputs['loss_mask'] = loss_mask.masked_fill(~label_mask, 0)
-
-
-            # --- ✨新增 --- 把 class_labels 加入 batch
-            if self.use_probe:
-                model_inputs["class_labels"] = torch.tensor(
-                [instance["class_label"] for instance in batch], dtype=torch.long
-            )
-
-            self._save_samples(model_inputs, sources, labels)
-
+        if getattr(self, "use_probe", False):
+            model_inputs['class_labels'] = torch.tensor(
+                [instance["class_label"] for instance in batch], dtype=torch.long)
+        self._save_samples(model_inputs, sources, labels)
         return model_inputs
 
     def _save_samples(self, model_inputs, sources, labels):
         if not self.input_record_file:
             return
 
-        loss_label = []
-        if hasattr(model_inputs, 'loss_mask'):
-            for loss, id in zip(model_inputs.loss_mask, model_inputs.input_ids):
-                loss_label.append(self.tokenizer.decode((loss * id).view(-1).int()))
-
+        if "loss_mask" in model_inputs:
             with open(self.input_record_file, 'a+', encoding='utf-8') as f:
-                for text, label, mask_label in zip(sources, labels, loss_label):
-                    f.write(text+'\n')
+                for text, label, token_labels, predictor_mask in zip(
+                        sources, labels, model_inputs['labels'], model_inputs['loss_mask']):
+                    target_mask = torch.zeros_like(predictor_mask, dtype=torch.bool)
+                    target_mask[1:] = predictor_mask[:-1].bool()
+                    mask_label = self.tokenizer.decode(
+                        token_labels[target_mask].tolist(), clean_up_tokenization_spaces=False)
+                    f.write(text + '\n')
                     f.write(label + '\n')
-                    f.write(mask_label+'\n\n')
+                    f.write(mask_label + '\n\n')
         else:
             with open(self.input_record_file, 'a+', encoding='utf-8') as f:
                 for text, label in zip(sources, labels['input_ids']):

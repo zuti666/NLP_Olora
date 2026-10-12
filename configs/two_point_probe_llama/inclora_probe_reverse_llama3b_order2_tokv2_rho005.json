@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "name": "inclora_probe_reverse_llama3b_order2_tokv2_rho005",
+  "method": "inclora_two_point_probe",
+  "model_size": "3B",
+  "model_name_or_path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B",
+  "order": 2,
+  "tasks": [
+    "dbpedia",
+    "amazon",
+    "agnews",
+    "yahoo"
+  ],
+  "seeds": [
+    0,
+    42,
+    1993
+  ],
+  "default_seed": 0,
+  "python_executable": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+  "data_dir": "/data/140-1/users/liying/O-LoRA/CL_Benchmark",
+  "instruction_file": "/data/140-1/users/liying/O-LoRA/configs/instruction_config.json",
+  "execution": {
+    "world_size": 4,
+    "global_batch": 64,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16
+  },
+  "adapter_geometry": {
+    "rank": 8,
+    "alpha": 32,
+    "dropout": 0.1,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "stage_learning_rates": [
+    0.001,
+    0.0001,
+    0.0001,
+    0.0001
+  ],
+  "formal_stage_updates": [
+    218,
+    78,
+    62,
+    156
+  ],
+  "optimizer_class": "transformers.AdamW",
+  "training": {
+    "train_method": "lora",
+    "lora_dim": 8,
+    "num_train_epochs": 1,
+    "bf16": true,
+    "fp16": false,
+    "bf16_full_eval": false,
+    "fp16_full_eval": false,
+    "ddp_find_unused_parameters": false,
+    "lr_scheduler_type": "constant",
+    "warmup_steps": 0,
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "max_grad_norm": 1.0,
+    "per_device_eval_batch_size": 4,
+    "max_source_length": 512,
+    "max_target_length": 50,
+    "generation_max_length": 50,
+    "instruction_strategy": "single",
+    "add_task_name": true,
+    "add_dataset_name": true,
+    "logging_strategy": "steps",
+    "logging_steps": 10,
+    "evaluation_strategy": "no",
+    "save_strategy": "no",
+    "report_to": "none",
+    "olora_lamda_2": 0.0,
+    "lora_strategy": "inclora",
+    "optimizer_type": "probe-adamw_hf",
+    "adam_epsilon": 1e-06,
+    "weight_decay": 0.0,
+    "ewclora_lambda": 0.0,
+    "olora_lamda_1": 0.0,
+    "probe_mode": "reverse",
+    "probe_rho": 0.05,
+    "probe_eps": 1e-12,
+    "probe_quantization_diagnostics_interval": 20
+  },
+  "reference_comparator": "Fresh same-seed decoder-v2 clean-gradient and SAM-direction controls from the same probe framework.",
+  "reference_results": "refine-logs/llama_reverse_probe_20261012/EXPERIMENT_PLAN.md",
+  "probe_definition": "g0=CE(BASE); g1minus=CE(BASE-rho*g0/(norm(g0)+eps)); restore BASE; submit 2*g0-g1minus to one HF AdamW commit",
+  "radius_note": "Independent global normalized probe rho=.05, preclip global mean gradient; SGD-direction control performs no probe. Final commit is AdamW, not SGD.",
+  "budget_note": "max_steps explicitly preserves the historical full effective-batch update budgets; no extra tail-window update is submitted",
+  "status": "planned_not_launched",
+  "decoder_pipeline_version": "decoder_token_ids_v2",
+  "data_pipeline_note": "Prompt and target separately tokenized without automatic special tokens, explicit single BOS/EOS, direct token-ID concatenation, exact causal target supervision."
+}

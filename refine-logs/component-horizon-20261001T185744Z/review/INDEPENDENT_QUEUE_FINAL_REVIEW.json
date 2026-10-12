@@ -1,0 +1,53 @@
+{
+  "status": "PASS_STATIC_AND_CPU_FOR_FREEZE",
+  "reviewed_at": "2026-10-01T19:37:44.583021+00:00",
+  "scope": "Existing-field/execution-safety independent review. No training/GPU/queue main invoked; no implementation or parent output modified.",
+  "implementation_sha256": {
+    "collect_results.py": "8d3d3c51392dcc88402fccf1808f518fb36b29b615259e69cbc0ceba6b14bd57",
+    "check_gpu_smokes.py": "930ad4d945013f8f5e9b3b6ec0473392037df6758d4f577ddf7cbf3cd3eef898",
+    "wait_then_launch.py": "3f67c549487bfeecd4d4890dce8370366b0ce34f9192617b2022a75c66b66b72",
+    "run_queue.py": "6d3ed54edc55bde5c0cb73b8015b8663694e415d9e25add2de5a8ee9dfe00676",
+    "job_worker.py": "658b451359124a72b3caaf4434d5cd6ea7f9612fdc50467e555edf73588f69c7",
+    "common.py": "a8b750e65b599445d97476a455cbd9f9fec94aab87b2f9023e6e1d0d17c16042",
+    "validate_job.py": "8a5e420e3b597c420d2e7bd3806178a0322807f6f139711d75bd49c14bcbfa34",
+    "prepare_manifest.py": "6f776acf99c287c2bd7e45d67fb4bd9b5298ef5c53cf45f25e7dd7be4f76332a",
+    "suite.json": "7c57b06f06dbf7837d1c94a743e33e5eb8cc7d27ed3ad2c2a9259d73d316ee8c",
+    "handoff_guard.json": "b96bf665ea57a47d4f7fe1874bb5a1863de86663b01697decdc5411c4d5adc4a",
+    "FROZEN_GATES.json": "f35f57d289a7c1687dfbb514b66fe2788723b2aca0ff3623e390104c8b16f982"
+  },
+  "suite_jobs": 25,
+  "smokes": 10,
+  "fresh_formal_horizons": 9,
+  "curvature_jobs": 6,
+  "parent_expected_jobs": 120,
+  "validator_cpu_report": "review/VALIDATOR_CPU_INDEPENDENT.json",
+  "release_cpu_report": "review/RELEASE_GUARD_CPU_INDEPENDENT_V2.json",
+  "release_checks": 18,
+  "release_negative_checks": 13,
+  "blocking_findings": [],
+  "checks": [
+    "collector receipt hashes/job-ID/zero-exit and recomputed metrics",
+    "9 fresh horizons before X selection; frozen eligibility/tie order; no automatic phase2/3",
+    "10 smoke receipts individually revalidated",
+    "paired Task0 initial parameters; both tasks frozen origins/new head rows/class slices/full input identities/nominal LR",
+    "US nominal scalar and own-counterfactual tensor identity each step; separate numerical cross-run checkpoint comparison",
+    "parent all120 actual completed+validated+controller exited before smoke",
+    "host PID namespace gate in waiter and direct queue; handoff/controller locks",
+    "direct startup and each launch verify current parent proof and non-smoke current smoke proof",
+    "GPU UUID inherited lease/idle recheck/nonempty output refusal/failure halt",
+    "reviewed Python ASTs parse"
+  ],
+  "conditions_remaining": [
+    "Deployment must RUN_PIN the current scripts and complete inputs; staging RUN_PINS was not yet present at review.",
+    "Production waiter/queue runs in host PID namespace; ordinary tool sandbox cannot establish host controller liveness.",
+    "Parent 120 actual jobs must pass and controller exit; this is not a completion claim.",
+    "Then 10 real GPU smokes must pass with current bound proof before formal launch."
+  ],
+  "scientific_limits": [
+    "Single-seed exploratory screening; no statistical equivalence or Hessian mediation claim.",
+    "Exact per-step US own-counterfactual identity differs from cross-run checkpoint numerical tolerance relative parameter L2 <=1e-4; not a bitwise cross-GPU claim.",
+    "Different directions need not share learned Task1 parameters; smoke pairing concerns exogenous model/data/head initialization.",
+    "Old g3 r.25 is historical context; fresh natural UFull is required for paired scale comparison."
+  ],
+  "recommendation": "Freeze current implementations and deploy host waiter, preserving parent120 and new10smoke barriers; no additional scope requested."
+}

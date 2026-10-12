@@ -1,0 +1,3646 @@
+{
+  "schema_version": 1,
+  "datasets": [
+    "dbpedia",
+    "amazon",
+    "yahoo",
+    "agnews"
+  ],
+  "orders": {
+    "1": [
+      "dbpedia",
+      "amazon",
+      "yahoo",
+      "agnews"
+    ],
+    "2": [
+      "dbpedia",
+      "amazon",
+      "agnews",
+      "yahoo"
+    ],
+    "3": [
+      "yahoo",
+      "amazon",
+      "agnews",
+      "dbpedia"
+    ]
+  },
+  "methods": [
+    "SeqLoRA",
+    "IncLoRA",
+    "OLoRA",
+    "TreeLoRA",
+    "EWCLoRA",
+    "FS-EWCLoRA"
+  ],
+  "fs_ewclora_implementation": "ewclora_gam / IncLoRA-GAM-EWC",
+  "sources": [
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/1-dbpedia/predict_results.json",
+      "metric_sha256": "c6b4d24dd4762fe20130bc6c06b83d0c0ced9413150b23a3c7a6403198a40380",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/1-dbpedia/train_results.json",
+      "train_results_sha256": "dfc18fd8d85a527b6ddc7ed9507c765c840dc08180ec8a61ea382c22cb0bc190",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/2-amazon/predict_results.json",
+      "metric_sha256": "6bfd1a603db151ab6854d38a30f7badbdb95bd2a8ab29910de6801f8a25ca3df",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/2-amazon/train_results.json",
+      "train_results_sha256": "9dc282c3566da82a4aace2f4e37e273f92264e23e79f37c14f7bde6f05f3d456",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/3-yahoo/predict_results.json",
+      "metric_sha256": "8fb2e411ff35b97af13948b4ae25418480e8cca3e007c17045a1d7fd3fda4df3",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/3-yahoo/train_results.json",
+      "train_results_sha256": "472ac09a4e3399c0eab72340574147fce3a613a2ebdfdd9419619431a48e6bda",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/4-agnews/predict_results.json",
+      "metric_sha256": "9a83c40f2f3d3b49a08f958b7e4a7742f5159fd8f3965e185eaa0fe6dddaa2b5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1/4-agnews/train_results.json",
+      "train_results_sha256": "ffc66c039c57944d563e8102e4b417dc747b16f53e5ad4e58ae39e46a1fd050a",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/1-dbpedia/predict_results.json",
+      "metric_sha256": "15ee2ca271bd4d7a86be172e0a57430fdd286fd982ab523dc070e153a89934ae",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/1-dbpedia/train_results.json",
+      "train_results_sha256": "1c0ab3fee53355a9952e573e8df42378bd67cb1da4afed00d005518351bffac2",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/2-amazon/predict_results.json",
+      "metric_sha256": "7bb7935ece7b49cea83a2390e230b5c75511e8575c95e6fe6bea1f296dbed937",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/2-amazon/train_results.json",
+      "train_results_sha256": "428f0d350019dbeb9419bcb92d748a5ef33749eba40ff881f2ad8a55d573466c",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/3-agnews/predict_results.json",
+      "metric_sha256": "ecaee09b57194f7e5c2341323ae108d11ce7091827adf85edd346b8127b80926",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/3-agnews/train_results.json",
+      "train_results_sha256": "f5d08772ca9fe0b2c6522ae24b6444dfa402ba373ef5f6a21a1dd8f3751d54e9",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/4-yahoo/predict_results.json",
+      "metric_sha256": "70f828ab12ebbd9d4f566e02e8950c6a020b132332c377b7c0f4f00afd63321b",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2/4-yahoo/train_results.json",
+      "train_results_sha256": "b19c2f930c1a2497f8c7cbdb484be025c67d8c6ddf579de9e308df6f729df639",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/1-yahoo/predict_results.json",
+      "metric_sha256": "4d8178f9a50e95fed79aa44346486278943e6f01fa2c21c6eb0b4866b59a4467",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/1-yahoo/train_results.json",
+      "train_results_sha256": "65724bcf3f881067b47c77824fec6040c54733e3e08d3ae4ce99a665177c819d",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/2-amazon/predict_results.json",
+      "metric_sha256": "810ffebf919070543614367e43de005aaccb239cb833d01a6a418343c2f22837",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/2-amazon/train_results.json",
+      "train_results_sha256": "03c298782492db003dd0310a5b0e68023a70bc763c564b2e187cb3edbd0136c8",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/3-agnews/predict_results.json",
+      "metric_sha256": "885a8d97d56bfc0b7ff4a2984bae123cf417f89f71853f073b1bcafc3d3e87b7",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/3-agnews/train_results.json",
+      "train_results_sha256": "33a5c73c3d4786986605dd17d06d7cb9e30e47f9f66fb8f416ab1b33a1105802",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/4-dbpedia/predict_results.json",
+      "metric_sha256": "b3a9dff4274c85e1d03e373d041b9f1d3e8a2807250c40128159ddf02179bcdf",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3/4-dbpedia/train_results.json",
+      "train_results_sha256": "44859dc6b96b54093a274c740be828a0ef5e7af6d0c4c84c2f24f9c799002586",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/final_results_bf16_b64_s42_ddp4_bs1_ga16_lam0p5.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/1-dbpedia/predict_results.json",
+      "metric_sha256": "37005269c15dff005b0aabe0ffe128d101ec773c20e4dd193ddecf12206db278",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/1-dbpedia/train_results.json",
+      "train_results_sha256": "f58ac60bfdeddffdb2e0338254c86186a42dad4514a345805fc9bf50d044aa78",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/2-amazon/predict_results.json",
+      "metric_sha256": "c6e70ce30e63a9c2db7f9eb70435d221a8f2d1c060dd8c627b251ccaa89dd5a9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/2-amazon/train_results.json",
+      "train_results_sha256": "2779d89f1ce31c5ee454d81c8daa1c6c464361f93393762f4be5ea3529d01228",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/3-yahoo/predict_results.json",
+      "metric_sha256": "384cbe8b95c9166e77e6cefb061695a9a0bf82d8c2677f9716e95f93c61d9bd9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/3-yahoo/train_results.json",
+      "train_results_sha256": "10e191086a84d475cc9054b53015b3048288d8e170a9cc199b25cd20282771e5",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/4-agnews/predict_results.json",
+      "metric_sha256": "84c21a3a74f6a6fa6a5d98fe534ff5020aa073f82096d328382db366c61f6412",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1/4-agnews/train_results.json",
+      "train_results_sha256": "3ef2e14f49aaee44448347f888e69ef4829e1523b3b635eb9c361ee3d8e9e57a",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/1-dbpedia/predict_results.json",
+      "metric_sha256": "3751f6ef6a5a31abefcbcdbcab5d6ff8a20a840d2bfc923fa9bfc21a6c125c29",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/1-dbpedia/train_results.json",
+      "train_results_sha256": "ada7096e987c5a2c1cc738c600841df0c281c1bfbd25e6962d861df70263c940",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/2-amazon/predict_results.json",
+      "metric_sha256": "51471ccb60bb93e3822b9faf8cc51e57b180d2c583886eef757a0e5c4586be94",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/2-amazon/train_results.json",
+      "train_results_sha256": "915ea14aa572e6814e5940f2221d02fc444173fc5c883f0b656cddcf98021fde",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/3-agnews/predict_results.json",
+      "metric_sha256": "e850503a4b3501a8aabe2bed73a1b13ebae241091f892092426151db73c63ac9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/3-agnews/train_results.json",
+      "train_results_sha256": "d5ef8618fccd190136b14c4cae35c213644b26f736527cc7f60f5b05348d98f9",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/4-yahoo/predict_results.json",
+      "metric_sha256": "371f5ee3b2e685deb76e714d2fc8cd3b8fcbbe35d6f838242b029de1cc28ca30",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2/4-yahoo/train_results.json",
+      "train_results_sha256": "c92feb83ba3760389357c90d4a0c67ff83ef0d5cbcd1aa242b60e64a5b0c827b",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/1-yahoo/predict_results.json",
+      "metric_sha256": "f71e2b7970370ad3f67450f3d040013dd12fdb69929ac37b6ef102fc7eeb2f24",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/1-yahoo/train_results.json",
+      "train_results_sha256": "d912a6d50d0454846928ba03fc2ae114d655e7ee2126faa4ea27ed2565cc2264",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/2-amazon/predict_results.json",
+      "metric_sha256": "f76dee7e212b6d2593a2ad8a0e8164c14cd3813f6ce050e650613c1c9a4faa45",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/2-amazon/train_results.json",
+      "train_results_sha256": "e45dc36410d7e179fabad8c2889bc6ad48c687965654e882cf534069abfb38fa",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/3-agnews/predict_results.json",
+      "metric_sha256": "e61da3d21c796b709d1d6b97ae442992f24f38e4300b4ea6c58422c3ad78fcef",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/3-agnews/train_results.json",
+      "train_results_sha256": "293c7df333a3772cfb6f43fb5eedeaedb9326ce7ce516c640c545e66ceb97e94",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/4-dbpedia/predict_results.json",
+      "metric_sha256": "10dcd351ac2a3b477898325ee6d569afbb9787af3b136dd68a5ecfdc0608e61c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3/4-dbpedia/train_results.json",
+      "train_results_sha256": "f907fefd8e79c73abc71b2c8a5a1fa420976078f257eab4736133e9a6b5a552f",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/final_results_gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131729Z/logs",
+      "seed": 1993,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "b7fbad4e3d73412a56550d456a6caa686f8f9675cee2ce39fea96c17daba8efd",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "99801d02546be963ebd8c1626107b413364d19885e72465f7c02020833c7698a",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "b3b929cb015a9e5e7043862df7437e760ac76dbbcaac28996d03b12cb2bb5db3",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "c89985323d5c0a0c056ce57d1b5424f09c8c8149bec55c4e43639a23db61bbde",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+      "metric_sha256": "765576ac064a55548f1d2a40b4825eb085de7d0eda2a1c47435139602f2a24d2",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+      "train_results_sha256": "eb88e4e039693bf1aec755559db6cea214f8f48ff2059a663f1899458d50c711",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "metric_sha256": "b891a30093fdac9bb7bcd2261ad48f1c4775e34e1b9a7998ae90e239b5f1de72",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+      "train_results_sha256": "3f7c7b81fdc62ae0e8be2f7a72228e0d12e8579a2b11977cb2f05907285553ad",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "96031bb29b3516cafec5df8f3dfaca5747e40715a30fdfd36c0fa1002104bf37",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "3b7e2efb937447fa30c01c4baaee227dced1bd11891e248f158452952a85e4fb",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "8b9b9a6aa6e9c82266e3cb0d2319c20872a200c70683bf8fbe921cdc0969c99a",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "b36e4b9a657e904214ecd31eea8ce4edc8337462a9bd6441fffd7da5ae667d5d",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "2ce0dbd0ee6f4568f4a22cadefc5af46b4301c456e54bcfaa53df9112519a2b5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "69e3a727b96b49755dbd1e17b3bcbf68fed7b641fe0cbd3c3093f905323858b4",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "metric_sha256": "03dc7e38d7e7dc842dbdce0f77edcd4c8d35719a71bcf45e4558e6919a9fad2b",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+      "train_results_sha256": "50244da1bfe6caa191b227b1cd6c179f41fd39c49be134f870e8fffb267840d7",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+      "metric_sha256": "c238d8655e551f0e8dcc90e1129b5135520805c4c2045b2f050bf789e40bed95",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+      "train_results_sha256": "99fd793e0f56da24a5d79fb8a4c292a623c37396443b874b173bd22cc7eb3178",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "c1e78da81664c28a63b240732d803a6d089f1e9524ba9c784c0cdf6223ca7bba",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "47b89a1c1213f579d6ab509133884e92ea2d1b33ad197f351a69ac746fcd6ba4",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "cceb8abb048c34fa1952b7e09f2e2a3b519261af34935b3e9c2f50067fec504d",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "826370023bbb368ec9dfe9f15e0d4e3e1f6cdbf8f81a9b9f18e69c5e6471a7a1",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "metric_sha256": "4d84bf2073ea8812dd915ee4b15fdfead905a794ab7dc2a2b24d95bffc226478",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+      "train_results_sha256": "08a17d9e0b90321b4c7c876ecc55b4cf4959aad131499f46772d2f625c808819",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/IncLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama1B/IncLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "0a9e09ec574ed472387b14ffc003676936705d020b9584f811682e76ba32464a",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "b303c74ab5eab997c14edc5bdf3a3bb1a15a56c31e437c29a1c3ddf6ae1ebe26",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "3426420bda563d18d80423af7a8e99fe179440759aec0375740c63171a4f1d3f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "19ccddf5df9054b48795226afd8e609d28cd880072ce62057c37de8c0bba07cc",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+      "metric_sha256": "4bde55ddd6b1779831c189807734a194de452497e550e20cf7320a972e4e3191",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+      "train_results_sha256": "1b76de4153fab6795239f9de9479254aa23956fea05a9bf18544ac28f1c8b38e",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "metric_sha256": "6d54ac0b266ac0a2f1000ed0c367bd05cce4cbd12e13d2caa94f9b0a399c2e83",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+      "train_results_sha256": "e02d257bcb65181ec6e80e8aebaf049602b224e8811510d3d8a844a660aca017",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order1_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "e822f684477482744ef7738bc1ed3b18f140cead6009d9705179a03f4557d883",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "b47b88dbd4b5e01f492cad1ffaf42abd598b78950adead1e56ac0d858f513976",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "8116849c14894dedbc2375d1c61a3db50880f67a86622628909dec2f4085a968",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "88570b053a9f992e95692de8ca47d618742e4b9ff79e23e99686c48d2077ab5f",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "c367356450d2da8638e4fc25a965bdb3deaafe37087e0cc2101d92c9ac2f788c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "eeb6d836f774619a39b44ba2d88f89fe5ec9c7bde56d90aab4fc8daad04b6ae4",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "metric_sha256": "ce0ca3dbe78ac547e5f4d762ca611171441d8045d3bde2518b1209c2aa3e95ef",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+      "train_results_sha256": "242dc900dcab61e4e8ac9994028b42892e2dc7f3fcc51a492a5ba7382a324a9e",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order2_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+      "metric_sha256": "94b027086b6a0fd38e9afc40b96a7c8a2977480041dcc2987cde4af4d1d62a3d",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+      "train_results_sha256": "b634fa83c3a901b9e675959a56f11705c4bd718d95f57066c16ab00aeb84bcb1",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "12dc24990ce9bef059dd1a7de158c71dde215beef85a014246dba2394b3de07b",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "83e897a067507931aabe625c8b3eb058af45dff69ce949d85b162a44d53fc3f4",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "b94ec7217116ede98e126f238cf4641ffecd0f6b2bd7a812e154340a903cf999",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "e152948a378ccb30b58f28f1ed3d8858f5d910454b5c57ed9680830a906ae9a7",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "metric_sha256": "0608ac7c3c6ae6a1675644564052dfd33c9c8b53408058a2adc5e6cd018101e9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+      "train_results_sha256": "14673e30732a728fb6731d6b5938cdb555b600ed2d08c5b545624f6a593d8939",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/SeqLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-1B_AllOrders_SeqLoRA/scripts_order3_llama1B/SeqLoRA_LLaMA2-1b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/1-dbpedia/predict_results.json",
+      "metric_sha256": "0d1f31fa5dee0b8231fe9db157fe8760d5ee1e61bc21429bd6b045cb7d3adce0",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/1-dbpedia/train_results.json",
+      "train_results_sha256": "b5129db3ed30590ad2a503f9840042c09b97e044fd4d9cdeb1d03bafdd2a6a81",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/2-amazon/predict_results.json",
+      "metric_sha256": "39c1c3353beb93271b3769bcab109c03e217af67224d16b1080ea64a90a228a3",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/2-amazon/train_results.json",
+      "train_results_sha256": "92b1b1b314cffdb205ff3ecddaa0d9a40be9adc282163baac12488d072664c67",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/3-yahoo/predict_results.json",
+      "metric_sha256": "ae0da8be04013987e86cf095ca819c2a6895fc494fbc96c9f4edb49b3c84c8b9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/3-yahoo/train_results.json",
+      "train_results_sha256": "0dde2460d7850f2e7c243c2ed02a412fb83be97a89e5a89487bbe4bcbf1a7c6b",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/4-agnews/predict_results.json",
+      "metric_sha256": "33c01ff658263dfd356a4a5b0e87246384e6e4504d7479e2cc0a8b04b59ba005",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1/4-agnews/train_results.json",
+      "train_results_sha256": "2a5181db280bfe5f3c8f1ca06e8d9d2960ad6362fa84e200b7d03d4ece925150",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/1-dbpedia/predict_results.json",
+      "metric_sha256": "2b2c3da317ba9dc118ef1e3fa9b54fa7d1d8448ca92263b05553a347bd0b936f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/1-dbpedia/train_results.json",
+      "train_results_sha256": "ef390c3e2130854c3e08f8a9adaf65d1af69b4dc83a606628f19e8eb165f6b33",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/2-amazon/predict_results.json",
+      "metric_sha256": "623d2a96634dbe345555d3a12ce84af6679b0a15c03614c4741a9f4d9fc17aa8",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/2-amazon/train_results.json",
+      "train_results_sha256": "875f9b62e686d687cef1bc74581af37fa688eab8751eb38f3d1c9795813b6f35",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/3-agnews/predict_results.json",
+      "metric_sha256": "ecb9d30e719d9ad29a81ed147269f8de6467dafadaa577fa745bebdfa6a0ec7f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/3-agnews/train_results.json",
+      "train_results_sha256": "327b27c991b19b319372e253754d650f595e8f98e21429cb0c3c43de301693b2",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/4-yahoo/predict_results.json",
+      "metric_sha256": "53f8359313420b0d748f983c6af789e4c76f4e240f3af12c24e25064c57daa4a",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2/4-yahoo/train_results.json",
+      "train_results_sha256": "3a82717daf58381fa5cc6727c2504e29fbbaa9e0133187f679b5242138064dca",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/1-yahoo/predict_results.json",
+      "metric_sha256": "2b34848e35289f1f2bbb5e335b19ddb6f240f5ee97fae1c47b810d313a1f80c8",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/1-yahoo/train_results.json",
+      "train_results_sha256": "e922c9c0f48e3c7edecf3fc97dcb034f69889ef41bfd78dcf64a1f0fca36de71",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/2-amazon/predict_results.json",
+      "metric_sha256": "2536cf0863cbe73773ebcb844730badfd1713a912e3edf9dbea33d95e65f4b22",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/2-amazon/train_results.json",
+      "train_results_sha256": "bc2318c7c0ee86d3e468305f40884bb8dab09bb61177f37951f58a227cdfd615",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/3-agnews/predict_results.json",
+      "metric_sha256": "7a3d3caf424097e51ed6f87f16b727d42ed459ad0d518b75427fcbda1246d61f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/3-agnews/train_results.json",
+      "train_results_sha256": "3d4d80465a864be2c17820d92c342bc2673cc058019af3825b69d76debfae63c",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/4-dbpedia/predict_results.json",
+      "metric_sha256": "14e8e2f7e0a386bb35e7ee565524e0e419f42425f63659017035f963e8b5968f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3/4-dbpedia/train_results.json",
+      "train_results_sha256": "d9f227f84978c3f36d58020e9426e58e4dbc853ef94062e4f9852e492efa41de",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/predict_results.json",
+      "metric_sha256": "5315129186a4165769ddc6b4930eb16da42779b6f5c353ed74d449d715f898c7",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/train_results.json",
+      "train_results_sha256": "83368f9584fd41b1fd4356daf7665c395d8b8ecc69728912980151cfeb77c1b2",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/predict_results.json",
+      "metric_sha256": "e521b10406d9abea824bb24fe6517d270c44f0a6e655a4eac8d954cc0bff08ca",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/train_results.json",
+      "train_results_sha256": "22d7c71939fad6dd8b5c2af046460741b4ca45975aa5214e7b69ae70c2bc958a",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-yahoo/predict_results.json",
+      "metric_sha256": "818effd68883468a362b9549e253eabc76420d757ef34619c7b1c7a5a74e5a5c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-yahoo/train_results.json",
+      "train_results_sha256": "55f08fc89df5558a47439a7b1a49e17402feaf969e6a8ec095ea292eef2d4d28",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-agnews/predict_results.json",
+      "metric_sha256": "d6f97d29dc52e8e323c93cd17ecc8cfef9c40595010508670e28102a25b88bf6",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-agnews/train_results.json",
+      "train_results_sha256": "9fa8e9d72c6caa388c5c6338e1bcf7e64eeb8974484178f0a46c0bafdc6188f7",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/predict_results.json",
+      "metric_sha256": "726b3c955b9074d1da78082a3414d9bb222325ad9adead3b6e41c110b89233b9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/train_results.json",
+      "train_results_sha256": "4aba1c76934e2ae2a2b832eecc2d854483c32083f57009bda595a940a271a202",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/predict_results.json",
+      "metric_sha256": "96de2eff2d0b06a83c598363579467dfdb12cfc3b5d8a2ba73192c57b7b358f2",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/train_results.json",
+      "train_results_sha256": "5bf934ff96bbc7280625afc8af0de9c51be49027e4e6eeb845a06b13e666a553",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/predict_results.json",
+      "metric_sha256": "2924f1cd9eaa604da637321e2903ff6bf6ca12b18344149b8ea3c090c80631f5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/train_results.json",
+      "train_results_sha256": "cd312b865fcdb8ae68cfcbf1fdd8d0ec2374ff2117e5913dbfe2cf689f06e0d1",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-yahoo/predict_results.json",
+      "metric_sha256": "53e3fc99161cd91003d389f1b9441e2599eeb0529309a580f21fc76224d0e9f5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-yahoo/train_results.json",
+      "train_results_sha256": "be2eb851849a57f8cde2c534599d568c924b91512a673cb927051f9c8838a899",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-yahoo/predict_results.json",
+      "metric_sha256": "deb334a150985aaa77d2a5bbe1575c6cc45df2892d90ef59751b13b270fc983c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-yahoo/train_results.json",
+      "train_results_sha256": "8fc3053c6a0eb9fb7ccf67674b6817f5b5c53879eccb82eabd38eeaa78941fdf",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/predict_results.json",
+      "metric_sha256": "b51be9e8746251c57d1ec869d6cdf7db63a9341e4aa18577498e77ed5cf7feb3",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/train_results.json",
+      "train_results_sha256": "500aa84b581814f2156e4fe3f9dc3bd2454e18668feef5c215dc02d6f9e82b2c",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/predict_results.json",
+      "metric_sha256": "70188b9bcab5b73ed9f50530f60a6391dc507d4d7ef7f8305a87c1621ac29cdf",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/train_results.json",
+      "train_results_sha256": "69450a4201c88722c916c69e1c7a47847fb2bb9989da228b40b0208e5916fe5c",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-dbpedia/predict_results.json",
+      "metric_sha256": "2bc979bb3c99d6e6cce34150235292a8ad0994a8bc9652325a9a19798676a1c6",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-dbpedia/train_results.json",
+      "train_results_sha256": "e5f192f46d58fab29872d8cb7757ad32df587ae12153e21bfb89664e6df33519",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/predict_results.json",
+      "metric_sha256": "37f99280668aa79ca9fca0c56d687b8894e5da8663520c7846f1ded5c88b67c9",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/train_results.json",
+      "train_results_sha256": "35019722f6b1772776f12551b7b08011e17d3c35481bb7a52f2aaf94ff327cf8",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/predict_results.json",
+      "metric_sha256": "04f7cb7282fa0ea76ad7bcdbd31af0a9fb0ff7fc289a81a2bf5ad08d65092a5c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/train_results.json",
+      "train_results_sha256": "87ce1ea533be6bf0d92a9b43ae50d374dd9cd5e71aa15255df09364147c95da2",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-yahoo/predict_results.json",
+      "metric_sha256": "82666ce8aa94f2ca54c13015f31049fecdf3ab0cca60bfb132261d803996bf27",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-yahoo/train_results.json",
+      "train_results_sha256": "8e508bbd5eb0b58601abaf377acdc029afcb7056b30766c8d026c418905edea0",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-agnews/predict_results.json",
+      "metric_sha256": "e7e043961d38f6ce38cc57f4884686f1f24d377153a8cded3d44ce5f8d9dd90c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-agnews/train_results.json",
+      "train_results_sha256": "fb3eb962b690c5af440fe90339ce99ade1783a26fea3ee1a057257a3f090c136",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order1_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/predict_results.json",
+      "metric_sha256": "f3f3b1761a2abd831049adf3c00557c76e5df312ad630ed73608d0ece227afc7",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-dbpedia/train_results.json",
+      "train_results_sha256": "df5f01dbd95da3a3421812c88b8d60a6295aae3ca60ff3aeda6a5544437648c4",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/predict_results.json",
+      "metric_sha256": "226a2a31a499ec121a49793fe8ece9534b8acb4c0d319362bcb36240c91a8c17",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/train_results.json",
+      "train_results_sha256": "aebf61847d5c40f0d2e0729d7d12cc52b17e3c30456ac7b8baaa83b70076001d",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/predict_results.json",
+      "metric_sha256": "ba10445a65a3803b528f063e6a8bff497bf9301898961b35d7d6fd6625d7ef18",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/train_results.json",
+      "train_results_sha256": "017396a324fdf2fc57cf0d91e1fac75e939203e84be491713c0beb314593e790",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-yahoo/predict_results.json",
+      "metric_sha256": "bfe93313bbefa82e48439f61eb33f07cd8b62e1fd8705ec0667d01826583d2c7",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-yahoo/train_results.json",
+      "train_results_sha256": "62fee3360f3c16f68936233450ae89043f9b064c375f19673e83935171d93751",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order2_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-yahoo/predict_results.json",
+      "metric_sha256": "5e17ff7b6ad72c31d125cedfbc086e5137c377d2bc901ef95beb042560146660",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/1-yahoo/train_results.json",
+      "train_results_sha256": "e007807788174c2a1ca0a94055ca8f983c1c2e6dda09c0c9154832f0a1af6354",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/predict_results.json",
+      "metric_sha256": "ab1314c91990954aa93986f5bed34d2564b48fabe28804d299f64f584365928c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/2-amazon/train_results.json",
+      "train_results_sha256": "5987f22fa513c88a527fd19b72b031e3384a574ce4b7fd1d296bd6a9e423f113",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/predict_results.json",
+      "metric_sha256": "eda5de8e3e9d8f538f2f5002ba4cf682d8773616284d152bfd75bd2a9fdcfda0",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/3-agnews/train_results.json",
+      "train_results_sha256": "a62aa944037597ba081ff9ad81c7800a5c6152a5e497a179ad8286bb857a67d4",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-dbpedia/predict_results.json",
+      "metric_sha256": "add6e72f0f3693c7fb16f1169d6e1eca6904dea01263aa3750253ba7480d3a78",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-dbpedia/train_results.json",
+      "train_results_sha256": "322bf0c00154f7928b105a454a30cdbb1a0947568f7cefe32cc89032f66c23da",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/EWCLoRA-GAM_Llama-3.2-3B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_EWCLoRA/scripts_order3_llama3B/EWCLoRA-GAM_LLaMA2-3b.log",
+      "seed": 1993,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "35bb8c42da2e8af24c46fd5c7babefc41c4230cbb3ac1aacc67dd28a7f4ba8be",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "08d767c769e69cacac1bf4ac7640ab4914a7dc6cacf6f951ea21d4757428f4f8",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "644d710897e5240f7dab5799ef553f7dacd646ce54a2a0b3fe6f43f14f1c6caf",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "78a20ac147c42e47d741b0482b38949807ae381e317e63f2ca70e93bde623c16",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+      "metric_sha256": "df7899f0a311f9702cf450d0eeebd9738b225b3e31e1a52374563f5b735ecfa0",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+      "train_results_sha256": "cb7b7574bf04d72e0b734856c9a4ef0cc7d1c8362fe07cb4978b64f6c46e6a88",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "metric_sha256": "8aff689918e00d282e85bdd946f4d8bbeca6f7a4b9dfccdabc9dbbd6a209d683",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+      "train_results_sha256": "aa53c87f37f399021f02cc821de1ebb911ca69dd4536b2472482b7ae80423a95",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "7262e2cb3f901b5daacca1443d8eddcccb5751b27db45b59f002d3c0ab5113fd",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "ed263d4b4a61ba266fcab002bfb276d12be593f328a91c516f5cf946d89376e8",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "2962475941a1d3a97a4fb2828492053177cd902cb4a7c09e491edd180911dd9f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "ec654b90c75e086cf3951c1a650b55109fa9c5a12fe4e963f6e7061b30362091",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "b1700998dcc396ff3d362d67e011329aee6c433cb3380025284806481a07a39c",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "f271bf88f3155798e1916b05062c962112ca3a1c76ef5e8e3cb2cbef576b7048",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "metric_sha256": "19830b704ef148f477dc99d9ca9013187961a743ee283380596076aa8486cad4",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+      "train_results_sha256": "46c68a95cefd4dab200eb6061dd7ce04c81ac6459a40b3ed3f49a187e64a5ccc",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+      "metric_sha256": "8abda3bf51aa68feb6804488408bd9a7d857330a5ebdcf02e5fb2b3531291056",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+      "train_results_sha256": "44b60486a28f1f24547a82a747c3095b82a49a47ab879771496f05d8c4795405",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "d0b515c05b5b38403952d69e54d72e9517a86d66baa54e79d843605a43b88b69",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "dffb9616bb09dbe2335138f47eed24dae08066a05ef9646a1b07beb45bef037e",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "fda61f9a884015e739b2a84d7191fe97ac343364f26b63a310e56041436dc365",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "38c034a053c3744a4f7361207312af7b69e7135ab49bb170fa9918578be99695",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "metric_sha256": "f66bb6932e6bee6d036c49a5f887ea6fbc925b730c2b4ef79cf7deb1246d29f2",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+      "train_results_sha256": "ce80e38fc43c8dd7712a546b35d44cbf75d2b5cc8b7370d8d7bee1c0daf15b4c",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/IncLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/IncLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "5aec4506404f885de53e69083578f0f588f146a51b48ae57a0f354d9933e26ea",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "036f59312cc9484bd6b0494749f5f7f16e8974764f1ef90e9939668f1b6fa96a",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "1493a074ecda88db82f2c118ad34196bf1c871d03a5a0ae4f4fa5cf7df0c095f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "64615fc06741c5efffab65c6d6183eb565c2ff79cb66d6d15d3ca21c45d178a6",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+      "metric_sha256": "bc27d916be0c728e2c3759a7617851498f04410fe1c9ad468eaf30d25fda323b",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+      "train_results_sha256": "8e54f2fe86092b5d90e7cc260264ad382c8abb962d4ae462f0595a0be094f0ad",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "metric_sha256": "f9f55a62c19dea639279ec250a0496f0357ddb44a842dc18896faf6576fc6f5e",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+      "train_results_sha256": "a273527009232439fda5e7296df57d9d50e1e466156fd96cc2e0d56def360b2f",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order1_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "7b667ea6cdfa3f1725ecb67fd49e1259461cc6b96b0738830cc69d81ee4f03d1",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "021ef33b9e3187f7fe2be72a7da21d4fd6e3a4b76d780896522abbf7cda78454",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "a8307174a84f758dd7104a4d1de3d6db7fc3399b70ab55b0c1f6445430be29b5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "b1728c367bfb3683d20488a43881b4fa9943b84d259b84e9cf31ff1b05aafe72",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "b2b8a9c95aa918a327127e586bd5b835a06053e4733d790a641b1a4774e7335f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "a228a283c80612a17262c64bd419f606c272c39df51d45e05be6f05e1cd6a6b7",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "metric_sha256": "cf8b31161b7d4dd9a762018cdb6262f4d27774127a26868af5114f9d6feef2f2",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+      "train_results_sha256": "11513957c7ef2f68eee3d292cceeffc8b0611e1e7d81a1d4ec210b696b5a50e5",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order2_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+      "metric_sha256": "51a405e1c9a33ca617988628544f3839d27d95db71af450069d9714ab33cae96",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+      "train_results_sha256": "6d2dd73aed55dbe6cde409642b80c516c8a339a911f10ece27d8729bfb6a6ad0",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "dec5e3e7260061689105e387cbbea6489eea54b522948884097fff0bb1d0a97f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "df644ccb493c275cc9d683b2759ed694647b7b04bd69f6992125f2bd9df58b32",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "9ced4f6609674ee8c878e2062c4fddcd323bf3b7ff32ad28cb7eadf9941d2c45",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "263f8d1fed18e86cfcefc2e2feb49887de3583c94fb6b273b497c66b05b4e2a5",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "metric_sha256": "ff5f0687dd2ff43242cb33d07a313ddb2df12144ec02789a2445810a39eaa6ad",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+      "train_results_sha256": "751c97e1a46c1d3f2dfefe877c7dde09937a67b05ebf098b76a105688515c577",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/OLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_IncLoRA_OLoRA/scripts_order3_llama3B/OLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "d9001b3db1198c5c5e6f8e19d5763bf764786421cf6b78b0856afe32cc8a66ec",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "9c456f9aac11ed91818f2753af6419ea89e1527db7987554e1b5bb9e0188d464",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [
+        "agnews",
+        "amazon",
+        "yahoo"
+      ],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "1bbeeca325eb5f5ab2b4f460dc191528b29a68e5397139036d4926ef6e756199",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "82a3ca5cbf8a54d4609df503a907c73519f152f343caa4233cbfa40b56ff63f4",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [
+        "agnews",
+        "yahoo"
+      ],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/predict_results.json",
+      "metric_sha256": "d96683791a70b8df6a78f39ba1b3373b0dd2dec1fd53593f35368ef9cf08bbab",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-yahoo/train_results.json",
+      "train_results_sha256": "5bbc24230dea5e39530ae67e8ccf78e10dcc89bed142885742507dd9367a38ef",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [
+        "agnews"
+      ],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/predict_results.json",
+      "metric_sha256": "2f50e1f25acdd90d1bd1e7a2b2ccddb8b6498b00c85cf9e43cf569ad3ef75300",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-agnews/train_results.json",
+      "train_results_sha256": "edac7894a8ce3e1ba65947c2e25686c06d3b9f6ffb0ff3d98740e218a03e9429",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_1/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order1_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/predict_results.json",
+      "metric_sha256": "16ecf3b602a2c01baffb7ffc1a33889c40abef820f7294f9e71c4f108dda2396",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-dbpedia/train_results.json",
+      "train_results_sha256": "1c1eff3e610b17e93989f282df640c8db143d630e4b6942b310cd8650ab6c9c7",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "96c97626ccf9b7b11ed38f60e7fa98a2fa923d23f89096321804b5277c4bba7d",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "397cbc1e43f0d78f0aeb9d2fe39c492f86e4a620720de0dfbe87de2731851ab6",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "bcdd1ff86f75a0c2e62b90be9273899f8d684d941f41dee63dd5aded98aa8638",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "a47d2853e8e676ad8fbabdd97cae953a3c2ae1bec18d169f24b31b838e859986",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/predict_results.json",
+      "metric_sha256": "1dc06cfa891ef41a980397f7543c4641dcb2f5237c31c778916364cb4a1826ab",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-yahoo/train_results.json",
+      "train_results_sha256": "0c10fe35285d7f250144d501aa2cb140be4ca46577d72fc525d25904b687dcc2",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_2/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order2_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/predict_results.json",
+      "metric_sha256": "0dcbeb066990fceec2673513156cf811cd33f2370d70717bc31c82dc71411f1a",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/1-yahoo/train_results.json",
+      "train_results_sha256": "4f7f5bb9c2bad2d59a79868f7e6ad2480db143732ba9d62d50746d8d975b3c28",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/predict_results.json",
+      "metric_sha256": "27d0c777d60808e130679c96656d4be31758a783290505f0dcc293759d0725dc",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/2-amazon/train_results.json",
+      "train_results_sha256": "fa71d8a4175c12958ee5a322ec8b2f97933995f40303ea9f76364e5dda77566b",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/predict_results.json",
+      "metric_sha256": "f773d0b343a540e60c78b043cdcf2ca780ea3e7621f9a7c76004d77cd78ba5aa",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/3-agnews/train_results.json",
+      "train_results_sha256": "4e2dc8cb3efe200c43d550df37d32ce48f7722adb842008971f2c85f4c97bc1a",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/predict_results.json",
+      "metric_sha256": "5b08984537916ad387722e0e43d97c62b2026af3dd2c8946b5f2ad9e1a675240",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4/4-dbpedia/train_results.json",
+      "train_results_sha256": "016f9cdaae4830e6a12c251263b2caf99659bfba6395fe62e6cc81e73d3824fe",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_3B/order_3/SeqLoRA_Llama-3.2-3B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4",
+      "final_summary": null,
+      "logs": "/data/140-1/users/liying/O-LoRA/Logs_Scripts_Short_Paper/Llama-3.2-3B_AllOrders_SeqLoRA/scripts_order3_llama3B/SeqLoRA_LLaMA2-3b.log",
+      "seed": 42,
+      "world_size": 8,
+      "ga": 8
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/1-dbpedia/predict_results.json",
+      "metric_sha256": "60184fd0a67da5d0000ad9e5546845f7dfeadcb8347e2825d7afa438bfb6e793",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/1-dbpedia/train_results.json",
+      "train_results_sha256": "a281f27f8706b89a83b9fe5965de06cf618dd793e50955c9c5b2c96cea1ac859",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/2-amazon/predict_results.json",
+      "metric_sha256": "580f401dff97906caacdd68f79381b64842649857ed48c352d354472290764d5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/2-amazon/train_results.json",
+      "train_results_sha256": "c0e07beeb757fcab952174383d0d60a55c7b7607787f8f8bb1e0e52378415437",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 3,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/3-yahoo/predict_results.json",
+      "metric_sha256": "40a99bbc8f219e20f52dc0f61ded57775e77cb6690c5b1c960f6b96f9634b73f",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/3-yahoo/train_results.json",
+      "train_results_sha256": "e5cd5142081ddb5e403d5979428c2b7db7996b377d23a773940a27e240dea490",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 1,
+      "stage": 4,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/4-agnews/predict_results.json",
+      "metric_sha256": "68aa2f7f4fea633c107b2edfd8f50cffe37b416323790472ad250ceb6ee396a5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1/4-agnews/train_results.json",
+      "train_results_sha256": "a72c878d7c6fb9f46d9b8a84e92647be0d26e146871a5add2ed7c476e661f624",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_1",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 1,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/1-dbpedia/predict_results.json",
+      "metric_sha256": "35ed0675b9a1e474c5b2f0b6dce9075403c40b4edfaf944dd1574519ab9a4aa6",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/1-dbpedia/train_results.json",
+      "train_results_sha256": "44c39dd80998836668a5a3437bdb0d3285db279b4b68782429b3182f6e2cdaf8",
+      "measured_datasets": [
+        "dbpedia"
+      ],
+      "plotted_datasets": [
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/2-amazon/predict_results.json",
+      "metric_sha256": "b5a2606bec2896412543f7adae13b018d1e6fc26cf75eb8453b0ad7b769a6cab",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/2-amazon/train_results.json",
+      "train_results_sha256": "3765d1d6f1f6c643d0d7ddca56d5df88dfb097c71922b4f52d13d1fd84f2eead",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/3-agnews/predict_results.json",
+      "metric_sha256": "84df94a5f52a1462ff75f3a6df00cb85d3b66aea1dfd4dee5603942fa58ef7f5",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/3-agnews/train_results.json",
+      "train_results_sha256": "8d66142da351b44950e4a737a392513c0a822b7372278a04d9f19ed2a05d2cfc",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 2,
+      "stage": 4,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/4-yahoo/predict_results.json",
+      "metric_sha256": "6101294126e038ee03af6cad821b2ea63ff2929af6c71fd879a59e2e316f38aa",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2/4-yahoo/train_results.json",
+      "train_results_sha256": "6792015e59a80b6e60cde9db0b6cb47eac53ab777e59e4bcd2a72ea52b8a4ace",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_2",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 1,
+      "trained_dataset": "yahoo",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/1-yahoo/predict_results.json",
+      "metric_sha256": "fa3839e693e54ab0a9345f9ef5600d45cbe7fb962fc42a808e32331cd9962010",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/1-yahoo/train_results.json",
+      "train_results_sha256": "b1ca506b98014ebdc14308acf0999e18e026c6f8da10f17fde1b9ce2e86b2754",
+      "measured_datasets": [
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 2,
+      "trained_dataset": "amazon",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/2-amazon/predict_results.json",
+      "metric_sha256": "7733d81a507a7645b5a162b77a969b1bd18701ca76aa97ec8aab7054e42058ee",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/2-amazon/train_results.json",
+      "train_results_sha256": "5d84c07f8d91e8cac2a50e5fc9369fac1c52ecf2c0f8a4f728ff3766d5a0cbc5",
+      "measured_datasets": [
+        "amazon",
+        "yahoo"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 3,
+      "trained_dataset": "agnews",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/3-agnews/predict_results.json",
+      "metric_sha256": "8fe0b59c34ef8fd2471758f79d8bfd92375932d2ccfd1bca5b6bb0a1e38f1e38",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/3-agnews/train_results.json",
+      "train_results_sha256": "d0f84f3ba585c71afbd03dc0282192d1115da65e55792f99a2fb1afb11909468",
+      "measured_datasets": [
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "order": 3,
+      "stage": 4,
+      "trained_dataset": "dbpedia",
+      "metric_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/4-dbpedia/predict_results.json",
+      "metric_sha256": "c83f84b6e88c8063cd975301148e7c28ab7f43d7f01e5292b360e6d6370f3a9d",
+      "train_results_path": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3/4-dbpedia/train_results.json",
+      "train_results_sha256": "9b0436249feb327d6ce70a2d2bff659cf49c7aee3dbd8e455106555eb3011353",
+      "measured_datasets": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "plotted_datasets": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "masked_unseen_datasets": [],
+      "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/full/order_3",
+      "final_summary": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/final_results.json",
+      "logs": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs",
+      "seed": 42,
+      "world_size": 4,
+      "ga": 16
+    }
+  ],
+  "missing": [
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA",
+      "order": 1,
+      "user_reported_faa": 56.96,
+      "status": "No matching training/result source located; excluded from all curves and summaries"
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA",
+      "order": 2,
+      "user_reported_faa": 55.74,
+      "status": "No matching training/result source located; excluded from all curves and summaries"
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA",
+      "order": 3,
+      "user_reported_faa": 67.32,
+      "status": "No matching training/result source located; excluded from all curves and summaries"
+    }
+  ],
+  "metric": "Normalized exact match (%)",
+  "replication": "One seed per method/model; orders are not independent seeds",
+  "exclusions": "Unseen datasets are masked even when historical logs evaluated them; SC/TC aggregates are not dataset scores",
+  "protocol_note": "Nominal batch64; seed42/1993, DDP4/GA16 vs DDP8/GA8, optimizer defaults and adapter budgets differ. See protocol_configs.csv."
+}

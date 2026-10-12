@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Fine-grained continual learning under documented configurations. FAA and stage-averaged AAA are percentages. 5Datasets is the cross-dataset task stream. All entries are single-run results.}
+\label{tab:exp_fine}
+\scriptsize\setlength{\tabcolsep}{2.2pt}\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l*{12}{r}@{}}
+\toprule
+Method & \multicolumn{2}{c}{Aircraft} & \multicolumn{2}{c}{Cars} & \multicolumn{2}{c}{CUB-200} & \multicolumn{2}{c}{Flowers} & \multicolumn{2}{c}{Pets} & \multicolumn{2}{c}{5Datasets}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}\cmidrule(lr){12-13}
+ & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA\\\midrule
+Vanilla LoRA & 40.66 & 39.51 & 28.52 & 39.41 & 57.79 & 70.00 & 53.05 & 66.90 & 64.12 & 72.83 & 66.80 & 68.81\\
+InfLoRA & 40.96 & 41.23 & 34.34 & 42.20 & 60.61 & 70.60 & 60.06 & 72.98 & 62.18 & 70.40 & 77.75 & 77.02\\
+OLoRA & 36.10 & 37.81 & 32.85 & 42.30 & 62.38 & 70.17 & 48.90 & 64.26 & 59.52 & 68.01 & 77.58 & 74.52\\
+SDLoRA & 25.96 & 26.63 & 34.89 & 43.28 & 62.01 & 69.52 & 49.05 & 64.59 & 59.45 & 68.08 & 74.42 & 74.10\\
+CL-LoRA & 29.28 & 26.53 & 34.51 & 42.17 & 78.29 & 80.88 & 97.82 & 98.33 & 90.17 & 91.92 & 66.98 & 61.99\\
+EWCLoRA & 40.21 & 38.94 & 29.54$^{w}$ & 39.74$^{w}$ & 60.21 & 69.97 & 48.45$^{w}$ & 62.42$^{w}$ & 64.17 & 71.09 & 73.87 & 73.07\\
+GAM-EWCLoRA & 46.66 & 43.65 & 51.74 & 55.44 & 74.22 & 76.47 & 86.75 & 91.76 & 78.82 & 83.00 & 83.37 & 81.16\\
+\bottomrule\end{tabular*}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\scriptsize
+ViT-B/16, rank 16, batch 128; checkpoint identifier: augreg2\_in21k\_ft\_in1k. SGD base optimizer, zero momentum and weight decay, cosine schedule, no replay, and fixed class order. The five individual datasets use 40 epochs/task. On 5Datasets, Vanilla LoRA, CL-LoRA, EWCLoRA, and GAM-EWCLoRA use 30 epochs/task; InfLoRA, OLoRA, and SDLoRA use 40. Seed 0 except EWCLoRA on Pets/5Datasets (seed 2). SDLoRA/Aircraft uses LR .02; the other Aircraft entries use .05. EWC coefficients for Aircraft/Cars/CUB/Flowers/Pets/5Datasets are 200/2000/200000/2000/200000/50000; GAM-EWC uses 2000. $^{w}$Historical EWC with an $\alpha=0$ two-probe wrapper; the other EWC entries use native one-pass updates. CL-LoRA is an aligned port retaining shared/specific adapters, distillation, and its prototype classifier. AAA averages task-macro accuracy equally across stages, rather than averaging all lower-triangular matrix entries. Historical data, weight-file, code, and RNG identity are not fully certified. These results are not a strictly matched component ablation or an equal-budget comparison.
+\end{minipage}
+\end{table*}

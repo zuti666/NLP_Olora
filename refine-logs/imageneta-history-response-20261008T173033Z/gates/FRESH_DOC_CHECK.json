@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-10-08 17:51:28 UTC",
+  "verifier": "fresh_minimal_context_agent",
+  "scope": "literal RUN.md invocations, without installation, environment edits, training, or execution/document edits",
+  "documents_read": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/RUN.md",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md"
+  ],
+  "relevant_environment_ledger_entry": "2026-10-08T16:01:45.833630+00:00: ImageNet-A midpoint and terminal interaction execution",
+  "environment": {
+    "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "warm_reuse": true,
+    "canonical_hash_as_documented": "4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+    "installation_or_environment_change_performed": false
+  },
+  "checks": {
+    "cpu_10_tests_passed": true,
+    "config_matches_documented_expectations": true,
+    "actual_host_queue_dry_run_matches_documented_expectations": true
+  },
+  "source_and_immutable_pins": {
+    "status": "PASS",
+    "witness": "Successful exact documented run_queue.py --dry-run; RUN.md states this validates 190 source files and immutable hashes.",
+    "independent_source_reads_or_pin_mutations": false
+  },
+  "invocations": [
+    {
+      "kind": "cpu",
+      "command": "CUDA_VISIBLE_DEVICES='' /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/trainer/test_history_step_cpu.py",
+      "execution_route": "sandbox",
+      "cuda_visible_devices": "",
+      "exit_code": 0,
+      "log": "gates/FRESH_DOC_CPU.log",
+      "observed_tests": 10
+    },
+    {
+      "kind": "single_config",
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/trainer/history_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/configs/formal_history_fused_k10_s2.json --output-dir /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/outputs/formal_history_fused_k10_s2 --dry-run",
+      "execution_route": "sandbox",
+      "exit_code": 0,
+      "log": "gates/FRESH_DOC_CONFIG.log",
+      "observed": {
+        "status": "valid",
+        "protocol": "cached_history_sgd_prediction_direct_response_exact_restore_rng_replay_v1",
+        "direction": "history_fused",
+        "seed": 2,
+        "gradients_per_normal_step": 2,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.5,
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "gam_radii_active": false,
+        "tasks": 10,
+        "epochs": 50
+      }
+    },
+    {
+      "kind": "queue",
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-20261008T173033Z/run_queue.py --dry-run",
+      "execution_route": "actual_host_require_escalated",
+      "exit_code": 0,
+      "log": "gates/FRESH_DOC_QUEUE.log",
+      "observed": {
+        "status": "valid",
+        "jobs": 5,
+        "formal": 2,
+        "smokes": 2,
+        "allowed_gpus": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "max_parallel": 2
+      },
+      "documented_host": "cudahpc40.cvc.uab.es",
+      "documented_pid_namespace": "pid:[4026531836]"
+    }
+  ],
+  "training_launched": false,
+  "gpu_work_performed": false,
+  "readiness": "Documented CPU and dry-run invocations pass. This does not certify GPU model smoke acceptance or completed formal accuracy."
+}

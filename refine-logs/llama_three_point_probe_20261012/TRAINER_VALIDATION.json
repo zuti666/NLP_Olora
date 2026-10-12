@@ -1,0 +1,37 @@
+{
+  "actual_gpu_actions": false,
+  "cpu_two_rank_gloo_verified_families": [
+    "three_point_probe",
+    "two_point_probe",
+    "g2"
+  ],
+  "cuda_visible_devices": "",
+  "distinct_total_passed": 29,
+  "environment_python": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+  "execution_logs": [
+    "TRAINER_TESTS.log",
+    "TRAINER_ALL_GLOO_VERIFIED.log",
+    "TRAINER_LEGACY_EQUIVALENCE.log"
+  ],
+  "file_sha256": {
+    "src/run_uie_lora.py": "db10aa87fdc9e206a4e0541c37397bb68845a71336477155f41a0a89303d3ee4",
+    "src/uie_trainer_lora.py": "7eeb65f1d857c6f9904ab0cc84772ab6be1e318906f2a25507d47c64e93b2d47",
+    "tests/test_three_point_probe_trainer.py": "777125ea48fc11305449131a0c8687cdf8a198429c8fd72c9a2aaf6631ff8fb2"
+  },
+  "initial_sandbox_only_error": "LEGACY_TRAINER_REGRESSION.log records local loopback denied; identical Gloo check passed in isolated host CPU context",
+  "legacy_trainer_distinct_tests_passed": 19,
+  "new_native_checks": [
+    "all four modes three CE phases and two replays",
+    "global mean before clip",
+    "full and tail accumulation windows",
+    "dropout and post-clean RNG equality",
+    "same first realized clean gradient and batch fingerprints",
+    "tiny native Llama BF16 forward FP32 LoRA corrected tokenizer pipeline",
+    "checkpointing and scheduler one commit per step",
+    "unchanged legacy clean, SAM and reflected native trajectories byte-for-byte for 3 updates"
+  ],
+  "new_trainer_distinct_tests_passed": 10,
+  "schema": "ThreePointTrainerValidation_v1",
+  "status": "passed",
+  "utc": "2026-10-12T11:04:14.982899+00:00"
+}

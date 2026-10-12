@@ -1,0 +1,767 @@
+{
+  "created_utc": "2026-09-21T16:20:25.793169+00:00",
+  "can_reuse_for": "GAM Task0 → GAM Task1 + EWC lambda2000, paired formal seeds0/1/2",
+  "cannot_reuse_for": "GAM→GAM without EWC or final ten-task row",
+  "all_checks_passed": true,
+  "rows": [
+    {
+      "seed": 0,
+      "a11_current_FP32": 86.97068403908794,
+      "a11_inherited_matrix_rounded": 86.97,
+      "a21_CIL_rounded": 83.71,
+      "a22_CIL_rounded": 81.1,
+      "BWT_pp_a21_rounded_minus_a11_FP32": -3.2606840390879483,
+      "two_task_macro_average_pct": 82.405,
+      "task1_effective_QV_drift_L2": 0.5020066160520025,
+      "task1_effective_QV_drift_L2_squared": 0.2520106425599826,
+      "training_metrics_delta_norm_is_squared": 0.2520106419469812,
+      "old_task_fixed20_local_accuracy_t1_not_a21": 88.27361563517915,
+      "train_D0_fixed_old_head": 0.00871197946068878,
+      "test_D0_fixed_old_head": -0.027231934623091647,
+      "anchor_batch_proxy_B1": {
+        "in_task_fisher_final_raw_trace": 24.82307168096304,
+        "fisher_mode": "batch_empirical",
+        "fisher_estimator_family": "batch_gradient_square_proxy",
+        "fisher_is_per_sample_empirical": false
+      },
+      "raw_empirical_Fisher": {
+        "anchor_train256": 652.771968647185,
+        "endpoint_train256": null,
+        "endpoint_train256_status": "not_measured_in_reused_B2; not required for user anchor batch-proxy B1 column",
+        "anchor_full_train1259": 617.0873244725005,
+        "endpoint_full_train1259": 771.3058515906425,
+        "anchor_full_test307": 6240.860924373465,
+        "endpoint_full_test307": 5902.53295311975
+      },
+      "config": {
+        "all_or_inc": "inc",
+        "approximate_fisher_in_task": false,
+        "as1_norm_rho": 0.2,
+        "as1_rho": 0.05,
+        "attention_probe_eval": false,
+        "backbone_type": "vit_base_patch16_224",
+        "batch_size": 128,
+        "checkpoint_require_nonempty_fisher": true,
+        "class_shuffle": false,
+        "compute_full_fisher": false,
+        "compute_nme_class_means": false,
+        "data_root": "/data/115-2/users/liying/datasets",
+        "dataset": "imageneta",
+        "delta_w_penalty": false,
+        "device": [
+          "0"
+        ],
+        "endpoint_eval": false,
+        "endpoint_weight_merge": false,
+        "epochs": 50,
+        "eval_num_workers": 4,
+        "ewc_dual_ascent": false,
+        "ewc_eta": 0.0,
+        "ewc_fisher_norm_eps": 1e-12,
+        "ewc_fisher_source": "fit",
+        "ewc_gamma": 0.9,
+        "ewc_lambda": 2000.0,
+        "ewc_max_batches": 100,
+        "ewc_normalize_accumulated_fisher": true,
+        "ewc_normalize_fisher": true,
+        "ewc_project_grad": false,
+        "feature_cka_eval": false,
+        "feature_drift_eval": false,
+        "feature_drift_mode": "none",
+        "feature_flat_eval": false,
+        "feature_proto_eval": false,
+        "fisher_mode": "batch_empirical",
+        "fisher_split": false,
+        "fixed_memory": false,
+        "flat_eval": false,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_fisher_space": "delta_w",
+        "flat_eval_param_scope": "delta_w",
+        "gam_adaptive": false,
+        "gam_base_optimizer": "sgd",
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.1,
+        "gam_grad_norm_rho": 0.2,
+        "gam_grad_rho": 0.05,
+        "in_task_weight_merge": false,
+        "increment": 20,
+        "init_cls": 20,
+        "init_epoch": 50,
+        "init_lr": 0.04,
+        "init_momentum": 0,
+        "init_weight_decay": 0.0,
+        "lambda_flat": 1.0,
+        "linear_probe_eval_num_workers": 0,
+        "linear_probe_softmax_joint_seen_eval": false,
+        "linear_probe_softmax_per_task_eval": false,
+        "lora_rank": 10,
+        "lrate": 0.02,
+        "max_train_tasks": 10,
+        "mechanism_eps": 1e-12,
+        "mechanism_eval": true,
+        "mechanism_grad_stats": true,
+        "mechanism_top_fraction": 0.1,
+        "memory_per_class": 0,
+        "memory_size": 0,
+        "model_name": "ewclora_normfisher_gam_intask",
+        "momentum": 0,
+        "multi_fisher_eval": false,
+        "nb_tasks": 10,
+        "optimizer": "sgd",
+        "optimizer_tag_override": "sequence_gam_seed0",
+        "optimizer_type": "gam",
+        "optimizer_type_by_task": null,
+        "outputs_root": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/trainer_outputs",
+        "persistent_workers": false,
+        "prefix": "sequence_gam_seed0",
+        "probe_fit_epochs": 20,
+        "probe_fit_lr": 0.015,
+        "probe_fit_moment": 0,
+        "probe_fit_train_batch_size": 128,
+        "probe_fit_wd": 0.0005,
+        "probe_flatness_eval": false,
+        "probe_test_mode": "test",
+        "probe_train_mode": "train",
+        "resume_from_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints",
+        "resume_from_metrics_json": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+        "resume_from_task": 0,
+        "resume_require_experiment_identity": false,
+        "resume_require_fisher_state": true,
+        "resume_require_model_sidecars": false,
+        "rq2_rng_protocol": "rq2_shared_task_rng_v1",
+        "save_final_model": true,
+        "save_task_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/checkpoints",
+        "save_task_checkpoint_required": true,
+        "scheduler": "cosine",
+        "seed": [
+          0
+        ],
+        "task0_fisher_recompute_eval": false,
+        "task0_trajectory_eval": false,
+        "total_sessions": 10,
+        "train_num_workers": 4,
+        "weight_decay": 0.0,
+        "weight_merge": false
+      },
+      "config_differences_vs_B3_D": {
+        "optimizer_type": {
+          "sequence": "gam",
+          "B3_D": "sgd"
+        },
+        "optimizer_tag_override": {
+          "sequence": "sequence_gam_seed0",
+          "B3_D": "B3_D_gam_lam2000_seed0"
+        },
+        "prefix": {
+          "sequence": "sequence_gam_seed0",
+          "B3_D": "B3_D_gam_lam2000_seed0"
+        },
+        "save_task_checkpoint_dir": {
+          "sequence": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/checkpoints",
+          "B3_D": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed0/checkpoints"
+        },
+        "lambda_flat": {
+          "sequence": 1.0,
+          "B3_D": 0.0
+        },
+        "max_train_tasks": {
+          "sequence": 10,
+          "B3_D": 2
+        },
+        "outputs_root": {
+          "sequence": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/trainer_outputs",
+          "B3_D": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed0/trainer_outputs"
+        }
+      },
+      "paired_RNG": {
+        "task_rng_reset": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "head_initialized": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "loader_created": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "loader_iteration": {
+          "sequence_count": 51,
+          "B3_D_count": 51,
+          "matches_except_expected_optimizer_type": true
+        }
+      },
+      "checks": {
+        "complete_ten_tasks": true,
+        "complete_identity_matches_manifest": true,
+        "actual_lambda2000": true,
+        "actual_gam_shaping": true,
+        "same_parent_as_B3_D": true,
+        "parent_hashes_match_current_files": true,
+        "same_runner_and_source_as_B3_D": true,
+        "runtime_exact_resume": true,
+        "task1_checkpoint_hash_matches_complete_and_trajectory": true,
+        "metrics_hash_matches_complete": true,
+        "RNG_hash_matches_complete": true,
+        "runtime_hash_matches_complete": true,
+        "task1_shuffled_RNG_paired_with_B3_D": true,
+        "a11_matches_B3_D_and_training_receipt": true,
+        "a21_is_CIL_rounded_match": true,
+        "task1_matrix_prefix_unchanged": true,
+        "trajectory_old_head_and_backbone_recovery": true
+      },
+      "provenance": {
+        "run_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/run_manifest.json",
+        "run_manifest_sha256": "a8cd36ae6d99e82f8cec4e79cd539ae8f3ed046e190248419bf837dc897d7565",
+        "complete": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/COMPLETE.json",
+        "complete_sha256": "e76ee146e612a56b2c3fef0de06b9042f976c8aea832fcca52912ea37e3b82ec",
+        "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed0/imageneta/0/sequence_gam_seed0/exp_run/20/sequence_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "17235ae77f6b46ccbfd43c96cb7fbc2e9b9ffc121ced56be3398f5a250ac6917",
+        "parent_assets": {
+          "fisher_state_0.pt": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/fisher_state_0.pt",
+            "sha256": "3100e031b312daa15e9bd72fe3440f1fd694689fc971ab576e4e1a9295813118",
+            "current_sha256": "3100e031b312daa15e9bd72fe3440f1fd694689fc971ab576e4e1a9295813118"
+          },
+          "metrics": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+            "sha256": "ca3beaf92de2db3cc07e6973d9203908742bf2ada17709855e0660da38b9eca0",
+            "current_sha256": "ca3beaf92de2db3cc07e6973d9203908742bf2ada17709855e0660da38b9eca0"
+          },
+          "task_00.pt": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/task_00.pt",
+            "sha256": "c3986b8499e13d3a26bda6a9893356afd5471670bd16bbb9654956ee8b4455ff",
+            "current_sha256": "c3986b8499e13d3a26bda6a9893356afd5471670bd16bbb9654956ee8b4455ff"
+          }
+        },
+        "task1_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/checkpoints/task_01.pt",
+        "task1_checkpoint_sha256": "7ca5b7e4e7cb78f61d058a17f3894960fb4a0d7e21ce131148deb7ab67406806",
+        "trajectory_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/gam/trajectory_fisher/summary.json",
+        "trajectory_summary_sha256": "adffbed2fbdc73830428d51037a0d3ee03b124fb682a4cdf68f8cf34c868ad69"
+      }
+    },
+    {
+      "seed": 1,
+      "a11_current_FP32": 86.97068403908794,
+      "a11_inherited_matrix_rounded": 86.97,
+      "a21_CIL_rounded": 83.06,
+      "a22_CIL_rounded": 81.5,
+      "BWT_pp_a21_rounded_minus_a11_FP32": -3.91068403908794,
+      "two_task_macro_average_pct": 82.28,
+      "task1_effective_QV_drift_L2": 0.48450115423324075,
+      "task1_effective_QV_drift_L2_squared": 0.23474136845334254,
+      "training_metrics_delta_norm_is_squared": 0.23474136093136622,
+      "old_task_fixed20_local_accuracy_t1_not_a21": 88.27361563517915,
+      "train_D0_fixed_old_head": 0.014853897322956305,
+      "test_D0_fixed_old_head": -0.024597507934172258,
+      "anchor_batch_proxy_B1": {
+        "in_task_fisher_final_raw_trace": 18.866997465491295,
+        "fisher_mode": "batch_empirical",
+        "fisher_estimator_family": "batch_gradient_square_proxy",
+        "fisher_is_per_sample_empirical": false
+      },
+      "raw_empirical_Fisher": {
+        "anchor_train256": 657.7946306604772,
+        "endpoint_train256": null,
+        "endpoint_train256_status": "not_measured_in_reused_B2; not required for user anchor batch-proxy B1 column",
+        "anchor_full_train1259": 597.1252714310216,
+        "endpoint_full_train1259": 756.2125696621465,
+        "anchor_full_test307": 6141.672680750518,
+        "endpoint_full_test307": 6019.184529125898
+      },
+      "config": {
+        "all_or_inc": "inc",
+        "approximate_fisher_in_task": false,
+        "as1_norm_rho": 0.2,
+        "as1_rho": 0.05,
+        "attention_probe_eval": false,
+        "backbone_type": "vit_base_patch16_224",
+        "batch_size": 128,
+        "checkpoint_require_nonempty_fisher": true,
+        "class_shuffle": false,
+        "compute_full_fisher": false,
+        "compute_nme_class_means": false,
+        "data_root": "/data/115-2/users/liying/datasets",
+        "dataset": "imageneta",
+        "delta_w_penalty": false,
+        "device": [
+          "0"
+        ],
+        "endpoint_eval": false,
+        "endpoint_weight_merge": false,
+        "epochs": 50,
+        "eval_num_workers": 4,
+        "ewc_dual_ascent": false,
+        "ewc_eta": 0.0,
+        "ewc_fisher_norm_eps": 1e-12,
+        "ewc_fisher_source": "fit",
+        "ewc_gamma": 0.9,
+        "ewc_lambda": 2000.0,
+        "ewc_max_batches": 100,
+        "ewc_normalize_accumulated_fisher": true,
+        "ewc_normalize_fisher": true,
+        "ewc_project_grad": false,
+        "feature_cka_eval": false,
+        "feature_drift_eval": false,
+        "feature_drift_mode": "none",
+        "feature_flat_eval": false,
+        "feature_proto_eval": false,
+        "fisher_mode": "batch_empirical",
+        "fisher_split": false,
+        "fixed_memory": false,
+        "flat_eval": false,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_fisher_space": "delta_w",
+        "flat_eval_param_scope": "delta_w",
+        "gam_adaptive": false,
+        "gam_base_optimizer": "sgd",
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.1,
+        "gam_grad_norm_rho": 0.2,
+        "gam_grad_rho": 0.05,
+        "in_task_weight_merge": false,
+        "increment": 20,
+        "init_cls": 20,
+        "init_epoch": 50,
+        "init_lr": 0.04,
+        "init_momentum": 0,
+        "init_weight_decay": 0.0,
+        "lambda_flat": 1.0,
+        "linear_probe_eval_num_workers": 0,
+        "linear_probe_softmax_joint_seen_eval": false,
+        "linear_probe_softmax_per_task_eval": false,
+        "lora_rank": 10,
+        "lrate": 0.02,
+        "max_train_tasks": 10,
+        "mechanism_eps": 1e-12,
+        "mechanism_eval": true,
+        "mechanism_grad_stats": true,
+        "mechanism_top_fraction": 0.1,
+        "memory_per_class": 0,
+        "memory_size": 0,
+        "model_name": "ewclora_normfisher_gam_intask",
+        "momentum": 0,
+        "multi_fisher_eval": false,
+        "nb_tasks": 10,
+        "optimizer": "sgd",
+        "optimizer_tag_override": "sequence_gam_seed1",
+        "optimizer_type": "gam",
+        "optimizer_type_by_task": null,
+        "outputs_root": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/trainer_outputs",
+        "persistent_workers": false,
+        "prefix": "sequence_gam_seed1",
+        "probe_fit_epochs": 20,
+        "probe_fit_lr": 0.015,
+        "probe_fit_moment": 0,
+        "probe_fit_train_batch_size": 128,
+        "probe_fit_wd": 0.0005,
+        "probe_flatness_eval": false,
+        "probe_test_mode": "test",
+        "probe_train_mode": "train",
+        "resume_from_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints",
+        "resume_from_metrics_json": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+        "resume_from_task": 0,
+        "resume_require_experiment_identity": false,
+        "resume_require_fisher_state": true,
+        "resume_require_model_sidecars": false,
+        "rq2_rng_protocol": "rq2_shared_task_rng_v1",
+        "save_final_model": true,
+        "save_task_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/checkpoints",
+        "save_task_checkpoint_required": true,
+        "scheduler": "cosine",
+        "seed": [
+          1
+        ],
+        "task0_fisher_recompute_eval": false,
+        "task0_trajectory_eval": false,
+        "total_sessions": 10,
+        "train_num_workers": 4,
+        "weight_decay": 0.0,
+        "weight_merge": false
+      },
+      "config_differences_vs_B3_D": {
+        "optimizer_type": {
+          "sequence": "gam",
+          "B3_D": "sgd"
+        },
+        "optimizer_tag_override": {
+          "sequence": "sequence_gam_seed1",
+          "B3_D": "B3_D_gam_lam2000_seed1"
+        },
+        "prefix": {
+          "sequence": "sequence_gam_seed1",
+          "B3_D": "B3_D_gam_lam2000_seed1"
+        },
+        "save_task_checkpoint_dir": {
+          "sequence": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/checkpoints",
+          "B3_D": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed1/checkpoints"
+        },
+        "lambda_flat": {
+          "sequence": 1.0,
+          "B3_D": 0.0
+        },
+        "max_train_tasks": {
+          "sequence": 10,
+          "B3_D": 2
+        },
+        "outputs_root": {
+          "sequence": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/trainer_outputs",
+          "B3_D": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed1/trainer_outputs"
+        }
+      },
+      "paired_RNG": {
+        "task_rng_reset": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "head_initialized": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "loader_created": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "loader_iteration": {
+          "sequence_count": 51,
+          "B3_D_count": 51,
+          "matches_except_expected_optimizer_type": true
+        }
+      },
+      "checks": {
+        "complete_ten_tasks": true,
+        "complete_identity_matches_manifest": true,
+        "actual_lambda2000": true,
+        "actual_gam_shaping": true,
+        "same_parent_as_B3_D": true,
+        "parent_hashes_match_current_files": true,
+        "same_runner_and_source_as_B3_D": true,
+        "runtime_exact_resume": true,
+        "task1_checkpoint_hash_matches_complete_and_trajectory": true,
+        "metrics_hash_matches_complete": true,
+        "RNG_hash_matches_complete": true,
+        "runtime_hash_matches_complete": true,
+        "task1_shuffled_RNG_paired_with_B3_D": true,
+        "a11_matches_B3_D_and_training_receipt": true,
+        "a21_is_CIL_rounded_match": true,
+        "task1_matrix_prefix_unchanged": true,
+        "trajectory_old_head_and_backbone_recovery": true
+      },
+      "provenance": {
+        "run_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/run_manifest.json",
+        "run_manifest_sha256": "7a717b522cca9c94e9904127b97966cfde57faf06c15eea99ce7cda9edb94988",
+        "complete": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/COMPLETE.json",
+        "complete_sha256": "38292238c5dc1c1bc1a06b78f32892af6b10f88918fe3a4c1a4400de9be30a7f",
+        "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed1/imageneta/1/sequence_gam_seed1/exp_run/20/sequence_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "12efebb726e33a29d64b2b7d681f9c4883c5d7b5682b39a066cc94ceb52d3917",
+        "parent_assets": {
+          "fisher_state_0.pt": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/fisher_state_0.pt",
+            "sha256": "f3f2efb1772d0504d00501272d4949c91103adef2dc5fd9f3cb2a687854f123f",
+            "current_sha256": "f3f2efb1772d0504d00501272d4949c91103adef2dc5fd9f3cb2a687854f123f"
+          },
+          "metrics": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+            "sha256": "e8b31c275f85e9c47a8bca8ad5da157e3f7b8e303f8bc6962270afafb646c1d5",
+            "current_sha256": "e8b31c275f85e9c47a8bca8ad5da157e3f7b8e303f8bc6962270afafb646c1d5"
+          },
+          "task_00.pt": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+            "sha256": "3c6a3af2066ed257baab0f0bffa774741e060f169d886e4940fae6bc9643275c",
+            "current_sha256": "3c6a3af2066ed257baab0f0bffa774741e060f169d886e4940fae6bc9643275c"
+          }
+        },
+        "task1_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/checkpoints/task_01.pt",
+        "task1_checkpoint_sha256": "2090825d90ea613c6b0a5947303d3ce6512a8400e0c7e802e56cdf0e7f45c56b",
+        "trajectory_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/gam/trajectory_fisher/summary.json",
+        "trajectory_summary_sha256": "b5f95fde61889da67460ba93170bd3de7e7bb746abf619d53872159fb82ba8b0"
+      }
+    },
+    {
+      "seed": 2,
+      "a11_current_FP32": 87.94788273615636,
+      "a11_inherited_matrix_rounded": 87.95,
+      "a21_CIL_rounded": 83.39,
+      "a22_CIL_rounded": 79.92,
+      "BWT_pp_a21_rounded_minus_a11_FP32": -4.557882736156358,
+      "two_task_macro_average_pct": 81.655,
+      "task1_effective_QV_drift_L2": 0.516177166950188,
+      "task1_effective_QV_drift_L2_squared": 0.2664388676807223,
+      "training_metrics_delta_norm_is_squared": 0.2664388706689351,
+      "old_task_fixed20_local_accuracy_t1_not_a21": 88.27361563517915,
+      "train_D0_fixed_old_head": 0.010203148690734444,
+      "test_D0_fixed_old_head": -0.02478004865904254,
+      "anchor_batch_proxy_B1": {
+        "in_task_fisher_final_raw_trace": 22.10840006917715,
+        "fisher_mode": "batch_empirical",
+        "fisher_estimator_family": "batch_gradient_square_proxy",
+        "fisher_is_per_sample_empirical": false
+      },
+      "raw_empirical_Fisher": {
+        "anchor_train256": 592.9637970985383,
+        "endpoint_train256": null,
+        "endpoint_train256_status": "not_measured_in_reused_B2; not required for user anchor batch-proxy B1 column",
+        "anchor_full_train1259": 631.7967477638723,
+        "endpoint_full_train1259": 756.6124972066212,
+        "anchor_full_test307": 5985.221343337738,
+        "endpoint_full_test307": 5589.9252694445295
+      },
+      "config": {
+        "all_or_inc": "inc",
+        "approximate_fisher_in_task": false,
+        "as1_norm_rho": 0.2,
+        "as1_rho": 0.05,
+        "attention_probe_eval": false,
+        "backbone_type": "vit_base_patch16_224",
+        "batch_size": 128,
+        "checkpoint_require_nonempty_fisher": true,
+        "class_shuffle": false,
+        "compute_full_fisher": false,
+        "compute_nme_class_means": false,
+        "data_root": "/data/115-2/users/liying/datasets",
+        "dataset": "imageneta",
+        "delta_w_penalty": false,
+        "device": [
+          "0"
+        ],
+        "endpoint_eval": false,
+        "endpoint_weight_merge": false,
+        "epochs": 50,
+        "eval_num_workers": 4,
+        "ewc_dual_ascent": false,
+        "ewc_eta": 0.0,
+        "ewc_fisher_norm_eps": 1e-12,
+        "ewc_fisher_source": "fit",
+        "ewc_gamma": 0.9,
+        "ewc_lambda": 2000.0,
+        "ewc_max_batches": 100,
+        "ewc_normalize_accumulated_fisher": true,
+        "ewc_normalize_fisher": true,
+        "ewc_project_grad": false,
+        "feature_cka_eval": false,
+        "feature_drift_eval": false,
+        "feature_drift_mode": "none",
+        "feature_flat_eval": false,
+        "feature_proto_eval": false,
+        "fisher_mode": "batch_empirical",
+        "fisher_split": false,
+        "fixed_memory": false,
+        "flat_eval": false,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_fisher_space": "delta_w",
+        "flat_eval_param_scope": "delta_w",
+        "gam_adaptive": false,
+        "gam_base_optimizer": "sgd",
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.1,
+        "gam_grad_norm_rho": 0.2,
+        "gam_grad_rho": 0.05,
+        "in_task_weight_merge": false,
+        "increment": 20,
+        "init_cls": 20,
+        "init_epoch": 50,
+        "init_lr": 0.04,
+        "init_momentum": 0,
+        "init_weight_decay": 0.0,
+        "lambda_flat": 1.0,
+        "linear_probe_eval_num_workers": 0,
+        "linear_probe_softmax_joint_seen_eval": false,
+        "linear_probe_softmax_per_task_eval": false,
+        "lora_rank": 10,
+        "lrate": 0.02,
+        "max_train_tasks": 10,
+        "mechanism_eps": 1e-12,
+        "mechanism_eval": true,
+        "mechanism_grad_stats": true,
+        "mechanism_top_fraction": 0.1,
+        "memory_per_class": 0,
+        "memory_size": 0,
+        "model_name": "ewclora_normfisher_gam_intask",
+        "momentum": 0,
+        "multi_fisher_eval": false,
+        "nb_tasks": 10,
+        "optimizer": "sgd",
+        "optimizer_tag_override": "sequence_gam_seed2",
+        "optimizer_type": "gam",
+        "optimizer_type_by_task": null,
+        "outputs_root": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/trainer_outputs",
+        "persistent_workers": false,
+        "prefix": "sequence_gam_seed2",
+        "probe_fit_epochs": 20,
+        "probe_fit_lr": 0.015,
+        "probe_fit_moment": 0,
+        "probe_fit_train_batch_size": 128,
+        "probe_fit_wd": 0.0005,
+        "probe_flatness_eval": false,
+        "probe_test_mode": "test",
+        "probe_train_mode": "train",
+        "resume_from_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints",
+        "resume_from_metrics_json": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+        "resume_from_task": 0,
+        "resume_require_experiment_identity": false,
+        "resume_require_fisher_state": true,
+        "resume_require_model_sidecars": false,
+        "rq2_rng_protocol": "rq2_shared_task_rng_v1",
+        "save_final_model": true,
+        "save_task_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/checkpoints",
+        "save_task_checkpoint_required": true,
+        "scheduler": "cosine",
+        "seed": [
+          2
+        ],
+        "task0_fisher_recompute_eval": false,
+        "task0_trajectory_eval": false,
+        "total_sessions": 10,
+        "train_num_workers": 4,
+        "weight_decay": 0.0,
+        "weight_merge": false
+      },
+      "config_differences_vs_B3_D": {
+        "optimizer_type": {
+          "sequence": "gam",
+          "B3_D": "sgd"
+        },
+        "optimizer_tag_override": {
+          "sequence": "sequence_gam_seed2",
+          "B3_D": "B3_D_gam_lam2000_seed2"
+        },
+        "prefix": {
+          "sequence": "sequence_gam_seed2",
+          "B3_D": "B3_D_gam_lam2000_seed2"
+        },
+        "save_task_checkpoint_dir": {
+          "sequence": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/checkpoints",
+          "B3_D": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed2/checkpoints"
+        },
+        "lambda_flat": {
+          "sequence": 1.0,
+          "B3_D": 0.0
+        },
+        "max_train_tasks": {
+          "sequence": 10,
+          "B3_D": 2
+        },
+        "outputs_root": {
+          "sequence": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/trainer_outputs",
+          "B3_D": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_D_gam_lam2000_seed2/trainer_outputs"
+        }
+      },
+      "paired_RNG": {
+        "task_rng_reset": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "head_initialized": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "loader_created": {
+          "sequence_count": 1,
+          "B3_D_count": 1,
+          "matches_except_expected_optimizer_type": true
+        },
+        "loader_iteration": {
+          "sequence_count": 51,
+          "B3_D_count": 51,
+          "matches_except_expected_optimizer_type": true
+        }
+      },
+      "checks": {
+        "complete_ten_tasks": true,
+        "complete_identity_matches_manifest": true,
+        "actual_lambda2000": true,
+        "actual_gam_shaping": true,
+        "same_parent_as_B3_D": true,
+        "parent_hashes_match_current_files": true,
+        "same_runner_and_source_as_B3_D": true,
+        "runtime_exact_resume": true,
+        "task1_checkpoint_hash_matches_complete_and_trajectory": true,
+        "metrics_hash_matches_complete": true,
+        "RNG_hash_matches_complete": true,
+        "runtime_hash_matches_complete": true,
+        "task1_shuffled_RNG_paired_with_B3_D": true,
+        "a11_matches_B3_D_and_training_receipt": true,
+        "a21_is_CIL_rounded_match": true,
+        "task1_matrix_prefix_unchanged": true,
+        "trajectory_old_head_and_backbone_recovery": true
+      },
+      "provenance": {
+        "run_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/run_manifest.json",
+        "run_manifest_sha256": "2b44d9299c393669b043416773b3c20e026257bec1a83f02d8a84869286bec73",
+        "complete": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/COMPLETE.json",
+        "complete_sha256": "0055004a8f32d5d1ff5c9e46f78d82a9cec127f7ded242add244ee917b90d803",
+        "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed2/imageneta/2/sequence_gam_seed2/exp_run/20/sequence_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "2f2ef2cda9129f5fa75ccf325e9cd03144f05d6d440dd497cd4838fb92590100",
+        "parent_assets": {
+          "fisher_state_0.pt": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/fisher_state_0.pt",
+            "sha256": "8b90dbf2149e5891c6fb8664028e456e5c33ec14b81e24a62388f0cef24ddfdc",
+            "current_sha256": "8b90dbf2149e5891c6fb8664028e456e5c33ec14b81e24a62388f0cef24ddfdc"
+          },
+          "metrics": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+            "sha256": "12c83373bb8ea3e0b15a14bff853e4bfb94f4a5ba8f68a4e3b68858203ed404f",
+            "current_sha256": "12c83373bb8ea3e0b15a14bff853e4bfb94f4a5ba8f68a4e3b68858203ed404f"
+          },
+          "task_00.pt": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/task_00.pt",
+            "sha256": "d3e17afbdc5d4fdd3302e413fccff056b97c460a94c0fdf9dbe6399da727a3c0",
+            "current_sha256": "d3e17afbdc5d4fdd3302e413fccff056b97c460a94c0fdf9dbe6399da727a3c0"
+          }
+        },
+        "task1_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/checkpoints/task_01.pt",
+        "task1_checkpoint_sha256": "189efa99a936064097b89dda91580700ceee4cfae35dea7257096cba908024d1",
+        "trajectory_summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/gam/trajectory_fisher/summary.json",
+        "trajectory_summary_sha256": "6e4a34d196f0b464165729d718a0538d03da82a8f6fce9af38c0a4c1c6b6b27d"
+      }
+    }
+  ],
+  "aggregate": {
+    "a11_current_FP32": {
+      "mean": 87.29641693811075,
+      "sample_sd_ddof1": 0.564185930804202
+    },
+    "a21_CIL_rounded": {
+      "mean": 83.38666666666667,
+      "sample_sd_ddof1": 0.32501282025995615
+    },
+    "a22_CIL_rounded": {
+      "mean": 80.84,
+      "sample_sd_ddof1": 0.8214621111165121
+    },
+    "BWT_pp_a21_rounded_minus_a11_FP32": {
+      "mean": -3.909750271444082,
+      "sample_sd_ddof1": 0.6485998526522379
+    },
+    "two_task_macro_average_pct": {
+      "mean": 82.11333333333333,
+      "sample_sd_ddof1": 0.4018187817080398
+    },
+    "task1_effective_QV_drift_L2": {
+      "mean": 0.5008949790784771,
+      "sample_sd_ddof1": 0.015867238196413783
+    },
+    "task1_effective_QV_drift_L2_squared": {
+      "mean": 0.25106362623134915,
+      "sample_sd_ddof1": 0.01586995571079071
+    }
+  },
+  "metric_policy": "Same as B3: a11 current FP32; a21/a22 CIL 40-class task1 training matrix rounded to2dp; BWT per seed before aggregation; average task-macro, not image-weighted. L2 excludes classifier head.",
+  "missing_optional_diagnostic": "Task1 endpoint raw per-example Fisher on fixed train256 not measured by B2. Do not replace with fulltrain1259. This does not block the requested anchor batch-proxy B1 column, available from anchor metrics.",
+  "comparability": "Same per-seed formal GAM anchor and Fisher; same training runner/source, data, epochs50, lr.02, batch128, precision and paired Task1 head/sampler/first-batch hashes. Intended difference vs B3_D is GAM/lambda_flat1 vs SGD/lambda_flat0. max_train_tasks10 vs2 only changes total run extent; trainer bounds task loop and per-task scheduler uses epochs. Task1 checkpoint is saved before later tasks and its t01 metric prefix remains unchanged."
+}

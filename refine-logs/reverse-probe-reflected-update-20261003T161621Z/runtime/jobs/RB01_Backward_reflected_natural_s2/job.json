@@ -1,0 +1,34 @@
+{
+  "id": "RB01_Backward_reflected_natural_s2",
+  "kind": "training",
+  "phase": "formal",
+  "branch": "backward_local",
+  "direction": "g0_plus_g0_minus_g1minus",
+  "mode": "natural",
+  "backend": "math",
+  "smoke": false,
+  "gpu_required": true,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/trainer/reflected_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/configs/RB01_Backward_reflected_natural_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/outputs/RB01_Backward_reflected_natural_s2"
+  ],
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/configs/RB01_Backward_reflected_natural_s2.json",
+  "config_sha256": "046ca5d1733f44708816bd3fcbb19228af5d18ba6a627fbc42a577a6d863a9c3",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/outputs/RB01_Backward_reflected_natural_s2",
+  "depends_on": [
+    "smoke_RB01_Backward_reflected_natural_s2"
+  ],
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "expected_training_ce": 5100,
+  "expected_isolated_replay_ce": 40,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/runtime/jobs/RB01_Backward_reflected_natural_s2/cuda_witness.json"
+}

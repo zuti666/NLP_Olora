@@ -1,0 +1,123 @@
+{
+  "protocol": "independent_root_report_read_only_review_v1",
+  "time_utc": "2026-10-12T10:34:35.609597+00:00",
+  "report": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/RESULTS_AND_NEXT_PLAN_20261012.md",
+  "report_sha256": "2a23996b00f0e945c96ce065495b912b8a2833994431711b9a127fefffdb3128",
+  "final_summary_sha256": "602eebf9c0e5f10dd4096559bec4e38135010ffd4ad818fe33c36ef303af9620",
+  "result": "passed_no_corrections_required",
+  "source_modified": false,
+  "gpu_used": false,
+  "full_validator_rerun": false,
+  "checks": [
+    {
+      "lines": [
+        3,
+        9,
+        13
+      ],
+      "result": "passed",
+      "finding": "Formal36/24/30, pilots3 plus formal9, and27 distinct evaluation states agree with completed audited files. e1/e10/e25 curvature and e10/e25 matching are fixed pre-switch scopes."
+    },
+    {
+      "lines": [
+        13,
+        15,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        26
+      ],
+      "result": "passed",
+      "finding": "Original FP32 gate14/36 and extended gate36/36 remain distinct; declared FP64 fallback was not invoked. All six epoch/branch correction rows and branchwise means round correctly from independently recomputed cell-to-seed summaries. R seed1 half-scale deterioration at e10/e25 is retained."
+    },
+    {
+      "lines": [
+        30,
+        34,
+        35,
+        36,
+        37,
+        39
+      ],
+      "result": "passed",
+      "finding": "Four matched-step rows round correctly from final collector summaries. Ideal finite FP64 geometry and actual FP32 commit distinction, and instantaneous-vs-long-term limits, are explicit."
+    },
+    {
+      "lines": [
+        41,
+        43,
+        45
+      ],
+      "result": "passed",
+      "finding": "Path lengths, per-layer cross/net ratios, e50 BA/newFC state differences, unchanged oldFC, and SGD first-order Q cancellation agree with state_analysis and earlier raw-source review. No additive norm or causal share claim appears."
+    },
+    {
+      "lines": [
+        49,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        61
+      ],
+      "result": "passed",
+      "finding": "Fixed endpoint mean/sample SD and per-seed signs agree with final raw-derived summaries. Competition decrease is0.0346527894±0.0034368445 and jointCE decrease0.0486631018. Ratio of means0.7120957800 is correctly qualified as algebraic CE decomposition, not causal attribution. Oldjoint improvement only seed0 matches [+1.302931596,0,0]."
+    },
+    {
+      "lines": [
+        63,
+        67,
+        69
+      ],
+      "result": "passed",
+      "finding": "First-common-CE-bin fit matching is clearly separate from fixed endpoints and retains epoch/CE residual differences. H squared gradient is limited to a local approximation; Q/factor diagnostics remain descriptive; no automatic new training or causal-mechanism claim."
+    }
+  ],
+  "concrete_blockers": [],
+  "important_corrections": [],
+  "exact_final_new_test_values": {
+    "joint40.ce": {
+      "mean": -0.048663101797028784,
+      "sample_sd": 0.007113913199780806,
+      "values": [
+        -0.056874342790738774,
+        -0.04475598072442477,
+        -0.0443589818759228
+      ]
+    },
+    "conditional20.ce": {
+      "mean": -0.0140102867066391,
+      "sample_sd": 0.006532235135462038,
+      "values": [
+        -0.020517980019877313,
+        -0.01405909680944728,
+        -0.007453783290592708
+      ]
+    },
+    "ce_competition_penalty": {
+      "mean": -0.0346527894337972,
+      "sample_sd": 0.0034368445262002146,
+      "values": [
+        -0.0363563597202301,
+        -0.03069692850112915,
+        -0.03690508008003235
+      ]
+    },
+    "conditional20.accuracy": {
+      "mean": 0.7874015748031411,
+      "sample_sd": 1.5748031496062964,
+      "values": [
+        0.7874015748031411,
+        2.3622047244094375,
+        -0.7874015748031553
+      ]
+    }
+  },
+  "competition_ratio_of_mean_joint_CE_difference": 0.7120957800497829
+}

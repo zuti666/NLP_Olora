@@ -1,0 +1,3985 @@
+{
+  "schema_version": 1,
+  "phase": "planning_only",
+  "executable": false,
+  "training_started": false,
+  "user_scope": "pure GAM only; all completed r1 rho.05 rank10 full10 directions and step controls",
+  "created_at": "2026-10-03T16:17:26.328911+00:00",
+  "allowed_gpus": [
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 3,
+  "gpu_uuids": {
+    "4": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+    "5": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+    "6": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+  },
+  "new_seeds": [
+    0,
+    1
+  ],
+  "seed2_reuse_conditions": 30,
+  "condition_count": 30,
+  "formal_jobs_count": 60,
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "smoke_plan": {
+    "native": {
+      "jobs": 28,
+      "per_job_tasks": 2,
+      "per_job_epochs": 1,
+      "per_job_steps": 18,
+      "total_updates": 504
+    },
+    "four_probe": {
+      "jobs": 32,
+      "per_job_tasks": 2,
+      "per_job_epochs": 1,
+      "per_epoch_max_batches": 1,
+      "per_job_steps": 2,
+      "total_updates": 64
+    },
+    "total_jobs": 60,
+    "total_updates": 568,
+    "scheduler_T_max": 50,
+    "not_in_formal_count": true
+  },
+  "cost_gpu_hours_from_seed2_receipts": {
+    "native_global_rng_5CE": 71.64267165722222,
+    "four_probe_exact_restore_rng_replay": 66.72006747073597
+  },
+  "formal_gpu_hours_total_estimate": 138.3627391279582,
+  "three_gpu_ideal_wall_hours": 46.12091304265274,
+  "priority_first_three": [
+    "N01_r1_k10_s0",
+    "N01_r1_k10_s1",
+    "N03_r1_k10_s0"
+  ],
+  "jobs": [
+    {
+      "id": "N01_r1_k10_s0",
+      "condition": "N01",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "original_GAM",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N01_r1_k10_s0.json",
+      "config_sha256": "21eb21cedd74c0f95d538be482b2ea81d2a96c78662d6989c91d8f7f778d3203",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N01_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_original_r1_k10_s2.json",
+      "source_config_sha256": "84bc993f0b769941d592f28bcc189156b1873e5d3022db6d55ccd1635f42fb29",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_original_r1_k10_s2",
+          "draft": "N01_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/outputs/s3_puregam_original_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N01_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N01_r1_k10_s1",
+      "condition": "N01",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "original_GAM",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N01_r1_k10_s1.json",
+      "config_sha256": "6e57f307e1837778c4211489bb5eba6f1aa10308aee135ed7020c26d49aac262",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N01_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_original_r1_k10_s2.json",
+      "source_config_sha256": "84bc993f0b769941d592f28bcc189156b1873e5d3022db6d55ccd1635f42fb29",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_original_r1_k10_s2",
+          "draft": "N01_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/outputs/s3_puregam_original_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N01_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N02_r1_k10_s0",
+      "condition": "N02",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "Sum",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N02_r1_k10_s0.json",
+      "config_sha256": "2c111b6f6b0610672794a3c7d2a13a9eae3b5079792d96fc842f16d6f7de4247",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N02_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_gamma0_sum_r1_k10_s2.json",
+      "source_config_sha256": "ec9a09efcbd44ea7d50bb6388b351d8f79c96d6d6a230eb75e3beb2801bd3ea9",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_gamma0_sum_r1_k10_s2",
+          "draft": "N02_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/outputs/s3_puregam_gamma0_sum_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N02_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N02_r1_k10_s1",
+      "condition": "N02",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "Sum",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N02_r1_k10_s1.json",
+      "config_sha256": "3db389f9172cc9625310338e0d23a819fcd7e7aea083d79d2b0af98025536ce2",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N02_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_gamma0_sum_r1_k10_s2.json",
+      "source_config_sha256": "ec9a09efcbd44ea7d50bb6388b351d8f79c96d6d6a230eb75e3beb2801bd3ea9",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_gamma0_sum_r1_k10_s2",
+          "draft": "N02_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/outputs/s3_puregam_gamma0_sum_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N02_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N03_r1_k10_s0",
+      "condition": "N03",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g1 / S（审计基准）",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N03_r1_k10_s0.json",
+      "config_sha256": "a572ed6ee9f2d21f9e0d852ea1533aedd62e16fbb5c991a5344d1cbbb11f963b",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N03_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S_r1_k10_s2.json",
+      "source_config_sha256": "77fe9ef13b59432c515e77eb45add543a6457b799aa609a37b95e605134f1b35",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_S_r1_k10_s2",
+          "draft": "N03_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N03_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g1_control",
+      "runtime_bindings_source_template": {
+        "id": "formal_S_r1_k10_s2",
+        "arm": "S",
+        "axis": "learning_rate_and_direction",
+        "value": "S",
+        "direction_selector": "g1_control",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 1.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_S_r1_k10_s2.json",
+        "config_sha256": "77fe9ef13b59432c515e77eb45add543a6457b799aa609a37b95e605134f1b35",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N03_r1_k10_s1",
+      "condition": "N03",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g1 / S（审计基准）",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N03_r1_k10_s1.json",
+      "config_sha256": "96b6fe1109b79b2d9548a747172607f58b0ec06815febfbc206d57b8deb17e74",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N03_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S_r1_k10_s2.json",
+      "source_config_sha256": "77fe9ef13b59432c515e77eb45add543a6457b799aa609a37b95e605134f1b35",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_S_r1_k10_s2",
+          "draft": "N03_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N03_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g1_control",
+      "runtime_bindings_source_template": {
+        "id": "formal_S_r1_k10_s2",
+        "arm": "S",
+        "axis": "learning_rate_and_direction",
+        "value": "S",
+        "direction_selector": "g1_control",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 1.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_S_r1_k10_s2.json",
+        "config_sha256": "77fe9ef13b59432c515e77eb45add543a6457b799aa609a37b95e605134f1b35",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N04_r1_k10_s0",
+      "condition": "N04",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g3",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N04_r1_k10_s0.json",
+      "config_sha256": "f0542ef99701e09de37885ca9ba74ceb169f74b0c32c71969f1490b17b3c44f9",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N04_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_gamma0_g3_r1_k10_s2.json",
+      "source_config_sha256": "3402fdd302fda0ab5aa84c92b548529b54e293a55571e0b0c111802b137fabc8",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_gamma0_g3_r1_k10_s2",
+          "draft": "N04_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/outputs/s3_puregam_gamma0_g3_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N04_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N04_r1_k10_s1",
+      "condition": "N04",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g3",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N04_r1_k10_s1.json",
+      "config_sha256": "87d69af7bd97e084c27442ebcb04fb644bce12fa95c9279aee1fb5e68101651a",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N04_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/configs/s3_puregam_gamma0_g3_r1_k10_s2.json",
+      "source_config_sha256": "3402fdd302fda0ab5aa84c92b548529b54e293a55571e0b0c111802b137fabc8",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_gamma0_g3_r1_k10_s2",
+          "draft": "N04_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/outputs/s3_puregam_gamma0_g3_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N04_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N05_r1_k10_s0",
+      "condition": "N05",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g0",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N05_r1_k10_s0.json",
+      "config_sha256": "aa15cce768803bf9490da48c9b6281c6c0127ae4c1cff5ded5c2095316269f95",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N05_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/configs/formal_g0_r1_k10_s2.json",
+      "source_config_sha256": "cae5f385cf89f0dc9b45bb9830b87ab27ad2db59110977aecfe8e9564d9f5b4b",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_g0_r1_k10_s2",
+          "draft": "N05_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/outputs/formal_g0_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N05_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g0",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N05_r1_k10_s1",
+      "condition": "N05",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g0",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N05_r1_k10_s1.json",
+      "config_sha256": "17d196980ea259d948aaf9f62ef766511e06037763a79539a5c7bf2ec9c1f5d3",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N05_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/configs/formal_g0_r1_k10_s2.json",
+      "source_config_sha256": "cae5f385cf89f0dc9b45bb9830b87ab27ad2db59110977aecfe8e9564d9f5b4b",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_g0_r1_k10_s2",
+          "draft": "N05_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/outputs/formal_g0_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N05_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g0",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N06_r1_k10_s0",
+      "condition": "N06",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g2",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N06_r1_k10_s0.json",
+      "config_sha256": "7853fdc7126b7d786ba02ea05ea8f01bf8d7c16eac6c0d183c98eca9a35cd381",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N06_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/configs/formal_g2_r1_k10_s2.json",
+      "source_config_sha256": "9d8382e4fd32342efc80261d748f9136bdecb24817b6491f9b352dbbcdcdc7f9",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_g2_r1_k10_s2",
+          "draft": "N06_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/outputs/formal_g2_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N06_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g2",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N06_r1_k10_s1",
+      "condition": "N06",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "g2",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N06_r1_k10_s1.json",
+      "config_sha256": "3634f5cba6cfecd53979d02bea04e7175ef2657affe702c61ac46f010bd73616",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N06_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/configs/formal_g2_r1_k10_s2.json",
+      "source_config_sha256": "9d8382e4fd32342efc80261d748f9136bdecb24817b6491f9b352dbbcdcdc7f9",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_g2_r1_k10_s2",
+          "draft": "N06_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/outputs/formal_g2_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N06_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g2",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N07_r1_k10_s0",
+      "condition": "N07",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "ug",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N07_r1_k10_s0.json",
+      "config_sha256": "6410348acb2860b4ed952fbcb341a59a22a685f1d75c8ce097fee93806acfbde",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N07_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/configs/formal_ug_r1_k10_s2.json",
+      "source_config_sha256": "9a9e714e5986ee6dcbcfb3ea7d12e2afea3e15499be3419654eed4909f265335",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_ug_r1_k10_s2",
+          "draft": "N07_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/outputs/formal_ug_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N07_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "ug",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N07_r1_k10_s1",
+      "condition": "N07",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "ug",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N07_r1_k10_s1.json",
+      "config_sha256": "ab81db8d61ca78d5da67b646b69b0b09cdd29201bf91fd698498c42d5b891850",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N07_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/configs/formal_ug_r1_k10_s2.json",
+      "source_config_sha256": "9a9e714e5986ee6dcbcfb3ea7d12e2afea3e15499be3419654eed4909f265335",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_ug_r1_k10_s2",
+          "draft": "N07_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/outputs/formal_ug_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N07_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "ug",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N08_r1_k10_s0",
+      "condition": "N08",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "A",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N08_r1_k10_s0.json",
+      "config_sha256": "44789f93016e19211ebf18ac9dc32592916ce68362d4bd1a5a9a7cd57e4ebcf2",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N08_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/configs/formal_c21_base_r1_k10_s2.json",
+      "source_config_sha256": "304c31bbf7e6fe2c6060a0026e5d6d2e04fb4acfbe2ad4eb21cf6952b615cfd0",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_c21_base_r1_k10_s2",
+          "draft": "N08_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/outputs/formal_c21_base_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N08_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "c21_base",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N08_r1_k10_s1",
+      "condition": "N08",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "A",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N08_r1_k10_s1.json",
+      "config_sha256": "2803d503e25c53fa9c8b87b0e95b449cba7d0ca713887a59ac3e43fb535b6792",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N08_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/configs/formal_c21_base_r1_k10_s2.json",
+      "source_config_sha256": "304c31bbf7e6fe2c6060a0026e5d6d2e04fb4acfbe2ad4eb21cf6952b615cfd0",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_c21_base_r1_k10_s2",
+          "draft": "N08_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/outputs/formal_c21_base_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N08_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "c21_base",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N09_r1_k10_s0",
+      "condition": "N09",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "B",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N09_r1_k10_s0.json",
+      "config_sha256": "7cb8cb2548d2758539bab7f665ba1d16749676ced58d6771ca25476bd8df9f89",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N09_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/configs/formal_c21_perp_r1_k10_s2.json",
+      "source_config_sha256": "c269f172c270081186fea09b113f594a12635b1db6af49b27c57a7a60fd1c537",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_c21_perp_r1_k10_s2",
+          "draft": "N09_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/outputs/formal_c21_perp_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N09_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "c21_perp",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N09_r1_k10_s1",
+      "condition": "N09",
+      "family": "native_global_rng_5CE",
+      "block": "B1",
+      "label": "B",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N09_r1_k10_s1.json",
+      "config_sha256": "953d5065c0c1e8bc4a20ccf8f016fbd4fa5ac99e7e2c4c43c943ca758488f556",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N09_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/configs/formal_c21_perp_r1_k10_s2.json",
+      "source_config_sha256": "c269f172c270081186fea09b113f594a12635b1db6af49b27c57a7a60fd1c537",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_c21_perp_r1_k10_s2",
+          "draft": "N09_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/outputs/formal_c21_perp_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N09_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-c21-ab-20261002T115100Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "c21_perp",
+      "runtime_bindings_source_template": {},
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N10_r1_k10_s0",
+      "condition": "N10",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "Mean",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N10_r1_k10_s0.json",
+      "config_sha256": "7af771f25e2b746b472754eeafcaaad761899b494cb6f5da5580096eac8aa3e9",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N10_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/configs/s3_puregam_meansum_r1_k10_s2.json",
+      "source_config_sha256": "2b75f76fef43052e3c94a22fc39d779970c0e63114a4a97975cc1751285a8828",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_meansum_r1_k10_s2",
+          "draft": "N10_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/outputs/s3_puregam_meansum_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N10_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "id": "s3_puregam_meansum_r1_k10_s2",
+        "axis": "mean_direction",
+        "value": "mean_sum_r1",
+        "direction": "mean_sum",
+        "outer_radius": 1.0,
+        "seed": 2,
+        "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/configs/s3_puregam_meansum_r1_k10_s2.json",
+        "config_sha256": "2b75f76fef43052e3c94a22fc39d779970c0e63114a4a97975cc1751285a8828",
+        "depends_on": [],
+        "gamma": 0.0,
+        "beta1": 0.5,
+        "beta2": 1.0,
+        "beta3": 0.5
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N10_r1_k10_s1",
+      "condition": "N10",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "Mean",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N10_r1_k10_s1.json",
+      "config_sha256": "18df6e66df3fb423b09dccc67ed8658b6195c858605f105876eb4e0e01ecaaee",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N10_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/configs/s3_puregam_meansum_r1_k10_s2.json",
+      "source_config_sha256": "2b75f76fef43052e3c94a22fc39d779970c0e63114a4a97975cc1751285a8828",
+      "config_diff": {
+        "prefix": {
+          "source": "s3_puregam_meansum_r1_k10_s2",
+          "draft": "N10_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/outputs/s3_puregam_meansum_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N10_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "id": "s3_puregam_meansum_r1_k10_s2",
+        "axis": "mean_direction",
+        "value": "mean_sum_r1",
+        "direction": "mean_sum",
+        "outer_radius": 1.0,
+        "seed": 2,
+        "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/configs/s3_puregam_meansum_r1_k10_s2.json",
+        "config_sha256": "2b75f76fef43052e3c94a22fc39d779970c0e63114a4a97975cc1751285a8828",
+        "depends_on": [],
+        "gamma": 0.0,
+        "beta1": 0.5,
+        "beta2": 1.0,
+        "beta3": 0.5
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N11_r1_k10_s0",
+      "condition": "N11",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "S1.5",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N11_r1_k10_s0.json",
+      "config_sha256": "446f8b33efb068ebe48b361654b1cbca8f94e26e5e7d653513545b9b37f3060d",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N11_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S15_r1_k10_s2.json",
+      "source_config_sha256": "511f727ffd69e0347ca714863f82f12d839b97eb6437affe80e06e01b9c11367",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_S15_r1_k10_s2",
+          "draft": "N11_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S15_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N11_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g1_control",
+      "runtime_bindings_source_template": {
+        "id": "formal_S15_r1_k10_s2",
+        "arm": "S1.5",
+        "axis": "learning_rate_and_direction",
+        "value": "S1.5",
+        "direction_selector": "g1_control",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 1.5,
+        "outer_radius": 1.0,
+        "config": "configs/formal_S15_r1_k10_s2.json",
+        "config_sha256": "511f727ffd69e0347ca714863f82f12d839b97eb6437affe80e06e01b9c11367",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N11_r1_k10_s1",
+      "condition": "N11",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "S1.5",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N11_r1_k10_s1.json",
+      "config_sha256": "88353e5a800ff1ad6b5394e315c271c3f670cf3b291146fb3db8bae74b90cc52",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N11_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S15_r1_k10_s2.json",
+      "source_config_sha256": "511f727ffd69e0347ca714863f82f12d839b97eb6437affe80e06e01b9c11367",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_S15_r1_k10_s2",
+          "draft": "N11_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S15_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N11_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g1_control",
+      "runtime_bindings_source_template": {
+        "id": "formal_S15_r1_k10_s2",
+        "arm": "S1.5",
+        "axis": "learning_rate_and_direction",
+        "value": "S1.5",
+        "direction_selector": "g1_control",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 1.5,
+        "outer_radius": 1.0,
+        "config": "configs/formal_S15_r1_k10_s2.json",
+        "config_sha256": "511f727ffd69e0347ca714863f82f12d839b97eb6437affe80e06e01b9c11367",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N12_r1_k10_s0",
+      "condition": "N12",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "S2",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N12_r1_k10_s0.json",
+      "config_sha256": "57405da55eee7d4c0d28fd6b429043b1c1b2f7b5b0c3c0bfddff0f7ffca400e6",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N12_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S2_r1_k10_s2.json",
+      "source_config_sha256": "7f7e60fd0b2f9607ca86e4efae13ba9645a7175e3e96b6af7c77fe8c002b6ed8",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_S2_r1_k10_s2",
+          "draft": "N12_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S2_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N12_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g1_control",
+      "runtime_bindings_source_template": {
+        "id": "formal_S2_r1_k10_s2",
+        "arm": "S2",
+        "axis": "learning_rate_and_direction",
+        "value": "S2",
+        "direction_selector": "g1_control",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 2.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_S2_r1_k10_s2.json",
+        "config_sha256": "7f7e60fd0b2f9607ca86e4efae13ba9645a7175e3e96b6af7c77fe8c002b6ed8",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N12_r1_k10_s1",
+      "condition": "N12",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "S2",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N12_r1_k10_s1.json",
+      "config_sha256": "2625f9b96d190df34541140d89417f925c0fbb863e506a11c33a81c063b458ac",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N12_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S2_r1_k10_s2.json",
+      "source_config_sha256": "7f7e60fd0b2f9607ca86e4efae13ba9645a7175e3e96b6af7c77fe8c002b6ed8",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_S2_r1_k10_s2",
+          "draft": "N12_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S2_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N12_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "g1_control",
+      "runtime_bindings_source_template": {
+        "id": "formal_S2_r1_k10_s2",
+        "arm": "S2",
+        "axis": "learning_rate_and_direction",
+        "value": "S2",
+        "direction_selector": "g1_control",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 2.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_S2_r1_k10_s2.json",
+        "config_sha256": "7f7e60fd0b2f9607ca86e4efae13ba9645a7175e3e96b6af7c77fe8c002b6ed8",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N13_r1_k10_s0",
+      "condition": "N13",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "Mean2",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N13_r1_k10_s0.json",
+      "config_sha256": "e79a95d2056fad8e937f042328b6cdd580d68ea4f9aa6fd0e46f56ef85540344",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N13_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_Mean2_r1_k10_s2.json",
+      "source_config_sha256": "eee715935e69add149faff028f70130dec2ce304899a9929eae38ba876488cbf",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_Mean2_r1_k10_s2",
+          "draft": "N13_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_Mean2_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N13_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "mean",
+      "runtime_bindings_source_template": {
+        "id": "formal_Mean2_r1_k10_s2",
+        "arm": "Mean2",
+        "axis": "learning_rate_and_direction",
+        "value": "Mean2",
+        "direction_selector": "mean",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 2.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_Mean2_r1_k10_s2.json",
+        "config_sha256": "eee715935e69add149faff028f70130dec2ce304899a9929eae38ba876488cbf",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N13_r1_k10_s1",
+      "condition": "N13",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "Mean2",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N13_r1_k10_s1.json",
+      "config_sha256": "516e7166cb0902f55dfdb60901b8680afbc91da9d50188df4ad818e46d4f05c8",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N13_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_Mean2_r1_k10_s2.json",
+      "source_config_sha256": "eee715935e69add149faff028f70130dec2ce304899a9929eae38ba876488cbf",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_Mean2_r1_k10_s2",
+          "draft": "N13_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_Mean2_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N13_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "mean",
+      "runtime_bindings_source_template": {
+        "id": "formal_Mean2_r1_k10_s2",
+        "arm": "Mean2",
+        "axis": "learning_rate_and_direction",
+        "value": "Mean2",
+        "direction_selector": "mean",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 2.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_Mean2_r1_k10_s2.json",
+        "config_sha256": "eee715935e69add149faff028f70130dec2ce304899a9929eae38ba876488cbf",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2"
+        ]
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N14_r1_k10_s0",
+      "condition": "N14",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "Gmatch",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N14_r1_k10_s0.json",
+      "config_sha256": "728b4f9cf42d1dc70cfdf85aa034bfbbc3dee0a1df8e0f2160309c4760bb5bb7",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N14_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_Gmatch_r1_k10_s2.json",
+      "source_config_sha256": "11f34be6882a4adc49a92c85bcca22de471010ef26cae86cc4625269db1ead4f",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_Gmatch_r1_k10_s2",
+          "draft": "N14_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_Gmatch_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N14_r1_k10_s0"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "gmatch",
+      "runtime_bindings_source_template": {
+        "id": "formal_Gmatch_r1_k10_s2",
+        "arm": "Gmatch",
+        "axis": "learning_rate_and_direction",
+        "value": "Gmatch",
+        "direction_selector": "gmatch",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 1.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_Gmatch_r1_k10_s2.json",
+        "config_sha256": "11f34be6882a4adc49a92c85bcca22de471010ef26cae86cc4625269db1ead4f",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2",
+          "formal_S_r1_k10_s2"
+        ],
+        "reference_job": "formal_S_r1_k10_s2"
+      },
+      "depends_on_formal": [
+        "N03_r1_k10_s0"
+      ],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": "N03_r1_k10_s0",
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "N14_r1_k10_s1",
+      "condition": "N14",
+      "family": "native_global_rng_5CE",
+      "block": "B2",
+      "label": "Gmatch",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/N14_r1_k10_s1.json",
+      "config_sha256": "277df37ed700962a45da0007acb39a494c39a8398ca36e8304012e83c215c41d",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N14_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_Gmatch_r1_k10_s2.json",
+      "source_config_sha256": "11f34be6882a4adc49a92c85bcca22de471010ef26cae86cc4625269db1ead4f",
+      "config_diff": {
+        "prefix": {
+          "source": "formal_Gmatch_r1_k10_s2",
+          "draft": "N14_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_Gmatch_r1_k10_s2",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/N14_r1_k10_s1"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+      "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+      "direction_selector": "gmatch",
+      "runtime_bindings_source_template": {
+        "id": "formal_Gmatch_r1_k10_s2",
+        "arm": "Gmatch",
+        "axis": "learning_rate_and_direction",
+        "value": "Gmatch",
+        "direction_selector": "gmatch",
+        "seed": 2,
+        "phase": "formal",
+        "lr_multiplier": 1.0,
+        "outer_radius": 1.0,
+        "config": "configs/formal_Gmatch_r1_k10_s2.json",
+        "config_sha256": "11f34be6882a4adc49a92c85bcca22de471010ef26cae86cc4625269db1ead4f",
+        "expected_tasks": 10,
+        "expected_steps": 2550,
+        "expected_samples": 299050,
+        "expected_task_steps": {
+          "0": 500,
+          "1": 400,
+          "2": 400,
+          "3": 250,
+          "4": 200,
+          "5": 150,
+          "6": 150,
+          "7": 150,
+          "8": 200,
+          "9": 150
+        },
+        "depends_on": [
+          "smoke_S_r1_k10_s2",
+          "smoke_Sum_r1_k10_s2",
+          "smoke_Mean2_r1_k10_s2",
+          "smoke_S2_r1_k10_s2",
+          "smoke_Gmatch_r1_k10_s2",
+          "formal_S_r1_k10_s2"
+        ],
+        "reference_job": "formal_S_r1_k10_s2"
+      },
+      "depends_on_formal": [
+        "N03_r1_k10_s1"
+      ],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": "N03_r1_k10_s1",
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P01_r1_k10_s0",
+      "condition": "P01",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-01_CE_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P01_r1_k10_s0.json",
+      "config_sha256": "8a80e068522673674c9205f3ed3f54b98aa2f0ead3d54d299dff2bd349a5ca4c",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P01_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-01_CE_natural_s2.json",
+      "source_config_sha256": "63176f6629ed1bae053c958924a4f83eaf5e4ff4a9372c3c8135b5503335aa9c",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-01_CE_natural_s2",
+          "draft": "P01_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-01_CE_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P01_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g0",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P01_r1_k10_s1",
+      "condition": "P01",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-01_CE_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P01_r1_k10_s1.json",
+      "config_sha256": "8a1d71f5c370530f26876d4f35511da4a1fb6230a192c4681b2cae7cbb097e77",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P01_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-01_CE_natural_s2.json",
+      "source_config_sha256": "63176f6629ed1bae053c958924a4f83eaf5e4ff4a9372c3c8135b5503335aa9c",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-01_CE_natural_s2",
+          "draft": "P01_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-01_CE_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P01_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g0",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P02_r1_k10_s0",
+      "condition": "P02",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-02_Splus_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P02_r1_k10_s0.json",
+      "config_sha256": "3fd447ad6886c0776be25dbceadf9cd3b5be449201e7d23d92fa2cadc1b0cf9c",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P02_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-02_Splus_natural_s2.json",
+      "source_config_sha256": "002901917009ca10c213bee4c62f0c13e91a7f7c02a4697dfb28f4b9edafe916",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-02_Splus_natural_s2",
+          "draft": "P02_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-02_Splus_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P02_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g1_plus",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P02_r1_k10_s1",
+      "condition": "P02",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-02_Splus_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P02_r1_k10_s1.json",
+      "config_sha256": "5374d2e26195e85e820e16f17b01f4053210472fca542f4e8f03f1e06c72836e",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P02_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-02_Splus_natural_s2.json",
+      "source_config_sha256": "002901917009ca10c213bee4c62f0c13e91a7f7c02a4697dfb28f4b9edafe916",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-02_Splus_natural_s2",
+          "draft": "P02_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-02_Splus_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P02_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g1_plus",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P03_r1_k10_s0",
+      "condition": "P03",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-03_Sminus_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P03_r1_k10_s0.json",
+      "config_sha256": "9f0696d369c66bffebb77a82b7a79d2bb630064d89c3f8d9f29baa3df578bec0",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P03_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-03_Sminus_natural_s2.json",
+      "source_config_sha256": "283a065468112b89f66fbc2982ab66accc9d12dec2919ac22936ef895b3cec51",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-03_Sminus_natural_s2",
+          "draft": "P03_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-03_Sminus_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P03_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g1_minus",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P03_r1_k10_s1",
+      "condition": "P03",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-03_Sminus_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P03_r1_k10_s1.json",
+      "config_sha256": "2e5a1ed9bcddceaa859c08d38832eb63c53c5fdaa92ba6d65fc29b55d362bf9d",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P03_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-03_Sminus_natural_s2.json",
+      "source_config_sha256": "283a065468112b89f66fbc2982ab66accc9d12dec2919ac22936ef895b3cec51",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-03_Sminus_natural_s2",
+          "draft": "P03_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-03_Sminus_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P03_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g1_minus",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P04_r1_k10_s0",
+      "condition": "P04",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-04_O_P_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P04_r1_k10_s0.json",
+      "config_sha256": "b8a7a29aabf19edce2cc5b8c9e75fd50768f05b1ed033db443e7a70122554399",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P04_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-04_O_P_natural_s2.json",
+      "source_config_sha256": "0d329753f0446ee91204779774659b68a88097fc977bf72af243b16ec7ea92ab",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-04_O_P_natural_s2",
+          "draft": "P04_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-04_O_P_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P04_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P04_r1_k10_s1",
+      "condition": "P04",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-04_O_P_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P04_r1_k10_s1.json",
+      "config_sha256": "e876b021c8be66cbe70c4dd869eaa775a9776cdd56bb970b5e0c1cbac3efa96a",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P04_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-04_O_P_natural_s2.json",
+      "source_config_sha256": "0d329753f0446ee91204779774659b68a88097fc977bf72af243b16ec7ea92ab",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-04_O_P_natural_s2",
+          "draft": "P04_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-04_O_P_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P04_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P05_r1_k10_s0",
+      "condition": "P05",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-05_O_D_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P05_r1_k10_s0.json",
+      "config_sha256": "a20507a4762509af3e567864044b1959a63a6dc97aeee6112f0a35703b9a06fb",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P05_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-05_O_D_natural_s2.json",
+      "source_config_sha256": "ae7bff01c3c1bab47676688e7bc73778bf8aa6b71a76a9b0a7eb08b5dd6bf139",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-05_O_D_natural_s2",
+          "draft": "P05_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-05_O_D_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P05_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "D",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P05_r1_k10_s1",
+      "condition": "P05",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-05_O_D_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P05_r1_k10_s1.json",
+      "config_sha256": "40d357a0ac9b8bb3f22dae7cce97fe4367b5039c7a964f69f3aed25f80d17a43",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P05_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-05_O_D_natural_s2.json",
+      "source_config_sha256": "ae7bff01c3c1bab47676688e7bc73778bf8aa6b71a76a9b0a7eb08b5dd6bf139",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-05_O_D_natural_s2",
+          "draft": "P05_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-05_O_D_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P05_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "D",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P06_r1_k10_s0",
+      "condition": "P06",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-06_O_C_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P06_r1_k10_s0.json",
+      "config_sha256": "b9d0dbd100070b6f1242580a2d4b873ea3b659884cfeea08068cc2b266d6f267",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P06_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-06_O_C_natural_s2.json",
+      "source_config_sha256": "c328e714707e0d81b07b4a4a3c12a2a857a42aec40d4d435fd5859b4416a97d0",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-06_O_C_natural_s2",
+          "draft": "P06_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-06_O_C_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P06_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "C",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P06_r1_k10_s1",
+      "condition": "P06",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-06_O_C_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P06_r1_k10_s1.json",
+      "config_sha256": "0a5457aaa72c19fb7df469b98565458f37c3f4102d085a40dec3381ad700110c",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P06_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-06_O_C_natural_s2.json",
+      "source_config_sha256": "c328e714707e0d81b07b4a4a3c12a2a857a42aec40d4d435fd5859b4416a97d0",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-06_O_C_natural_s2",
+          "draft": "P06_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-06_O_C_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P06_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "C",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P07_r1_k10_s0",
+      "condition": "P07",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-07_A_P_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P07_r1_k10_s0.json",
+      "config_sha256": "feacc6b325d85991c5d0fb65bc94ff29536dd3fd640c93141c094d5b86d9f1d8",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P07_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-07_A_P_natural_s2.json",
+      "source_config_sha256": "d1fd9e2387659917f2df4def61cc899e03c8f827535b4749d622fc68d274083b",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-07_A_P_natural_s2",
+          "draft": "P07_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-07_A_P_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P07_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P07_r1_k10_s1",
+      "condition": "P07",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-07_A_P_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P07_r1_k10_s1.json",
+      "config_sha256": "5157f7db334eb038e14f746b2bc1afb0622f6026d265ba172fb1d6a98dc04bb2",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P07_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-07_A_P_natural_s2.json",
+      "source_config_sha256": "d1fd9e2387659917f2df4def61cc899e03c8f827535b4749d622fc68d274083b",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-07_A_P_natural_s2",
+          "draft": "P07_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-07_A_P_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P07_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P08_r1_k10_s0",
+      "condition": "P08",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-08_A_D_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P08_r1_k10_s0.json",
+      "config_sha256": "e1a97fe97f7464ad19d1f0bab5cb9d21a10252b860e2723717ee38f4484bbba5",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P08_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-08_A_D_natural_s2.json",
+      "source_config_sha256": "1d291d35edf758405087c717e34cda008c836cf61324d9944e76d2cd580c2e81",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-08_A_D_natural_s2",
+          "draft": "P08_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-08_A_D_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P08_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "D",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P08_r1_k10_s1",
+      "condition": "P08",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-08_A_D_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P08_r1_k10_s1.json",
+      "config_sha256": "c68b43b33add7878171a5660272f3ae35b485d790c69b5a5637afa60badc5a12",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P08_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-08_A_D_natural_s2.json",
+      "source_config_sha256": "1d291d35edf758405087c717e34cda008c836cf61324d9944e76d2cd580c2e81",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-08_A_D_natural_s2",
+          "draft": "P08_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-08_A_D_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P08_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "D",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P09_r1_k10_s0",
+      "condition": "P09",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-09_A_C_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P09_r1_k10_s0.json",
+      "config_sha256": "c5139cc59be7b148d08e2465ff27c2cc7d92f477952e01e848d8f7acece8543c",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P09_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-09_A_C_natural_s2.json",
+      "source_config_sha256": "557e1efb6a00b23a927d6d940e33ad096ad79ca52ddd60b99277de142794636e",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-09_A_C_natural_s2",
+          "draft": "P09_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-09_A_C_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P09_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "C",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P09_r1_k10_s1",
+      "condition": "P09",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-09_A_C_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P09_r1_k10_s1.json",
+      "config_sha256": "7d62dc22773278ada61a649dac4e6a545427e210b95a311997a55c9f749fb2bf",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P09_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-09_A_C_natural_s2.json",
+      "source_config_sha256": "557e1efb6a00b23a927d6d940e33ad096ad79ca52ddd60b99277de142794636e",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-09_A_C_natural_s2",
+          "draft": "P09_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-09_A_C_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P09_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "C",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P10_r1_k10_s0",
+      "condition": "P10",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-10_O_R_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P10_r1_k10_s0.json",
+      "config_sha256": "55453ea8086ffdab34a02addcd4acce1efa653a48ca742d662ca7e9637a81086",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P10_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-10_O_R_natural_s2.json",
+      "source_config_sha256": "f5a8ba430be7134e541a05f11c125c7ef76db43a096d8d5418895ca5b4f0eb29",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-10_O_R_natural_s2",
+          "draft": "P10_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-10_O_R_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P10_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "R",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P10_r1_k10_s1",
+      "condition": "P10",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-10_O_R_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P10_r1_k10_s1.json",
+      "config_sha256": "188df735af45e6b1b893384842bde53247bc9b442b2cefd6bef971d5fc6db22a",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P10_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-10_O_R_natural_s2.json",
+      "source_config_sha256": "f5a8ba430be7134e541a05f11c125c7ef76db43a096d8d5418895ca5b4f0eb29",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-10_O_R_natural_s2",
+          "draft": "P10_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-10_O_R_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P10_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "R",
+        "update_direction": "g2",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P11_r1_k10_s0",
+      "condition": "P11",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-11_A_R_natural",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P11_r1_k10_s0.json",
+      "config_sha256": "181d90b2260568ffafb72784125747ce409c0d5fb74fd99812839f4f6c3318f7",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P11_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-11_A_R_natural_s2.json",
+      "source_config_sha256": "6ab6d3faaf8522c26d9c6b7a3a3e6be8c8554747f6d39b3487d47bc11af43298",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-11_A_R_natural_s2",
+          "draft": "P11_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-11_A_R_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P11_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "R",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P11_r1_k10_s1",
+      "condition": "P11",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-11_A_R_natural",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P11_r1_k10_s1.json",
+      "config_sha256": "64ac0533d1e29b12a8325101c82ebf69a154c77b4e57eaece145de51abad5c5c",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P11_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-11_A_R_natural_s2.json",
+      "source_config_sha256": "6ab6d3faaf8522c26d9c6b7a3a3e6be8c8554747f6d39b3487d47bc11af43298",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-11_A_R_natural_s2",
+          "draft": "P11_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-11_A_R_natural_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P11_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "R",
+        "update_direction": "A",
+        "step_mode": "natural",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P12_r1_k10_s0",
+      "condition": "P12",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-12_A_P_matched",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P12_r1_k10_s0.json",
+      "config_sha256": "21008f0e694e2aab5faf69ea1ccc8d1c2dcfb67b5f03f2e9729fcb534d0e85ea",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P12_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-12_A_P_matched_s2.json",
+      "source_config_sha256": "836eb9468d4edbe45981903abf03028f5fb35b260f9cd39b701dfa6f919016fd",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-12_A_P_matched_s2",
+          "draft": "P12_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-12_A_P_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P12_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P12_r1_k10_s1",
+      "condition": "P12",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-12_A_P_matched",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P12_r1_k10_s1.json",
+      "config_sha256": "eb94f0cc865542591b046d655a48252ab02199ba932553ba93a7394a438777ad",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P12_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-12_A_P_matched_s2.json",
+      "source_config_sha256": "836eb9468d4edbe45981903abf03028f5fb35b260f9cd39b701dfa6f919016fd",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-12_A_P_matched_s2",
+          "draft": "P12_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-12_A_P_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P12_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P13_r1_k10_s0",
+      "condition": "P13",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-13_A_D_matched",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P13_r1_k10_s0.json",
+      "config_sha256": "0ff4c5b769c24304a8b659c3f1d5ea35c7de831b6c59c5e581b88eb3847d5720",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P13_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-13_A_D_matched_s2.json",
+      "source_config_sha256": "95135387a8906d7206b83d315f7d82bf100c9e997a1811fd9ba31df0f9b016f4",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-13_A_D_matched_s2",
+          "draft": "P13_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-13_A_D_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P13_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "D",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P13_r1_k10_s1",
+      "condition": "P13",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-13_A_D_matched",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P13_r1_k10_s1.json",
+      "config_sha256": "d30c7286733a58a8afb17be51628086875392854e068c7b4113f889b89cfb254",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P13_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-13_A_D_matched_s2.json",
+      "source_config_sha256": "95135387a8906d7206b83d315f7d82bf100c9e997a1811fd9ba31df0f9b016f4",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-13_A_D_matched_s2",
+          "draft": "P13_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-13_A_D_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P13_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "D",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P14_r1_k10_s0",
+      "condition": "P14",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-14_A_C_matched",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P14_r1_k10_s0.json",
+      "config_sha256": "ee370a5771ef5793e374c6019caea31017b812301637f1625ed87bf8fad2b240",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P14_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-14_A_C_matched_s2.json",
+      "source_config_sha256": "d0bdc803305b74bf8789d235bc487c240292d3b41f2b73b9b1f96d290eeb49fe",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-14_A_C_matched_s2",
+          "draft": "P14_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-14_A_C_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P14_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "C",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P14_r1_k10_s1",
+      "condition": "P14",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-14_A_C_matched",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P14_r1_k10_s1.json",
+      "config_sha256": "472af207aeb6cd53392f168fccab5c604b7397403e51c8f0b66a9bbba47310ae",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P14_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-14_A_C_matched_s2.json",
+      "source_config_sha256": "d0bdc803305b74bf8789d235bc487c240292d3b41f2b73b9b1f96d290eeb49fe",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-14_A_C_matched_s2",
+          "draft": "P14_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-14_A_C_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P14_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "C",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P15_r1_k10_s0",
+      "condition": "P15",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-15_A_R_matched",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P15_r1_k10_s0.json",
+      "config_sha256": "b0a61ceb473282593fcb4a5b4b91084888be664e6dafefc70262199ed04f5771",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P15_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-15_A_R_matched_s2.json",
+      "source_config_sha256": "bc7184dfedc8b669db59555f1b41abbe620bf0ab82e90f62dcaf1b45602442b2",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-15_A_R_matched_s2",
+          "draft": "P15_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-15_A_R_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P15_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "R",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P15_r1_k10_s1",
+      "condition": "P15",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-15_A_R_matched",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P15_r1_k10_s1.json",
+      "config_sha256": "4c61dd5684342f1156d7682fbc399c76aa0fbc82f4ae74be27c4fb4798aaf0ab",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P15_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-15_A_R_matched_s2.json",
+      "source_config_sha256": "bc7184dfedc8b669db59555f1b41abbe620bf0ab82e90f62dcaf1b45602442b2",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-15_A_R_matched_s2",
+          "draft": "P15_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-15_A_R_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P15_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "R",
+        "update_direction": "A",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P16_r1_k10_s0",
+      "condition": "P16",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-16_CE_matched",
+      "seed": 0,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P16_r1_k10_s0.json",
+      "config_sha256": "5c4b3be30a2c36cf645eca0ae7ab09fb6acd9e57888d54f3f32051f88501aa1b",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P16_r1_k10_s0",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-16_CE_matched_s2.json",
+      "source_config_sha256": "76888fe6595db754d53598a77ce6a123291cb46ebab8c1d6ffcb28fce6ffe9b3",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-16_CE_matched_s2",
+          "draft": "P16_r1_k10_s0"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            0
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-16_CE_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P16_r1_k10_s0/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g0",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    },
+    {
+      "id": "P16_r1_k10_s1",
+      "condition": "P16",
+      "family": "four_probe_exact_restore_rng_replay",
+      "block": "B3",
+      "label": "S1-16_CE_matched",
+      "seed": 1,
+      "status": "planned_not_registered",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/configs/P16_r1_k10_s1.json",
+      "config_sha256": "5f628a557755a348065944202b1b584c42a9e64a87c4f9a724939a99d4fc73f8",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P16_r1_k10_s1",
+      "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/configs/S1-16_CE_matched_s2.json",
+      "source_config_sha256": "76888fe6595db754d53598a77ce6a123291cb46ebab8c1d6ffcb28fce6ffe9b3",
+      "config_diff": {
+        "prefix": {
+          "source": "S1-16_CE_matched_s2",
+          "draft": "P16_r1_k10_s1"
+        },
+        "seed": {
+          "source": [
+            2
+          ],
+          "draft": [
+            1
+          ]
+        },
+        "gam_grad_norm_rho": {
+          "source": 0.25,
+          "draft": 1.0
+        },
+        "outputs_root": {
+          "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-16_CE_matched_s2/native",
+          "draft": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-repeat-plan-20261003T161135Z/outputs/P16_r1_k10_s1/native"
+        }
+      },
+      "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+      "direction_selector": null,
+      "runtime_bindings_source_template": {
+        "probe_branch": "P",
+        "update_direction": "g0",
+        "step_mode": "matched",
+        "attention_backend": "native"
+      },
+      "depends_on_formal": [],
+      "requires_same_seed_smoke_gate": true,
+      "independent_reference_job": null,
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "expected_samples": 299050,
+      "expected_task_steps": {
+        "0": 500,
+        "1": 400,
+        "2": 400,
+        "3": 250,
+        "4": 200,
+        "5": 150,
+        "6": 150,
+        "7": 150,
+        "8": 200,
+        "9": 150
+      }
+    }
+  ],
+  "adapter_readiness": "requires isolated seed-aware wrappers/contracts/validators; no scheduler installed or started",
+  "parameterization": {
+    "four_probe": {
+      "trainer": "native_lifecycle.resolve_config already supports seeds 0..4 and restores actual seed after its deliberate seed2 surrogate. Change four_probe_train summary/dry-run seed literals to resolved run seed; retain numeric helpers.",
+      "builder_contract": "Create fresh isolated suite containing all16 formals for EACH requested seed; do not inherit skip-four-baseline logic or seed2 REUSE_BASELINES. Add job.seed and compare configs to seed2 templates allowing only actual requested seed and provenance.",
+      "validator": "Compare summary/trace seeds to job.seed, not literal2; preserve all budgets, matching tolerance and scientific checks.",
+      "smoke_gate": "Pair initial parameters/data within seed; separate baseline identities keyed seed. All32 smokes must pass before32 formals.",
+      "queue": "No seed-specific algorithm change; use fresh allowed_gpus=[4,5,6]/max_parallel=3 and original shared index/UUID leases, namespace checks and fail-closed state/receipts.",
+      "collector": "Record actual job seed. Preserve per-seed metrics; compute mean and sample SD only over completed seed0,seed1,seed2 rows in same protocol/arm.",
+      "environment_witness": "Canonical tiny CUDA witness may retain fixed seed2 as ENVIRONMENT evidence; it is not a training-seed assertion."
+    },
+    "native_lr": [
+      {
+        "file": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/common.py",
+        "lines": [
+          230,
+          237,
+          241
+        ],
+        "change": "GPU allowlist[4,5,6], parallel3; seed0/1 manifest+shared-config equality; add Mean arm spec mean/LR1/r1"
+      },
+      {
+        "file": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/step_reference.py",
+        "lines": [
+          52,
+          88
+        ],
+        "change": "replace seed2 assertions with explicit candidate/reference same requested seed0/1; keep budget/hash/batch/RNG alignment strict"
+      },
+      {
+        "file": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/validate_smokes.py",
+        "lines": [
+          197,
+          207,
+          208
+        ],
+        "change": "group fixed s2 smoke identifiers by seed; each Gmatch binds same-seed completed S"
+      },
+      {
+        "file": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/summarize_controls.py",
+        "lines": [
+          33,
+          36,
+          37
+        ],
+        "change": "seed-aware reports; normal-LR Mean primary repeat arm, preserve old/new S provenance"
+      },
+      {
+        "file": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/suite.json",
+        "change": "fresh immutable per-seed arm rows; same-seed S dependency before Gmatch, r1 only; do not reuse resource_wrapper with old GPU2/3/job/hash hardcodes"
+      }
+    ]
+  },
+  "user_scope_confirmed": "只重复全部纯 GAM 对照（推荐）",
+  "optional_fullmethod_jobs": 0
+}

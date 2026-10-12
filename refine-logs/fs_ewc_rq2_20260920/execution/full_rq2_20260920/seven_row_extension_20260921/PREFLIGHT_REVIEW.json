@@ -1,0 +1,210 @@
+{
+  "review_type": "read_only_preflight",
+  "reviewed_at_utc": "2026-09-21T16:47:49Z",
+  "verdict": "conditional_pass_to_gpu_smoke",
+  "controller_start_allowed": true,
+  "formal_training_release": "only_after_smoke_validation_receipt",
+  "blocking_findings": [],
+  "pending_required_evidence": [
+    "smoke/training/shaping_only_seed0/SMOKE_COMPLETE.json",
+    "smoke/training/task2_shaping_seed0/SMOKE_COMPLETE.json",
+    "smoke/VALIDATED.json with status=passed and validated_smokes=2"
+  ],
+  "actions_performed": {
+    "read_only_cpu_review": true,
+    "gpu_launched": false,
+    "training_launched": false,
+    "original_or_frozen_code_modified": false,
+    "queue_or_runner_modified_by_reviewer": false
+  },
+  "source_integrity": {
+    "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source_frozen.json",
+    "source_manifest_sha256": "fe3b5ef75e89bab32010c1aa9a0581cbaeb2b068eaa2f4718f11a9cc314d0a2b",
+    "files_rehashed": 199,
+    "mismatches": 0,
+    "formal_runner_sha256": "a4de971877e8bee0f7da9efbb010fb2f7c7df30a7920286ee3196cbe4dc4afe8"
+  },
+  "dataset": {
+    "resolved_root": "/data/115-2/users/liying/datasets/imagenet-a",
+    "train_classes": 200,
+    "test_classes": 200,
+    "train_files": 5981,
+    "test_files": 1519,
+    "class_shuffle": false,
+    "class_order": "identity_0_to_199",
+    "init_cls": 20,
+    "increment": 20,
+    "task_assets": {
+      "task0_train": {
+        "samples": 1259,
+        "path_label_sha256": "02b461539dc31835ad90f8a47e7bb576953c8d7971a2a849312a829434ff6911"
+      },
+      "task0_test": {
+        "samples": 307,
+        "path_label_sha256": "8841393dabdf40156fc4cf4d84e993eb6fb69903272d4df60bb31150424a1860"
+      },
+      "task1_train": {
+        "samples": 997,
+        "path_label_sha256": "8c9fb2dab857e1459e6b403fff4f26470617efae5068cca9df2e07d1fb559255"
+      },
+      "seen_0_39_test": {
+        "samples": 561,
+        "path_label_sha256": "a3deb937d593215adecf15ad2a73a8b212756d704c3118041b3598d0f22bd71c"
+      }
+    },
+    "matches_formal_receipts": true
+  },
+  "evaluation_logic": {
+    "task1_train_classes": "20-39",
+    "task1_test_classes": "0-39",
+    "trainer_calls_eval_task_unconditionally_after_incremental_train": true,
+    "cil_40_class_test_enabled": true,
+    "endpoint_eval_false_meaning": "disables optional endpoint diagnostic module only",
+    "endpoint_eval_false_disables_formal_test": false,
+    "matrix_receipt": "cnn.matrices.t01 and cnn.matrices.final"
+  },
+  "parent_anchors": {
+    "all_status_complete": true,
+    "all_completed_tasks": 1,
+    "all_receipt_hashes_match_complete": true,
+    "assets": {
+      "sgd_seed0": {
+        "task_00_sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229",
+        "fisher_state_0_sha256": "7d89cb797c9505f7866141759e020d38f348b4e34dd0a78eef38455efd2d6482",
+        "metrics_sha256": "109c63c93591cc2c6a70994749887c961c27be270e1f5833856d6b1dd96cb102"
+      },
+      "sgd_seed1": {
+        "task_00_sha256": "4520ca3b54f89e07042e431806885353a97ea8529c451b76068fa38c07700f9a",
+        "fisher_state_0_sha256": "00dd439f00f46789c8d00b87746238533436c687676a79538c9cac94b7297f57",
+        "metrics_sha256": "2e378dd332ddf58444728aee71191e3dba62233cac3f22617e04c27947759933"
+      },
+      "sgd_seed2": {
+        "task_00_sha256": "71a005caafe368ce3d5b18b7323b3a03f1b64df2dfdc8c834b6c4bc0a43dea59",
+        "fisher_state_0_sha256": "6046c2bb65769fc336e5b99d217b20f19773a6d3349be357528580bb4fba4bf6",
+        "metrics_sha256": "d1d52b8188063ccb97059e8ab5c7ffd8e720b9a444177b02811f56445b820a50"
+      },
+      "gam_seed0": {
+        "task_00_sha256": "c3986b8499e13d3a26bda6a9893356afd5471670bd16bbb9654956ee8b4455ff",
+        "fisher_state_0_sha256": "3100e031b312daa15e9bd72fe3440f1fd694689fc971ab576e4e1a9295813118",
+        "metrics_sha256": "ca3beaf92de2db3cc07e6973d9203908742bf2ada17709855e0660da38b9eca0"
+      },
+      "gam_seed1": {
+        "task_00_sha256": "3c6a3af2066ed257baab0f0bffa774741e060f169d886e4940fae6bc9643275c",
+        "fisher_state_0_sha256": "f3f2efb1772d0504d00501272d4949c91103adef2dc5fd9f3cb2a687854f123f",
+        "metrics_sha256": "e8b31c275f85e9c47a8bca8ad5da157e3f7b8e303f8bc6962270afafb646c1d5"
+      },
+      "gam_seed2": {
+        "task_00_sha256": "d3e17afbdc5d4fdd3302e413fccff056b97c460a94c0fdf9dbe6399da727a3c0",
+        "fisher_state_0_sha256": "8b90dbf2149e5891c6fb8664028e456e5c33ec14b81e24a62388f0cef24ddfdc",
+        "metrics_sha256": "12c83373bb8ea3e0b15a14bff853e4bfb94f4a5ba8f68a4e3b68858203ed404f"
+      }
+    }
+  },
+  "new_runner": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/train.py",
+    "sha256": "4e87c9312de8f40bfa5f2f6e6df15853e6ba65c7386ea8dcb4426effe8c1b492",
+    "arms": {
+      "shaping_only": {
+        "anchor_method": "gam",
+        "future_optimizer": "gam",
+        "ewc_lambda": 0.0
+      },
+      "task2_shaping": {
+        "anchor_method": "sgd",
+        "future_optimizer": "gam",
+        "ewc_lambda": 2000.0
+      }
+    },
+    "formal_seeds": [0, 1, 2],
+    "new_task": 1,
+    "epochs": 50,
+    "batch_size": 128,
+    "workers": 4,
+    "optimizer_type": "gam",
+    "lambda_flat": 1.0,
+    "mechanism_eval": true,
+    "mechanism_grad_stats": true,
+    "fisher_mode": "batch_empirical",
+    "fisher_source": "fit",
+    "fisher_split": false,
+    "approximate_fisher_in_task": false,
+    "weight_merge": false,
+    "in_task_weight_merge": false,
+    "endpoint_weight_merge": false,
+    "task0_trajectory_eval": false,
+    "endpoint_eval": false,
+    "ordinary_cil_eval_remains_enabled": true,
+    "full_state_parent_restore_verified": true,
+    "full_state_saved_checkpoint_reload_required": true,
+    "training_loader_passes_required": 50,
+    "fit_fisher_loader_passes_required": 1,
+    "known_fixed_findings": [
+      "nonexistent ns.method manifest field replaced by explicit anchor_method/future_optimizer",
+      "completion now expects 50 training traversals plus one fit-Fisher traversal",
+      "completion now uses the frozen trainer's final-only file log plus loader receipts"
+    ]
+  },
+  "cpu_validation": {
+    "all_six_passed": true,
+    "training_started": false,
+    "forward_tested": false,
+    "fisher_tensors_each": 24,
+    "actual_optimizer_type_each": "gam",
+    "lambda_by_arm": {
+      "shaping_only": 0.0,
+      "task2_shaping": 2000.0
+    },
+    "paired_new_head_hash_same_across_arms_per_seed": true,
+    "runner_sha256": "4e87c9312de8f40bfa5f2f6e6df15853e6ba65c7386ea8dcb4426effe8c1b492",
+    "contract_tests": {
+      "passed": 7,
+      "failed": 0
+    }
+  },
+  "smoke_gate": {
+    "status": "pending",
+    "smoke_epochs": 1,
+    "isolated_output_root": "smoke/training",
+    "formal_complete_forbidden": true,
+    "validator_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/validate_smokes.py",
+    "validator_sha256": "12192698030431971e67ac9c3e32ebd7ae162495d7c3aa31509df46287dfc1db",
+    "checks": [
+      "CUDA environment forward/backward witness",
+      "runner completion receipt and immutable identity",
+      "real GAM gradient in both arms",
+      "zero EWC gradient/loss for lambda0",
+      "positive EWC gradient for lambda2000",
+      "finite mechanism and batch-Fisher metrics",
+      "fisher_num_samples equals 997",
+      "no path Fisher or in-task merge",
+      "40-class CIL evaluation matrix",
+      "old-task train/test diagnostics",
+      "checkpoint, Fisher and RNG receipts"
+    ]
+  },
+  "queue": {
+    "plan_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/seven_row_extension_20260921/plan.json",
+    "plan_sha256": "f3caee8133ca463b7bb06f11ce6a5e181fe0e830eca6a1e874254ad1f0f6f208",
+    "dry_run_passed": true,
+    "stages": 10,
+    "jobs": 10,
+    "max_parallel": 6,
+    "gpu_pool": [0, 1, 2, 3, 4, 5, 6],
+    "smoke_jobs": 2,
+    "smoke_validation_jobs": 1,
+    "formal_training_jobs": 6,
+    "cpu_report_jobs": 1,
+    "all_formal_jobs_depend_on_smoke_validation": true,
+    "report_depends_on_all_formal_jobs": true,
+    "code_files_missing": 0,
+    "failure_blocks_downstream": true,
+    "scientific_scope": "seven rows and 21 seed cells; not a complete 2x2x2 factorial"
+  },
+  "limitations": [
+    "No GPU job, model forward, gradient step, or training was run by this reviewer.",
+    "GPU smoke is pending and remains required before formal training can be released.",
+    "CPU restoration receipts do not establish CUDA execution correctness or scientific outcomes.",
+    "Receipt existence and preflight consistency are not proof of the eventual scientific claims.",
+    "Any change to the reviewed runner, smoke validator, plan, frozen source, or parent artifacts invalidates this hash-pinned verdict."
+  ]
+}

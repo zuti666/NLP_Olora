@@ -1,0 +1,180 @@
+--- immutable-v1/task0_trainer.py
++++ recovery-v2/task0_trainer.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Stage 1 Task-0 wrapper: native frozen learner/data/epoch loop with audit hooks."""
++"""Stage 1 Task-0 wrapper v2: audit SAM itself; measure cross-algorithm differences."""
+ import argparse
+ import contextlib
+ import copy
+@@ -63,6 +63,79 @@
+ 
+ def vector_grads(params):
+     return audit.flatten([torch.zeros_like(p) if p.grad is None else p.grad.detach().clone() for p in params])
++
++
++def require_finite_gradients(params, label):
++    checks = [torch.isfinite(p.grad).all() for p in params if p.grad is not None]
++    if not checks or not bool(torch.stack(checks).all()):
++        raise FloatingPointError(label + ": missing or nonfinite gradients")
++
++
++def sam_probe_specification(optimizer):
++    """Independent same-dtype transcription of frozen SAM's nonadaptive first_step.
++
++    Use SAM's norm-of-per-tensor-norms reduction, not GAM's sum-of-squares
++    reduction. Both are mathematically L2 but need not round identically.
++    """
++    params = [p for group in optimizer.param_groups for p in group["params"]]
++    active = [p for p in params if p.grad is not None]
++    require_finite_gradients(params, "SAM clean gradient")
++    shared_device = params[0].device
++    sam_norm = torch.stack([(1.0 * p.grad).norm(p=2).to(shared_device) for p in active]).norm(p=2)
++    gam_squared = None
++    for p in active:
++        term = (p.grad ** 2).sum()
++        gam_squared = term if gam_squared is None else gam_squared + term
++    gam_norm = gam_squared.sqrt()
++    original, predicted = [], []
++    with torch.no_grad():
++        for group in optimizer.param_groups:
++            if group.get("adaptive", False):
++                raise AssertionError("Stage 1 self-SAM specification requires adaptive=False")
++            scale = group["rho"] / (sam_norm + 1e-12)
++            for p in group["params"]:
++                old = p.detach().clone()
++                expected = old.clone()
++                if p.grad is not None:
++                    expected.add_(1.0 * p.grad * scale.to(p))
++                original.append(old)
++                predicted.append(expected)
++    return original, predicted, {"sam_clean_gradient_norm": float(sam_norm),
++        "gam_reduction_norm_of_same_gradient": float(gam_norm),
++        "norm_reduction_relative_difference": abs(float(sam_norm - gam_norm)) / max(abs(float(sam_norm)), 1e-20)}
++
++
++def independent_probe_gradient(model, params, inputs, targets):
++    """Differentiate explicit 20-class CE at the actual SAM probe; restore all state.
++
++    The snapshot also restores the pre-forward RNG and buffers, so the subsequent
++    training backward sees exactly the same model state and stochastic stream.
++    """
++    snapshot = audit.Snapshot(model)
++    try:
++        values = audit.logits(model, inputs)
++        if values.shape[-1] != 20:
++            raise AssertionError("SAM self-audit expects Task0's 20-class classifier")
++        loss = F.cross_entropy(values[:, 0:20], targets, reduction="mean")
++        gradients = torch.autograd.grad(loss, params, allow_unused=True)
++        reference = [torch.zeros_like(p) if g is None else g.detach().clone()
++                     for p, g in zip(params, gradients)]
++        if not all(bool(torch.isfinite(g).all()) for g in reference):
++            raise FloatingPointError("Nonfinite independent SAM probe gradient")
++        return reference
++    finally:
++        snapshot.restore()
++        snapshot.check()
++
++
++def compare_gradient_tensors(actual, reference):
++    if len(actual) != len(reference):
++        raise AssertionError("SAM gradient tensor count mismatch")
++    finite = all(bool(torch.isfinite(g).all()) for g in actual + reference)
++    passed = finite and all(torch.allclose(g, r, rtol=1e-5, atol=1e-7) for g, r in zip(actual, reference))
++    return {"passed": passed, "finite": finite, "tensor_count": len(actual),
++            "max_abs_error": max(float((g - r).abs().max()) for g, r in zip(actual, reference)),
++            "per_tensor_allclose_rtol": 1e-5, "per_tensor_allclose_atol": 1e-7}
+ 
+ 
+ def gradient_geometry(grads):
+@@ -178,7 +251,8 @@
+         self.epoch = self.batch_index = 0
+         self.rows, self.records, self.eval_cache = [], [], {}
+         self.counters = {"training_batches": 0, "training_samples": 0, "training_ce_gradient_passes": 0,
+-                         "isolated_diagnostic_ce_gradient_passes": 0}
++                         "isolated_diagnostic_ce_gradient_passes": 0,
++                         "independent_sam_probe_gradient_passes": 0}
+         self.started = time.time()
+ 
+     def evaluate(self, epoch):
+@@ -289,6 +363,17 @@
+         expected = {"ce": grads["g0"], "s": grads["g1"], "true_sam": grads["g1"],
+                     "g": grads["g3"], "sum": grads["g1"] + grads["g3"],
+                     "mean": (grads["g1"] + grads["g3"]) / 2}[self.direction]
++        data["selected_gradient_reference"] = "native_GAM_selected_direction"
++        if self.direction == "true_sam":
++            data["cross_algorithm_comparison"] = {
++                "sam_g1_vs_isolated_gam_g1_relative_error": audit.norm(final_gradient - grads["g1"]) / max(audit.norm(grads["g1"]), 1e-20),
++                "sam_g1_vs_isolated_gam_g1_max_abs_error": float((final_gradient - grads["g1"]).abs().max()),
++                "sam_g1_vs_isolated_gam_g1_cosine": audit.cosine(final_gradient, grads["g1"]),
++                "used_as_correctness_gate": False,
++                "note": "Separate finite-precision algorithms: equivalence is measured, not assumed bitwise."}
++            expected = self.sample_sam_reference_gradient
++            data["selected_gradient_reference"] = "independent_CE_gradient_at_actual_SAM_probe"
++            data["self_sam_audit"] = self.sample_sam_audit
+         data["selected_gradient_relative_error"] = audit.norm(final_gradient - expected) / max(audit.norm(expected), 1e-20)
+         actual_delta = geo.parameter_delta()
+         expected_delta = -self.lr_used[0] * expected
+@@ -322,6 +407,11 @@
+                 roundtrip = self.active_geo.parameter_delta()
+                 self.sample_base_audit = {"probe_roundtrip_parameter_norm": audit.norm(roundtrip),
+                                           "probe_roundtrip_max_abs": float(roundtrip.abs().max())}
++                if self.direction == "true_sam":
++                    restored = all(torch.equal(p.detach(), old) for p, old in zip(params, self.sample_sam_originals))
++                    self.sample_base_audit["sam_saved_copy_restored_exactly"] = restored
++                    if not restored:
++                        raise AssertionError("Native SAM failed to restore its own saved clean parameters")
+             result = original_base_step(*args, **kwargs)
+             if sampled:
+                 max_error = max(float((p.detach() - expected).abs().max()) for p, expected in zip(params, predicted))
+@@ -379,13 +469,42 @@
+         optimizer.zero_grad()
+         out = self.model(inputs)
+         loss = F.cross_entropy(out["logits"], targets)
++        if not bool(torch.isfinite(loss)):
++            raise FloatingPointError("Nonfinite SAM clean loss")
+         loss.backward()
++        params = [p for group in optimizer.param_groups for p in group["params"]]
++        require_finite_gradients(params, "SAM clean backward")
++        if sampled:
++            self.sample_sam_originals, predicted_probe, self.sample_sam_audit = sam_probe_specification(optimizer)
++            actual_g0 = vector_grads(params)
++            self.sample_sam_audit["sam_g0_vs_isolated_gam_g0_relative_error"] = audit.norm(actual_g0 - grads["g0"]) / max(audit.norm(grads["g0"]), 1e-20)
+         optimizer.first_step(zero_grad=True)
+         disable_running_stats(self.model)
++        if sampled:
++            probe_check = compare_gradient_tensors([p.detach() for p in params], predicted_probe)
++            probe_check["all_tensors_exact"] = all(torch.equal(p.detach(), expected) for p, expected in zip(params, predicted_probe))
++            probe_check["passed"] = probe_check["passed"] and probe_check["all_tensors_exact"]
++            saved_check = all(torch.equal(optimizer.state[p]["old_p"], old) for p, old in zip(params, self.sample_sam_originals))
++            self.sample_sam_audit.update(probe_parameter_check=probe_check, saved_clean_parameters_exact=saved_check,
++                                         actual_sam_probe=geo.displacement_metrics())
++            if not probe_check["passed"] or not saved_check:
++                raise AssertionError("Native SAM first_step disagrees with its own rho-normalized probe specification")
++            self.sample_sam_reference_tensors = independent_probe_gradient(self.model, params, inputs, targets)
++            self.sample_sam_reference_gradient = audit.flatten(self.sample_sam_reference_tensors)
++            self.counters["independent_sam_probe_gradient_passes"] += 1
+         perturbed = self.model(inputs)
+         perturbed_loss = F.cross_entropy(perturbed["logits"], targets)
++        if not bool(torch.isfinite(perturbed_loss)):
++            raise FloatingPointError("Nonfinite SAM perturbed loss")
+         perturbed_loss.backward()
++        require_finite_gradients(params, "SAM perturbed backward")
+         final = vector_grads(geo.params) if sampled else None
++        if sampled:
++            actual_gradients = [torch.zeros_like(p) if p.grad is None else p.grad.detach() for p in params]
++            gradient_check = compare_gradient_tensors(actual_gradients, self.sample_sam_reference_tensors)
++            self.sample_sam_audit["actual_probe_gradient_check"] = gradient_check
++            if not gradient_check["passed"]:
++                raise AssertionError("Actual SAM backward disagrees with independent CE gradient at the same probe")
+         optimizer.second_step(zero_grad=False)
+         enable_running_stats(self.model)
+         if sampled:
+@@ -509,6 +628,7 @@
+     controller = Controller(learner, dm, cfg, cli)
+     controller.install()
+     summary = {"status": "running", "completed_epochs": 0, "task": 0, "trained_tasks": [0],
++               "trainer_audit_version": 2,
+                "direction": cfg["stage1_direction"], "r": cfg["gam_grad_norm_rho"], "seed": 2,
+                "smoke": bool(cli.max_epochs or cli.max_batches),
+                "trainer_sha256": audit.digest(__file__), "source_gam_sha256": audit.digest(source / "optimer_PerturabtionType/gam.py")}

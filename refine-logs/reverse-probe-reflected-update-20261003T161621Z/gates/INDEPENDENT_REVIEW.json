@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "at": "2026-10-03T16:30:14.489717+00:00",
+  "reviewer": "/root/reverse_reflected_review",
+  "role": "Independent non-author reviewer; no trainer/queue edits",
+  "cpu_only": true,
+  "gpu_calls": 0,
+  "gpu_acceptance": false,
+  "launch_performed": false,
+  "scope": "One GPU0 smoke and one seed2 reflected backward formal run; pre-freeze code and protocol acceptance",
+  "checked_files_sha256": {
+    "trainer/reflected_step.py": "adef913c912f994301b6999efea393e9fe7c120c0efec8f3faa3a7c7f4d19b4d",
+    "trainer/reflected_train.py": "e35b400e59d42faaafd424a40acd0ef2e238ec67cdffe63240c3660aec0396cc",
+    "trainer/test_reflected_cpu.py": "a0648a145f1295e862eb40422d3f85a778d467c9d729b1d889aa3778f97eef44",
+    "trainer/REFLECTED_CPU_GATE.json": "ef63a68c0b8f473b56a24c112c583285509e25c8d3fc32adedb7c09021203ac4",
+    "trainer/direction_step.py": "358f7a2c6db254cc1543a8382a1ef87c72dcf20266a99eaabc26d4f9525225f9",
+    "trainer/response_hvp.py": "a8a27e0a28445f1224dba54c87a4e0bac0feae407cdc140a08dd847347975710",
+    "trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "suite.json": "098542601b958c4a9716588b961f628bfa2ec1e544e75776e4a6c26dda920851",
+    "common.py": "bf189d6e87997529d85c727c72ec77feba401124bf0f6b3308dbdaeb6635a760",
+    "build_suite.py": "370b102a71ca7b4811b10b03c09ffdde50404e587a96007e82001f67742da941",
+    "run_queue.py": "31e5f69ab4698f79635a98b22f0a14107cbda40be1dd24680f245bd035267bd6",
+    "job_worker.py": "d4be927beaf61917054f348030c78a149ed69b4d8972bcebb152899cf9f3a3db",
+    "validate_job.py": "fc007aa95e08bcca3ab7d0c3aa2b8c8156ca853e763d65c894830574fca45f09",
+    "collect_results.py": "36e8373dc1548cdf82db985858809a486121d5e8cbed38f0e2a82777fa7bb08d",
+    "source_manifest.json": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+    "environment_spec.json": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+    "gates/TRAINER_ENTRYPOINTS.json": "43a4279ddd819ef550bcf8532bb5ce9aa82454a0e44859c045bf7f7638f5f4d9"
+  },
+  "checks": {
+    "normalized_negative_probe_and_exact_parentheses": true,
+    "no_positive_or_outer_probe": true,
+    "two_CE_per_training_update": true,
+    "four_isolated_CE_zero_updates_per_task": true,
+    "same_R0_at_probes_and_R1_once": true,
+    "restored_base_unique_SGD": true,
+    "mutable_state_exception_rollback": true,
+    "frozen_mutation_fail_stop": true,
+    "production_settings_and_data_task_counts": true,
+    "classifier_inheritance_and_old_rows_preserved": true,
+    "math_FP32_no_AMP_TF32_EWC_Fisher_merge_projection": true,
+    "exact_smoke_then_formal_GPU0_scope": true,
+    "fresh_NVML_index_UUID_shared_locks": true,
+    "per_worker_CUDA_witness_before_training": true,
+    "source_and_execution_hash_gates": true,
+    "actual_entrypoints_pass": true,
+    "fail_closed_completed_evidence_validation": true,
+    "prior_frozen_experiment_artifacts_unchanged": true,
+    "LocalCD_suite_remains_empty": true
+  },
+  "independent_tests": {
+    "author_suite": {
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/trainer",
+        "-p",
+        "test_reflected_cpu.py",
+        "-v"
+      ],
+      "tests_run": 15,
+      "failures": 0,
+      "errors": 0,
+      "returncode": 0
+    },
+    "separate_nonlinear_stochastic_test": {
+      "path": "/tmp/reverse_reflected_independent_cpu.py",
+      "sha256": "e3b75812024ee75426fb47f5fbe58453075b4dc0d92136bab3ff9b40f4908fe1",
+      "checks": 10,
+      "returncode": 0
+    },
+    "production_conflict_rejections": 23,
+    "queue_scope_rejections": [
+      "other_gpu",
+      "parallel_jobs",
+      "missing_smoke_dependency",
+      "wrong_training_ce",
+      "extra_job",
+      "formal_budget_override"
+    ]
+  },
+  "budgets": {
+    "smoke": {
+      "tasks": 2,
+      "epochs_per_task": 1,
+      "updates": 2,
+      "training_CE": 4,
+      "isolated_replay_CE": 8
+    },
+    "formal": {
+      "tasks": 10,
+      "epochs_per_task": 50,
+      "updates": 2550,
+      "training_CE": 5100,
+      "isolated_replay_CE": 40
+    }
+  },
+  "resolved_findings": [
+    {
+      "initial_test_run": "13 of 14 passed",
+      "finding": "Failure fixture mutated a frozen tensor but expected full rollback; inherited FullState intentionally uses immutable version guards for frozen tensors",
+      "resolution": "Keep registered forward frozen tensors immutable; test mutable/trainable rollback and forbidden frozen mutation fail-stop separately; production engine unchanged; 15 of 15 independently pass"
+    }
+  ],
+  "historical_provenance": {
+    "local_cd_plan": "/data/140-1/users/liying/O-LoRA/refine-logs/local-cd-method-20261003T082009Z/EXPERIMENT_PLAN.md",
+    "local_cd_code": "/data/140-1/users/liying/O-LoRA/scripts/imageneta_local_cd/local_step.py:65",
+    "equivalent_formula": "g0+(strength/h)*(g0-gminus), strength=h=.05 gives g0+(g0-gminus)",
+    "local_cd_prior_formal_runs": 0,
+    "local_cd_active_jobs": 0,
+    "quoted_old_row_status": "not located in bounded *.md/*.csv/*.json searches, including ignored files, under both requested refine-logs roots; not reused",
+    "verified_Sminus_source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/outputs/S1-03_Sminus_natural_s2/task_matrix.json",
+    "verified_Sminus_AAA": 51.090459523809535,
+    "verified_Sminus_FAA": 25.368000000000002,
+    "verified_Sminus_protocol": "historical native attention four-probe; contextual only, not same-protocol superiority baseline"
+  },
+  "limits": [
+    "CPU acceptance is not a GPU smoke or formal scientific result",
+    "Fresh minimal-context ENVIRONMENT.md pass remains required before launch",
+    "Frozen tensor corruption is fatal and is not restored from full frozen-ViT copies",
+    "Single seed and historical protocol differences do not support causal or statistical advantage claims"
+  ]
+}

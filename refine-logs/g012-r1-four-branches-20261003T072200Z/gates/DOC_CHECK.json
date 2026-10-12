@@ -1,0 +1,37 @@
+{
+  "reviewer": "independent agent-follows-doc",
+  "documents_read": [
+    "/home-local/liying/.codex/skills/run-experiment/SKILL.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/ENVIRONMENT.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/RUN.md"
+  ],
+  "command": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/documented_check.py --gpu 3",
+  "execution": {
+    "sandbox_permissions": "require_escalated",
+    "exit_code": 1,
+    "process_completed": true
+  },
+  "dry_run": {
+    "status": "valid",
+    "jobs": 28,
+    "formal": 12,
+    "smokes": 16,
+    "allowed_gpus": [3, 2],
+    "max_parallel": 2,
+    "matches_documented_expectation": true
+  },
+  "cuda_witness": {
+    "status": "not_executed",
+    "reason": "Requested GPU is busy; no preemption",
+    "finite_forward_backward": null,
+    "seed": 2,
+    "optimizer_updates": 0
+  },
+  "doc_vs_reality": [
+    "The documented dry-run values match the actual output exactly.",
+    "The expected seed2 CUDA sentinel was not observed because the GPU3 availability gate stopped execution. This invocation does not establish successful agent-follows-doc validation or verify the documented runtime versions."
+  ],
+  "outcome": "blocked_by_gpu_availability",
+  "error": "RuntimeError: Requested GPU is busy; no preemption",
+  "scope": "No training queue launched; no code, RUN_PINS, or frozen files modified. This JSON is the only reviewer-created artifact."
+}

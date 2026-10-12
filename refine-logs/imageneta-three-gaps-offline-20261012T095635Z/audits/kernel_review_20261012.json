@@ -1,0 +1,83 @@
+{
+  "review_protocol": "independent_read_only_kernel_review_v1_20261012",
+  "time_utc": "2026-10-12T10:08:55.592262+00:00",
+  "reviewer": "offline_kernel_independent_review",
+  "gpu_used": false,
+  "network_used": false,
+  "source_modified": false,
+  "scope": {
+    "new": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z",
+    "imported_campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z"
+  },
+  "source_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py": "743fbf01b29dc77c8cea8061ad958be028c3d9e2e4e181e08c92ec68fd3819ee",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py": "d8fe215d89043edc207fb266cd7d613cfeee252f7616f9c86fd46dc21a67fcc3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py": "68e0d1ee090d88fad13f75270daf76f59fecf9760e29140da0b89968a7560616",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/test_curvature_cpu.py": "98b6eeb885827fe413195ed1272616fc412c15ad691d821edd67e1a968d824c7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/test_eval_match_cpu.py": "ae3b1a7ddd2fffb0af9af1a6f379c9d7891ba88b4879e9f568eee93ebfc4f783",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/state_formation_analysis.py": "a101e94bae70d8780d9728e1db9b3c3ba22be3e05d48e1e73ae28621d37a3d51",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/results/state_analysis/RESULT_ANALYSIS.md": "4d5001449c9b768a2e24e9b05ce62ca317042f4021816aa3c9b2e11052d448c6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/results/state_analysis/STATE_FORMATION_ANALYSIS.json": "2d5c156f5e26143025dfe584ae4f3e3c07dba1a8f6ff3f5e32f7fae8cf918ad3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/diagnostics/offline_core.py": "ffc67d89c56bb1d14acc2153ec140445b684380fef23de18606ba50af23c3fb6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/response_chain_train.py": "f5a2232ece5065a6c31387ef099308913765cb76a7e3ee1ac99709424012041e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3"
+  },
+  "launch_assessment": "No concrete blocker found for the fixed, read-only pilots. CPU evidence validates algebra and orchestration; numerical acceptance of the actual ViT remains the pilot gate outcome.",
+  "concrete_blockers": [],
+  "important_interpretation_corrections": [
+    {
+      "id": "execution_is_not_numerical_acceptance",
+      "severity": "interpretation",
+      "references": [
+        "curvature_diagnostics.py:379",
+        "curvature_diagnostics.py:389",
+        "effective_match.py:91",
+        "effective_match.py:95"
+      ],
+      "message": "Curvature accepted_execution and exit code 0 can accompany zero converged cells. Read candidate_comparisons_valid_cells and per-cell accepted gates. Effective matching completion status accepted can accompany unavailable_matches; accepted_matches and per-match status identify valid measurements."
+    },
+    {
+      "id": "fp64_fallback_scientific_scope",
+      "severity": "interpretation",
+      "references": [
+        "curvature_diagnostics.py:61",
+        "curvature_diagnostics.py:106",
+        "curvature_diagnostics.py:166",
+        "curvature_diagnostics.py:230",
+        "CURVATURE_EXTENSION_NOTES.md:46"
+      ],
+      "message": "A converged FP64 fallback validates the FP64 explicit Hessian at the exactly represented FP32 BASE with native FP32 g0 as detached input. It does not retroactively accept the FP32 Hessian or its original three-distance gate, or establish FP32/FP64 higher-derivative identity. Recorded q/p comparisons and separate original/extended/precision gates retain this distinction."
+    }
+  ],
+  "cpu_validation": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' /home-local/liying/.conda/envs/Pilot_new_local/bin/python -m unittest -v test_curvature_cpu test_eval_match_cpu",
+    "working_directory": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z",
+    "exit_code": 0,
+    "tests_run": 16,
+    "tests_passed": 16,
+    "coverage": "detached H squared, indefinite quadratic, normalized finite differences, original failure retention, first-order rejection, degeneracy/nonfinite outcomes, FP64 clone reference, adjacent grid acceptance, conditional/joint partitions, historical scope rejection, finite BA+FC quartic matching, smallest root and unavailable root, component directions, no HVP matching"
+  },
+  "independently_checked": {
+    "same_BASE_native_full128_vs_explicit_microbatch16": "consistent with offline_core.py:84 and curvature_diagnostics.py:61",
+    "detached_second_hvp": "consistent with offline_core.py:100 and curvature_diagnostics.py:108",
+    "finite_difference_unscaled_HVP": "offline_core.py:122 uses step=distance/norm(vector), quotient 1/(2*step)",
+    "first_order_and_hvp_gates_separate": "curvature_diagnostics.py:100 and curvature_diagnostics.py:119; failures retained, candidate comparisons gated",
+    "state_values_gradients_buffers_modes_controls_rng_restoration": "offline_core.py:73, state_transaction.py:68 and checked close paths; frozen versions immutable",
+    "next_update_lr": "response_chain_train.py:235 saves after scheduler; curvature_diagnostics.py:345 and effective_match.py:56 use next_lr and verify optimizer groups",
+    "effective_polynomial_target": "offline_core.py:256 and effective_step.py:174 include all unscaled BA and all FC weight/bias tensors",
+    "conditional_joint_error_and_CE_partitions": "checkpoint_eval.py:51 to 89 correct; cross/within errors disjoint, conditional error overlap retained, CE competition identity checked",
+    "fixed_test_epochs": "checkpoint_eval.py:166 fixes e0/e1/e10/e25/e50, with historical agreement at checkpoint_eval.py:206",
+    "e0_common_identity_all_three_seeds": true,
+    "e0_S_R_full_parameter_hashes_common_reference_trainable_values_next_lr_exact": true,
+    "all_analysis_input_sha256_match_raw_sources": true,
+    "report_factor_stage_statistics_recomputed_from_raw_layers": true,
+    "report_all_step_magnitudes_recomputed_from_raw_traces": true,
+    "report_fit_matched_test_statistics_recomputed_from_raw_summaries_and_traces": true,
+    "state_report_interpretation": "No important correction found in RESULT_ANALYSIS.md:18,20,31,42,46,53,57-60: it limits norm shares, describes SGD first-order Q cancellation, treats n=3 seeds as independent, retains fit/epoch/LR differences and avoids causal mechanism claims."
+  },
+  "limitations": [
+    "No actual ViT forward/backward was executed; CPU toy tests cannot establish FP32 ViT HVP convergence or FP64 GPU feasibility.",
+    "Checkpoint state norms were inspected against their computation and old-row equality claims; the raw-source independent recomputation focused on e0 identity, reported factor stage summaries, all-step magnitude summaries, fit matching, and source hashes."
+  ]
+}

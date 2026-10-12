@@ -1,0 +1,26 @@
+{
+  "id": "smoke_local_upward_s2",
+  "kind": "local_probe_audit",
+  "phase": "gate",
+  "smoke": true,
+  "seed": 2,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/trainer/upward_local_audit.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--suite",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/suite.json",
+    "--output-dir",
+    "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_local_upward_s2",
+    "--seed",
+    "2",
+    "--smoke"
+  ],
+  "output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_local_upward_s2",
+  "depends_on": [
+    "upward_smoke_pairing"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/runtime/jobs/smoke_local_upward_s2/cuda_witness.json"
+}

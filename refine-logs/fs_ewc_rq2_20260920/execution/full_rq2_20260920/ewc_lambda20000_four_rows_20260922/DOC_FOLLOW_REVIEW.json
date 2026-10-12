@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "blocking_issues": [],
+  "reviewer": "/root/lambda20000_fisher",
+  "review_mode": "existing-agent fallback",
+  "fresh_agent": false,
+  "fallback_reason": "Parent reported fresh spawn was unavailable due to the thread limit.",
+  "independence": "Reviewer did not author RUN.md, build_plan.py, plan.json, campaign_runner.py, train.py, or report.py. Reviewer authored prepare_fisher.py; this is a document-follow review, not a fresh independent audit of that preparation implementation.",
+  "generated_utc": "2026-09-22T09:25:22.868551+00:00",
+  "executed_campaign_command": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/campaign_runner.py --plan /data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/plan.json",
+  "executed_command_source": "RUN.md dry-run code block copied verbatim",
+  "dry_run_exit_code": 0,
+  "dry_run": true,
+  "stages": 24,
+  "jobs": 24,
+  "max_parallel": 6,
+  "stage_counts": {
+    "raw_fisher_preparations": 6,
+    "native_gpu_recomputations": 5,
+    "cpu_verified_reuse": 1,
+    "seed0_smokes": 4,
+    "cpu_smoke_acceptance": 1,
+    "formal_task1_continuations": 12,
+    "cpu_report": 1
+  },
+  "resource_checks": {
+    "allowed_gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "preferred_arm_gpus": {
+      "ewclora": 0,
+      "fs_ewclora": 1,
+      "task1_shaping": 2,
+      "task2_shaping": 5
+    },
+    "gpu_poll_seconds": 900,
+    "all_gpu_barrier_required": false,
+    "selected_card_only_prepare_admission": true,
+    "full_gpu_pool_on_each_gpu_job": true,
+    "live_shared_uuid_lock_inherited_by_prepare": true,
+    "gpu_lock_dir": "/data/140-1/users/liying/O-LoRA/.cache/gpu_locks",
+    "busy_gpu_criteria": {
+      "memory_mib_gte": 500,
+      "utilization_percent_gte": 5,
+      "any_compute_process": true
+    }
+  },
+  "dependency_checks": {
+    "six_preparations_have_no_dependencies": true,
+    "all_four_smokes_wait_for_all_six_preparations": true,
+    "smoke_acceptance_waits_for_all_four_smokes": true,
+    "each_formal_trial_waits_for_smoke_acceptance": true,
+    "each_arm_seed_order": [
+      0,
+      1,
+      2
+    ],
+    "formal_trials": 12,
+    "report_waits_for_all_twelve_formal_trials": true
+  },
+  "cli_checks": {
+    "method": "Static inspection and AST extraction of actual add_argument definitions; all supplied options and required options checked across every job and preflight command. No training/preparation/report CLI was executed by this document review.",
+    "all_options_and_required_options_match": true,
+    "all_twelve_formal_method_seed_parent_raw_fisher_mappings_match": true,
+    "all_formal_lambda_values": 20000,
+    "smoke_flag_only_on_smokes": true
+  },
+  "resolved_findings": [
+    {
+      "severity": "nonblocking",
+      "issue": "RUN.md initially referred to campaign/state.json, but the scheduler writes campaign/pipeline_state.json.",
+      "resolution": "Parent corrected RUN.md; corrected path confirmed."
+    }
+  ],
+  "execution_safety": {
+    "execute_flag_used": false,
+    "gpu_jobs_started": false,
+    "cuda_witness_executed": false,
+    "cuda_initialized_by_document_dry_run": false,
+    "existing_training_interrupted": false
+  },
+  "scope_limitations": [
+    "The dry-run validates the DAG and fingerprints; it does not prove future GPU smoke success or scientific outcomes.",
+    "This review is an explicitly disclosed existing-agent fallback, not a fresh-context review."
+  ],
+  "reviewed_file_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/RUN.md": "0c07777d2b784a76b9f0a510756915130886a04d45f7326a66eb128f23b8ae41",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/build_plan.py": "77b46c63a0f72e88cf16133864245f78cd3b393e5874798cc147488c828f0bea",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/plan.json": "9c4654e7a051fe532ff0b630846b4c04b6b29e639e12781fd7183a84408ba0fc",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/campaign_runner.py": "7e89f7c96ee82846d5e45120016fc588bca61d9157dfe6e6ca57d03cf1fc477b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepare_fisher.py": "81e41d54a709b43f31547ed8528cf673f7b79f502c0ec3fa85cbd4c15528fa4e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/train.py": "9a30d2f69840445def89e89743d65e078b6d77da8f3ac65d75c1e13dad7ff352",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/validate_smokes.py": "66d26c153169de3ec5a8d21fbe645b81f53c9c6636a16fdc5d8eb43407f5fc7d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/report.py": "311adc316eecaf1e2fca4c3e57769fa99296e45a4732b600257bc6fb2ad0cb05",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/env_witness.py": "5c0327f7f9f1352ff7e5af1ca2640fb2a54aa0eb001ce16a70a618177018fb83",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/experiment_spec.json": "ab12c95d159c0499d0b1eef2fd5f1bab386f06c0dd463a849acbe9db50d31303",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/SELECTION.json": "f1d54dbd717baf5e6c40c576c827a5cabd4417a416fcb5628a722e59433fc2a9"
+  },
+  "initial_review_utc": "2026-09-22T09:21:34.442259+00:00",
+  "final_refresh": {
+    "reason": "Report manifest/COMPLETE compatibility fields were finalized; command interface unchanged.",
+    "dry_run_exit_code": 0,
+    "dry_run": true,
+    "stages": 24,
+    "jobs": 24,
+    "max_parallel": 6,
+    "report_sha256": "311adc316eecaf1e2fca4c3e57769fa99296e45a4732b600257bc6fb2ad0cb05",
+    "stdout_json": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/cpu_validation/DOC_FOLLOW_FINAL_DRY_RUN.json",
+    "gpu_started": false
+  }
+}

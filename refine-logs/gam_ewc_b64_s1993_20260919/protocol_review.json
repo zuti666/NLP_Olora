@@ -1,0 +1,35 @@
+{
+  "status": "implementation_protocol_checked",
+  "checked_at": "2026-09-19T13:17:04.539254+00:00",
+  "scope": "User-authorized GAM-EWC batch40->batch64 rerun; seed1993 retained",
+  "basis": "SEMANTICS_REVIEW.md/json; CPU float32 unperturb witness; actual GPU smoke still required",
+  "world_size": 4,
+  "per_device_train_batch_size": 1,
+  "gradient_accumulation_steps": 16,
+  "global_batch": 64,
+  "seed": 1993,
+  "data_seed": 1993,
+  "ewclora_lambda": 1.0,
+  "ewclora_gamma": 1.0,
+  "base_optimizer": "torch.optim.AdamW",
+  "base_optimizer_eps": 1e-08,
+  "base_optimizer_weight_decay": 0.01,
+  "source_code_review": "targeted agent review: no launch blocker; protocol, collective sequence, closure/projector semantics, first-last gradient hashes and snapshot/old-output isolation checked",
+  "gpu_smoke": "pending; supervised gate before formal training",
+  "strict_historical_execution_identity": false,
+  "seed42_alignment": false,
+  "prerequisite_files_exist": {
+    "ALIGNMENT_PLAN.md": true,
+    "protocol_review.json": true,
+    "SEMANTICS_REVIEW.md": true,
+    "SEMANTICS_REVIEW.json": true
+  },
+  "current_source_sha256": {
+    "src/uie_trainer_lora.py": "c5bacdcd6a1348c767827fb16e686aa5d14399aafa700d7203ec20e25ce952ff",
+    "src/run_uie_lora.py": "acdeec18bcf058f91b6f46a513c3748d727537fa322a1c8d3ca39525b209ebd5",
+    "src/optimer_gam.py": "fa2ade79c67c83bdfd920df8c674847aa79931ea220d3b970b9e45e41ea94a8e",
+    "scripts_llama/run_gam_ewc_bf16_b64_s1993.py": "0b532d7b23397623a9ad1464cf26b8322e599474804c8e8bc26cbbc0f3cc5420",
+    "scripts_llama/verify_gam_ewc_bf16_b64_stage.py": "86762d380ffcdb0398b05f771e5f56f6ed80f54fa57d0be467d37bf7cd4f6c67"
+  },
+  "documented_invocation_check": "DOC_CHECK.json: passed verbatim,14commands,94prerequisite paths, no writes/no GPU"
+}

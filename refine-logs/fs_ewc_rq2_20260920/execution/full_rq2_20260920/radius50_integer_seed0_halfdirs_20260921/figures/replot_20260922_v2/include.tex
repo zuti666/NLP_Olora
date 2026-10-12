@@ -1,0 +1,6 @@
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{Figure_B1_neighborhood_seed0_radius50_20260922_v2.pdf}
+\caption{Training-neighborhood diagnostics at the Task-0 anchors of EWCLoRA and FS-EWCLoRA (formal ImageNet-A cohort; ViT-B/16, rank-10 Q/V LoRA; seed 0). Panels show mean positive change in per-example-averaged training cross-entropy, Task-0 training accuracy, unnormalized empirical Fisher trace, and prefix-safe tolerance radius on the measured grid. Damage and accuracy use all 1,259 old training examples and 50 paired unit random directions; Fisher uses 256 fixed training examples and 16 paired directions, without EWC scaling. The fourth panel is computed from the exact damage data in panel 1 at $\epsilon$=0.005, 0.01, 0.02, 0.03, 0.04, and 0.05. Dense radii are 0--20 in steps of 0.25 and every integer 25--50; Fisher uses 0, 0.5, 1, 2, 5, every integer 10--20, and every integer 25--50. Radii 21--24 are unmeasured. At $\epsilon$=0.05, both methods pass at radius 20 and fail at 25, yielding the same measured-grid tolerance without establishing equal continuous thresholds. Lines are visual guides; no test curves or across-seed uncertainty are shown.}
+\label{fig:b1-seed0-six-thresholds}
+\end{figure*}

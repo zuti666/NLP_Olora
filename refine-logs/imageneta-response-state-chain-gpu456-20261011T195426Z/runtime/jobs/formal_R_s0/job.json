@@ -1,0 +1,34 @@
+{
+  "id": "formal_R_s0",
+  "kind": "training",
+  "formal": true,
+  "smoke": false,
+  "seed": 0,
+  "chain_role": "branch",
+  "chain_branch": "R",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/configs/formal_R_s0.json",
+  "config_sha256": "f6171f9bfa3bf27f724482a577685391e13b17f5706685c5eea14de613001bbc",
+  "output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s0",
+  "report_file": "final_summary.json",
+  "depends_on": [
+    "prepare_start_s0",
+    "smoke_pairing_s2",
+    "smoke_diagnostics_s2"
+  ],
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/response_chain_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/configs/formal_R_s0.json",
+    "--output-dir",
+    "/data/115-2/users/liying/cache/tmp/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s0"
+  ],
+  "expected_tasks": 2,
+  "expected_epochs": 50,
+  "expected_steps": 400,
+  "expected_gradient_reads": 800,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/runtime/jobs/formal_R_s0/cuda_witness.json"
+}

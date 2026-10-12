@@ -1,0 +1,40 @@
+{
+  "id": "formal_task1_S_S_s2",
+  "kind": "training",
+  "phase": "task1_fork",
+  "smoke": false,
+  "method": "current_g2",
+  "study_condition_id": "S_S",
+  "study_role": "branch",
+  "task_id": 1,
+  "seed": 2,
+  "layout": "cl10",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_S_S_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_S_S_s2"
+  ],
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/outputs/formal_task1_S_S_s2",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/configs/formal_task1_S_S_s2.json",
+  "config_sha256": "e2f6a079c0ed8291cfa0b0d3a334d93b777412701bc858e1fcb75c30beaee3c9",
+  "expected_tasks": 2,
+  "expected_epochs_per_task": 50,
+  "expected_batches_per_epoch": 8,
+  "expected_steps": 400,
+  "expected_train_samples": 906,
+  "expected_dev_samples": 91,
+  "depends_on": [
+    "formal_parent_sgd_s2"
+  ],
+  "study_inner_mode": "sgd_step",
+  "study_inner_radius": null,
+  "study_outer_mode": "sgd_step",
+  "study_outer_radius": null,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/runtime/jobs/formal_task1_S_S_s2/cuda_witness.json"
+}

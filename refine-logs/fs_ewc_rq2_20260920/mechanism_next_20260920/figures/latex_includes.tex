@@ -1,0 +1,23 @@
+% Requires \usepackage{graphicx,booktabs,amsmath}. Paths assume this figures/ directory is beside the main TeX file.
+
+\input{figures/TABLE_A_controlled_continuation.tex}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/Figure_B_neighborhood.pdf}
+\caption{Figure B. Training-set neighborhood diagnostics on historical ImageNet-A seed0 checkpoints. From left to right: mean positive Task0 cross-entropy increase; mean Task0 training accuracy (\%); and mean raw empirical Fisher trace. Weight drift is the perturbation radius: the joint Frobenius distance across 24 effective Q/V weight matrices from each method's own Task0 anchor. The measured radii are 0, 0.5, 1, 2, 5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20. The same 16 unit directions are shared between methods and all positive radii; radius zero is one reused anchor. Loss and accuracy use all 1,259 Task0 training images with deterministic transforms and each method's fixed 20-class head; Fisher uses a fixed subset of 256 of those training images, shared across methods and perturbations, with true-label per-example gradients and without trace normalization, flooring or regularization. All three metrics are read from the same measured perturbed states for each method, with the same checkpoint, radius, direction and fixed head. Its trace sums squared gradients over all 14,155,776 effective-weight coordinates, averages over samples and directions, and is not multiplied by the EWC coefficient. The three panels show means across directions. Absolute accuracy retains the methods' different anchor accuracies. The loss-damage notation is $D_t(\boldsymbol{\theta},\boldsymbol{\Delta})=L_t(\boldsymbol{\theta}+\boldsymbol{\Delta})-L_t(\boldsymbol{\theta})$; the first panel displays $G(r)=K^{-1}\sum_k[D_0(w_0,ru_k)]_+$, the mean positive damage, not the absolute loss. All axes are linear; lines guide the eye between measured points. Only training means are plotted, with no test curves or Q95 series. These finite-direction, single-seed diagnostics are not worst-case guarantees.}
+\label{fig:training-neighborhood}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/Figure_C_sequence_and_endpoint.pdf}
+\caption{Historical SGD+EWC and visual GAM+EWC sequences, training seed 0, re-evaluated in current full FP32. The historical sequences use SGD-to-SGD and GAM-to-GAM optimizers, respectively, so their future optimizers differ; Table A separately controls the future optimizer, including GAM-to-SGD. (a) Task0 test accuracy and (b) signed Task0 test CE damage relative to each method's Task0 anchor after completed tasks $t=0,\ldots,9$, using the fixed local 20-class head and the same 307 deterministic test examples throughout; these are not all-seen-class accuracies. (c) Measured endpoint directional sensitivity only at $t=9$, $S_{\rm path}(9)=I_9/\|\Delta_9\|_2^2$, where $I_9=\int_0^1\Delta_9^\top\widehat F(\theta_0+s\Delta_9)\Delta_9\,ds$. The empirical Fisher is the mean of per-example outer products of unscaled CE gradients over the same 256 stratified old-task training examples, with no trace normalization, floor, or regularization and with the Task0 head fixed. The effective-weight straight segment between the Task0 and Task9 endpoints is evaluated at 9 composite-Simpson nodes; it is not the actual optimizer-step training trajectory. Both 5-versus-9-node quadrature checks pass the 5\% gate and the matched-subset numerical bound checks pass the stated 2\% tolerance. No $S_{\rm path}$ measurements are available at $t=1,\ldots,8$, so no sensitivity trajectory is drawn. (d) Displacement $\|\Delta_t\|_2$ is measured in the ambient coordinates of 24 effective Q/V $BA$ matrices (scaling 1). GAM+EWC has lower endpoint sensitivity despite a larger endpoint displacement. Curves connect task checkpoints as visual guides; this single-seed case supplies no uncertainty estimate over training runs.}
+\label{fig:rq2_sequence_endpoint}
+\end{figure*}
+
+% Appendix tables (move to the appendix when integrating):
+
+\input{figures/TABLE_B_Q95_tolerance.tex}
+
+\input{figures/TABLE_B_existing_bridge.tex}

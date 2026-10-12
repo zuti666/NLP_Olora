@@ -1,0 +1,26 @@
+{
+  "recorded_utc": "2026-09-21T18:40:38.255085+00:00",
+  "user_request": "查看GPU卡是否空闲 是否加入等待 注意等待所有GPU",
+  "scope": "Future new or retried GPU jobs for this seven-row supplement",
+  "requires_all_gpu_indices_idle": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "idle_poll_seconds": 900,
+  "idle_conditions": {
+    "memory_mib_lt": 500,
+    "utilization_percent_lt": 5,
+    "no_compute_process": true,
+    "shared_gpu_uuid_lock_available": true
+  },
+  "queued_gpu_jobs_at_check": [],
+  "existing_inflight_jobs_continue": true,
+  "current_running_scheduler_modified": false,
+  "reason": "All eight GPU jobs (two smokes plus six formal continuations) had already started before this new instruction; only CPU report is queued. Preserve running jobs and do not duplicate completed or running experiments.",
+  "application": "Recorded requirement for the next queue/launch plan; this JSON is not a hot-reloaded setting of the current frozen scheduler."
+}

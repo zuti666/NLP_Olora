@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "name": "inclora_g2_llama3b_order1",
+  "method": "inclora_g2",
+  "model_size": "3B",
+  "model_name_or_path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B",
+  "order": 1,
+  "tasks": [
+    "dbpedia",
+    "amazon",
+    "yahoo",
+    "agnews"
+  ],
+  "seeds": [
+    0,
+    42,
+    1993
+  ],
+  "default_seed": 0,
+  "python_executable": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+  "data_dir": "/data/140-1/users/liying/O-LoRA/CL_Benchmark",
+  "instruction_file": "/data/140-1/users/liying/O-LoRA/configs/instruction_config.json",
+  "execution": {
+    "world_size": 4,
+    "global_batch": 64,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16
+  },
+  "adapter_geometry": {
+    "rank": 8,
+    "alpha": 32,
+    "dropout": 0.1,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "stage_learning_rates": [
+    0.001,
+    0.0001,
+    0.0001,
+    0.0001
+  ],
+  "formal_stage_updates": [
+    218,
+    78,
+    156,
+    62
+  ],
+  "optimizer_class": "transformers.AdamW",
+  "training": {
+    "train_method": "lora",
+    "lora_dim": 8,
+    "num_train_epochs": 1,
+    "bf16": true,
+    "fp16": false,
+    "bf16_full_eval": false,
+    "fp16_full_eval": false,
+    "ddp_find_unused_parameters": false,
+    "lr_scheduler_type": "constant",
+    "warmup_steps": 0,
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "max_grad_norm": 1.0,
+    "per_device_eval_batch_size": 4,
+    "max_source_length": 512,
+    "max_target_length": 50,
+    "generation_max_length": 50,
+    "instruction_strategy": "single",
+    "add_task_name": true,
+    "add_dataset_name": true,
+    "logging_strategy": "steps",
+    "logging_steps": 10,
+    "evaluation_strategy": "no",
+    "save_strategy": "no",
+    "report_to": "none",
+    "g2_inner_radius_mode": "sgd_step",
+    "g2_outer_radius_mode": "sgd_step",
+    "g2_inner_radius": null,
+    "g2_outer_radius": null,
+    "g2_xi": 1e-12,
+    "g2_replay_rng_state": true,
+    "g2_grad_reduce": "mean",
+    "g2_require_fp32_trainable": true,
+    "olora_lamda_2": 0.0,
+    "lora_strategy": "inclora",
+    "optimizer_type": "g2-adamw_hf",
+    "adam_epsilon": 1e-06,
+    "weight_decay": 0.0,
+    "ewclora_lambda": 0.0,
+    "olora_lamda_1": 0.0
+  },
+  "reference_comparator": "IncLoRA / IncLoRA-SAM; original HF AdamW backend preserved",
+  "reference_results": "experiment_queue/nlp_multiseed_bf16_b64_ddp4_g0-3_20260922T150750Z/history_reuse_20260926/FINAL_RESULTS_REPORT_20260926.md",
+  "probe_definition": "g0=CE(theta); g1=CE(theta-q*N(g0)); a=g0-g1; g2=CE(theta+R*N(a)); restore BASE; submit only g2 to the named optimizer",
+  "radius_note": "sgd_step q=R=eta*||g0|| is a virtual SGD probe, even when the final commit uses AdamW; optional independent fixed_l2 radii are supported",
+  "budget_note": "max_steps explicitly preserves the historical full effective-batch update budgets; no extra tail-window update is submitted",
+  "status": "configured_not_launched"
+}

@@ -1,0 +1,113 @@
+{
+  "purpose": "Bounded CPU IEEE754-float32 arithmetic witness; no model/GPU/training",
+  "implementation": "Python struct.pack/unpack rounds to binary32 after each add and subtract; equivalent arithmetic issue for in-place float32 p.add_(e); p.sub_(e).",
+  "all_ranks_started_identical": true,
+  "rank_restored_sha256_equal": false,
+  "max_rank_abs_diff": 7.450580596923828e-09,
+  "rows": [
+    {
+      "rank": 0,
+      "before": [
+        0.031234566122293472,
+        0.0012345670256763697,
+        -0.019876543432474136,
+        0.10000000149011612
+      ],
+      "perturb": [
+        0.01234566979110241,
+        0.021234560757875443,
+        0.010012339800596237,
+        0.05123455822467804
+      ],
+      "restored": [
+        0.031234564259648323,
+        0.001234566792845726,
+        -0.019876543432474136,
+        0.10000000894069672
+      ],
+      "before_sha256": "51b456db185a0f7bf8c0b90f3a1a61258bebc659970d23d5e1a1e3a22b1c96f5",
+      "restored_sha256": "a112641f9dee2133fe8f00f450426526119dbc88780df5632f38d17b5d3a8033",
+      "exact_equal": false,
+      "max_abs_error": 7.450580596923828e-09,
+      "allclose_atol1e-6_rtol1e-5": true
+    },
+    {
+      "rank": 1,
+      "before": [
+        0.031234566122293472,
+        0.0012345670256763697,
+        -0.019876543432474136,
+        0.10000000149011612
+      ],
+      "perturb": [
+        -0.005432100035250187,
+        0.010101010091602802,
+        -0.009876539930701256,
+        -0.12345670163631439
+      ],
+      "restored": [
+        0.031234566122293472,
+        0.001234566792845726,
+        -0.019876543432474136,
+        0.10000000149011612
+      ],
+      "before_sha256": "51b456db185a0f7bf8c0b90f3a1a61258bebc659970d23d5e1a1e3a22b1c96f5",
+      "restored_sha256": "8876a1ab2371c561682e4a5be48d88cbfcd43cc358456796e42ef1d6c03ff128",
+      "exact_equal": false,
+      "max_abs_error": 2.3283064365386963e-10,
+      "allclose_atol1e-6_rtol1e-5": true
+    },
+    {
+      "rank": 2,
+      "before": [
+        0.031234566122293472,
+        0.0012345670256763697,
+        -0.019876543432474136,
+        0.10000000149011612
+      ],
+      "perturb": [
+        0.09123455733060837,
+        -0.07012344896793365,
+        0.0032109799794852734,
+        0.007654319982975721
+      ],
+      "restored": [
+        0.03123456984758377,
+        0.0012345686554908752,
+        -0.019876543432474136,
+        0.10000000149011612
+      ],
+      "before_sha256": "51b456db185a0f7bf8c0b90f3a1a61258bebc659970d23d5e1a1e3a22b1c96f5",
+      "restored_sha256": "2f580bbbd333afd36e901d5ae63e03f584603b6de5797c84efbe23b19ddf4afc",
+      "exact_equal": false,
+      "max_abs_error": 3.725290298461914e-09,
+      "allclose_atol1e-6_rtol1e-5": true
+    },
+    {
+      "rank": 3,
+      "before": [
+        0.031234566122293472,
+        0.0012345670256763697,
+        -0.019876543432474136,
+        0.10000000149011612
+      ],
+      "perturb": [
+        -0.012399899773299694,
+        -0.007654319982975721,
+        0.0998765379190445,
+        -0.04321097955107689
+      ],
+      "restored": [
+        0.031234566122293472,
+        0.0012345672585070133,
+        -0.019876539707183838,
+        0.10000000149011612
+      ],
+      "before_sha256": "51b456db185a0f7bf8c0b90f3a1a61258bebc659970d23d5e1a1e3a22b1c96f5",
+      "restored_sha256": "024a85c759c6b95de4db639c5a4a66de7a4b966b40aac383a14b222eb61853c8",
+      "exact_equal": false,
+      "max_abs_error": 3.725290298461914e-09,
+      "allclose_atol1e-6_rtol1e-5": true
+    }
+  ]
+}

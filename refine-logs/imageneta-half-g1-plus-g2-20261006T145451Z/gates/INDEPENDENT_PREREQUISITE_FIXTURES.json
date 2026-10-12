@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "scope": "Synthetic schema/receipt fixtures in temporary directories; no launch or prior-run mutation.",
+  "cases": [
+    {
+      "name": "both_completed_receipts_valid",
+      "expected": "ready",
+      "observed": "ready",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "old_campaign_running",
+      "expected": "waiting",
+      "observed": "waiting",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "one_formal_incomplete",
+      "expected": "waiting",
+      "observed": "waiting",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "manifest_digest_changed",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "error": "Prerequisite campaign manifest changed"
+    },
+    {
+      "name": "wrong_formal_set",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "error": "Prerequisite formal set differs"
+    },
+    {
+      "name": "nonzero_exit",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "error": "Prerequisite receipt changed"
+    },
+    {
+      "name": "receipt_summary_digest_changed",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "error": "Prerequisite receipt changed"
+    },
+    {
+      "name": "matrix_digest_changed",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "error": "Prerequisite result hash changed"
+    },
+    {
+      "name": "incomplete_training_budget",
+      "expected": "rejected",
+      "observed": "rejected",
+      "passed": true,
+      "error": "Prerequisite training budget incomplete"
+    }
+  ]
+}

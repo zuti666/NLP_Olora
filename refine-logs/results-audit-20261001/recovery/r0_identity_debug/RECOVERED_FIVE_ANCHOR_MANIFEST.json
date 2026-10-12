@@ -1,0 +1,70 @@
+{
+  "status": "completed",
+  "scope": "5 Task0 anchors, each 4 fixed diagnostic batches; no additional training",
+  "anchors": [
+    {
+      "anchor": "s_epoch0",
+      "result": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/results/s_epoch0.json",
+      "sha256": "4fe83b0bf139698f5195c738ee7fb9fd2bd130095d6466de6046e373269fd1e1",
+      "schema_version": 1,
+      "batch_count": 4,
+      "input_pairing_verified": true
+    },
+    {
+      "anchor": "s_epoch50",
+      "result": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/results/s_epoch50.json",
+      "sha256": "62de1ef6ce64f3bbad3dd94327f2ceaf7450fe4f6145e90f889e2c16e0afb0a6",
+      "schema_version": 1,
+      "batch_count": 4,
+      "input_pairing_verified": true
+    },
+    {
+      "anchor": "g_epoch50",
+      "result": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/results/g_epoch50.json",
+      "sha256": "ae3f46dd52c3acf8da62b94a7a34af3351b0e4508a2a4d615281d08283c9f400",
+      "schema_version": 1,
+      "batch_count": 4,
+      "input_pairing_verified": true
+    },
+    {
+      "anchor": "sum_epoch50",
+      "result": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/results/sum_epoch50.json",
+      "sha256": "7d78c68be0b6eb54dddd73317371ed7311475bb42c2d935304ae346158f449ff",
+      "schema_version": 1,
+      "batch_count": 4,
+      "input_pairing_verified": true
+    },
+    {
+      "anchor": "mean_epoch50",
+      "result": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/recovery_mean_selfspec_v2_20261001T142100Z/results/mean_epoch50_v2.json",
+      "sha256": "52dbcd0b62e071f98f60cc52309adfeb94ba04f63c6d6168d753794e5bab4626",
+      "schema_version": 2,
+      "batch_count": 4,
+      "input_pairing_verified": true
+    }
+  ],
+  "mixed_audit_schemas": true,
+  "schema_note": "Four original schema1 anchors plus Mean50 schema2 actual-probe self-spec audit. GPU numerical outputs are not claimed bitwise identical across instrumentation versions.",
+  "shared_input_target_and_sample_indices": true,
+  "mean_recovery_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/recovery_mean_selfspec_v2_20261001T142100Z/runtime/jobs/mean_epoch50_v2/completed.json",
+  "mean_recovery_receipt_sha256": "d3a3a2e7806dde5b3300f77a978871a5bc1fe5a40ad33d227ba3783ed2dcec8d",
+  "mean_self_spec": {
+    "native_scans": 20,
+    "exact_operation_checks": 140,
+    "actual_probe_CE_checks": 80,
+    "max_CE_relative_error": 1.2116871838999957e-07,
+    "r0_cross_probe_relative_errors": [
+      1.4161292919719588e-05,
+      0.00041592084103789055,
+      7.696080697952844e-06,
+      1.1310399517243639e-05
+    ],
+    "r0_used_as_correctness_gate": false
+  },
+  "original_failed_output_preserved": {
+    "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-stage1-task0-run-20260930T213643Z/diagnostics/results/mean_epoch50.json",
+    "sha256": "cfbe99d2d556b4d824fd3c0e41e4cfeacd271e0d52b837384a0b170f20432f33",
+    "partial_batches_not_counted": 1
+  },
+  "instrumentation_sensitivity_report": "/data/140-1/users/liying/O-LoRA/refine-logs/results-audit-20261001/recovery/r0_identity_debug/GPU_INSTRUMENTATION_SENSITIVITY.json"
+}

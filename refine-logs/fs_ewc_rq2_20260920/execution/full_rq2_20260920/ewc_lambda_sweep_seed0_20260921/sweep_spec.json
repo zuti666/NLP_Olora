@@ -1,0 +1,63 @@
+{
+  "seed": 0,
+  "dataset": "imageneta",
+  "anchor_method": "sgd",
+  "future_optimizer": "sgd",
+  "tasks_total": 2,
+  "new_task_epochs": 50,
+  "batch_size": 128,
+  "learning_rate": 0.02,
+  "fisher_policy": "Reuse Task0 full model weights; actually recompute native fit batch empirical Fisher once with both trace-normalization flags false; replace old normalized history entirely",
+  "fisher_estimator": "native batch-gradient empirical proxy; keep original sample averaging",
+  "ewc_normalize_fisher": false,
+  "ewc_normalize_accumulated_fisher": false,
+  "lambdas": [
+    0,
+    1,
+    10,
+    30,
+    60,
+    100,
+    300,
+    1000,
+    3000,
+    10000,
+    30000,
+    100000,
+    300000,
+    1000000
+  ],
+  "new_lambdas": [
+    0,
+    1,
+    10,
+    30,
+    60,
+    100,
+    300,
+    1000,
+    3000,
+    10000,
+    30000,
+    100000,
+    300000,
+    1000000
+  ],
+  "reused_lambdas": [],
+  "historical_references_not_raw_points": {
+    "0": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/B3_A_sgd_lam0_seed0",
+    "normalized_2000": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0"
+  },
+  "shared_anchor": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0",
+  "prepared_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/fisher_state_raw.pt",
+  "smoke_lambda": 60,
+  "scope": "Single-seed exploratory protection-strength sweep, SGD to SGD only, no Task0 retraining; preserves complete seven-row three-seed results",
+  "selection": "Report all observed points, strongest retention and best average among finite completed points; test-set exploration is not confirmatory evidence",
+  "efficacy_thresholds": {
+    "retention_gain_pp": 1.0,
+    "max_new_task_drop_pp": 5.0,
+    "nondecreasing_average_gain_pp": 0.0
+  },
+  "failure_policy": "Explicit nonfinite loss/gradient/parameter divergence is a reported outcome; OOM, missing files, data or code failures stop new work",
+  "resource_policy": "Wait for all GPU0-6 to be idle before the first GPU job; poll every900seconds; per-job shared locks and idle checks remain required"
+}

@@ -1,0 +1,414 @@
+{
+  "passed": true,
+  "cases": {
+    "N01_seed0": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        1.0,
+        1.0,
+        1.0,
+        0.1
+      ]
+    },
+    "N02_seed0": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ]
+    },
+    "N04_seed0": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ]
+    },
+    "N10_seed0": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        0.5,
+        1.0,
+        0.5,
+        0.0
+      ]
+    },
+    "Gmatch_seed0": {
+      "checks": [
+        "same_state_native_Sum_eta_vs_Mean2_2eta_actual_effective_magnitude",
+        "FP32_projector_Sum_Mean2_cancellation_observations",
+        "native_S_to_Gmatch_18_steps_2256_samples_heads20_40_global_RNG_and_actual_match",
+        "independent_S_target_differs_from_same_candidate_projected_g1",
+        "FP64_Gram_root_FP32_clone_dense_BA_and_all_FC_oracle_pure",
+        "nonmonotonic_BA_polynomial_smallest_positive_root",
+        "G025_declared_radius_native_path"
+      ],
+      "negative_cases": [
+        {
+          "case": "S_identity_input_sha256",
+          "error": "ValueError('Independent S native batch identity mismatch: input_sha256')"
+        },
+        {
+          "case": "S_identity_rng_before_batch_sha256",
+          "error": "ValueError('Independent S native batch identity mismatch: rng_before_batch_sha256')"
+        },
+        {
+          "case": "S_identity_seen_classes",
+          "error": "ValueError('Independent S native batch identity mismatch: seen_classes')"
+        },
+        {
+          "case": "S_identity_parameter_shapes",
+          "error": "ValueError('Independent S native batch identity mismatch: parameter_shapes')"
+        },
+        {
+          "case": "missing_S_step",
+          "error": "ValueError('Missing independent S step')"
+        },
+        {
+          "case": "S_nominal_LR_mismatch",
+          "error": "ValueError('Independent S nominal LR differs')"
+        },
+        {
+          "case": "S_config_mismatch",
+          "error": "ValueError('Independent S scientific configuration differs')"
+        },
+        {
+          "case": "S_seed_mismatch",
+          "error": "ValueError('Independent S job has wrong selector/seed/native budget')"
+        },
+        {
+          "case": "formal_rejects_smoke_S",
+          "error": "ValueError('S and Gmatch smoke/formal phases must match')"
+        },
+        {
+          "case": "incomplete_S_budget",
+          "error": "ValueError('Independent S job has wrong selector/seed/native budget')"
+        },
+        {
+          "case": "S_trace_hash_corruption",
+          "error": "ValueError('Independent S receipt does not bind its evidence')"
+        },
+        {
+          "case": "S_mutation_after_reader_initialization",
+          "error": "ValueError('Independent S evidence changed during Gmatch')"
+        },
+        {
+          "case": "Gmatch_requires_independent_S",
+          "error": "ValueError('Only Gmatch requires an independent S reference specification')"
+        },
+        {
+          "case": "natural_arm_rejects_matching_reference",
+          "error": "ValueError('Only Gmatch requires an independent S reference specification')"
+        },
+        {
+          "case": "zero_target",
+          "error": "ValueError('Target, bounds, initial scale, and tolerance must be positive')"
+        },
+        {
+          "case": "nonfinite_target",
+          "error": "FloatingPointError('target effective norm is nonfinite')"
+        },
+        {
+          "case": "unreachable_scale_bound",
+          "error": "ValueError('No positive effective-step root within explicit max_scale=0.001')"
+        },
+        {
+          "case": "zero_effective_direction",
+          "error": "ValueError('Cannot match positive target with zero effective direction')"
+        }
+      ],
+      "native_matched_steps": 18,
+      "same_candidate_g1_would_be_a_different_target": true,
+      "same_state_Sum_Mean2_relative_effective_norm_difference": 0.0,
+      "same_state_Sum_Mean2_max_parameter_difference": 0.0,
+      "FP32_projector_cancellation_cases": [
+        {
+          "clean": 1.0,
+          "value": 1e-08,
+          "projected_sum": 0.0,
+          "projected_mean": 0.0,
+          "actual_parameter_difference": 0.0,
+          "bitwise_identical": true
+        },
+        {
+          "clean": 10000000000.0,
+          "value": 1024.0,
+          "projected_sum": 2048.0,
+          "projected_mean": 1024.0,
+          "actual_parameter_difference": 0.0,
+          "bitwise_identical": true
+        },
+        {
+          "clean": -10000000000.0,
+          "value": -1024.0,
+          "projected_sum": -2048.0,
+          "projected_mean": -1024.0,
+          "actual_parameter_difference": 0.0,
+          "bitwise_identical": true
+        },
+        {
+          "clean": 10000000000.0,
+          "value": 512.0,
+          "projected_sum": 1024.0,
+          "projected_mean": 1024.0,
+          "actual_parameter_difference": 40.95999526977539,
+          "bitwise_identical": false
+        },
+        {
+          "clean": -10000000000.0,
+          "value": -512.0,
+          "projected_sum": -1024.0,
+          "projected_mean": -1024.0,
+          "actual_parameter_difference": 40.96000289916992,
+          "bitwise_identical": false
+        }
+      ],
+      "no_full_trajectory_equivalence_claim": true
+    },
+    "N01_seed1": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        1.0,
+        1.0,
+        1.0,
+        0.1
+      ]
+    },
+    "N02_seed1": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ]
+    },
+    "N04_seed1": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        0.0,
+        1.0,
+        1.0,
+        0.0
+      ]
+    },
+    "N10_seed1": {
+      "four_step_parameters_gradients_losses_RNG_mechanism_exact_vs_unwrapped": true,
+      "beta_gamma": [
+        0.5,
+        1.0,
+        0.5,
+        0.0
+      ]
+    },
+    "Gmatch_seed1": {
+      "checks": [
+        "same_state_native_Sum_eta_vs_Mean2_2eta_actual_effective_magnitude",
+        "FP32_projector_Sum_Mean2_cancellation_observations",
+        "native_S_to_Gmatch_18_steps_2256_samples_heads20_40_global_RNG_and_actual_match",
+        "independent_S_target_differs_from_same_candidate_projected_g1",
+        "FP64_Gram_root_FP32_clone_dense_BA_and_all_FC_oracle_pure",
+        "nonmonotonic_BA_polynomial_smallest_positive_root",
+        "G025_declared_radius_native_path"
+      ],
+      "negative_cases": [
+        {
+          "case": "S_identity_input_sha256",
+          "error": "ValueError('Independent S native batch identity mismatch: input_sha256')"
+        },
+        {
+          "case": "S_identity_rng_before_batch_sha256",
+          "error": "ValueError('Independent S native batch identity mismatch: rng_before_batch_sha256')"
+        },
+        {
+          "case": "S_identity_seen_classes",
+          "error": "ValueError('Independent S native batch identity mismatch: seen_classes')"
+        },
+        {
+          "case": "S_identity_parameter_shapes",
+          "error": "ValueError('Independent S native batch identity mismatch: parameter_shapes')"
+        },
+        {
+          "case": "missing_S_step",
+          "error": "ValueError('Missing independent S step')"
+        },
+        {
+          "case": "S_nominal_LR_mismatch",
+          "error": "ValueError('Independent S nominal LR differs')"
+        },
+        {
+          "case": "S_config_mismatch",
+          "error": "ValueError('Independent S scientific configuration differs')"
+        },
+        {
+          "case": "S_seed_mismatch",
+          "error": "ValueError('Independent S job has wrong selector/seed/native budget')"
+        },
+        {
+          "case": "formal_rejects_smoke_S",
+          "error": "ValueError('S and Gmatch smoke/formal phases must match')"
+        },
+        {
+          "case": "incomplete_S_budget",
+          "error": "ValueError('Independent S job has wrong selector/seed/native budget')"
+        },
+        {
+          "case": "S_trace_hash_corruption",
+          "error": "ValueError('Independent S receipt does not bind its evidence')"
+        },
+        {
+          "case": "S_mutation_after_reader_initialization",
+          "error": "ValueError('Independent S evidence changed during Gmatch')"
+        },
+        {
+          "case": "Gmatch_requires_independent_S",
+          "error": "ValueError('Only Gmatch requires an independent S reference specification')"
+        },
+        {
+          "case": "natural_arm_rejects_matching_reference",
+          "error": "ValueError('Only Gmatch requires an independent S reference specification')"
+        },
+        {
+          "case": "zero_target",
+          "error": "ValueError('Target, bounds, initial scale, and tolerance must be positive')"
+        },
+        {
+          "case": "nonfinite_target",
+          "error": "FloatingPointError('target effective norm is nonfinite')"
+        },
+        {
+          "case": "unreachable_scale_bound",
+          "error": "ValueError('No positive effective-step root within explicit max_scale=0.001')"
+        },
+        {
+          "case": "zero_effective_direction",
+          "error": "ValueError('Cannot match positive target with zero effective direction')"
+        }
+      ],
+      "native_matched_steps": 18,
+      "same_candidate_g1_would_be_a_different_target": true,
+      "same_state_Sum_Mean2_relative_effective_norm_difference": 0.0,
+      "same_state_Sum_Mean2_max_parameter_difference": 0.0,
+      "FP32_projector_cancellation_cases": [
+        {
+          "clean": 1.0,
+          "value": 1e-08,
+          "projected_sum": 0.0,
+          "projected_mean": 0.0,
+          "actual_parameter_difference": 0.0,
+          "bitwise_identical": true
+        },
+        {
+          "clean": 10000000000.0,
+          "value": 1024.0,
+          "projected_sum": 2048.0,
+          "projected_mean": 1024.0,
+          "actual_parameter_difference": 0.0,
+          "bitwise_identical": true
+        },
+        {
+          "clean": -10000000000.0,
+          "value": -1024.0,
+          "projected_sum": -2048.0,
+          "projected_mean": -1024.0,
+          "actual_parameter_difference": 0.0,
+          "bitwise_identical": true
+        },
+        {
+          "clean": 10000000000.0,
+          "value": 512.0,
+          "projected_sum": 1024.0,
+          "projected_mean": 1024.0,
+          "actual_parameter_difference": 40.95999526977539,
+          "bitwise_identical": false
+        },
+        {
+          "clean": -10000000000.0,
+          "value": -512.0,
+          "projected_sum": -1024.0,
+          "projected_mean": -1024.0,
+          "actual_parameter_difference": 40.96000289916992,
+          "bitwise_identical": false
+        }
+      ],
+      "no_full_trajectory_equivalence_claim": true
+    }
+  },
+  "configs_validated": [
+    "smoke_N01_r1_k10_s0",
+    "smoke_N01_r1_k10_s1",
+    "smoke_N03_r1_k10_s0",
+    "smoke_N03_r1_k10_s1",
+    "smoke_N02_r1_k10_s0",
+    "smoke_N02_r1_k10_s1",
+    "smoke_N04_r1_k10_s0",
+    "smoke_N04_r1_k10_s1",
+    "smoke_N05_r1_k10_s0",
+    "smoke_N05_r1_k10_s1",
+    "smoke_N06_r1_k10_s0",
+    "smoke_N06_r1_k10_s1",
+    "smoke_N07_r1_k10_s0",
+    "smoke_N07_r1_k10_s1",
+    "smoke_N08_r1_k10_s0",
+    "smoke_N08_r1_k10_s1",
+    "smoke_N09_r1_k10_s0",
+    "smoke_N09_r1_k10_s1",
+    "smoke_N10_r1_k10_s0",
+    "smoke_N10_r1_k10_s1",
+    "smoke_N11_r1_k10_s0",
+    "smoke_N11_r1_k10_s1",
+    "smoke_N12_r1_k10_s0",
+    "smoke_N12_r1_k10_s1",
+    "smoke_N13_r1_k10_s0",
+    "smoke_N13_r1_k10_s1",
+    "smoke_N14_r1_k10_s0",
+    "smoke_N14_r1_k10_s1",
+    "N01_r1_k10_s0",
+    "N01_r1_k10_s1",
+    "N03_r1_k10_s0",
+    "N03_r1_k10_s1",
+    "N02_r1_k10_s0",
+    "N02_r1_k10_s1",
+    "N04_r1_k10_s0",
+    "N04_r1_k10_s1",
+    "N05_r1_k10_s0",
+    "N05_r1_k10_s1",
+    "N06_r1_k10_s0",
+    "N06_r1_k10_s1",
+    "N07_r1_k10_s0",
+    "N07_r1_k10_s1",
+    "N08_r1_k10_s0",
+    "N08_r1_k10_s1",
+    "N09_r1_k10_s0",
+    "N09_r1_k10_s1",
+    "N10_r1_k10_s0",
+    "N10_r1_k10_s1",
+    "N11_r1_k10_s0",
+    "N11_r1_k10_s1",
+    "N12_r1_k10_s0",
+    "N12_r1_k10_s1",
+    "N13_r1_k10_s0",
+    "N13_r1_k10_s1",
+    "N14_r1_k10_s0",
+    "N14_r1_k10_s1"
+  ],
+  "native_formal_configs": 28,
+  "native_smoke_configs": 28,
+  "scope": "CPU exact canonical decomposition and AST-native training; original beta-gamma observational branch; seed0/1 StepReference with negative cross-seed checks",
+  "module_hashes": {
+    "test_seed01_native.py": "4a03aee178b8c059c9d842ed77a137b1d5de33a5d0f43a5fbed0cdf782428685",
+    "validate.py": "2b41c789b89da966b32b0762c3d08b59c4ec98f2aa8c5515bde56778a2b757bc",
+    "effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "test_legacy_direction_cpu.py": "5a594d5772c4aa46af3009a58cc0bd392239a9baf554a630a8f32dc2731033f1",
+    "step_reference.py": "ce407b60a8b6594f1c9de9f6ae5b7d15593818f9527ea36844a34d9b7c28a7a8",
+    "audit_validation.py": "04cce0faee7987d7d8bae30f266625c4feff14f214afd15e30f3dcf1d1761fb1",
+    "run.py": "59259e474c91ff121b445134d42668ddc8645f179b94b39ad331b0de6050973a",
+    "legacy_direction.py": "3196944014b0b1a357da1f6b2e74428f85594a40ec45efc8cf7f4144b3c5cefa",
+    "residual_selection.py": "4284c85df9700e1ef992cedc1bf1e2d2f784f687d680a605ace580c3ea83eab6",
+    "native_support.py": "356be1cb5e72da7bf6453ca33ba080aec128e62c859b401013f9bf5b026a131c"
+  }
+}

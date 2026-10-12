@@ -1,0 +1,141 @@
+{
+  "audit": "fresh_documented_cpu_and_queue_check",
+  "created_at_utc": "2026-10-12T10:12:54Z",
+  "root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z",
+  "status": "accepted",
+  "launch_blockers": [],
+  "gpu_launched": false,
+  "gpu_queries_invoked": false,
+  "inputs_modified": false,
+  "commands": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' /home-local/liying/.conda/envs/Pilot_new_local/bin/python -m unittest test_curvature_cpu test_eval_match_cpu",
+      "exit_code": 0,
+      "tests_run": 16,
+      "test_runtime_seconds": 0.119,
+      "stdout": "................\n----------------------------------------------------------------------\nRan 16 tests in 0.119s\n\nOK\n"
+    },
+    {
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python run_queue.py --dry-run",
+      "exit_code": 0,
+      "result": {
+        "status": "accepted_dry_run",
+        "jobs": 12,
+        "gpus": [
+          4,
+          5,
+          6
+        ],
+        "pins": 353,
+        "training_updates": 0
+      }
+    }
+  ],
+  "implementation_pin_count": 353,
+  "historical_source_file_count": 190,
+  "formal_scope": {
+    "curvature": 36,
+    "matching": 24,
+    "evaluation": 30
+  },
+  "reviewed_files_sha256": {
+    "RUN.md": "9483c932b838fdfa5c987d58bba6380e29d24fa6e41b34e3132a0b1b78c39dcf",
+    "EXPERIMENT_PLAN_20261012.md": "7206f60c033b416e07931e354cbee653b44b1e66fe5c555fa7bc62628cc09a6a",
+    "suite.json": "a6cf961b7992ba6ba0307f737872e017d6db21d368fe4306e785959725a7bc94",
+    "implementation_manifest.json": "1e9cd5a93068d9e95c8a9491ea0eab264def9ec7157df194e92fb502ae40d3c6",
+    "queue_utils.py": "228c9ad2b459f726747ce61790dbec7ec0de992c9ebe2b8f5a4e3c659fbe69f0",
+    "run_queue.py": "74df31f686a3bb7a4eebc4e403171bbf503d47a6cf24db8f5058df4d55eba84f",
+    "job_worker.py": "b8c3aecea4c0d0b3c5abf2cbbf39578f8b6bc5cfa0786a4387da7dc10e35f0c0",
+    "launch_queue.py": "ac92f29086d1f407782b895e69087be3ab344be373022d782c031d36d0809b0b",
+    "cuda_witness.py": "f4245c35969024d40842f767b86ed78d008fe6f60cfceee8eeef7e320fbe0f7a"
+  },
+  "checks": [
+    {
+      "check": "GPU authorization and concurrency",
+      "status": "pass",
+      "evidence": [
+        "suite.json allowed_gpus=[4,5,6], max_parallel=3",
+        "run_queue.py:22 rejects other authorization; run_queue.py:84 gates active count",
+        "run_queue.py:89-102 picks only allowed index with pinned UUID"
+      ]
+    },
+    {
+      "check": "Host PID namespace",
+      "status": "pass",
+      "evidence": [
+        "suite.json hostname=cudahpc40.cvc.uab.es; pid_namespace=pid:[4026531836]",
+        "run_queue.py:41 rejects actual execution outside registered host/PID namespace",
+        "CPU dry-run returns before host/GPU operations at run_queue.py:39-40"
+      ]
+    },
+    {
+      "check": "Dual GPU leases and repeated idle query",
+      "status": "pass",
+      "evidence": [
+        "run_queue.py:93-100 acquires index and UUID flock leases, then reruns GPU query",
+        "queue_utils.py:36-49 checks no compute PID, memory<500MiB, utilization<5%",
+        "run_queue.py:99 releases both leases on failed requery"
+      ]
+    },
+    {
+      "check": "Worker and CUDA child inherit lease FDs",
+      "status": "pass",
+      "evidence": [
+        "run_queue.py:113 passes both leases to detached worker",
+        "job_worker.py:13 validates both FDs",
+        "job_worker.py:15-16 passes both leases to witness and diagnostic child; worker waits at line18"
+      ]
+    },
+    {
+      "check": "Execution acceptance is separate from scientific outcome",
+      "status": "pass",
+      "evidence": [
+        "queue_utils.py:61-68 checks zero submitted updates, hash receipt, expected fixed count, restoration, accepted_execution/completed_exploratory for curvature",
+        "queue_utils.py:69-71 rejects candidate comparisons when curvature gates are not passed",
+        "run_queue.py:64-67 logs scientific_outcome separately; scientific inconclusiveness does not mark execution failed",
+        "queue_utils.py:73-82 checks non-curvature completion, matching HVP_calls=0, historical evaluation agreement, logits hashes, and exact error partition"
+      ]
+    },
+    {
+      "check": "Independent pilot dependencies",
+      "status": "pass",
+      "evidence": [
+        "Three pilot jobs have no dependencies",
+        "Each of the nine formal jobs depends only on its own kind pilot",
+        "run_queue.py:85-87 gates on completed execution and validates dependency evidence"
+      ]
+    },
+    {
+      "check": "Immutable input/code paths and exclusive output paths",
+      "status": "pass",
+      "evidence": [
+        "Literal documented dry-run validated 353 implementation/input pins and historical 190-file source manifest",
+        "run_queue.py:17-21 checks SHA256 plus historical source containment",
+        "run_queue.py:27 restricts each output to bulk_output_root/job_id; line28 restricts interpreter and script",
+        "run_queue.py:45-46 rejects changed suite on resume; lines64,88 repeat verification",
+        "run_queue.py:104-108 refuses reused runtime job directory and nonempty output"
+      ]
+    },
+    {
+      "check": "Resume and surviving workers",
+      "status": "pass",
+      "evidence": [
+        "run_queue.py:43 enforces single controller flock",
+        "run_queue.py:49-52 revalidates completed results, adopts running workers, and refuses incomplete launching state",
+        "queue_utils.py:29-35 uses PID plus proc starttime and treats zombies as dead",
+        "run_queue.py:59-60 waits for adopted worker identity before reading exit evidence",
+        "Surviving diagnostic child retains both leases even if worker/controller dies; failed exit evidence halts new scheduling"
+      ]
+    },
+    {
+      "check": "Current scope counts and state counters",
+      "status": "pass",
+      "evidence": [
+        "suite formal totals: curvature=36, matching=24, evaluation=30; pilots are 1/1/2 items separately",
+        "Runtime counts are derived from per-job statuses with Counter at run_queue.py:79 and :117",
+        "Scheduler uses per-job status and active set, not cached counts; no stale hardcoded 32-cell scope"
+      ]
+    }
+  ],
+  "scope_limit": "CPU documented acceptance and static queue/worker/launcher review only. Live host PID namespace, idle GPUs, CUDA witness, and output scientific results remain execution-time checks."
+}

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "audited_at_utc": "2026-10-09T09:10:15.588213+00:00",
+  "cpu_only": true,
+  "cuda_visible_devices": "",
+  "checks": {
+    "sgd_closed_form_12steps_variable_lr_cache_reset": true,
+    "current_g2_closed_form_12steps_variable_lr_cache_reset": true,
+    "history_fusion_closed_form_12steps_variable_lr_cache_reset": true,
+    "history_g2_closed_form_12steps_variable_lr_cache_reset": true,
+    "history_g2_first_step_bitwise_current_g2": true,
+    "old_hrf_equivalence_24steps_deterministic_and_dropout": true
+  },
+  "analytic_max_absolute_error": {
+    "sgd": 1.4543533333188918e-07,
+    "current_g2": 2.3484230049497512e-07,
+    "history_fusion": 1.1799274615142963e-06,
+    "history_g2": 2.2590160364543976e-07
+  },
+  "prior_support_files_byte_equal": {
+    "state_transaction.py": true,
+    "effective_step.py": true,
+    "native_lifecycle.py": true,
+    "task0_trainer_base_v2.py": true,
+    "audit_core.py": true
+  },
+  "prior_hrf_equivalence": [
+    {
+      "stochastic": false,
+      "steps": 12,
+      "bitwise_gradients_updates_cache_rng": true
+    },
+    {
+      "stochastic": true,
+      "steps": 12,
+      "bitwise_gradients_updates_cache_rng": true
+    }
+  ],
+  "new_core_sha256": "fe5b2056df14ba10eb8a00722b126986fc83b19cd66905b5bfe7dcfd30eb2e70",
+  "old_core_sha256": "56c201dff9cbeb3b5ce028ae7b5b2dacee9135b67d5d42a99175f074cfb0c80a",
+  "limitation": "CPU mathematical/core equivalence does not by itself establish full trainer/GPU trajectory identity."
+}

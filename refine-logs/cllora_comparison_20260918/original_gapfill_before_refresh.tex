@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Fine-grained continual learning under the documented configurations. FAA and stage-weighted AAA are percentages. 5Datasets denotes the cross-dataset task stream. These are single-run records; configuration exceptions are retained below.}
+\label{tab:exp_fine}
+\scriptsize\setlength{\tabcolsep}{2.2pt}\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l*{12}{r}@{}}
+\toprule
+Method & \multicolumn{2}{c}{CUB-200} & \multicolumn{2}{c}{Cars} & \multicolumn{2}{c}{Aircraft} & \multicolumn{2}{c}{Flowers} & \multicolumn{2}{c}{Pets} & \multicolumn{2}{c}{5Datasets}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}\cmidrule(lr){12-13}
+ & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA\\\midrule
+Vanilla LoRA & 57.79 & 70.00 & 28.52 & 39.41 & 40.66 & 39.51 & 53.05 & 66.90 & 64.12 & 72.83 & 66.80 & 68.81\\
+InfLoRA & 60.61 & 70.60 & 34.34 & 42.20 & 40.96 & 41.23 & 60.06 & 72.98 & 62.18 & 70.40 & 77.75 & 77.02\\
+OLoRA & 62.38 & 70.17 & 32.85 & 42.30 & 36.10 & 37.81 & 48.90 & 64.26 & 59.52 & 68.01 & 77.58 & 74.52\\
+SDLoRA & 62.01 & 69.52 & 34.89 & 43.28 & 25.96 & 26.63 & 49.05 & 64.59 & 59.45 & 68.08 & 74.42 & 74.10\\
+CL-LoRA & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & --\\
+EWCLoRA & 60.21 & 69.97 & 29.54$^{w}$ & 39.74$^{w}$ & 40.21 & 38.94 & 48.45$^{w}$ & 62.42$^{w}$ & 64.17 & 71.09 & 73.87 & 73.07\\
+GAM-EWCLoRA & 74.22 & 76.47 & 51.74 & 55.44 & 46.66 & 43.65 & 86.75 & 91.76 & 78.82 & 83.00 & -- & --\\
+\bottomrule\end{tabular*}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\scriptsize
+Rank 16, batch 128; common checkpoint: timm/vit\_base\_patch16\_224.augreg2\_in21k\_ft\_in1k. The five separate datasets use 40 epochs/task. Seed 0 except native EWC on Pets/5Datasets (seed 2). 5Datasets: Vanilla LoRA and EWC use 30 epochs, InfLoRA/OLoRA/SDLoRA use 40. SDLoRA/Aircraft LR=.02 versus .05 for the other rows. EWC coefficients: CUB 200000, Cars/Flowers 2000, Aircraft 200, Pets 200000, 5Datasets 50000; GAM-EWC uses 2000. $^{w}$Historical EWC with an alpha-zero two-probe wrapper; other EWC cells use native one-pass SGD. The failed native Cars run is excluded. Historical code/RNG identity is not fully certified; this table is not a matched EWC-component ablation. CL-LoRA uses a port retaining its native mechanisms and prototype classifier. New CL-LoRA and GAM-EWC/5Datasets runs use seed 0; 5Datasets uses 30 epochs/task. New runs pin current data manifests and weights; historical split identity is not fully certified. GAM-EWC/5Datasets additionally isolates clean/Fisher RNG. Dashes denote pending or unavailable eligible full runs.
+\end{minipage}
+\end{table*}

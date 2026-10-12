@@ -1,0 +1,151 @@
+{
+  "status": "passed",
+  "at": "2026-10-03T10:48:54.332624+00:00",
+  "reviewer": "/root/g2_cd_fresh_review",
+  "independent": true,
+  "cpu_only": true,
+  "gpu_execution": false,
+  "gpu_acceptance": false,
+  "controller_started": false,
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "torch_version": "2.4.1+cu121",
+  "cuda_visible_devices": "",
+  "tests_run": 25,
+  "failures": 0,
+  "errors": 0,
+  "commands": [
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -B -m unittest test_g2_cd_cpu -v",
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-execution-20261003T102355Z/trainer",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      },
+      "exit_code": 0,
+      "tests_run": 16,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.83,
+      "result": "OK",
+      "test_names": [
+        "test_actual_trainer_batch_replay_and_observed_task_receipts",
+        "test_cubic_explicit_cd_and_base_outer_sign",
+        "test_discard_restores_existing_gradient_and_nested_cache_identities",
+        "test_failed_compute_restores_every_entry_component",
+        "test_failed_update_rolls_back_model_rng_grads_and_optimizer",
+        "test_four_ordinary_autograd_calls_and_no_create_graph",
+        "test_invalid_update_settings_restore_entry",
+        "test_quadratic_three_locations_gradients_and_g2_only",
+        "test_replay_failure_stops_and_restores",
+        "test_same_random_function_and_success_advance_once",
+        "test_strict_two_repeat_replay_and_eight_diagnostic_calls",
+        "test_strong_configs_reject_conflicts_and_allow_three_frozen_branches",
+        "test_unique_natural_sgd_exact_in_float32_and_float64",
+        "test_zero_g0_collapses_all_probes",
+        "test_zero_q_no_fallback_and_missing_angles",
+        "test_zero_radius_preserves_g0_bitwise"
+      ]
+    },
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -B -m unittest test_g2_location_cpu -v",
+      "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-execution-20261003T102355Z/trainer",
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      },
+      "exit_code": 0,
+      "tests_run": 9,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 0.666,
+      "result": "OK",
+      "test_names": [
+        "test_FP32_current_task_CE_stochastic_replay_and_complete_state",
+        "test_constant_gradient_q_zero_angles_missing_low_signal",
+        "test_failure_restores_frozen_values_grad_objects_caches_modes_RNG",
+        "test_formal_pairing_covers_all_ten_tasks_and_2550_batches",
+        "test_nonlinear_CD_is_raw_central_not_unit_direction_average",
+        "test_quadratic_shared_geometry_and_six_gradients",
+        "test_small_q_keeps_CD_half_and_normalization_epsilon",
+        "test_zero_base_gradient_collapses_first_and_outer_points",
+        "test_zero_outer_radius_reads_g0_exactly"
+      ]
+    }
+  ],
+  "reviewed_files_sha256": {
+    "trainer/direction_step.py": "358f7a2c6db254cc1543a8382a1ef87c72dcf20266a99eaabc26d4f9525225f9",
+    "trainer/four_probe_train.py": "39d83062f4c0462836acd2d7006707f493d0791dcba11da1a3bd97953ba23e69",
+    "trainer/test_g2_cd_cpu.py": "f52da5ceb6987fd5559b546a8358481d9e44a8e92bfddb30814bff397c566642",
+    "trainer/G2_CD_CPU_GATE.json": "ee5607f4ff8fa9afc3cacb0512b0a515b91fbdb2d2777c3ed2170d0284ab5aa1",
+    "trainer/g2_location_diagnostics.py": "f36ac1fab216b40ad78b8cdd573e5756cec69355cb3d5120b4f0fe44a1203c18",
+    "trainer/test_g2_location_cpu.py": "23b6bcd0aeefe983379c7ebf4ab10b5f8bce56d662a1a557e5b0a3fcef310501",
+    "trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "trainer/audit_core.py": "9a98b92acebe66a4e5d9ea5d37abc718144c1fb68392f13ab3bc049e561eaf96",
+    "trainer/response_hvp.py": "a8a27e0a28445f1224dba54c87a4e0bac0feae407cdc140a08dd847347975710",
+    "trainer/effective_step.py": "97aa2b7bb87e8771f59b336b9b035e590bf13c8c7f514592ad2055430ed7abf3",
+    "common.py": "3a699457c50bea7ff2abae09a8b9c5473f22c8d7d43c0759233622567ead5ad3",
+    "run_queue.py": "26fe005dbd001a544227c9aa2d98bba89ffefc45a08429767743935438b7fb15",
+    "validate_job.py": "ba70687b17bb6f17ed79d82435cac3753b8d8357dc9459298d8d496136778996",
+    "verify_pairing.py": "5f5afacbd2bcc81a4c707b9c2f47bfd7304be1d14007c37f639a1d6acb6dc40e",
+    "build_suite.py": "28dc42a6c777ce73e8bb9802b58efe337d5c2ba9a2b0ed2f6cf9db4fa1e22a27",
+    "job_worker.py": "d4be927beaf61917054f348030c78a149ed69b4d8972bcebb152899cf9f3a3db",
+    "collect_results.py": "feac684a88ac09f40ad92658ccccd52e89972d633918dd05d0f852fbbb80d91a",
+    "suite.json": "d5cdd93374ceb78210862302cf1e96759760ea8d6a3a5cac107f7820767ee2d1",
+    "ENVIRONMENT.md": "55d67d474bb832a660f5b5a3efea6d02d59901cc7885d2bc1bf1219d319fddf9",
+    "RUN.md": "6d5b19987a2e14035e5e18fe40d44944062b537e8a400496e8b7a8f84e8099f8",
+    "environment_spec.json": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+    "gates/INPUT_ASSETS.json": "b6dc8f8b61e0e74a6c7b8560dc843e0e2783e60c95f3097060fd4c2105c55288",
+    "EXPERIMENT_PLAN.md": "83626de0abe00e4517e062e07ff2c71dc2bb39bd4bc2de105dd6611b7f9fc3cf",
+    "gates/TRAINER_ENTRYPOINTS.json": "10f99748c0d5b99824cab98c7f52f474d5b54a009f0eacbe0eb00052f88627bb",
+    "gates/G2_LOCATION_CPU_GATE.json": "d5d55e5dfe64c413588a4770be0bbac0babd7c6481c4af10ebde9453f175e000"
+  },
+  "remaining_blocking_defects": [],
+  "resolved_findings": [
+    {
+      "files": [
+        "build_suite.py",
+        "run_queue.py"
+      ],
+      "finding": "Preflight had compared new CPU gate tests_sha256 with inherited test_direction_cpu.py.",
+      "resolution": "Both references now use test_g2_cd_cpu.py; independently verified before receipt."
+    }
+  ],
+  "review_checks": {
+    "P_C_CD_formulas_and_base_outer_point": true,
+    "four_ordinary_CE_same_R0": true,
+    "natural_g2_only_unique_exact_SGD": true,
+    "eight_CE_bitwise_task_replay_and_failure_restore": true,
+    "native_head_lifecycle_and_separate_augmented_data_RNG": true,
+    "planned_smoke_formal_diagnostic_compute_budgets": true,
+    "ten_task_whole_augmented_matrix_pairing": true,
+    "fixed_final_task0_4_9_same_state_six_gradient_diagnostics": true,
+    "offline_full_state_and_checkpoint_asset_preservation": true,
+    "physical_GPU0_1_exclusion_shared_index_UUID_locks_idle_checks": true,
+    "host_process_identity_no_retry_failure_halt": true,
+    "six_actual_trainer_entrypoint_dry_runs_passed": true
+  },
+  "limitations": [
+    "CPU review does not certify actual GPU math replay or model/checkpoint integration; those remain mandatory run-time smoke and offline gates.",
+    "Documented run_queue --dry-run is pending final freeze."
+  ],
+  "training_jobs_launched": 0,
+  "CPU_fixture_optimizer_updates": "Performed by CPU SGD correctness and failure rollback tests; not experiment training.",
+  "final_pre_freeze_delta_review": {
+    "at": "2026-10-03T10:50:19.343392+00:00",
+    "changed_files": [
+      "run_queue.py",
+      "build_suite.py"
+    ],
+    "status": "passed",
+    "checks": {
+      "offline_9_test_CPU_gate_mandatory": true,
+      "offline_implementation_and_test_SHA_mandatory": true,
+      "six_actual_training_entrypoints_passed_and_trainer_SHA_mandatory": true,
+      "unused_GPU_documented_check_removed": true,
+      "new_execution_plan_matches_approved_P_C_CD_scope": true
+    },
+    "training_or_scheduler_behavior_changed": false
+  }
+}

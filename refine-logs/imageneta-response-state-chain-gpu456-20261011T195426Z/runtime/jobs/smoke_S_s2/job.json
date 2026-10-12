@@ -1,0 +1,36 @@
+{
+  "id": "smoke_S_s2",
+  "kind": "training",
+  "formal": false,
+  "smoke": true,
+  "seed": 2,
+  "chain_role": "branch",
+  "chain_branch": "S",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/configs/smoke_S_s2.json",
+  "config_sha256": "a97a05acd88a8c9a311089f03790a6fb9e45f64932de911da273915b604b6d68",
+  "output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/smoke_S_s2",
+  "report_file": "final_summary.json",
+  "depends_on": [
+    "prepare_start_s2"
+  ],
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/trainer/response_chain_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/configs/smoke_S_s2.json",
+    "--output-dir",
+    "/data/115-2/users/liying/cache/tmp/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/smoke_S_s2",
+    "--max-epochs",
+    "2",
+    "--max-batches",
+    "2"
+  ],
+  "expected_tasks": 2,
+  "expected_epochs": 2,
+  "expected_steps": 4,
+  "expected_gradient_reads": 6,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/runtime/jobs/smoke_S_s2/cuda_witness.json"
+}

@@ -1,0 +1,518 @@
+{
+  "read_only": true,
+  "native_conditions": [
+    {
+      "condition": "N01",
+      "method": "Accelerated GAM",
+      "gradient": "h+ \u2212 .1 perp_h+(h\u2212)",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 54.977333333333334,
+          "sd": 0.35079956290356784
+        },
+        "AAA": {
+          "mean": 68.33337658730159,
+          "sd": 0.28093485387245565
+        },
+        "BWT": {
+          "mean": -6.915555555555555,
+          "sd": 0.22635872327997067
+        }
+      },
+      "cells": [
+        {
+          "job": "N01_r1_k10_s0",
+          "seed": "0",
+          "AAA": "68.38978492063492",
+          "FAA": "54.95",
+          "BWT": "-6.658888888888888",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N01_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N01_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N01_r1_k10_s1",
+          "seed": "1",
+          "AAA": "68.58182738095238",
+          "FAA": "54.641",
+          "BWT": "-7.001111111111112",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N01_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N01_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "s3_puregam_original_r1_k10_s2",
+          "seed": "2",
+          "AAA": "68.02851746031746",
+          "FAA": "55.340999999999994",
+          "BWT": "-7.086666666666665",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/runtime/jobs/s3_puregam_original_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/runtime/jobs/s3_puregam_original_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N02",
+      "method": "Unprojected sum",
+      "gradient": "g1+g3",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 54.81033333333333,
+          "sd": 0.14780505178556438
+        },
+        "AAA": {
+          "mean": 68.1166134920635,
+          "sd": 0.3466175331579276
+        },
+        "BWT": {
+          "mean": -6.684074074074074,
+          "sd": 0.8229503782749473
+        }
+      },
+      "cells": [
+        {
+          "job": "N02_r1_k10_s0",
+          "seed": "0",
+          "AAA": "67.97786626984127",
+          "FAA": "54.980999999999995",
+          "BWT": "-6.068888888888889",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N02_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N02_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N02_r1_k10_s1",
+          "seed": "1",
+          "AAA": "68.5111111111111",
+          "FAA": "54.724000000000004",
+          "BWT": "-6.364444444444445",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N02_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N02_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "s3_puregam_gamma0_sum_r1_k10_s2",
+          "seed": "2",
+          "AAA": "67.8608630952381",
+          "FAA": "54.726",
+          "BWT": "-7.618888888888888",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/runtime/jobs/s3_puregam_gamma0_sum_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/runtime/jobs/s3_puregam_gamma0_sum_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N10",
+      "method": "Mean13",
+      "gradient": "(g1+g3)/2",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 50.37266666666667,
+          "sd": 1.1615008968284686
+        },
+        "AAA": {
+          "mean": 66.47025383597884,
+          "sd": 0.8895189092768072
+        },
+        "BWT": {
+          "mean": -6.885185185185184,
+          "sd": 1.0101389302646522
+        }
+      },
+      "cells": [
+        {
+          "job": "N10_r1_k10_s0",
+          "seed": "0",
+          "AAA": "65.96245357142857",
+          "FAA": "49.5",
+          "BWT": "-6.355555555555554",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N10_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N10_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N10_r1_k10_s1",
+          "seed": "1",
+          "AAA": "67.4973603174603",
+          "FAA": "51.690999999999995",
+          "BWT": "-6.249999999999999",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N10_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N10_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "s3_puregam_meansum_r1_k10_s2",
+          "seed": "2",
+          "AAA": "65.95094761904762",
+          "FAA": "49.927",
+          "BWT": "-8.05",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/runtime/jobs/s3_puregam_meansum_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-g1g3-mechanism-run-20260930T210711Z/training/runtime/jobs/s3_puregam_meansum_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N05",
+      "method": "SGD direction",
+      "gradient": "g0",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 40.062666666666665,
+          "sd": 0.7255014357899877
+        },
+        "AAA": {
+          "mean": 60.13364060846561,
+          "sd": 0.708783328038393
+        },
+        "BWT": {
+          "mean": -12.80888888888889,
+          "sd": 0.6622557784190197
+        }
+      },
+      "cells": [
+        {
+          "job": "N05_r1_k10_s0",
+          "seed": "0",
+          "AAA": "60.867624603174605",
+          "FAA": "40.789",
+          "BWT": "-12.995555555555557",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N05_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N05_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N05_r1_k10_s1",
+          "seed": "1",
+          "AAA": "60.08021587301587",
+          "FAA": "40.061",
+          "BWT": "-12.073333333333334",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N05_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N05_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "formal_g0_r1_k10_s2",
+          "seed": "2",
+          "AAA": "59.45308134920634",
+          "FAA": "39.338",
+          "BWT": "-13.357777777777777",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/runtime/jobs/formal_g0_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/runtime/jobs/formal_g0_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N03",
+      "method": "SAM direction",
+      "gradient": "g1",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 45.559333333333335,
+          "sd": 0.5112439078691613
+        },
+        "AAA": {
+          "mean": 63.204409523809524,
+          "sd": 0.8848944567368722
+        },
+        "BWT": {
+          "mean": -9.799999999999999,
+          "sd": 1.155649568825224
+        }
+      },
+      "cells": [
+        {
+          "job": "N03_r1_k10_s0",
+          "seed": "0",
+          "AAA": "64.08284285714285",
+          "FAA": "45.854",
+          "BWT": "-10.995555555555553",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N03_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N03_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N03_r1_k10_s1",
+          "seed": "1",
+          "AAA": "63.217193253968254",
+          "FAA": "45.855000000000004",
+          "BWT": "-8.688888888888888",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N03_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N03_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "formal_S_r1_k10_s2",
+          "seed": "2",
+          "AAA": "62.31319246031747",
+          "FAA": "44.969",
+          "BWT": "-9.715555555555554",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/runtime/jobs/formal_S_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/runtime/jobs/formal_S_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N07",
+      "method": "SGD + second difference",
+      "gradient": "g0+(g3\u2212g2)",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 46.92133333333333,
+          "sd": 2.2001493888673407
+        },
+        "AAA": {
+          "mean": 63.12804060846561,
+          "sd": 2.682528507057654
+        },
+        "BWT": {
+          "mean": -7.134444444444443,
+          "sd": 0.8006301530515244
+        }
+      },
+      "cells": [
+        {
+          "job": "N07_r1_k10_s0",
+          "seed": "0",
+          "AAA": "65.18763373015872",
+          "FAA": "48.488",
+          "BWT": "-6.21",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N07_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N07_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N07_r1_k10_s1",
+          "seed": "1",
+          "AAA": "60.09461825396826",
+          "FAA": "44.406",
+          "BWT": "-7.588888888888887",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N07_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N07_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "formal_ug_r1_k10_s2",
+          "seed": "2",
+          "AAA": "64.10186984126985",
+          "FAA": "47.87",
+          "BWT": "-7.604444444444444",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/runtime/jobs/formal_ug_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/runtime/jobs/formal_ug_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N04",
+      "method": "Outer SAM gradient",
+      "gradient": "g3",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 50.537333333333336,
+          "sd": 0.8701921243802039
+        },
+        "AAA": {
+          "mean": 66.20335330687831,
+          "sd": 0.5883027814658948
+        },
+        "BWT": {
+          "mean": -6.388888888888889,
+          "sd": 0.3082227028755373
+        }
+      },
+      "cells": [
+        {
+          "job": "N04_r1_k10_s0",
+          "seed": "0",
+          "AAA": "65.74900833333334",
+          "FAA": "49.605000000000004",
+          "BWT": "-6.112222222222221",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N04_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N04_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N04_r1_k10_s1",
+          "seed": "1",
+          "AAA": "66.86787936507936",
+          "FAA": "51.327999999999996",
+          "BWT": "-6.333333333333334",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N04_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N04_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "s3_puregam_gamma0_g3_r1_k10_s2",
+          "seed": "2",
+          "AAA": "65.99317222222223",
+          "FAA": "50.679",
+          "BWT": "-6.721111111111112",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/runtime/jobs/s3_puregam_gamma0_g3_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-direction-run-20260930T180800Z/runtime/jobs/s3_puregam_gamma0_g3_r1_k10_s2/completed.json"
+        }
+      ]
+    },
+    {
+      "condition": "N06",
+      "method": "Outer-point gradient",
+      "gradient": "g2",
+      "n": 3,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "metrics": {
+        "FAA": {
+          "mean": 48.45066666666666,
+          "sd": 2.510200855177394
+        },
+        "AAA": {
+          "mean": 63.92357857142857,
+          "sd": 1.13402595358541
+        },
+        "BWT": {
+          "mean": -7.354074074074075,
+          "sd": 1.757036763787375
+        }
+      },
+      "cells": [
+        {
+          "job": "N06_r1_k10_s0",
+          "seed": "0",
+          "AAA": "62.83491190476191",
+          "FAA": "45.554",
+          "BWT": "-8.823333333333334",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N06_r1_k10_s0.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N06_r1_k10_s0/completed.json"
+        },
+        {
+          "job": "N06_r1_k10_s1",
+          "seed": "1",
+          "AAA": "65.09808531746032",
+          "FAA": "49.809000000000005",
+          "BWT": "-7.831111111111111",
+          "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/N06_r1_k10_s1.json",
+          "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/N06_r1_k10_s1/completed.json"
+        },
+        {
+          "job": "formal_g2_r1_k10_s2",
+          "seed": "2",
+          "AAA": "63.83773849206349",
+          "FAA": "49.989",
+          "BWT": "-5.4077777777777785",
+          "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/runtime/jobs/formal_g2_r1_k10_s2/config.json",
+          "source_receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T074400Z/runtime/jobs/formal_g2_r1_k10_s2/completed.json"
+        }
+      ]
+    }
+  ],
+  "restored_conditions": [
+    {
+      "condition": "G12_g1_plus_d32",
+      "n": 3,
+      "metrics": {
+        "FAA": {
+          "mean": 49.61,
+          "sd": 1.7462940760364483
+        },
+        "AAA": {
+          "mean": 65.98487156084656,
+          "sd": 0.3816022299633468
+        },
+        "BWT": {
+          "mean": -6.621481481481481,
+          "sd": 0.8451841302294816
+        }
+      }
+    },
+    {
+      "condition": "G12_g1_plus_g2",
+      "n": 3,
+      "metrics": {
+        "FAA": {
+          "mean": 55.911,
+          "sd": 1.0326165793749396
+        },
+        "AAA": {
+          "mean": 68.60857486772487,
+          "sd": 0.3530461623960142
+        },
+        "BWT": {
+          "mean": -5.544444444444445,
+          "sd": 0.6391786782395443
+        }
+      }
+    },
+    {
+      "condition": "G12_half_g1_plus_g2",
+      "n": 3,
+      "metrics": {
+        "FAA": {
+          "mean": 51.224666666666664,
+          "sd": 1.5591588544254649
+        },
+        "AAA": {
+          "mean": 66.83654510582011,
+          "sd": 0.26184552735915306
+        },
+        "BWT": {
+          "mean": -6.243333333333333,
+          "sd": 0.928034561936218
+        }
+      }
+    },
+    {
+      "method": "SAM + outer displacement residual",
+      "gradient": "g1+(g2\u2212g0)",
+      "n": 1,
+      "seed": 2,
+      "metrics": {
+        "FAA": 46.873000000000005,
+        "AAA": 64.77541507936509,
+        "BWT": -8.224444444444444
+      },
+      "source_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/runtime/jobs/formal_sum12minus0_r1_k10_s2/completed.json"
+    }
+  ],
+  "missing_native_directions": [
+    "h+\u2212h\u2212",
+    "g1+(g3\u2212g2)",
+    "g1+(g2\u2212g0)"
+  ],
+  "missing_restored_directions": [
+    "Full GAM",
+    "g1+g3",
+    "(g1+g3)/2",
+    "g3",
+    "g0+(g3\u2212g2)"
+  ],
+  "note": "P01/P02 3-seed summary reuses r=.25 seed2 via update-direction independence from r; strict actual-r1 data only seed0,1."
+}

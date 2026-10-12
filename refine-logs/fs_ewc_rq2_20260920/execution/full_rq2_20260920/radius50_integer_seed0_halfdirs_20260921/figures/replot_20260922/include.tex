@@ -1,0 +1,6 @@
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{Figure_B1_neighborhood_seed0_radius50_20260922.pdf}
+\caption{Training-neighborhood diagnostics at the Task-0 anchors of EWCLoRA and FS-EWCLoRA (formal ImageNet-A cohort, ViT-B/16, rank-10 Q/V LoRA; seed 0). From left to right: mean positive change in per-example-averaged training cross-entropy, training accuracy, unnormalized empirical Fisher trace, and prefix-safe tolerance radius on the measured grid. Loss and accuracy use 1,259 training examples and 50 shared unit random directions; Fisher uses 256 fixed training examples and 16 shared directions, without EWC scaling. All reused loss points are recomputed over the same first 50 directions. Radii 25--50 are measured at every integer; the interval 20--25 is not sampled internally. The fourth panel uses the largest measured radius whose entire measured prefix stays below each damage threshold. At $\epsilon=0.04$, FS-EWCLoRA passes at 20 and fails at 25; 20 is a measured-grid statistic rather than a continuous threshold estimate. Lines guide the eye; no cross-seed uncertainty or test curves are shown.}
+\label{fig:b1-seed0-radius50-integer}
+\end{figure*}

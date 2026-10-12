@@ -1,0 +1,75 @@
+{
+  "status": "pass",
+  "checks": [
+    "AST parse both scripts",
+    "14 generated command protocol arguments",
+    "isolated all-order/stage output paths",
+    "Fisher previous-stage chains",
+    "all three historical GAM final metrics exist"
+  ],
+  "command_count": 14,
+  "protocol": {
+    "protocol_id": "gam_ewc_bf16_b64_seed1993_ddp4_bs1_ga16_lam1",
+    "model": "Llama-3.2-1B",
+    "method": "IncLoRA-GAM-EWC",
+    "precision": "bf16",
+    "world_size": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_batch": 64,
+    "seed": 1993,
+    "data_seed": 1993,
+    "ewclora_lambda": 1.0,
+    "ewclora_gamma": 1.0,
+    "olora_lamda_1": 0.0,
+    "olora_lamda_2": 0.0,
+    "ddp_find_unused_parameters": false,
+    "optimizer_type": "gam-adamw_hf",
+    "lora_dim": 8,
+    "fisher": "full_data_raw",
+    "num_train_epochs": 1,
+    "gam_grad_rho": 0.02,
+    "gam_grad_norm_rho": 0.2,
+    "gam_adaptive": false,
+    "gam_grad_beta_1": 1.0,
+    "gam_grad_beta_2": 1.0,
+    "gam_grad_beta_3": 1.0,
+    "gam_grad_gamma": 0.03,
+    "gam_grad_reduce": "mean",
+    "gam_perturb_eps": 1e-12,
+    "ewclora_project_eps": 1e-12,
+    "actual_base_optimizer": "torch.optim.adamw.AdamW",
+    "actual_base_optimizer_defaults": {
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0.01
+    },
+    "rank_parameter_agreement": {
+      "require_exact_hash_match": false,
+      "atol": 1e-06,
+      "rtol": 1e-05,
+      "reason": "Historical local GAM perturb/add/subtract can produce FP32 rounding residuals; record hashes and maximum absolute difference, verify allclose without introducing rank broadcasts."
+    },
+    "legacy_reference_world_size": 5,
+    "legacy_reference_gradient_accumulation_steps": 8,
+    "legacy_reference_global_batch": 40,
+    "legacy_reference_seed": 1993,
+    "legacy_reference_ewclora_lambda": 1.0,
+    "ewc_accumulation_note": "GAM replay averages the full microbatch window; EWC supplies its directional projection. Preserve lambda1; do not apply the pure-EWC lambda0.5 adjustment.",
+    "alignment_scope": "Historical GAM-EWC seed/data_seed1993 and method settings are retained; DDP5/GA8/batch40 changes to DDP4/GA16/batch64. This cohort does not align seed42 controls."
+  },
+  "script_sha256": {
+    "scripts_llama/run_gam_ewc_bf16_b64_s1993.py": "0b532d7b23397623a9ad1464cf26b8322e599474804c8e8bc26cbbc0f3cc5420",
+    "scripts_llama/verify_gam_ewc_bf16_b64_stage.py": "86762d380ffcdb0398b05f771e5f56f6ed80f54fa57d0be467d37bf7cd4f6c67"
+  },
+  "smoke": {
+    "stages": 2,
+    "training_samples_per_stage": 128,
+    "updates_per_stage": 2,
+    "expected_closures_per_stage": 8
+  },
+  "dry_run_created_directory": false
+}

@@ -1,0 +1,566 @@
+{
+  "status": "pass",
+  "scope": "Fresh agent-follows-doc dry-run validation only; no actual GPU training or research audit.",
+  "documents_read_first": [
+    "/data/140-1/users/liying/O-LoRA/scripts_llama/GAM_EWC_BF16_B64_S1993.md",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md"
+  ],
+  "working_directory": "/data/140-1/users/liying/O-LoRA",
+  "documented_invocation": "python3 scripts_llama/run_gam_ewc_bf16_b64_s1993.py --dry-run",
+  "invocation_executed_verbatim": true,
+  "dry_run_invocation_count": 1,
+  "exit_code": 0,
+  "training_command_count": 14,
+  "smoke_command_count": 2,
+  "full_command_count": 12,
+  "dry_run_output_directory": "/data/140-1/users/liying/O-LoRA/experiment_queue/gam_ewc_bf16_b64_s1993_ddp4_20260919T131517Z",
+  "dry_run_output_directory_created": false,
+  "protocol": {
+    "model": "Llama-3.2-1B",
+    "nproc_per_node": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_batch": 64,
+    "bf16": true,
+    "fp16": false,
+    "seed": 1993,
+    "data_seed": 1993,
+    "lora_strategy": "ewclora_gam",
+    "optimizer_type": "gam-adamw_hf",
+    "lora_dim": 8,
+    "ewclora_lambda": 1.0,
+    "ewclora_gamma": 1.0,
+    "gam_grad_rho": 0.02,
+    "gam_grad_norm_rho": 0.2,
+    "gam_adaptive": false,
+    "gam_grad_beta": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "gam_grad_gamma": 0.03,
+    "gam_grad_reduce": "mean",
+    "olora_lambdas": [
+      0.0,
+      0.0
+    ],
+    "num_train_epochs": 1,
+    "first_stage_lr": 0.001,
+    "later_stage_lr": 0.0001,
+    "smoke": {
+      "order": 2,
+      "tasks": [
+        "dbpedia",
+        "amazon"
+      ],
+      "max_steps": 2,
+      "max_train_samples": 128,
+      "max_predict_samples": 16,
+      "fisher_max_batches": 2
+    },
+    "full_orders": {
+      "1": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "2": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "3": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ]
+    },
+    "full_fisher_max_batches": 0,
+    "result_tag": "gam_ewc_bf16_b64_s1993_ddp4_bs1_ga16_lam1"
+  },
+  "stage_chains": "Each smoke/order resets to base model; subsequent model and Fisher paths point to the immediately previous stage adapter in the same chain.",
+  "prerequisite_path_checks": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/src",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/data",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/scripts_llama/run_gam_ewc_bf16_b64_s1993.py",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/scripts_llama/verify_inclora_ewc_stage.py",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/scripts_llama/verify_gam_ewc_bf16_b64_stage.py",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/.cache/nltk_data/tokenizers/punkt",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/src/run_uie_lora.py",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/src/peft",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/instruction_config.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/gam_ewc_b64_s1993_20260919/ALIGNMENT_PLAN.md",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/gam_ewc_b64_s1993_20260919/protocol_review.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/gam_ewc_b64_s1993_20260919/SEMANTICS_REVIEW.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/gam_ewc_b64_s1993_20260919/SEMANTICS_REVIEW.md",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/gam_ewc_export_20260917/configuration/datasets.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/train.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/dev.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/test.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/labels.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/train.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/dev.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/test.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/labels.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/train.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/dev.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/test.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/yahoo/labels.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/train.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/dev.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/test.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/agnews/labels.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/dbpedia",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/dbpedia/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/dbpedia/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/dbpedia/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/amazon",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/amazon/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/amazon/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/amazon/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/yahoo",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/yahoo/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/yahoo/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/yahoo/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/agnews",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/agnews/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/agnews/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order1_configs/agnews/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/dbpedia",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/dbpedia/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/dbpedia/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/dbpedia/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/amazon",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/amazon/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/amazon/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/amazon/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/yahoo",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/yahoo/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/yahoo/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/yahoo/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/agnews",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/agnews/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/agnews/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order2_configs/agnews/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/dbpedia",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/dbpedia/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/dbpedia/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/dbpedia/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/amazon",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/amazon/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/amazon/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/amazon/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/yahoo",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/yahoo/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/yahoo/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/yahoo/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/agnews",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/agnews/dev_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/agnews/test_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/configs/order3_configs/agnews/train_tasks.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_1/EWCLoRA-GAM_Llama-3.2-1B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-agnews/predict_results.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_2/EWCLoRA-GAM_Llama-3.2-1B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-yahoo/predict_results.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/logs_and_outputs_llama_1B/order_3/EWCLoRA-GAM_Llama-3.2-1B_torch_GAM-AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda1.0_gamma1.0_seed-1993/4-dbpedia/predict_results.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/Logs_EWCLoRA_GAM/order1_llama1B_ewclora_gam_seed1993_20260516_003719_tmux.log",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/Logs_EWCLoRA_GAM/order2_order3_llama1B_ewclora_gam_seed1993_20260516_115952_tmux.log",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/config.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/model.safetensors",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/tokenizer.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/tokenizer_config.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/generation_config.json",
+      "exists": true,
+      "readable": true
+    },
+    {
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B/special_tokens_map.json",
+      "exists": true,
+      "readable": true
+    }
+  ],
+  "missing_or_unreadable_prerequisites": [],
+  "doc_vs_reality_divergence": [],
+  "observations": [
+    "Printed snapshot source/config paths and prior-stage adapter paths are future generated artifacts, absent as expected in no-write dry-run. Original source/config prerequisites exist.",
+    "Dry-run returns before GPU/environment/data validation; no CUDA, BF16 hardware, imports or model execution was tested.",
+    "Old ledger hardware entries are dated historical observations, superseded by the 2026-09-18 Ada entry; current hardware was not probed.",
+    "TorchAdamW defaults are absent from emitted CLI, consistent with leaving defaults untouched; runtime optimizer semantics were not audited.",
+    "Launcher also uses existing historical dataset manifest, result/log references, review JSONs and verifier scripts listed in this report."
+  ]
+}

@@ -1,0 +1,886 @@
+{
+  "end_restoration": {
+    "effective_sha256": "b625ab8b4585df7d63a2d653e52dcf50769d19683df8b2701927019bd2ab3c1d",
+    "max_logit_error": 0.0,
+    "predictions_match": true,
+    "test": {
+      "accuracy": 87.29641693811075,
+      "loss": 0.40923229141061496,
+      "samples": 307
+    }
+  },
+  "job": "trajectory_fisher",
+  "method": "sgd",
+  "protocol_sha256": "3135530e595e54c8df3e87b64f0da7e5aaeeebbe8f980adfa6b498620699edbb",
+  "seed": 2,
+  "states_completed": 11,
+  "status": "complete",
+  "task_count": 10,
+  "tasks": [
+    {
+      "D0": {
+        "test": 0.0,
+        "train": 0.0
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 87.29641693811075,
+            "classes": 20,
+            "loss": 0.40923229141061496,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 87.29641693811075,
+            "classes": 20,
+            "loss": 0.40923229141061496,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 98.17315329626688,
+            "classes": 20,
+            "loss": 0.0897870803760122,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 98.17315329626688,
+            "classes": 20,
+            "loss": 0.0897870803760122,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 0.0,
+      "effective_weight_drift_squared": 0.0,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/checkpoints/task_00.pt",
+        "checkpoint_sha256": "71a005caafe368ce3d5b18b7323b3a03f1b64df2dfdc8c834b6c4bc0a43dea59",
+        "effective_delta_sha256": "8f77d18c6629220e5e2ae0e79b07b679ed277314414951047bfdc13bfd1b92f4",
+        "local_loss_errors": {
+          "test": 0.0,
+          "train": 0.0
+        },
+        "max_logit_error": 0.0,
+        "passed": true,
+        "task": 0
+      },
+      "fisher_by_scope": {
+        "test": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 7547.167455725481,
+          "regularizer": null,
+          "samples": 307,
+          "samples_per_second": 81.90948405189158,
+          "seconds": 3.748039724014234,
+          "subset_loss": 0.40923245876768893
+        },
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 1253.0094427875358,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 82.41080239568097,
+          "seconds": 15.277123428008053,
+          "subset_loss": 0.0897870482869933
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 87.29641693811075,
+          "loss": 0.40923229141061496,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 98.17315329626688,
+          "loss": 0.0897870803760122,
+          "samples": 1259
+        }
+      },
+      "state_id": "task00",
+      "task": 0
+    },
+    {
+      "D0": {
+        "test": -0.005618443981778853,
+        "train": 0.007306472227872937
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 87.94788273615636,
+            "classes": 20,
+            "loss": 0.4036139052899055,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 81.43322475570032,
+            "classes": 40,
+            "loss": 0.5906076308287505,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 97.53772835583797,
+            "classes": 20,
+            "loss": 0.09709352645694837,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 95.07545671167594,
+            "classes": 40,
+            "loss": 0.1865459497167982,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 0.3888106455165277,
+      "effective_weight_drift_squared": 0.151173718066979,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_01.pt",
+        "checkpoint_sha256": "a45b93e435fd503d0a4a083c280b198c02a5c348a3ee6f3b225a4ebc2013c1e5",
+        "effective_delta_sha256": "e576333e74fb6aeea82c895ac1031d7a874740e6200d4b733a1c8dbbb7062b3f",
+        "local_loss_errors": {
+          "test": -5.786106938021618e-08,
+          "train": 2.6146936768500773e-08
+        },
+        "max_logit_error": 5.9604644775390625e-06,
+        "passed": true,
+        "task": 1
+      },
+      "fisher_by_scope": {
+        "test": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 8250.75760765255,
+          "regularizer": null,
+          "samples": 307,
+          "samples_per_second": 81.09537512870907,
+          "seconds": 3.7856659459648654,
+          "subset_loss": 0.4036139293571616
+        },
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 1471.6909863326082,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 80.40815861868167,
+          "seconds": 15.657615118019748,
+          "subset_loss": 0.09709353985364495
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 87.94788273615636,
+          "loss": 0.4036138474288361,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 97.53772835583797,
+          "loss": 0.09709355260388514,
+          "samples": 1259
+        }
+      },
+      "state_id": "task01",
+      "task": 1
+    },
+    {
+      "D0": {
+        "test": -0.003783045310249533,
+        "train": 0.03584808973555324
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 88.92508143322476,
+            "classes": 20,
+            "loss": 0.40544916836223305,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 81.43322475570032,
+            "classes": 60,
+            "loss": 0.6949242327934138,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 96.50516282764099,
+            "classes": 20,
+            "loss": 0.1256351425805901,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 91.50119142176331,
+            "classes": 60,
+            "loss": 0.30508804715970755,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 0.6722611567353082,
+      "effective_weight_drift_squared": 0.4519350628550946,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_02.pt",
+        "checkpoint_sha256": "0d9b2c97e1646f67e8c78a161018aabd7b0df2fb715cae0c14f3355b3acb17fa",
+        "effective_delta_sha256": "e1206de359136aef1d33624c3576de5766e1569642f54ff710557d09f40afe5c",
+        "local_loss_errors": {
+          "test": 7.773813237577087e-08,
+          "train": 2.7530975332812346e-08
+        },
+        "max_logit_error": 6.67572021484375e-06,
+        "passed": true,
+        "task": 2
+      },
+      "fisher_by_scope": {
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 2497.5051926097567,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 90.95277367607486,
+          "seconds": 13.842348607024178,
+          "subset_loss": 0.12563509845793486
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 88.92508143322476,
+          "loss": 0.4054492461003654,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 96.50516282764099,
+          "loss": 0.12563517011156544,
+          "samples": 1259
+        }
+      },
+      "state_id": "task02",
+      "task": 2
+    },
+    {
+      "D0": {
+        "test": 0.04213142817508558,
+        "train": 0.0536482101084544
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 85.01628664495114,
+            "classes": 20,
+            "loss": 0.45136388832421104,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 77.1986970684039,
+            "classes": 80,
+            "loss": 0.8444400265756372,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 95.31374106433678,
+            "classes": 20,
+            "loss": 0.14343525541578414,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 88.24463860206514,
+            "classes": 80,
+            "loss": 0.40872434217851883,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 0.8188697047421044,
+      "effective_weight_drift_squared": 0.6705475933444213,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_03.pt",
+        "checkpoint_sha256": "cd5dd9da5c0072e9ca6ab9a3fc90300afb0d97dd1cedf42b9c322f9df6c0a15a",
+        "effective_delta_sha256": "2754d847aff7dbb0ccf7e81d7e964553b7e26e450d5cda4fe81a9d32f3db6c36",
+        "local_loss_errors": {
+          "test": -1.6873851049759025e-07,
+          "train": 3.506868245795047e-08
+        },
+        "max_logit_error": 5.841255187988281e-06,
+        "passed": true,
+        "task": 3
+      },
+      "fisher_by_scope": {
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 3018.1133083683726,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 140.42485284000134,
+          "seconds": 8.96564941701945,
+          "subset_loss": 0.1434353082092079
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 85.01628664495114,
+          "loss": 0.45136371958570054,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 95.31374106433678,
+          "loss": 0.1434352904844666,
+          "samples": 1259
+        }
+      },
+      "state_id": "task03",
+      "task": 3
+    },
+    {
+      "D0": {
+        "test": 0.15502987961327092,
+        "train": 0.07793892171663618
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 82.73615635179154,
+            "classes": 20,
+            "loss": 0.564262384688093,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 73.28990228013029,
+            "classes": 100,
+            "loss": 1.0467174835849598,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 95.15488482922954,
+            "classes": 20,
+            "loss": 0.16772596061915832,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 86.02065131056393,
+            "classes": 100,
+            "loss": 0.49620927910991214,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 0.9176550755009473,
+      "effective_weight_drift_squared": 0.8420908375926492,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_04.pt",
+        "checkpoint_sha256": "988f964db10ef815177efe51a9ec772577e7fa84aba49fb8c5584fc30e75411e",
+        "effective_delta_sha256": "a5d4b9ebfaceaabd95d2cceefac0819c0017d87113fa9dbc022bf9cafde9e555",
+        "local_loss_errors": {
+          "test": -2.136642071048911e-07,
+          "train": 4.1473490058896445e-08
+        },
+        "max_logit_error": 6.67572021484375e-06,
+        "passed": true,
+        "task": 4
+      },
+      "fisher_by_scope": {
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 3989.311766612648,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 82.4057807055737,
+          "seconds": 15.278054394002538,
+          "subset_loss": 0.1677259491964481
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 82.73615635179154,
+          "loss": 0.5642621710238859,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 95.15488482922954,
+          "loss": 0.16772600209264837,
+          "samples": 1259
+        }
+      },
+      "state_id": "task04",
+      "task": 4
+    },
+    {
+      "D0": {
+        "test": 0.16347880063375425,
+        "train": 0.08904321762496319
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 84.36482084690553,
+            "classes": 20,
+            "loss": 0.5727111061423784,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 72.63843648208469,
+            "classes": 120,
+            "loss": 1.0872232005383489,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 95.15488482922954,
+            "classes": 20,
+            "loss": 0.1788302905633401,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 85.70293884034949,
+            "classes": 120,
+            "loss": 0.5336651755695432,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 1.0064470538107693,
+      "effective_weight_drift_squared": 1.0129356721243774,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_05.pt",
+        "checkpoint_sha256": "ed200a74c9f39d064c5699dca01ed2df466c64af78f5dba25d70240209aa6fa9",
+        "effective_delta_sha256": "63ff8c282407bc1fe497abe0dc846ea1dfd8adf90146966893b582b004e7e589",
+        "local_loss_errors": {
+          "test": -1.4098009204488449e-08,
+          "train": 7.437635285434396e-09
+        },
+        "max_logit_error": 5.245208740234375e-06,
+        "passed": true,
+        "task": 5
+      },
+      "fisher_by_scope": {
+        "test": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 9724.181005718967,
+          "regularizer": null,
+          "samples": 307,
+          "samples_per_second": 77.72174241205182,
+          "seconds": 3.9499886450357735,
+          "subset_loss": 0.5727110929635573
+        },
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 4471.106698946027,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 94.33759530983745,
+          "seconds": 13.345686795015354,
+          "subset_loss": 0.17883046243294792
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 84.36482084690553,
+          "loss": 0.5727110920443692,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 95.15488482922954,
+          "loss": 0.17883029800097539,
+          "samples": 1259
+        }
+      },
+      "state_id": "task05",
+      "task": 5
+    },
+    {
+      "D0": {
+        "test": 0.21030941017975108,
+        "train": 0.09959453955524088
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 81.75895765472313,
+            "classes": 20,
+            "loss": 0.6195418554656357,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 70.03257328990227,
+            "classes": 140,
+            "loss": 1.2083408824930912,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 95.15488482922954,
+            "classes": 20,
+            "loss": 0.18938156694836544,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 86.02065131056393,
+            "classes": 140,
+            "loss": 0.6011316884675383,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 1.0823497933033177,
+      "effective_weight_drift_squared": 1.1714810750637346,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_06.pt",
+        "checkpoint_sha256": "bacf8889d813332b212deedb5b6ea51630508bf6125e8ea3cd0ee21c75dba1c0",
+        "effective_delta_sha256": "8b73061cf40a22faa95a97a7df1f3e7c1ae232fa4dd894a696c5a2ae40567525",
+        "local_loss_errors": {
+          "test": -1.5387526963728249e-07,
+          "train": 5.298288763277981e-08
+        },
+        "max_logit_error": 7.3909759521484375e-06,
+        "passed": true,
+        "task": 6
+      },
+      "fisher_by_scope": {
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 3189.6825764246246,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 84.49295406266843,
+          "seconds": 14.900650758005213,
+          "subset_loss": 0.18938160967833653
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 81.75895765472313,
+          "loss": 0.619541701590366,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 95.15488482922954,
+          "loss": 0.18938161993125308,
+          "samples": 1259
+        }
+      },
+      "state_id": "task06",
+      "task": 6
+    },
+    {
+      "D0": {
+        "test": 0.2096267423340646,
+        "train": 0.09191022603713923
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 80.78175895765472,
+            "classes": 20,
+            "loss": 0.6188591148424557,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 68.72964169381108,
+            "classes": 160,
+            "loss": 1.2441579932245503,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 95.55202541699762,
+            "classes": 20,
+            "loss": 0.18169729975727414,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 85.38522637013503,
+            "classes": 160,
+            "loss": 0.6096225879189427,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 1.1212725334351927,
+      "effective_weight_drift_squared": 1.2572520942361753,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_07.pt",
+        "checkpoint_sha256": "860e54d7923b42f0ae813eb314cf5a4182c88cc20234c98cc89f66a39df2f93a",
+        "effective_delta_sha256": "fcb811763009d838c8e28ad0d04138d80f3b6931fddb7f2a992cbb5ba9122e01",
+        "local_loss_errors": {
+          "test": -8.109777616116531e-08,
+          "train": 6.6558772937597155e-09
+        },
+        "max_logit_error": 5.7220458984375e-06,
+        "passed": true,
+        "task": 7
+      },
+      "fisher_by_scope": {
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 2879.8814943692014,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 141.0886849138233,
+          "seconds": 8.923465413041413,
+          "subset_loss": 0.1816973540399518
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 80.78175895765472,
+          "loss": 0.6188590337446795,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 95.55202541699762,
+          "loss": 0.18169730641315143,
+          "samples": 1259
+        }
+      },
+      "state_id": "task07",
+      "task": 7
+    },
+    {
+      "D0": {
+        "test": 0.28043688984861476,
+        "train": 0.12638791745870248
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 77.52442996742671,
+            "classes": 20,
+            "loss": 0.6896691193414466,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 64.49511400651465,
+            "classes": 180,
+            "loss": 1.4164474670093996,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 93.56632247815726,
+            "classes": 20,
+            "loss": 0.21617505934435427,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 82.04924543288324,
+            "classes": 180,
+            "loss": 0.7017896596250356,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 1.2264483379534947,
+      "effective_weight_drift_squared": 1.5041755256688896,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_08.pt",
+        "checkpoint_sha256": "eba9b8744aee77b18ebb3ac808f2fec5b550363361ca024be4da414fafb1ce7a",
+        "effective_delta_sha256": "9e65c3c8cbb755b1dfe3ac31cd43ac86d2b9d74989f827baaab8eced957af508",
+        "local_loss_errors": {
+          "test": 6.191778312292229e-08,
+          "train": -6.150963960394051e-08
+        },
+        "max_logit_error": 7.62939453125e-06,
+        "passed": true,
+        "task": 8
+      },
+      "fisher_by_scope": {
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 3324.4579504338103,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 133.5228015309409,
+          "seconds": 9.429101139015984,
+          "subset_loss": 0.21617506273119405
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 77.52442996742671,
+          "loss": 0.6896691812592297,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 93.56632247815726,
+          "loss": 0.21617499783471467,
+          "samples": 1259
+        }
+      },
+      "state_id": "task08",
+      "task": 8
+    },
+    {
+      "D0": {
+        "test": 0.26615253263215705,
+        "train": 0.13998053323737475
+      },
+      "direct_local_and_seen": {
+        "test": {
+          "local": {
+            "accuracy": 80.78175895765472,
+            "classes": 20,
+            "loss": 0.6753848346058509,
+            "samples": 307
+          },
+          "seen": {
+            "accuracy": 65.47231270358306,
+            "classes": 200,
+            "loss": 1.4241910017133805,
+            "samples": 307
+          }
+        },
+        "train": {
+          "local": {
+            "accuracy": 93.1691818903892,
+            "classes": 20,
+            "loss": 0.22976771787346165,
+            "samples": 1259
+          },
+          "seen": {
+            "accuracy": 81.01667990468626,
+            "classes": 200,
+            "loss": 0.7472770969507485,
+            "samples": 1259
+          }
+        }
+      },
+      "effective_weight_drift": 1.2975896455124734,
+      "effective_weight_drift_squared": 1.6837388881411863,
+      "endpoint_recovery": {
+        "checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/checkpoints/task_09.pt",
+        "checkpoint_sha256": "e6396f4d8ac6d2e11a5fc1698e3d462a751ab47e3fc45a9c8f266a5ecf5603fe",
+        "effective_delta_sha256": "c532acc577f5a8dcac9af05874e59a31ace29af5742387dd5d560e297b224267",
+        "local_loss_errors": {
+          "test": -1.0563078856051789e-08,
+          "train": -1.0426007468478105e-07
+        },
+        "max_logit_error": 5.7220458984375e-06,
+        "passed": true,
+        "task": 9
+      },
+      "fisher_by_scope": {
+        "test": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 11168.371787935188,
+          "regularizer": null,
+          "samples": 307,
+          "samples_per_second": 182.63122270527094,
+          "seconds": 1.680983106023632,
+          "subset_loss": 0.6753849262243299
+        },
+        "train": {
+          "coordinate": "24 Q/V effective BA matrices, scaling=1; fixed Task0 20-class head",
+          "estimator": "mean per-example CE gradient outer product",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "normalized": false,
+          "q": {},
+          "raw_trace": 3638.0354921522176,
+          "regularizer": null,
+          "samples": 1259,
+          "samples_per_second": 182.59857262351596,
+          "seconds": 6.8949060330051,
+          "subset_loss": 0.22976773096888503
+        }
+      },
+      "metrics": {
+        "test": {
+          "accuracy": 80.78175895765472,
+          "loss": 0.675384824042772,
+          "samples": 307
+        },
+        "train": {
+          "accuracy": 93.1691818903892,
+          "loss": 0.22976761361338696,
+          "samples": 1259
+        }
+      },
+      "state_id": "task09",
+      "task": 9
+    }
+  ],
+  "test_fisher_samples": 307,
+  "test_fisher_tasks": [
+    0,
+    1,
+    5,
+    9
+  ],
+  "train_fisher_samples": 1259,
+  "updated_unix": 1789941295.5259042
+}

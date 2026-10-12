@@ -1,0 +1,359 @@
+{
+  "reviewed_at_utc": "2026-09-20T08:12:02.829855+00:00",
+  "reviewer": "independent baseline_audit agent",
+  "scope": "Read-only independent audit of actual six GPU smoke stages, persisted adapters/TreeLoRA histories and formal queue transition; no GPU work launched or run artifacts edited by reviewer.",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z",
+  "launch_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/treelora_20260920/LAUNCH.json",
+  "status": "all_six_smokes_validated_and_formal_training_started",
+  "smoke_counts": {
+    "expected": 6,
+    "validated": 6,
+    "running": 0,
+    "failed": 0,
+    "pending": 0
+  },
+  "runtime_audit_count": 24,
+  "physical_gpu_assignment_from_manifest": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "protocol": "DDP4, per-device BS1, GA16, global batch64, BF16 AMP, FP32 parameters, seed42, data_seedNone, fixed rank8, alpha32, dropout0.1, reg0.5",
+  "stages": [
+    {
+      "model_size": "1B",
+      "stage": 1,
+      "task": "dbpedia",
+      "status": "validated",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/smoke/order_1/1-dbpedia/verification.json",
+      "verification_sha256": "e626cb6a8ead5e3a4546621c9366b8751d23c5a465d5a9535d826d8fc56903fa",
+      "rank_count": 4,
+      "actual_forward_dtypes": [
+        "torch.bfloat16"
+      ],
+      "four_rank_final_parameter_hashes_identical": true,
+      "final_parameter_sha256": "19f8eda4ba3c8b0e2b5ca04d6ae109bfbdf0911aa49e83d51ccfb2c0b8b44d1d",
+      "adapter_tensor_hash_recomputed": "19f8eda4ba3c8b0e2b5ca04d6ae109bfbdf0911aa49e83d51ccfb2c0b8b44d1d",
+      "continuation_matches_prior_adapter": null,
+      "history_count": 1,
+      "historical_tensors_preserved": null,
+      "history_tensors_equal_across_ranks": true,
+      "fixed_rank": 8,
+      "accumulated_rank": 0,
+      "a_module_count": 32,
+      "a_shape": [
+        8,
+        2048
+      ],
+      "b_shapes": [
+        [
+          512,
+          8
+        ],
+        [
+          2048,
+          8
+        ]
+      ],
+      "history_tensor_shape": [
+        32,
+        16384
+      ],
+      "parameter_dtype": "torch.float32",
+      "reg_gradient_norms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps_per_rank": 2,
+      "microbatches_per_rank": 32,
+      "global_batch": 64,
+      "optimizer_eps": 1e-06,
+      "optimizer_weight_decay": 0,
+      "tree_branch_exercised_with_two_prior_tasks": false
+    },
+    {
+      "model_size": "1B",
+      "stage": 2,
+      "task": "amazon",
+      "status": "validated",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/smoke/order_1/2-amazon/verification.json",
+      "verification_sha256": "9ac0e09d416319e3ccf49ae38c95f715847f1dd11260194bd7ce3a8ae654cc27",
+      "rank_count": 4,
+      "actual_forward_dtypes": [
+        "torch.bfloat16"
+      ],
+      "four_rank_final_parameter_hashes_identical": true,
+      "final_parameter_sha256": "36f9c687e9a5b8af15c7d49d149268d05e54412d381bd30c5ba672134ada547f",
+      "adapter_tensor_hash_recomputed": "36f9c687e9a5b8af15c7d49d149268d05e54412d381bd30c5ba672134ada547f",
+      "continuation_matches_prior_adapter": true,
+      "history_count": 2,
+      "historical_tensors_preserved": true,
+      "history_tensors_equal_across_ranks": true,
+      "fixed_rank": 8,
+      "accumulated_rank": 0,
+      "a_module_count": 32,
+      "a_shape": [
+        8,
+        2048
+      ],
+      "b_shapes": [
+        [
+          512,
+          8
+        ],
+        [
+          2048,
+          8
+        ]
+      ],
+      "history_tensor_shape": [
+        32,
+        16384
+      ],
+      "parameter_dtype": "torch.float32",
+      "reg_gradient_norms": [
+        0.0011211242526769638,
+        0.0015561379259452224,
+        0.0013190831523388624,
+        0.0025935634039342403
+      ],
+      "steps_per_rank": 2,
+      "microbatches_per_rank": 32,
+      "global_batch": 64,
+      "optimizer_eps": 1e-06,
+      "optimizer_weight_decay": 0,
+      "tree_branch_exercised_with_two_prior_tasks": false
+    },
+    {
+      "model_size": "1B",
+      "stage": 3,
+      "task": "yahoo",
+      "status": "validated",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama1b/smoke/order_1/3-yahoo/verification.json",
+      "verification_sha256": "a318251847db93952d0ff10c825c294b0270375665d8e2e6f37b40bd967d3172",
+      "rank_count": 4,
+      "actual_forward_dtypes": [
+        "torch.bfloat16"
+      ],
+      "four_rank_final_parameter_hashes_identical": true,
+      "final_parameter_sha256": "aa088d03b2ecfcb7d8568a635ed76606284484cc17755ace935442f7544a8420",
+      "adapter_tensor_hash_recomputed": "aa088d03b2ecfcb7d8568a635ed76606284484cc17755ace935442f7544a8420",
+      "continuation_matches_prior_adapter": true,
+      "history_count": 3,
+      "historical_tensors_preserved": true,
+      "history_tensors_equal_across_ranks": true,
+      "fixed_rank": 8,
+      "accumulated_rank": 0,
+      "a_module_count": 32,
+      "a_shape": [
+        8,
+        2048
+      ],
+      "b_shapes": [
+        [
+          512,
+          8
+        ],
+        [
+          2048,
+          8
+        ]
+      ],
+      "history_tensor_shape": [
+        32,
+        16384
+      ],
+      "parameter_dtype": "torch.float32",
+      "reg_gradient_norms": [
+        0.004107647575438023,
+        0.00246031885035336,
+        0.002302023582160473,
+        0.004957189317792654
+      ],
+      "steps_per_rank": 2,
+      "microbatches_per_rank": 32,
+      "global_batch": 64,
+      "optimizer_eps": 1e-06,
+      "optimizer_weight_decay": 0,
+      "tree_branch_exercised_with_two_prior_tasks": true
+    },
+    {
+      "model_size": "3B",
+      "stage": 1,
+      "task": "dbpedia",
+      "status": "validated",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/smoke/order_1/1-dbpedia/verification.json",
+      "verification_sha256": "675d048f88f1762301928d6bbfdb3dd49bfcbd921f3b3bdd641e9fd7a8743416",
+      "rank_count": 4,
+      "actual_forward_dtypes": [
+        "torch.bfloat16"
+      ],
+      "four_rank_final_parameter_hashes_identical": true,
+      "final_parameter_sha256": "e11f5d0860f48bdd494c1d7a338474ab0b9d1a0dcb72f389cc1fc9c391aae12c",
+      "adapter_tensor_hash_recomputed": "e11f5d0860f48bdd494c1d7a338474ab0b9d1a0dcb72f389cc1fc9c391aae12c",
+      "continuation_matches_prior_adapter": null,
+      "history_count": 1,
+      "historical_tensors_preserved": null,
+      "history_tensors_equal_across_ranks": true,
+      "fixed_rank": 8,
+      "accumulated_rank": 0,
+      "a_module_count": 56,
+      "a_shape": [
+        8,
+        3072
+      ],
+      "b_shapes": [
+        [
+          1024,
+          8
+        ],
+        [
+          3072,
+          8
+        ]
+      ],
+      "history_tensor_shape": [
+        56,
+        24576
+      ],
+      "parameter_dtype": "torch.float32",
+      "reg_gradient_norms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "steps_per_rank": 2,
+      "microbatches_per_rank": 32,
+      "global_batch": 64,
+      "optimizer_eps": 1e-06,
+      "optimizer_weight_decay": 0,
+      "tree_branch_exercised_with_two_prior_tasks": false
+    },
+    {
+      "model_size": "3B",
+      "stage": 2,
+      "task": "amazon",
+      "status": "validated",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/smoke/order_1/2-amazon/verification.json",
+      "verification_sha256": "5db6d5c63223e951a542f4768833276d5e473ee85f27016fa203f85ad120b911",
+      "rank_count": 4,
+      "actual_forward_dtypes": [
+        "torch.bfloat16"
+      ],
+      "four_rank_final_parameter_hashes_identical": true,
+      "final_parameter_sha256": "ae081094da433ce161a1f9c583dad8d35b43d6972d6a306a3590835beb5669c5",
+      "adapter_tensor_hash_recomputed": "ae081094da433ce161a1f9c583dad8d35b43d6972d6a306a3590835beb5669c5",
+      "continuation_matches_prior_adapter": true,
+      "history_count": 2,
+      "historical_tensors_preserved": true,
+      "history_tensors_equal_across_ranks": true,
+      "fixed_rank": 8,
+      "accumulated_rank": 0,
+      "a_module_count": 56,
+      "a_shape": [
+        8,
+        3072
+      ],
+      "b_shapes": [
+        [
+          1024,
+          8
+        ],
+        [
+          3072,
+          8
+        ]
+      ],
+      "history_tensor_shape": [
+        56,
+        24576
+      ],
+      "parameter_dtype": "torch.float32",
+      "reg_gradient_norms": [
+        0.00015674902533646673,
+        0.0005324375233612955,
+        0.0005450626485981047,
+        0.0010919957421720028
+      ],
+      "steps_per_rank": 2,
+      "microbatches_per_rank": 32,
+      "global_batch": 64,
+      "optimizer_eps": 1e-06,
+      "optimizer_weight_decay": 0,
+      "tree_branch_exercised_with_two_prior_tasks": false
+    },
+    {
+      "model_size": "3B",
+      "stage": 3,
+      "task": "yahoo",
+      "status": "validated",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/llama3b/smoke/order_1/3-yahoo/verification.json",
+      "verification_sha256": "babdde75b4748e92817a11794005cff4d1207374e7260c19ebede66120f74a49",
+      "rank_count": 4,
+      "actual_forward_dtypes": [
+        "torch.bfloat16"
+      ],
+      "four_rank_final_parameter_hashes_identical": true,
+      "final_parameter_sha256": "ec48354b5b37e7df44a50aa82246afb1b9323e761c99d3fd164770b5ef027abd",
+      "adapter_tensor_hash_recomputed": "ec48354b5b37e7df44a50aa82246afb1b9323e761c99d3fd164770b5ef027abd",
+      "continuation_matches_prior_adapter": true,
+      "history_count": 3,
+      "historical_tensors_preserved": true,
+      "history_tensors_equal_across_ranks": true,
+      "fixed_rank": 8,
+      "accumulated_rank": 0,
+      "a_module_count": 56,
+      "a_shape": [
+        8,
+        3072
+      ],
+      "b_shapes": [
+        [
+          1024,
+          8
+        ],
+        [
+          3072,
+          8
+        ]
+      ],
+      "history_tensor_shape": [
+        56,
+        24576
+      ],
+      "parameter_dtype": "torch.float32",
+      "reg_gradient_norms": [
+        0.0003784888831432909,
+        0.00017592964286450297,
+        0.00018725516565609723,
+        6.297954678302631e-05
+      ],
+      "steps_per_rank": 2,
+      "microbatches_per_rank": 32,
+      "global_batch": 64,
+      "optimizer_eps": 1e-06,
+      "optimizer_weight_decay": 0,
+      "tree_branch_exercised_with_two_prior_tasks": true
+    }
+  ],
+  "formal_training_evidence": {
+    "state_status": "running",
+    "phase": "full",
+    "model_size": "1B",
+    "order": 1,
+    "stage": 1,
+    "state_updated_at": "2026-09-20T08:09:51.443881+00:00",
+    "active_log": "/data/140-1/users/liying/O-LoRA/experiment_queue/treelora_llama_both_bf16_b64_s42_ddp4_20260920T080615Z/logs/llama1b_full_order1_1-dbpedia.log",
+    "observed_completed_optimizer_steps_at_least": 142,
+    "planned_optimizer_steps": 218,
+    "supervisor_start_record_present": true
+  },
+  "limits": [
+    "This records successful smoke and the start of formal training; the24 formal stages and final experiment results are not yet complete.",
+    "The supervisor PID is not visible from this sandbox process namespace. Independent liveness evidence is the advancing durable state and actual per-step training log; root separately checked physical GPU process assignments."
+  ]
+}

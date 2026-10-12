@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\centering
+\caption{Fine-grained continual learning under documented configurations. FAA and stage-averaged AAA are percentages. 5Datasets is the cross-dataset task stream.}
+\label{tab:exp_fine}
+\scriptsize\setlength{\tabcolsep}{2.2pt}\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l*{10}{r}@{}}
+\toprule
+Method & \multicolumn{2}{c}{Aircraft} & \multicolumn{2}{c}{Cars} & \multicolumn{2}{c}{CUB-200} & \multicolumn{2}{c}{Flowers} & \multicolumn{2}{c}{5Datasets}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+ & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA\\
+\midrule
+Vanilla LoRA & \ExpRes{40.66}{\mathrm{NA}} & \ExpRes{39.51}{\mathrm{NA}} & \ExpRes{28.52}{\mathrm{NA}} & \ExpRes{39.41}{\mathrm{NA}} & \ExpRes{57.79}{\mathrm{NA}} & \ExpRes{70.00}{\mathrm{NA}} & \ExpRes{53.05}{\mathrm{NA}} & \ExpRes{66.90}{\mathrm{NA}} & \ExpRes{66.80}{\mathrm{NA}} & \ExpRes{68.81}{\mathrm{NA}}\\
+InfLoRA & \ExpRes{40.96}{\mathrm{NA}} & \ExpRes{41.23}{\mathrm{NA}} & \ExpRes{34.34}{\mathrm{NA}} & \ExpRes{42.20}{\mathrm{NA}} & \ExpRes{60.61}{\mathrm{NA}} & \ExpRes{70.60}{\mathrm{NA}} & \ExpRes{60.06}{\mathrm{NA}} & \ExpRes{72.98}{\mathrm{NA}} & \ExpRes{\underline{77.75}}{\mathrm{NA}} & \ExpRes{\underline{77.02}}{\mathrm{NA}}\\
+OLoRA & \ExpRes{36.10}{\mathrm{NA}} & \ExpRes{37.81}{\mathrm{NA}} & \ExpRes{32.85}{\mathrm{NA}} & \ExpRes{42.30}{\mathrm{NA}} & \ExpRes{62.38}{\mathrm{NA}} & \ExpRes{70.17}{\mathrm{NA}} & \ExpRes{48.90}{\mathrm{NA}} & \ExpRes{64.26}{\mathrm{NA}} & \ExpRes{77.58}{\mathrm{NA}} & \ExpRes{74.52}{\mathrm{NA}}\\
+SDLoRA & \ExpRes{25.96}{\mathrm{NA}} & \ExpRes{26.63}{\mathrm{NA}} & \ExpRes{\underline{34.89}}{\mathrm{NA}} & \ExpRes{\underline{43.28}}{\mathrm{NA}} & \ExpRes{62.01}{\mathrm{NA}} & \ExpRes{69.52}{\mathrm{NA}} & \ExpRes{49.05}{\mathrm{NA}} & \ExpRes{64.59}{\mathrm{NA}} & \ExpRes{74.42}{\mathrm{NA}} & \ExpRes{74.10}{\mathrm{NA}}\\
+CL-LoRA & \ExpRes{29.28}{\mathrm{NA}} & \ExpRes{26.53}{\mathrm{NA}} & \ExpRes{34.51}{\mathrm{NA}} & \ExpRes{42.17}{\mathrm{NA}} & \ExpRes{\textbf{78.29}}{\mathrm{NA}} & \ExpRes{\textbf{80.88}}{\mathrm{NA}} & \ExpRes{\textbf{97.82}}{\mathrm{NA}} & \ExpRes{\textbf{98.33}}{\mathrm{NA}} & \ExpRes{66.98}{\mathrm{NA}} & \ExpRes{61.99}{\mathrm{NA}}\\
+EWCLoRA & \ExpRes{\underline{41.83}}{\mathrm{NA}} & \ExpRes{\underline{39.70}}{\mathrm{NA}} & \ExpRes{33.35}{1.70} & \ExpRes{43.21}{1.03} & \ExpRes{60.41}{\mathrm{NA}} & \ExpRes{69.40}{\mathrm{NA}} & \ExpRes{52.35}{1.54} & \ExpRes{65.24}{0.30} & \ExpRes{73.87}{\mathrm{NA}} & \ExpRes{73.07}{\mathrm{NA}}\\
+GAM-EWCLoRA & \ExpRes{\textbf{46.66}}{\mathrm{NA}} & \ExpRes{\textbf{43.65}}{\mathrm{NA}} & \ExpRes{\textbf{51.74}}{\mathrm{NA}} & \ExpRes{\textbf{55.44}}{\mathrm{NA}} & \ExpRes{\underline{74.22}}{\mathrm{NA}} & \ExpRes{\underline{76.47}}{\mathrm{NA}} & \ExpRes{\underline{86.75}}{\mathrm{NA}} & \ExpRes{\underline{91.76}}{\mathrm{NA}} & \ExpRes{\textbf{83.37}}{\mathrm{NA}} & \ExpRes{\textbf{81.16}}{\mathrm{NA}}\\
+\bottomrule
+\end{tabular*}
+\par\vspace{3pt}
+\begin{minipage}{\linewidth}\scriptsize
+Subscripts report sample standard deviations across matched seeds.
+EWCLoRA on Cars and Flowers reports means over seeds 1 and 2 ($n=2$),
+replacing the previous best-run scores; all other entries are single-run
+results ($n=1$), with undefined standard deviations marked NA.
+Boldface and underlining retain the original formatting.
+Configurations differ across methods and datasets.
+\end{minipage}
+\end{table*}

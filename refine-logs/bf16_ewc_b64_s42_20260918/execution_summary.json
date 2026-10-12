@@ -1,0 +1,97 @@
+{
+  "updated_at": "2026-09-18T22:58:05.530436+02:00",
+  "status": "completed",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z",
+  "supervisor_pid": 71236,
+  "gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "protocol": {
+    "protocol_id": "bf16_b64_seed42_ddp4_bs1_ga16_lam0p5",
+    "model": "Llama-3.2-1B",
+    "method": "IncLoRA+EWC",
+    "precision": "bf16",
+    "world_size": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_batch": 64,
+    "seed": 42,
+    "data_seed": null,
+    "ewclora_lambda": 0.5,
+    "ewclora_gamma": 1.0,
+    "olora_lamda_1": 0.0,
+    "olora_lamda_2": 0.0,
+    "ddp_find_unused_parameters": false,
+    "optimizer_type": "adamw_hf",
+    "lora_dim": 8,
+    "fisher": "full_data_raw",
+    "num_train_epochs": 1,
+    "legacy_reference_world_size": 8,
+    "legacy_reference_gradient_accumulation_steps": 8,
+    "legacy_reference_ewclora_lambda": 1.0,
+    "ewc_accumulation_note": "Legacy CE is divided by GA before adding EWC; GA16*lambda0.5 preserves GA8*lambda1 nominal ratio.",
+    "alignment_scope": "Global batch64, seed42, data_seed=None and per-device batch1 align historical controls; DDP4/GA16 differs from DDP8/GA8."
+  },
+  "doc_check": "Fresh agent executed documented dry-run verbatim:14 commands, no writes,4GPU BS1GA16 global64 seed42 lambda0.5 data_seed omitted; passed.",
+  "current_phase": "full",
+  "current_order": 3,
+  "current_stage": 4,
+  "smoke": [
+    {
+      "stage": "1-dbpedia",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/smoke/order_2/1-dbpedia/verification.json",
+      "status": "pass",
+      "r_sum": 8,
+      "historical_prefix_exact": null,
+      "fisher_count_updates": 1,
+      "parameters_identical": true,
+      "ewc_after_updates": 0.0,
+      "ewc_gradient_l2": 0.0,
+      "fisher_global_samples": 8
+    },
+    {
+      "stage": "2-amazon",
+      "verification": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_b64_s42_ddp4_20260918T183137Z/smoke/order_2/2-amazon/verification.json",
+      "status": "pass",
+      "r_sum": 16,
+      "historical_prefix_exact": true,
+      "fisher_count_updates": 2,
+      "parameters_identical": true,
+      "ewc_after_updates": 2.8271585961192613e-07,
+      "ewc_gradient_l2": 2.733237772917382e-05,
+      "fisher_global_samples": 8
+    }
+  ],
+  "comparison_note": "Effective batch and seed aligned; physical4GPU/GA16 differs historical8GPU/GA8; no bitwise-equivalence claim.",
+  "finished_at": "2026-09-18T20:20:14.857943+00:00",
+  "formal_validated": 12,
+  "formal_expected": 12,
+  "running": 0,
+  "failed": 0,
+  "pending": 0,
+  "supervisor_alive": false,
+  "gpus_released": true,
+  "final_faa": {
+    "1": 67.19407894736842,
+    "2": 61.91776315789474,
+    "3": 66.53618421052632
+  },
+  "three_order_average": 65.21600877192982,
+  "independent_final_check": {
+    "status": "pass",
+    "formal_verifications": 12,
+    "rank_audits": 48,
+    "raw_prediction_rows": 91200,
+    "samples_per_order": 30400,
+    "samples_per_task": 7600,
+    "checks": [
+      "Frozen normalization raw exact-match recomputation matches all3 FAA and average",
+      "Prediction file SHA256 matches collector",
+      "All12 formal stages and48 rank records match actual4GPU/BS1/GA16/batch64/seed42/lambda0.5",
+      "All observed train/prediction/Fisher metrics finite; required subsequent-task EWC effects positive"
+    ]
+  }
+}

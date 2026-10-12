@@ -1,0 +1,42 @@
+{
+  "reviewed_at": "2026-09-18T18:29:47.063387+00:00",
+  "user_request": "Align rerun with historical SeqLoRA/IncLoRA/OLoRA effective batch64 and seed42; distinguish results.",
+  "protocol_id": "bf16_b64_seed42_ddp4_bs1_ga16_lam0p5",
+  "baseline": {
+    "world_size": 8,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "global_batch": 64,
+    "seed": 42,
+    "data_seed": null
+  },
+  "execution": {
+    "world_size": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_batch": 64,
+    "seed": 42,
+    "data_seed": null,
+    "cli_ewclora_lambda": 0.5,
+    "reference_ga": 8,
+    "reference_ewclora_lambda": 1.0
+  },
+  "hardware_reason": "Only7 BF16 physical GPUs present; use4, explicitly record world-size difference.",
+  "same_effective_batch_and_seed": true,
+  "identical_physical_world_size": false,
+  "bitwise_reproduction_claimed": false,
+  "orders": [
+    1,
+    2,
+    3
+  ],
+  "historical_order1_reusable": false,
+  "previous_run": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z",
+  "previous_run_status": "completed",
+  "previous_run_faa": {
+    "2": 56.8421052631579,
+    "3": 67.23026315789474,
+    "1": 59.3125
+  },
+  "plan_sha256": "a465710ba973ece5371c69d5d9e7c39090f04712d04708143b7849e4863508c8"
+}

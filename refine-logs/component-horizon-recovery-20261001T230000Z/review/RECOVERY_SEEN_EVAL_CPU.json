@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "device": "cpu",
+  "source_accuracy_sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+  "trainer_sha256": "fa2a5d9fe97b3b6307d7da28b097993ed0a21e19c9a6f51fd911b1c5a8132773",
+  "test_sha256": "182f50ce09896c9945687f8e2ddad132579aa92b1787b82bb2f1e440f7c64452",
+  "positive": [
+    {
+      "task": 0,
+      "native_numeric_groups": 10,
+      "future_structural_NA": 9,
+      "observed_row": [
+        50.0
+      ],
+      "sample_accuracy": 50.0
+    },
+    {
+      "task": 1,
+      "native_numeric_groups": 10,
+      "future_structural_NA": 8,
+      "observed_row": [
+        50.0,
+        50.0
+      ],
+      "sample_accuracy": 50.0
+    },
+    {
+      "task": 9,
+      "native_numeric_groups": 10,
+      "future_structural_NA": 0,
+      "observed_row": [
+        50.0,
+        50.0,
+        50.0,
+        50.0,
+        50.0,
+        50.0,
+        50.0,
+        50.0,
+        50.0,
+        50.0
+      ],
+      "sample_accuracy": 50.0
+    }
+  ],
+  "negative": [
+    {
+      "case": "missing_old_seen_group",
+      "error": "Missing seen native evaluation class range"
+    },
+    {
+      "case": "missing_current_seen_group",
+      "error": "Missing seen native evaluation class range"
+    },
+    {
+      "case": "old_seen_nan",
+      "error": "Nonfinite or invalid seen native evaluation accuracy"
+    },
+    {
+      "case": "current_seen_nan",
+      "error": "Nonfinite or invalid seen native evaluation accuracy"
+    },
+    {
+      "case": "current_seen_inf",
+      "error": "Nonfinite or invalid seen native evaluation accuracy"
+    },
+    {
+      "case": "wrong_seen_range",
+      "error": "Unexpected native evaluation class range"
+    },
+    {
+      "case": "unexpected_numeric_range",
+      "error": "Unexpected native evaluation class range"
+    },
+    {
+      "case": "noncanonical_numeric_alias",
+      "error": "Unexpected native evaluation class range"
+    },
+    {
+      "case": "nonfinite_sample_accuracy",
+      "error": "Nonfinite or invalid seen native evaluation accuracy"
+    },
+    {
+      "case": "accuracy_outside_percent_range",
+      "error": "Nonfinite or invalid seen native evaluation accuracy"
+    },
+    {
+      "case": "wrong_seen_head",
+      "error": "Native evaluation task/history/seen-class mismatch"
+    },
+    {
+      "case": "wrong_history_length",
+      "error": "Native evaluation task/history/seen-class mismatch"
+    },
+    {
+      "case": "task_outside_fixed_ten_task_protocol",
+      "error": "Native evaluation task/history/seen-class mismatch"
+    }
+  ],
+  "scope": "Actual frozen accuracy with all ten task boundaries; canonical future NA excluded, seen completeness and finite guards retained/strengthened."
+}

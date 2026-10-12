@@ -1,0 +1,777 @@
+{
+  "status": "passed",
+  "dataset_verified_from_config": "ImageNet-A",
+  "training_seeds": [
+    0
+  ],
+  "training_runs_per_method": 1,
+  "all_20_rows_match_raw_JSON_exactly": true,
+  "checkpoint_path_and_hash_match_raw_JSON": true,
+  "checkpoint_weight_files_rehashed": false,
+  "fixed_Task0_head_classes": 20,
+  "Task0_test_samples": 307,
+  "T_definition": "total learned tasks = task_code + 1; T1 is Task0 anchor",
+  "source_bytes_preserved": true,
+  "signed_damage_preserved": true,
+  "smoothing_clipping_monotonic_enforcement": false,
+  "r_T": "actual cumulative distance from own Task0 effective weights, not sum of step lengths or a damage-tolerance radius",
+  "Sbar": "I/r_T^2 on separate Task0-to-target chords; fixed train256; adaptive Simpson 9/17/33 nodes",
+  "Sbar_and_integral_match_raw_JSON": true,
+  "Simpson_integral_recomputed_from_raw_nodes": true,
+  "both_reported_path_numerical_gates_pass": true,
+  "optimizer_sequences": {
+    "sgd": "SGD to SGD + EWC",
+    "gam": "GAM to GAM + EWC"
+  },
+  "methods": {
+    "sgd": {
+      "actual_row_count": 10,
+      "loss_peak_T": 10,
+      "loss_peak": 0.2601305286017725,
+      "loss_endpoint": 0.2601305286017725,
+      "loss_decrease_arrival_T": [
+        2,
+        5
+      ],
+      "negative_damage_T": [
+        2
+      ],
+      "endpoint_r_T": 1.197584099887894,
+      "endpoint_Sbar": 0.3680576024116533,
+      "quadrature_relative_difference": 0.02923731377898772
+    },
+    "gam": {
+      "actual_row_count": 10,
+      "loss_peak_T": 7,
+      "loss_peak": 0.07335361887900221,
+      "loss_endpoint": 0.03434737973395435,
+      "loss_decrease_arrival_T": [
+        2,
+        4,
+        8,
+        9,
+        10
+      ],
+      "negative_damage_T": [
+        2,
+        3,
+        4
+      ],
+      "endpoint_r_T": 1.4004725891407084,
+      "endpoint_Sbar": 0.014793092786504949,
+      "quadrature_relative_difference": 0.008475074860865791
+    }
+  },
+  "source_hashes": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_current_FP32_task_trajectory.csv",
+      "sha256": "d5a71364b125d17eac3dc69a8893750dca71e3d4fe3292175e7b2de74b359945"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_summary.csv",
+      "sha256": "f3fe9d0a82d9a5c47399a7c9314bcd3d6039a86a948b4eaa658583de7c6e1d57"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic_config_recovery1.json",
+      "sha256": "0869b642c97d0694597dca0c376ea235313377fb38c4c542fef8cdbd98cb2ae3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/trajectory/summary.json",
+      "sha256": "45190c88aedc0a3fd069769f51bdf605abd6b3a55f1f82dd8f059b6453e63d54"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/summary.json",
+      "sha256": "1144d5bfc41f1a9aec4069da3ceff8ba72fcff88594d466b190f113df1eb9872"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/trajectory/summary.json",
+      "sha256": "210cbc0a0dda526817e41ea17acff8993ab95587a2c65815d0a6766f3791423a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/summary.json",
+      "sha256": "869247291841b96fdba63f4919e5415962917aaaef2dbd15088bc1df61e80999"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t01/summary.json",
+      "sha256": "dbcc0bdc86ea01fd63cb860bec83d032e4f0e1e07464978ad37abf8982eb0d6c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t01/manifest.json",
+      "sha256": "8569621786d44336354df5227c90cdeb6b048b09e520a7f851c1152189dee01b"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t01/states.jsonl",
+      "sha256": "f4ef896f89df7b3bc6766be203bb18d0b7cfb1f394cd0448b26845e9a14a9075"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t02/summary.json",
+      "sha256": "5c83440653d344a65ea904c08cab3d12612cc1d453ef9280b8041f4b202f800d"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t02/manifest.json",
+      "sha256": "74c2a291b99a9c664d4ac7237dc2bd7c0fc787d3349efbf27d1f165c3eb46941"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t02/states.jsonl",
+      "sha256": "076339c97e8c728c98999d57c0f8d2ff4c50755fd9c00c47e694fa2a440fa8d2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t03/summary.json",
+      "sha256": "6a11cb3d8afa1c17b862bceb49b8d551aebcf6e9bced6e741df0d3eb1909c205"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t03/manifest.json",
+      "sha256": "c080b46b36b4c9a9d829062fd3f566d31f59e02fe456ad554614119aa79ee597"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t03/states.jsonl",
+      "sha256": "e7ee789791677d5924edecf44787a68ee053d133a49c80c13af6c5f96a8328cf"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t04/summary.json",
+      "sha256": "825e4909e714ef7c24de1ea279d60caf8c3af3a14da45a64b915bd9ede3fdfc0"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t04/manifest.json",
+      "sha256": "b47f0cfdc377c869e935c3687b3294cc5ec52533768b584c8d912138aa8f3195"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t04/states.jsonl",
+      "sha256": "041b471e28a66d24add7657f5871b280d819775ea5e6a33e55fec56834741e70"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t05/summary.json",
+      "sha256": "fe165128bc407c9620319b0e3ab0a7c46d698cb7051c5f1923305a54445dcd7f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t05/manifest.json",
+      "sha256": "28ab93ec8717fbd444d477d8ac50bd23bb56f184f41543d3225099f70efba1c7"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t05/states.jsonl",
+      "sha256": "a4fc380d62e1b3c3953b08b0d8a9514df1404aa0da0523316bd360e40252504f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t06/summary.json",
+      "sha256": "961526e69e2d0cb039937469683c9d6bb21942eaeefcf3d658f71badafbfb453"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t06/manifest.json",
+      "sha256": "08588deefdfdedd781cb7999de83fa6f49f107ce60d4afb880739b09e94f8444"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t06/states.jsonl",
+      "sha256": "6bfc2058115d02c73dc44fc9a14a0f4a0a476c638b0fffd6cf42126844a5c234"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t07/summary.json",
+      "sha256": "fdaeb29cbb9e5b40c0188c1d9160233dfa1748f517b7719f65a2a12128a2f7cb"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t07/manifest.json",
+      "sha256": "753d2f161880ccf80dfaf41ed992b84844f8c1f9ff741adcabced408f87aaf80"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t07/states.jsonl",
+      "sha256": "3264d355e1e24a39538a0520bfd93cc15c9556c18b176408a1eefc82be031a31"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t08/summary.json",
+      "sha256": "d072a6deffc4377661f7c884d12dec6727e24bb0bf0852985d413747f3816605"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t08/manifest.json",
+      "sha256": "5646a3c78617ba8edda1e10255fcf7a855dcb9018954741651bcc2211f9f7113"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t08/states.jsonl",
+      "sha256": "d6205ecd0af0f5613a31b813cec47d391b699e8d75a20e9a32a8041370214c32"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/summary.json",
+      "sha256": "1144d5bfc41f1a9aec4069da3ceff8ba72fcff88594d466b190f113df1eb9872"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/manifest.json",
+      "sha256": "3d09e91e95999c8084c37a2106d1eb0169d0da14f7d5ad55bf9170cc69794563"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/states.jsonl",
+      "sha256": "358362a262cbc0c5845299607feb24f3cf5edc2dd4043ad4b2e3914d1a99a5b2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t01/summary.json",
+      "sha256": "48732af5238eaae537192d4fd5f20bf89e4554a4d0585a24c117f2f6e700656a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t01/manifest.json",
+      "sha256": "9ad68c5c8e53f57dc87f3e161e506cf2524fa8a98b181cdb9aa8d97f0d90db55"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t01/states.jsonl",
+      "sha256": "c091fe5a52ae21541cabe3b2c1adff7501c459e7d4671c509c25ea509b1a53d0"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t02/summary.json",
+      "sha256": "39d10afb833d2a907a9f3c8c3b676363c1361611bcf4669adfa1ec42193625be"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t02/manifest.json",
+      "sha256": "d4357510f03bb6557d8e42d8af1055467bf49b79a9ac47a1dd829f63c5006fcc"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t02/states.jsonl",
+      "sha256": "13a75a9d759c3d3fe814daafc339e640b0c5c08e77a63044e1663191fe1f7d60"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t03/summary.json",
+      "sha256": "5f2e4ba506bd0d2b781f60744e9138b740e66adec783ab4865284532c512074c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t03/manifest.json",
+      "sha256": "5020fc271dc54ea34500d530979c9becdebadbd8ff99df22a35bbf51bdcd1727"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t03/states.jsonl",
+      "sha256": "c690613f4cd117d33b2d5e085fe7915be02303d60ea1def7575e0dd939b1f046"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t04/summary.json",
+      "sha256": "d5d54228d7a5d4c30ece3953357299b6b2fe2e8bcceb204bae13a71c3ea2e0ac"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t04/manifest.json",
+      "sha256": "e742cff27f828572ac40ef9af5ee1436713a82c9bb96c37ab0bdc1891c6aaf08"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t04/states.jsonl",
+      "sha256": "06459d708ebc3c0d3c2e3e784178d3ab8305768084b06972f604d71bd43594a7"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t05/summary.json",
+      "sha256": "1025bce69148d067f55db61a934c14a547c54540f4ab4a21bc3c642f438e5853"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t05/manifest.json",
+      "sha256": "aaefa72702529d6bd15dc52406b62abeac74e1ba6e3abeba6d4e69b86fb97716"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t05/states.jsonl",
+      "sha256": "51c855a3bea92a9f90072f5fb6031648ca4da0ed17cff015fd2dca09c0064148"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t06/summary.json",
+      "sha256": "273b60253a273c65f0710ca47aa7d5c3a37b85d464aa600e1ee6d5473540d6d2"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t06/manifest.json",
+      "sha256": "ebb32e973a2cdf48e7a15d3c4782d9e5ec885048c4354229c63ea5fcb2600ec1"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t06/states.jsonl",
+      "sha256": "2405296acae4a38af376351052714cdde5897da8c758529db8df7df460ad649f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t07/summary.json",
+      "sha256": "332d6725fb1c6b0e202b4a9a81526c12472002757228770f6ce4597d12dfcc36"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t07/manifest.json",
+      "sha256": "45f9b705349cf00d9cd19fb67601c69c7af253d0d88211ca2e27379c31312088"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t07/states.jsonl",
+      "sha256": "53daa25d0f3bf03db264a7698bb46d5fab5f7f4b4a864ad825b486830fd2cacf"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t08/summary.json",
+      "sha256": "3c1de1f6be30fe50645f0a99f835b8cb41be93f216d89d7085d903f9a52bbd26"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t08/manifest.json",
+      "sha256": "4ffa0d1a00697e435f01580ba0f6a12ec01c7e89c2a9a732daf01f7e6963ff14"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t08/states.jsonl",
+      "sha256": "6aa44cc3f1a673791ca05d2f902b6ad66f5260c022b832b36025174fe4759984"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/summary.json",
+      "sha256": "869247291841b96fdba63f4919e5415962917aaaef2dbd15088bc1df61e80999"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/manifest.json",
+      "sha256": "1a9f1a3d36f4a288fe295cdee0112a5b97a56125917bb8d3ba4a428e5c95ed5c"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/states.jsonl",
+      "sha256": "30e1880c07360f5938037f504f77e04e1d8b20e4813f2c8aeac69e9c11f4b006"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/data_manifest.json",
+      "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+    }
+  ],
+  "versions": {
+    "matplotlib": "3.10.6",
+    "numpy": "2.2.6",
+    "pandas": "2.3.2"
+  },
+  "stage_path_completeness": {
+    "status": "complete",
+    "expected_paths": 18,
+    "validated_paths": 18,
+    "new_validated": 16,
+    "legacy_validated": 2,
+    "T1_S_path": null,
+    "T1_S_path_reason": "undefined: r_T = 0",
+    "issues": [],
+    "checkpoint_weight_files_rehashed": false,
+    "source_hashes": [
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t01/summary.json",
+        "sha256": "dbcc0bdc86ea01fd63cb860bec83d032e4f0e1e07464978ad37abf8982eb0d6c"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t01/manifest.json",
+        "sha256": "8569621786d44336354df5227c90cdeb6b048b09e520a7f851c1152189dee01b"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t01/states.jsonl",
+        "sha256": "f4ef896f89df7b3bc6766be203bb18d0b7cfb1f394cd0448b26845e9a14a9075"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t02/summary.json",
+        "sha256": "5c83440653d344a65ea904c08cab3d12612cc1d453ef9280b8041f4b202f800d"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t02/manifest.json",
+        "sha256": "74c2a291b99a9c664d4ac7237dc2bd7c0fc787d3349efbf27d1f165c3eb46941"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t02/states.jsonl",
+        "sha256": "076339c97e8c728c98999d57c0f8d2ff4c50755fd9c00c47e694fa2a440fa8d2"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t03/summary.json",
+        "sha256": "6a11cb3d8afa1c17b862bceb49b8d551aebcf6e9bced6e741df0d3eb1909c205"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t03/manifest.json",
+        "sha256": "c080b46b36b4c9a9d829062fd3f566d31f59e02fe456ad554614119aa79ee597"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t03/states.jsonl",
+        "sha256": "e7ee789791677d5924edecf44787a68ee053d133a49c80c13af6c5f96a8328cf"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t04/summary.json",
+        "sha256": "825e4909e714ef7c24de1ea279d60caf8c3af3a14da45a64b915bd9ede3fdfc0"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t04/manifest.json",
+        "sha256": "b47f0cfdc377c869e935c3687b3294cc5ec52533768b584c8d912138aa8f3195"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t04/states.jsonl",
+        "sha256": "041b471e28a66d24add7657f5871b280d819775ea5e6a33e55fec56834741e70"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t05/summary.json",
+        "sha256": "fe165128bc407c9620319b0e3ab0a7c46d698cb7051c5f1923305a54445dcd7f"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t05/manifest.json",
+        "sha256": "28ab93ec8717fbd444d477d8ac50bd23bb56f184f41543d3225099f70efba1c7"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t05/states.jsonl",
+        "sha256": "a4fc380d62e1b3c3953b08b0d8a9514df1404aa0da0523316bd360e40252504f"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t06/summary.json",
+        "sha256": "961526e69e2d0cb039937469683c9d6bb21942eaeefcf3d658f71badafbfb453"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t06/manifest.json",
+        "sha256": "08588deefdfdedd781cb7999de83fa6f49f107ce60d4afb880739b09e94f8444"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t06/states.jsonl",
+        "sha256": "6bfc2058115d02c73dc44fc9a14a0f4a0a476c638b0fffd6cf42126844a5c234"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t07/summary.json",
+        "sha256": "fdaeb29cbb9e5b40c0188c1d9160233dfa1748f517b7719f65a2a12128a2f7cb"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t07/manifest.json",
+        "sha256": "753d2f161880ccf80dfaf41ed992b84844f8c1f9ff741adcabced408f87aaf80"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t07/states.jsonl",
+        "sha256": "3264d355e1e24a39538a0520bfd93cc15c9556c18b176408a1eefc82be031a31"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t08/summary.json",
+        "sha256": "d072a6deffc4377661f7c884d12dec6727e24bb0bf0852985d413747f3816605"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t08/manifest.json",
+        "sha256": "5646a3c78617ba8edda1e10255fcf7a855dcb9018954741651bcc2211f9f7113"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/path_t08/states.jsonl",
+        "sha256": "d6205ecd0af0f5613a31b813cec47d391b699e8d75a20e9a32a8041370214c32"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/summary.json",
+        "sha256": "1144d5bfc41f1a9aec4069da3ceff8ba72fcff88594d466b190f113df1eb9872"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/manifest.json",
+        "sha256": "3d09e91e95999c8084c37a2106d1eb0169d0da14f7d5ad55bf9170cc69794563"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/states.jsonl",
+        "sha256": "358362a262cbc0c5845299607feb24f3cf5edc2dd4043ad4b2e3914d1a99a5b2"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t01/summary.json",
+        "sha256": "48732af5238eaae537192d4fd5f20bf89e4554a4d0585a24c117f2f6e700656a"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t01/manifest.json",
+        "sha256": "9ad68c5c8e53f57dc87f3e161e506cf2524fa8a98b181cdb9aa8d97f0d90db55"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t01/states.jsonl",
+        "sha256": "c091fe5a52ae21541cabe3b2c1adff7501c459e7d4671c509c25ea509b1a53d0"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t02/summary.json",
+        "sha256": "39d10afb833d2a907a9f3c8c3b676363c1361611bcf4669adfa1ec42193625be"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t02/manifest.json",
+        "sha256": "d4357510f03bb6557d8e42d8af1055467bf49b79a9ac47a1dd829f63c5006fcc"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t02/states.jsonl",
+        "sha256": "13a75a9d759c3d3fe814daafc339e640b0c5c08e77a63044e1663191fe1f7d60"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t03/summary.json",
+        "sha256": "5f2e4ba506bd0d2b781f60744e9138b740e66adec783ab4865284532c512074c"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t03/manifest.json",
+        "sha256": "5020fc271dc54ea34500d530979c9becdebadbd8ff99df22a35bbf51bdcd1727"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t03/states.jsonl",
+        "sha256": "c690613f4cd117d33b2d5e085fe7915be02303d60ea1def7575e0dd939b1f046"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t04/summary.json",
+        "sha256": "d5d54228d7a5d4c30ece3953357299b6b2fe2e8bcceb204bae13a71c3ea2e0ac"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t04/manifest.json",
+        "sha256": "e742cff27f828572ac40ef9af5ee1436713a82c9bb96c37ab0bdc1891c6aaf08"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t04/states.jsonl",
+        "sha256": "06459d708ebc3c0d3c2e3e784178d3ab8305768084b06972f604d71bd43594a7"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t05/summary.json",
+        "sha256": "1025bce69148d067f55db61a934c14a547c54540f4ab4a21bc3c642f438e5853"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t05/manifest.json",
+        "sha256": "aaefa72702529d6bd15dc52406b62abeac74e1ba6e3abeba6d4e69b86fb97716"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t05/states.jsonl",
+        "sha256": "51c855a3bea92a9f90072f5fb6031648ca4da0ed17cff015fd2dca09c0064148"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t06/summary.json",
+        "sha256": "273b60253a273c65f0710ca47aa7d5c3a37b85d464aa600e1ee6d5473540d6d2"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t06/manifest.json",
+        "sha256": "ebb32e973a2cdf48e7a15d3c4782d9e5ec885048c4354229c63ea5fcb2600ec1"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t06/states.jsonl",
+        "sha256": "2405296acae4a38af376351052714cdde5897da8c758529db8df7df460ad649f"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t07/summary.json",
+        "sha256": "332d6725fb1c6b0e202b4a9a81526c12472002757228770f6ce4597d12dfcc36"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t07/manifest.json",
+        "sha256": "45f9b705349cf00d9cd19fb67601c69c7af253d0d88211ca2e27379c31312088"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t07/states.jsonl",
+        "sha256": "53daa25d0f3bf03db264a7698bb46d5fab5f7f4b4a864ad825b486830fd2cacf"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t08/summary.json",
+        "sha256": "3c1de1f6be30fe50645f0a99f835b8cb41be93f216d89d7085d903f9a52bbd26"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t08/manifest.json",
+        "sha256": "4ffa0d1a00697e435f01580ba0f6a12ec01c7e89c2a9a732daf01f7e6963ff14"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/path_t08/states.jsonl",
+        "sha256": "6aa44cc3f1a673791ca05d2f902b6ad66f5260c022b832b36025174fe4759984"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/results/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/summary.json",
+        "sha256": "869247291841b96fdba63f4919e5415962917aaaef2dbd15088bc1df61e80999"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/manifest.json",
+        "sha256": "1a9f1a3d36f4a288fe295cdee0112a5b97a56125917bb8d3ba4a428e5c95ed5c"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/states.jsonl",
+        "sha256": "30e1880c07360f5938037f504f77e04e1d8b20e4813f2c8aeac69e9c11f4b006"
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/data_manifest.json",
+        "sha256": "6f5644d4283faf6e88f155032be5db714c4c96fc4b59b73cae28d36afd7dc2c9"
+      }
+    ]
+  },
+  "figure_size_inches": [
+    7.6,
+    1.85
+  ],
+  "minimum_native_font_size_points": 8,
+  "layout": "one row, four columns",
+  "display_names": {
+    "sgd": "EWCLoRA",
+    "gam": "FS-EWCLoRA"
+  },
+  "font_family": "Times New Roman",
+  "font_file": {
+    "path": "/home-local/liying/.fonts/times.ttf",
+    "sha256": "f2cb777422a10368904d3f691e650e39da862fe723389056324927df540a35ec"
+  },
+  "y_labels": [
+    "Weight drift",
+    "Loss of Task 0",
+    "Accuracy of Task 0",
+    "Average Fisher"
+  ],
+  "x_label": "Number of Tasks",
+  "subplot_letter_labels": false,
+  "y_ranges": {
+    "r_T": {
+      "data_min": 0.0,
+      "data_max": 1.4004725891407084,
+      "axis_min": -0.05601890356562834,
+      "axis_max": 1.4564914927063368,
+      "padding_fraction_of_data_span": 0.04
+    },
+    "test_local_loss_delta_recomputed": {
+      "data_min": -0.015379114623092605,
+      "data_max": 0.2601305286017725,
+      "axis_min": -0.02639950035208721,
+      "axis_max": 0.2711509143307671,
+      "padding_fraction_of_data_span": 0.04
+    },
+    "test_local_accuracy": {
+      "data_min": 80.13029315960912,
+      "data_max": 89.57654723127035,
+      "axis_min": 79.75244299674267,
+      "axis_max": 89.9543973941368,
+      "padding_fraction_of_data_span": 0.04
+    },
+    "S_path": {
+      "data_min": 0.008852309476494602,
+      "data_max": 0.3680576024116533,
+      "axis_min": 0,
+      "axis_max": 0.3824258141290596,
+      "padding_fraction_of_data_span": 0.04
+    }
+  },
+  "y_limits_expanded_for_legends": false,
+  "panels": [
+    "r_T",
+    "test_local_loss_delta_recomputed",
+    "test_local_accuracy",
+    "S_path"
+  ],
+  "T1_S_path": "undefined; no point drawn",
+  "all_four_legends_inside_axes_without_curve_overlap": true,
+  "fourth_panel_method_legend_two_rows": true,
+  "footer_or_dataset_annotation_in_image": false,
+  "script": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/report_stage_paths.py",
+    "sha256": "bae123ba7437786a7140290472f98d8337773178566917293c5c8cc69d8483de"
+  },
+  "selected_nodes_observed": [
+    9
+  ],
+  "figure": "Figure_C_sequence_stage_paths",
+  "all_plotted_line_coordinates_match_source_rows": true,
+  "text_extents_inside_canvas": true,
+  "axes_titles_empty": true,
+  "rendered_visual_review": "PASS: root render inspection and independent gpt-5.6-sol xhigh review",
+  "outputs": {
+    "pdf": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/Figure_C_sequence_stage_paths.pdf",
+      "sha256": "36776df3176e2c502d7e27ba6f8b4f129bbc75ece8234396362eb4784bb010dd"
+    },
+    "png": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/Figure_C_sequence_stage_paths.png",
+      "sha256": "8d086e41b769c2052215dfe4fb631bcc5cbbfba80183b44eb991d97b531eb22a"
+    }
+  },
+  "output_format": "vector PDF with embedded text; PNG at 300 dpi",
+  "review_scope": "native 7.6 x 1.85 inch figure; Times New Roman; no clipping/legend overlap; source data unchanged"
+}

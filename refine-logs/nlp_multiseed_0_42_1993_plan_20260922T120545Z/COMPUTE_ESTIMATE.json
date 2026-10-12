@@ -1,0 +1,131 @@
+{
+  "assumption": "For source DDP8, train+predict runtime multiplied by two; DDP4 unchanged. Excludes wait for GPU3. Hardware scaling unverified; add20-40% for setup/Fisher/audit and calibrate first full runs.",
+  "by_model_method": [
+    {
+      "model": "Llama-3.2-1B",
+      "method": "EWCLoRA",
+      "source_world_size": 4,
+      "source_three_order_train_predict_hours": 1.4020622777777776,
+      "scaled_ddp4_three_order_hours": 1.4020622777777776,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 2
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "FS-EWCLoRA",
+      "source_world_size": 4,
+      "source_three_order_train_predict_hours": 2.5104339166666665,
+      "scaled_ddp4_three_order_hours": 2.5104339166666665,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 2
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "IncLoRA",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 0.703305638888889,
+      "scaled_ddp4_three_order_hours": 1.406611277777778,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "SeqLoRA",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 0.6830746944444444,
+      "scaled_ddp4_three_order_hours": 1.3661493888888887,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "TreeLoRA",
+      "source_world_size": 4,
+      "source_three_order_train_predict_hours": 1.2666021944444443,
+      "scaled_ddp4_three_order_hours": 1.2666021944444443,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 2
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "EWCLoRA",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 1.8297841666666665,
+      "scaled_ddp4_three_order_hours": 3.659568333333333,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "FS-EWCLoRA",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 2.6999458333333335,
+      "scaled_ddp4_three_order_hours": 5.399891666666667,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "IncLoRA",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 1.5099631388888888,
+      "scaled_ddp4_three_order_hours": 3.0199262777777776,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "SeqLoRA",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 1.7749225555555554,
+      "scaled_ddp4_three_order_hours": 3.549845111111111,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "TreeLoRA",
+      "source_world_size": 4,
+      "source_three_order_train_predict_hours": 2.8913123055555556,
+      "scaled_ddp4_three_order_hours": 2.8913123055555556,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 2
+    },
+    {
+      "model": "Llama-3.2-1B",
+      "method": "OLoRA+GAM",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 1.5737847222222223,
+      "scaled_ddp4_three_order_hours": 3.1475694444444446,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    },
+    {
+      "model": "Llama-3.2-3B",
+      "method": "OLoRA+GAM",
+      "source_world_size": 8,
+      "source_three_order_train_predict_hours": 3.3697405000000002,
+      "scaled_ddp4_three_order_hours": 6.7394810000000005,
+      "missing_seed_groups": 2,
+      "strict_new_seed_groups": 3
+    }
+  ],
+  "strict_96_orders": {
+    "base_hours": 101.00794888888889,
+    "estimated_hours": [
+      121.20953866666666,
+      141.41112844444444
+    ],
+    "estimated_gpu_hours": [
+      484.83815466666664,
+      565.6445137777778
+    ]
+  },
+  "minimum_72_orders": {
+    "base_hours": 72.71890638888888,
+    "estimated_hours": [
+      87.26268766666665,
+      101.80646894444443
+    ]
+  }
+}

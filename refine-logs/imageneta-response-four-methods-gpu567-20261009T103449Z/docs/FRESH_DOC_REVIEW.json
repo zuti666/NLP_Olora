@@ -1,0 +1,122 @@
+{
+  "status": "PASS",
+  "review_type": "fresh_minimal_context_agent_follows_doc",
+  "reviewed_at_utc": "2026-10-09 10:41:52 UTC",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z",
+  "source_documents": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/RUN.md",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md"
+  ],
+  "context_scope": "Only the supplied RUN.md and local compute ledger were used as instructions. No trainer, queue source, suite or configuration files were read.",
+  "commands": [
+    {
+      "name": "documented_trainer_dry_run",
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_history_g2_s2.json --output-dir /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_history_g2_s2 --dry-run",
+      "literal_match": true,
+      "route": "sandbox CPU read-only",
+      "exit_code": 0,
+      "summary": {
+        "status": "valid",
+        "protocol": "four_response_methods_sgd_prediction_exact_restore_rng_replay_v1",
+        "response_method": "history_g2",
+        "response_layout": "single200",
+        "seed": 2,
+        "gradients_per_normal_step": 3,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.5,
+        "history_source": "final",
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "response_radius_mode": "sgd_step",
+        "gam_radii_active": false,
+        "init_cls": 200,
+        "increment": 200,
+        "full_partition_tasks": 1,
+        "classes": 200,
+        "tasks": 1,
+        "epochs": 50
+      }
+    },
+    {
+      "name": "documented_queue_dry_run",
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/run_queue.py --dry-run",
+      "literal_match": true,
+      "route": "tools.exec_command sandbox_permissions=require_escalated, actual host route",
+      "documented_host": "cudahpc40.cvc.uab.es",
+      "documented_host_pid_namespace": "pid:[4026531836]",
+      "exit_code": 0,
+      "summary": {
+        "status": "valid",
+        "jobs": 7,
+        "formal": 7,
+        "smokes": 0,
+        "allowed_gpus": [
+          5,
+          6,
+          7
+        ],
+        "max_parallel": 2
+      }
+    }
+  ],
+  "checks": {
+    "both_documented_commands_exit_zero": true,
+    "trainer_history_g2_single200": true,
+    "trainer_head200_one_task_50_epochs_seed2": true,
+    "trainer_three_gradient_reads_one_actual_sgd": true,
+    "trainer_full_final_gradient_history": true,
+    "dynamic_sgd_radius_and_old_gam_radii_inactive": true,
+    "queue_valid_seven_formal_zero_smoke": true,
+    "physical_allowed_gpus_5_6_7_and_max_parallel_2": true,
+    "documented_single200_output_directory_absent_before_and_after": true,
+    "outputs_directory_empty_after_both_checks": true,
+    "queue_dry_run_runtime_listing_unchanged": true,
+    "no_training_launch_invoked": true,
+    "no_source_configuration_or_environment_modified": true
+  },
+  "read_only_evidence": {
+    "trainer_output_exists_before": false,
+    "trainer_output_exists_after": false,
+    "after_trainer_and_before_queue": {
+      "documented_trainer_output_exists": false,
+      "outputs_contents": [],
+      "runtime_contents": [
+        "runtime/HOST_GPU_PREFLIGHT.json"
+      ],
+      "run_pins_exists": false
+    },
+    "after_queue": {
+      "documented_trainer_output_exists": false,
+      "outputs_contents": [],
+      "runtime_contents": [
+        "runtime/HOST_GPU_PREFLIGHT.json"
+      ],
+      "run_pins_exists": true
+    },
+    "review_artifacts_only_written_by_reviewer": [
+      "docs/FRESH_DOC_REVIEW.json",
+      "docs/FRESH_DOC_REVIEW.md"
+    ]
+  },
+  "documentation_dependency_review": {
+    "four_single200_methods": [
+      "sgd",
+      "current_g2",
+      "history_fusion",
+      "history_g2"
+    ],
+    "three_new_cl10_methods": [
+      "sgd",
+      "current_g2",
+      "history_g2"
+    ],
+    "requirement": "All four single200 jobs must complete 50 epochs and pass trace/checkpoint/metric acceptance before any of the three CL10 jobs starts.",
+    "existing_cl10_history_fusion": "Imported only from its pinned accepted historical HRF run; not retrained.",
+    "conclusion": "RUN.md is explicit and consistent with seven new formal jobs. The literal queue dry-run summary does not expose the graph; this fresh documentation check does not independently certify dependency implementation."
+  },
+  "limits": [
+    "rank10 is stated by RUN.md but not printed by the trainer dry-run JSON.",
+    "Host/PID namespace metadata above are documented identities; the actual host route was used, without an additional identity probe.",
+    "This review verifies documented read-only invocations and their summaries, not new GPU training, completed results, or source-level implementation."
+  ]
+}

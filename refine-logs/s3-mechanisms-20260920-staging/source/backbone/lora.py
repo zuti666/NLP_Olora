@@ -1,0 +1,1506 @@
+# Sheng Wang at Feb 22 2023
+
+import math
+import json
+
+import timm
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from einops import rearrange
+# from safetensors import safe_open
+# from safetensors.torch import save_file
+from timm.models.vision_transformer import VisionTransformer as timm_ViT
+from torch import Tensor
+from torch.nn.parameter import Parameter
+
+from backbone.base_vit import ViT
+import os
+from backbone.linears import SimpleLinear
+import gc
+import torch.nn.utils as utils
+import copy
+
+class _LoRALayer(nn.Module):
+    def __init__(self, w: nn.Module, w_a: nn.Module, w_b: nn.Module):
+        super().__init__()
+        self.w = w
+        self.w_a = w_a
+        self.w_b = w_b
+
+    def forward(self, x):
+        x = self.w(x) + self.w_b(self.w_a(x))
+        return x
+
+
+class LoRA_ViT(nn.Module):
+    """Applies low-rank adaptation to a vision transformer.
+    Args:
+        vit_model: a vision transformer model, see base_vit.py
+        r: rank of LoRA
+        num_classes: how many classes the model output, default to the vit model
+        lora_layer: which layer we apply LoRA.
+    Examples::
+        >>> model = ViT('B_16_imagenet1k')
+        >>> lora_model = LoRA_ViT(model, r=4)
+        >>> preds = lora_model(img)
+        >>> print(preds.shape)
+        torch.Size([1, 1000])
+    """
+    def __init__(self, vit_model: ViT, r: int, num_classes: int = 0, lora_layer=None):
+        super(LoRA_ViT, self).__init__()
+
+        assert r > 0
+        base_vit_dim = vit_model.transformer.blocks[0].attn.proj_q.in_features
+        dim = base_vit_dim
+        if lora_layer:
+            self.lora_layer = lora_layer
+        else:
+            self.lora_layer = list(range(len(vit_model.transformer.blocks)))
+        # create for storage, then we can init them or load weights
+        self.w_As = []  # These are linear layers
+        self.w_Bs = []
+        # lets freeze first
+        for param in vit_model.parameters():
+            param.requires_grad = False
+
+        # Here, we do the surgery
+        for t_layer_i, blk in enumerate(vit_model.transformer.blocks):
+            # If we only want few lora layer instead of all
+            if t_layer_i not in self.lora_layer:
+                continue
+            w_q_linear = blk.attn.proj_q
+            w_v_linear = blk.attn.proj_v
+            w_a_linear_q = nn.Linear(dim, r, bias=False)
+            w_b_linear_q = nn.Linear(r, dim, bias=False)
+            w_a_linear_v = nn.Linear(dim, r, bias=False)
+            w_b_linear_v = nn.Linear(r, dim, bias=False)
+            self.w_As.append(w_a_linear_q)
+            self.w_Bs.append(w_b_linear_q)
+            self.w_As.append(w_a_linear_v)
+            self.w_Bs.append(w_b_linear_v)
+            blk.attn.proj_q = _LoRALayer(w_q_linear, w_a_linear_q, w_b_linear_q)
+            blk.attn.proj_v = _LoRALayer(w_v_linear, w_a_linear_v, w_b_linear_v)
+
+        self.reset_parameters()
+        self.lora_vit = vit_model
+        if num_classes > 0:
+            self.lora_vit.fc = nn.Linear(vit_model.fc.in_features, num_classes)
+
+    def reset_parameters(self) -> None:
+        for w_A in self.w_As:
+            nn.init.kaiming_uniform_(w_A.weight, a=math.sqrt(5))
+        for w_B in self.w_Bs:
+            nn.init.zeros_(w_B.weight)
+
+    def forward(self, x: Tensor) -> Tensor:
+        return self.lora_vit(x)
+
+
+class _LoRA_qkv_timm(nn.Module):
+    """
+    In timm it is implemented as
+    self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
+    B, N, C = x.shape
+    qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, self.head_dim).permute(2, 0, 3, 1, 4)
+    q, k, v = qkv.unbind(0)
+    """
+    def __init__(
+        self,
+        qkv: nn.Module,
+        linear_a_q: nn.Module,
+        linear_b_q: nn.Module,
+        linear_a_v: nn.Module,
+        linear_b_v: nn.Module,
+    ):
+        super().__init__()
+        self.qkv = qkv
+        self.linear_a_q = linear_a_q
+        self.linear_b_q = linear_b_q
+        self.linear_a_v = linear_a_v
+        self.linear_b_v = linear_b_v
+        self.dim = qkv.in_features
+        self.w_identity = torch.eye(qkv.in_features)
+
+    def forward(self, x):
+        qkv = self.qkv(x)  # B,N,3*org_C
+        new_q = self.linear_b_q(self.linear_a_q(x)) #* self.scaling_factor
+        new_v = self.linear_b_v(self.linear_a_v(x)) #* self.scaling_factor
+        qkv[:, :, : self.dim] += new_q
+        qkv[:, :, -self.dim :] += new_v
+        return qkv
+    
+class _LoRA_qkv_timm_train(nn.Module):
+    def __init__(self, qkv, linear_a_q, linear_b_q, linear_a_v, linear_b_v, #linear_a_q1, linear_b_q1, linear_a_v1, linear_b_v1,
+        task_id, saved_A, saved_B, t_layer_i, rank, scaling_factor, scaling_factor_prev, eval1=False):
+        super().__init__()
+        # Align modules to the same device as qkv parameters
+        self.qkv = qkv
+        device = getattr(getattr(qkv, "weight", None), "device", torch.device("cpu"))
+        self.linear_a_q = linear_a_q.to(device)
+        self.linear_b_q = linear_b_q.to(device)
+        self.linear_a_v = linear_a_v.to(device)
+        self.linear_b_v = linear_b_v.to(device)
+
+        # scaling wrappers (ModuleList)
+        try:
+            self.scaling_factor = scaling_factor.to(device)
+        except Exception:
+            self.scaling_factor = scaling_factor
+        try:
+            self.scaling_factor_prev = scaling_factor_prev.to(device)
+        except Exception:
+            self.scaling_factor_prev = scaling_factor_prev
+
+        self.task_id = task_id
+        self.dim = qkv.in_features
+        self.saved_A = saved_A
+        self.saved_B = saved_B
+        self.t_layer_i = t_layer_i
+        self.rank = rank
+        self.eval = eval1
+        self._register_delta_hook = False
+        self.delta_w_q_new_grad = None
+        self.delta_w_v_new_grad = None
+        self.external_delta_w_q = None
+        self.external_delta_w_v = None
+
+    def save_grad(self, name):
+        def hook(grad):
+            setattr(self, f"{name}_grad", grad)
+
+        return hook
+
+    def forward(self, x):
+
+        w_a_linear_q = nn.Linear(self.dim, self.rank, bias=False)
+        w_b_linear_q = nn.Linear(self.rank, self.dim, bias=False)
+        w_a_linear_v = nn.Linear(self.dim, self.rank, bias=False)
+        w_b_linear_v = nn.Linear(self.rank, self.dim, bias=False)
+         
+        new_q, new_v = 0, 0
+        for i in range(self.task_id):
+        # for i in range(0):
+            key_a, key_b = 'saved_A_'+str(i), 'saved_B_'+str(i)
+            if key_a not in self.saved_A or key_b not in self.saved_B:
+                continue
+            saved_A_i, saved_B_i = self.saved_A[key_a], self.saved_B[key_b]
+            Q, V = list(enumerate(zip(saved_A_i,saved_B_i)))[self.t_layer_i*2: self.t_layer_i*2+2]
+            _, (A_q, B_q) = Q
+            _, (A_v, B_v) = V
+
+            w_a_linear_q.weight = Parameter(A_q.weight)
+            w_a_linear_q.weight.requires_grad = False 
+            w_a_linear_q.to(x.device)
+            w_b_linear_q.weight = Parameter(B_q.weight)
+            w_b_linear_q.weight.requires_grad = False 
+            w_b_linear_q.to(x.device)
+            w_a_linear_v.weight = Parameter(A_v.weight)
+            w_a_linear_v.weight.requires_grad = False 
+            w_a_linear_v.to(x.device)
+            w_b_linear_v.weight = Parameter(B_v.weight)
+            w_b_linear_v.weight.requires_grad = False  
+            w_b_linear_v.to(x.device)
+
+
+            if i ==0 :
+                new_q = self.scaling_factor_prev[i](w_b_linear_q(w_a_linear_q(x)))
+                new_v = self.scaling_factor_prev[i](w_b_linear_v(w_a_linear_v(x)))
+            else:
+                new_q += self.scaling_factor_prev[i](w_b_linear_q(w_a_linear_q(x)))
+                new_v += self.scaling_factor_prev[i](w_b_linear_v(w_a_linear_v(x)))
+
+        delta_w_q_new = self.linear_b_q.weight @ self.linear_a_q.weight
+        delta_w_v_new = self.linear_b_v.weight @ self.linear_a_v.weight
+        if self.external_delta_w_q is not None:
+            delta_w_q_new = delta_w_q_new + self.external_delta_w_q.to(
+                device=delta_w_q_new.device,
+                dtype=delta_w_q_new.dtype,
+            )
+        if self.external_delta_w_v is not None:
+            delta_w_v_new = delta_w_v_new + self.external_delta_w_v.to(
+                device=delta_w_v_new.device,
+                dtype=delta_w_v_new.dtype,
+            )
+        cur_q = x @ delta_w_q_new.t()
+        cur_v = x @ delta_w_v_new.t()
+
+        if self._register_delta_hook:
+            self.delta_w_q_new_grad = None
+            self.delta_w_v_new_grad = None
+            delta_w_q_new.register_hook(self.save_grad("delta_w_q_new"))
+            delta_w_v_new.register_hook(self.save_grad("delta_w_v_new"))
+
+        new_q += self.scaling_factor[0](cur_q)
+        new_v += self.scaling_factor[0](cur_v)
+        qkv = self.qkv(x) 
+        qkv[:, :, : self.dim] += new_q
+        qkv[:, :, -self.dim :] += new_v
+        return qkv
+
+class _LoRA_qkv_timm_eval(nn.Module):
+    """
+    In timm it is implemented as
+    self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
+    B, N, C = x.shape
+    qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, self.head_dim).permute(2, 0, 3, 1, 4)
+    q, k, v = qkv.unbind(0)
+    """
+    def __init__(
+        self,
+        task_id: int,
+        qkv: nn.Module,
+        saved_A: dict,
+        saved_B: dict,
+        t_layer_i: int,
+        rank: int,
+        scaling_factor: nn.Module,        # ModuleList[ParameterWrapper 或 IdentityScale]
+        scaling_factor_prev: nn.Module,   # ModuleList 同上
+        save_file: str,
+        learn_alpha: bool = False,
+    ):
+        super().__init__()
+        self.task_id = task_id
+        self.qkv = qkv
+        self.dim = qkv.in_features
+        self.saved_A = saved_A # 这里通常仅含 [0 .. task_id-1] 的快照
+        self.saved_B = saved_B
+        self.t_layer_i = t_layer_i
+        self.rank = rank
+
+        self.save_file = save_file
+        self.learn_alpha = learn_alpha
+        # Move scaling modules to the same device as qkv parameters
+        device = getattr(getattr(qkv, "weight", None), "device", torch.device("cpu"))
+        try:
+            self.scaling_factor = scaling_factor.to(device)
+        except Exception:
+            self.scaling_factor = scaling_factor
+        try:
+            self.scaling_factor_prev = scaling_factor_prev.to(device)
+        except Exception:
+            self.scaling_factor_prev = scaling_factor_prev
+
+        # 说明：learn_alpha=True 时，建议在 LoRA_ViT_timm.__init__ (eval=True) 里
+        # 已经把磁盘上的 scaling_factor 矩阵恢复进 wrapped_param / wrapped_param_prev。
+        # 因此本类不再重复读取 scaling 参数；避免二次 I/O 与状态不一致。
+
+    @torch.no_grad()  # 评测期：不建立计算图
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        device = x.device
+
+        # 临时 Linear：只作为权重载体，不注册可训练参数
+        w_a_linear_q = nn.Linear(self.dim, self.rank, bias=False).to(device)
+        w_b_linear_q = nn.Linear(self.rank, self.dim, bias=False).to(device)
+        w_a_linear_v = nn.Linear(self.dim, self.rank, bias=False).to(device)
+        w_b_linear_v = nn.Linear(self.rank, self.dim, bias=False).to(device)
+
+        new_q, new_v = None, None
+
+        # -------- 1) 历史任务累加：i ∈ [0, task_id-1] --------
+        for i in range(self.task_id):
+            key_a, key_b = f"saved_A_{i}", f"saved_B_{i}"
+            if key_a not in self.saved_A or key_b not in self.saved_B:
+                continue
+            saved_A_i, saved_B_i = self.saved_A[key_a], self.saved_B[key_b]
+            # 取本 block 的 (Q, V) 两组 LoRA（顺序与训练分支保持一致）
+            Q, V = list(enumerate(zip(saved_A_i, saved_B_i)))[self.t_layer_i * 2 : self.t_layer_i * 2 + 2]
+            _, (A_q, B_q) = Q
+            _, (A_v, B_v) = V
+
+            # 权重写入临时 Linear，并禁止梯度
+            w_a_linear_q.weight = Parameter(A_q.weight.detach(), requires_grad=False)
+            w_b_linear_q.weight = Parameter(B_q.weight.detach(), requires_grad=False)
+            w_a_linear_v.weight = Parameter(A_v.weight.detach(), requires_grad=False)
+            w_b_linear_v.weight = Parameter(B_v.weight.detach(), requires_grad=False)
+
+            # 历史方向按论文形式直接作为 alpha_k A_k B_k 累加
+            contrib_q = w_b_linear_q(w_a_linear_q(x))
+            contrib_v = w_b_linear_v(w_a_linear_v(x))
+
+            # per-task 缩放后累加
+            contrib_q = self.scaling_factor_prev[i](contrib_q)
+            contrib_v = self.scaling_factor_prev[i](contrib_v)
+
+            if new_q is None:
+                new_q, new_v = contrib_q, contrib_v
+            else:
+                new_q = new_q + contrib_q
+                new_v = new_v + contrib_v
+
+        # -------- 2) 当前任务项：i = task_id（显式加载） --------
+        cur_idx = self.task_id
+        cur_A_list, cur_B_list = None, None
+
+        # 优先从传入的 saved_A/B 读；否则尝试磁盘快照
+        cur_key_a, cur_key_b = f"saved_A_{cur_idx}", f"saved_B_{cur_idx}"
+        if cur_key_a in self.saved_A and cur_key_b in self.saved_B:
+            cur_A_list, cur_B_list = self.saved_A[cur_key_a], self.saved_B[cur_key_b]
+        else:
+            file_a = os.path.join(self.save_file, f"lora_w_a_{cur_idx}.pt")
+            file_b = os.path.join(self.save_file, f"lora_w_b_{cur_idx}.pt")
+            if os.path.exists(file_a) and os.path.exists(file_b):
+                cur_A_list = torch.load(file_a, map_location="cpu")
+                cur_B_list = torch.load(file_b, map_location="cpu")
+
+        if cur_A_list is not None and cur_B_list is not None:
+            Qc, Vc = list(enumerate(zip(cur_A_list, cur_B_list)))[self.t_layer_i * 2 : self.t_layer_i * 2 + 2]
+            _, (Aq_cur, Bq_cur) = Qc
+            _, (Av_cur, Bv_cur) = Vc
+
+            # 将“当前任务”权重装入临时 Linear
+            w_a_linear_q.weight = Parameter(Aq_cur.weight.detach(), requires_grad=False)
+            w_b_linear_q.weight = Parameter(Bq_cur.weight.detach(), requires_grad=False)
+            w_a_linear_v.weight = Parameter(Av_cur.weight.detach(), requires_grad=False)
+            w_b_linear_v.weight = Parameter(Bv_cur.weight.detach(), requires_grad=False)
+
+            # 与训练分支保持一致：当前项默认不做 ‖B‖·‖A‖ 归一化
+            contrib_q_cur = w_b_linear_q(w_a_linear_q(x))
+            contrib_v_cur = w_b_linear_v(w_a_linear_v(x))
+
+            contrib_q_cur = self.scaling_factor[0](contrib_q_cur)
+            contrib_v_cur = self.scaling_factor[0](contrib_v_cur)
+
+            if new_q is None:
+                new_q, new_v = contrib_q_cur, contrib_v_cur
+            else:
+                new_q = new_q + contrib_q_cur
+                new_v = new_v + contrib_v_cur
+        # 若当前任务权重不可用：仅历史项生效（与之前逻辑等价的安全降级）
+
+        # -------- 3) 注入到 qkv 对应通道并返回 --------
+        qkv = self.qkv(x)
+        if new_q is not None and new_v is not None:
+            qkv[:, :, : self.dim]  = qkv[:, :, : self.dim]  + new_q
+            qkv[:, :, -self.dim :] = qkv[:, :, -self.dim :] + new_v
+        return qkv
+
+
+    # def forward(self, x): # 推理态：避免对临时 Linear 的权重建立计算图
+    #     new_q, new_v = 0, 0
+
+    #     # 为本层构建临时 Linear（仅承载权重，不注册为参数）
+    #     w_a_linear_q = nn.Linear(self.dim, self.rank, bias=False)
+    #     w_b_linear_q = nn.Linear(self.rank, self.dim, bias=False)
+    #     w_a_linear_v = nn.Linear(self.dim, self.rank, bias=False)
+    #     w_b_linear_v = nn.Linear(self.rank, self.dim, bias=False)
+
+
+    #     scaling_param = None
+    #     if self.learn_alpha and self.task_id > 0:
+    #         file_path = self.save_file + 'scaling_factor' + str(self.task_id - 1) + '.pt'
+    #         if os.path.exists(file_path):
+    #             scaling_param = torch.load(file_path)
+
+    #     # ---------- 1) 历史任务残差累加：i ∈ [0, task_id-1] ----------
+    #     for i in range(self.task_id):
+    #         key_a, key_b = 'saved_A_'+str(i), 'saved_B_'+str(i)
+    #         if key_a not in self.saved_A or key_b not in self.saved_B:
+    #             continue
+    #         saved_A_i, saved_B_i = self.saved_A[key_a], self.saved_B[key_b]
+    #         # 对应本 block 的 (Q, V) 两组 A/B
+    #         Q, V = list(enumerate(zip(saved_A_i,saved_B_i)))[self.t_layer_i*2: self.t_layer_i*2+2]
+    #         _, (A_q, B_q) = Q
+    #         _, (A_v, B_v) = V
+
+    #         # w_a_linear_q.weight = Parameter(A_q.weight)
+    #         # w_b_linear_q.weight = Parameter(B_q.weight)
+    #         # w_a_linear_v.weight = Parameter(A_v.weight)
+    #         # w_b_linear_v.weight = Parameter(B_v.weight)
+
+    #         # 把快照权重装入临时 Linear，并且禁止梯度
+    #         w_a_linear_q.weight = Parameter(A_q.weight.detach(), requires_grad=False)
+    #         w_b_linear_q.weight = Parameter(B_q.weight.detach(), requires_grad=False)
+    #         w_a_linear_v.weight = Parameter(A_v.weight.detach(), requires_grad=False)
+    #         w_b_linear_v.weight = Parameter(B_v.weight.detach(), requires_grad=False)
+
+            
+    #         if i ==0 :
+    #             new_q = self.scaling_factor_prev[i]( w_b_linear_q(w_a_linear_q(x))/ (torch.norm(w_b_linear_q.weight)* torch.norm(w_a_linear_q.weight) )  )
+    #             new_v = self.scaling_factor_prev[i]( w_b_linear_v(w_a_linear_v(x))/ (torch.norm(w_b_linear_v.weight)* torch.norm(w_a_linear_v.weight) )  )
+    #         else:
+    #             new_q += self.scaling_factor_prev[i]( w_b_linear_q(w_a_linear_q(x))/ (torch.norm(w_b_linear_q.weight)* torch.norm(w_a_linear_q.weight) )  )
+    #             new_v += self.scaling_factor_prev[i]( w_b_linear_v(w_a_linear_v(x))/ (torch.norm(w_b_linear_v.weight)* torch.norm(w_a_linear_v.weight) )  )
+
+    #     new_q = self.scaling_factor[0]( w_b_linear_q(w_a_linear_q(x)) )
+    #     new_v = self.scaling_factor[0]( w_b_linear_v(w_a_linear_v(x)) )
+ 
+    #     qkv = self.qkv(x) 
+    #     qkv[:, :, : self.dim] += new_q
+    #     qkv[:, :, -self.dim :] += new_v
+    #     return qkv
+    
+
+
+class IdentityScale(nn.Module):
+    """Placeholder scaling module that leaves inputs unchanged."""
+
+    def forward(self, x):
+        return x
+
+
+class ParameterWrapper(nn.Module):
+    def __init__(self, param: nn.Parameter):
+        super(ParameterWrapper, self).__init__()
+        self.param = param
+    
+    def forward(self, x):
+        return x * self.param
+    
+class MyLinear(nn.Module):
+    def __init__(self, input_dim, output_dim):
+        super(MyLinear, self).__init__()
+        self.linear_b_q = nn.Linear(input_dim, output_dim, bias=False)
+        self.linear_b_q = utils.weight_norm(self.linear_b_q)
+
+    def forward(self, x):
+        return self.linear_b_q(x)
+
+
+class LoRA_ViT_timm(nn.Module):
+    def __init__(
+        self,
+        vit_model: timm_ViT,
+        r: int,
+        num_classes: int = 0,
+        increment: int = 10,
+        filepath: str = './',
+        lora_layer=None,
+        eval: bool = False,
+        index: bool = True,
+        cur_task_index=None,
+        *,
+        learn_alpha: bool = False,
+        max_prev_tasks: int = 200,
+    ):
+        super(LoRA_ViT_timm, self).__init__()
+
+        assert r > 0
+        self.rank = r
+        self.learn_alpha = learn_alpha
+        self.max_prev_tasks = max_prev_tasks
+        self.base_vit = copy.deepcopy(vit_model)
+        # set path and step size for both train & eval
+        self.save_file = filepath
+        self.increment = increment
+        if not eval:
+            print('save_file', self.save_file)
+
+
+        if lora_layer:
+            self.lora_layer = lora_layer
+        else:
+            self.lora_layer = list(range(len(vit_model.blocks)))
+
+
+        # Trainable A/B for the current task with explicit metadata
+        self.w_As, self.w_Bs = [], []
+        self.w_meta = []  # per-entry: {'layer': int, 'channel': 'q'|'k'|'v', 'task_id': int}
+        self.idx_by_layer_channel = {}
+
+        
+        if index:
+            print('Initialize task-id and curtask id')
+            self.task_id, self.cur_id = 0,0
+        
+        if cur_task_index != None:
+            # print('Update the network!!!', cur_task_index)
+            self.task_id = cur_task_index
+
+        # freeze the saved part
+        for param in self.base_vit.parameters():
+            param.requires_grad = False
+
+
+        for param in vit_model.parameters():
+            param.requires_grad = False
+
+        saved_lora_A, saved_lora_B = {}, {}
+        saved_lora_meta = {}
+        for i in range(self.task_id):
+            file_path = self.save_file+'lora_w_a_'+str(i)+'.pt'
+            if os.path.exists(file_path):
+                saved_lora_A['saved_A_'+str(i)] = torch.load(file_path)
+            else:
+                continue
+            file_path = self.save_file+'lora_w_b_'+str(i)+'.pt'
+            if os.path.exists(file_path):
+                saved_lora_B['saved_B_'+str(i)] = torch.load(file_path)
+            # try to read optional metadata for this task
+            meta_path = self.save_file + f'lora_meta_{i}.json'
+            if os.path.exists(meta_path):
+                try:
+                    with open(meta_path, 'r') as f:
+                        saved_lora_meta[f'saved_meta_{i}'] = json.load(f)
+                except Exception:
+                    pass
+
+        # Expose saved A/B lists for compatibility and analysis
+        # Keys: 'saved_A_{t}' / 'saved_B_{t}' -> list[nn.Linear] ordered as [Q0, V0, Q1, V1, ...]
+        self.saved_A = saved_lora_A
+        self.saved_B = saved_lora_B
+
+        if self.learn_alpha:
+            scaling_factor = nn.Parameter(torch.tensor([1.0]))
+            self.wrapped_param = nn.ModuleList([ParameterWrapper(scaling_factor)])
+            self.wrapped_param_prev = nn.ModuleList(
+                [ParameterWrapper(nn.Parameter(torch.tensor([1.0]))) for _ in range(self.max_prev_tasks)]
+            )
+        else:
+            self.wrapped_param = nn.ModuleList([IdentityScale()])
+            self.wrapped_param_prev = nn.ModuleList(
+                [IdentityScale() for _ in range(self.max_prev_tasks)]
+            )
+
+        # Attempt to restore learned scaling parameters for SDLoRA when available
+        # NOTE: Guarded by `eval` to avoid changing training-time behavior.
+        if self.learn_alpha and self.task_id > 0 and eval:
+            try:
+                sf_idx = self.task_id - 1
+                sf_path = self.save_file + f'scaling_factor{sf_idx}.pt'
+                if os.path.exists(sf_path):
+                    scaling_param = torch.load(sf_path)
+                    # Expect a 2D matrix [max_tasks, max_tasks]; use row sf_idx
+                    row = scaling_param[sf_idx]
+                    for j in range(sf_idx + 1):
+                        if j == sf_idx:
+                            if isinstance(self.wrapped_param[0], ParameterWrapper):
+                                self.wrapped_param[0].param.data = row[j].detach().clone().to(
+                                    self.wrapped_param[0].param.device
+                                )
+                        else:
+                            if isinstance(self.wrapped_param_prev[j], ParameterWrapper):
+                                self.wrapped_param_prev[j].param.data = row[j].detach().clone().to(
+                                    self.wrapped_param_prev[j].param.device
+                                )
+            except Exception:
+                pass
+
+        # Do the surgery 
+        for t_layer_i, blk in enumerate(vit_model.blocks):
+            # If we only want few lora layer instead of all
+            if t_layer_i not in self.lora_layer:
+                continue
+            w_qkv_linear = blk.attn.qkv
+            self.dim = w_qkv_linear.in_features
+            w_a_linear_q = nn.Linear(self.dim, r, bias=False)
+            w_b_linear_q = nn.Linear(r, self.dim, bias=False)
+            w_a_linear_v = nn.Linear(self.dim, r, bias=False)
+            w_b_linear_v = nn.Linear(r, self.dim, bias=False)
+
+            # Append with metadata mapping (no reliance on even/odd)
+            self.w_As.append(w_a_linear_q)
+            self.w_Bs.append(w_b_linear_q)
+            self.w_meta.append({'layer': t_layer_i, 'channel': 'q', 'task_id': int(self.task_id)})
+            self.idx_by_layer_channel[(t_layer_i, 'q')] = len(self.w_As) - 1
+
+            self.w_As.append(w_a_linear_v)
+            self.w_Bs.append(w_b_linear_v)
+            self.w_meta.append({'layer': t_layer_i, 'channel': 'v', 'task_id': int(self.task_id)})
+            self.idx_by_layer_channel[(t_layer_i, 'v')] = len(self.w_As) - 1
+
+            if not eval:
+                blk.attn.qkv = _LoRA_qkv_timm_train(
+                    w_qkv_linear,
+                    w_a_linear_q,
+                    w_b_linear_q,
+                    w_a_linear_v,
+                    w_b_linear_v,
+                    self.task_id,
+                    saved_lora_A,
+                    saved_lora_B,
+                    t_layer_i,
+                    self.rank,
+                    self.wrapped_param,
+                    self.wrapped_param_prev,
+                    eval1=False,
+                )
+            else:
+                blk.attn.qkv = _LoRA_qkv_timm_eval(
+                    self.task_id,
+                    w_qkv_linear,
+                    saved_lora_A,
+                    saved_lora_B,
+                    t_layer_i,
+                    self.rank,
+                    self.wrapped_param,
+                    self.wrapped_param_prev,
+                    self.save_file,
+                    learn_alpha=self.learn_alpha,
+                )
+
+        self.reset_parameters()
+        self.lora_vit = vit_model
+        # Always output features; classification head is handled externally
+        self.lora_vit.head = torch.nn.Identity()
+        # Expose saved lists/meta for compatibility and analysis
+        self.saved_A = saved_lora_A
+        self.saved_B = saved_lora_B
+        self.saved_meta = saved_lora_meta
+
+
+
+    def reset_lora_vit_head(self):
+        task_incremental = self.increment
+        device = next(self.lora_vit.parameters()).device
+        self.lora_vit.head = self.generate_fc(768, (self.task_id)*task_incremental).to(device)
+        temp_weights = torch.load(self.save_file+'CLs_weight'+str(self.task_id-1)+'.pt') 
+        temp_bias = torch.load(self.save_file+'CLs_bias'+str(self.task_id-1)+'.pt') 
+
+        self.lora_vit.head.weight.data = temp_weights.data.to(device)
+        self.lora_vit.head.bias.data = temp_bias.data.to(device)
+
+
+    # This part is only used during the evaluation
+    def reset(self, eval=False):
+        self.__init__(
+            self.base_vit,
+            self.rank,
+            lora_layer=None,
+            eval=eval,
+            index=False,
+            increment=self.increment,
+            filepath=self.save_file,
+            cur_task_index=self.task_id,
+            learn_alpha=self.learn_alpha,
+            max_prev_tasks=self.max_prev_tasks,
+        )
+
+    def reset_parameters(self) -> None:
+        # if self.task_id ==0: 
+            for w_A in self.w_As:
+                nn.init.kaiming_uniform_(w_A.weight, a=math.sqrt(5))
+                # nn.init.kaiming_uniform_(w_A.linear_b_q.weight, a=math.sqrt(5) )
+            for w_B in self.w_Bs:
+                nn.init.zeros_(w_B.weight)
+
+
+    def save_wrap_param(self, filename):
+        if not self.learn_alpha:
+            return
+        if self.task_id ==1:   
+            scaling_param = torch.zeros(self.max_prev_tasks, self.max_prev_tasks)
+        else:
+            scaling_param = torch.load(filename + 'scaling_factor'+str(self.task_id-2)+'.pt')
+        i = self.task_id-1
+        # print('save i', i)
+        for j in range(i+1):
+            if j == i:
+                scaling_param[i][j] = self.wrapped_param[0].param.clone()
+            else:
+                scaling_param[i][j] = self.wrapped_param_prev[j].param.clone()  
+        torch.save(scaling_param, filename + 'scaling_factor'+str(self.task_id-1)+'.pt')
+        
+    def save_lora_parameters(self, filename: str, task_id) -> None:
+        self.task_id += 1
+        if not os.path.exists(filename):
+           os.makedirs(filename)
+        torch.save(self.w_As, filename + 'lora_w_a_'+str(task_id)+'.pt')
+        torch.save(self.w_Bs, filename + 'lora_w_b_'+str(task_id)+'.pt')
+        # write side-car metadata for explicit layer/channel/task mapping
+        try:
+            with open(filename + f'lora_meta_{task_id}.json', 'w') as f:
+                json.dump(self.w_meta, f)
+        except Exception:
+            pass
+
+    def generate_fc(self, in_dim, out_dim):
+        fc = SimpleLinear(in_dim, out_dim)
+        return fc
+
+    def load_eval_vit(self):
+        self.lora_vit = copy.deepcopy(self.base_vit)
+        saved_lora_A, saved_lora_B = {}, {}
+        saved_lora_meta = {}
+        for i in range(self.task_id):
+            file_path = self.save_file+'lora_w_a_'+str(i)+'.pt'
+            if os.path.exists(file_path):
+                saved_lora_A['saved_A_'+str(i)] = torch.load(file_path)
+            file_path = self.save_file+'lora_w_b_'+str(i)+'.pt'
+            if os.path.exists(file_path):
+                saved_lora_B['saved_B_'+str(i)] = torch.load(file_path)
+            meta_path = self.save_file + f'lora_meta_{i}.json'
+            if os.path.exists(meta_path):
+                try:
+                    with open(meta_path, 'r') as f:
+                        saved_lora_meta[f'saved_meta_{i}'] = json.load(f)
+                except Exception:
+                    pass
+
+        # 同步到公开属性，便于外部查询历史任务 LoRA
+        self.saved_A = saved_lora_A
+        self.saved_B = saved_lora_B
+        self.saved_meta = saved_lora_meta
+
+        # for param in self.eval_vit.parameters():
+        for param in self.lora_vit.parameters():
+            param.requires_grad = False
+        
+        # for t_layer_i, blk in enumerate(self.eval_vit.blocks):
+        for t_layer_i, blk in enumerate(self.lora_vit.blocks):
+            w_qkv_linear = blk.attn.qkv
+            self.dim = w_qkv_linear.in_features
+            blk.attn.qkv = _LoRA_qkv_timm_eval(
+                self.task_id,
+                w_qkv_linear,
+                saved_lora_A,
+                saved_lora_B,
+                t_layer_i,
+                self.rank,
+                self.wrapped_param,
+                self.wrapped_param_prev,
+                self.save_file,
+                learn_alpha=self.learn_alpha,
+            )
+        self.reset_lora_vit_head()
+
+    def compute_ortho_loss(self):
+        loss = torch.tensor(0.0, dtype=torch.float32)
+        # print('task_id', self.task_id)
+        for i in range(self.task_id):
+            file_path = self.save_file+'lora_w_a_'+str(i)+'.pt'
+            if os.path.exists(file_path):
+                w_As = torch.load(file_path)
+                num_layer = len(self.w_As)
+                for j in range(num_layer):
+                    temp = torch.matmul(w_As[j].weight.to(self.w_As[j].weight.device), self.w_As[j].weight.t())
+                    temp = torch.sum(torch.square(temp))
+                    loss = loss.to(self.w_As[j].weight.device)
+                    loss += temp
+        return loss
+    
+    def forward(self, x: Tensor, loss= False, eval=False) -> Tensor:
+        if eval:
+            self.reset(eval=True)
+            return self.lora_vit(x)
+        elif loss:
+            loss = self.compute_ortho_loss()
+            return self.lora_vit(x), loss
+        else:
+            return self.lora_vit(x)
+
+    # ===== Compatibility helpers for Attention_LoRA-style inspection/initialization =====
+    def _qv_index(self, layer_idx: int):
+        base = int(layer_idx) * 2
+        return base, base + 1  # (q_idx, v_idx)
+
+    def get_matrix(self, layer_idx: int, task_idx: int = None, device=None):
+        """Return B@A for (q, v) of a given layer and task.
+
+        - layer_idx: transformer block index where LoRA is attached
+        - task_idx: 0..(self.task_id) where self.task_id denotes the CURRENT task being trained.
+                    If None, use current task.
+        - device: optional device to place returned tensors.
+
+        Returns: (matrix_q, matrix_v) each of shape [dim, dim]
+        """
+        if task_idx is None:
+            task_idx = int(self.task_id)
+
+        q_idx, v_idx = self._qv_index(layer_idx)
+        if task_idx == self.task_id:
+            A_q = self.w_As[q_idx].weight
+            B_q = self.w_Bs[q_idx].weight
+            A_v = self.w_As[v_idx].weight
+            B_v = self.w_Bs[v_idx].weight
+        else:
+            key_a, key_b = f'saved_A_{task_idx}', f'saved_B_{task_idx}'
+            if key_a not in getattr(self, 'saved_A', {}) or key_b not in getattr(self, 'saved_B', {}):
+                raise ValueError(f'LoRA for task {task_idx} not available')
+            A_list = self.saved_A[key_a]
+            B_list = self.saved_B[key_b]
+            A_q = A_list[q_idx].weight
+            B_q = B_list[q_idx].weight
+            A_v = A_list[v_idx].weight
+            B_v = B_list[v_idx].weight
+
+        mat_q = B_q @ A_q
+        mat_v = B_v @ A_v
+        if device is not None:
+            mat_q = mat_q.to(device)
+            mat_v = mat_v.to(device)
+        return mat_q, mat_v
+
+    def get_pre_matrix(self, layer_idx: int, upto_task_idx: int, device=None):
+        """Sum of B@A over tasks [0, upto_task_idx), for (q, v) at a given layer."""
+        if upto_task_idx <= 0:
+            dim = getattr(self, 'dim', None) or (self.w_As[0].in_features if len(self.w_As) > 0 else None)
+            if dim is None:
+                raise ValueError('Cannot infer dimension for empty LoRA lists')
+            zero = torch.zeros((dim, dim))
+            return (zero.to(device) if device else zero.clone(), zero.to(device) if device else zero.clone())
+
+        mats_q, mats_v = None, None
+        for t in range(int(upto_task_idx)):
+            try:
+                mq, mv = self.get_matrix(layer_idx, t, device=device)
+            except Exception:
+                continue
+            mats_q = mq if mats_q is None else (mats_q + mq)
+            mats_v = mv if mats_v is None else (mats_v + mv)
+        if mats_q is None:
+            dim = getattr(self, 'dim', None) or (self.w_As[0].in_features if len(self.w_As) > 0 else None)
+            mq = torch.zeros((dim, dim))
+            mv = torch.zeros((dim, dim))
+            if device is not None:
+                mq, mv = mq.to(device), mv.to(device)
+            return mq, mv
+        return mats_q, mats_v
+
+    def init_current_task_A(self, layer_idx: int, A_q=None, A_v=None, scale: float = 1.0):
+        """Initialize current task's A (q,v) by copying basis vectors.
+
+        - A_q/A_v: [dim, r] basis (columns as directions). If None, no-op for that channel.
+        - scale: multiply copied weights by this factor (e.g., 1/sqrt(3) as in Attention_LoRA).
+        """
+        q_idx, v_idx = self._qv_index(layer_idx)
+        if A_q is not None:
+            self.w_As[q_idx].weight.data.copy_((A_q.t() * float(scale)).to(self.w_As[q_idx].weight.device))
+        if A_v is not None:
+            self.w_As[v_idx].weight.data.copy_((A_v.t() * float(scale)).to(self.w_As[v_idx].weight.device))
+
+    def freeze_current_task_A(self):
+        """Freeze all A parameters for the current task (both q and v)."""
+        for A in self.w_As:
+            A.weight.requires_grad_(False)
+
+
+# ============================================================
+#  ResNet LoRA
+# ============================================================
+
+class _LoRAConv(nn.Module):
+    """LoRA adapter for a Conv2d via two 1×1 pointwise convolutions.
+
+    forward(x) = conv(x) + lora_B(lora_A(x))
+
+    Works for any kernel size because A and B are always 1×1, approximating
+    the residual in the channel dimension only (sufficient for CL adaptation).
+    """
+
+    def __init__(self, conv: nn.Conv2d, rank: int):
+        super().__init__()
+        self.conv = conv  # original frozen weight
+        C_in = conv.in_channels
+        C_out = conv.out_channels
+        self.lora_A = nn.Conv2d(C_in, rank, kernel_size=1, stride=conv.stride, bias=False)
+        self.lora_B = nn.Conv2d(rank, C_out, kernel_size=1, bias=False)
+        nn.init.kaiming_uniform_(self.lora_A.weight, a=math.sqrt(5))
+        nn.init.zeros_(self.lora_B.weight)
+
+    def forward(self, x):
+        return self.conv(x) + self.lora_B(self.lora_A(x))
+
+
+def _resnet_lora_meta_key(meta: dict) -> tuple[int, int, str]:
+    return (int(meta["stage"]), int(meta["block"]), str(meta["conv"]))
+
+
+def _legacy_resnet_lora_meta(current_meta: list[dict]) -> list[dict]:
+    # Legacy ResNet LoRA only covered conv1 and conv3 (when present).
+    return [meta for meta in current_meta if meta["conv"] != "conv2"]
+
+
+def _resolve_saved_resnet_meta(current_meta: list[dict], meta_path: str, saved_count: int) -> list[dict]:
+    if os.path.exists(meta_path):
+        try:
+            with open(meta_path, "r", encoding="utf-8") as f:
+                saved_meta = json.load(f)
+            if len(saved_meta) == saved_count:
+                return saved_meta
+        except Exception:
+            pass
+
+    if saved_count == len(current_meta):
+        return current_meta
+
+    legacy_meta = _legacy_resnet_lora_meta(current_meta)
+    if saved_count == len(legacy_meta):
+        return legacy_meta
+
+    raise ValueError(
+        f"Unsupported ResNet LoRA checkpoint layout: saved_count={saved_count}, "
+        f"current_count={len(current_meta)}, legacy_count={len(legacy_meta)}"
+    )
+
+
+def _make_zero_lora_pair(
+    in_channels: int,
+    out_channels: int,
+    rank: int,
+    stride: int | tuple[int, int] = 1,
+) -> tuple[nn.Conv2d, nn.Conv2d]:
+    lora_a = nn.Conv2d(in_channels, rank, kernel_size=1, stride=stride, bias=False)
+    lora_b = nn.Conv2d(rank, out_channels, kernel_size=1, bias=False)
+    nn.init.zeros_(lora_a.weight)
+    nn.init.zeros_(lora_b.weight)
+    for param in lora_a.parameters():
+        param.requires_grad_(False)
+    for param in lora_b.parameters():
+        param.requires_grad_(False)
+    return lora_a, lora_b
+
+
+class LoRA_ResNet(nn.Module):
+    """Applies LoRA to selected residual stages of a ResNet for continual learning.
+
+    Patched layers (per block):
+      - BasicBlock  (ResNet-18/34): conv1 (3×3)  + conv2 (3×3)
+      - Bottleneck  (ResNet-50/101): conv1 (1×1) + conv2 (3×3) + conv3 (1×1)
+
+    Both use 1×1 LoRA adapters so the spatial structure of the original conv
+    is preserved while only the channel mixing is adapted.
+
+    Args:
+        resnet_model : a ResNet instance from backbone/resnet.py (pretrained).
+        r            : LoRA rank.
+        lora_layers  : list of stage indices to patch, e.g. [2, 3] for
+                       layer3+layer4. Default: [2, 3].
+
+    Interface (compatible with SeqLoRA):
+        save_lora_parameters(save_dir, task_id)
+        load_lora_parameters(save_dir, task_id)
+        reset_lora_parameters()   – re-init A/B for a fresh task
+        out_dim                   – feature dimension
+        forward(x)                – returns {'fmaps': [...], 'features': tensor}
+    """
+
+    def __init__(self, resnet_model: nn.Module, r: int, lora_layers=None):
+        super().__init__()
+        assert r > 0, f"lora rank must be > 0, got {r}"
+        self.rank = r
+        self.out_dim = resnet_model.out_dim
+
+        # Freeze the entire base ResNet
+        for param in resnet_model.parameters():
+            param.requires_grad = False
+
+        if lora_layers is None:
+            lora_layers = [2, 3]  # layer3 + layer4 by default
+
+        all_stages = [
+            resnet_model.layer1,
+            resnet_model.layer2,
+            resnet_model.layer3,
+            resnet_model.layer4,
+        ]
+
+        w_As, w_Bs = [], []
+        self.w_meta: list[dict] = []
+        for stage_idx in lora_layers:
+            stage = all_stages[stage_idx]
+            for block_idx, block in enumerate(stage):
+                # --- conv1 (always present) ---
+                conv1 = block.conv1
+                lora_c1 = _LoRAConv(conv1, r)
+                block.conv1 = lora_c1
+                w_As.append(lora_c1.lora_A)
+                w_Bs.append(lora_c1.lora_B)
+                self.w_meta.append({
+                    "stage": int(stage_idx),
+                    "block": int(block_idx),
+                    "conv": "conv1",
+                    "in_channels": int(conv1.in_channels),
+                    "out_channels": int(conv1.out_channels),
+                    "stride": tuple(int(v) for v in conv1.stride),
+                })
+
+                # --- conv2 (always present in residual blocks) ---
+                conv2 = block.conv2
+                lora_c2 = _LoRAConv(conv2, r)
+                block.conv2 = lora_c2
+                w_As.append(lora_c2.lora_A)
+                w_Bs.append(lora_c2.lora_B)
+                self.w_meta.append({
+                    "stage": int(stage_idx),
+                    "block": int(block_idx),
+                    "conv": "conv2",
+                    "in_channels": int(conv2.in_channels),
+                    "out_channels": int(conv2.out_channels),
+                    "stride": tuple(int(v) for v in conv2.stride),
+                })
+
+                # --- conv3 only in Bottleneck ---
+                if hasattr(block, "conv3"):
+                    conv3 = block.conv3
+                    lora_c3 = _LoRAConv(conv3, r)
+                    block.conv3 = lora_c3
+                    w_As.append(lora_c3.lora_A)
+                    w_Bs.append(lora_c3.lora_B)
+                    self.w_meta.append({
+                        "stage": int(stage_idx),
+                        "block": int(block_idx),
+                        "conv": "conv3",
+                        "in_channels": int(conv3.in_channels),
+                        "out_channels": int(conv3.out_channels),
+                        "stride": tuple(int(v) for v in conv3.stride),
+                    })
+
+        # Register as ModuleList so optimizer and .parameters() see them
+        self.w_As = nn.ModuleList(w_As)
+        self.w_Bs = nn.ModuleList(w_Bs)
+        self.lora_resnet = resnet_model
+
+    # ------------------------------------------------------------------
+    # Parameter management
+    # ------------------------------------------------------------------
+
+    def reset_lora_parameters(self):
+        """Re-initialize LoRA A/B weights. Call before each new task."""
+        for m in self.w_As:
+            nn.init.kaiming_uniform_(m.weight, a=math.sqrt(5))
+        for m in self.w_Bs:
+            nn.init.zeros_(m.weight)
+
+    def save_lora_parameters(self, save_dir: str, task_id: int):
+        """Save current A/B lists to disk (SeqLoRA interface)."""
+        os.makedirs(save_dir, exist_ok=True)
+        torch.save(list(self.w_As), os.path.join(save_dir, f"lora_w_a_{task_id}.pt"))
+        torch.save(list(self.w_Bs), os.path.join(save_dir, f"lora_w_b_{task_id}.pt"))
+        try:
+            with open(os.path.join(save_dir, f"lora_meta_{task_id}.json"), "w", encoding="utf-8") as f:
+                json.dump(self.w_meta, f)
+        except Exception:
+            pass
+
+    def load_lora_parameters(self, save_dir: str, task_id: int):
+        """Load saved A/B weights from disk and copy into current adapters."""
+        path_a = os.path.join(save_dir, f"lora_w_a_{task_id}.pt")
+        path_b = os.path.join(save_dir, f"lora_w_b_{task_id}.pt")
+        meta_path = os.path.join(save_dir, f"lora_meta_{task_id}.json")
+        if not (os.path.exists(path_a) and os.path.exists(path_b)):
+            raise FileNotFoundError(
+                f"ResNet LoRA checkpoint not found for task {task_id} at {save_dir}"
+            )
+        saved_As = torch.load(path_a, map_location="cpu")
+        saved_Bs = torch.load(path_b, map_location="cpu")
+        saved_meta = _resolve_saved_resnet_meta(self.w_meta, meta_path, len(saved_As))
+        saved_index = {_resnet_lora_meta_key(meta): idx for idx, meta in enumerate(saved_meta)}
+
+        for meta, wa, wb in zip(self.w_meta, self.w_As, self.w_Bs):
+            idx = saved_index.get(_resnet_lora_meta_key(meta), None)
+            if idx is None:
+                continue
+            wa.weight.data.copy_(saved_As[idx].weight.data)
+            wb.weight.data.copy_(saved_Bs[idx].weight.data)
+
+    def compute_ortho_loss(self):
+        """Orthogonality regularizer for OLoRA: penalise alignment between
+        current LoRA-A weights and each previous task's saved LoRA-A weights."""
+        loss = torch.tensor(0.0, dtype=torch.float32)
+        task_id = getattr(self, 'task_id', 0)
+        save_dir = getattr(self, 'save_dir', None)
+        if save_dir is None or task_id == 0:
+            return loss
+        for i in range(task_id):
+            path_a = os.path.join(save_dir, f"lora_w_a_{i}.pt")
+            if not os.path.exists(path_a):
+                continue
+            saved_w_As = torch.load(path_a, map_location="cpu")
+            for j, saved_m in enumerate(saved_w_As):
+                curr_m = self.w_As[j]
+                # Flatten spatial dims: [r, C_in, 1, 1] → [r, C_in]
+                s_w = saved_m.weight.view(saved_m.weight.shape[0], -1)
+                c_w = curr_m.weight.view(curr_m.weight.shape[0], -1)
+                temp = torch.matmul(s_w.to(c_w.device), c_w.t())  # [r, r]
+                loss = loss.to(c_w.device)
+                loss += torch.sum(torch.square(temp))
+        return loss
+
+    # ------------------------------------------------------------------
+    # Forward – matches ResNet output format expected by BaseNet/IncrementalNet
+    # ------------------------------------------------------------------
+
+    def forward(self, x):
+        return self.lora_resnet(x)
+
+
+class _TaskAwareLoRAConv(nn.Module):
+    """Conv wrapper that composes frozen historical LoRA branches plus one current branch."""
+
+    def __init__(self, conv: nn.Conv2d, rank: int, module_index: int, shared_state: dict, *, eval_mode: bool = False):
+        super().__init__()
+        self.conv = conv
+        self.rank = int(rank)
+        self.module_index = int(module_index)
+        self.shared_state = shared_state
+        self.eval_mode = bool(eval_mode)
+
+        if not self.eval_mode:
+            self.lora_A = nn.Conv2d(
+                conv.in_channels,
+                self.rank,
+                kernel_size=1,
+                stride=conv.stride,
+                bias=False,
+            )
+            self.lora_B = nn.Conv2d(self.rank, conv.out_channels, kernel_size=1, bias=False)
+            self.reset_parameters()
+        else:
+            self.lora_A = None
+            self.lora_B = None
+
+    def reset_parameters(self) -> None:
+        if self.lora_A is not None:
+            nn.init.kaiming_uniform_(self.lora_A.weight, a=math.sqrt(5))
+        if self.lora_B is not None:
+            nn.init.zeros_(self.lora_B.weight)
+
+    def _iter_saved_tasks(self):
+        prev_as = self.shared_state["prev_As"]
+        prev_bs = self.shared_state["prev_Bs"]
+        tasks = []
+        for key in prev_as.keys():
+            if key not in prev_bs:
+                continue
+            try:
+                tasks.append((int(key), key))
+            except ValueError:
+                continue
+        tasks.sort(key=lambda item: item[0])
+        return tasks
+
+    def _saved_branch_output(self, x: torch.Tensor, task_idx: int, key: str) -> torch.Tensor | None:
+        prev_as = self.shared_state["prev_As"]
+        prev_bs = self.shared_state["prev_Bs"]
+        if key not in prev_as or key not in prev_bs:
+            return None
+        if self.module_index >= len(prev_as[key]) or self.module_index >= len(prev_bs[key]):
+            return None
+
+        branch_a = prev_as[key][self.module_index]
+        branch_b = prev_bs[key][self.module_index]
+        out = branch_b(branch_a(x))
+
+        current_task = int(self.shared_state["task_id"])
+        if self.eval_mode and task_idx == current_task:
+            current_scale = self.shared_state["current_scale"]
+            return current_scale[0](out) if len(current_scale) > 0 else out
+
+        prev_scales = self.shared_state["prev_scales"]
+        if task_idx < len(prev_scales):
+            return prev_scales[task_idx](out)
+        return out
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        out = self.conv(x)
+
+        for task_idx, key in self._iter_saved_tasks():
+            contrib = self._saved_branch_output(x, task_idx, key)
+            if contrib is not None:
+                out = out + contrib
+
+        if (not self.eval_mode) and self.lora_A is not None and self.lora_B is not None:
+            contrib = self.lora_B(self.lora_A(x))
+            current_scale = self.shared_state["current_scale"]
+            if len(current_scale) > 0:
+                contrib = current_scale[0](contrib)
+            out = out + contrib
+
+        return out
+
+
+class MultiTaskLoRA_ResNet(nn.Module):
+    """ResNet LoRA backbone with true multi-task branch composition.
+
+    Training mode:
+    - loads saved branches for tasks [0, task_id)
+    - allocates a fresh trainable branch for `task_id`
+
+    Eval mode:
+    - loads saved branches for tasks [0, task_id]
+    - does not allocate a fresh branch; the saved `task_id` branch is treated as current
+    """
+
+    def __init__(
+        self,
+        resnet_model: nn.Module,
+        r: int,
+        lora_layers=None,
+        *,
+        task_id: int = 0,
+        save_dir: str = "./",
+        eval_mode: bool = False,
+        learn_alpha: bool = False,
+        max_prev_tasks: int = 200,
+    ):
+        super().__init__()
+        if r <= 0:
+            raise ValueError(f"lora rank must be > 0, got {r}")
+
+        self.rank = int(r)
+        self.task_id = int(task_id)
+        self.save_dir = save_dir
+        self.eval_mode = bool(eval_mode)
+        self.learn_alpha = bool(learn_alpha)
+        self.max_prev_tasks = int(max_prev_tasks)
+        self.out_dim = resnet_model.out_dim
+        self.lora_resnet = resnet_model
+
+        for param in self.lora_resnet.parameters():
+            param.requires_grad = False
+
+        if lora_layers is None:
+            lora_layers = [2, 3]
+
+        if self.learn_alpha:
+            self.wrapped_param = nn.ModuleList([ParameterWrapper(nn.Parameter(torch.tensor([1.0])))] )
+            self.wrapped_param_prev = nn.ModuleList(
+                [ParameterWrapper(nn.Parameter(torch.tensor([1.0]))) for _ in range(self.max_prev_tasks)]
+            )
+        else:
+            self.wrapped_param = nn.ModuleList([IdentityScale()])
+            self.wrapped_param_prev = nn.ModuleList([IdentityScale() for _ in range(self.max_prev_tasks)])
+
+        self.prev_As = nn.ModuleDict()
+        self.prev_Bs = nn.ModuleDict()
+        self.w_As = nn.ModuleList()
+        self.w_Bs = nn.ModuleList()
+        self.w_meta: list[dict] = []
+
+        shared_state = {
+            "prev_As": self.prev_As,
+            "prev_Bs": self.prev_Bs,
+            "current_scale": self.wrapped_param,
+            "prev_scales": self.wrapped_param_prev,
+            "task_id": self.task_id,
+        }
+
+        all_stages = [
+            self.lora_resnet.layer1,
+            self.lora_resnet.layer2,
+            self.lora_resnet.layer3,
+            self.lora_resnet.layer4,
+        ]
+
+        module_index = 0
+        for stage_idx in lora_layers:
+            stage = all_stages[stage_idx]
+            for block_idx, block in enumerate(stage):
+                conv1 = block.conv1
+                lora_c1 = _TaskAwareLoRAConv(
+                    conv1,
+                    self.rank,
+                    module_index,
+                    shared_state,
+                    eval_mode=self.eval_mode,
+                )
+                block.conv1 = lora_c1
+                self.w_meta.append({
+                    "stage": int(stage_idx),
+                    "block": int(block_idx),
+                    "conv": "conv1",
+                    "in_channels": int(conv1.in_channels),
+                    "out_channels": int(conv1.out_channels),
+                    "stride": tuple(int(v) for v in conv1.stride),
+                })
+                if not self.eval_mode:
+                    self.w_As.append(lora_c1.lora_A)
+                    self.w_Bs.append(lora_c1.lora_B)
+                module_index += 1
+
+                conv2 = block.conv2
+                lora_c2 = _TaskAwareLoRAConv(
+                    conv2,
+                    self.rank,
+                    module_index,
+                    shared_state,
+                    eval_mode=self.eval_mode,
+                )
+                block.conv2 = lora_c2
+                self.w_meta.append({
+                    "stage": int(stage_idx),
+                    "block": int(block_idx),
+                    "conv": "conv2",
+                    "in_channels": int(conv2.in_channels),
+                    "out_channels": int(conv2.out_channels),
+                    "stride": tuple(int(v) for v in conv2.stride),
+                })
+                if not self.eval_mode:
+                    self.w_As.append(lora_c2.lora_A)
+                    self.w_Bs.append(lora_c2.lora_B)
+                module_index += 1
+
+                if hasattr(block, "conv3"):
+                    conv3 = block.conv3
+                    lora_c3 = _TaskAwareLoRAConv(
+                        conv3,
+                        self.rank,
+                        module_index,
+                        shared_state,
+                        eval_mode=self.eval_mode,
+                    )
+                    block.conv3 = lora_c3
+                    self.w_meta.append({
+                        "stage": int(stage_idx),
+                        "block": int(block_idx),
+                        "conv": "conv3",
+                        "in_channels": int(conv3.in_channels),
+                        "out_channels": int(conv3.out_channels),
+                        "stride": tuple(int(v) for v in conv3.stride),
+                    })
+                    if not self.eval_mode:
+                        self.w_As.append(lora_c3.lora_A)
+                        self.w_Bs.append(lora_c3.lora_B)
+                    module_index += 1
+
+        self._load_saved_branches(include_current=self.eval_mode)
+        self._restore_scaling_factors()
+
+    def _load_saved_branches(self, *, include_current: bool) -> None:
+        upper = self.task_id + 1 if include_current else self.task_id
+        for task_idx in range(max(0, upper)):
+            path_a = os.path.join(self.save_dir, f"lora_w_a_{task_idx}.pt")
+            path_b = os.path.join(self.save_dir, f"lora_w_b_{task_idx}.pt")
+            meta_path = os.path.join(self.save_dir, f"lora_meta_{task_idx}.json")
+            if not (os.path.exists(path_a) and os.path.exists(path_b)):
+                continue
+
+            saved_as = torch.load(path_a, map_location="cpu")
+            saved_bs = torch.load(path_b, map_location="cpu")
+            saved_meta = _resolve_saved_resnet_meta(self.w_meta, meta_path, len(saved_as))
+            saved_index = {_resnet_lora_meta_key(meta): idx for idx, meta in enumerate(saved_meta)}
+
+            aligned_as = nn.ModuleList()
+            aligned_bs = nn.ModuleList()
+            for meta in self.w_meta:
+                idx = saved_index.get(_resnet_lora_meta_key(meta), None)
+                if idx is None:
+                    branch_a, branch_b = _make_zero_lora_pair(
+                        int(meta["in_channels"]),
+                        int(meta["out_channels"]),
+                        self.rank,
+                        tuple(meta.get("stride", (1, 1))),
+                    )
+                else:
+                    branch_a = saved_as[idx]
+                    branch_b = saved_bs[idx]
+                aligned_as.append(branch_a)
+                aligned_bs.append(branch_b)
+
+            for module in list(aligned_as) + list(aligned_bs):
+                for param in module.parameters():
+                    param.requires_grad_(False)
+
+            self.prev_As[str(task_idx)] = aligned_as
+            self.prev_Bs[str(task_idx)] = aligned_bs
+
+    def _restore_scaling_factors(self) -> None:
+        if not self.learn_alpha:
+            return
+
+        if self.eval_mode:
+            row_idx = self.task_id
+            file_idx = self.task_id
+        else:
+            if self.task_id <= 0:
+                return
+            row_idx = self.task_id - 1
+            file_idx = self.task_id - 1
+
+        file_path = os.path.join(self.save_dir, f"scaling_factor{file_idx}.pt")
+        if not os.path.exists(file_path):
+            return
+
+        try:
+            scaling_param = torch.load(file_path, map_location="cpu")
+        except Exception:
+            return
+
+        if row_idx < 0 or row_idx >= scaling_param.shape[0]:
+            return
+
+        row = scaling_param[row_idx]
+        for prev_idx in range(min(self.task_id, len(self.wrapped_param_prev))):
+            if isinstance(self.wrapped_param_prev[prev_idx], ParameterWrapper):
+                self.wrapped_param_prev[prev_idx].param.data = row[prev_idx].detach().clone().view_as(
+                    self.wrapped_param_prev[prev_idx].param.data
+                )
+
+        if self.eval_mode and self.task_id < row.shape[0] and isinstance(self.wrapped_param[0], ParameterWrapper):
+            self.wrapped_param[0].param.data = row[self.task_id].detach().clone().view_as(
+                self.wrapped_param[0].param.data
+            )
+
+    def reset_lora_parameters(self) -> None:
+        if self.eval_mode:
+            return
+        for module in self.w_As:
+            nn.init.kaiming_uniform_(module.weight, a=math.sqrt(5))
+        for module in self.w_Bs:
+            nn.init.zeros_(module.weight)
+
+    def save_lora_parameters(self, save_dir: str, task_id: int) -> None:
+        if self.eval_mode:
+            raise RuntimeError("Cannot save LoRA parameters from an eval-only ResNet backbone.")
+        os.makedirs(save_dir, exist_ok=True)
+        torch.save(list(self.w_As), os.path.join(save_dir, f"lora_w_a_{task_id}.pt"))
+        torch.save(list(self.w_Bs), os.path.join(save_dir, f"lora_w_b_{task_id}.pt"))
+        try:
+            with open(os.path.join(save_dir, f"lora_meta_{task_id}.json"), "w", encoding="utf-8") as f:
+                json.dump(self.w_meta, f)
+        except Exception:
+            pass
+
+    def load_lora_parameters(self, save_dir: str, task_id: int) -> None:
+        if self.eval_mode:
+            return
+        path_a = os.path.join(save_dir, f"lora_w_a_{task_id}.pt")
+        path_b = os.path.join(save_dir, f"lora_w_b_{task_id}.pt")
+        if not (os.path.exists(path_a) and os.path.exists(path_b)):
+            raise FileNotFoundError(f"ResNet LoRA checkpoint not found for task {task_id} at {save_dir}")
+
+        saved_as = torch.load(path_a, map_location="cpu")
+        saved_bs = torch.load(path_b, map_location="cpu")
+        if len(saved_as) != len(self.w_As) or len(saved_bs) != len(self.w_Bs):
+            raise ValueError("LoRA branch count mismatch while loading ResNet checkpoint.")
+
+        for dst, src in zip(self.w_As, saved_as):
+            dst.weight.data.copy_(src.weight.data)
+        for dst, src in zip(self.w_Bs, saved_bs):
+            dst.weight.data.copy_(src.weight.data)
+
+    def save_wrap_param(self, save_dir: str) -> None:
+        if not self.learn_alpha:
+            return
+
+        os.makedirs(save_dir, exist_ok=True)
+        file_path = os.path.join(save_dir, f"scaling_factor{self.task_id}.pt")
+        if self.task_id == 0:
+            scaling_param = torch.zeros(self.max_prev_tasks, self.max_prev_tasks)
+        else:
+            prev_path = os.path.join(save_dir, f"scaling_factor{self.task_id - 1}.pt")
+            if os.path.exists(prev_path):
+                scaling_param = torch.load(prev_path, map_location="cpu")
+            else:
+                scaling_param = torch.zeros(self.max_prev_tasks, self.max_prev_tasks)
+
+        for prev_idx in range(self.task_id):
+            if isinstance(self.wrapped_param_prev[prev_idx], ParameterWrapper):
+                scaling_param[self.task_id][prev_idx] = self.wrapped_param_prev[prev_idx].param.detach().cpu()
+        if isinstance(self.wrapped_param[0], ParameterWrapper):
+            scaling_param[self.task_id][self.task_id] = self.wrapped_param[0].param.detach().cpu()
+        torch.save(scaling_param, file_path)
+
+    def compute_ortho_loss(self):
+        device = self.w_As[0].weight.device if len(self.w_As) > 0 else torch.device("cpu")
+        if self.eval_mode or self.task_id <= 0:
+            return torch.tensor(0.0, dtype=torch.float32, device=device)
+
+        loss = torch.tensor(0.0, dtype=torch.float32, device=device)
+        for prev_idx in range(self.task_id):
+            key = str(prev_idx)
+            if key not in self.prev_As:
+                continue
+            saved_w_as = self.prev_As[key]
+            for module_idx, saved_m in enumerate(saved_w_as):
+                curr_m = self.w_As[module_idx]
+                s_w = saved_m.weight.view(saved_m.weight.shape[0], -1)
+                c_w = curr_m.weight.view(curr_m.weight.shape[0], -1)
+                temp = torch.matmul(s_w.to(c_w.device), c_w.t())
+                loss = loss.to(c_w.device)
+                loss += torch.sum(torch.square(temp))
+        return loss
+
+    def forward(self, x):
+        return self.lora_resnet(x)

@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "at": "2026-10-03T16:27:07.440220+00:00",
+  "reviewer": "/root/reverse_reflected_review",
+  "cpu_only": true,
+  "gpu_calls": 0,
+  "trainer_sha256": "e35b400e59d42faaafd424a40acd0ef2e238ec67cdffe63240c3660aec0396cc",
+  "jobs": [
+    {
+      "job": "smoke_RB01_Backward_reflected_natural_s2",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/trainer/reflected_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/configs/smoke_RB01_Backward_reflected_natural_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/outputs/smoke_RB01_Backward_reflected_natural_s2",
+        "--max-tasks",
+        "2",
+        "--max-epochs",
+        "1",
+        "--max-batches",
+        "1",
+        "--dry-run"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"valid\", \"source\": \"/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source\", \"config\": \"/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/configs/smoke_RB01_Backward_reflected_natural_s2.json\", \"output_dir\": \"/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/outputs/smoke_RB01_Backward_reflected_natural_s2\", \"branch\": \"backward_local\", \"direction\": \"g0_plus_g0_minus_g1minus\", \"mode\": \"natural\", \"backend\": \"math\", \"tasks\": 2, \"epochs\": 1, \"seed\": 2}\n",
+      "stderr": "",
+      "config_sha256": "b3bd2a1c1481be099a64752449f2d58b7ee94d150cd9745063aa11e66a57bb4c"
+    },
+    {
+      "job": "RB01_Backward_reflected_natural_s2",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/trainer/reflected_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/configs/RB01_Backward_reflected_natural_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/outputs/RB01_Backward_reflected_natural_s2",
+        "--dry-run"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"valid\", \"source\": \"/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source\", \"config\": \"/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/configs/RB01_Backward_reflected_natural_s2.json\", \"output_dir\": \"/data/140-1/users/liying/O-LoRA/refine-logs/reverse-probe-reflected-update-20261003T161621Z/outputs/RB01_Backward_reflected_natural_s2\", \"branch\": \"backward_local\", \"direction\": \"g0_plus_g0_minus_g1minus\", \"mode\": \"natural\", \"backend\": \"math\", \"tasks\": 10, \"epochs\": 50, \"seed\": 2}\n",
+      "stderr": "",
+      "config_sha256": "046ca5d1733f44708816bd3fcbb19228af5d18ba6a627fbc42a577a6d863a9c3"
+    }
+  ]
+}

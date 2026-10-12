@@ -10,13 +10,13 @@ export CUDA_DEVICE_ORDER="PCI_BUS_ID"
 export TRANSFORMERS_CACHE=/data/140-0/users/liying/.cache/huggingface
 
 port=$(shuf -i25000-30000 -n1)
-gpu_ids=${1:-0,1,2,3,4,5,6,7}
+gpu_ids=${1:-0,1,2,3}
 seed=${2:-1993}
 lambda_ewc=${3:-1.0}
 gamma_ewc=${4:-1.0}
 IFS=',' read -ra _gpu_array <<< "$gpu_ids"
 num_procs=${#_gpu_array[@]}
-run_root=logs_and_outputs_llama_1B/order_3/EWCLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA8_E1_LR1e-3_to_1e-4_lambda${lambda_ewc}_gamma${gamma_ewc}_seed-${seed}
+run_root=logs_and_outputs_llama_1B/order_3/EWCLoRA_Llama-3.2-1B_torch_AdamwHF_Lora8_Ba1-GA16_E1_LR1e-3_to_1e-4_lambda${lambda_ewc}_gamma${gamma_ewc}_seed-${seed}
 
 train_round() {
   local model_path="$1"
@@ -45,7 +45,7 @@ train_round() {
      --output_dir "${output_dir}" \
      --per_device_train_batch_size 1 \
      --per_device_eval_batch_size 4 \
-     --gradient_accumulation_steps 8 \
+     --gradient_accumulation_steps 16 \
      --learning_rate "${learning_rate}" \
      --num_train_epochs 1 \
      --run_name "${run_name}" \

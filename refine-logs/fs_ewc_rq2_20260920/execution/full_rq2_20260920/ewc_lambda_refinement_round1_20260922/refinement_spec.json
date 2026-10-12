@@ -1,0 +1,86 @@
+{
+  "round": 1,
+  "seed": 0,
+  "initial_sweep": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921",
+  "trials": [
+    {
+      "trial_id": "refine1_01_seed0",
+      "ewc_lambda": 13160.740129524924,
+      "interval": [
+        10000,
+        30000
+      ],
+      "log_fraction": 0.25
+    },
+    {
+      "trial_id": "refine1_02_seed0",
+      "ewc_lambda": 17320.508075688773,
+      "interval": [
+        10000,
+        30000
+      ],
+      "log_fraction": 0.5
+    },
+    {
+      "trial_id": "refine1_03_seed0",
+      "ewc_lambda": 22795.070569547774,
+      "interval": [
+        10000,
+        30000
+      ],
+      "log_fraction": 0.75
+    },
+    {
+      "trial_id": "refine1_04_seed0",
+      "ewc_lambda": 131607.40129524923,
+      "interval": [
+        100000,
+        300000
+      ],
+      "log_fraction": 0.25
+    },
+    {
+      "trial_id": "refine1_05_seed0",
+      "ewc_lambda": 173205.0807568877,
+      "interval": [
+        100000,
+        300000
+      ],
+      "log_fraction": 0.5
+    },
+    {
+      "trial_id": "refine1_06_seed0",
+      "ewc_lambda": 227950.70569547775,
+      "interval": [
+        100000,
+        300000
+      ],
+      "log_fraction": 0.75
+    }
+  ],
+  "efficacy_thresholds": {
+    "retention_gain_pp": 1.0,
+    "max_new_task_drop_pp": 5.0,
+    "nondecreasing_average_gain_pp": 0.0
+  },
+  "trigger": "Initial14pointscomplete;12finite,2numericallydiverged;maxretentiongain0.33pp<predeclared1pp;noqualifiedlambda",
+  "interval_rationale": {
+    "10000..30000": "Both endpoints have largest observed a21;10000 has best mean and minimal constraint violation;probe stronger-protection side without a known plasticity penalty beyond policy",
+    "100000..300000": "Nearest observed stable/divergent boundary;do not expand above known divergent points"
+  },
+  "protocol": "Same seed0 SGD to SGD,Task0fullweights/rawF/inputheadRNG/lr0.02/batch128/50epochs;onlylambda changes",
+  "prepared_fisher": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/fisher_state_raw.pt",
+  "input_fingerprints": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/report/COMPLETE.json": "15aa8beef331a59a24ffd360ebe16dc3261bd26d9f6854898c01040c8ebd1140",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/report/results.json": "d9385d396b5ff3f5871bdbc9c6afdf75060a66c16f2e4e12bd93524d94324ba7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/PREPARED.json": "76a06376cb87e5a21bcb92c26c9a66890b5fb280d36fa372bc57dcc54f1e3cf1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/fisher_state_raw.pt": "cfdcd801f773d3d33cb48885c84ff31f032a60bf4a4cccbdead5008d67aacd95",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_selected_lambda_followup_20260921/selection_policy.json": "4df79d205965ab7e98b6108a94aca9f64880d62e91afbc092b3f39f5cc7499b3",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_selected_lambda_followup_20260921/refinement_policy.json": "11adb41b38f0bd44da3171f498c92f27fc34074ae3df6bb91bd34c2286764232"
+  },
+  "created_utc": "2026-09-22T04:32:51.635879+00:00",
+  "common_lambda_star": null,
+  "selection_pool": "14initial+6refinement points; rawF and parent identity shared",
+  "parent_task0_retraining": false,
+  "raw_fisher_recomputed_again": false
+}

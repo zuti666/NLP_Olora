@@ -1,0 +1,126 @@
+{
+  "formal_new_validated": 2,
+  "formal_new_expected": 2,
+  "old_training_baselines_validated": 9,
+  "smokes_validated": 3,
+  "running": 0,
+  "failed": 0,
+  "pending": 0,
+  "new_queue_last_completion_UTC": "2026-10-02T10:47:54.283772+00:00",
+  "details": {
+    "c21_base": {
+      "steps": 2550,
+      "norm_match_used": false,
+      "scale_equals_nominal_every_step": true,
+      "Fisher_passes": 0,
+      "weight_merge_updates": 0,
+      "max_orthogonality_error": 4.588772149756664e-08,
+      "mean_coefficient": 0.28607369085943235,
+      "mean_perp_over_c21": 0.8708235354744152,
+      "mean_cos_c10_c21": 0.6258535217497898,
+      "mean_effective_ratio": 1.298403835243117,
+      "median_effective_ratio": 1.279427355938223,
+      "matrix_sha256": "fbcc7cf748c319cd170922980cb985fba4e3c83fdab149ac71cb9ce6fe6896af"
+    },
+    "c21_perp": {
+      "steps": 2550,
+      "norm_match_used": false,
+      "scale_equals_nominal_every_step": true,
+      "Fisher_passes": 0,
+      "weight_merge_updates": 0,
+      "max_orthogonality_error": 3.704092565401294e-08,
+      "mean_coefficient": 0.2632348035868491,
+      "mean_perp_over_c21": 0.8750149389939543,
+      "mean_cos_c10_c21": 0.6306181224913817,
+      "mean_effective_ratio": 1.1192399720878494,
+      "median_effective_ratio": 1.1008100785023394,
+      "matrix_sha256": "101e7c2c83610a1ccfb55d2b65acef6b7de0fe17b01d4e1d265d34e19524021d"
+    }
+  },
+  "differences": [
+    {
+      "candidate": "c21_base",
+      "reference": "u0",
+      "AAA_task_macro": 5.157768650793642,
+      "FAA_task_macro": 11.637999999999998,
+      "LA": 5.038999999999994,
+      "BWT": 7.332222222222226,
+      "forgetting": -7.332222222222226,
+      "FAA_from_LA_difference": 5.038999999999994,
+      "FAA_from_BWT_difference": 6.599000000000004
+    },
+    {
+      "candidate": "c21_base",
+      "reference": "us",
+      "AAA_task_macro": 2.2772646825396876,
+      "FAA_task_macro": 5.410999999999994,
+      "LA": 1.3459999999999894,
+      "BWT": 4.516666666666664,
+      "forgetting": -4.516666666666664,
+      "FAA_from_LA_difference": 1.3459999999999894,
+      "FAA_from_BWT_difference": 4.064999999999998
+    },
+    {
+      "candidate": "c21_base",
+      "reference": "uo",
+      "AAA_task_macro": -0.4814456349206466,
+      "FAA_task_macro": -0.18900000000000716,
+      "LA": 0.09899999999999665,
+      "BWT": -0.3200000000000003,
+      "forgetting": 0.06666666666666465,
+      "FAA_from_LA_difference": 0.09899999999999665,
+      "FAA_from_BWT_difference": -0.28800000000000026
+    },
+    {
+      "candidate": "c21_base",
+      "reference": "ug",
+      "AAA_task_macro": 0.8754587301587264,
+      "FAA_task_macro": 1.867999999999995,
+      "LA": 1.596999999999987,
+      "BWT": 0.3011111111111111,
+      "forgetting": -0.5222222222222213,
+      "FAA_from_LA_difference": 1.596999999999987,
+      "FAA_from_BWT_difference": 0.271
+    },
+    {
+      "candidate": "c21_perp",
+      "reference": "us",
+      "AAA_task_macro": 2.0689353174603227,
+      "FAA_task_macro": 4.297999999999995,
+      "LA": 0.06300000000000949,
+      "BWT": 4.705555555555554,
+      "forgetting": -4.66222222222222,
+      "FAA_from_LA_difference": 0.06300000000000949,
+      "FAA_from_BWT_difference": 4.2349999999999985
+    },
+    {
+      "candidate": "c21_perp",
+      "reference": "uo",
+      "AAA_task_macro": -0.6897750000000116,
+      "FAA_task_macro": -1.3020000000000067,
+      "LA": -1.1839999999999833,
+      "BWT": -0.1311111111111103,
+      "forgetting": -0.07888888888889145,
+      "FAA_from_LA_difference": -1.1839999999999833,
+      "FAA_from_BWT_difference": -0.11799999999999926
+    },
+    {
+      "candidate": "c21_perp",
+      "reference": "c21_base",
+      "AAA_task_macro": -0.20832936507936495,
+      "FAA_task_macro": -1.1129999999999995,
+      "LA": -1.28299999999998,
+      "BWT": 0.18888888888889,
+      "forgetting": -0.1455555555555561,
+      "FAA_from_LA_difference": -1.28299999999998,
+      "FAA_from_BWT_difference": 0.170000000000001
+    }
+  ],
+  "B_fraction_of_g2_gain_over_g1": {
+    "AAA_task_macro": 0.7499646861671878,
+    "FAA_task_macro": 0.7674999999999988
+  },
+  "statistical_n": 1,
+  "sample_sd": null,
+  "analysis_note": "Natural and matched results are separate protocols; within-step counterfactual ratios are not independent g1 trajectories; single-seed results cannot establish equivalence or Hessian causality."
+}

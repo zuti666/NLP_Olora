@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-10-01T19:37:31.916625+00:00",
+  "test_sha256": "0ad0f5b3dd996dd170c5c074be9c52d3e1813c6833d35ac04803f766243fb882",
+  "implementation_sha256": {
+    "wait_then_launch.py": "3f67c549487bfeecd4d4890dce8370366b0ce34f9192617b2022a75c66b66b72",
+    "run_queue.py": "6d3ed54edc55bde5c0cb73b8015b8663694e415d9e25add2de5a8ee9dfe00676",
+    "validate_job.py": "8a5e420e3b597c420d2e7bd3806178a0322807f6f139711d75bd49c14bcbfa34",
+    "common.py": "a8b750e65b599445d97476a455cbd9f9fec94aab87b2f9023e6e1d0d17c16042",
+    "check_gpu_smokes.py": "930ad4d945013f8f5e9b3b6ec0473392037df6758d4f577ddf7cbf3cd3eef898"
+  },
+  "scope": "CPU only; 120 synthetic receipt/output records; actual same-namespace child exit; no queue.main/waiter.main/GPU invocation",
+  "prior_tests_reused_as_design_reference": "/data/140-1/users/liying/O-LoRA/refine-logs/component-horizon-recovery-20261001T230000Z/review/test_release_guard_independent.py",
+  "evidence_scope": "waiter validates all 120 raw outputs once; queue binds the resulting receipt hashes and current pinned files/source, without re-reading historical parent model outputs on every child launch",
+  "pid_namespace_tested": "pid:[4026536277]",
+  "checks": [
+    {
+      "case": "all_120_observed_outputs_validated_after_verified_same_namespace_exit",
+      "status": "passed"
+    },
+    {
+      "case": "direct_queue_accepts_current_complete_parent_proof",
+      "status": "passed"
+    },
+    {
+      "case": "direct_queue_blocks_completed_but_live_parent",
+      "status": "rejected_as_required",
+      "error": "ValueError('parent cohort not successfully finished')"
+    },
+    {
+      "case": "completed_but_live_parent_waits",
+      "status": "passed"
+    },
+    {
+      "case": "live_parent_119_of_120_waits",
+      "status": "passed"
+    },
+    {
+      "case": "exited_parent_119_of_120_blocks",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent controller exited before successful completion')"
+    },
+    {
+      "case": "parent_failure_blocks_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent contains failed jobs; downstream not released')"
+    },
+    {
+      "case": "parent_failure_blocks_direct_queue",
+      "status": "rejected_as_required",
+      "error": "ValueError('parent cohort not successfully finished')"
+    },
+    {
+      "case": "wrong_pid_namespace_blocks_waiter_even_absent_parent_PID",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('host PID namespace mismatch')"
+    },
+    {
+      "case": "wrong_pid_namespace_blocks_direct_queue_even_absent_parent_PID",
+      "status": "rejected_as_required",
+      "error": "ValueError('host PID namespace mismatch')"
+    },
+    {
+      "case": "parent_suite_tamper_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent manifest changed suite.json')"
+    },
+    {
+      "case": "parent_suite_tamper_queue_prelaunch",
+      "status": "rejected_as_required",
+      "error": "ValueError('parent release pin changed')"
+    },
+    {
+      "case": "parent_pins_manifest_tamper_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent manifest changed RUN_PINS.json')"
+    },
+    {
+      "case": "parent_pins_manifest_tamper_queue_prelaunch",
+      "status": "rejected_as_required",
+      "error": "ValueError('parent release pin changed')"
+    },
+    {
+      "case": "parent_pinned_file_tamper_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent source/config pin changed validate_job.py')"
+    },
+    {
+      "case": "parent_pinned_file_tamper_queue_prelaunch",
+      "status": "rejected_as_required",
+      "error": "ValueError('parent pinned file changed validate_job.py')"
+    },
+    {
+      "case": "frozen_source_tamper_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('Source hash mismatch: x.py')"
+    },
+    {
+      "case": "frozen_source_tamper_queue_prelaunch",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('Source hash mismatch: x.py')"
+    },
+    {
+      "case": "last_parent_observed_output_tamper_before_release",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent dependency not validated parent_119')"
+    },
+    {
+      "case": "post_release_proof_does_not_claim_revalidation_of_historical_raw_outputs",
+      "status": "passed"
+    },
+    {
+      "case": "parent_nonzero_exit_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent dependency not validated parent_119')"
+    },
+    {
+      "case": "parent_nonzero_exit_queue_prelaunch",
+      "status": "rejected_as_required",
+      "error": "ValueError('validated parent receipt changed')"
+    },
+    {
+      "case": "parent_receipt_tamper_waiter",
+      "status": "rejected_as_required",
+      "error": "RuntimeError('parent dependency not validated parent_119')"
+    },
+    {
+      "case": "parent_receipt_tamper_queue_prelaunch",
+      "status": "rejected_as_required",
+      "error": "ValueError('validated parent receipt changed')"
+    },
+    {
+      "case": "valid_parent_restored_after_all_tamper_cases",
+      "status": "passed"
+    },
+    {
+      "case": "formal_blocks_missing_smoke_verification",
+      "status": "rejected_as_required",
+      "error": "FileNotFoundError(2, 'No such file or directory')"
+    },
+    {
+      "case": "current_all_ten_smoke_verification_accepted",
+      "status": "passed"
+    },
+    {
+      "case": "formal_blocks_only_nine_verified_smokes",
+      "status": "rejected_as_required",
+      "error": "ValueError('current GPU smoke release not validated')"
+    },
+    {
+      "case": "formal_blocks_wrong_smoke_suite",
+      "status": "rejected_as_required",
+      "error": "ValueError('current GPU smoke release not validated')"
+    },
+    {
+      "case": "formal_blocks_tampered_smoke_receipt",
+      "status": "rejected_as_required",
+      "error": "ValueError('GPU smoke receipt changed')"
+    }
+  ],
+  "unexpectedly_accepted": []
+}

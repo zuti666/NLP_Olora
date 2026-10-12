@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "audit": "independent_minimal_context_documentation_execution",
+  "at": "2026-10-07T07:00:58.093Z",
+  "campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z",
+  "documentation_read": "ENVIRONMENT.md",
+  "commands_executed_verbatim": true,
+  "suite_sha256": "f3201d49c57ed91034d74f085cf9e292520501d69431efd3dedd1d12d3c462a5",
+  "run_pins_sha256": "55d0b2614e91fc5f9faa72edb85a73b91c6ca804c255a06a397679d978ef115d",
+  "pinned_file_count": 60,
+  "pinned_files_match_before": true,
+  "pinned_files_match_after": true,
+  "hash_verification": {
+    "suite_sha256": "f3201d49c57ed91034d74f085cf9e292520501d69431efd3dedd1d12d3c462a5",
+    "run_pins_sha256": "55d0b2614e91fc5f9faa72edb85a73b91c6ca804c255a06a397679d978ef115d",
+    "suite_sha256_unchanged": true,
+    "run_pins_sha256_unchanged": true,
+    "pinned_file_count": 60,
+    "pinned_mismatches": {},
+    "campaign_files": 72,
+    "campaign_file_changes": {},
+    "no_mutable_changes": true
+  },
+  "documented_invocations": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z/suite.json --dry-run",
+      "sandbox_permissions": "require_escalated",
+      "real_host_namespace": true,
+      "exit_code": 0,
+      "output": "{\"status\": \"valid\", \"jobs\": 29, \"formal\": 14, \"smoke\": 14, \"pairing\": 1, \"reused\": 2, \"allowed_gpus\": [2, 3, 4, 5, 6], \"max_parallel\": 5, \"idle_rule\": \"memory<500MiB/util<5%/no compute PID\"}\n",
+      "counts": {
+        "status": "valid",
+        "jobs": 29,
+        "formal": 14,
+        "smoke": 14,
+        "pairing": 1,
+        "reused": 2,
+        "allowed_gpus": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "max_parallel": 5,
+        "idle_rule": "memory<500MiB/util<5%/no compute PID"
+      }
+    },
+    {
+      "command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -m unittest discover -s /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-recovery-20261007T064813Z/tests -p test_second_probe_cpu.py -v",
+      "exit_code": 0,
+      "output": "test_all_eight_formulas_first_three_points_are_identical (test_second_probe_cpu.Acceptance.test_all_eight_formulas_first_three_points_are_identical) ... ok\ntest_controller_training_and_diagnostic_accounting_are_separate (test_second_probe_cpu.Acceptance.test_controller_training_and_diagnostic_accounting_are_separate) ... ok\ntest_effective_config_radius_reaches_actual_controller_stepper (test_second_probe_cpu.Acceptance.test_effective_config_radius_reaches_actual_controller_stepper) ... ok\ntest_exception_restores_entry_parameters_gradients_buffers_caches_and_rng (test_second_probe_cpu.Acceptance.test_exception_restores_entry_parameters_gradients_buffers_caches_and_rng) ... ok\ntest_failed_opposite_diagnostic_restores_pending_u_and_full_state (test_second_probe_cpu.Acceptance.test_failed_opposite_diagnostic_restores_pending_u_and_full_state) ... ok\ntest_fp32_natural_step_and_zero_momentum_guard (test_second_probe_cpu.Acceptance.test_fp32_natural_step_and_zero_momentum_guard) ... ok\ntest_nonlinear_analytic_locations_direction_and_four_pass_one_sgd (test_second_probe_cpu.Acceptance.test_nonlinear_analytic_locations_direction_and_four_pass_one_sgd) ... ok\ntest_old_b1_exact_equivalence_two_radii_fp32_and_stochastic (test_second_probe_cpu.Acceptance.test_old_b1_exact_equivalence_two_radii_fp32_and_stochastic) ... ok\ntest_recovery_does_not_edit_training_compute_or_sgd (test_second_probe_cpu.Acceptance.test_recovery_does_not_edit_training_compute_or_sgd) ... ok\ntest_rng_replay_full_state_rollback_and_only_one_rng_advance (test_second_probe_cpu.Acceptance.test_rng_replay_full_state_rollback_and_only_one_rng_advance) ... ok\ntest_side_diagnostics_preserve_pending_update_complete_state_and_rng (test_second_probe_cpu.Acceptance.test_side_diagnostics_preserve_pending_update_complete_state_and_rng) ... ok\ntest_strict_factors_and_all_16_registered_configurations (test_second_probe_cpu.Acceptance.test_strict_factors_and_all_16_registered_configurations) ... ok\ntest_update_exception_rolls_back_and_duplicate_step_is_rejected (test_second_probe_cpu.Acceptance.test_update_exception_rolls_back_and_duplicate_step_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 0.765s\n\nOK\n",
+      "test_count": 13,
+      "result": "OK"
+    }
+  ],
+  "counts": {
+    "jobs": 29,
+    "smoke": 14,
+    "pairing": 1,
+    "formal": 14,
+    "reused": 2,
+    "cpu_tests": 13
+  },
+  "no_mutable_changes": true,
+  "launcher_executed": false,
+  "gpu_jobs_launched": false,
+  "campaign_files_before": 72,
+  "campaign_files_after": 72
+}

@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-10-11T19:37:11.427922+00:00",
+  "status": "PASS_FOR_P2P_DISABLED_TRANSPORT",
+  "default": {
+    "exit_code": 1,
+    "passed": false,
+    "observed_failure": "20-second NCCL collective timeout"
+  },
+  "p2p_disabled": {
+    "exit_code": 0,
+    "passed": true,
+    "elapsed_seconds": 6.477007981971838,
+    "rank_results": [
+      {
+        "rank": 3,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 2,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 1,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 0,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      }
+    ]
+  },
+  "validation_note": "Original stdout-space counter returned false because concurrent rank prints interleaved. This validator verifies four complete per-rank JSON payloads, successful exit and four barrier/pass tags. Original diagnostic result and logs preserved.",
+  "logs": {
+    "default": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/NCCL_default.log",
+      "sha256": "df307de3257da726945c7bdf839f2485d21670c12eb617fec48cd9a7d880532d"
+    },
+    "p2p_disabled": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/NCCL_p2p_disabled.log",
+      "sha256": "cb2e8075f8933a8bb213b58e44e04c79b1d3ece9ce6972e7e16e5924f99b4f85"
+    }
+  },
+  "model_updates": 0,
+  "runtime_remedy": {
+    "NCCL_P2P_DISABLE": "1"
+  },
+  "algorithm_or_hyperparameters_changed": false
+}

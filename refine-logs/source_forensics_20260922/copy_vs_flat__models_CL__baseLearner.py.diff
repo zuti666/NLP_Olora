@@ -1,0 +1,14 @@
+--- /data/140-1/users/liying/Flatness_CV/models_CL/baseLearner.py
++++ /data/140-1/users/liying/CopyFlatCV/models_CL/baseLearner.py
+@@ -122,6 +122,9 @@
+             inc = max(int(total_classes), 1)
+ 
+-        # Build per-task boundaries from task_increments when available
+-        task_increments = self.args.get("task_increments", None)
++        # Build per-task boundaries from eval_task_splits when requested. This
++        # keeps joint upper-bound training evaluable as original 20-class blocks.
++        task_increments = self.args.get("eval_task_splits", None)
++        if task_increments is None:
++            task_increments = self.args.get("task_increments", None)
+         task_boundaries = None
+         if task_increments is not None:

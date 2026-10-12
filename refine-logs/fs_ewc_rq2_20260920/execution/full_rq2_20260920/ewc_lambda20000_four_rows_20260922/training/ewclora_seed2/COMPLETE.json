@@ -1,0 +1,92 @@
+{
+  "arm": "ewclora",
+  "completed_tasks": 2,
+  "identity_sha256": "c3813b55b160bca0a20708c1cade1c0af0d2876617699815e98057cb85381b33",
+  "manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/ewclora_seed2/run_manifest.json",
+  "smoke_only": false,
+  "status": "complete",
+  "time_unix": 1790070899.9448683,
+  "validation": {
+    "accuracy_CIL": {
+      "a11": 87.3,
+      "a21": 82.08,
+      "a22": 75.59
+    },
+    "checkpoint_assets": {
+      "checkpoints/fisher_state_1.pt": {
+        "bytes": 56631506,
+        "sha256": "38a1dfb3d9f8034746463bf3c84a2b5fdfe031b688562504c56f64cd35d2d888"
+      },
+      "checkpoints/rng_state_01.pt": {
+        "bytes": 14390,
+        "sha256": "3f9e7f57ae728d369151f15479eaf106dffa0183659470bd3306d0ea87e6bd60"
+      },
+      "checkpoints/task_01.pt": {
+        "bytes": 688098550,
+        "sha256": "c979661d761d7a613524caa70bd9f00aa33025d70d1b7e5501d136c93e727d6e"
+      }
+    },
+    "effective_weight_displacement": 0.28073545902034025,
+    "endpoint_ewc_penalty": 0.007864564563494205,
+    "epochs_per_new_task": 50,
+    "fisher_policy": "recomputed_native_task0_raw_fisher_no_trace_normalization",
+    "fisher_weighted_displacement": 7.864564563494206e-07,
+    "gradients": {
+      "batches": 400,
+      "component_norms_available": true,
+      "component_sample_count": 51,
+      "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+      "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+      "cos_clean_fisher_mean": -0.03722946911762741,
+      "fisher_to_clean_norm_ratio_mean": 0.05391443965432604,
+      "grad_clean_norm_mean": 1.9428825577561768,
+      "grad_combined_norm_max": 5.7902762493779685,
+      "grad_combined_norm_mean": 1.9047004106448155,
+      "grad_fisher_norm_mean": 0.09759674491029159,
+      "single_ewc_injection_verified": true,
+      "source": "actual_native_sgd_base_optimizer_gradients_immediately_before_step",
+      "step1_ewc": 0.0005963215953670442,
+      "step1_grad_fisher_norm": 0.10201423452891777
+    },
+    "losses": {
+      "train_clean_loss_mean": 0.566401196308434,
+      "train_fisher_loss_mean": 0.007512116137804697
+    },
+    "mechanism_task1_verified": true,
+    "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/ewclora_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/ewclora_seed2/imageneta/2/ewclora_seed2/exp_run/20/ewclora_seed2_vit_base_patch16_224_cl_metrics.json",
+    "metrics_sha256": "e51e6665084cc8284224e634d4bc17692e3db40126fe02bea14b6c9e056e7e34",
+    "pairing": {
+      "epochs": 50,
+      "fit_fisher_passes": 1,
+      "new_head_sha256": "f3691cae0907d4f54b6f06569d7ce45462168468d8bd28aa94c6fc1930e19371",
+      "passed": true,
+      "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed2/rng_receipts.jsonl",
+      "reference_sha256": "6ae7667a073aeaf5c8c85efe709d17015c9f67ac2fa6adb14e7419ab0e534872",
+      "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+    },
+    "prepared_fisher": {
+      "anchor_method": "sgd",
+      "execution_ready": true,
+      "fisher_policy": "recomputed_native_task0_raw_fisher_no_trace_normalization",
+      "numel": 14155776,
+      "parent_checkpoint_sha256": "71a005caafe368ce3d5b18b7323b3a03f1b64df2dfdc8c834b6c4bc0a43dea59",
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed2/fisher_state_raw.pt",
+      "payload_sha256": "1144fc30aa33ac8cfef6ca148d48251ed4cbd507e886cbbd828d4bddb9672168",
+      "raw_trace": 33.696880105609694,
+      "receipt_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed2/PREPARED.json",
+      "receipt_sha256": "5e50c03ba1092afdbe906da704f245c28b6e061e21729c174352bd91f1945194",
+      "seed": 2,
+      "source_manifest_sha256": "fe3b5ef75e89bab32010c1aa9a0581cbaeb2b068eaa2f4718f11a9cc314d0a2b",
+      "status": "verified",
+      "tensor_count": 24
+    },
+    "rng_receipts_sha256": "0c4ace9e9b7194334f43d0b4cc1eb5a81090477602788604a28983306384f1d4",
+    "runtime_receipts_sha256": "8a520899d39cdb49686413e2fdd8176b0aa20b2b3b2a3cbfad879dff3acd478a",
+    "smoke_only": false,
+    "task0_local_metrics_sha256": "568e6f8ab23b1955957615abd0388ca09b009caa2b5ffffb2de83fb90e7bc345",
+    "training_batch_metrics_sha256": "b1a966099714925e39bbcd0669daef3b7315dc4e51f9497bc8910ccea753486b",
+    "validated_tasks": [
+      1
+    ]
+  }
+}

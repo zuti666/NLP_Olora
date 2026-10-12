@@ -1,0 +1,73 @@
+{
+  "checked_at_utc": "2026-09-21T21:57:05+00:00",
+  "status": "running_verified",
+  "reviewer": "/root/integer_grid_review",
+  "controller_pid": 3111447,
+  "controller_start_ticks": 48248763,
+  "boot_id": "6b600899-05dd-45f1-9704-ca38d94ab716",
+  "seed": 0,
+  "dense_directions": 50,
+  "fisher_directions": 16,
+  "fisher_samples": 256,
+  "new_radii": [
+    26,
+    27,
+    28,
+    29,
+    31,
+    32,
+    33,
+    34,
+    36,
+    37,
+    38,
+    39,
+    41,
+    42,
+    43,
+    44,
+    46,
+    47,
+    48,
+    49
+  ],
+  "workers": [
+    {
+      "job": "dense_seed0_sgd",
+      "gpu": 0,
+      "pid": 3111655,
+      "valid_rows": 17,
+      "expected_rows": 1001
+    },
+    {
+      "job": "dense_seed0_gam",
+      "gpu": 2,
+      "pid": 3111782,
+      "valid_rows": 16,
+      "expected_rows": 1001
+    },
+    {
+      "job": "sparse_train_seed0_sgd",
+      "gpu": 3,
+      "pid": 3111535,
+      "valid_rows": 13,
+      "expected_rows": 321
+    },
+    {
+      "job": "sparse_train_seed0_gam",
+      "gpu": 5,
+      "pid": 3111781,
+      "valid_rows": 11,
+      "expected_rows": 321
+    }
+  ],
+  "checks_passed": [
+    "host_process_identity",
+    "gpu_uuid_binding",
+    "config_protocol_identity",
+    "finite_raw_rows",
+    "anchor_restoration",
+    "raw_fisher_no_normalization_or_regularizer"
+  ],
+  "publication_status": "queued_after_measurements"
+}

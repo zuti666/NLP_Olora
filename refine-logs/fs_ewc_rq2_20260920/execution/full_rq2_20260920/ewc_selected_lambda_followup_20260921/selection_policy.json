@@ -1,0 +1,59 @@
+{
+  "status": "pending_sweep_results",
+  "lambda_star": null,
+  "source_sweep": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921",
+  "required_report_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/report/COMPLETE.json",
+  "required_points_observed": 14,
+  "require_lambda0_complete": true,
+  "scope": "Choose one common lambda from seed0 SGD-to-SGD sweep, then freeze it across four EWC variants and seeds0/1/2",
+  "average_definition": "A2 = (a21 + a22) / 2, evaluated after the second task; not a22 alone",
+  "implementation_active": {
+    "lambda_positive": true,
+    "formal_training_complete": true,
+    "finite_loss_gradients_parameters": true,
+    "shared_raw_fisher_and_parent_verified": true,
+    "positive_mean_EWC_loss": true,
+    "positive_EWC_gradient_after_first_update": true,
+    "EWC_injected_exactly_once": true
+  },
+  "observable_protection": {
+    "delta_a21_at_least_pp": 1.0,
+    "report_fisher_weighted_drift_change": true,
+    "report_effective_QV_drift_change": true,
+    "numerical_comparison_tolerance": 1e-12
+  },
+  "balanced_candidates": {
+    "require_observable_protection": true,
+    "delta_a22_at_least_pp": -5.0,
+    "delta_A2_at_least_pp": 0.0
+  },
+  "geometric_consistency": "Check raw-Fisher-weighted drift reduction against lambda0; if measured accuracy protection conflicts with unreduced weighted drift, record evidence and resolve interpretation before locking lambda. Total unweighted Q/V norm need not strictly decrease.",
+  "ranking": [
+    "A2 descending",
+    "a21 descending",
+    "lambda ascending"
+  ],
+  "do_not_use_global_best_average_without_protection_filter": true,
+  "no_candidate_policy": "Enter refinement_required and execute the authorized adaptive lambda search in refinement_policy.json; keep the four-row reruns gated. Do not choose lambda0, relax thresholds, change lr or treat divergence as success. Report no qualifying range only when evidence-supported refinement/expansion is exhausted.",
+  "selection_receipt_required_fields": [
+    "lambda_star",
+    "candidate_grid",
+    "eligible_lambdas",
+    "rejected_candidates_with_reasons",
+    "baseline_metrics",
+    "selected_metrics",
+    "loss_and_gradient_evidence",
+    "weighted_drift_evidence",
+    "source_report_sha256",
+    "selected_trial_receipt_sha256",
+    "prepared_fisher_sha256",
+    "selection_policy_sha256",
+    "refinement_round_history",
+    "all_search_observations_manifest_sha256"
+  ],
+  "post_selection": "Save SELECTION.json before supplementary formal training; no per-row/per-seed retuning",
+  "seed0_selection_bias": "Seed0 is used for selection; rerunning seed0 is repeatability checking, not an independent validation seed. Report seed1/2 separately as out-of-selection seeds.",
+  "refinement_policy": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_selected_lambda_followup_20260921/refinement_policy.json",
+  "selection_pool": "Union of valid completed initial-sweep and completed adaptive-refinement points, with immutable source receipts",
+  "required_points_observed_scope": "14 is the initial sweep requirement, not a cap on the subsequent adaptive search; every dispatched refinement round must have validated terminal outcomes before its selection decision"
+}

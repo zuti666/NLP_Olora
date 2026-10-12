@@ -1,0 +1,370 @@
+{
+  "status": "passed",
+  "reviewed_at_utc": "2026-10-09T20:24:15.381081+00:00",
+  "review_scope": "independent read-only core/trainer/config/suite/reuse review plus independently authored CPU oracles; GPU smoke and formal execution not yet reviewed",
+  "checks": {
+    "legacy_response_step_byteidentical": true,
+    "legacy_layout_byteidentical": true,
+    "independent_closed_form_and_transaction_oracle_passed": true,
+    "entire_original_resolved_configs_identical_8_methods_layouts": true,
+    "all_7_new_configs_change_only_radius_geometry_and_run_metadata": true,
+    "only_current_g2_history_zero_and_no_final_norm_scaling": true,
+    "registered_fixed_radii_point05_dynamic_null": true,
+    "formal_full_2550_steps_10x50_no_truncation": true,
+    "four_bounded_gpu_smokes_gate_all_three_formals": true,
+    "suite_allowlist_exactly_gpu4_gpu5": true,
+    "source_manifest_190_files_unchanged": true,
+    "original_run_34_pins_unchanged": true,
+    "original_result_receipt_and_matrix_recompute_verified": true,
+    "record_radius_mode_interface_corrected_and_retested": true,
+    "validator_measures_nonfallback_absolute_probe_distances_rtol_1e_4_atol_1e_8": true,
+    "validator_saved_checkpoint_format_and_explicit_geometry_checked": true,
+    "new_smoke_pairing_checks_frozen_original_first_two_updates": true,
+    "original_reuse_107_files_frozen_and_verified": true,
+    "new_queue_acceptance_references_new_cpu_review_and_not_old_smokes": true,
+    "queue_lease_by_both_physical_index_and_uuid_no_preemption": true,
+    "collector_accepts_only_completed_formal_receipts_and_excludes_smoke_metrics": true
+  },
+  "reviewer": "/root/radius45_independent_review",
+  "implementation_sha256": "59d5b622c861043ef0c3b9e552993ec4ca4bd30077a7004803d3a86de9ffe18a",
+  "trainer_sha256": "8c46880b596b276500b9af043a24470dfb5a8ccd46a2136aa5ea47e90858fa7f",
+  "frozen_parent_sha256": "fe5b2056df14ba10eb8a00722b126986fc83b19cd66905b5bfe7dcfd30eb2e70",
+  "suite_sha256": "ce14b7d55cb302f5a37794511b04ca62210af0b5f1460741eac516d8ce005bab",
+  "configs_sha256": {
+    "smoke_cl10_original_s2.json": "3d4d6bdcfd8ba0fcd6402b83aaad5dc3ec47b404f69d8532b1d41f0f1a8deda1",
+    "smoke_cl10_fixed_outer_s2.json": "e2850e45cd8736f29b92c4b55995277f62b5b057e155fa6f1230cd06ed85d42f",
+    "smoke_cl10_fixed_inner_s2.json": "6c669143119c132478b1dbe1b558cbeb3017203cf828241e1a8d278ba6bf6169",
+    "smoke_cl10_fixed_both_s2.json": "12bb3bf2d769bb2ea02c10a54923bebb5e6b83e7208cbbb9cd07aa31a43bd793",
+    "formal_cl10_fixed_outer_s2.json": "da61da2ae405d04e01b619493e6b593435dacdd020d0b318c0a8892c6cda9ff2",
+    "formal_cl10_fixed_inner_s2.json": "6805b0845af8275d4dba4786248fe3531868acb57815d32832c5e91f3489b1b8",
+    "formal_cl10_fixed_both_s2.json": "8d5917c464ce7c26e64aabb4648f5df0c2ce824019f84dff0525a209096e73f4"
+  },
+  "configuration_differences": {
+    "smoke_cl10_original_s2.json": {
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "smoke_cl10_original_s2"
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-Original"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/smoke_cl10_original_s2/native"
+      ]
+    },
+    "smoke_cl10_fixed_outer_s2.json": {
+      "radius_variant": [
+        "<missing>",
+        "fixed_outer"
+      ],
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "smoke_cl10_fixed_outer_s2"
+      ],
+      "response_radius_mode": [
+        "sgd_step",
+        "independent_inner_outer_v1"
+      ],
+      "outer_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_algorithm_family": [
+        "<missing>",
+        "current_g2"
+      ],
+      "inner_probe_radius": [
+        "<missing>",
+        null
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-FixedOuter"
+      ],
+      "inner_probe_radius_mode": [
+        "<missing>",
+        "sgd_step"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/smoke_cl10_fixed_outer_s2/native"
+      ],
+      "outer_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ]
+    },
+    "smoke_cl10_fixed_inner_s2.json": {
+      "radius_variant": [
+        "<missing>",
+        "fixed_inner"
+      ],
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "smoke_cl10_fixed_inner_s2"
+      ],
+      "response_radius_mode": [
+        "sgd_step",
+        "independent_inner_outer_v1"
+      ],
+      "outer_probe_radius": [
+        "<missing>",
+        null
+      ],
+      "response_algorithm_family": [
+        "<missing>",
+        "current_g2"
+      ],
+      "inner_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-FixedInner"
+      ],
+      "inner_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/smoke_cl10_fixed_inner_s2/native"
+      ],
+      "outer_probe_radius_mode": [
+        "<missing>",
+        "sgd_step"
+      ]
+    },
+    "smoke_cl10_fixed_both_s2.json": {
+      "radius_variant": [
+        "<missing>",
+        "fixed_both"
+      ],
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "smoke_cl10_fixed_both_s2"
+      ],
+      "response_radius_mode": [
+        "sgd_step",
+        "independent_inner_outer_v1"
+      ],
+      "outer_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_algorithm_family": [
+        "<missing>",
+        "current_g2"
+      ],
+      "inner_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-FixedBoth"
+      ],
+      "inner_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/smoke_cl10_fixed_both_s2/native"
+      ],
+      "outer_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ]
+    },
+    "formal_cl10_fixed_outer_s2.json": {
+      "radius_variant": [
+        "<missing>",
+        "fixed_outer"
+      ],
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "formal_cl10_fixed_outer_s2"
+      ],
+      "response_radius_mode": [
+        "sgd_step",
+        "independent_inner_outer_v1"
+      ],
+      "outer_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_algorithm_family": [
+        "<missing>",
+        "current_g2"
+      ],
+      "inner_probe_radius": [
+        "<missing>",
+        null
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-FixedOuter"
+      ],
+      "inner_probe_radius_mode": [
+        "<missing>",
+        "sgd_step"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/formal_cl10_fixed_outer_s2/native"
+      ],
+      "outer_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ]
+    },
+    "formal_cl10_fixed_inner_s2.json": {
+      "radius_variant": [
+        "<missing>",
+        "fixed_inner"
+      ],
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "formal_cl10_fixed_inner_s2"
+      ],
+      "response_radius_mode": [
+        "sgd_step",
+        "independent_inner_outer_v1"
+      ],
+      "outer_probe_radius": [
+        "<missing>",
+        null
+      ],
+      "response_algorithm_family": [
+        "<missing>",
+        "current_g2"
+      ],
+      "inner_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-FixedInner"
+      ],
+      "inner_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/formal_cl10_fixed_inner_s2/native"
+      ],
+      "outer_probe_radius_mode": [
+        "<missing>",
+        "sgd_step"
+      ]
+    },
+    "formal_cl10_fixed_both_s2.json": {
+      "radius_variant": [
+        "<missing>",
+        "fixed_both"
+      ],
+      "prefix": [
+        "formal_cl10_current_g2_s2",
+        "formal_cl10_fixed_both_s2"
+      ],
+      "response_radius_mode": [
+        "sgd_step",
+        "independent_inner_outer_v1"
+      ],
+      "outer_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_algorithm_family": [
+        "<missing>",
+        "current_g2"
+      ],
+      "inner_probe_radius": [
+        "<missing>",
+        0.05
+      ],
+      "response_probe_variant": [
+        "<missing>",
+        "CurrentG2-FixedBoth"
+      ],
+      "inner_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ],
+      "outputs_root": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2/native",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/outputs/formal_cl10_fixed_both_s2/native"
+      ],
+      "outer_probe_radius_mode": [
+        "<missing>",
+        "fixed_l2"
+      ]
+    }
+  },
+  "oracle_checks": {
+    "FixedInner_eta_0.04_closed_form_global_multitensor": true,
+    "FixedInner_eta_0.004_closed_form_global_multitensor": true,
+    "FixedOuter_eta_0.04_closed_form_global_multitensor": true,
+    "FixedOuter_eta_0.004_closed_form_global_multitensor": true,
+    "FixedBoth_eta_0.04_closed_form_global_multitensor": true,
+    "FixedBoth_eta_0.004_closed_form_global_multitensor": true,
+    "FixedBoth_eta_changes_leave_probes_and_U_bitwise_identical_including_eta_zero": true,
+    "two_single_fixed_variants_change_only_the_registered_distance": true,
+    "zero_response_zero_gradient_exception_state_RNG_guards": true,
+    "actual_FP32_indistinguishable_probe_accounting": true,
+    "checkpoint_geometry_rejection": true
+  },
+  "driver_checks": {
+    "original_single200_sgd_entire_resolved_config_identical": true,
+    "original_single200_current_g2_entire_resolved_config_identical": true,
+    "original_single200_history_fusion_entire_resolved_config_identical": true,
+    "original_single200_history_g2_entire_resolved_config_identical": true,
+    "original_cl10_sgd_entire_resolved_config_identical": true,
+    "original_cl10_current_g2_entire_resolved_config_identical": true,
+    "original_cl10_history_fusion_entire_resolved_config_identical": true,
+    "original_cl10_history_g2_entire_resolved_config_identical": true,
+    "FixedInner_configuration_targets_only_geometry_and_rejects_unregistered_radius_history": true,
+    "FixedOuter_configuration_targets_only_geometry_and_rejects_unregistered_radius_history": true,
+    "FixedBoth_configuration_targets_only_geometry_and_rejects_unregistered_radius_history": true,
+    "original_config_cannot_silently_ignore_new_radius_fields": true
+  },
+  "original_reuse_metrics": {
+    "AAA": 62.87033373015873,
+    "FAA": 45.251999999999995,
+    "BWT": -9.652222222222223
+  },
+  "closed_blockers": [
+    {
+      "problem": "trainer expected record.radius_mode, early core only emitted radius_protocol",
+      "resolution": "core now emits radius_mode=independent_inner_outer_v1; independent oracle asserts the actual field on all variants",
+      "remaining": false
+    }
+  ],
+  "open_blockers": [],
+  "remaining_required_execution_gates": [
+    "actual GPU4/5 CUDA witnesses and four bounded smokes",
+    "paired identical initialization/batch/R0/g0 and exact Original against source baseline",
+    "only after pairing receipt, three 2550-step formal runs"
+  ],
+  "limitations": [
+    "single seed2, fixed absolute radius .05 only; performance superiority remains untested",
+    "same gradient budget as existing Current-G2 baseline, not SGD equal wall-clock comparison",
+    "fixed values refer to global L2 over every trainable LoRA/FC tensor, not effective weight-space radius"
+  ],
+  "execution_gate_code_hashes": {
+    "common.py": "9a470bd1dcd2cfe69c23c3c10ef95e65597dabb73021b9e76e4ed305777ea814",
+    "job_worker.py": "270e0e2a8b5204d8a0dcb9ed61efec0f6ea3d12e6923039d3d145b1749129dff",
+    "run_queue.py": "d0cb1f25664bd8c7bb6806eadc5f5635a26f2bdf62cfbbbe016584a87cef1bfe",
+    "validate_job.py": "0994f388b478655e7222097aa1a0af1b7609b6c9d19819bd76f914c1ec34dd6a",
+    "smoke_pairing.py": "c9fc765a6aad4e3d01ed6dc8503cfd6a2626b7d5e7269cc741dc15d688266dff",
+    "collect_results.py": "d2f3ff95a2cb6370ec43e4e2d6ae29d2b350a986f655919e70ae4560e73615f9",
+    "test_queue_cpu.py": "3fd3fe9f448456685c831f557ae661faa88cdee2511bc0e611be49685239a1f8",
+    "gates/ORIGINAL_RESULT_REUSE.json": "8d4febf4a74bdd0b03e82eb26a7e8078a15827444a041a2cdfd783cc4c0a2b1e"
+  }
+}

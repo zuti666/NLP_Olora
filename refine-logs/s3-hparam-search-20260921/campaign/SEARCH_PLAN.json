@@ -1,0 +1,56 @@
+{
+  "reference_logs": [
+    "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s2_gpu3.log",
+    "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s3_gpu4.log"
+  ],
+  "axes": {
+    "ewc_lambda": [
+      0,
+      200,
+      2000,
+      20000
+    ],
+    "gam_grad_norm_rho": [
+      0.1,
+      0.2,
+      0.5
+    ],
+    "ewc_fisher_damping_alpha": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "in_task_fisher_omega": [
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5
+    ]
+  },
+  "design": "one_axis_at_a_time",
+  "unique_config_seed_cells": 16,
+  "axis_table_rows_with_repeated_centers": 22,
+  "reused_unique_cells": 9,
+  "new_jobs": 7,
+  "weightmerge_parameter": "in_task_fisher_omega is the weight-only coefficient in WMergeThenFisher; no trajectory Fisher is computed.",
+  "zero_merge_control": "Existing matched_no_merge seed2/3 remains a separate CE-matched control; native omega=0 disables snapshot CE and is not the same intervention.",
+  "full_training_budget": "10 tasks x 50 epochs, batch128, fixed task order, no replay",
+  "selection_scope": "Exploratory fixed-grid sensitivity analysis; historical and new repeat scores are not interchangeable and test-score selection is not confirmation.",
+  "native_source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "environment_spec_sha256": "4773f6c49399cd9f44af1c85e0eed73904f53324d852d1e156cdca9f65994db3",
+  "environment_changed": false,
+  "existing_mechanism_queue_modified": false,
+  "new_training_seeds": [
+    2
+  ],
+  "statistics_included_seeds": [
+    2,
+    3
+  ],
+  "missing_seed3_policy": "Include existing seed3 results only; never queue a new seed3 job.",
+  "user_seed_correction": "只需要统一一个seed，只用2即可；已有seed2和3都纳入统计"
+}

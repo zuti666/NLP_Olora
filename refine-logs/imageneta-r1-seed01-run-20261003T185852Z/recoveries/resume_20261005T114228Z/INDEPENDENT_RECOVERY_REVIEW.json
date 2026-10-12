@@ -1,0 +1,61 @@
+{
+  "verdict": "PASS_WITH_EXECUTION_PRECONDITIONS",
+  "review_scope": "Read-only scientific and recovery design audit; no queue launch, GPU operation, host process inspection or runtime/output mutation performed",
+  "campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z",
+  "evidence": {
+    "pinned_files": 174,
+    "external_files": 30,
+    "source_files": 190,
+    "configs": 120,
+    "completed_summaries_checked": 66,
+    "errors": [],
+    "pins_sha256": "104e1bf6ee02fd97e78e8de175120b8c83af3618cca914b764e74a25342c588c",
+    "suite_sha256": "1ceeffa55e7bf75005a210015a1bcba6599fdce7ebddeec92334020c081bc0e0"
+  },
+  "current_counts": {
+    "completed": 66,
+    "running": 3,
+    "pending": 51
+  },
+  "interrupted_jobs": [
+    "N04_r1_k10_s0",
+    "N04_r1_k10_s1",
+    "N05_r1_k10_s0"
+  ],
+  "resume_assessment": {
+    "exact_mid_task_resume_supported": false,
+    "checkpoint_contents": "Only completed-task LoRA A/B factors, metadata and classifier tensors/state. Partial current-task model/optimizer/scheduler/RNG/dataloader state not saved.",
+    "task_boundary_resume": "Underlying src/trainer.py has resume_from_task and baseLoRA.load_task_checkpoint for forked trajectories, but this requires config change and does not restore consumed RNG or full scientific audit trace. Current immutable native/run.py exposes no resume option and enforces fresh empty output.",
+    "recommended": "Archive partial attempts and restart these same three jobs from initialization, original configs and seeds. Preserve six completed formal and sixty completed smoke jobs as canonical evidence."
+  },
+  "requirements": [
+    "Verify controller and worker PID/starttime identities are dead in true host namespace; obtain original controller.lock exclusively before archive/reset; check children/GPU processes too.",
+    "Preserve original controller.lock inode: never unlink or replace it. Snapshot controller.json, queue_state.json and controller.log (and existing launch/error records) with hashes.",
+    "Move exactly three partial runtime/jobs/<job> and outputs/<job> trees to unique attempt archive with hash/size file index, then verify hashes; leave active locations absent for exclusive creation.",
+    "Reset exactly three interrupted state entries to pending; preserve 66 completed entries and all51 previouslypending entries byte-equivalent JSON values. Record attempt metadata outside pinned suite/code/configs.",
+    "Leave RUN_PINS.json, suite.json, configs, original scientific code, completed.json receipts, completed output and audit traces unchanged. Revalidate completed summaries/smokes using original validator. Validation reports may be rewritten by original controller but scientific evidence/receipts must not change.",
+    "Run original run_queue.py unchanged in same host/Python environment as new isolated background controller. Keep allowed GPUs [4,5,6], max3 and UUID/index flock safeguards. Preserve same-seed N03\u2192N14 Gmatch dependency.",
+    "Release recovery controller lock before starting original controller, which must reacquire nonblocking exclusive lock. If race occurs it safelyfails; do not bypass lock or launch secondcontroller.",
+    "Verify new three jobs receive fresh worker identities, correctGPU UUIDs and finite epoch loss, then record recovery receipt."
+  ],
+  "caveats": [
+    "Do not merely restart existing queue_state: stale running workers have no exit.json and would be marked failed, causing fail-closed halt.",
+    "Restarting original controller re-runs per-completed-job validator and rewrites validation.json/validation.console.log. Preserve those old validation reports in an archive if literal all-file immutability is desired; final summaries, checkpoints, direction traces, completed receipts remain authoritative and untouched."
+  ],
+  "actual_utility_review": {
+    "verdict": "PASS",
+    "utility_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/recoveries/resume_20261005T114228Z/recover.py",
+    "utility_sha256": "00f2f956ab4906cbf3fe496dd45bf37be9de2bc328770cf3a751fa59113aee5b",
+    "doc_sha256": "d26cd3609f3e84e91da83c344d3f4cc7cbcab0d45146ee964836e6af3ecfed05",
+    "findings": [],
+    "checks": [
+      "Exact pre-state/pin/source identity verified before applying under original controller.lock",
+      "Archive moves limited to exactly three interrupted runtime/output trees, file hashes checked after moves",
+      "Only three job state entries reset; all other117 entries equality asserted",
+      "66completed summary and receipt hashes checked after archive/reset; all old validator reports snapshotted",
+      "No suite/config/code/pin edits, same-seed Gmatch reference identity preserved",
+      "Journal and existence checks prevent blindly repeating a partial recovery"
+    ],
+    "external_prerequisite": "True-host process/reboot inventory must rule out unrecorded orphan trainingchildren; utility checks knowncontroller/workers only."
+  }
+}

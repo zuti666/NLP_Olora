@@ -1,0 +1,45 @@
+{
+  "check_kind": "independent_agent_follows_doc",
+  "date_utc": "2026-10-03",
+  "documents_read": [
+    "/home-local/liying/.codex/skills/run-experiment/SKILL.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/ENVIRONMENT.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/resource_extension_20261003T073600Z/RUN.md"
+  ],
+  "documented_invocation": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/resource_extension_20261003T073600Z/resource_queue.py check --gpu 4",
+  "invocation_executed_verbatim": true,
+  "sandbox_permissions": "require_escalated",
+  "tool_chunk_id": "32fb6a",
+  "exit_code": 1,
+  "expected_dry_run": {
+    "status": "valid",
+    "jobs": 28,
+    "formal": 12,
+    "smokes": 16,
+    "allowed_gpus": [4, 5, 6, 3, 2],
+    "max_parallel": 3
+  },
+  "observed_dry_run": {
+    "status": "valid",
+    "jobs": 28,
+    "formal": 12,
+    "smokes": 16,
+    "allowed_gpus": [4, 5, 6, 3, 2],
+    "max_parallel": 3
+  },
+  "dry_run_matches_documentation": true,
+  "cuda_witness": {
+    "requested_physical_gpu": 4,
+    "status": "not_executed",
+    "reason": "Selected witness GPU is busy; no preemption",
+    "finite_forward_backward_observed": false,
+    "optimizer_updates_observed": 0,
+    "index_uuid_lock_release": "not_independently_observed"
+  },
+  "doc_vs_reality": [
+    "The documented dry-run expectation matches actual output exactly.",
+    "GPU4 was busy at the actual invocation, so the expected successful canonical CUDA sentinel was not reached."
+  ],
+  "status": "failed_resource_idle_gate",
+  "raw_output": "{\"status\": \"valid\", \"jobs\": 28, \"formal\": 12, \"smokes\": 16, \"allowed_gpus\": [4, 5, 6, 3, 2], \"max_parallel\": 3}\nTraceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/resource_extension_20261003T073600Z/resource_queue.py\", line 141, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/resource_extension_20261003T073600Z/resource_queue.py\", line 102, in main\n    raise RuntimeError('Selected witness GPU is busy; no preemption')\nRuntimeError: Selected witness GPU is busy; no preemption\n"
+}

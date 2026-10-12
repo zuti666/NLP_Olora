@@ -1,0 +1,7 @@
+# GPU短测诊断包装恢复
+
+旧首GPU短测在同侧诊断重算torch.equal硬位等检查失败，发生首次SGD前，不能作为科学方向效果差或NaN证据；原日志没有误差大小，故未随意放宽阈值。
+
+训练FourProbeStep compute/点构造/apply_update保持源码完全一致。仅diagnose_sides复用已算同侧g3，额外测反侧1次CE。provenance明确training_g3和isolated_opposite_probe，复用不算新增梯度；参数/gradient/buffers/modes/caches/R1逐位恢复。四探针数学、U和原学习率SGD不变。
+
+每项正式2550SGD/10200训练CE+10隔离诊断CE。CPU13/13及helper14/14；真实GPUsmoke和pairing必须通过才正式。原队列与失败证据保留，未静默改旧pins或失败标签。新smoke保存首次g012/point012 CPU张量+SHA用于数据证据分析。

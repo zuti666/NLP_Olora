@@ -1,0 +1,385 @@
+{
+  "read_only_design": true,
+  "created_date": "2026-09-22",
+  "training_launched": false,
+  "physical_gpu_allowlist": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "gpu_allocation_policy": "One DDP4 job at a time; wait for all four; no substitution; map verified current index-to-UUID to CUDA_VISIBLE_DEVICES.",
+  "gpu_observation_from_parent": {
+    "gpu3_busy_pid": 969996,
+    "gpu3_memory_mib": 12354,
+    "gpu3_utilization_percent": 100,
+    "gpu4_5_6_memory_mib_each": 2,
+    "gpu4_5_6_utilization_percent": 0
+  },
+  "python": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+  "versions_reference": {
+    "python": "3.10.20",
+    "torch": "2.1.1+cu121",
+    "transformers": "4.28.0",
+    "datasets": "1.17.0",
+    "accelerate": "1.4.0",
+    "numpy": "1.24.4",
+    "cuda": "12.1",
+    "cudnn": 8902
+  },
+  "models": {
+    "1B": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B",
+    "3B": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B"
+  },
+  "entrypoint": "<new_frozen_source>/src/run_uie_lora.py",
+  "data_source": "/data/140-1/users/liying/O-LoRA/CL_Benchmark",
+  "nltk_data": "/data/140-1/users/liying/O-LoRA/.cache/nltk_data",
+  "seeds": [
+    0,
+    42,
+    1993
+  ],
+  "data_seed_policy": "Explicit data_seed = seed in new runs. Historical None normalizes to seed for DDP in Transformers4.28; retain raw and effective fields.",
+  "seed0_cpu_sampler_check": {
+    "passed": true,
+    "rank0_first8": [
+      44,
+      47,
+      33,
+      28,
+      40,
+      15,
+      48,
+      61
+    ],
+    "num_replicas": 4,
+    "dataset_length": 64,
+    "none_equals_explicit_for_seeds": [
+      0,
+      42,
+      1993
+    ]
+  },
+  "common": {
+    "world_size": 4,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "global_batch": 64,
+    "bf16": true,
+    "fp16": false,
+    "parameter_dtype": "float32",
+    "bf16_full_eval": false,
+    "fp16_full_eval": false,
+    "num_train_epochs": 1,
+    "learning_rate_first_task": 0.001,
+    "learning_rate_later_tasks": 0.0001,
+    "lr_scheduler_type": "constant",
+    "warmup_steps": 0,
+    "lora_dim": 8,
+    "lora_alpha": 32,
+    "lora_dropout": 0.1,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ],
+    "per_device_eval_batch_size": 4,
+    "max_source_length": 512,
+    "max_target_length": 50,
+    "generation_max_length": 50,
+    "num_beams": 1,
+    "max_grad_norm": 1.0,
+    "ddp_find_unused_parameters": false,
+    "instruction_strategy": "single",
+    "add_task_name": true,
+    "add_dataset_name": true,
+    "num_examples": 0,
+    "max_train_samples": null,
+    "max_predict_samples": null,
+    "tf32_matmul": false,
+    "tf32_cudnn": true,
+    "evaluation_strategy": "no",
+    "save_strategy": "no"
+  },
+  "datasets": {
+    "dbpedia": {
+      "type": "TC",
+      "train_examples": 14000,
+      "test_examples": 7600,
+      "optimizer_steps": 218,
+      "optimizer_used_examples": 13952
+    },
+    "amazon": {
+      "type": "SC",
+      "train_examples": 5000,
+      "test_examples": 7600,
+      "optimizer_steps": 78,
+      "optimizer_used_examples": 4992
+    },
+    "yahoo": {
+      "type": "TC",
+      "train_examples": 10000,
+      "test_examples": 7600,
+      "optimizer_steps": 156,
+      "optimizer_used_examples": 9984
+    },
+    "agnews": {
+      "type": "TC",
+      "train_examples": 4000,
+      "test_examples": 7600,
+      "optimizer_steps": 62,
+      "optimizer_used_examples": 3968
+    }
+  },
+  "orders": {
+    "1": [
+      "dbpedia",
+      "amazon",
+      "yahoo",
+      "agnews"
+    ],
+    "2": [
+      "dbpedia",
+      "amazon",
+      "agnews",
+      "yahoo"
+    ],
+    "3": [
+      "yahoo",
+      "amazon",
+      "agnews",
+      "dbpedia"
+    ]
+  },
+  "methods": {
+    "SeqLoRA": {
+      "lora_strategy": "seqlora",
+      "optimizer_type": "adamw_hf",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "eps": 1e-06,
+      "weight_decay": 0.0,
+      "rank_after4": 8,
+      "olora_lamda_1": 0.0,
+      "olora_lamda_2": 0.0
+    },
+    "IncLoRA": {
+      "lora_strategy": "inclora",
+      "optimizer_type": "adamw_hf",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "eps": 1e-06,
+      "weight_decay": 0.0,
+      "rank_after4": 32,
+      "olora_lamda_1": 0.0,
+      "olora_lamda_2": 0.0
+    },
+    "OLoRA+GAM": {
+      "lora_strategy": "olora",
+      "optimizer_type": "gam-adamw_hf",
+      "actual_optimizer": "GAM(torch.optim.AdamW)",
+      "eps": 1e-08,
+      "weight_decay": 0.01,
+      "rank_after4": 32,
+      "olora_lamda_1": 0.25,
+      "olora_lamda_2": 0.0,
+      "historical_olora_lamda_1": 0.5,
+      "coefficient_policy": "GA8*0.5 = GA16*0.25; planned compensation conditional on preflight two-stage gradient witness; local nonlinear GAM changes remain."
+    },
+    "TreeLoRA": {
+      "lora_strategy": "treelora",
+      "optimizer_type": "adamw_hf",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "eps": 1e-06,
+      "weight_decay": 0.0,
+      "rank_after4": 8,
+      "treelora_reg": 0.5,
+      "upstream_commit": "1c7260c42b34e1961283797c742f08b9c3842501",
+      "olora_lamda_1": 0.0,
+      "olora_lamda_2": 0.0
+    },
+    "EWCLoRA": {
+      "lora_strategy": "ewclora",
+      "optimizer_type": "adamw_hf",
+      "actual_optimizer": "transformers.optimization.AdamW",
+      "eps": 1e-06,
+      "weight_decay": 0.0,
+      "rank_after4": 32,
+      "ewclora_lambda": 0.5,
+      "ewclora_gamma": 1.0,
+      "olora_lamda_1": 0.0,
+      "olora_lamda_2": 0.0,
+      "coefficient_policy": "Preserve current 1B DDP4 protocol; 3B historical GA8*1 = new GA16*0.5 nominal penalty/CE ratio."
+    },
+    "FS-EWCLoRA": {
+      "lora_strategy": "ewclora_gam",
+      "optimizer_type": "gam-adamw_hf",
+      "actual_optimizer": "GAM(torch.optim.AdamW)",
+      "eps": 1e-08,
+      "weight_decay": 0.01,
+      "rank_after4": 32,
+      "ewclora_lambda": 1.0,
+      "ewclora_gamma": 1.0,
+      "olora_lamda_1": 0.0,
+      "olora_lamda_2": 0.0,
+      "coefficient_policy": "Keep lambda1; EWC clean gradient computed once outside replay."
+    }
+  },
+  "gam": {
+    "gam_grad_rho": 0.02,
+    "gam_grad_norm_rho": 0.2,
+    "gam_grad_gamma": 0.03,
+    "gam_grad_beta_1": 1.0,
+    "gam_grad_beta_2": 1.0,
+    "gam_grad_beta_3": 1.0,
+    "gam_adaptive": false,
+    "gam_grad_reduce": "mean",
+    "gam_perturb_eps": 1e-12,
+    "ewclora_project_eps": 1e-12,
+    "closure_count_per_optimizer_step": 4,
+    "replay_microbatches_per_closure": 16,
+    "ddp_probe_sync": false,
+    "final_gradient_sync": true
+  },
+  "ewc": {
+    "ewclora_fisher_max_batches": 0,
+    "ewclora_normalize_fisher": false,
+    "ewclora_normalize_accumulated_fisher": false,
+    "ewclora_fisher_damping_beta": 0.0,
+    "fisher_samples": "all training examples including optimizer incomplete tail"
+  },
+  "strict_plan": {
+    "target_order_runs": 108,
+    "direct_reuse_order_runs": 12,
+    "missing_seed_order_runs": 72,
+    "migrate_existing_8gpu_seed_order_runs": 24,
+    "new_order_runs": 96,
+    "new_full_stages": 384,
+    "reused_full_stages": 48
+  },
+  "time_budget": {
+    "unit": "elapsed hours on four dedicated GPUs",
+    "reference_formula": "sum over method-model: (train+predict for 3 orders)*historical_world_size/4*missing_seed_sets",
+    "reference_projection_hours": 101.00794888888889,
+    "with20percent_overhead_hours": 121.20953866666666,
+    "with40percent_overhead_hours": 141.41112844444444,
+    "caveat": "8-to4 scaling is a budgeting assumption, not measured; includes no busy-GPU waiting; recalibrate after first complete order per size/method family.",
+    "rows": [
+      {
+        "model": "Llama-3.2-1B",
+        "method": "EWCLoRA",
+        "reference_world_size": 4,
+        "reference_three_order_train_h": 0.4952193333333333,
+        "reference_three_order_predict_h": 0.9068429444444444,
+        "missing_seed_sets": 2,
+        "reference_projection_hours": 2.804124555555555
+      },
+      {
+        "model": "Llama-3.2-1B",
+        "method": "FS-EWCLoRA",
+        "reference_world_size": 4,
+        "reference_three_order_train_h": 1.5370130277777778,
+        "reference_three_order_predict_h": 0.9734208888888889,
+        "missing_seed_sets": 2,
+        "reference_projection_hours": 5.020867833333334
+      },
+      {
+        "model": "Llama-3.2-1B",
+        "method": "IncLoRA",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 0.173477,
+        "reference_three_order_predict_h": 0.5298286388888889,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 4.219833833333333
+      },
+      {
+        "model": "Llama-3.2-1B",
+        "method": "SeqLoRA",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 0.1585726944444444,
+        "reference_three_order_predict_h": 0.5245019999999999,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 4.098448166666666
+      },
+      {
+        "model": "Llama-3.2-1B",
+        "method": "TreeLoRA",
+        "reference_world_size": 4,
+        "reference_three_order_train_h": 0.3783096944444445,
+        "reference_three_order_predict_h": 0.8882925,
+        "missing_seed_sets": 2,
+        "reference_projection_hours": 2.533204388888889
+      },
+      {
+        "model": "Llama-3.2-3B",
+        "method": "EWCLoRA",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 0.5502416666666666,
+        "reference_three_order_predict_h": 1.2795425,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 10.978705000000001
+      },
+      {
+        "model": "Llama-3.2-3B",
+        "method": "FS-EWCLoRA",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 1.3651216666666668,
+        "reference_three_order_predict_h": 1.3348241666666667,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 16.199675
+      },
+      {
+        "model": "Llama-3.2-3B",
+        "method": "IncLoRA",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 0.3074412777777778,
+        "reference_three_order_predict_h": 1.202521861111111,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 9.059778833333333
+      },
+      {
+        "model": "Llama-3.2-3B",
+        "method": "SeqLoRA",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 0.29455258333333334,
+        "reference_three_order_predict_h": 1.4803699722222223,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 10.649535333333334
+      },
+      {
+        "model": "Llama-3.2-3B",
+        "method": "TreeLoRA",
+        "reference_world_size": 4,
+        "reference_three_order_train_h": 0.6842515277777778,
+        "reference_three_order_predict_h": 2.2070607777777775,
+        "missing_seed_sets": 2,
+        "reference_projection_hours": 5.78262461111111
+      },
+      {
+        "model": "Llama-3.2-1B",
+        "method": "OLoRA+GAM",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 0.9940341111111112,
+        "reference_three_order_predict_h": 0.579750611111111,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 9.442708333333334
+      },
+      {
+        "model": "Llama-3.2-3B",
+        "method": "OLoRA+GAM",
+        "reference_world_size": 8,
+        "reference_three_order_train_h": 2.00766975,
+        "reference_three_order_predict_h": 1.36207075,
+        "missing_seed_sets": 3,
+        "reference_projection_hours": 20.218443
+      }
+    ]
+  },
+  "required_pre_execution_work": [
+    "Freeze source/config/data hashes and historical-vs-new algorithm branch mapping.",
+    "Generalize hard-coded seed/protocol audit using a new launcher/source copy; do not edit old artifacts.",
+    "Replace Tree launcher GPU0-3 restriction with exact3,4,5,6 policy.",
+    "CPU parser/sampler tests for0,42,1993; verify data_seed is not None not truthiness.",
+    "Two-stage smoke for all methods, three stages for TreeLoRA history; observe effective batch64, AMP, optimizer defaults, gradients, state continuation.",
+    "OLoRA+GAM verify orthogonal-gradient contribution at stage2 and GA8/GA16 nominal regularization scaling with same microbatches; do not infer true distributed numerical equivalence.",
+    "Wait until physicalGPU3/4/5/6 all available; capture index/UUID mapping and rank binding."
+  ],
+  "runtime_evidence_file": "/tmp/nlp_multiseed_runtimes.json"
+}

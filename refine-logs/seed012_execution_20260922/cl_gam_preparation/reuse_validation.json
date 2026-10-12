@@ -1,0 +1,2658 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-22T16:02:05.700381+00:00",
+  "status": "PASS_WITH_DOCUMENTED_LIMITATIONS",
+  "scope": "Validation only; no training or GPU initialization",
+  "campaign_decision": "99 newly executed formal runs + these 6 archived formal seed0 runs; preserve each row implementation and actual RNG behavior",
+  "accepted_reused_records": [
+    {
+      "id": "cllora_aircraft_s0",
+      "method": "CL-LoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "stage": "formal",
+      "status": "accepted_reused",
+      "accepted": true,
+      "checks": {
+        "receipt_and_payload_hashes": true,
+        "formal_successful_seed0": true,
+        "full_finite_task_matrix_and_recomputed_metrics": true,
+        "source_matches_formal_snapshot": true,
+        "runtime_files_match_recorded_manifest": true,
+        "ordered_data_and_task_boundaries_match": true,
+        "prepared_seed1_seed2_training_settings_match": true,
+        "cl_explicit_weight_binding_verified": true
+      },
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_aircraft_s0.json",
+      "receipt_sha256": "5413afd60cce0ce4298af8411513ad8e9c2bcb0e81ee70881a38320e9c059067",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_aircraft_s0.json",
+      "config_sha256": "dcfbe59af04b87d2ca26bb781208ee154b2afe2a828b8996e64a3ea58a19346d",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "c482e852b79c32bf2a83a49e483018b9924f2b5ed9503a89f7cb916be0c48e36",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224.log",
+      "log_sha256": "6bd7d7ddb43c61fff5db6944aaf01716b48eb78abdbb97a9af23808a9e3dbbfa",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "original_source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "original_source_manifest_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "files_verified": {
+        "receipt": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_aircraft_s0.json",
+          "sha256": "5413afd60cce0ce4298af8411513ad8e9c2bcb0e81ee70881a38320e9c059067",
+          "expected_sha256": "5413afd60cce0ce4298af8411513ad8e9c2bcb0e81ee70881a38320e9c059067",
+          "matches": true
+        },
+        "config": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_aircraft_s0.json",
+          "sha256": "dcfbe59af04b87d2ca26bb781208ee154b2afe2a828b8996e64a3ea58a19346d",
+          "expected_sha256": "dcfbe59af04b87d2ca26bb781208ee154b2afe2a828b8996e64a3ea58a19346d",
+          "matches": true
+        },
+        "metric": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "c482e852b79c32bf2a83a49e483018b9924f2b5ed9503a89f7cb916be0c48e36",
+          "expected_sha256": "c482e852b79c32bf2a83a49e483018b9924f2b5ed9503a89f7cb916be0c48e36",
+          "matches": true
+        },
+        "log": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224.log",
+          "sha256": "6bd7d7ddb43c61fff5db6944aaf01716b48eb78abdbb97a9af23808a9e3dbbfa",
+          "expected_sha256": "6bd7d7ddb43c61fff5db6944aaf01716b48eb78abdbb97a9af23808a9e3dbbfa",
+          "matches": true
+        }
+      },
+      "metrics": {
+        "tasks": 10,
+        "faa": 29.284000000000002,
+        "aaa_stage": 26.528941666666668,
+        "stage_accuracies": [
+          25.83,
+          21.17,
+          18.7,
+          23.035,
+          28.46,
+          29.746666666666666,
+          30.47,
+          29.89375,
+          28.700000000000003,
+          29.284000000000002
+        ]
+      },
+      "expected_tasks": 10,
+      "elapsed_hours": 1.537759155035019,
+      "peak_cuda_bytes": 13750904832,
+      "historical_pretrained_sha_bound": true,
+      "prepared_seed_config_comparison": [
+        {
+          "seed": 1,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_aircraft_s1.json",
+            "sha256": "dd07765b506b262adcf9bc6fae7214af820bca3c609bc33535037a82ac559f73",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_aircraft_s0",
+              "new": "seed012_cllora_aircraft_s1"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                1
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        },
+        {
+          "seed": 2,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_aircraft_s2.json",
+            "sha256": "770befda02d7c96dfa4642a937af7d223fff0f170570eb38992e5bedac0dcc3f",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_aircraft_s0",
+              "new": "seed012_cllora_aircraft_s2"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                2
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        }
+      ],
+      "limitations": [
+        "Original data manifests bind ordered absolute paths and labels, not historical image-file content hashes."
+      ]
+    },
+    {
+      "id": "cllora_cars196_s0",
+      "method": "CL-LoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "stage": "formal",
+      "status": "accepted_reused",
+      "accepted": true,
+      "checks": {
+        "receipt_and_payload_hashes": true,
+        "formal_successful_seed0": true,
+        "full_finite_task_matrix_and_recomputed_metrics": true,
+        "source_matches_formal_snapshot": true,
+        "runtime_files_match_recorded_manifest": true,
+        "ordered_data_and_task_boundaries_match": true,
+        "prepared_seed1_seed2_training_settings_match": true,
+        "cl_explicit_weight_binding_verified": true
+      },
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_cars196_s0.json",
+      "receipt_sha256": "7986c88c7223ebdc89668c19116c38b07cf8deadb138d2ad8ea1e44cdae4e668",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_cars196_s0.json",
+      "config_sha256": "ce145d7a1725a6e43981f1145c06cc59738ec5c774326e5585fce8259adc3fc2",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "056ce8a6da0ac389e7200a661955b9337cd63131fa62dd2bd32ce034ed2eeb13",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224.log",
+      "log_sha256": "5edac776a7e34b99ccaae660cde286d933613c20f4c9eca29b8b5d23c2936e29",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "original_source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "original_source_manifest_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "files_verified": {
+        "receipt": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_cars196_s0.json",
+          "sha256": "7986c88c7223ebdc89668c19116c38b07cf8deadb138d2ad8ea1e44cdae4e668",
+          "expected_sha256": "7986c88c7223ebdc89668c19116c38b07cf8deadb138d2ad8ea1e44cdae4e668",
+          "matches": true
+        },
+        "config": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_cars196_s0.json",
+          "sha256": "ce145d7a1725a6e43981f1145c06cc59738ec5c774326e5585fce8259adc3fc2",
+          "expected_sha256": "ce145d7a1725a6e43981f1145c06cc59738ec5c774326e5585fce8259adc3fc2",
+          "matches": true
+        },
+        "metric": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "056ce8a6da0ac389e7200a661955b9337cd63131fa62dd2bd32ce034ed2eeb13",
+          "expected_sha256": "056ce8a6da0ac389e7200a661955b9337cd63131fa62dd2bd32ce034ed2eeb13",
+          "matches": true
+        },
+        "log": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224.log",
+          "sha256": "5edac776a7e34b99ccaae660cde286d933613c20f4c9eca29b8b5d23c2936e29",
+          "expected_sha256": "5edac776a7e34b99ccaae660cde286d933613c20f4c9eca29b8b5d23c2936e29",
+          "matches": true
+        }
+      },
+      "metrics": {
+        "tasks": 10,
+        "faa": 34.507999999999996,
+        "aaa_stage": 42.16925238095238,
+        "stage_accuracies": [
+          63.31,
+          44.765,
+          44.42666666666667,
+          42.6325,
+          41.11,
+          40.24833333333333,
+          37.77285714285714,
+          36.8725,
+          36.04666666666667,
+          34.507999999999996
+        ]
+      },
+      "expected_tasks": 10,
+      "elapsed_hours": 1.7208865467045042,
+      "peak_cuda_bytes": 13753340928,
+      "historical_pretrained_sha_bound": true,
+      "prepared_seed_config_comparison": [
+        {
+          "seed": 1,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cars196_s1.json",
+            "sha256": "2bccbc452244237091d08e28bbd528ad4bcd3f11b602cf9c2e95f8e5a7a55497",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_cars196_s0",
+              "new": "seed012_cllora_cars196_s1"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                1
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        },
+        {
+          "seed": 2,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cars196_s2.json",
+            "sha256": "01e5898738054196048133f54941f50ddeda5faf46c5f719c579e88ea10fa717",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_cars196_s0",
+              "new": "seed012_cllora_cars196_s2"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                2
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        }
+      ],
+      "limitations": [
+        "Original data manifests bind ordered absolute paths and labels, not historical image-file content hashes."
+      ]
+    },
+    {
+      "id": "cllora_cub200_s0",
+      "method": "CL-LoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "stage": "formal",
+      "status": "accepted_reused",
+      "accepted": true,
+      "checks": {
+        "receipt_and_payload_hashes": true,
+        "formal_successful_seed0": true,
+        "full_finite_task_matrix_and_recomputed_metrics": true,
+        "source_matches_formal_snapshot": true,
+        "runtime_files_match_recorded_manifest": true,
+        "ordered_data_and_task_boundaries_match": true,
+        "prepared_seed1_seed2_training_settings_match": true,
+        "cl_explicit_weight_binding_verified": true
+      },
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_cub200_s0.json",
+      "receipt_sha256": "4940d9e1e4ff0331420862074cf464116bc1a1ee9ad6a29be8e49857455a9b23",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_cub200_s0.json",
+      "config_sha256": "b142ed45a65d27b4e70af73b381733081c5fd0bee250a8de10723714e7d38b38",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "83d195e85541323948f2f309c01fdf7da8800f21b9f71596da594c573c388aef",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224.log",
+      "log_sha256": "6c1334fd18f4d847149672a5e75ab18b0b3d44db7d9ab385b9e99b4d0a44f2ae",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "original_source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "original_source_manifest_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "files_verified": {
+        "receipt": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_cub200_s0.json",
+          "sha256": "4940d9e1e4ff0331420862074cf464116bc1a1ee9ad6a29be8e49857455a9b23",
+          "expected_sha256": "4940d9e1e4ff0331420862074cf464116bc1a1ee9ad6a29be8e49857455a9b23",
+          "matches": true
+        },
+        "config": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_cub200_s0.json",
+          "sha256": "b142ed45a65d27b4e70af73b381733081c5fd0bee250a8de10723714e7d38b38",
+          "expected_sha256": "b142ed45a65d27b4e70af73b381733081c5fd0bee250a8de10723714e7d38b38",
+          "matches": true
+        },
+        "metric": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "83d195e85541323948f2f309c01fdf7da8800f21b9f71596da594c573c388aef",
+          "expected_sha256": "83d195e85541323948f2f309c01fdf7da8800f21b9f71596da594c573c388aef",
+          "matches": true
+        },
+        "log": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224.log",
+          "sha256": "6c1334fd18f4d847149672a5e75ab18b0b3d44db7d9ab385b9e99b4d0a44f2ae",
+          "expected_sha256": "6c1334fd18f4d847149672a5e75ab18b0b3d44db7d9ab385b9e99b4d0a44f2ae",
+          "matches": true
+        }
+      },
+      "metrics": {
+        "tasks": 10,
+        "faa": 78.291,
+        "aaa_stage": 80.87810396825397,
+        "stage_accuracies": [
+          90.91,
+          82.57,
+          81.71333333333332,
+          80.3675,
+          81.89,
+          79.34666666666668,
+          78.67142857142858,
+          77.84,
+          77.18111111111111,
+          78.291
+        ]
+      },
+      "expected_tasks": 10,
+      "elapsed_hours": 1.613611357808113,
+      "peak_cuda_bytes": 13753340928,
+      "historical_pretrained_sha_bound": true,
+      "prepared_seed_config_comparison": [
+        {
+          "seed": 1,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cub200_s1.json",
+            "sha256": "764e1bc81df8a6671e38710cfe91bfbdc0e54bf14e986fea6562f4896d6cae7b",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_cub200_s0",
+              "new": "seed012_cllora_cub200_s1"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                1
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        },
+        {
+          "seed": 2,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cub200_s2.json",
+            "sha256": "437c8ee71986f5115f5edc09f35237ca0c64689da58db42dcbdec49166eacb26",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_cub200_s0",
+              "new": "seed012_cllora_cub200_s2"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                2
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        }
+      ],
+      "limitations": [
+        "Original data manifests bind ordered absolute paths and labels, not historical image-file content hashes."
+      ]
+    },
+    {
+      "id": "cllora_flowers_s0",
+      "method": "CL-LoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "stage": "formal",
+      "status": "accepted_reused",
+      "accepted": true,
+      "checks": {
+        "receipt_and_payload_hashes": true,
+        "formal_successful_seed0": true,
+        "full_finite_task_matrix_and_recomputed_metrics": true,
+        "source_matches_formal_snapshot": true,
+        "runtime_files_match_recorded_manifest": true,
+        "ordered_data_and_task_boundaries_match": true,
+        "prepared_seed1_seed2_training_settings_match": true,
+        "cl_explicit_weight_binding_verified": true
+      },
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_flowers_s0.json",
+      "receipt_sha256": "5628ab00d2585983a7e2e3517a74e1d7d5dc1efec96384611b62ca371c4dae99",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_flowers_s0.json",
+      "config_sha256": "a3fbda0d19266fad6d58c566004b2b2065826ae198bf022b84703cd0f8554448",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "9a32a632493fb6f5fbc1457112f5be29433ee2902bbf81d43cdd1afe57a9ddbb",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224.log",
+      "log_sha256": "ec52648e2d70479a5528d8ad16cb42ef0bc06f76af4ac3184c12f829ee743497",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "original_source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "original_source_manifest_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "files_verified": {
+        "receipt": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_flowers_s0.json",
+          "sha256": "5628ab00d2585983a7e2e3517a74e1d7d5dc1efec96384611b62ca371c4dae99",
+          "expected_sha256": "5628ab00d2585983a7e2e3517a74e1d7d5dc1efec96384611b62ca371c4dae99",
+          "matches": true
+        },
+        "config": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_flowers_s0.json",
+          "sha256": "a3fbda0d19266fad6d58c566004b2b2065826ae198bf022b84703cd0f8554448",
+          "expected_sha256": "a3fbda0d19266fad6d58c566004b2b2065826ae198bf022b84703cd0f8554448",
+          "matches": true
+        },
+        "metric": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "9a32a632493fb6f5fbc1457112f5be29433ee2902bbf81d43cdd1afe57a9ddbb",
+          "expected_sha256": "9a32a632493fb6f5fbc1457112f5be29433ee2902bbf81d43cdd1afe57a9ddbb",
+          "matches": true
+        },
+        "log": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224.log",
+          "sha256": "ec52648e2d70479a5528d8ad16cb42ef0bc06f76af4ac3184c12f829ee743497",
+          "expected_sha256": "ec52648e2d70479a5528d8ad16cb42ef0bc06f76af4ac3184c12f829ee743497",
+          "matches": true
+        }
+      },
+      "metrics": {
+        "tasks": 10,
+        "faa": 97.822,
+        "aaa_stage": 98.3343865079365,
+        "stage_accuracies": [
+          98.46,
+          98.94999999999999,
+          98.26333333333332,
+          98.465,
+          98.11999999999999,
+          98.295,
+          98.35714285714286,
+          98.3725,
+          98.23888888888888,
+          97.822
+        ]
+      },
+      "expected_tasks": 10,
+      "elapsed_hours": 0.6714215168025759,
+      "peak_cuda_bytes": 13750904832,
+      "historical_pretrained_sha_bound": true,
+      "prepared_seed_config_comparison": [
+        {
+          "seed": 1,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_flowers_s1.json",
+            "sha256": "96b6b4f0b2f4a36068620aa5389fdd10c45f77db88ab059f11a67d8d46b3c0f5",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_flowers_s0",
+              "new": "seed012_cllora_flowers_s1"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                1
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        },
+        {
+          "seed": 2,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_flowers_s2.json",
+            "sha256": "a15ee4bbadcca4d2da1f1de3f31bc72d089c80d47fcd91f208525eacd642920a",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_flowers_s0",
+              "new": "seed012_cllora_flowers_s2"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                2
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        }
+      ],
+      "limitations": [
+        "Original data manifests bind ordered absolute paths and labels, not historical image-file content hashes."
+      ]
+    },
+    {
+      "id": "cllora_het5_s0",
+      "method": "CL-LoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "stage": "formal",
+      "status": "accepted_reused",
+      "accepted": true,
+      "checks": {
+        "receipt_and_payload_hashes": true,
+        "formal_successful_seed0": true,
+        "full_finite_task_matrix_and_recomputed_metrics": true,
+        "source_matches_formal_snapshot": true,
+        "runtime_files_match_recorded_manifest": true,
+        "ordered_data_and_task_boundaries_match": true,
+        "prepared_seed1_seed2_training_settings_match": true,
+        "cl_explicit_weight_binding_verified": true
+      },
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_het5_s0.json",
+      "receipt_sha256": "560ffc6af6ca91710bdc215acccc395c50eb9c93bcf05db0def7a07f9d9eb74c",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_het5_s0.json",
+      "config_sha256": "ed3c7b84eaf389c75c068ff88ec5b843fc278b71e9f12d9123b249fd2b57b071",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "0cf62c9df0247efd3296001828c1f446a4d48a8d0e6528803915cb6866a7fea6",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224.log",
+      "log_sha256": "d0c205eecca623602c477a3218a7548983c417a802203ad2103874afd64ef54d",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "original_source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "original_source_manifest_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "files_verified": {
+        "receipt": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_het5_s0.json",
+          "sha256": "560ffc6af6ca91710bdc215acccc395c50eb9c93bcf05db0def7a07f9d9eb74c",
+          "expected_sha256": "560ffc6af6ca91710bdc215acccc395c50eb9c93bcf05db0def7a07f9d9eb74c",
+          "matches": true
+        },
+        "config": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_het5_s0.json",
+          "sha256": "ed3c7b84eaf389c75c068ff88ec5b843fc278b71e9f12d9123b249fd2b57b071",
+          "expected_sha256": "ed3c7b84eaf389c75c068ff88ec5b843fc278b71e9f12d9123b249fd2b57b071",
+          "matches": true
+        },
+        "metric": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "0cf62c9df0247efd3296001828c1f446a4d48a8d0e6528803915cb6866a7fea6",
+          "expected_sha256": "0cf62c9df0247efd3296001828c1f446a4d48a8d0e6528803915cb6866a7fea6",
+          "matches": true
+        },
+        "log": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224.log",
+          "sha256": "d0c205eecca623602c477a3218a7548983c417a802203ad2103874afd64ef54d",
+          "expected_sha256": "d0c205eecca623602c477a3218a7548983c417a802203ad2103874afd64ef54d",
+          "matches": true
+        }
+      },
+      "metrics": {
+        "tasks": 5,
+        "faa": 66.98400000000001,
+        "aaa_stage": 61.9868,
+        "stage_accuracies": [
+          77.78,
+          54.985,
+          48.949999999999996,
+          61.235,
+          66.98400000000001
+        ]
+      },
+      "expected_tasks": 5,
+      "elapsed_hours": 3.364293435547087,
+      "peak_cuda_bytes": 13744960000,
+      "historical_pretrained_sha_bound": true,
+      "prepared_seed_config_comparison": [
+        {
+          "seed": 1,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_het5_s1.json",
+            "sha256": "fc421c1958d0ca5b218bf4dd08808914bba61a6e51c1418b1c4105211a6e145a",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_het5_s0",
+              "new": "seed012_cllora_het5_s1"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                1
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        },
+        {
+          "seed": 2,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_het5_s2.json",
+            "sha256": "b27feccccd7fbfeca2ec094e1729b85a26111a751830447feb732321bea294a7",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "cllora_het5_s0",
+              "new": "seed012_cllora_het5_s2"
+            },
+            "protocol_note": {
+              "old": "Aligned CL-LoRA port; current data manifest, archived hyperparameter skeleton; seed0",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                2
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        }
+      ],
+      "limitations": [
+        "Original data manifests bind ordered absolute paths and labels, not historical image-file content hashes."
+      ]
+    },
+    {
+      "id": "gam_ewc_het5_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "stage": "formal",
+      "status": "accepted_reused",
+      "accepted": true,
+      "checks": {
+        "receipt_and_payload_hashes": true,
+        "formal_successful_seed0": true,
+        "full_finite_task_matrix_and_recomputed_metrics": true,
+        "source_matches_formal_snapshot": true,
+        "runtime_files_match_recorded_manifest": true,
+        "ordered_data_and_task_boundaries_match": true,
+        "prepared_seed1_seed2_training_settings_match": true,
+        "cl_explicit_weight_binding_verified": null
+      },
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/gam_ewc_het5_s0.json",
+      "receipt_sha256": "c28329a1d348561550ae9fd9fef85f720692a7e73268a0b21ee075034e345f2c",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/gam_ewc_het5_s0.json",
+      "config_sha256": "cab990e301a5125248cfe836c4188b586150fbca9d63e52d3b184915be22efac",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "5c758db92e3b0d8b78b8cabd3255fa9a1f9cac0ff4eeea88a5add43ef1bbc446",
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224.log",
+      "log_sha256": "d5d57680431a30a6f46f84e67358df164dc86cf85335b58d09a519ff50825482",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "original_source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "original_source_manifest_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "files_verified": {
+        "receipt": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/gam_ewc_het5_s0.json",
+          "sha256": "c28329a1d348561550ae9fd9fef85f720692a7e73268a0b21ee075034e345f2c",
+          "expected_sha256": "c28329a1d348561550ae9fd9fef85f720692a7e73268a0b21ee075034e345f2c",
+          "matches": true
+        },
+        "config": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/gam_ewc_het5_s0.json",
+          "sha256": "cab990e301a5125248cfe836c4188b586150fbca9d63e52d3b184915be22efac",
+          "expected_sha256": "cab990e301a5125248cfe836c4188b586150fbca9d63e52d3b184915be22efac",
+          "matches": true
+        },
+        "metric": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "5c758db92e3b0d8b78b8cabd3255fa9a1f9cac0ff4eeea88a5add43ef1bbc446",
+          "expected_sha256": "5c758db92e3b0d8b78b8cabd3255fa9a1f9cac0ff4eeea88a5add43ef1bbc446",
+          "matches": true
+        },
+        "log": {
+          "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224.log",
+          "sha256": "d5d57680431a30a6f46f84e67358df164dc86cf85335b58d09a519ff50825482",
+          "expected_sha256": "d5d57680431a30a6f46f84e67358df164dc86cf85335b58d09a519ff50825482",
+          "matches": true
+        }
+      },
+      "metrics": {
+        "tasks": 5,
+        "faa": 83.37,
+        "aaa_stage": 81.15566666666666,
+        "stage_accuracies": [
+          87.19,
+          76.985,
+          76.72333333333334,
+          81.50999999999999,
+          83.37
+        ]
+      },
+      "expected_tasks": 5,
+      "elapsed_hours": 14.635170724259483,
+      "peak_cuda_bytes": 11977728000,
+      "historical_pretrained_sha_bound": false,
+      "prepared_seed_config_comparison": [
+        {
+          "seed": 1,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_het5_s1.json",
+            "sha256": "f8380faea262dbc23776a80837e28fd9fab19b5b14ab94e64bb68f7181e29ee5",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "gam_ewc_het5_s0",
+              "new": "seed012_gam_ewc_het5_s1"
+            },
+            "protocol_note": {
+              "old": "New seed0 Het5 baseline GAM-EWC, no merge; RNG isolation enabled; not a historical rerun",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                1
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        },
+        {
+          "seed": 2,
+          "config": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_het5_s2.json",
+            "sha256": "4ff9c569d264d7878f7c656f9ca831bc0c32f87a7015173a0e1b8ff9ec576341",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "all_differences": {
+            "prefix": {
+              "old": "gam_ewc_het5_s0",
+              "new": "seed012_gam_ewc_het5_s2"
+            },
+            "protocol_note": {
+              "old": "New seed0 Het5 baseline GAM-EWC, no merge; RNG isolation enabled; not a historical rerun",
+              "new": "Reuse Sep18 actual execution; only seed and output identity differ"
+            },
+            "outputs_root": {
+              "old": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs",
+              "new": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs"
+            },
+            "optimizer_tag_override": {
+              "old": "fine_gapfill_20260918",
+              "new": "seed012_20260922"
+            },
+            "seed": {
+              "old": [
+                0
+              ],
+              "new": [
+                2
+              ]
+            }
+          },
+          "differences_other_than_seed_and_output_metadata": {},
+          "same_training_settings": true
+        }
+      ],
+      "limitations": [
+        "Original data manifests bind ordered absolute paths and labels, not historical image-file content hashes.",
+        "Historical GAM-Het5 config/receipt did not bind the timm/HuggingFace weight revision or SHA. Current cached revision and bytes are checked, but cannot retroactively establish which historical weight bytes were loaded; accepted under the explicitly selected 99-new + 6-reuse campaign with this provenance limitation."
+      ]
+    }
+  ],
+  "rejected_records": [],
+  "accepted_count": 6,
+  "source_verification": {
+    "matches": true,
+    "original_manifest": {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/source_frozen.json",
+      "sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "expected_sha256": "0babeaf969c8dd4492747e57aea82935083fa9f7248c04ee425f7ca41251eb3f",
+      "matches": true
+    },
+    "prepared_manifest": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "expected_sha256": null,
+      "matches": null
+    },
+    "file_count": 172,
+    "files": [
+      {
+        "path": "backbone/vit_coda_promtpt.py",
+        "expected_sha256": "9e4d1582b7c4e607567166a40297dac98a8e61adae29727559f4a5b7c456626e",
+        "original_sha256": "9e4d1582b7c4e607567166a40297dac98a8e61adae29727559f4a5b7c456626e",
+        "prepared_sha256": "9e4d1582b7c4e607567166a40297dac98a8e61adae29727559f4a5b7c456626e",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_ssf.py",
+        "expected_sha256": "9bdbdc0e0c6be3f42c4edeb8c2819148127668e56b07cc07be3d9597241f6721",
+        "original_sha256": "9bdbdc0e0c6be3f42c4edeb8c2819148127668e56b07cc07be3d9597241f6721",
+        "prepared_sha256": "9bdbdc0e0c6be3f42c4edeb8c2819148127668e56b07cc07be3d9597241f6721",
+        "matches": true
+      },
+      {
+        "path": "backbone/cllora_archived_vit.py",
+        "expected_sha256": "5833c61b6b2656603a8feb82386f551eed1eccc27a490a84b7b76a1977e0efb6",
+        "original_sha256": "5833c61b6b2656603a8feb82386f551eed1eccc27a490a84b7b76a1977e0efb6",
+        "prepared_sha256": "5833c61b6b2656603a8feb82386f551eed1eccc27a490a84b7b76a1977e0efb6",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_l2p.py",
+        "expected_sha256": "b8182697307204737d364a1e754a5763ba1cbf08f4b935e31c0e8855b0ef687b",
+        "original_sha256": "b8182697307204737d364a1e754a5763ba1cbf08f4b935e31c0e8855b0ef687b",
+        "prepared_sha256": "b8182697307204737d364a1e754a5763ba1cbf08f4b935e31c0e8855b0ef687b",
+        "matches": true
+      },
+      {
+        "path": "backbone/base_vit.py",
+        "expected_sha256": "f9a6dab65aa81c0806942888536ac124c93a2bfbbe782cd500a3ebf270f35653",
+        "original_sha256": "f9a6dab65aa81c0806942888536ac124c93a2bfbbe782cd500a3ebf270f35653",
+        "prepared_sha256": "f9a6dab65aa81c0806942888536ac124c93a2bfbbe782cd500a3ebf270f35653",
+        "matches": true
+      },
+      {
+        "path": "backbone/prompt.py",
+        "expected_sha256": "ce57c5a4aa5c9c5ab9d7eb70ae27cb5a966ac2a1d9a540b45b55dfcd46ff2b04",
+        "original_sha256": "ce57c5a4aa5c9c5ab9d7eb70ae27cb5a966ac2a1d9a540b45b55dfcd46ff2b04",
+        "prepared_sha256": "ce57c5a4aa5c9c5ab9d7eb70ae27cb5a966ac2a1d9a540b45b55dfcd46ff2b04",
+        "matches": true
+      },
+      {
+        "path": "backbone/cllora_aligned.py",
+        "expected_sha256": "b0b6bc947e5cc33e5bf3b19b0e0a681bd42bbf94f184d98f2f5323d10a204bb0",
+        "original_sha256": "b0b6bc947e5cc33e5bf3b19b0e0a681bd42bbf94f184d98f2f5323d10a204bb0",
+        "prepared_sha256": "b0b6bc947e5cc33e5bf3b19b0e0a681bd42bbf94f184d98f2f5323d10a204bb0",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_adapter.py",
+        "expected_sha256": "5152da2450ff30e4d14015366e78157e0d5ee1fcc52a6cd7527c2a7d025230fb",
+        "original_sha256": "5152da2450ff30e4d14015366e78157e0d5ee1fcc52a6cd7527c2a7d025230fb",
+        "prepared_sha256": "5152da2450ff30e4d14015366e78157e0d5ee1fcc52a6cd7527c2a7d025230fb",
+        "matches": true
+      },
+      {
+        "path": "backbone/lora_upload.py",
+        "expected_sha256": "4a0ecea4691ff2f7ed0e3e3aac73b4bf8c010e0c66de6726995b5da44a417f27",
+        "original_sha256": "4a0ecea4691ff2f7ed0e3e3aac73b4bf8c010e0c66de6726995b5da44a417f27",
+        "prepared_sha256": "4a0ecea4691ff2f7ed0e3e3aac73b4bf8c010e0c66de6726995b5da44a417f27",
+        "matches": true
+      },
+      {
+        "path": "backbone/lora.py",
+        "expected_sha256": "303ed752ccf68b3a42106aedfc134e97e4305af0b013a45aea7f41ea7665dc86",
+        "original_sha256": "303ed752ccf68b3a42106aedfc134e97e4305af0b013a45aea7f41ea7665dc86",
+        "prepared_sha256": "303ed752ccf68b3a42106aedfc134e97e4305af0b013a45aea7f41ea7665dc86",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_lae.py",
+        "expected_sha256": "1d490dc38c9d07db76d189fc660527762f3641cbf4326534fbc318e3c08299b6",
+        "original_sha256": "1d490dc38c9d07db76d189fc660527762f3641cbf4326534fbc318e3c08299b6",
+        "prepared_sha256": "1d490dc38c9d07db76d189fc660527762f3641cbf4326534fbc318e3c08299b6",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_tuna.py",
+        "expected_sha256": "be59fd0ef53b116c99f16eb68d0275f82cf2fe0386ce252cea9ec3a0f9248f1d",
+        "original_sha256": "be59fd0ef53b116c99f16eb68d0275f82cf2fe0386ce252cea9ec3a0f9248f1d",
+        "prepared_sha256": "be59fd0ef53b116c99f16eb68d0275f82cf2fe0386ce252cea9ec3a0f9248f1d",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_memo.py",
+        "expected_sha256": "62271cef93d59cd4a1c06603040eb3cabdbdcd5e401b4352221100d7aca88bce",
+        "original_sha256": "62271cef93d59cd4a1c06603040eb3cabdbdcd5e401b4352221100d7aca88bce",
+        "prepared_sha256": "62271cef93d59cd4a1c06603040eb3cabdbdcd5e401b4352221100d7aca88bce",
+        "matches": true
+      },
+      {
+        "path": "backbone/vpt.py",
+        "expected_sha256": "6a4809a3fc06de1164e5b52f04425abfcd39bde8a4d328d9c2fa9d925f682be5",
+        "original_sha256": "6a4809a3fc06de1164e5b52f04425abfcd39bde8a4d328d9c2fa9d925f682be5",
+        "prepared_sha256": "6a4809a3fc06de1164e5b52f04425abfcd39bde8a4d328d9c2fa9d925f682be5",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_dualprompt.py",
+        "expected_sha256": "08639e36d76ef39003d29182f61c269fe6ef47f92b750033d6c5ab958786d4ba",
+        "original_sha256": "08639e36d76ef39003d29182f61c269fe6ef47f92b750033d6c5ab958786d4ba",
+        "prepared_sha256": "08639e36d76ef39003d29182f61c269fe6ef47f92b750033d6c5ab958786d4ba",
+        "matches": true
+      },
+      {
+        "path": "backbone/net_ewclora.py",
+        "expected_sha256": "98e85ad1e01aa4ba0297cb3b5926b9db010356b5c7bd6aee2768d03615d4698a",
+        "original_sha256": "98e85ad1e01aa4ba0297cb3b5926b9db010356b5c7bd6aee2768d03615d4698a",
+        "prepared_sha256": "98e85ad1e01aa4ba0297cb3b5926b9db010356b5c7bd6aee2768d03615d4698a",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_ease.py",
+        "expected_sha256": "6192da266ed89b0278de79d88cdb877b8fbd68a49ef4c4b195fe639abe3da9ca",
+        "original_sha256": "6192da266ed89b0278de79d88cdb877b8fbd68a49ef4c4b195fe639abe3da9ca",
+        "prepared_sha256": "6192da266ed89b0278de79d88cdb877b8fbd68a49ef4c4b195fe639abe3da9ca",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_ewclora.py",
+        "expected_sha256": "e0bb70bfbdaa1381c049682fd1d8955bd83760364b0ecea5c5c2e861dd7017c7",
+        "original_sha256": "e0bb70bfbdaa1381c049682fd1d8955bd83760364b0ecea5c5c2e861dd7017c7",
+        "prepared_sha256": "e0bb70bfbdaa1381c049682fd1d8955bd83760364b0ecea5c5c2e861dd7017c7",
+        "matches": true
+      },
+      {
+        "path": "backbone/resnet.py",
+        "expected_sha256": "d65ea92bd544f1b501e3e096abc92c5c08b838e1e9cf9d3a3d930d17b56d0cae",
+        "original_sha256": "d65ea92bd544f1b501e3e096abc92c5c08b838e1e9cf9d3a3d930d17b56d0cae",
+        "prepared_sha256": "d65ea92bd544f1b501e3e096abc92c5c08b838e1e9cf9d3a3d930d17b56d0cae",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_mos.py",
+        "expected_sha256": "d493c3fcb97b075a749769e3c8cce7038ac20f9d38fc6c30abc3e9718cbbf2e0",
+        "original_sha256": "d493c3fcb97b075a749769e3c8cce7038ac20f9d38fc6c30abc3e9718cbbf2e0",
+        "prepared_sha256": "d493c3fcb97b075a749769e3c8cce7038ac20f9d38fc6c30abc3e9718cbbf2e0",
+        "matches": true
+      },
+      {
+        "path": "backbone/linears.py",
+        "expected_sha256": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7",
+        "original_sha256": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7",
+        "prepared_sha256": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7",
+        "matches": true
+      },
+      {
+        "path": "backbone/vit_inflora.py",
+        "expected_sha256": "7f963cb0b533f72f3cdea673aec8485bc576befb4c44e064b9534cbd9584cf7f",
+        "original_sha256": "7f963cb0b533f72f3cdea673aec8485bc576befb4c44e064b9534cbd9584cf7f",
+        "prepared_sha256": "7f963cb0b533f72f3cdea673aec8485bc576befb4c44e064b9534cbd9584cf7f",
+        "matches": true
+      },
+      {
+        "path": "sharpness_evaluation_core/__init__.py",
+        "expected_sha256": "75f69b61ac52625d8271b001091189a75599e9c4adacef6a42afb31ff90f17bd",
+        "original_sha256": "75f69b61ac52625d8271b001091189a75599e9c4adacef6a42afb31ff90f17bd",
+        "prepared_sha256": "75f69b61ac52625d8271b001091189a75599e9c4adacef6a42afb31ff90f17bd",
+        "matches": true
+      },
+      {
+        "path": "sharpness_evaluation_core/curvature.py",
+        "expected_sha256": "6f0a88bdaaa7556567d67ff7050c98c56c83220d650b11ad23b4ec2b185540e5",
+        "original_sha256": "6f0a88bdaaa7556567d67ff7050c98c56c83220d650b11ad23b4ec2b185540e5",
+        "prepared_sha256": "6f0a88bdaaa7556567d67ff7050c98c56c83220d650b11ad23b4ec2b185540e5",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda.py",
+        "expected_sha256": "a062495a38dd0a73b5da57a4e1e167bd88cdee4ebb96968e50e1c9564282daea",
+        "original_sha256": "a062495a38dd0a73b5da57a4e1e167bd88cdee4ebb96968e50e1c9564282daea",
+        "prepared_sha256": "a062495a38dd0a73b5da57a4e1e167bd88cdee4ebb96968e50e1c9564282daea",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/sdlora.py",
+        "expected_sha256": "6c6a4715ba6c0e0f6410d59a12ec0aae332efa2001355b5fd4708be4ca21c1eb",
+        "original_sha256": "6c6a4715ba6c0e0f6410d59a12ec0aae332efa2001355b5fd4708be4ca21c1eb",
+        "prepared_sha256": "6c6a4715ba6c0e0f6410d59a12ec0aae332efa2001355b5fd4708be4ca21c1eb",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/GAM_EWCLoRA_lambda_origin.py",
+        "expected_sha256": "b8e7cc0f927205a6b1cd030ddec7885af1a5646e895f0166a24a0c14d54b917d",
+        "original_sha256": "b8e7cc0f927205a6b1cd030ddec7885af1a5646e895f0166a24a0c14d54b917d",
+        "prepared_sha256": "b8e7cc0f927205a6b1cd030ddec7885af1a5646e895f0166a24a0c14d54b917d",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/cllora_aligned.py",
+        "expected_sha256": "613d1f322b99c12352708d7cf638559a1769ad2f93f7e0d10f379c7fa4d65b4b",
+        "original_sha256": "613d1f322b99c12352708d7cf638559a1769ad2f93f7e0d10f379c7fa4d65b4b",
+        "prepared_sha256": "613d1f322b99c12352708d7cf638559a1769ad2f93f7e0d10f379c7fa4d65b4b",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape.py",
+        "expected_sha256": "d8711707ad4fd5d2c828e4b5cf6c0397170c143b082ce0621184b330e06cb4ba",
+        "original_sha256": "d8711707ad4fd5d2c828e4b5cf6c0397170c143b082ce0621184b330e06cb4ba",
+        "prepared_sha256": "d8711707ad4fd5d2c828e4b5cf6c0397170c143b082ce0621184b330e06cb4ba",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/olora.py",
+        "expected_sha256": "670636e21573b001e39ad7e614c0ba7fc642a87a1ed04868b78c1842cceb9394",
+        "original_sha256": "670636e21573b001e39ad7e614c0ba7fc642a87a1ed04868b78c1842cceb9394",
+        "prepared_sha256": "670636e21573b001e39ad7e614c0ba7fc642a87a1ed04868b78c1842cceb9394",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/cllora.py",
+        "expected_sha256": "40828d0724b784677c09b2151785d836e7d4ae2a940f39c7f586837c2254dbf4",
+        "original_sha256": "40828d0724b784677c09b2151785d836e7d4ae2a940f39c7f586837c2254dbf4",
+        "prepared_sha256": "40828d0724b784677c09b2151785d836e7d4ae2a940f39c7f586837c2254dbf4",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_KFACFisherSAM.py",
+        "expected_sha256": "9b9a51939a27ad170b5cef267dc5f51753ad7d73d1453a8997adfacb19ae9e20",
+        "original_sha256": "9b9a51939a27ad170b5cef267dc5f51753ad7d73d1453a8997adfacb19ae9e20",
+        "prepared_sha256": "9b9a51939a27ad170b5cef267dc5f51753ad7d73d1453a8997adfacb19ae9e20",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py",
+        "expected_sha256": "b089024027a877b38febcb4e789c71c1ea0be3e5bb76d3e929a3d904194e4d17",
+        "original_sha256": "b089024027a877b38febcb4e789c71c1ea0be3e5bb76d3e929a3d904194e4d17",
+        "prepared_sha256": "b089024027a877b38febcb4e789c71c1ea0be3e5bb76d3e929a3d904194e4d17",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/__init__.py",
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "prepared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_multidirectional.py",
+        "expected_sha256": "6db87c2a04dcf6d15a66793d25832bcbd0b28b2ed50388c8214088706cea10ae",
+        "original_sha256": "6db87c2a04dcf6d15a66793d25832bcbd0b28b2ed50388c8214088706cea10ae",
+        "prepared_sha256": "6db87c2a04dcf6d15a66793d25832bcbd0b28b2ed50388c8214088706cea10ae",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/eflora.py",
+        "expected_sha256": "f0231ae9665910960f43e957fc33550e671a3cd131ccf43ad2d0d7db1d03e0b0",
+        "original_sha256": "f0231ae9665910960f43e957fc33550e671a3cd131ccf43ad2d0d7db1d03e0b0",
+        "prepared_sha256": "f0231ae9665910960f43e957fc33550e671a3cd131ccf43ad2d0d7db1d03e0b0",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher-project.py",
+        "expected_sha256": "125bc719cc76e798282a9d45ea3ad0cb188aad72004464152f77b12c2d2b2c21",
+        "original_sha256": "125bc719cc76e798282a9d45ea3ad0cb188aad72004464152f77b12c2d2b2c21",
+        "prepared_sha256": "125bc719cc76e798282a9d45ea3ad0cb188aad72004464152f77b12c2d2b2c21",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/GAM_EWCLoRA_NCL-KFAC.py",
+        "expected_sha256": "3302fc719307e20dd704c46eb7a6fa25ba653004685b454a984df60b7f6ba15f",
+        "original_sha256": "3302fc719307e20dd704c46eb7a6fa25ba653004685b454a984df60b7f6ba15f",
+        "prepared_sha256": "3302fc719307e20dd704c46eb7a6fa25ba653004685b454a984df60b7f6ba15f",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge.py",
+        "expected_sha256": "a07cef404047a661d3315beeb7c048e94fdf24a57c2ce6b4abe8f52aecf9bf30",
+        "original_sha256": "a07cef404047a661d3315beeb7c048e94fdf24a57c2ce6b4abe8f52aecf9bf30",
+        "prepared_sha256": "a07cef404047a661d3315beeb7c048e94fdf24a57c2ce6b4abe8f52aecf9bf30",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_richardson.py",
+        "expected_sha256": "def566bfd6540a9baa8efbf32655e0b8b9ea64d4d69ae808a3977f3095778509",
+        "original_sha256": "def566bfd6540a9baa8efbf32655e0b8b9ea64d4d69ae808a3977f3095778509",
+        "prepared_sha256": "def566bfd6540a9baa8efbf32655e0b8b9ea64d4d69ae808a3977f3095778509",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/seqlora.py",
+        "expected_sha256": "479e2eb20fd536ddd5e803a44b15c88fcdae7a3574d62a07fb7ae020cb9402c2",
+        "original_sha256": "479e2eb20fd536ddd5e803a44b15c88fcdae7a3574d62a07fb7ae020cb9402c2",
+        "prepared_sha256": "479e2eb20fd536ddd5e803a44b15c88fcdae7a3574d62a07fb7ae020cb9402c2",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/GAM_EWCLoRA_NCL.py",
+        "expected_sha256": "710c5ee38f37ff78ea6ad601fdbaab065841d67f1e38990213fb67f38817b080",
+        "original_sha256": "710c5ee38f37ff78ea6ad601fdbaab065841d67f1e38990213fb67f38817b080",
+        "prepared_sha256": "710c5ee38f37ff78ea6ad601fdbaab065841d67f1e38990213fb67f38817b080",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam_intask_lambda_project.py",
+        "expected_sha256": "f4892a5d0cd96e517d455da90f91a22231be09f5c2c9ed6cc0e4bd2136b96a11",
+        "original_sha256": "f4892a5d0cd96e517d455da90f91a22231be09f5c2c9ed6cc0e4bd2136b96a11",
+        "prepared_sha256": "f4892a5d0cd96e517d455da90f91a22231be09f5c2c9ed6cc0e4bd2136b96a11",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+        "expected_sha256": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334",
+        "original_sha256": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334",
+        "prepared_sha256": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_decoupled.py",
+        "expected_sha256": "98473a3e98e7995222a90caa4619c82498af99284310f6e1164d74f210f907a4",
+        "original_sha256": "98473a3e98e7995222a90caa4619c82498af99284310f6e1164d74f210f907a4",
+        "prepared_sha256": "98473a3e98e7995222a90caa4619c82498af99284310f6e1164d74f210f907a4",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/baseLoRA.py",
+        "expected_sha256": "1400adfc9512a710ea8001d31f45af800588c9c92307b80b95233cf7f24e6d24",
+        "original_sha256": "1400adfc9512a710ea8001d31f45af800588c9c92307b80b95233cf7f24e6d24",
+        "prepared_sha256": "1400adfc9512a710ea8001d31f45af800588c9c92307b80b95233cf7f24e6d24",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py",
+        "expected_sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+        "original_sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+        "prepared_sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_sam.py",
+        "expected_sha256": "f2157e6ec02649160b44e682a0239ae5a4370cfeead9975b581ae657c73b47c2",
+        "original_sha256": "f2157e6ec02649160b44e682a0239ae5a4370cfeead9975b581ae657c73b47c2",
+        "prepared_sha256": "f2157e6ec02649160b44e682a0239ae5a4370cfeead9975b581ae657c73b47c2",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/GAM_EWCLoRA_lambda_norm.py",
+        "expected_sha256": "37729f2241101a77357797a2ec2385a22da2585cf37e1137e925ebd16db9c112",
+        "original_sha256": "37729f2241101a77357797a2ec2385a22da2585cf37e1137e925ebd16db9c112",
+        "prepared_sha256": "37729f2241101a77357797a2ec2385a22da2585cf37e1137e925ebd16db9c112",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+        "expected_sha256": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8",
+        "original_sha256": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8",
+        "prepared_sha256": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+        "expected_sha256": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69",
+        "original_sha256": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69",
+        "prepared_sha256": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam_intask_euc.py",
+        "expected_sha256": "217ad6d7d9dfacc7bb2dff7664abdcdca72a4edc40ad07bf66b060875289312b",
+        "original_sha256": "217ad6d7d9dfacc7bb2dff7664abdcdca72a4edc40ad07bf66b060875289312b",
+        "prepared_sha256": "217ad6d7d9dfacc7bb2dff7664abdcdca72a4edc40ad07bf66b060875289312b",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge_factor.py",
+        "expected_sha256": "465dd9ea5e164c80be01bf1072a4e14605c19f34598cf9af2810e0507116915c",
+        "original_sha256": "465dd9ea5e164c80be01bf1072a4e14605c19f34598cf9af2810e0507116915c",
+        "prepared_sha256": "465dd9ea5e164c80be01bf1072a4e14605c19f34598cf9af2810e0507116915c",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_project.py",
+        "expected_sha256": "2760a1746613372f1b67b24e7274b73c14ec7b1cfaf7abc0a7d43582de5233aa",
+        "original_sha256": "2760a1746613372f1b67b24e7274b73c14ec7b1cfaf7abc0a7d43582de5233aa",
+        "prepared_sha256": "2760a1746613372f1b67b24e7274b73c14ec7b1cfaf7abc0a7d43582de5233aa",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_efficient.py",
+        "expected_sha256": "687602b8fce3e3dda54f151d0f228e6e71f4e2a35ac43c40b48c93d50fa01f6a",
+        "original_sha256": "687602b8fce3e3dda54f151d0f228e6e71f4e2a35ac43c40b48c93d50fa01f6a",
+        "prepared_sha256": "687602b8fce3e3dda54f151d0f228e6e71f4e2a35ac43c40b48c93d50fa01f6a",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/GAM_EWCLoRA_lambda_project.py",
+        "expected_sha256": "9e10de2a02540acbb6900f9b46d4e0e81c7d0cd032a9f9d44db45318f0e16d13",
+        "original_sha256": "9e10de2a02540acbb6900f9b46d4e0e81c7d0cd032a9f9d44db45318f0e16d13",
+        "prepared_sha256": "9e10de2a02540acbb6900f9b46d4e0e81c7d0cd032a9f9d44db45318f0e16d13",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/GAM_EWCLoRA_lambda.py",
+        "expected_sha256": "c3fc0f88a55e42f7e3153b626b034e2640eed1e172c2f623454e0be101857513",
+        "original_sha256": "c3fc0f88a55e42f7e3153b626b034e2640eed1e172c2f623454e0be101857513",
+        "prepared_sha256": "c3fc0f88a55e42f7e3153b626b034e2640eed1e172c2f623454e0be101857513",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_fishershape_central.py",
+        "expected_sha256": "e15b5a2c75473dd5e23179baf8a31244649ca715bbe0596fd381539029f004b7",
+        "original_sha256": "e15b5a2c75473dd5e23179baf8a31244649ca715bbe0596fd381539029f004b7",
+        "prepared_sha256": "e15b5a2c75473dd5e23179baf8a31244649ca715bbe0596fd381539029f004b7",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/inclora.py",
+        "expected_sha256": "c11308b54c943a6333e36ccd669c38f6400dec7c62c3e006540b9976bac0b04d",
+        "original_sha256": "c11308b54c943a6333e36ccd669c38f6400dec7c62c3e006540b9976bac0b04d",
+        "prepared_sha256": "c11308b54c943a6333e36ccd669c38f6400dec7c62c3e006540b9976bac0b04d",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/as1_normfisher_gam.py",
+        "expected_sha256": "39bce968dece86804e1d2e19898f775ec92e2af05311a7316c1e8775f286c54e",
+        "original_sha256": "39bce968dece86804e1d2e19898f775ec92e2af05311a7316c1e8775f286c54e",
+        "prepared_sha256": "39bce968dece86804e1d2e19898f775ec92e2af05311a7316c1e8775f286c54e",
+        "matches": true
+      },
+      {
+        "path": "models_LoRAbasedCL/NCL-KFA.py",
+        "expected_sha256": "286d1eb0620caed61371d0c2b361b44e668a8165275fe59f74077a5366d9f777",
+        "original_sha256": "286d1eb0620caed61371d0c2b361b44e668a8165275fe59f74077a5366d9f777",
+        "prepared_sha256": "286d1eb0620caed61371d0c2b361b44e668a8165275fe59f74077a5366d9f777",
+        "matches": true
+      },
+      {
+        "path": "evaluation/probe.py",
+        "expected_sha256": "b1a09ef536deb12f68369a033251c51d31055672854a89007240e2e0c7fda7c4",
+        "original_sha256": "b1a09ef536deb12f68369a033251c51d31055672854a89007240e2e0c7fda7c4",
+        "prepared_sha256": "b1a09ef536deb12f68369a033251c51d31055672854a89007240e2e0c7fda7c4",
+        "matches": true
+      },
+      {
+        "path": "evaluation/__init__.py",
+        "expected_sha256": "4120ec97ccf3c1d203dae1d5446ba547814972aeabbfb394ceeac3e5ccbfa221",
+        "original_sha256": "4120ec97ccf3c1d203dae1d5446ba547814972aeabbfb394ceeac3e5ccbfa221",
+        "prepared_sha256": "4120ec97ccf3c1d203dae1d5446ba547814972aeabbfb394ceeac3e5ccbfa221",
+        "matches": true
+      },
+      {
+        "path": "evaluation/metrics.py",
+        "expected_sha256": "1f41122f6b42eadff40edb8870e563ea6bcaec1994f12ca787450d9bfbf96c91",
+        "original_sha256": "1f41122f6b42eadff40edb8870e563ea6bcaec1994f12ca787450d9bfbf96c91",
+        "prepared_sha256": "1f41122f6b42eadff40edb8870e563ea6bcaec1994f12ca787450d9bfbf96c91",
+        "matches": true
+      },
+      {
+        "path": "evaluation_performance/probe.py",
+        "expected_sha256": "992c7f11ae26707d4dcc6e92988a918cfa944369818a134a8e31337a2f487c86",
+        "original_sha256": "992c7f11ae26707d4dcc6e92988a918cfa944369818a134a8e31337a2f487c86",
+        "prepared_sha256": "992c7f11ae26707d4dcc6e92988a918cfa944369818a134a8e31337a2f487c86",
+        "matches": true
+      },
+      {
+        "path": "evaluation_performance/__init__.py",
+        "expected_sha256": "b4701d784567b8b7c9ac7a9bcd71a00832a565b23599aa8b53f61b792834b7c9",
+        "original_sha256": "b4701d784567b8b7c9ac7a9bcd71a00832a565b23599aa8b53f61b792834b7c9",
+        "prepared_sha256": "b4701d784567b8b7c9ac7a9bcd71a00832a565b23599aa8b53f61b792834b7c9",
+        "matches": true
+      },
+      {
+        "path": "evaluation_performance/metrics.py",
+        "expected_sha256": "661c53510d8a4ae10f40c76db9d43266dedacf59cc8701c3d4c8907467b1222a",
+        "original_sha256": "661c53510d8a4ae10f40c76db9d43266dedacf59cc8701c3d4c8907467b1222a",
+        "prepared_sha256": "661c53510d8a4ae10f40c76db9d43266dedacf59cc8701c3d4c8907467b1222a",
+        "matches": true
+      },
+      {
+        "path": "evaluation_performance/eval_ood.py",
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "prepared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/eval_flatness_weight_Loss.py",
+        "expected_sha256": "5ba47f5c4b914b4cca182c1af3cc537fe2321002f99c4ba4b8b111448e4213b2",
+        "original_sha256": "5ba47f5c4b914b4cca182c1af3cc537fe2321002f99c4ba4b8b111448e4213b2",
+        "prepared_sha256": "5ba47f5c4b914b4cca182c1af3cc537fe2321002f99c4ba4b8b111448e4213b2",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/loss_utils.py",
+        "expected_sha256": "da466f5d5d35f0fd7d3bf113b0903bf68bac96ad343aed0fc7efa32e0849a83d",
+        "original_sha256": "da466f5d5d35f0fd7d3bf113b0903bf68bac96ad343aed0fc7efa32e0849a83d",
+        "prepared_sha256": "da466f5d5d35f0fd7d3bf113b0903bf68bac96ad343aed0fc7efa32e0849a83d",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/eval_flatness_weight_Loss_save.py",
+        "expected_sha256": "328143283a6b1d0ea71109c49b563abbd1cfb6319adc21f042a0b896e1a04984",
+        "original_sha256": "328143283a6b1d0ea71109c49b563abbd1cfb6319adc21f042a0b896e1a04984",
+        "prepared_sha256": "328143283a6b1d0ea71109c49b563abbd1cfb6319adc21f042a0b896e1a04984",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/loss_landscape.py",
+        "expected_sha256": "74b7e232682dea698c69c78ad69b22a9c73ab9d54e45546b424c40f834bce451",
+        "original_sha256": "74b7e232682dea698c69c78ad69b22a9c73ab9d54e45546b424c40f834bce451",
+        "prepared_sha256": "74b7e232682dea698c69c78ad69b22a9c73ab9d54e45546b424c40f834bce451",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/__init__.py",
+        "expected_sha256": "44982143a620ac83c0974f1ced031b046ca59eb0d0b73747631a6e1b1b03d5d4",
+        "original_sha256": "44982143a620ac83c0974f1ced031b046ca59eb0d0b73747631a6e1b1b03d5d4",
+        "prepared_sha256": "44982143a620ac83c0974f1ced031b046ca59eb0d0b73747631a6e1b1b03d5d4",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/visualize_attention.py",
+        "expected_sha256": "6a0f1349609a6e24a785026f91b6302744f18b2e0cb0facc32287607fa9c3bb9",
+        "original_sha256": "6a0f1349609a6e24a785026f91b6302744f18b2e0cb0facc32287607fa9c3bb9",
+        "prepared_sha256": "6a0f1349609a6e24a785026f91b6302744f18b2e0cb0facc32287607fa9c3bb9",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/io_utils.py",
+        "expected_sha256": "627cadb788161c0b0f9883aeb2fd4bfaf640ef5b0a24d36a9addf2cf0893eb3c",
+        "original_sha256": "627cadb788161c0b0f9883aeb2fd4bfaf640ef5b0a24d36a9addf2cf0893eb3c",
+        "prepared_sha256": "627cadb788161c0b0f9883aeb2fd4bfaf640ef5b0a24d36a9addf2cf0893eb3c",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/curv_localization.py",
+        "expected_sha256": "dc74114a5ba06cf34ba1df34e15f9c7087d91f7eba4d4cd7b58de2b534716c6b",
+        "original_sha256": "dc74114a5ba06cf34ba1df34e15f9c7087d91f7eba4d4cd7b58de2b534716c6b",
+        "prepared_sha256": "dc74114a5ba06cf34ba1df34e15f9c7087d91f7eba4d4cd7b58de2b534716c6b",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/eval_flatness_weight_Loss_upload.py",
+        "expected_sha256": "dc56d1cae293bd178da5ab0e1bb009abe1940ec4b490c34b74484c63a83536c6",
+        "original_sha256": "dc56d1cae293bd178da5ab0e1bb009abe1940ec4b490c34b74484c63a83536c6",
+        "prepared_sha256": "dc56d1cae293bd178da5ab0e1bb009abe1940ec4b490c34b74484c63a83536c6",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/attn_utils.py",
+        "expected_sha256": "18cad8178ee84ca855f1d123d032339b12de906d709a2773606ec292ceb07a0c",
+        "original_sha256": "18cad8178ee84ca855f1d123d032339b12de906d709a2773606ec292ceb07a0c",
+        "prepared_sha256": "18cad8178ee84ca855f1d123d032339b12de906d709a2773606ec292ceb07a0c",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/lanczos_iter.py",
+        "expected_sha256": "0f4f90717b5cb34f170187654e2e4772f73f5cd52b8101b385ad983cdfd85f7c",
+        "original_sha256": "0f4f90717b5cb34f170187654e2e4772f73f5cd52b8101b385ad983cdfd85f7c",
+        "prepared_sha256": "0f4f90717b5cb34f170187654e2e4772f73f5cd52b8101b385ad983cdfd85f7c",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/power_iter.py",
+        "expected_sha256": "91cb9b20dda06f91d4d17e48f2adf99b871daba26f84e3ea11ccb1d7242917cf",
+        "original_sha256": "91cb9b20dda06f91d4d17e48f2adf99b871daba26f84e3ea11ccb1d7242917cf",
+        "prepared_sha256": "91cb9b20dda06f91d4d17e48f2adf99b871daba26f84e3ea11ccb1d7242917cf",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/param_utils.py",
+        "expected_sha256": "c79c10e9135055f0ba183d820a44f7144ca0f6c2fd8746c577ce3db218f6d8ad",
+        "original_sha256": "c79c10e9135055f0ba183d820a44f7144ca0f6c2fd8746c577ce3db218f6d8ad",
+        "prepared_sha256": "c79c10e9135055f0ba183d820a44f7144ca0f6c2fd8746c577ce3db218f6d8ad",
+        "matches": true
+      },
+      {
+        "path": "src/trainer.py",
+        "expected_sha256": "e59acaac94189a75f3b9342dd5e183ff39daa2c3b5ba23cfa6776d1cac6b33cc",
+        "original_sha256": "e59acaac94189a75f3b9342dd5e183ff39daa2c3b5ba23cfa6776d1cac6b33cc",
+        "prepared_sha256": "e59acaac94189a75f3b9342dd5e183ff39daa2c3b5ba23cfa6776d1cac6b33cc",
+        "matches": true
+      },
+      {
+        "path": "src/trainer_allData.py",
+        "expected_sha256": "7d201f383c58a29ff3a25de1f423347b4ff7b5f2efe2065ec0b7a7d092740b47",
+        "original_sha256": "7d201f383c58a29ff3a25de1f423347b4ff7b5f2efe2065ec0b7a7d092740b47",
+        "prepared_sha256": "7d201f383c58a29ff3a25de1f423347b4ff7b5f2efe2065ec0b7a7d092740b47",
+        "matches": true
+      },
+      {
+        "path": "src/__init__.py",
+        "expected_sha256": "266a0a81b767875cc1d9296a168586a6f612b815aa85bb609275b778900a672e",
+        "original_sha256": "266a0a81b767875cc1d9296a168586a6f612b815aa85bb609275b778900a672e",
+        "prepared_sha256": "266a0a81b767875cc1d9296a168586a6f612b815aa85bb609275b778900a672e",
+        "matches": true
+      },
+      {
+        "path": "src/main.py",
+        "expected_sha256": "c364dfec13009b6be936b9010d7f45bc59ee9ef79ee619f94b44ce60b0703272",
+        "original_sha256": "c364dfec13009b6be936b9010d7f45bc59ee9ef79ee619f94b44ce60b0703272",
+        "prepared_sha256": "c364dfec13009b6be936b9010d7f45bc59ee9ef79ee619f94b44ce60b0703272",
+        "matches": true
+      },
+      {
+        "path": "src/__main__.py",
+        "expected_sha256": "55d870f180352b7c0f3256c94182f95aabd1cc0295799d7a9994053bd551982a",
+        "original_sha256": "55d870f180352b7c0f3256c94182f95aabd1cc0295799d7a9994053bd551982a",
+        "prepared_sha256": "55d870f180352b7c0f3256c94182f95aabd1cc0295799d7a9994053bd551982a",
+        "matches": true
+      },
+      {
+        "path": "evaluation_feature/eval_flat_feature.py",
+        "expected_sha256": "72573f27103df2c425b04a9398a31c04f2c96a2658b48a62a9e9f3f29c6dad9d",
+        "original_sha256": "72573f27103df2c425b04a9398a31c04f2c96a2658b48a62a9e9f3f29c6dad9d",
+        "prepared_sha256": "72573f27103df2c425b04a9398a31c04f2c96a2658b48a62a9e9f3f29c6dad9d",
+        "matches": true
+      },
+      {
+        "path": "evaluation_feature/feature_drift.py",
+        "expected_sha256": "4a5a162303627ddf171e31078101f528f1754446f38017b566e5559ac2efc8ad",
+        "original_sha256": "4a5a162303627ddf171e31078101f528f1754446f38017b566e5559ac2efc8ad",
+        "prepared_sha256": "4a5a162303627ddf171e31078101f528f1754446f38017b566e5559ac2efc8ad",
+        "matches": true
+      },
+      {
+        "path": "eval_flat/eval_flatness_weight_Loss.py",
+        "expected_sha256": "c513355d4c26d7cfaad4d092035246d213945110468647abe52f6cc955f5db9c",
+        "original_sha256": "c513355d4c26d7cfaad4d092035246d213945110468647abe52f6cc955f5db9c",
+        "prepared_sha256": "c513355d4c26d7cfaad4d092035246d213945110468647abe52f6cc955f5db9c",
+        "matches": true
+      },
+      {
+        "path": "eval_flat/__init__.py",
+        "expected_sha256": "485129df24dbbfc9818ceec46cbb95b51da917aa673372182a0e64cb3fd2475d",
+        "original_sha256": "485129df24dbbfc9818ceec46cbb95b51da917aa673372182a0e64cb3fd2475d",
+        "prepared_sha256": "485129df24dbbfc9818ceec46cbb95b51da917aa673372182a0e64cb3fd2475d",
+        "matches": true
+      },
+      {
+        "path": "eval_flat/eval_flat_feature.py",
+        "expected_sha256": "1eabc78c00dba88c85d271587e789c27cf246e3d4fcb35e1851f35c7f1151064",
+        "original_sha256": "1eabc78c00dba88c85d271587e789c27cf246e3d4fcb35e1851f35c7f1151064",
+        "prepared_sha256": "1eabc78c00dba88c85d271587e789c27cf246e3d4fcb35e1851f35c7f1151064",
+        "matches": true
+      },
+      {
+        "path": "eval_flat/param_utils.py",
+        "expected_sha256": "157e4edce1b8c675c1a0a5edc5315e66e7a24bc5050f9963c43867c1b7f9f26d",
+        "original_sha256": "157e4edce1b8c675c1a0a5edc5315e66e7a24bc5050f9963c43867c1b7f9f26d",
+        "prepared_sha256": "157e4edce1b8c675c1a0a5edc5315e66e7a24bc5050f9963c43867c1b7f9f26d",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/ekfac.py",
+        "expected_sha256": "270c953815abe266d8aef9ed67d5bc54ece0dd42517b23d5cd190ebb497bd3ed",
+        "original_sha256": "270c953815abe266d8aef9ed67d5bc54ece0dd42517b23d5cd190ebb497bd3ed",
+        "prepared_sha256": "270c953815abe266d8aef9ed67d5bc54ece0dd42517b23d5cd190ebb497bd3ed",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/optimer_fishersam_diagonal.py",
+        "expected_sha256": "2807241e0e0529b910340980e40f64bb5f66222a73f9b8395aa3f843036031a7",
+        "original_sha256": "2807241e0e0529b910340980e40f64bb5f66222a73f9b8395aa3f843036031a7",
+        "prepared_sha256": "2807241e0e0529b910340980e40f64bb5f66222a73f9b8395aa3f843036031a7",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/fishershape_multidirectional.py",
+        "expected_sha256": "e4f9b285365e4549443628934a83f9e25d00209351c214dfbdb89f48c50c7830",
+        "original_sha256": "e4f9b285365e4549443628934a83f9e25d00209351c214dfbdb89f48c50c7830",
+        "prepared_sha256": "e4f9b285365e4549443628934a83f9e25d00209351c214dfbdb89f48c50c7830",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/fishershape_efficient.py",
+        "expected_sha256": "d20565324e64cce710f24bb0207df74e8f58f4563cb8ffa1e6f5c5dc8d0b4d10",
+        "original_sha256": "d20565324e64cce710f24bb0207df74e8f58f4563cb8ffa1e6f5c5dc8d0b4d10",
+        "prepared_sha256": "d20565324e64cce710f24bb0207df74e8f58f4563cb8ffa1e6f5c5dc8d0b4d10",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/__init__.py",
+        "expected_sha256": "5e1afb186f7d3f3d1792153a9de1059c215f9033183f3c32836484c8e64f47f8",
+        "original_sha256": "5e1afb186f7d3f3d1792153a9de1059c215f9033183f3c32836484c8e64f47f8",
+        "prepared_sha256": "5e1afb186f7d3f3d1792153a9de1059c215f9033183f3c32836484c8e64f47f8",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/optimer_gam_filiter.py",
+        "expected_sha256": "78a128311ae62c973551484265f50825011ff4171cd9d8a792c57ac1c85ed9c0",
+        "original_sha256": "78a128311ae62c973551484265f50825011ff4171cd9d8a792c57ac1c85ed9c0",
+        "prepared_sha256": "78a128311ae62c973551484265f50825011ff4171cd9d8a792c57ac1c85ed9c0",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/fishershape_central.py",
+        "expected_sha256": "ec3835b930d6885824bfefa9c1f87c472896f70aed7de51fe375d7fa5d935e79",
+        "original_sha256": "ec3835b930d6885824bfefa9c1f87c472896f70aed7de51fe375d7fa5d935e79",
+        "prepared_sha256": "ec3835b930d6885824bfefa9c1f87c472896f70aed7de51fe375d7fa5d935e79",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/ARWP_cos.py",
+        "expected_sha256": "9142a0094c944015e5deb347b68df1473046373e55d22d5e949b8e1b3298fe79",
+        "original_sha256": "9142a0094c944015e5deb347b68df1473046373e55d22d5e949b8e1b3298fe79",
+        "prepared_sha256": "9142a0094c944015e5deb347b68df1473046373e55d22d5e949b8e1b3298fe79",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/optimer_sam_filiter.py",
+        "expected_sha256": "5d6878af26101cfa56d97c8401614bbdfdb81efd0df358436b4259354b731f81",
+        "original_sha256": "5d6878af26101cfa56d97c8401614bbdfdb81efd0df358436b4259354b731f81",
+        "prepared_sha256": "5d6878af26101cfa56d97c8401614bbdfdb81efd0df358436b4259354b731f81",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/fishershape.py",
+        "expected_sha256": "668cdee1d106c6ce796eb44462aab384dc09d355d8d33af4186c096128ad9a5f",
+        "original_sha256": "668cdee1d106c6ce796eb44462aab384dc09d355d8d33af4186c096128ad9a5f",
+        "prepared_sha256": "668cdee1d106c6ce796eb44462aab384dc09d355d8d33af4186c096128ad9a5f",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/fishershape_richardson.py",
+        "expected_sha256": "3f20fdf7cb70dac41abb93df88a8dff49e24a8bd218964bff0ff38e102d388fa",
+        "original_sha256": "3f20fdf7cb70dac41abb93df88a8dff49e24a8bd218964bff0ff38e102d388fa",
+        "prepared_sha256": "3f20fdf7cb70dac41abb93df88a8dff49e24a8bd218964bff0ff38e102d388fa",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/c_flat.py",
+        "expected_sha256": "7fe6c1eeff15727d4a974164709fe6a326a3b8cdf4feb1ee9d2d2d7f319cad0b",
+        "original_sha256": "7fe6c1eeff15727d4a974164709fe6a326a3b8cdf4feb1ee9d2d2d7f319cad0b",
+        "prepared_sha256": "7fe6c1eeff15727d4a974164709fe6a326a3b8cdf4feb1ee9d2d2d7f319cad0b",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/optimer_fishersam_kfac.py",
+        "expected_sha256": "4f15e68cd0f8a9d46d8e8b93e977af06d5197a7f5bc3607275574a5c6b6b7900",
+        "original_sha256": "4f15e68cd0f8a9d46d8e8b93e977af06d5197a7f5bc3607275574a5c6b6b7900",
+        "prepared_sha256": "4f15e68cd0f8a9d46d8e8b93e977af06d5197a7f5bc3607275574a5c6b6b7900",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/gam.py",
+        "expected_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+        "original_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+        "prepared_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/optimer_sam.py",
+        "expected_sha256": "2605c34ead816a8d7ebc28dcc659e137788c3bcb0f830ce84d56c3a37ee06ec1",
+        "original_sha256": "2605c34ead816a8d7ebc28dcc659e137788c3bcb0f830ce84d56c3a37ee06ec1",
+        "prepared_sha256": "2605c34ead816a8d7ebc28dcc659e137788c3bcb0f830ce84d56c3a37ee06ec1",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/kfac.py",
+        "expected_sha256": "f1e6f4985276e7fafd4346ed773470b5bbd948929205b01a0e9c2938f507ae9c",
+        "original_sha256": "f1e6f4985276e7fafd4346ed773470b5bbd948929205b01a0e9c2938f507ae9c",
+        "prepared_sha256": "f1e6f4985276e7fafd4346ed773470b5bbd948929205b01a0e9c2938f507ae9c",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/util.py",
+        "expected_sha256": "c0ebe73bb176d2adbc91070f21ca9bc6369cdf90c1f7003f87f7981de322da86",
+        "original_sha256": "c0ebe73bb176d2adbc91070f21ca9bc6369cdf90c1f7003f87f7981de322da86",
+        "prepared_sha256": "c0ebe73bb176d2adbc91070f21ca9bc6369cdf90c1f7003f87f7981de322da86",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/ogd_projected.py",
+        "expected_sha256": "4f36c10ea73062f0dc339b0e9e0522e1c3d75532f9d142e532369f3b34c56162",
+        "original_sha256": "4f36c10ea73062f0dc339b0e9e0522e1c3d75532f9d142e532369f3b34c56162",
+        "prepared_sha256": "4f36c10ea73062f0dc339b0e9e0522e1c3d75532f9d142e532369f3b34c56162",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/kfac_utils.py",
+        "expected_sha256": "400c3e6a5912c521c828843c9792247c49461e04e9e5f1aae570a893b0c6c5e4",
+        "original_sha256": "400c3e6a5912c521c828843c9792247c49461e04e9e5f1aae570a893b0c6c5e4",
+        "prepared_sha256": "400c3e6a5912c521c828843c9792247c49461e04e9e5f1aae570a893b0c6c5e4",
+        "matches": true
+      },
+      {
+        "path": "optimer_PerturabtionType/natural_gradient.py",
+        "expected_sha256": "97fe5dc524f6e77b66702760d04890c886901825132a92fe38e878d296fbfde1",
+        "original_sha256": "97fe5dc524f6e77b66702760d04890c886901825132a92fe38e878d296fbfde1",
+        "prepared_sha256": "97fe5dc524f6e77b66702760d04890c886901825132a92fe38e878d296fbfde1",
+        "matches": true
+      },
+      {
+        "path": "models_CL/finetune.py",
+        "expected_sha256": "eae34d7f65b1a5910da40578256a98966828f945c6cc54e4d526052f9df38e3b",
+        "original_sha256": "eae34d7f65b1a5910da40578256a98966828f945c6cc54e4d526052f9df38e3b",
+        "prepared_sha256": "eae34d7f65b1a5910da40578256a98966828f945c6cc54e4d526052f9df38e3b",
+        "matches": true
+      },
+      {
+        "path": "models_CL/coda_prompt.py",
+        "expected_sha256": "9b8c0b1440d767ca46df9cb2f37cf3349de4384ad916a7b98b3714399d389989",
+        "original_sha256": "9b8c0b1440d767ca46df9cb2f37cf3349de4384ad916a7b98b3714399d389989",
+        "prepared_sha256": "9b8c0b1440d767ca46df9cb2f37cf3349de4384ad916a7b98b3714399d389989",
+        "matches": true
+      },
+      {
+        "path": "models_CL/FisherSAM-EWC-lambda-KFACFisherSAM.py",
+        "expected_sha256": "1a6420897c81113b358f62d9d1f4f3480481a016defe9dbf31d31a8a1d9d158e",
+        "original_sha256": "1a6420897c81113b358f62d9d1f4f3480481a016defe9dbf31d31a8a1d9d158e",
+        "prepared_sha256": "1a6420897c81113b358f62d9d1f4f3480481a016defe9dbf31d31a8a1d9d158e",
+        "matches": true
+      },
+      {
+        "path": "models_CL/dualprompt.py",
+        "expected_sha256": "9460f9fe7d39e771da2c2792b0723c1ca5de6b2f44a4a6d0cc0f66701f444e18",
+        "original_sha256": "9460f9fe7d39e771da2c2792b0723c1ca5de6b2f44a4a6d0cc0f66701f444e18",
+        "prepared_sha256": "9460f9fe7d39e771da2c2792b0723c1ca5de6b2f44a4a6d0cc0f66701f444e18",
+        "matches": true
+      },
+      {
+        "path": "models_CL/FisherSAM-EWC-lambda.py",
+        "expected_sha256": "6cb00d16c3e8bba025d50eaa4075fdbfc3491e458953d48e42573d6012649b01",
+        "original_sha256": "6cb00d16c3e8bba025d50eaa4075fdbfc3491e458953d48e42573d6012649b01",
+        "prepared_sha256": "6cb00d16c3e8bba025d50eaa4075fdbfc3491e458953d48e42573d6012649b01",
+        "matches": true
+      },
+      {
+        "path": "models_CL/finetune1.py",
+        "expected_sha256": "7f89e1db0134da6fad967b3cde406cbb2e0948f89d3b0be4dea5ea577a2c890e",
+        "original_sha256": "7f89e1db0134da6fad967b3cde406cbb2e0948f89d3b0be4dea5ea577a2c890e",
+        "prepared_sha256": "7f89e1db0134da6fad967b3cde406cbb2e0948f89d3b0be4dea5ea577a2c890e",
+        "matches": true
+      },
+      {
+        "path": "models_CL/ewc.py",
+        "expected_sha256": "bec3335ba5b9c25fd5b6e956b9c0ed6b24023409b92946c812352e2ad6cff081",
+        "original_sha256": "bec3335ba5b9c25fd5b6e956b9c0ed6b24023409b92946c812352e2ad6cff081",
+        "prepared_sha256": "bec3335ba5b9c25fd5b6e956b9c0ed6b24023409b92946c812352e2ad6cff081",
+        "matches": true
+      },
+      {
+        "path": "models_CL/ewc_gam_mergedintask_multifisher_norm.py",
+        "expected_sha256": "ca65c3adba6dea3ce6d1115d6bce5d636bdbb5baca8ac762a103426fd7a634a3",
+        "original_sha256": "ca65c3adba6dea3ce6d1115d6bce5d636bdbb5baca8ac762a103426fd7a634a3",
+        "prepared_sha256": "ca65c3adba6dea3ce6d1115d6bce5d636bdbb5baca8ac762a103426fd7a634a3",
+        "matches": true
+      },
+      {
+        "path": "models_CL/__init__.py",
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "prepared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "models_CL/ewc_gam_mergedintask_multifisher_norm_weightmergethenfisher.py",
+        "expected_sha256": "f5b265531a2a415826caf8fe467209a148b01879f38096c315e292b855e61b43",
+        "original_sha256": "f5b265531a2a415826caf8fe467209a148b01879f38096c315e292b855e61b43",
+        "prepared_sha256": "f5b265531a2a415826caf8fe467209a148b01879f38096c315e292b855e61b43",
+        "matches": true
+      },
+      {
+        "path": "models_CL/EWConProbe_FisherShape.py",
+        "expected_sha256": "062439f1e3d708cb482dcdfe2f135369b9e83b8848dc09ef75adc5be496fabd8",
+        "original_sha256": "062439f1e3d708cb482dcdfe2f135369b9e83b8848dc09ef75adc5be496fabd8",
+        "prepared_sha256": "062439f1e3d708cb482dcdfe2f135369b9e83b8848dc09ef75adc5be496fabd8",
+        "matches": true
+      },
+      {
+        "path": "models_CL/ewc_gam_merged_intask_euc.py",
+        "expected_sha256": "c1cb2c92d3b80a0f717bf87c48638100918ca3ad42da60f9bfddf9bafe7f4263",
+        "original_sha256": "c1cb2c92d3b80a0f717bf87c48638100918ca3ad42da60f9bfddf9bafe7f4263",
+        "prepared_sha256": "c1cb2c92d3b80a0f717bf87c48638100918ca3ad42da60f9bfddf9bafe7f4263",
+        "matches": true
+      },
+      {
+        "path": "models_CL/as1_normfisher_gam_intask_damp.py",
+        "expected_sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+        "original_sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+        "prepared_sha256": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+        "matches": true
+      },
+      {
+        "path": "models_CL/EWConProbe_FisherShapeFactored.py",
+        "expected_sha256": "5b2650305fd87ba6787aa068db3cc468681c8392e09bea6bef3d495e55357bd4",
+        "original_sha256": "5b2650305fd87ba6787aa068db3cc468681c8392e09bea6bef3d495e55357bd4",
+        "prepared_sha256": "5b2650305fd87ba6787aa068db3cc468681c8392e09bea6bef3d495e55357bd4",
+        "matches": true
+      },
+      {
+        "path": "models_CL/l2p.py",
+        "expected_sha256": "0ef8d437a677d6ea89cadb2f39adba19d3b484b9160e38225e59e944eb7d5f2b",
+        "original_sha256": "0ef8d437a677d6ea89cadb2f39adba19d3b484b9160e38225e59e944eb7d5f2b",
+        "prepared_sha256": "0ef8d437a677d6ea89cadb2f39adba19d3b484b9160e38225e59e944eb7d5f2b",
+        "matches": true
+      },
+      {
+        "path": "models_CL/EWCon_Probe.py",
+        "expected_sha256": "8bee805629fe6b9d00e0faa3c1e8625f14664e931c29eda5971a148bb8a91427",
+        "original_sha256": "8bee805629fe6b9d00e0faa3c1e8625f14664e931c29eda5971a148bb8a91427",
+        "prepared_sha256": "8bee805629fe6b9d00e0faa3c1e8625f14664e931c29eda5971a148bb8a91427",
+        "matches": true
+      },
+      {
+        "path": "models_CL/EWC.py",
+        "expected_sha256": "03c22eb48015d5afc58734d2e0c924d9aed46630d7e498c5cc0f178475492cb7",
+        "original_sha256": "03c22eb48015d5afc58734d2e0c924d9aed46630d7e498c5cc0f178475492cb7",
+        "prepared_sha256": "03c22eb48015d5afc58734d2e0c924d9aed46630d7e498c5cc0f178475492cb7",
+        "matches": true
+      },
+      {
+        "path": "models_CL/finetune_origin.py",
+        "expected_sha256": "3e5139df60fd4652130cb9b3765dcd4e09c651059ed5e568ab5422fd6161dda8",
+        "original_sha256": "3e5139df60fd4652130cb9b3765dcd4e09c651059ed5e568ab5422fd6161dda8",
+        "prepared_sha256": "3e5139df60fd4652130cb9b3765dcd4e09c651059ed5e568ab5422fd6161dda8",
+        "matches": true
+      },
+      {
+        "path": "models_CL/baseLearner.py",
+        "expected_sha256": "0fd284d7e6c0fa7f4af861b13dd6440e5683e3f3d66fe281fcf229ca76fce9b7",
+        "original_sha256": "0fd284d7e6c0fa7f4af861b13dd6440e5683e3f3d66fe281fcf229ca76fce9b7",
+        "prepared_sha256": "0fd284d7e6c0fa7f4af861b13dd6440e5683e3f3d66fe281fcf229ca76fce9b7",
+        "matches": true
+      },
+      {
+        "path": "models_CL/ewc_gam_projected.py",
+        "expected_sha256": "ba22057f35bf1256eb1182e2bbdef8d2a84d3dcf7dd93f4aecfdb2fc7415b868",
+        "original_sha256": "ba22057f35bf1256eb1182e2bbdef8d2a84d3dcf7dd93f4aecfdb2fc7415b868",
+        "prepared_sha256": "ba22057f35bf1256eb1182e2bbdef8d2a84d3dcf7dd93f4aecfdb2fc7415b868",
+        "matches": true
+      },
+      {
+        "path": "models_CL/EWCon.py",
+        "expected_sha256": "a915646f438ed655e2991d95d41ce022f74afb810a59d198f95daf2dad4356ee",
+        "original_sha256": "a915646f438ed655e2991d95d41ce022f74afb810a59d198f95daf2dad4356ee",
+        "prepared_sha256": "a915646f438ed655e2991d95d41ce022f74afb810a59d198f95daf2dad4356ee",
+        "matches": true
+      },
+      {
+        "path": "models_CL/EWConProbe_GAMFactored.py",
+        "expected_sha256": "d841fc2a059c63f76d8a46611701592dc816eb51ad0f7d234de6635aaa61289e",
+        "original_sha256": "d841fc2a059c63f76d8a46611701592dc816eb51ad0f7d234de6635aaa61289e",
+        "prepared_sha256": "d841fc2a059c63f76d8a46611701592dc816eb51ad0f7d234de6635aaa61289e",
+        "matches": true
+      },
+      {
+        "path": "utils/metrics_book.py",
+        "expected_sha256": "68bee1200f8e225f01da4002d3360eef150d91ff463002c85a042567792db730",
+        "original_sha256": "68bee1200f8e225f01da4002d3360eef150d91ff463002c85a042567792db730",
+        "prepared_sha256": "68bee1200f8e225f01da4002d3360eef150d91ff463002c85a042567792db730",
+        "matches": true
+      },
+      {
+        "path": "utils/extract_cnn_accuracy_matrices.py",
+        "expected_sha256": "de2e6a2dc9822d96a39e074b851d0213482b3a5c1ccc6f3b987628dd616c0421",
+        "original_sha256": "de2e6a2dc9822d96a39e074b851d0213482b3a5c1ccc6f3b987628dd616c0421",
+        "prepared_sha256": "de2e6a2dc9822d96a39e074b851d0213482b3a5c1ccc6f3b987628dd616c0421",
+        "matches": true
+      },
+      {
+        "path": "utils/toolkit.py",
+        "expected_sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+        "original_sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+        "prepared_sha256": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+        "matches": true
+      },
+      {
+        "path": "utils/export_task0_trajectory.py",
+        "expected_sha256": "e4a8eac71ad12916a57cbc78e04801104eb5a43f20d87b16f90a53c30ba00bd5",
+        "original_sha256": "e4a8eac71ad12916a57cbc78e04801104eb5a43f20d87b16f90a53c30ba00bd5",
+        "prepared_sha256": "e4a8eac71ad12916a57cbc78e04801104eb5a43f20d87b16f90a53c30ba00bd5",
+        "matches": true
+      },
+      {
+        "path": "utils/factory.py",
+        "expected_sha256": "a34d5c4f807213c5c3ff6576e670ec3e3a03ce0fcff1a527f098115e9906bd0a",
+        "original_sha256": "a34d5c4f807213c5c3ff6576e670ec3e3a03ce0fcff1a527f098115e9906bd0a",
+        "prepared_sha256": "a34d5c4f807213c5c3ff6576e670ec3e3a03ce0fcff1a527f098115e9906bd0a",
+        "matches": true
+      },
+      {
+        "path": "utils/config.py",
+        "expected_sha256": "7388d8a500ff855f661f1033e4fbc0a69091e2015352a1b489cc8431647654a9",
+        "original_sha256": "7388d8a500ff855f661f1033e4fbc0a69091e2015352a1b489cc8431647654a9",
+        "prepared_sha256": "7388d8a500ff855f661f1033e4fbc0a69091e2015352a1b489cc8431647654a9",
+        "matches": true
+      },
+      {
+        "path": "utils/random_reproduce.py",
+        "expected_sha256": "9070ff870b88c57e19e9537a31e7102636c8b8fee12ac7c12facf209df5cc52f",
+        "original_sha256": "9070ff870b88c57e19e9537a31e7102636c8b8fee12ac7c12facf209df5cc52f",
+        "prepared_sha256": "9070ff870b88c57e19e9537a31e7102636c8b8fee12ac7c12facf209df5cc52f",
+        "matches": true
+      },
+      {
+        "path": "utils/summarize_cl_metrics.py",
+        "expected_sha256": "ef0db83cd4bb2cdd4e3591a8d2b444c37037567f4e428e89eba7c7bd842b2247",
+        "original_sha256": "ef0db83cd4bb2cdd4e3591a8d2b444c37037567f4e428e89eba7c7bd842b2247",
+        "prepared_sha256": "ef0db83cd4bb2cdd4e3591a8d2b444c37037567f4e428e89eba7c7bd842b2247",
+        "matches": true
+      },
+      {
+        "path": "utils/plot_ewc_lambda_sweep.py",
+        "expected_sha256": "a6d8a298a9c88a4a4b05147d5b509cb0813c03f8190640bb3cfb93c45e2bec42",
+        "original_sha256": "a6d8a298a9c88a4a4b05147d5b509cb0813c03f8190640bb3cfb93c45e2bec42",
+        "prepared_sha256": "a6d8a298a9c88a4a4b05147d5b509cb0813c03f8190640bb3cfb93c45e2bec42",
+        "matches": true
+      },
+      {
+        "path": "utils/mechanism_eval.py",
+        "expected_sha256": "d8bdb55361c52c1dec16f79d3d9cc8250664179e4ffee44f5fa68f573078af05",
+        "original_sha256": "d8bdb55361c52c1dec16f79d3d9cc8250664179e4ffee44f5fa68f573078af05",
+        "prepared_sha256": "d8bdb55361c52c1dec16f79d3d9cc8250664179e4ffee44f5fa68f573078af05",
+        "matches": true
+      },
+      {
+        "path": "utils/aggregate_multiseed_results.py",
+        "expected_sha256": "e3eea339ac5e6302d312656f5c0ed839be3d3f139a6b8411ecb69f0cc66fe635",
+        "original_sha256": "e3eea339ac5e6302d312656f5c0ed839be3d3f139a6b8411ecb69f0cc66fe635",
+        "prepared_sha256": "e3eea339ac5e6302d312656f5c0ed839be3d3f139a6b8411ecb69f0cc66fe635",
+        "matches": true
+      },
+      {
+        "path": "utils/summarize_fqa_validity.py",
+        "expected_sha256": "0985b89c11818f43e67e6684d65d1e0040da9d67269189954daff0ff21079500",
+        "original_sha256": "0985b89c11818f43e67e6684d65d1e0040da9d67269189954daff0ff21079500",
+        "prepared_sha256": "0985b89c11818f43e67e6684d65d1e0040da9d67269189954daff0ff21079500",
+        "matches": true
+      },
+      {
+        "path": "utils/collect_imageneta_factorfs_excel.py",
+        "expected_sha256": "02279d3e81ec58920e1e97778f74d9983a3f63d723c244c46e39488d9731fed3",
+        "original_sha256": "02279d3e81ec58920e1e97778f74d9983a3f63d723c244c46e39488d9731fed3",
+        "prepared_sha256": "02279d3e81ec58920e1e97778f74d9983a3f63d723c244c46e39488d9731fed3",
+        "matches": true
+      },
+      {
+        "path": "utils/__init__.py",
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "prepared_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches": true
+      },
+      {
+        "path": "utils/inc_net.py",
+        "expected_sha256": "173d1a92350771616368c30e4e0d9a451d69baa1f7058de0d2bf22fc5e21b600",
+        "original_sha256": "173d1a92350771616368c30e4e0d9a451d69baa1f7058de0d2bf22fc5e21b600",
+        "prepared_sha256": "173d1a92350771616368c30e4e0d9a451d69baa1f7058de0d2bf22fc5e21b600",
+        "matches": true
+      },
+      {
+        "path": "utils/plot_task0_trajectory.py",
+        "expected_sha256": "96204b43064787f989a4e84252d3b02786999028fc574c1bd60a75af3cdf6fe6",
+        "original_sha256": "96204b43064787f989a4e84252d3b02786999028fc574c1bd60a75af3cdf6fe6",
+        "prepared_sha256": "96204b43064787f989a4e84252d3b02786999028fc574c1bd60a75af3cdf6fe6",
+        "matches": true
+      },
+      {
+        "path": "utils/collect_imagenetr_factorfs_excel.py",
+        "expected_sha256": "11fdd88dbb7f11daa9268b8bdf79aa8d85000562caf554aa230cec22f9ee9b2d",
+        "original_sha256": "11fdd88dbb7f11daa9268b8bdf79aa8d85000562caf554aa230cec22f9ee9b2d",
+        "prepared_sha256": "11fdd88dbb7f11daa9268b8bdf79aa8d85000562caf554aa230cec22f9ee9b2d",
+        "matches": true
+      },
+      {
+        "path": "utils/summarize_stage2_T.py",
+        "expected_sha256": "ae984184ded9611cd43e6bcc03f3b57e4f5101e52f4bd5c33d962e0a3c3bde90",
+        "original_sha256": "ae984184ded9611cd43e6bcc03f3b57e4f5101e52f4bd5c33d962e0a3c3bde90",
+        "prepared_sha256": "ae984184ded9611cd43e6bcc03f3b57e4f5101e52f4bd5c33d962e0a3c3bde90",
+        "matches": true
+      },
+      {
+        "path": "utils/plot_ewc_drift_analysis.py",
+        "expected_sha256": "a2e5792fd843e9db547734d443017d2803828f319cb7769a6fcf2ca7d42c3f3d",
+        "original_sha256": "a2e5792fd843e9db547734d443017d2803828f319cb7769a6fcf2ca7d42c3f3d",
+        "prepared_sha256": "a2e5792fd843e9db547734d443017d2803828f319cb7769a6fcf2ca7d42c3f3d",
+        "matches": true
+      },
+      {
+        "path": "utils/data.py",
+        "expected_sha256": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9",
+        "original_sha256": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9",
+        "prepared_sha256": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9",
+        "matches": true
+      },
+      {
+        "path": "utils/endpoint_region_protocol.py",
+        "expected_sha256": "09e5454bc6cf8e72f143404907bab34bbd7954515176a7c6ade532769ac9902e",
+        "original_sha256": "09e5454bc6cf8e72f143404907bab34bbd7954515176a7c6ade532769ac9902e",
+        "prepared_sha256": "09e5454bc6cf8e72f143404907bab34bbd7954515176a7c6ade532769ac9902e",
+        "matches": true
+      },
+      {
+        "path": "utils/endpoint_region.py",
+        "expected_sha256": "1c13d592f234ff0c6855e3da2367e9380b2cc72c07deb378f4b64de252203da3",
+        "original_sha256": "1c13d592f234ff0c6855e3da2367e9380b2cc72c07deb378f4b64de252203da3",
+        "prepared_sha256": "1c13d592f234ff0c6855e3da2367e9380b2cc72c07deb378f4b64de252203da3",
+        "matches": true
+      },
+      {
+        "path": "utils/extract_fisher_compare.py",
+        "expected_sha256": "637d47bae6df1b74550ab821964347fd38712204094c1e9c3f5568e3fb27cf01",
+        "original_sha256": "637d47bae6df1b74550ab821964347fd38712204094c1e9c3f5568e3fb27cf01",
+        "prepared_sha256": "637d47bae6df1b74550ab821964347fd38712204094c1e9c3f5568e3fb27cf01",
+        "matches": true
+      },
+      {
+        "path": "utils/analyze_cl_logs.py",
+        "expected_sha256": "d534d6899e82fe4942f940df5d665d78e23c759eae46c336f8d28c1f88abf48d",
+        "original_sha256": "d534d6899e82fe4942f940df5d665d78e23c759eae46c336f8d28c1f88abf48d",
+        "prepared_sha256": "d534d6899e82fe4942f940df5d665d78e23c759eae46c336f8d28c1f88abf48d",
+        "matches": true
+      },
+      {
+        "path": "utils/plot_fqa_linear_pdf.py",
+        "expected_sha256": "d5216fd5971f1cf4a2006e0d0ae63778123a3fda4c863b71eb46a229ad7dea62",
+        "original_sha256": "d5216fd5971f1cf4a2006e0d0ae63778123a3fda4c863b71eb46a229ad7dea62",
+        "prepared_sha256": "d5216fd5971f1cf4a2006e0d0ae63778123a3fda4c863b71eb46a229ad7dea62",
+        "matches": true
+      },
+      {
+        "path": "utils/summarize_ewc_lambda_sweep.py",
+        "expected_sha256": "ea5bbda86fa43adae84a94816858f6416fd1239b8feaa59f8b253c473be4ff4d",
+        "original_sha256": "ea5bbda86fa43adae84a94816858f6416fd1239b8feaa59f8b253c473be4ff4d",
+        "prepared_sha256": "ea5bbda86fa43adae84a94816858f6416fd1239b8feaa59f8b253c473be4ff4d",
+        "matches": true
+      },
+      {
+        "path": "utils/data_manager.py",
+        "expected_sha256": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6",
+        "original_sha256": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6",
+        "prepared_sha256": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6",
+        "matches": true
+      },
+      {
+        "path": "utils/plot_endpoint_sample_fisher_pareto.py",
+        "expected_sha256": "219047d5d1c74c2ca10ad541c42e83475f2cf8ccf684cafeab64e25c3ef8d2d3",
+        "original_sha256": "219047d5d1c74c2ca10ad541c42e83475f2cf8ccf684cafeab64e25c3ef8d2d3",
+        "prepared_sha256": "219047d5d1c74c2ca10ad541c42e83475f2cf8ccf684cafeab64e25c3ef8d2d3",
+        "matches": true
+      },
+      {
+        "path": "utils/plot_r_sweep.py",
+        "expected_sha256": "9e014ea56833fec5018e268b305155056da9fac1e6d6ec2cb8b21ce02230fbb6",
+        "original_sha256": "9e014ea56833fec5018e268b305155056da9fac1e6d6ec2cb8b21ce02230fbb6",
+        "prepared_sha256": "9e014ea56833fec5018e268b305155056da9fac1e6d6ec2cb8b21ce02230fbb6",
+        "matches": true
+      },
+      {
+        "path": "evaluation_ood/__init__.py",
+        "expected_sha256": "7c197bedf72ac15a1dfcfd94c615d9ca954ecf404ae262ec3595fa0ea721b9d4",
+        "original_sha256": "7c197bedf72ac15a1dfcfd94c615d9ca954ecf404ae262ec3595fa0ea721b9d4",
+        "prepared_sha256": "7c197bedf72ac15a1dfcfd94c615d9ca954ecf404ae262ec3595fa0ea721b9d4",
+        "matches": true
+      },
+      {
+        "path": "evaluation_ood/ood_eval.py",
+        "expected_sha256": "6141a57cbc92aa19ffcd78370898ac7d98d751e4d6813b8cbc1a4f83d4be26e6",
+        "original_sha256": "6141a57cbc92aa19ffcd78370898ac7d98d751e4d6813b8cbc1a4f83d4be26e6",
+        "prepared_sha256": "6141a57cbc92aa19ffcd78370898ac7d98d751e4d6813b8cbc1a4f83d4be26e6",
+        "matches": true
+      },
+      {
+        "path": "evaluation_attention/__init__.py",
+        "expected_sha256": "ec9eb9944dfeb716fdb6b9e6522b40bc71bb7505f4031f92bcda8586016b9cd5",
+        "original_sha256": "ec9eb9944dfeb716fdb6b9e6522b40bc71bb7505f4031f92bcda8586016b9cd5",
+        "prepared_sha256": "ec9eb9944dfeb716fdb6b9e6522b40bc71bb7505f4031f92bcda8586016b9cd5",
+        "matches": true
+      },
+      {
+        "path": "evaluation_attention/attention_probe.py",
+        "expected_sha256": "7b4d3dd7f56d5ad783cba7d9c1bae951a9bfbeb206f7a14617e9c478adca0f51",
+        "original_sha256": "7b4d3dd7f56d5ad783cba7d9c1bae951a9bfbeb206f7a14617e9c478adca0f51",
+        "prepared_sha256": "7b4d3dd7f56d5ad783cba7d9c1bae951a9bfbeb206f7a14617e9c478adca0f51",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/sharpness_evaluation_core/landscape.py",
+        "expected_sha256": "5c813ec2586014954483c036aae9b8219b3b4b28353fe70a53c5aab1a8db58cc",
+        "original_sha256": "5c813ec2586014954483c036aae9b8219b3b4b28353fe70a53c5aab1a8db58cc",
+        "prepared_sha256": "5c813ec2586014954483c036aae9b8219b3b4b28353fe70a53c5aab1a8db58cc",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/sharpness_evaluation_core/probe.py",
+        "expected_sha256": "b51ec9cc3875817427e6fcf6489d5d421f19591705867652764429e8eadceb9e",
+        "original_sha256": "b51ec9cc3875817427e6fcf6489d5d421f19591705867652764429e8eadceb9e",
+        "prepared_sha256": "b51ec9cc3875817427e6fcf6489d5d421f19591705867652764429e8eadceb9e",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/sharpness_evaluation_core/__init__.py",
+        "expected_sha256": "e44b85d59b15b8acf8bc19781c073f376d425c053b7780fc27b570f482f24890",
+        "original_sha256": "e44b85d59b15b8acf8bc19781c073f376d425c053b7780fc27b570f482f24890",
+        "prepared_sha256": "e44b85d59b15b8acf8bc19781c073f376d425c053b7780fc27b570f482f24890",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/sharpness_evaluation_core/curvature.py",
+        "expected_sha256": "5420f5fcca704aa7265356a4140d86242c11f5fc84c226a22e1c0b07cae6d2f4",
+        "original_sha256": "5420f5fcca704aa7265356a4140d86242c11f5fc84c226a22e1c0b07cae6d2f4",
+        "prepared_sha256": "5420f5fcca704aa7265356a4140d86242c11f5fc84c226a22e1c0b07cae6d2f4",
+        "matches": true
+      },
+      {
+        "path": "evaluation_weight_sharpness/sharpness_evaluation_core/drift.py",
+        "expected_sha256": "e3733e85070e4f9f687ad3e733d6d1edcf30d29d6755ba67f0c0379a34ff5651",
+        "original_sha256": "e3733e85070e4f9f687ad3e733d6d1edcf30d29d6755ba67f0c0379a34ff5651",
+        "prepared_sha256": "e3733e85070e4f9f687ad3e733d6d1edcf30d29d6755ba67f0c0379a34ff5651",
+        "matches": true
+      }
+    ]
+  },
+  "original_runtime_verification": [
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/run_job.py",
+      "sha256": "50b853b36346c68e3d8afe3493f6787842dc2e228323a5c4f988d558848eca8b",
+      "expected_sha256": "50b853b36346c68e3d8afe3493f6787842dc2e228323a5c4f988d558848eca8b",
+      "matches": true
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/launch_queue.py",
+      "sha256": "c1ad9d2021a750dd10eae270c2eeccb76da57b1d473bd0212ec8ec12f1da16db",
+      "expected_sha256": "c1ad9d2021a750dd10eae270c2eeccb76da57b1d473bd0212ec8ec12f1da16db",
+      "matches": true
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/collect.py",
+      "sha256": "2e2456e7613e682aa79668ddba7883c5354d9b8b23637b58ec629d10540423b1",
+      "expected_sha256": "2e2456e7613e682aa79668ddba7883c5354d9b8b23637b58ec629d10540423b1",
+      "matches": true
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/suite.json",
+      "sha256": "0545963dd7ce26af221e3733871d97d68064c561891280aff6a81a08afca91a5",
+      "expected_sha256": "0545963dd7ce26af221e3733871d97d68064c561891280aff6a81a08afca91a5",
+      "matches": true
+    },
+    {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/table_before.tex",
+      "sha256": "7416d212950cea9ebe4414eb3875ab9eaf8bd828516bdf3f687c53e448545da4",
+      "expected_sha256": "7416d212950cea9ebe4414eb3875ab9eaf8bd828516bdf3f687c53e448545da4",
+      "matches": true
+    }
+  ],
+  "data_preflight_evidence": {
+    "original": {
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/preflight.json",
+      "sha256": "d4019552b3c4953d31bcb5e712c716931cbec10093bd0956bec561779945d135",
+      "expected_sha256": null,
+      "matches": null
+    },
+    "current": {
+      "baseline": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/cpu_preflight_baseline.json",
+        "sha256": "b0300e9d30b4ad2f464c62d1167eb625f33cc2c0b074674936d2ac19e65e91e8",
+        "expected_sha256": null,
+        "matches": null
+      },
+      "ewc": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/cpu_preflight_ewc.json",
+        "sha256": "e3175f620afb3de931454c7ead4ee9062f740d771ffb364371c47e30f809f10e",
+        "expected_sha256": null,
+        "matches": null
+      }
+    },
+    "current_preflights_passed": {
+      "baseline": true,
+      "ewc": true
+    }
+  },
+  "data_comparisons": [
+    {
+      "dataset": "aircraft",
+      "original_manifest": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/aircraft.json",
+        "sha256": "fff1258e409c882f6a0a77e52f61b397f8d8f2d8be78e3998e453589c6fec415",
+        "expected_sha256": "fff1258e409c882f6a0a77e52f61b397f8d8f2d8be78e3998e453589c6fec415",
+        "matches": true
+      },
+      "prepared_original_manifest": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/data_manifest_aircraft.json",
+        "sha256": "fff1258e409c882f6a0a77e52f61b397f8d8f2d8be78e3998e453589c6fec415",
+        "expected_sha256": "fff1258e409c882f6a0a77e52f61b397f8d8f2d8be78e3998e453589c6fec415",
+        "matches": true
+      },
+      "original_task_widths": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "comparisons": [
+        {
+          "campaign_source": "baseline",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/baseline_aircraft.json",
+            "sha256": "c607b2e4128817d8fd8313d70645e00ba08d5de96dca00eef09ec1907d3fea82",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "train_count": 6667,
+          "test_count": 3333,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        },
+        {
+          "campaign_source": "ewc",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_aircraft.json",
+            "sha256": "c607b2e4128817d8fd8313d70645e00ba08d5de96dca00eef09ec1907d3fea82",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "train_count": 6667,
+          "test_count": 3333,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        }
+      ]
+    },
+    {
+      "dataset": "cars196",
+      "original_manifest": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/cars196.json",
+        "sha256": "2d74917abdf0550b7550004facc7eaeb6da5feb19ed6126b209de905ee528765",
+        "expected_sha256": "2d74917abdf0550b7550004facc7eaeb6da5feb19ed6126b209de905ee528765",
+        "matches": true
+      },
+      "prepared_original_manifest": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/data_manifest_cars196.json",
+        "sha256": "2d74917abdf0550b7550004facc7eaeb6da5feb19ed6126b209de905ee528765",
+        "expected_sha256": "2d74917abdf0550b7550004facc7eaeb6da5feb19ed6126b209de905ee528765",
+        "matches": true
+      },
+      "original_task_widths": [
+        16,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "comparisons": [
+        {
+          "campaign_source": "baseline",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/baseline_cars196.json",
+            "sha256": "bd19beba8bb055323ad2920c33bcfb872565169b8d1f7d2a17cabe0d674772ef",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            16,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20
+          ],
+          "train_count": 8144,
+          "test_count": 8041,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        },
+        {
+          "campaign_source": "ewc",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_cars196.json",
+            "sha256": "bd19beba8bb055323ad2920c33bcfb872565169b8d1f7d2a17cabe0d674772ef",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            16,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20
+          ],
+          "train_count": 8144,
+          "test_count": 8041,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        }
+      ]
+    },
+    {
+      "dataset": "cub200",
+      "original_manifest": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/cub200.json",
+        "sha256": "ed8a5be997220b5f908375beae25b6e4b2c88d60ab582ca24baaf1424d8b10a7",
+        "expected_sha256": "ed8a5be997220b5f908375beae25b6e4b2c88d60ab582ca24baaf1424d8b10a7",
+        "matches": true
+      },
+      "prepared_original_manifest": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/data_manifest_cub200.json",
+        "sha256": "ed8a5be997220b5f908375beae25b6e4b2c88d60ab582ca24baaf1424d8b10a7",
+        "expected_sha256": "ed8a5be997220b5f908375beae25b6e4b2c88d60ab582ca24baaf1424d8b10a7",
+        "matches": true
+      },
+      "original_task_widths": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "comparisons": [
+        {
+          "campaign_source": "baseline",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/baseline_cub200.json",
+            "sha256": "5a5dc1b8f2f2fce6205b8251d51f414b3b6bb157b128699ba7e1ec90673ec81c",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20
+          ],
+          "train_count": 9430,
+          "test_count": 2358,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        },
+        {
+          "campaign_source": "ewc",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_cub200.json",
+            "sha256": "5a5dc1b8f2f2fce6205b8251d51f414b3b6bb157b128699ba7e1ec90673ec81c",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20
+          ],
+          "train_count": 9430,
+          "test_count": 2358,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        }
+      ]
+    },
+    {
+      "dataset": "flowers",
+      "original_manifest": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/flowers.json",
+        "sha256": "3a5ea9babbfd3d2692e58f38d0fc29fcba7d1409ed265a68fdb36a567c69ecce",
+        "expected_sha256": "3a5ea9babbfd3d2692e58f38d0fc29fcba7d1409ed265a68fdb36a567c69ecce",
+        "matches": true
+      },
+      "prepared_original_manifest": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/data_manifest_flowers.json",
+        "sha256": "3a5ea9babbfd3d2692e58f38d0fc29fcba7d1409ed265a68fdb36a567c69ecce",
+        "expected_sha256": "3a5ea9babbfd3d2692e58f38d0fc29fcba7d1409ed265a68fdb36a567c69ecce",
+        "matches": true
+      },
+      "original_task_widths": [
+        12,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "comparisons": [
+        {
+          "campaign_source": "baseline",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/baseline_flowers.json",
+            "sha256": "f0c70444d6d18fbc4a9dd77eb746e9653347440bd6cd634efdc89624d1270960",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            12,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "train_count": 2040,
+          "test_count": 6149,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        },
+        {
+          "campaign_source": "ewc",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_flowers.json",
+            "sha256": "f0c70444d6d18fbc4a9dd77eb746e9653347440bd6cd634efdc89624d1270960",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            12,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          "train_count": 2040,
+          "test_count": 6149,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        }
+      ]
+    },
+    {
+      "dataset": "het5",
+      "original_manifest": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/het5.json",
+        "sha256": "cac31362cb29d63ee3c2ae5e5fbbf1c0011706badb0dc29930bf46f647b9140b",
+        "expected_sha256": "cac31362cb29d63ee3c2ae5e5fbbf1c0011706badb0dc29930bf46f647b9140b",
+        "matches": true
+      },
+      "prepared_original_manifest": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/data_manifest_het5.json",
+        "sha256": "cac31362cb29d63ee3c2ae5e5fbbf1c0011706badb0dc29930bf46f647b9140b",
+        "expected_sha256": "cac31362cb29d63ee3c2ae5e5fbbf1c0011706badb0dc29930bf46f647b9140b",
+        "matches": true
+      },
+      "original_task_widths": [
+        200,
+        100,
+        196,
+        102,
+        37
+      ],
+      "comparisons": [
+        {
+          "campaign_source": "baseline",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/baseline_het5.json",
+            "sha256": "5d61d6409044a55603b349070fd56fee24b7ebbda35703b17eeb81ac6a1d0d1c",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            200,
+            100,
+            196,
+            102,
+            37
+          ],
+          "train_count": 29961,
+          "test_count": 23550,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        },
+        {
+          "campaign_source": "ewc",
+          "manifest": {
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_het5.json",
+            "sha256": "5d61d6409044a55603b349070fd56fee24b7ebbda35703b17eeb81ac6a1d0d1c",
+            "expected_sha256": null,
+            "matches": null
+          },
+          "ordered_train_paths_labels_equal": true,
+          "ordered_test_paths_labels_equal": true,
+          "task_boundaries_equal": true,
+          "task_widths": [
+            200,
+            100,
+            196,
+            102,
+            37
+          ],
+          "train_count": 29961,
+          "test_count": 23550,
+          "missing_files_preflight": 0,
+          "train_test_realpath_overlap_preflight": 0
+        }
+      ]
+    }
+  ],
+  "pretrained_validation": {
+    "current_cached_weight": {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors",
+      "sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b",
+      "expected_sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b",
+      "matches": true
+    },
+    "current_hub_main_revision": "063c6c38a5d8510b2e57df480445e94b231dad2c",
+    "CL_original_config_binds_path_and_sha": true,
+    "GAM_historical_revision_sha_bound": false
+  },
+  "limitations": [
+    "Historical data manifests contain paths and labels rather than historical image byte digests.",
+    "GAM-Het5 historical pretrained revision and bytes were not bound in its archived receipt/config.",
+    "Reuse verifies evidence and row-local protocol compatibility; it is not a claim of bitwise retraining reproducibility."
+  ]
+}

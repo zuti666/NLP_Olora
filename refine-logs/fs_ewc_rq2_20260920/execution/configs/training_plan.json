@@ -1,0 +1,214 @@
+{
+  "explanation": "2 seed0 Task1 segments + 40 task segments across four full sequences + 2 shaped Task1 branches for formal A. Every segment has 50 epochs. Standard A rows for seeds1/2 reuse each corresponding SGD sequence Task1 with identical explicit paired RNG protocol.",
+  "jobs": [
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "continuation",
+        "--method",
+        "sgd",
+        "--seed",
+        "0",
+        "--gpu",
+        "4"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_sgd_to_sgd_seed0/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/A_sgd_to_sgd_seed0.json",
+      "depends_on": [
+        "S02_S03_S04_S05_seed0_measured"
+      ],
+      "gpu": 4,
+      "id": "A_sgd_to_sgd_seed0",
+      "phase": "A_seed0",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_sgd_to_sgd_seed0"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "continuation",
+        "--method",
+        "gam",
+        "--seed",
+        "0",
+        "--gpu",
+        "6"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed0/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/A_gam_to_sgd_seed0.json",
+      "depends_on": [
+        "S02_S03_S04_S05_seed0_measured"
+      ],
+      "gpu": 6,
+      "id": "A_gam_to_sgd_seed0",
+      "phase": "A_seed0",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed0"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "sequence",
+        "--method",
+        "sgd",
+        "--seed",
+        "1",
+        "--gpu",
+        "4"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_sgd_seed1/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/sequence_sgd_seed1.json",
+      "depends_on": [
+        "A_sgd_to_sgd_seed0",
+        "A_gam_to_sgd_seed0"
+      ],
+      "gpu": 4,
+      "id": "sequence_sgd_seed1",
+      "phase": "formal_seeds",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_sgd_seed1"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "sequence",
+        "--method",
+        "gam",
+        "--seed",
+        "1",
+        "--gpu",
+        "6"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed1/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/sequence_gam_seed1.json",
+      "depends_on": [
+        "A_sgd_to_sgd_seed0",
+        "A_gam_to_sgd_seed0"
+      ],
+      "gpu": 6,
+      "id": "sequence_gam_seed1",
+      "phase": "formal_seeds",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed1"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "sequence",
+        "--method",
+        "sgd",
+        "--seed",
+        "2",
+        "--gpu",
+        "4"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_sgd_seed2/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/sequence_sgd_seed2.json",
+      "depends_on": [
+        "A_sgd_to_sgd_seed0",
+        "A_gam_to_sgd_seed0"
+      ],
+      "gpu": 4,
+      "id": "sequence_sgd_seed2",
+      "phase": "formal_seeds",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_sgd_seed2"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "sequence",
+        "--method",
+        "gam",
+        "--seed",
+        "2",
+        "--gpu",
+        "6"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed2/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/sequence_gam_seed2.json",
+      "depends_on": [
+        "A_sgd_to_sgd_seed0",
+        "A_gam_to_sgd_seed0"
+      ],
+      "gpu": 6,
+      "id": "sequence_gam_seed2",
+      "phase": "formal_seeds",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed2"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "continuation",
+        "--method",
+        "gam",
+        "--seed",
+        "1",
+        "--gpu",
+        "6",
+        "--anchor-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed1/checkpoints",
+        "--anchor-metrics",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed1/imageneta/1/sequence_gam_seed1/exp_run/20/sequence_gam_seed1_vit_base_patch16_224_cl_metrics.json"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed1/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/A_gam_to_sgd_seed1.json",
+      "depends_on": [
+        "sequence_sgd_seed1",
+        "sequence_gam_seed1"
+      ],
+      "gpu": 6,
+      "id": "A_gam_to_sgd_seed1",
+      "phase": "A_formal_seeds",
+      "reference_standard_row": "sequence_sgd_seed1/checkpoints/task_01.pt",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed1"
+    },
+    {
+      "command": [
+        "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/train_continuation.py",
+        "--mode",
+        "continuation",
+        "--method",
+        "gam",
+        "--seed",
+        "2",
+        "--gpu",
+        "6",
+        "--anchor-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed2/checkpoints",
+        "--anchor-metrics",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/sequence_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed2/imageneta/2/sequence_gam_seed2/exp_run/20/sequence_gam_seed2_vit_base_patch16_224_cl_metrics.json"
+      ],
+      "complete_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed2/COMPLETE.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/configs/A_gam_to_sgd_seed2.json",
+      "depends_on": [
+        "sequence_sgd_seed2",
+        "sequence_gam_seed2"
+      ],
+      "gpu": 6,
+      "id": "A_gam_to_sgd_seed2",
+      "phase": "A_formal_seeds",
+      "reference_standard_row": "sequence_sgd_seed2/checkpoints/task_01.pt",
+      "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/training/A_gam_to_sgd_seed2"
+    }
+  ],
+  "minimum_order": [
+    "seed0 diagnostics 1/2/3",
+    "paired seed0 A continuations",
+    "seeds1/2 full sequences",
+    "seeds1/2 A branches and B/C offline diagnostics"
+  ],
+  "new_task_segments": 44,
+  "protocol": "rq2_shared_task_rng_v1",
+  "status": "prepared_not_queued"
+}

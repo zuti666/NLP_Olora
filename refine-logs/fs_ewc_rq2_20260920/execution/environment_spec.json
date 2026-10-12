@@ -1,0 +1,34 @@
+{
+  "base": "cuda12.1 + python3.11",
+  "system_pkgs": [],
+  "pip_phases": [
+    [
+      "torch==2.4.1+cu121",
+      "PyYAML==6.0.2"
+    ]
+  ],
+  "env": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/140-1/datasets",
+    "OMP_NUM_THREADS": "8"
+  },
+  "run_commands": [
+    "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python -m src.main"
+  ],
+  "weight_dirs": {},
+  "smoke": {
+    "import_names": [
+      "torch",
+      "yaml"
+    ],
+    "gpu_tests": [
+      {
+        "cmd": "CUDA_VISIBLE_DEVICES=<free_gpu> /data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python -c 'import torch; torch.manual_seed(0); x=torch.randn(8,8,device=\"cuda\"); print(\"WITNESS\", tuple((x@x).shape), torch.cuda.get_device_name())'",
+        "expect": "^WITNESS \\(8, 8\\) Quadro RTX 6000$"
+      }
+    ],
+    "cli_checks": [
+      "nvidia-smi"
+    ]
+  }
+}

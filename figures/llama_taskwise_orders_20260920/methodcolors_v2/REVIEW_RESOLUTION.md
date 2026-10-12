@@ -1,0 +1,1 @@
+Visual review passed with no blocking findings. Both optional wording suggestions are resolved: captions use "batch is 64" and explicitly exclude interpreting single-observation strokes as intervals, interpolation, or uncertainty. No figure data or rendered output changed after review.

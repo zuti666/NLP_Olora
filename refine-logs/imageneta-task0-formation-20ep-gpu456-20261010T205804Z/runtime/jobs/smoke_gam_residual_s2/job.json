@@ -1,0 +1,46 @@
+{
+  "id": "smoke_gam_residual_s2",
+  "kind": "training",
+  "smoke": true,
+  "seed": 2,
+  "condition": "gam_residual",
+  "formation_condition_id": "gam_residual",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/configs/smoke_gam_residual_s2.json",
+  "config_sha256": "d3f37363615aa36094ab1f6577936744ccd6987ab0428bfb18e20a442241530d",
+  "output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/outputs/smoke_gam_residual_s2",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/trainer/formation_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/configs/smoke_gam_residual_s2.json",
+    "--output-dir",
+    "/data/115-2/users/liying/cache/tmp/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/outputs/smoke_gam_residual_s2",
+    "--max-batches",
+    "1"
+  ],
+  "expected_tasks": 2,
+  "expected_epochs_per_task": 20,
+  "expected_steps": 40,
+  "expected_gradient_reads": 100,
+  "expected_task_steps": [
+    20,
+    20
+  ],
+  "expected_batches_per_epoch": [
+    1,
+    1
+  ],
+  "expected_train_samples": [
+    1141,
+    906
+  ],
+  "expected_dev_samples": [
+    118,
+    91
+  ],
+  "depends_on": [],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/runtime/jobs/smoke_gam_residual_s2/cuda_witness.json"
+}

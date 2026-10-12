@@ -1,0 +1,24 @@
+{
+  "reviewed_path": "/data/140-1/users/liying/O-LoRA/refine-logs/results-audit-20261001/residual_direction_scan_20261001/REPORT.md",
+  "reviewed_sha256": "c12003bcacbe96003d45ac3b8501ccb75f23ece2f5fc088b28cd562e87156aa2",
+  "formal_training_claim": "PASS: report explicitly says existing scans are offline, not independent full training or AAA/FAA hyperparameter curves.",
+  "endpoint_claims": "PASS: g1-residual lambda1 distinct from g3; sum-family lambda1 equals sum; alpha0/1 directions and alpha.5 caveat correct.",
+  "matching_KL_claim": "PASS: explicitly actual effective BA+FC update norm; no KL matching after candidate updates. Separate SAM probe-KL controls are not the three families.",
+  "minor_wording_suggestions": [
+    {
+      "current": "等实际参数更新范数",
+      "suggested": "等实际有效权重更新范数（BA+FC）",
+      "reason": "Do not imply the matched norm is the LoRA A/B parameter displacement norm."
+    },
+    {
+      "current": "作用显著依赖训练状态和评测口径",
+      "suggested": "作用随训练状态和评测口径变化",
+      "reason": "No statistical significance testing was performed; avoid an unintended significance claim."
+    },
+    {
+      "suggested": "可补一句：已有g1/g3/sum/mean完整训练端点，但不等于全程等有效步幅的系数扫描。",
+      "reason": "Avoid confusing existing endpoint training with absent coefficient-family training."
+    }
+  ],
+  "source_or_report_modified": false
+}

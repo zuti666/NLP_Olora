@@ -1,0 +1,209 @@
+{
+  "status": "passed",
+  "device": "cpu",
+  "scope": "actual frozen GAM and projector with tiny CE/LoRA models; no full ViT or GPU training",
+  "analytical_hvp": {
+    "closed_form_softmax_hessian_max_abs_error": 2.168404344971009e-19,
+    "rho_20x_omission_distinguished": true,
+    "entry_restored": true
+  },
+  "native_integration_cases": {
+    "fd/fd/natural": {
+      "steps": 4,
+      "max_effective_match_error": null,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 0
+    },
+    "fd/fd/matched": {
+      "steps": 4,
+      "max_effective_match_error": 4.778445646348716e-07,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 0
+    },
+    "fd/hvp/natural": {
+      "steps": 4,
+      "max_effective_match_error": null,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 1
+    },
+    "fd/hvp/matched": {
+      "steps": 4,
+      "max_effective_match_error": 4.308493286763128e-07,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 1
+    },
+    "hvp/fd/natural": {
+      "steps": 4,
+      "max_effective_match_error": null,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 1
+    },
+    "hvp/fd/matched": {
+      "steps": 4,
+      "max_effective_match_error": 1.42677309338306e-07,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 1
+    },
+    "hvp/hvp/natural": {
+      "steps": 4,
+      "max_effective_match_error": null,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 2
+    },
+    "hvp/hvp/matched": {
+      "steps": 4,
+      "max_effective_match_error": 3.617243528638232e-07,
+      "all_selected_projector_sgd_exact": true,
+      "hvp_calls_per_step": 2
+    }
+  },
+  "coefficient_cases": {
+    "us/0.5/natural": {
+      "step_scale": 0.04,
+      "identity_control": false
+    },
+    "us/0.5/matched": {
+      "step_scale": 0.04029175523101003,
+      "identity_control": false
+    },
+    "us/1.0/natural": {
+      "step_scale": 0.04,
+      "identity_control": true
+    },
+    "us/1.0/matched": {
+      "step_scale": 0.04,
+      "identity_control": true
+    },
+    "us/2.0/natural": {
+      "step_scale": 0.04,
+      "identity_control": false
+    },
+    "us/2.0/matched": {
+      "step_scale": 0.03940142792998813,
+      "identity_control": false
+    },
+    "ug/0.5/natural": {
+      "step_scale": 0.04,
+      "identity_control": false
+    },
+    "ug/0.5/matched": {
+      "step_scale": 0.03883132480950735,
+      "identity_control": false
+    },
+    "ug/1.0/natural": {
+      "step_scale": 0.04,
+      "identity_control": false
+    },
+    "ug/1.0/matched": {
+      "step_scale": 0.03690720764097932,
+      "identity_control": false
+    },
+    "ug/2.0/natural": {
+      "step_scale": 0.04,
+      "identity_control": false
+    },
+    "ug/2.0/matched": {
+      "step_scale": 0.03294695405202219,
+      "identity_control": false
+    }
+  },
+  "same_first_three_points_and_gradients_for_second_only_replacement": true,
+  "independent_second_HVP_max_abs_error": 0.0,
+  "controller_two_task_HVP_lifecycle": {
+    "tasks": 2,
+    "epochs": 2,
+    "steps": 2,
+    "five_CE_each": true,
+    "full_seen_FC": [
+      20,
+      40
+    ],
+    "disabled_merge_hooks_preserve_parameters": true,
+    "copied_native_format_checkpoint_roundtrip": true,
+    "native_ViT_loading_not_exercised": true,
+    "matrix": [
+      [
+        50.0
+      ],
+      [
+        50.0,
+        50.0
+      ]
+    ]
+  },
+  "controller_two_task_both_HVP_lifecycle": {
+    "tasks": 2,
+    "epochs": 2,
+    "steps": 2,
+    "five_CE_each": true,
+    "full_seen_FC": [
+      20,
+      40
+    ],
+    "disabled_merge_hooks_preserve_parameters": true,
+    "copied_native_format_checkpoint_roundtrip": true,
+    "native_ViT_loading_not_exercised": true,
+    "matrix": [
+      [
+        50.0
+      ],
+      [
+        50.0,
+        50.0
+      ]
+    ]
+  },
+  "negative_cases": [
+    {
+      "case": "HVP_native_backend_forbidden",
+      "error": "ValueError('HVP response training requires rule=ug and common math SDPA backend')"
+    },
+    {
+      "case": "HVP_nonUG_forbidden",
+      "error": "ValueError('HVP response training requires rule=ug and common math SDPA backend')"
+    },
+    {
+      "case": "nonfinite_lambda",
+      "error": "ValueError('Positive finite correction coefficient required')"
+    },
+    {
+      "case": "coefficient_for_unrelated_rule",
+      "error": "ValueError('Correction coefficient applies only to US or UG')"
+    },
+    {
+      "case": "unsupported_HVP_no_silent_FD_fallback",
+      "error": "RuntimeError('derivative for synthetic operation not implemented')"
+    },
+    {
+      "case": "rho_omission_in_real_selected_update",
+      "error": "AssertionError('Actual HVP correction must include exactly the original rho')"
+    },
+    {
+      "case": "undetached_HVP_direction",
+      "error": "ValueError('HVP direction must already be detached')"
+    },
+    {
+      "case": "wrong_native_reference_gradient",
+      "error": "AssertionError(\"Same-point CE gradient mismatch: {'first_norm': 1.215607942632377, 'reference_norm': 1.9502621923778796, 'cosine': 0.5992239132766422, 'relative_l2': 0.8009435645944987, 'norm_ratio': 0.623304880432632, 'max_abs': 0.10000000894069672, 'degenerate': False}\")"
+    },
+    {
+      "case": "wrong_fixed_HVP_direction",
+      "error": "AssertionError('HVP direction differs from fixed native-normalized local gradient')"
+    },
+    {
+      "case": "nonfinite_HVP_direction",
+      "error": "FloatingPointError('fixed HVP direction has nonfinite values')"
+    },
+    {
+      "case": "damaged_actual_HVP_SGD",
+      "error": "AssertionError(\"Actual SGD/effective norm verification failed: {'component_rule': 'ug', 'component_scale': 'natural', 'lr_nominal': 0.04, 'response_audit': {'first_response': 'fd', 'second_response': 'hvp', 'lambda_corr': 1.0, 'backend': 'math', 'backend_flags': {'flash': False, 'math': True, 'mem_efficient': False, 'cudnn': False}, 'rho': 0.05, 'r': 1.0, 'native_closure_count': 4, 'native_ce_gradient_passes': 5, 'hvp_forward_count': 1, 'hvp_first_derivative_passes': 1, 'hvp_second_derivative_passes': 1, 'hvp_reports': {'second': {'status': 'available', 'backend': 'math', 'direction_detached': True, 'fallback_used': False, 'backend_flags': {'flash': False, 'math': True, 'mem_efficient': False, 'cudnn': False}, 'direction_matches_native_unit_exact': True, 'direction_norm': 0.9999999859996486, 'same_point_gradient': {'first_norm': 3.7043530749943887, 'reference_norm': 3.7043530749943887, 'cosine': 0.9999999999999999, 'relative_l2': 0.0, 'norm_ratio': 1.0, 'max_abs': 0.0, 'degenerate': False}, 'same_point_ce': 4.6319684982299805, 'hvp_norm': 5.501179588109477, 'rho_hvp_norm': 0.27505898409302526, 'rho': 0.05, 'rho_multiplication_exact': True, 'hvp_forward_count': 1, 'first_derivative_passes': 1, 'second_derivative_passes': 1, 'entry_state_restore': {'parameters_exact': True, 'frozen_versions_exact': True, 'buffers_exact': True, 'modes_exact': True, 'gradients_exact': True, 'rng_exact': True}, 'stage': 'outer', 'native_closure_index': 2, 'native_baseline_ce': 4.6319684982299805, 'same_point_ce_abs_error': 0.0}}, 'native_point_checks': {'first_inner_exact': True, 'outer_point_exact': True, 'second_inner_exact': True}, 'fallback_used': False, 'correction_scope': 'outer_local_UG', 'correction_norm': 0.27505898409302526, 'weighted_correction_norm': 0.27505898409302526, 'g0_norm': 1.215607942632377, 'weighted_correction_to_g0_norm': 0.2262727763174943, 'correction_vs_g0': {'first_norm': 0.27505898409302526, 'reference_norm': 1.215607942632377, 'cosine': 0.3846078141660441, 'relative_l2': 0.9365611616760235, 'norm_ratio': 0.2262727763174943, 'max_abs': 0.2825441360473633, 'degenerate': False}, 'native_second_FD_vs_used_correction': {'first_norm': 0.28238746540098864, 'reference_norm': 0.27505898409302526, 'cosine': 0.9998678884161378, 'relative_l2': 0.031322975961103, 'norm_ratio': 1.026643308278507, 'max_abs': 0.00313674658536911, 'degenerate': False}, 'hessian_coordinates': 'trainable LoRA A/B and all seen FC; not effective BA', 'us_lambda1_identity_control': False, 'selected_formula': 'g0 + lambda_corr * rho * H(theta2) * stopgrad(N_eps(g2))'}, 'gradient_flow': {'selected_expected_sha256': 'be5e3608dd057108b00b51b7447af4364e93a1df1d6021ae010a24298214dbc3', 'selected_actual_sha256': 'be5e3608dd057108b00b51b7447af4364e93a1df1d6021ae010a24298214dbc3', 'projected_expected_sha256': 'be5e3608dd057108b00b51b7447af4364e93a1df1d6021ae010a24298214dbc3', 'projected_actual_sha256': 'be5e3608dd057108b00b51b7447af4364e93a1df1d6021ae010a24298214dbc3', 'actual_sgd_gradient_sha256': 'be5e3608dd057108b00b51b7447af4364e93a1df1d6021ae010a24298214dbc3', 'selected_to_projector_to_sgd_exact': True}, 'step_scale': 0.04, 'scale_over_nominal_lr': 1.0, 'reference_definition': 'same_candidate_state_same_batch_native_projected_g1_after_native_unperturb_actual_FP32_SGD', 'reference_effective_delta': {'joint_norm': 0.04937179562918886, 'lora_norm': 0.027209831638316494, 'fc_norm': 0.04119707836564218, 'parameter_norm': 0.04942223978810176, 'measurement': 'actual_factor_values_float64_Gram_unscaled_BA_plus_all_FC'}, 'reference_target_norm': 0.04937179562918886, 'raw_g1_reference_effective_delta': {'joint_norm': 0.04937179562918886, 'lora_norm': 0.027209831638316494, 'fc_norm': 0.04119707836564218, 'parameter_norm': 0.04942223978810176, 'measurement': 'actual_factor_values_float64_Gram_unscaled_BA_plus_all_FC'}, 'raw_vs_projected_g1_parameter_l2': 3.2927225399135965e-10, 'us_nominal_reference_after_tensors_exact': None, 'reference_counterfactual_state_unchanged': True, 'actual_effective_delta': {'joint_norm': 0.2436223194553753, 'lora_norm': 0.23979852676545452, 'fc_norm': 0.042994198421816426, 'parameter_norm': 0.4584628042235774, 'measurement': 'actual_factor_values_float64_Gram_unscaled_BA_plus_all_FC'}, 'actual_to_reference_norm_ratio': 4.934443164375098, 'actual_match_relative_error': 3.934443164375098, 'matched': None, 'matching_tolerance': 0.001, 'root': None, 'effective_step_polynomial': {'c2': 1.78699246499769, 'c3': -0.10543957017945073, 'c4': 0.01582074072076331, 'fc2': 1.1553132080764321}, 'probe_roundtrip_delta': {'joint_norm': 1.5632533855714532e-07, 'lora_norm': 8.65285774202242e-08, 'fc_norm': 1.301937662280279e-07, 'parameter_norm': 1.760238162732514e-07, 'measurement': 'actual_factor_values_float64_Gram_unscaled_BA_plus_all_FC'}, 'native_decomposition_exact': True, 'component_spec_exact': True, 'projector_spec_exact': True, 'base_sgd_exact': False, 'base_sgd_max_abs_error': 0.10000000894069672, 'self_spec_passed': False}\")"
+    },
+    {
+      "case": "actual_projector_gradient_corruption",
+      "error": "AssertionError('Native clean projector own-spec mismatch')"
+    }
+  ],
+  "trainer_sha256": "0eb1a4b2040e118f346c56224d8d69d17e581382391c50a2bbf8a7fae60c128c",
+  "hvp_helpers_sha256": "5bf68aa266104580cb8514461bb1476b0f86c81ee139242d865f666139aeb46d",
+  "test_sha256": "2a990b6c90b48a30bb92a08938a5d4b04ebe5e7abf068259217c04e4dd626429"
+}

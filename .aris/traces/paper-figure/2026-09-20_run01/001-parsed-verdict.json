@@ -1,0 +1,69 @@
+{
+  "verdict": "pass",
+  "review_status": "provisional",
+  "review_independence": "same-family",
+  "review_skill": "paper-figure",
+  "substantive_required_changes": [],
+  "figures": {
+    "Figure_B_neighborhood": {
+      "correctness": "pass",
+      "readability": "pass",
+      "caption_self_contained": true,
+      "figure_type_matches_data": true,
+      "comparison_fair": true,
+      "uncertainty_and_replication": {
+        "training_seeds": 1,
+        "positive_radius_direction_count": 16,
+        "directions_treated_as_training_replicates": false,
+        "confidence_intervals_claimed": false,
+        "worst_case_guarantee_claimed": false
+      },
+      "counterevidence_preserved": {
+        "test_Gmean_higher_for_GAM_at_all_positive_radii": true,
+        "Gmean_tolerance_ties_visible": true,
+        "right_censoring_visible": true
+      },
+      "coordinate_scope_clear": true,
+      "scale_and_censoring_clear": true
+    },
+    "Figure_C_sequence_and_endpoint": {
+      "correctness": "pass",
+      "readability": "pass",
+      "caption_self_contained": true,
+      "figure_type_matches_data": true,
+      "comparison_fair": true,
+      "only_measured_t9_S_path_plotted": true,
+      "endpoint_chord_distinguished_from_optimizer_path": true,
+      "historical_chain_optimizers_distinguished_from_Table_A": true,
+      "empirical_Fisher_mean_over_per_example_outer_products_stated": true,
+      "single_seed_limit_stated": true
+    },
+    "TABLE_A_controlled_continuation": {
+      "correctness": "pass",
+      "a22_retained": true,
+      "GAM_minus_SGD_a22_percentage_points": -2.75,
+      "common_future_SGD_stated": true,
+      "inherited_Fisher_caveat_stated": true
+    }
+  },
+  "essential_missing_baselines": [],
+  "new_training_required_for_current_scoped_figures": false,
+  "minimal_nonblocking_improvements": [
+    {
+      "file": "figures/gen_fig_B_neighborhood.py",
+      "artifact": "figures/Figure_B_neighborhood.png",
+      "issue": "Panel label (c) is close to the upper end of the long vertical y-axis label.",
+      "suggestion": "Move only (c) slightly right/up or shorten the y-axis label to 'Raw Fisher trace (train256)'."
+    },
+    {
+      "file": "figures/gen_tables_and_captions.py",
+      "artifacts": [
+        "figures/CAPTIONS.md",
+        "figures/captions.json",
+        "figures/latex_includes.tex"
+      ],
+      "issue": "Figure B says the trace is computed from per-example gradients and 'without normalization', which could leave a sum-versus-mean ambiguity.",
+      "suggestion": "State that the empirical Fisher is the mean of per-example outer products and that no trace normalization, floor, or regularization is applied."
+    }
+  ]
+}

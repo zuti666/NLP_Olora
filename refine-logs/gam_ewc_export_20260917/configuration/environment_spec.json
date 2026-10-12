@@ -1,0 +1,58 @@
+{
+  "base": "cuda12.1 + python3.10.20",
+  "env": {
+    "HF_HOME": ".cache/gamfishershape_llama{1B,3B}/huggingface",
+    "PYTHONPATH": "src",
+    "UIE_DATA_CACHE_ROOT": ".cache/gamfishershape_llama{1B,3B}/uie_data"
+  },
+  "name": "nlora_req",
+  "pip_phases": [
+    [
+      "torch==2.1.1+cu121",
+      "torchaudio==2.1.1+cu121",
+      "torchvision==0.16.1+cu121"
+    ],
+    [
+      "transformers==4.28.0",
+      "datasets==1.17.0",
+      "accelerate==1.4.0",
+      "deepspeed==0.16.3",
+      "numpy==1.24.4"
+    ]
+  ],
+  "run_commands": [
+    "Use repository-local src/peft 0.3.0; do not install external peft"
+  ],
+  "smoke": {
+    "cli_checks": [
+      "nvidia-smi"
+    ],
+    "gpu_tests": [
+      {
+        "cmd": "python -c 'import torch; torch.manual_seed(0); x=torch.randn(8,8,device=\"cuda\"); y=x@x; print(\"WITNESS\", tuple(y.shape), torch.cuda.get_device_name(), float(y.sum()))'",
+        "expect": "^WITNESS \\(8, 8\\)"
+      }
+    ],
+    "import_names": [
+      "torch",
+      "transformers",
+      "datasets",
+      "accelerate",
+      "deepspeed",
+      "run_uie_lora"
+    ]
+  },
+  "system_pkgs": [],
+  "weight_dirs": {
+    "llama_1b": {
+      "gated": false,
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B",
+      "source": "local transformers loader"
+    },
+    "llama_3b": {
+      "gated": false,
+      "path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-3B",
+      "source": "local transformers loader"
+    }
+  }
+}

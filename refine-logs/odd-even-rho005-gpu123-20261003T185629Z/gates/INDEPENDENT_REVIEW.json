@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-03T19:03:55.083234+00:00",
+  "reviewer": "/root/odd_even_outer_audit",
+  "implementation_author": false,
+  "review_type": "independent nonauthor CPU and implementation review",
+  "cpu_only": true,
+  "gpu_calls": 0,
+  "training_launched": false,
+  "approval_scope": "Eligible for root freeze and later actual GPU smoke gates; CPU review does not imply GPU acceptance",
+  "blocking_findings": [],
+  "resolved_findings": [
+    "Aligned authoritative FP32 formula strings, probe label spacing, correction norm/replay fields between engine and completion validator before freeze",
+    "First-step actual g0/gplus/gminus, both probe points and R0/R1 hashes added; seven-way pairing compares only shared initial gradients, not divergent later trajectories"
+  ],
+  "checks": {
+    "seven_exact_registered_update_directions": true,
+    "uniform_g0_plus_minus_three_probes": true,
+    "same_base_full_state_R0_each_probe": true,
+    "one_SGD_from_theta0_R1_once": true,
+    "normalized_probe_rho005_no_outer_radius": true,
+    "no_final_normalization_or_projection_EWC_Fisher_merge": true,
+    "observed_3_CE_per_update_6_isolated_CE_per_task": true,
+    "native_class_data_LR_lifecycle_preserved": true,
+    "14_real_training_entrypoints_passed": true,
+    "19_author_CPU_tests_current_hashes": true,
+    "11_queue_CPU_checks_current_hashes": true,
+    "7smoke_1CPUgate_7formal_exact_jobs": true,
+    "all_smokes_gate_first3_first3_gate_final4": true,
+    "GPU123_max3_shared_physical_UUID_locks_fresh_idle": true,
+    "no_preemption_no_automatic_retry_failure_halts_new_jobs": true,
+    "old_campaign_pins_and_empty_LocalCD_unchanged": true
+  },
+  "independent_numeric_validation": {
+    "executed_cases": 14,
+    "dtypes": [
+      "float32",
+      "float64"
+    ],
+    "directions": [
+      "g1_plus",
+      "backward_reflected",
+      "central",
+      "g0",
+      "g1_minus",
+      "even_average",
+      "even_reflected"
+    ],
+    "model": "separate analytic nonquadratic stochastic vector objective",
+    "validated": [
+      "analytic g0/gplus/gminus at common RNG",
+      "registered FP32/FP64 expression exact",
+      "shared probe reads across all directions",
+      "restore original theta before ordinary SGD",
+      "single SGD exact and R1 advances once",
+      "six-gradient zero-update replay"
+    ],
+    "new_model_forwards_on_GPU": 0
+  },
+  "source_files_rechecked": 190,
+  "old_hashes_rechecked": 89,
+  "old_local_cd_jobs": 0,
+  "reviewed_files_sha256": {
+    "common.py": "331eba4a768dde17cd3f43e1e5535d8b74fa1c978783c5876ed40a8a6d54e246",
+    "build_suite.py": "37189f832977903a76bfda2a5d2cd36ddf79e3831e1180a6fe87233ac95d9e1f",
+    "run_queue.py": "31e5f69ab4698f79635a98b22f0a14107cbda40be1dd24680f245bd035267bd6",
+    "job_worker.py": "d4be927beaf61917054f348030c78a149ed69b4d8972bcebb152899cf9f3a3db",
+    "validate_job.py": "f03bab8448ebb1a7ed38d448ddb403b2f12b6b2623460744400ff13f954d2afe",
+    "verify_pairing.py": "15db65026552e7797ee057b566a93658f5fb924cb8ec3244010cf4ed9e842c7c",
+    "collect_results.py": "b57e78594cfc3c26aa37ff2b2e0256b34275d4e8988218c8b677e2a741e6282f",
+    "suite.json": "a537be1cf37b62dc0fc59728287b5541d6c110ebaab8e93bb692588c376e03ae",
+    "trainer/odd_even_step.py": "1fac4ee30dd9307d813a941f9ccc275ee293d48427524e360be82c24de67d2ae",
+    "trainer/odd_even_train.py": "61eaf3fb1f748f6a8f8671561765aa5702f95d149e374e5671e4c2dc3dd2d552",
+    "trainer/test_odd_even_cpu.py": "31c6501d3ed2dedfb42c39a1190519e84c8b3d75a3fc34b6c15202bba0b9e1a0",
+    "trainer/ODD_EVEN_CPU_GATE.json": "ded91696bf182a3e33b44b08360e73c608491f67f9f25f0a32a81e4f232bd435",
+    "gates/TRAINER_ENTRYPOINTS.json": "c9ece46d012f13c2b18f568129bac54a42a1a30451ee37f8c212d064559b4115",
+    "gates/QUEUE_CPU_GATE.json": "3f9e0539ee68efea40820a2bd5b13a2fd32665868e3fa28918a9a688911ead97",
+    "RUN.md": "d5542a8147bf24815559130c82739b39130a29b2bfe28bf3346aabb613f8b980",
+    "ENVIRONMENT.md": "f074d508b6f9c80424a3f50a7a417de3f1276c4734c2389d1be1d959d26a7a06"
+  },
+  "limitations": [
+    "No actual GPU smoke run by this reviewer; mandatory queue smoke and seven-way pairing remain launch-time gates",
+    "Single seed2 exploratory comparison only",
+    "Diagnostic e uses cancellation-aware algebraic equivalent arithmetic; authoritative even update expressions are explicit and independently checked",
+    "Historical four-probe native and two-probe reflected results are background; all seven formal results here must be fresh uniform-three-probe runs"
+  ]
+}

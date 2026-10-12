@@ -1,0 +1,14 @@
+# Independent queue and release review — final
+
+**PASS for freezing the current implementation and deploying a host waiter**, subject to the existing parent-completion and real-GPU-smoke barriers. Neither barrier is claimed passed. No GPU/training process was invoked and no implementation or parent output was modified.
+
+- `collect_results.py:12–48` includes individually revalidated zero-exit completion receipts with matching job IDs. Its metrics come through `validate_job`; task-macro and sample metrics remain distinct. All 9 fresh horizons must complete before X selection. Eligibility/tie order matches FROZEN_GATES; Phase II/III never auto-launch. Partial comparisons are exploratory.
+- `check_gpu_smokes.py:14–40` revalidates all 10 receipts and pairs Task0 initial parameters, frozen origins, both tasks' new head rows/class slices, full batch identities and nominal LR. The validator enforces exact US scalar/own-counterfactual tensor identity every step. Separate natural/matched two-task checkpoint comparison is numerical (relative parameter L2 ≤ 1e-4), not bitwise. Different directions need not share learned Task1 parameters.
+- `wait_then_launch.py:14–40` requires the exact 120-job parent manifest, all completed statuses, exited parent controller, pinned sources/configs and all actual zero-exit receipts revalidated. It creates no GPU process while waiting; smoke queue and the smoke checker must return successfully before formal queue launch. Handoff has its own exclusive lock.
+- `run_queue.py:17–49` plus startup/launch sites checks parent proof and current files at direct startup and every launch; formal jobs additionally require current smoke proof. Proofs bind current manifests and receipts. Controller lock, inherited UUID GPU leases, second idle check, failure halt and nonempty-output refusal prevent duplicate or premature launch.
+
+Independent CPU evidence: VALIDATOR_CPU_INDEPENDENT passes 10 horizon positives + 26 targeted negatives and curvature available/unsupported positives + 14 negatives. RELEASE_GUARD_CPU_INDEPENDENT_V2 passes 18 synthetic process/metadata tests, including 13 rejections. The final namespace mismatch and changed parent-pinned-file negatives pass. Tests did not invoke GPU queries or queue main; source hashes match current files.
+
+Real execution is explicitly restricted to the **host PID namespace** by both waiter and direct queue. Tool-sandbox `/proc` cannot establish host controller liveness; synthetic fixtures intentionally use their own visible PID. The previous sandbox observation is inconclusive and does not indicate a stopped parent.
+
+Suite: 10 smokes + 9 fresh 10-task horizons + 6 curvature audits. Parent barrier: all 120 jobs. Deployment still must create RUN_PINS binding the current code and inputs (not yet present in staging at review time). Full file hashes and conditions are in INDEPENDENT_QUEUE_FINAL_REVIEW.json. No additional scope or automatic follow-up phase is requested.

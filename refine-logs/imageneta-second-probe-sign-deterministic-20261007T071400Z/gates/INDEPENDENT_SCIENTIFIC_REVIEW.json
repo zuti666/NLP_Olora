@@ -1,0 +1,75 @@
+{
+  "status": "passed_independent_scientific_cpu_helper_review",
+  "reviewed_at_utc": "2026-10-07T07:20:40.915199+00:00",
+  "reviewer": "second_probe_execution_review",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z",
+  "cpu": {
+    "command": "CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python -m unittest discover -s /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/tests -p test_second_probe_cpu.py -v",
+    "exit_code": 0,
+    "tests_passed": 16,
+    "tests_total": 16,
+    "CPU_GATE_not_written": true
+  },
+  "helper": {
+    "exit_code": 0,
+    "checks_passed": 16,
+    "report": "/tmp/second_probe_deterministic_helpers_independent_20261007.json",
+    "readonly_copy": "/tmp/second_probe_deterministic_helpers_readonly_20261007.py",
+    "adaptation_proof": "/tmp/second_probe_deterministic_helper_readonly_adaptation_20261007.json",
+    "only_test_report_redirected_to_tmp": true
+  },
+  "actual_bounded_preflight": "/tmp/second_probe_det_preflight_acceptance_20261007.json",
+  "arithmetic_and_support_unchanged": {
+    "direction_step.py": true,
+    "effective_step.py": true,
+    "native_lifecycle.py": true,
+    "audit_core.py": true,
+    "task0_trainer_base_v2.py": true,
+    "cuda_witness.py": true,
+    "state_transaction.py": true
+  },
+  "checks": {
+    "strict_deterministic_config_requires_true_and_false_booleans": true,
+    "strict_runtime_set_before_cuda_model_setup": true,
+    "actual_flag_checks_every_batch_task_and_end": true,
+    "summary_effective_trace_runtime_flag_validation": true,
+    "no_warn_only_or_backend_fallback": true,
+    "same_math_four_CE_and_one_natural_SGD": true,
+    "same_g0_g1_g2_and_signed_third_probe": true,
+    "same_selected_reuse_opposite_one_CE_and_full_R1_restore": true,
+    "all16_conditions_and_B1_reruns_in33job_grid": true,
+    "no_historical_main_results_reuse": true,
+    "strict_hash_pairing_and_RNG_data_model_identity_preserved": true,
+    "snapshot_layout_RNG_content_hashes_validated": true,
+    "shared_idle_index_UUID_locks_gpu01_excluded": true,
+    "halt_on_failure_no_automatic_altered_retry": true,
+    "CPU_and_helper_success_not_gpu_model_acceptance": true
+  },
+  "substantive_failures": [],
+  "source_edits": 0,
+  "campaign_gate_writes": 0,
+  "GPU_or_queue_launches": 0,
+  "files_sha256": {
+    "trainer/direction_step.py": "7518e3f59fc4a997fb02c6335744a1b3574a2f235bf9147559bc730fd1ccc93d",
+    "trainer/four_probe_train.py": "293bdf8d80f5c3199ccbaad555a43d2903fe15558a60171137cb18b3abe6a28c",
+    "tests/test_second_probe_cpu.py": "7abe0cc3f01d8c9293fa0ee4e688a4cdd72c31b338a0e8fa41abf8e670bbb608",
+    "common.py": "5ad1f3dcde1f39838c056b0936f42d4d91f198b99fdbb760a48a446e0d6c9d0a",
+    "validate_job.py": "6c3a56c8ad3fe9d5234f8e45c7453ca562d221731e52c0aaf02be80cba0e533f",
+    "smoke_pairing.py": "1a67b0046164aa3b0367439e5ad2807cf217e53a8c347b4fb2151e844089e9d5",
+    "build_suite.py": "d41261ddcff6df97f65f47f05b70cf36f31d3a980f5689721c23ebadf4bd206c",
+    "run_queue.py": "19958a04756edd29fc49d5eeb36bdc3f5b80bd3f3263f16f26acf917bbc87608",
+    "job_worker.py": "277e1c7b9f797109334211431ad22c69895c3461afc4a60631fd52bdb8dfbe25",
+    "collect_results.py": "785f5a1047a140bcfdce8f034fec3fe60e307a09097778f340f47c124875b4ae",
+    "tests/queue_helpers_check.py": "6be8c787ae18a9243a5abe2049383ea3d98b5c46656b769a49e661068bef8cf8",
+    "ENVIRONMENT.md": "191147f9976d2bb4ec240b2bb7d585196d7c565623963687e4694a5a5b378891",
+    "suite.json": "bc08d5da7cfd32cea6c06f580fe1efc411f8facc3cfefe2db2369082a7cd9b59"
+  },
+  "limits": [
+    "The new33-job campaign has not been GPU-model-accepted by this reviewer; its16 real short trainings and strict pairing remain required before16formal starts.",
+    "The independent bounded preflight proves N5/N6 at r1 onGPU2/3, not future tasks, all hardware or full training determinism.",
+    "Runtime execution changed despite unchanged mathematical directions; old B1 endpoints are historical only and are rerun.",
+    "Final frozen RUN_PINS and host namespace dry-run require the separate fresh documented-command acceptance.",
+    "CPU_GATE is deliberately not pinned in this review while root may regenerate it; record and freeze the final file before launching.",
+    "No full AAA/FAA scientific result is inferred from short smoke accuracies."
+  ]
+}

@@ -1,0 +1,765 @@
+{
+  "status": "PREPARED_NOT_LAUNCHED",
+  "python": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+  "environment": {
+    "HF_HOME": "/data/115-2/users/liying/cache/huggingface",
+    "TORCH_HOME": "/data/115-2/users/liying/cache/torch",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/115-2/users/liying/datasets",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "gpu_assignment": "root scheduler only; user GPUs 2,3,4,5",
+  "jobs": [
+    {
+      "id": "cllora_aircraft_s1",
+      "method": "CL-LoRA",
+      "dataset": "aircraft",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_aircraft_s1.json",
+      "config_sha256": "dd07765b506b262adcf9bc6fae7214af820bca3c609bc33535037a82ac559f73",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_aircraft_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "cllora_aircraft_s2",
+      "method": "CL-LoRA",
+      "dataset": "aircraft",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_aircraft_s2.json",
+      "config_sha256": "770befda02d7c96dfa4642a937af7d223fff0f170570eb38992e5bedac0dcc3f",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_aircraft_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_cllora_aircraft_s0",
+      "method": "CL-LoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_cllora_aircraft_s0.json",
+      "config_sha256": "55ecd8dc6097e2a506da17907bcb8e3eab041ce57dc78763f7b1ea0c7ca5a97f",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "formal_source_exact",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "cllora_cars196_s1",
+      "method": "CL-LoRA",
+      "dataset": "cars196",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cars196_s1.json",
+      "config_sha256": "2bccbc452244237091d08e28bbd528ad4bcd3f11b602cf9c2e95f8e5a7a55497",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_cars196_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "cllora_cars196_s2",
+      "method": "CL-LoRA",
+      "dataset": "cars196",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cars196_s2.json",
+      "config_sha256": "01e5898738054196048133f54941f50ddeda5faf46c5f719c579e88ea10fa717",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_cars196_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_cllora_cars196_s0",
+      "method": "CL-LoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_cllora_cars196_s0.json",
+      "config_sha256": "51c929d9d1bed74205d7bbe0538ac01eff65d3f45ff392bc95dd2581100039ca",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "formal_source_exact",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "cllora_cub200_s1",
+      "method": "CL-LoRA",
+      "dataset": "cub200",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cub200_s1.json",
+      "config_sha256": "764e1bc81df8a6671e38710cfe91bfbdc0e54bf14e986fea6562f4896d6cae7b",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_cub200_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "cllora_cub200_s2",
+      "method": "CL-LoRA",
+      "dataset": "cub200",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_cub200_s2.json",
+      "config_sha256": "437c8ee71986f5115f5edc09f35237ca0c64689da58db42dcbdec49166eacb26",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_cub200_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_cllora_cub200_s0",
+      "method": "CL-LoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_cllora_cub200_s0.json",
+      "config_sha256": "b97b1370abf9984a17acc5f19cfba1fc6ad923874f048da2a98015553c8d6cbf",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "formal_source_exact",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "cllora_flowers_s1",
+      "method": "CL-LoRA",
+      "dataset": "flowers",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_flowers_s1.json",
+      "config_sha256": "96b6b4f0b2f4a36068620aa5389fdd10c45f77db88ab059f11a67d8d46b3c0f5",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_flowers_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "cllora_flowers_s2",
+      "method": "CL-LoRA",
+      "dataset": "flowers",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_flowers_s2.json",
+      "config_sha256": "a15ee4bbadcca4d2da1f1de3f31bc72d089c80d47fcd91f208525eacd642920a",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_flowers_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_cllora_flowers_s0",
+      "method": "CL-LoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_cllora_flowers_s0.json",
+      "config_sha256": "307a5635ae4c93a60fd25082ec63be64d461680d1f6ee1307a225ab6e7f7efc0",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "formal_source_exact",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "cllora_het5_s1",
+      "method": "CL-LoRA",
+      "dataset": "het5",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 5,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_het5_s1.json",
+      "config_sha256": "fc421c1958d0ca5b218bf4dd08808914bba61a6e51c1418b1c4105211a6e145a",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_het5_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "cllora_het5_s2",
+      "method": "CL-LoRA",
+      "dataset": "het5",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 5,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/cllora_het5_s2.json",
+      "config_sha256": "b27feccccd7fbfeca2ec094e1729b85a26111a751830447feb732321bea294a7",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_cllora_het5_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_cllora_het5_s0",
+      "method": "CL-LoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_cllora_het5_s0.json",
+      "config_sha256": "08d9ff948bd108f8b3d9cacef9d4f64c7bb7ec56184b1a7c4706750a5ff874e2",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "formal_source_exact",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "gam_ewc_aircraft_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_aircraft_s0.json",
+      "config_sha256": "6b0deb935c6e290ef9233d3bbf4f8376695f9ee674327a891a1e154716756b57",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_aircraft_s0"
+      ],
+      "candidate_seed0": true,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_aircraft_s1",
+      "method": "GAM-EWCLoRA",
+      "dataset": "aircraft",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_aircraft_s1.json",
+      "config_sha256": "697ccc24b1c24c2aace1ea07ad4a7c43caca3836f0fdb31e248255b0c5642aa4",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_aircraft_s0",
+        "gam_ewc_aircraft_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_aircraft_s2",
+      "method": "GAM-EWCLoRA",
+      "dataset": "aircraft",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_aircraft_s2.json",
+      "config_sha256": "b34faa95d3fc4fefe614a38098194f31471ef9fc29f830a05454c98d8b1c0b07",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_aircraft_s0",
+        "gam_ewc_aircraft_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_gam_ewc_aircraft_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_gam_ewc_aircraft_s0.json",
+      "config_sha256": "b527b5fd4152d3955153ead43ec2626e4caeebb13a5e4356642942b6cd99101f",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "gam_ewc_cars196_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cars196_s0.json",
+      "config_sha256": "5f096af30d6e7dcb3186b880e939ac51e43ddd05893f3ed7c22531ad4cce3f21",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_cars196_s0"
+      ],
+      "candidate_seed0": true,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_cars196_s1",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cars196",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cars196_s1.json",
+      "config_sha256": "3bc9abcb0fec0f5a7fe66b6427a9e0e583b933aa53d49351444df2848530aeb2",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_cars196_s0",
+        "gam_ewc_cars196_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_cars196_s2",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cars196",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cars196_s2.json",
+      "config_sha256": "b01dd5eb9a84a4a18969df7609ec9f7e174bfdcc3e3331348224d711a62635d2",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_cars196_s0",
+        "gam_ewc_cars196_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_gam_ewc_cars196_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_gam_ewc_cars196_s0.json",
+      "config_sha256": "59dd1345b09a30909203b72d0a77ea69fca9841b15460ce468229bebe653aa52",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "gam_ewc_cub200_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cub200_s0.json",
+      "config_sha256": "8366c25e33e8896c2a884042a66dd084b63f8d7aa0d4356d619a03899bf99f33",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_cub200_s0"
+      ],
+      "candidate_seed0": true,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_cub200_s1",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cub200",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cub200_s1.json",
+      "config_sha256": "5dd681319601631f75b4d5ce79dcfd6641827b81dbebc17f16d6c6c96e401578",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_cub200_s0",
+        "gam_ewc_cub200_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_cub200_s2",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cub200",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_cub200_s2.json",
+      "config_sha256": "424e6e189cbad8c047708d2344e5c436450e2ca9cc028e83ce69b123292837d8",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_cub200_s0",
+        "gam_ewc_cub200_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_gam_ewc_cub200_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_gam_ewc_cub200_s0.json",
+      "config_sha256": "ecaa92f861f39713f509679502f5e3b0886a34dfefd859b3663ffbc54b763e1b",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "gam_ewc_flowers_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_flowers_s0.json",
+      "config_sha256": "c4e6a8dd3dec42bce0fbf466a9a4163fc3f2dc10eb3dcac244347c40a9b73113",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_flowers_s0"
+      ],
+      "candidate_seed0": true,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_flowers_s1",
+      "method": "GAM-EWCLoRA",
+      "dataset": "flowers",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_flowers_s1.json",
+      "config_sha256": "8ef4c99541644de87efa70786ef99ec66e54a415f52636b16d870bc3268e08c2",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_flowers_s0",
+        "gam_ewc_flowers_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_flowers_s2",
+      "method": "GAM-EWCLoRA",
+      "dataset": "flowers",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 10,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_flowers_s2.json",
+      "config_sha256": "d9b6e361002f0a8953624cf3f37990fab647d5faf34160e89f039b89c836f92f",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_flowers_s0",
+        "gam_ewc_flowers_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_gam_ewc_flowers_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_gam_ewc_flowers_s0.json",
+      "config_sha256": "7e3edd38280065fb7f6b2b9e7cf5663f4af38ef87ef30c3a5c976c60333d0a8e",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "historical_source_unbound_candidate",
+      "selection_pending": "not queued"
+    },
+    {
+      "id": "gam_ewc_het5_s1",
+      "method": "GAM-EWCLoRA",
+      "dataset": "het5",
+      "seed": 1,
+      "stage": "formal",
+      "expected_tasks": 5,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_het5_s1.json",
+      "config_sha256": "f8380faea262dbc23776a80837e28fd9fab19b5b14ab94e64bb68f7181e29ee5",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_het5_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "gam_ewc_het5_s2",
+      "method": "GAM-EWCLoRA",
+      "dataset": "het5",
+      "seed": 2,
+      "stage": "formal",
+      "expected_tasks": 5,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_het5_s2.json",
+      "config_sha256": "4ff9c569d264d7878f7c656f9ca831bc0c32f87a7015173a0e1b8ff9ec576341",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [
+        "smoke_gam_ewc_het5_s0"
+      ],
+      "candidate_seed0": false,
+      "source_status": "formal_source_exact",
+      "selection_pending": "joost inventory and root protocol decision"
+    },
+    {
+      "id": "smoke_gam_ewc_het5_s0",
+      "method": "GAM-EWCLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "stage": "smoke",
+      "expected_tasks": 2,
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/smoke_gam_ewc_het5_s0.json",
+      "config_sha256": "fe3f4feac26db3ee7339ba1d5c26d15fa5e711fee2daa2d8b8fbab014b2ee310",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+      "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+      "depends_on": [],
+      "source_status": "formal_source_exact",
+      "selection_pending": "not queued"
+    }
+  ],
+  "reused_candidates": [
+    {
+      "method": "CL-LoRA",
+      "dataset": "aircraft",
+      "seed": 0,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_aircraft_s0.json",
+      "config_sha256": "dcfbe59af04b87d2ca26bb781208ee154b2afe2a828b8996e64a3ea58a19346d",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_aircraft_s0.json",
+      "receipt_sha256": "5413afd60cce0ce4298af8411513ad8e9c2bcb0e81ee70881a38320e9c059067",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/aircraft/0/cllora_aircraft_s0/exp_run/10/cllora_aircraft_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "c482e852b79c32bf2a83a49e483018b9924f2b5ed9503a89f7cb916be0c48e36",
+      "status": "conditional_existing_complete",
+      "conditions": [
+        "same frozen source and actual flags",
+        "recheck ordered data paths/labels",
+        "same cached pretrained bytes/environment"
+      ]
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "cars196",
+      "seed": 0,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_cars196_s0.json",
+      "config_sha256": "ce145d7a1725a6e43981f1145c06cc59738ec5c774326e5585fce8259adc3fc2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_cars196_s0.json",
+      "receipt_sha256": "7986c88c7223ebdc89668c19116c38b07cf8deadb138d2ad8ea1e44cdae4e668",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cars196/0/cllora_cars196_s0/exp_run/20/cllora_cars196_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "056ce8a6da0ac389e7200a661955b9337cd63131fa62dd2bd32ce034ed2eeb13",
+      "status": "conditional_existing_complete",
+      "conditions": [
+        "same frozen source and actual flags",
+        "recheck ordered data paths/labels",
+        "same cached pretrained bytes/environment"
+      ]
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "cub200",
+      "seed": 0,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_cub200_s0.json",
+      "config_sha256": "b142ed45a65d27b4e70af73b381733081c5fd0bee250a8de10723714e7d38b38",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_cub200_s0.json",
+      "receipt_sha256": "4940d9e1e4ff0331420862074cf464116bc1a1ee9ad6a29be8e49857455a9b23",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/cub200/0/cllora_cub200_s0/exp_run/20/cllora_cub200_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "83d195e85541323948f2f309c01fdf7da8800f21b9f71596da594c573c388aef",
+      "status": "conditional_existing_complete",
+      "conditions": [
+        "same frozen source and actual flags",
+        "recheck ordered data paths/labels",
+        "same cached pretrained bytes/environment"
+      ]
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "flowers",
+      "seed": 0,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_flowers_s0.json",
+      "config_sha256": "a3fbda0d19266fad6d58c566004b2b2065826ae198bf022b84703cd0f8554448",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_flowers_s0.json",
+      "receipt_sha256": "5628ab00d2585983a7e2e3517a74e1d7d5dc1efec96384611b62ca371c4dae99",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/flowers/0/cllora_flowers_s0/exp_run/10/cllora_flowers_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "9a32a632493fb6f5fbc1457112f5be29433ee2902bbf81d43cdd1afe57a9ddbb",
+      "status": "conditional_existing_complete",
+      "conditions": [
+        "same frozen source and actual flags",
+        "recheck ordered data paths/labels",
+        "same cached pretrained bytes/environment"
+      ]
+    },
+    {
+      "method": "CL-LoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/cllora_het5_s0.json",
+      "config_sha256": "ed3c7b84eaf389c75c068ff88ec5b843fc278b71e9f12d9123b249fd2b57b071",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/cllora_het5_s0.json",
+      "receipt_sha256": "560ffc6af6ca91710bdc215acccc395c50eb9c93bcf05db0def7a07f9d9eb74c",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/cllora_aligned/fine_gapfill_20260918/het5/0/cllora_het5_s0/exp_run/100/cllora_het5_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "0cf62c9df0247efd3296001828c1f446a4d48a8d0e6528803915cb6866a7fea6",
+      "status": "conditional_existing_complete",
+      "conditions": [
+        "same frozen source and actual flags",
+        "recheck ordered data paths/labels",
+        "same cached pretrained bytes/environment"
+      ]
+    },
+    {
+      "method": "GAM-EWCLoRA",
+      "dataset": "het5",
+      "seed": 0,
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/configs/gam_ewc_het5_s0.json",
+      "config_sha256": "cab990e301a5125248cfe836c4188b586150fbca9d63e52d3b184915be22efac",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/receipts/gam_ewc_het5_s0.json",
+      "receipt_sha256": "c28329a1d348561550ae9fd9fef85f720692a7e73268a0b21ee075034e345f2c",
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "metric_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/outputs/logs_inc_lora/ewclora_normfisher_gam/fine_gapfill_20260918/het5/0/gam_ewc_het5_s0/exp_run/100/gam_ewc_het5_s0_vit_base_patch16_224_cl_metrics.json",
+      "metric_sha256": "5c758db92e3b0d8b78b8cabd3255fa9a1f9cac0ff4eeea88a5add43ef1bbc446",
+      "status": "conditional_existing_complete",
+      "conditions": [
+        "same frozen source and actual flags",
+        "recheck ordered data paths/labels",
+        "same cached pretrained bytes/environment"
+      ]
+    }
+  ],
+  "job_counts": {
+    "formal": 24,
+    "smoke": 10
+  },
+  "notes": [
+    "No scheduler or GPU job launched.",
+    "First four GAM groups are candidates; existing-source inventory may replace/drop them.",
+    "Original fixed-source finite guard can be reused; never run original queue against old state.",
+    "CL has minLR0 and direct loader; GAM minLR .1LR.",
+    "Formal GAM-Het5 config clean RNG true is intentionally preserved but ignored by this source, not an actual enabled feature.",
+    "Aircraft GAM source DataManager uses persistent workers true from iAircraft; top-level false does not override."
+  ]
+}

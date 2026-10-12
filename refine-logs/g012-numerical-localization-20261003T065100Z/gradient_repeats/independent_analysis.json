@@ -1,0 +1,101 @@
+{
+  "source_report": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-numerical-localization-20261003T065100Z/gradient_repeats/artifacts/repeat_report.json",
+  "scope": {
+    "task": 0,
+    "point": "entry",
+    "batch": 0
+  },
+  "conclusion": "At task0-entry/batch0, backend repeatability explains strict gradient equality failure more strongly than an observed cache mutation. Native errors are small but amplify through recomputed probe points and residuals. This does not validate all24 registered state/batch cases or guarantee full-trajectory accuracy invariance.",
+  "fixed_point_native": {
+    "g0": {
+      "max_relative_l2": 2.0358868218405266e-08,
+      "max_abs": 3.958120942115784e-09,
+      "loss_span": 0.0,
+      "classifier_gradients_exact": true
+    },
+    "g1_plus": {
+      "max_relative_l2": 2.045885600335662e-08,
+      "max_abs": 3.725290298461914e-09,
+      "loss_span": 0.0,
+      "classifier_gradients_exact": true
+    },
+    "g1_minus": {
+      "max_relative_l2": 2.061130381948199e-08,
+      "max_abs": 7.450580596923828e-09,
+      "loss_span": 0.0,
+      "classifier_gradients_exact": true
+    }
+  },
+  "native_same_branch_PP": {
+    "g0": {
+      "relative_l2": 1.3886847129205122e-08,
+      "relative_percent": 1.3886847129205122e-06,
+      "absolute_l2": 5.992158958619428e-08,
+      "max_abs": 3.725290298461914e-09,
+      "cosine": 0.9999999999999998
+    },
+    "g1_plus": {
+      "relative_l2": 6.247491449327994e-06,
+      "relative_percent": 0.0006247491449327993,
+      "absolute_l2": 2.7558140903804503e-05,
+      "max_abs": 1.4442484825849533e-06,
+      "cosine": 0.9999999999804874
+    },
+    "g1_minus": {
+      "relative_l2": 1.2985715368399014e-05,
+      "relative_percent": 0.0012985715368399014,
+      "absolute_l2": 5.470184122088313e-05,
+      "max_abs": 3.621680662035942e-06,
+      "cosine": 0.9999999999156998
+    },
+    "g2": {
+      "relative_l2": 9.403639976116923e-05,
+      "relative_percent": 0.009403639976116923,
+      "absolute_l2": 0.0004917246177172776,
+      "max_abs": 5.5112410336732864e-05,
+      "cosine": 0.9999999955803293
+    },
+    "q": {
+      "relative_l2": 0.0001746054162414897,
+      "relative_percent": 0.017460541624148968,
+      "absolute_l2": 2.7557869048465092e-05,
+      "max_abs": 1.4440156519412994e-06,
+      "cosine": 0.9999999848523516
+    },
+    "c21": {
+      "relative_l2": 0.0002998676769738401,
+      "relative_percent": 0.02998676769738401,
+      "absolute_l2": 0.0004976470230725605,
+      "max_abs": 5.4963864386081696e-05,
+      "cosine": 0.9999999551792584
+    },
+    "U": {
+      "relative_l2": 9.743110513670785e-05,
+      "relative_percent": 0.009743110513670784,
+      "absolute_l2": 0.0004976481414655415,
+      "max_abs": 5.496479570865631e-05,
+      "cosine": 0.9999999952555092
+    }
+  },
+  "math_fixed_points_exact": true,
+  "math_same_branch_PP_exact": true,
+  "math_PD_shared_gradients_exact": true,
+  "native_deterministic_g0_exact": true,
+  "checks": {
+    "entry_full_model_hash_unchanged": true,
+    "native_end_origin_model_hash_restored": true,
+    "input_target_hashes_unchanged": true,
+    "source_unchanged": true,
+    "optimizer_updates": 0
+  },
+  "interpretation_limits": [
+    "Only one archived state and one registered batch tested; 3 repeats gives observed variation, not an upper bound.",
+    "Native/math fixed phi1 points constructed separately from their own initial gradient; cross-backend values cannot serve as same-point equality evidence.",
+    "Within native full-engine PP, phi1 and phi2 are recomputed; greater g1/g2 error combines changed rounded probe coordinates with derivative execution variation. Point snapshots/deltas were not recorded.",
+    "Math runs after native, deterministic native runs last; backend order was not randomized.",
+    "Strict native deterministic mode was tested only for g0, not g1\u00b1 or P/P/D full engines.",
+    "Equal loss and exact classifier gradients support backward-local variability, but logits were not directly compared.",
+    "Enabled SDP flags are not a profiler trace proving which particular kernel executed.",
+    "D-vs-P g2,q,c21,U changes are intentional branch effects and cannot be treated as repeat noise."
+  ]
+}

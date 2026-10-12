@@ -1,0 +1,129 @@
+{
+  "classification": {
+    "protocol_id": "bf16_b40_seed1993_ddp5_bs1_ga8_lam1",
+    "status": "completed",
+    "role": "separate historical configuration; superseded as baseline-alignment target by user request",
+    "include_in_b64_s42_averages": false,
+    "new_alignment_plan": "/data/140-1/users/liying/O-LoRA/refine-logs/bf16_ewc_b64_s42_20260918/ALIGNMENT_PLAN.md",
+    "metrics_unchanged": true,
+    "labeled_at": "2026-09-18T18:29:47.063387+00:00"
+  },
+  "source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/final_results.json",
+  "results": {
+    "status": "complete",
+    "orders": [
+      {
+        "order": 2,
+        "model": "Llama-3.2-1B",
+        "method": "IncLoRA+EWC (new BF16)",
+        "precision": "bf16",
+        "seed": 1993,
+        "faa": 56.8421052631579,
+        "task_results": {
+          "amazon": {
+            "correct": 1509,
+            "samples": 7600,
+            "exact_match": 19.855263157894736
+          },
+          "yahoo": {
+            "correct": 5094,
+            "samples": 7600,
+            "exact_match": 67.02631578947368
+          },
+          "dbpedia": {
+            "correct": 5597,
+            "samples": 7600,
+            "exact_match": 73.64473684210526
+          },
+          "agnews": {
+            "correct": 5080,
+            "samples": 7600,
+            "exact_match": 66.84210526315789
+          }
+        },
+        "reported_predict_exact_match": 56.8421,
+        "source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/full/order_2/4-yahoo/predict_eval_predictions.jsonl",
+        "source_sha256": "fea97e689151a5b9acac907966f9ae18a040c9f7e5b5e57157ccd144c04c36fe",
+        "metrics_source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/full/order_2/4-yahoo/predict_results.json",
+        "metrics_sha256": "eb16e6340f12c41dca549e59f690a4ea66901d0f0518ba86c3617e4f72c681df"
+      },
+      {
+        "order": 3,
+        "model": "Llama-3.2-1B",
+        "method": "IncLoRA+EWC (new BF16)",
+        "precision": "bf16",
+        "seed": 1993,
+        "faa": 67.23026315789474,
+        "task_results": {
+          "amazon": {
+            "correct": 3879,
+            "samples": 7600,
+            "exact_match": 51.03947368421053
+          },
+          "yahoo": {
+            "correct": 4726,
+            "samples": 7600,
+            "exact_match": 62.18421052631579
+          },
+          "dbpedia": {
+            "correct": 6045,
+            "samples": 7600,
+            "exact_match": 79.53947368421052
+          },
+          "agnews": {
+            "correct": 5788,
+            "samples": 7600,
+            "exact_match": 76.15789473684211
+          }
+        },
+        "reported_predict_exact_match": 67.2303,
+        "source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/full/order_3/4-dbpedia/predict_eval_predictions.jsonl",
+        "source_sha256": "06b2b61ef6bd8ca10563ca23bda55bc194d6f79cd7d289076ab91e46e1b8a6a7",
+        "metrics_source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/full/order_3/4-dbpedia/predict_results.json",
+        "metrics_sha256": "3e8ef00182608712024e8c34efdbd667e087b97f1e69992885eb3d6a868d62b3"
+      },
+      {
+        "order": 1,
+        "model": "Llama-3.2-1B",
+        "method": "IncLoRA+EWC (new BF16)",
+        "precision": "bf16",
+        "seed": 1993,
+        "faa": 59.3125,
+        "task_results": {
+          "amazon": {
+            "correct": 1509,
+            "samples": 7600,
+            "exact_match": 19.855263157894736
+          },
+          "yahoo": {
+            "correct": 4111,
+            "samples": 7600,
+            "exact_match": 54.0921052631579
+          },
+          "dbpedia": {
+            "correct": 5627,
+            "samples": 7600,
+            "exact_match": 74.03947368421052
+          },
+          "agnews": {
+            "correct": 6784,
+            "samples": 7600,
+            "exact_match": 89.26315789473684
+          }
+        },
+        "reported_predict_exact_match": 59.3125,
+        "source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/full/order_1/4-agnews/predict_eval_predictions.jsonl",
+        "source_sha256": "54bf6a5dbe14326c433d20995c8d8f69e240d3500a5e2e2926cce200f5ad1ad8",
+        "metrics_source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/full/order_1/4-agnews/predict_results.json",
+        "metrics_sha256": "725f0d77d14faf6095d8f52c1b5ff05ef20a9fca18f9819606ac3fc8adc2f7fd"
+      }
+    ],
+    "three_order_average": 61.12828947368421,
+    "historical_order1_reuse": {
+      "historical_order1_reusable": false,
+      "reason": "Historical execution source/environment/model hashes are not established; matching BF16 and nominal settings alone cannot prove protocol equivalence.",
+      "decision": "Run fresh Order2, Order3, Order1 from one source snapshot; historical GAM comparisons are observational, single seed."
+    },
+    "calculation": "FAA = arithmetic mean of four exact-match percentages from integer raw prediction counts; round only for display."
+  }
+}

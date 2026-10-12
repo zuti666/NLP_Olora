@@ -1,0 +1,13 @@
+--- /data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/utils/factory.py
++++ /data/140-1/users/liying/CopyFlatCV/utils/factory.py
+@@ -192,6 +192,10 @@
+         "fs_ewclora",
+     }:
+         from models_LoRAbasedCL.as1_normfisher_fishershape import Learner
++    elif name == "as1_normfisher_fishershape_complementarity":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_complementarity import Learner
++    elif name == "as1_normfisher_fishershape_kfac":
++        from models_LoRAbasedCL.as1_normfisher_fishershape_kfac import Learner
+     elif name == "as1_normfisher_fishershape_richardson":
+         from models_LoRAbasedCL.as1_normfisher_fishershape_richardson import Learner
+     elif name == "as1_normfisher_fishershape_central":

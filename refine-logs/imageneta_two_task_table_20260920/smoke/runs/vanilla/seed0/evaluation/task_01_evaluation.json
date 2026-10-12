@@ -1,0 +1,277 @@
+{
+  "current_task_batch_fisher_proxy": {
+    "damping": null,
+    "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+    "floor": null,
+    "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+    "input_tensors_sha256": "4b9dad57992ebe2ca5868a0579a35c5549a0b562ee08abc435c3fd53624dbd3d",
+    "logical_batch_size": 128,
+    "logical_batches": [
+      {
+        "batch_mean_gradient_squared_trace": 179.8668289555487,
+        "index": 0,
+        "input_tensors_sha256": "10fd3f308cf15c2e974b6d4b224c64425478045da613d4fc6eab7f0ccec167f2",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 179.74335497894276,
+        "index": 1,
+        "input_tensors_sha256": "f2ad72419702c359cedd39e2da861611f0d3fa9e578d3156e5d431d635dcb3c8",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 195.85143848067014,
+        "index": 2,
+        "input_tensors_sha256": "ae6d8a634e895da953fdc5c19fc33b6367d6c7558fadd7ab9a59160cc422030a",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 155.1917042871989,
+        "index": 3,
+        "input_tensors_sha256": "602bf264813a9bd160c108de05be929e3c6d1b2ef91e53a8cd551fdfa83c6915",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 164.55490478039812,
+        "index": 4,
+        "input_tensors_sha256": "5a48c885678906109af682ffc6faeb442372288a2ad3616cf3ec801348488952",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 137.78736229116606,
+        "index": 5,
+        "input_tensors_sha256": "7c19d1e1a9dd5ec3a5aa71c09d52688977bb1119ef04631edff2172b5698b1c9",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 213.20635078989108,
+        "index": 6,
+        "input_tensors_sha256": "d1e5879dc5ee8c783c703f1b7ae3695ef914714bfa443eb112600255b3102818",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 243.42787000457636,
+        "index": 7,
+        "input_tensors_sha256": "19bd390e32df8145bd92276a3d93c829a2582b5139bbf353056f6589f059179a",
+        "samples": 101
+      }
+    ],
+    "loss": 1.3464411359668944,
+    "loss_scope": "new_local20",
+    "micro_batch_size": 8,
+    "normalization": "sample-weighted mean only",
+    "normalized": false,
+    "parameter_scope": "24 effective Q/V weights; excludes head",
+    "raw_trace": 182.08632274285924,
+    "regularizer": null,
+    "samples": 997,
+    "seconds": 11.873145621968433,
+    "source": "full current-task train; deterministic test transform; fixed dataset order"
+  },
+  "fisher": {
+    "new_local20": {
+      "damping": null,
+      "estimator": "mean of true-label per-example CE gradient outer products",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "input_tensor_records": [
+        {
+          "dataset_index": 28,
+          "label": 20,
+          "tensor_sha256": "28aecf8c260aab5c172d13207d290e3fd1d1520bbb2fdec05048158dcd8381b2"
+        },
+        {
+          "dataset_index": 79,
+          "label": 21,
+          "tensor_sha256": "8ca54912aa6ba92b6b23c0accc73baae9c67dceb04b295fa48f37a5cf292b8f6"
+        },
+        {
+          "dataset_index": 251,
+          "label": 24,
+          "tensor_sha256": "836eaf9079eb3f0bfc723c2c630c91c533039c71d69f6618b0ac913b363c723c"
+        },
+        {
+          "dataset_index": 382,
+          "label": 26,
+          "tensor_sha256": "06532e26c05e7ab96f4d78b18eaa5d9419666462ae74b04340016d1a01c79fa9"
+        },
+        {
+          "dataset_index": 490,
+          "label": 27,
+          "tensor_sha256": "574093be34ed879ddba4161c7b2d933e64ec2c7bcb8b05f07ccdf2f268560d0a"
+        },
+        {
+          "dataset_index": 545,
+          "label": 28,
+          "tensor_sha256": "79a7de7a382efaea1d2d893c70a62f7909cdbb47e34c717b2b6c244a5550eba0"
+        },
+        {
+          "dataset_index": 647,
+          "label": 30,
+          "tensor_sha256": "105af304f5ad22f195eeca19af6afb26bc0fbb7738123a52493572322d3abb82"
+        },
+        {
+          "dataset_index": 811,
+          "label": 33,
+          "tensor_sha256": "40c35a15b54ec1079d98a225645114a96c6daec7eda67b2349d0ea4b820879e2"
+        }
+      ],
+      "input_tensors_sha256": "05f0534f0a7d3e04a2a68b97955662f493025300cc8e600cfdcd8861a311cf47",
+      "loss_scope": "new_local20",
+      "normalization": "sample mean only",
+      "normalized": false,
+      "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+      "q": {},
+      "raw_trace": 3943.9075279096965,
+      "regularizer": null,
+      "samples": 8,
+      "seconds": 0.24989938299404457,
+      "subset_loss": 1.3617108860053122
+    },
+    "old_local20": {
+      "damping": null,
+      "estimator": "mean of true-label per-example CE gradient outer products",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "input_tensor_records": [
+        {
+          "dataset_index": 65,
+          "label": 1,
+          "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+        },
+        {
+          "dataset_index": 177,
+          "label": 2,
+          "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+        },
+        {
+          "dataset_index": 265,
+          "label": 3,
+          "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+        },
+        {
+          "dataset_index": 369,
+          "label": 5,
+          "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+        },
+        {
+          "dataset_index": 575,
+          "label": 8,
+          "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+        },
+        {
+          "dataset_index": 708,
+          "label": 10,
+          "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+        },
+        {
+          "dataset_index": 839,
+          "label": 12,
+          "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+        },
+        {
+          "dataset_index": 1094,
+          "label": 16,
+          "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+        }
+      ],
+      "input_tensors_sha256": "a543b4938a9ddf78826e06304220bfb29e75519c3c7edb23efe58124274049cd",
+      "loss_scope": "old_local20",
+      "normalization": "sample mean only",
+      "normalized": false,
+      "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+      "q": {
+        "task0_to_task1_delta": 3.257672749776144e-05
+      },
+      "raw_trace": 3216.3529310160066,
+      "regularizer": null,
+      "samples": 8,
+      "seconds": 0.325959701964166,
+      "subset_loss": 0.49693819507956505,
+      "unit_displacement_sensitivity": 0.013746298471587846
+    }
+  },
+  "metrics": {
+    "new_test": {
+      "new_local20": {
+        "accuracy": 58.267716535433074,
+        "correct": 148,
+        "loss": 1.5048417637315321,
+        "loss_scope": "new_local20",
+        "samples": 254
+      },
+      "seen40": {
+        "accuracy": 39.76377952755905,
+        "correct": 101,
+        "loss": 2.2714855228000737,
+        "loss_scope": "seen40",
+        "samples": 254
+      }
+    },
+    "old_test": {
+      "old_local20": {
+        "accuracy": 74.2671009771987,
+        "correct": 228,
+        "loss": 0.9848980841709222,
+        "loss_scope": "old_local20",
+        "samples": 307
+      },
+      "seen40": {
+        "accuracy": 69.70684039087948,
+        "correct": 214,
+        "loss": 1.3223411155324611,
+        "loss_scope": "seen40",
+        "samples": 307
+      }
+    },
+    "old_train": {
+      "old_local20": {
+        "accuracy": 78.23669579030977,
+        "correct": 985,
+        "loss": 0.8395089027568006,
+        "loss_scope": "old_local20",
+        "samples": 1259
+      },
+      "seen40": {
+        "accuracy": 72.27958697378872,
+        "correct": 910,
+        "loss": 1.1743452415214977,
+        "loss_scope": "seen40",
+        "samples": 1259
+      }
+    }
+  },
+  "model_sha256_after": "a3515a774489d797527797efbf7829a4f617266f27a072fadcd8e739ff573f82",
+  "model_sha256_before": "a3515a774489d797527797efbf7829a4f617266f27a072fadcd8e739ff573f82",
+  "sanity": {
+    "native_to_effective_logits_max_absolute_error": 0.0,
+    "new_local20": {
+      "direction_dot_max_absolute_error": {},
+      "loss_scope": "new_local20",
+      "passed": true,
+      "samples": 2,
+      "trace_max_absolute_error": 0.16033625637010118,
+      "trace_max_relative_error": 0.00010564554033411036
+    },
+    "old_local20": {
+      "direction_dot_max_absolute_error": {
+        "task0_to_task1_delta": 3.0823790239491167e-07
+      },
+      "loss_scope": "old_local20",
+      "passed": true,
+      "samples": 2,
+      "trace_max_absolute_error": 0.9117948933580919,
+      "trace_max_relative_error": 7.537043389165013e-05
+    },
+    "training_batch_proxy_match": {
+      "absolute_difference": 0.0011719135843577533,
+      "absolute_tolerance": 1e-06,
+      "offline_raw_trace": 182.08632274285924,
+      "passed": true,
+      "relative_tolerance": 0.001,
+      "training_raw_trace": 182.0874946564436
+    }
+  },
+  "seconds": 25.725023867038544,
+  "task_index": 1
+}

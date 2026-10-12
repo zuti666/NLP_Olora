@@ -1,0 +1,61 @@
+{
+  "checked_utc": "2026-09-20T10:35:07.459876+00:00",
+  "status": "passed",
+  "scientific_job_definitions_unchanged": true,
+  "experiment_stages": 8,
+  "jobs": 15,
+  "checked_jobs": [
+    "sanity_sgd",
+    "sanity_gam",
+    "neighborhood_sgd",
+    "neighborhood_gam",
+    "training_sgd",
+    "training_gam",
+    "bridge_sgd",
+    "bridge_gam",
+    "table_a_sgd",
+    "table_a_gam",
+    "trajectory_sgd",
+    "trajectory_gam",
+    "path_sgd",
+    "path_gam",
+    "report_seed0"
+  ],
+  "allowed_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "max_parallel": 4,
+  "dependencies": {
+    "sanity": [],
+    "neighborhood": [
+      "sanity"
+    ],
+    "bridge": [
+      "neighborhood"
+    ],
+    "training": [
+      "sanity"
+    ],
+    "table_a": [
+      "training"
+    ],
+    "trajectory": [
+      "table_a"
+    ],
+    "path": [
+      "trajectory"
+    ],
+    "report": [
+      "bridge",
+      "path"
+    ]
+  },
+  "previous_wait_queue_stopped": true,
+  "prior_run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/campaign_seed0_after_gpu03",
+  "new_run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/campaign_seed0_dualline_gpu03",
+  "predecessor_gate_unchanged": true,
+  "diagnostic_and_training_config_files_unchanged": true
+}

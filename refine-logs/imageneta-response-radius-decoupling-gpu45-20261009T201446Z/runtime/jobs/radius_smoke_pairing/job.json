@@ -1,0 +1,23 @@
+{
+  "id": "radius_smoke_pairing",
+  "kind": "pairing",
+  "smoke": false,
+  "phase": "gate",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/smoke_pairing.py"
+  ],
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/gates/smoke_pairing",
+  "report_file": "radius_smoke_pairing.json",
+  "expected_tasks": 2,
+  "expected_epochs_per_task": 1,
+  "expected_steps": 0,
+  "depends_on": [
+    "smoke_cl10_original_s2",
+    "smoke_cl10_fixed_outer_s2",
+    "smoke_cl10_fixed_inner_s2",
+    "smoke_cl10_fixed_both_s2"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-gpu45-20261009T201446Z/runtime/jobs/radius_smoke_pairing/cuda_witness.json"
+}

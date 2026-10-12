@@ -1,0 +1,502 @@
+{
+  "status": "passed_actual_formal_launch",
+  "at": "2026-10-09T10:43:58.562106+00:00",
+  "scope": "independent actual-host read-only startup verification; no formal accuracy/effectiveness conclusion",
+  "execution_hostname": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "controller": {
+    "pid": 1465667,
+    "proc_starttime": "34706187"
+  },
+  "controller_live_starttime_verified": true,
+  "allowed_gpus": [
+    5,
+    6,
+    7
+  ],
+  "actual_gpu7_present": false,
+  "active_formal_jobs": [
+    {
+      "job": "formal_single200_sgd_s2",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "worker": {
+        "pid": 1465680,
+        "proc_starttime": "34706237"
+      },
+      "trainer": {
+        "pid": 1465719,
+        "proc_starttime": "34706419"
+      },
+      "trace_steps_at_snapshot": 124,
+      "verified_actual_sgd_steps": 10,
+      "last_verified_loss0": 5.568172931671143,
+      "last_verified_post_update_ce": 5.089702606201172,
+      "cuda_witness_sha256": "cd598b2bf5b6195d72c24d1cf4700a96c552241f9e370b0e956a680ef81a0c4a",
+      "budget_steps": 2350,
+      "no_complete_accuracy_result_yet": true
+    },
+    {
+      "job": "formal_single200_current_g2_s2",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "worker": {
+        "pid": 1465686,
+        "proc_starttime": "34706257"
+      },
+      "trainer": {
+        "pid": 1465720,
+        "proc_starttime": "34706430"
+      },
+      "trace_steps_at_snapshot": 62,
+      "verified_actual_sgd_steps": 10,
+      "last_verified_loss0": 5.561788082122803,
+      "last_verified_post_update_ce": 5.081876277923584,
+      "cuda_witness_sha256": "c7499aa997d9c34e79e3c95cfb0c5f65a4183be18242f374e41d1830cd8b978e",
+      "budget_steps": 2350,
+      "no_complete_accuracy_result_yet": true
+    }
+  ],
+  "pending_jobs": [
+    "formal_cl10_current_g2_s2",
+    "formal_cl10_history_g2_s2",
+    "formal_cl10_sgd_s2",
+    "formal_single200_history_fusion_s2",
+    "formal_single200_history_g2_s2"
+  ],
+  "first_step_pairing": {
+    "base_parameter_sha256": true,
+    "g0_sha256": true,
+    "nominal_lr": true,
+    "loss0": true,
+    "identity": true,
+    "task_initial_parameter_sha256": true,
+    "frozen_origin_sha256": true,
+    "new_fc_rows_sha256": true
+  },
+  "first10_realized_input_label_order_pairing": true,
+  "no_campaign_compute_pid_on_gpu0_to4": true,
+  "actual_gpu_snapshot": {
+    "0": {
+      "index": 0,
+      "uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "memory_used_mb": 10594,
+      "utilization_percent": 93,
+      "compute_pids": [
+        1462664
+      ]
+    },
+    "1": {
+      "index": 1,
+      "uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "memory_used_mb": 10598,
+      "utilization_percent": 92,
+      "compute_pids": [
+        1462665
+      ]
+    },
+    "2": {
+      "index": 2,
+      "uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "memory_used_mb": 10688,
+      "utilization_percent": 93,
+      "compute_pids": [
+        1462666
+      ]
+    },
+    "3": {
+      "index": 3,
+      "uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "memory_used_mb": 11024,
+      "utilization_percent": 96,
+      "compute_pids": [
+        1462667
+      ]
+    },
+    "4": {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 2,
+      "utilization_percent": 0,
+      "compute_pids": []
+    },
+    "5": {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 12036,
+      "utilization_percent": 100,
+      "compute_pids": [
+        1465719
+      ]
+    },
+    "6": {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mb": 12048,
+      "utilization_percent": 100,
+      "compute_pids": [
+        1465720
+      ]
+    }
+  },
+  "campaign_processes": {
+    "1465667": {
+      "process": {
+        "pid": 1465667,
+        "proc_starttime": "34706187"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/run_queue.py"
+      ],
+      "cuda_visible_devices": null
+    },
+    "1465680": {
+      "process": {
+        "pid": 1465680,
+        "proc_starttime": "34706237"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/job_worker.py",
+        "--job",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/runtime/jobs/formal_single200_sgd_s2/job.json",
+        "--lease-fd",
+        "4",
+        "--uuid-lease-fd",
+        "5"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1465686": {
+      "process": {
+        "pid": 1465686,
+        "proc_starttime": "34706257"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/job_worker.py",
+        "--job",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/runtime/jobs/formal_single200_current_g2_s2/job.json",
+        "--lease-fd",
+        "6",
+        "--uuid-lease-fd",
+        "7"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1465719": {
+      "process": {
+        "pid": 1465719,
+        "proc_starttime": "34706419"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1465720": {
+      "process": {
+        "pid": 1465720,
+        "proc_starttime": "34706430"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469372": {
+      "process": {
+        "pid": 1469372,
+        "proc_starttime": "34719933"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469435": {
+      "process": {
+        "pid": 1469435,
+        "proc_starttime": "34719934"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469498": {
+      "process": {
+        "pid": 1469498,
+        "proc_starttime": "34719935"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469561": {
+      "process": {
+        "pid": 1469561,
+        "proc_starttime": "34719936"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469624": {
+      "process": {
+        "pid": 1469624,
+        "proc_starttime": "34719937"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469687": {
+      "process": {
+        "pid": 1469687,
+        "proc_starttime": "34719938"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469750": {
+      "process": {
+        "pid": 1469750,
+        "proc_starttime": "34719939"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469813": {
+      "process": {
+        "pid": 1469813,
+        "proc_starttime": "34719940"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_current_g2_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_current_g2_s2"
+      ],
+      "cuda_visible_devices": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a"
+    },
+    "1469900": {
+      "process": {
+        "pid": 1469900,
+        "proc_starttime": "34720007"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1469963": {
+      "process": {
+        "pid": 1469963,
+        "proc_starttime": "34720009"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1470026": {
+      "process": {
+        "pid": 1470026,
+        "proc_starttime": "34720010"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1470089": {
+      "process": {
+        "pid": 1470089,
+        "proc_starttime": "34720011"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1470152": {
+      "process": {
+        "pid": 1470152,
+        "proc_starttime": "34720012"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1470215": {
+      "process": {
+        "pid": 1470215,
+        "proc_starttime": "34720014"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1470278": {
+      "process": {
+        "pid": 1470278,
+        "proc_starttime": "34720015"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    },
+    "1470341": {
+      "process": {
+        "pid": 1470341,
+        "proc_starttime": "34720016"
+      },
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_single200_sgd_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_single200_sgd_s2"
+      ],
+      "cuda_visible_devices": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e"
+    }
+  },
+  "trainer_identification_rule": "unique matching argv among nvidia-smi compute PIDs; DataLoader children have same inherited argv but are not CUDA compute PIDs",
+  "frozen_run_pins_verified": true,
+  "source190_reverified": true,
+  "implementation_prior_evidence_reverified": true,
+  "registered_formal_jobs": 7,
+  "formal_completed_in_new_queue": 0,
+  "completion_and_result_analysis_pending": true
+}

@@ -1,0 +1,41 @@
+{
+  "reviewed_at": "2026-09-20T09:51:20.877197+00:00",
+  "reviewer": "rq2_preflight",
+  "scope": "Static independent review; no model forward/gradient/training executed by reviewer",
+  "source_sha256": {
+    "rq2_common.py": "f9be624d8414ad7dc364ca2a516c018b26031a297e7ecf7ce2394951a686e7e8",
+    "diagnostic.py": "6c3054e6f4d43cc8d0a339b652377e8d9c55d253eec80d884522e3d94b5f32a5",
+    "train_continuation.py": "b6460e3be23d27c0ebb5d417be967c7da010b9009ca1006bd22af05d568533e2",
+    "pipeline.py": "602709b7ac9857dcdf6e18b0e089de31886689fac32e31a96395c2b5effb6a19",
+    "diagnostic_config.json": "8bc60691d7cd8b50a0cf5c8ae069a34320e70614d8ded37b158adbe41b178d48"
+  },
+  "status": "NO_BLOCKING_STATIC_FINDING",
+  "findings": [
+    {
+      "component": "rq2_common",
+      "finding": "Per-example matrix gradients via adjoint and activation bmm are exact for sample-independent eval ViT; CE sum scale and cross-module directional summation are correct."
+    },
+    {
+      "component": "diagnostic",
+      "finding": "Strict state loading, unchanged old head/backbone, historical test CE, effective-conversion and endpoint checks, independent autograd.grad comparison, finite differences, direction norm, and throughput are implemented."
+    },
+    {
+      "component": "train_continuation",
+      "finding": "Original learner/SimpleLinear preserved; original sidecar resume is followed by exact complete-state restoration; both A branches use future SGD and paired per-task RNG/loader generators."
+    },
+    {
+      "component": "pipeline",
+      "finding": "GPU allowlist 4/6, per-lane locks, free-memory/utilization checks, UUID visibility, task exit/receipt checks, stage barriers and source/receipt hashes support ordered execution without duplicate completed jobs."
+    }
+  ],
+  "remaining_gates": [
+    "Actual GPU model/data/gradient sanity must pass for both methods.",
+    "For each path inspect quadrature_converged and bound_passed_with_2pct_numeric_tolerance; status=complete only means measurements finished.",
+    "A paired head/sample-order/augmentation receipts require cross-method post-run verification."
+  ],
+  "nonblocking_suggestions": [
+    "Add explicit historical accuracy equality to CE reproduction checks.",
+    "Compare direct t9 subset CE to the interpolated subset endpoint explicitly (full train/test endpoint CE is already checked).",
+    "Record per-job failure status if GPU polling/fingerprint checks throw before Popen; pipeline total failure currently works."
+  ]
+}

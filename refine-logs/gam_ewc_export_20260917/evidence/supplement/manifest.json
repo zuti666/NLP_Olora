@@ -1,0 +1,38 @@
+{
+  "status": "preflight",
+  "started_at": "2026-09-16T21:36:48.253167+00:00",
+  "supervisor_pid": 1614481,
+  "gpu": {
+    "index": 9,
+    "uuid": "GPU-b1be0dea-597f-5d31-a637-124e1d8d0ab2",
+    "name": "Quadro RTX 6000",
+    "memory_mib": 1,
+    "utilization": 0
+  },
+  "seed": 1993,
+  "orders": [
+    2,
+    3
+  ],
+  "precision": "fp32",
+  "global_batch": 40,
+  "per_device_batch": 1,
+  "gradient_accumulation_steps": 40,
+  "nominal_ewc_lambda": 1.0,
+  "cli_ewc_lambda": 0.2,
+  "legacy_reference_ga": 8,
+  "olora_lambdas": [
+    0,
+    0
+  ],
+  "completed": [],
+  "base_model": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B",
+  "python": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+  "training_source_snapshot": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_supplement_20260916T213647Z/source",
+  "comparison_notes": [
+    "EWC only on fresh IncLoRA branch; OLoRA/GAM/SAM disabled.",
+    "GA40 lambda0.2 preserves legacy GA8 lambda1 EWC/CE ratio.",
+    "BS1 and full-data Fisher retain the legacy Fisher estimator.",
+    "FP32 and single-GPU sampling differ from historical 5-GPU BF16 runs."
+  ]
+}

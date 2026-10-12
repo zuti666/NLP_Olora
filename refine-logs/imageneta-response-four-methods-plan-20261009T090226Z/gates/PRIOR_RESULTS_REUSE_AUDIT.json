@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "audited_at_utc": "2026-10-09T09:15:14.274110+00:00",
+  "old_campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z",
+  "old_module_here": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z",
+  "cuda_visible_devices": "",
+  "gpu_used": false,
+  "source_files_verified": 190,
+  "immutable_pinned_files_verified": 26,
+  "source_failures": [],
+  "pin_failures": [],
+  "complete_formal_runs": 2,
+  "receipts": {
+    "formal_history_fused_k10_s2": {
+      "old_validator_acceptance": {
+        "summary_sha256": "bc759c86155867b9214c48ed8637f83181d075207db1796015cb484ab73917cf",
+        "trace_sha256": "29476e5ac96a3442c3569c450006f3f5e2ad7c52bb3789a5ed485a587a9de8bc",
+        "matrix_sha256": "b471549336e6ab7e3af1606fa1cc863031a432cf787b03050b9b6f2459aaeb4c",
+        "updates": 2550,
+        "tasks": 10,
+        "history_used_steps": 2540,
+        "metric_recomputation": true,
+        "checkpoint_cache_tensor_validation": true
+      },
+      "independent_metrics": {
+        "AAA": 60.48305674603175,
+        "FAA": 41.297,
+        "BWT": -10.756666666666668,
+        "LA": 50.977999999999994,
+        "forgetting": 10.88
+      },
+      "exit_receipt": {
+        "job_id": "formal_history_fused_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-08T19:31:39.380602+00:00",
+        "runner_pid": 433938
+      },
+      "queue_completed_at": "2026-10-08T19:31:47.696769+00:00",
+      "cache_raw_gradient_chain_verified": true
+    },
+    "formal_future_only_k10_s2": {
+      "old_validator_acceptance": {
+        "summary_sha256": "dc5fabc7324430dca585c5c887e2e03c4c7534bdb31394e4d7c9eaaf3b28bf25",
+        "trace_sha256": "8852a2b03176bec0c5d523ef3c91393ef817a8a43fac905caf379c850d0ca336",
+        "matrix_sha256": "17a7ace6d07d9490987415b6fed1aeb03d895690a7574aac93334bb40db9fbb9",
+        "updates": 2550,
+        "tasks": 10,
+        "history_used_steps": 0,
+        "metric_recomputation": true,
+        "checkpoint_cache_tensor_validation": true
+      },
+      "independent_metrics": {
+        "AAA": 62.507063095238095,
+        "FAA": 44.138,
+        "BWT": -11.31222222222222,
+        "LA": 54.318999999999996,
+        "forgetting": 11.31222222222222
+      },
+      "exit_receipt": {
+        "job_id": "formal_future_only_k10_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-08T19:30:53.329344+00:00",
+        "runner_pid": 433939
+      },
+      "queue_completed_at": "2026-10-08T19:31:01.719474+00:00",
+      "cache_raw_gradient_chain_verified": false
+    }
+  },
+  "matching_existing_hrf_result_reuse_verified": true,
+  "reuse_gate_files_sha256": {
+    "INDEPENDENT_FOUR_ORACLE.json": "06543e6c1261ac6471be7787cde083dfdc91a76646438a3171b833c1eb194719",
+    "INDEPENDENT_PROTOCOL_CHECK.json": "968f541d4ebbf14b49721472b7432599cac350f2b11b430d0b993254dfd2c592"
+  },
+  "restrictions": [
+    "Results are seed2, not multiseed means.",
+    "Dynamic predictor radius eta*global_norm(g0), not fixed GAM r=1.",
+    "HRF is a sourced existing result; no new full CUDA training trajectory is claimed.",
+    "Future Mirror is an auxiliary no-history control, not current_g2/history_g2/SGD.",
+    "No prior 1x200 result is supplied by this 10x20 campaign."
+  ]
+}

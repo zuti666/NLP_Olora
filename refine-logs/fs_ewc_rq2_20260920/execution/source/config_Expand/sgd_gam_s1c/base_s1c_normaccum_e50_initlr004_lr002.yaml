@@ -1,0 +1,99 @@
+# SGD/GAM controlled comparison based on:
+# config_Expand/step_ablation/s1c_normaccum_e50_initlr004_lr002.yaml
+#
+# Controls fixed by design:
+# - no in-task/path Fisher
+# - trace-normalized task Fisher and trace-normalized accumulated Fisher
+# - fixed lambda_ewc, no dual/lambda adjustment
+# - no EWC gradient projection
+outputs_root: "outputs_logs/sgd_gam_s1c"
+prefix: sgd_gam_s1c_base_imageneta_t10c20_r10_s0
+
+memory_size: 0
+memory_per_class: 0
+fixed_memory: false
+
+dataset: "imageneta"
+class_shuffle: false
+init_cls: 20
+increment: 20
+nb_tasks: 10
+total_sessions: 10
+
+seed:
+  - 0
+
+all_or_inc: inc
+backbone_type: "vit_base_patch16_224"
+device:
+  - "0"
+
+model_name: "ewclora_normfisher_gam_intask"
+lora_rank: 10
+
+lambda_flat: 1.0
+ewc_lambda: 2000
+ewc_gamma: 0.9
+ewc_eta: 0.0
+ewc_max_batches: 100
+ewc_normalize_fisher: true
+ewc_fisher_norm_eps: 1.0e-12
+ewc_dual_ascent: false
+
+approximate_fisher_in_task: false
+ewc_normalize_accumulated_fisher: true
+
+# Projection is intentionally disabled. The selected model is not the project
+# variant; this key keeps the default safe if the model is changed later.
+ewc_project_grad: false
+
+mechanism_eval: true
+mechanism_grad_stats: true
+mechanism_top_fraction: 0.1
+mechanism_eps: 1.0e-12
+
+batch_size: 128
+optimizer: "sgd"
+gam_base_optimizer: "sgd"
+optimizer_type: "gam"
+optimizer_tag_override: "gam_sgd_initlr004_lr002_e50_rho005_f100"
+gam_adaptive: false
+gam_grad_beta_1: 1.0
+gam_grad_beta_2: 1.0
+gam_grad_beta_3: 1.0
+gam_grad_gamma: 0.1
+gam_grad_rho: 0.05
+gam_grad_norm_rho: 0.2
+
+scheduler: "cosine"
+init_epoch: 50
+init_lr: 0.04
+init_momentum: 0
+init_weight_decay: 0.0
+
+epochs: 50
+lrate: 0.02
+momentum: 0
+weight_decay: 0.0
+
+linear_probe_eval_num_workers: 0
+linear_probe_softmax_joint_seen_eval: false
+linear_probe_softmax_per_task_eval: false
+probe_train_mode: train
+probe_test_mode: test
+probe_fit_epochs: 20
+probe_fit_lr: 0.015
+probe_fit_moment: 0
+probe_fit_wd: 0.0005
+probe_fit_train_batch_size: 128
+
+flat_eval: false
+# r/FQA launcher enables these. Keep the default coordinate definition here so
+# the experiment is unambiguous: r is measured in effective DeltaW space.
+flat_eval_param_scope: "delta_w"
+flat_eval_fqa_fisher_space: "delta_w"
+flat_eval_fisher_quadratic_error: false
+feature_flat_eval: false
+feature_cka_eval: false
+feature_proto_eval: false
+attention_probe_eval: false

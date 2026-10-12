@@ -1,0 +1,169 @@
+--- /data/140-1/users/liying/Flatness_CV/utils/data.py
++++ /data/140-1/users/liying/CopyFlatCV/utils/data.py
+@@ -52,15 +52,19 @@
+         train_ids = np.concatenate([split["trnid"][0], split["valid"][0]]) - 1
+         test_ids = split["tstid"][0] - 1
+ 
+-        all_images = sorted(os.listdir(jpg_dir))
+-
+         def build(ids):
+             data, targets = [], []
+             for i in ids:
+-                path = os.path.join(jpg_dir, all_images[i])
++                # The official split files use 1-based image ids.  Constructing
++                # the canonical filename avoids silently shifting labels when
++                # the directory contains thumbnails or other auxiliary files.
++                image_id = int(i) + 1
++                path = os.path.join(jpg_dir, f"image_{image_id:05d}.jpg")
++                if not os.path.isfile(path):
++                    raise FileNotFoundError(f"Missing Flowers102 image: {path}")
+                 data.append(path)
+                 targets.append(labels[i])
+-            return np.array(data), np.array(targets)
++            return np.array(data), np.array(targets, dtype=np.int64)
+ 
+         self.train_data, self.train_targets = build(train_ids)
+         self.test_data, self.test_targets = build(test_ids)
+@@ -705,52 +709,8 @@
+             "imagenetr/test",
+         )
+ 
+-        exclusion_manifest_path = self.args.get("dataset_exclude_manifest")
+-        if exclusion_manifest_path:
+-            import json
+-
+-            exclusion_manifest_path = _normalize_path(exclusion_manifest_path)
+-            with open(exclusion_manifest_path, "r", encoding="utf-8") as handle:
+-                exclusion_manifest = json.load(handle)
+-            documented_train_root = _normalize_path(
+-                exclusion_manifest.get("source_train_root", "")
+-            )
+-            documented_test_root = _normalize_path(
+-                exclusion_manifest.get("source_test_root", "")
+-            )
+-            if documented_train_root != _normalize_path(train_dir):
+-                raise ValueError(
+-                    "ImageNet-R exclusion manifest train root does not match "
+-                    f"resolved data: {documented_train_root} != {_normalize_path(train_dir)}"
+-                )
+-            if documented_test_root != _normalize_path(test_dir):
+-                raise ValueError(
+-                    "ImageNet-R exclusion manifest test root does not match "
+-                    f"resolved data: {documented_test_root} != {_normalize_path(test_dir)}"
+-                )
+-            excluded_train = {
+-                _normalize_path(os.path.join(train_dir, relative_path))
+-                for relative_path in exclusion_manifest.get(
+-                    "exclude_relative_paths", {}
+-                ).get("train", [])
+-            }
+-            excluded_test = {
+-                _normalize_path(os.path.join(test_dir, relative_path))
+-                for relative_path in exclusion_manifest.get(
+-                    "exclude_relative_paths", {}
+-                ).get("test", [])
+-            }
+-            train_dset = datasets.ImageFolder(
+-                train_dir,
+-                is_valid_file=lambda path: _normalize_path(path) not in excluded_train,
+-            )
+-            test_dset = datasets.ImageFolder(
+-                test_dir,
+-                is_valid_file=lambda path: _normalize_path(path) not in excluded_test,
+-            )
+-        else:
+-            train_dset = datasets.ImageFolder(train_dir)
+-            test_dset = datasets.ImageFolder(test_dir)
++        train_dset = datasets.ImageFolder(train_dir)
++        test_dset = datasets.ImageFolder(test_dir)
+ 
+         self.train_data, self.train_targets = split_images_labels(train_dset.imgs)
+         self.test_data, self.test_targets = split_images_labels(test_dset.imgs)
+@@ -992,6 +952,9 @@
+         train_dset = datasets.ImageFolder(train_dir)
+         test_dset = datasets.ImageFolder(test_dir)
+ 
++        if train_dset.class_to_idx != test_dset.class_to_idx:
++            raise ValueError("CUB200 train/test class folders do not match.")
++
+         self.train_data, self.train_targets = split_images_labels(train_dset.imgs)
+         self.test_data, self.test_targets = split_images_labels(test_dset.imgs)
+         self.class_order = np.arange(len(train_dset.classes)).tolist()
+@@ -1022,6 +985,9 @@
+         if train_dir is not None and test_dir is not None:
+             train_dset = datasets.ImageFolder(train_dir)
+             test_dset = datasets.ImageFolder(test_dir)
++
++            if train_dset.class_to_idx != test_dset.class_to_idx:
++                raise ValueError("Cars196 train/test class folders do not match.")
+ 
+             self.train_data, self.train_targets = split_images_labels(train_dset.imgs)
+             self.test_data, self.test_targets = split_images_labels(test_dset.imgs)
+@@ -1287,12 +1253,12 @@
+ # Usage: set "dataset": "het5" and "shuffle": false in config.
+ # ---------------------------------------------------------------------------
+ _HET5_REGISTRY = [
+-    # (name,        iData_class,   offset,  num_classes)
+-    ("cub200",      None,            0,      200),
+-    ("aircraft",    None,          200,      100),
+-    ("cars196",     None,          300,      196),
+-    ("flowers102",  None,          496,      102),
+-    ("oxfordpet",   None,          598,       37),
++    # (name,        iData class,  offset, num_classes)
++    ("cub200",      CUB,              0, 200),
++    ("aircraft",    iAircraft,      200, 100),
++    ("cars196",     Cars196,        300, 196),
++    ("flowers102",  iFlowers102,    496, 102),
++    ("oxfordpet",   iOxfordPet,     598,  37),
+ ]
+ _HET5_TOTAL = 635
+ 
+@@ -1313,21 +1279,35 @@
+         super().__init__(args)
+         self.train_trsf, self.test_trsf, self.common_trsf = _build_cub_transforms()
+         self.task_splits = [ncls for _, _, _, ncls in _HET5_REGISTRY]  # [200,100,196,102,37]
+-
+-    def download_data(self):
+-        # All classes are defined in this same module; reference them directly.
+-        _cls_map = {
+-            "cub200":     CUB,
+-            "aircraft":   iAircraft,
+-            "cars196":    Cars196,
+-            "flowers102": iFlowers102,
+-            "oxfordpet":  iOxfordPet,
+-        }
+-
++        self.task_names = [name for name, _, _, _ in _HET5_REGISTRY]
++        self.task_offsets = [offset for _, _, offset, _ in _HET5_REGISTRY]
++
++    @staticmethod
++    def _validate_component(name, idata, expected_classes):
++        for split in ("train", "test"):
++            data = np.asarray(getattr(idata, f"{split}_data"))
++            targets = np.asarray(getattr(idata, f"{split}_targets"), dtype=np.int64)
++            if len(data) != len(targets):
++                raise ValueError(
++                    f"{name} {split} data/target length mismatch: "
++                    f"{len(data)} != {len(targets)}"
++                )
++            unique = np.unique(targets)
++            expected = np.arange(expected_classes, dtype=np.int64)
++            if not np.array_equal(unique, expected):
++                raise ValueError(
++                    f"{name} {split} labels must be contiguous 0..{expected_classes - 1}; "
++                    f"found {len(unique)} classes in "
++                    f"[{unique.min() if len(unique) else 'empty'}, "
++                    f"{unique.max() if len(unique) else 'empty'}]."
++                )
++
++    def download_data(self):
+         tr_data, tr_tgt, te_data, te_tgt = [], [], [], []
+-        for name, _, offset, _ in _HET5_REGISTRY:
+-            idata = _cls_map[name](self.args)
++        for name, idata_cls, offset, num_classes in _HET5_REGISTRY:
++            idata = idata_cls(self.args)
+             idata.download_data()
++            self._validate_component(name, idata, num_classes)
+             tr_data.append(idata.train_data)
+             tr_tgt.append(idata.train_targets.astype(np.int64) + offset)   # cast first: uint8 overflows at offset>255
+             te_data.append(idata.test_data)

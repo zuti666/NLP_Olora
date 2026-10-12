@@ -1,0 +1,84 @@
+{
+  "schema": "G2RecoveryGpuSmokeReview_v1",
+  "reviewer": "fresh_independent_agent_g2_recovery_doc_witness",
+  "checked_at": "2026-10-11T19:32:13.807668+00:00",
+  "status": "PARTIAL",
+  "queue_root": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry1",
+  "job": "inclora_g2_llama1b_order1",
+  "scope": "Read-only receipts/traces/log inspection; no GPU tools, kernels, training edits, model load or adapter modification. Review artifact only.",
+  "controller_state": {
+    "status": "running_smoke",
+    "controller_pid": 1622205,
+    "child_pid": 1622341,
+    "active_stage": "inclora_g2_llama1b_order1:s0:smoke:1",
+    "active_global_step": null,
+    "smoke_completed": 0,
+    "formal_completed": 0,
+    "heartbeat_at": "2026-10-11T19:32:10+00:00",
+    "stage_started_at": "2026-10-11T19:28:55+00:00"
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "task": "dbpedia",
+      "output_directory": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry1/jobs/inclora_g2_llama1b_order1/smoke/seed_0/order_1/1-dbpedia",
+      "expected_real_updates": 2,
+      "expected_saved_rank": 8,
+      "present_required_artifacts": [],
+      "missing_required_artifacts": [
+        "g2_script_verification.json",
+        "g2_runtime_audit.json",
+        "g2_step_trace.jsonl",
+        "trainer_state.json",
+        "adapter/adapter_config.json",
+        "predict_eval_predictions.jsonl",
+        "predict_results.json"
+      ],
+      "status": "PENDING"
+    },
+    {
+      "stage": 2,
+      "task": "amazon",
+      "output_directory": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry1/jobs/inclora_g2_llama1b_order1/smoke/seed_0/order_1/2-amazon",
+      "expected_real_updates": 2,
+      "expected_saved_rank": 16,
+      "present_required_artifacts": [],
+      "missing_required_artifacts": [
+        "g2_script_verification.json",
+        "g2_runtime_audit.json",
+        "g2_step_trace.jsonl",
+        "trainer_state.json",
+        "adapter/adapter_config.json",
+        "predict_eval_predictions.jsonl",
+        "predict_results.json"
+      ],
+      "status": "PENDING"
+    }
+  ],
+  "acceptance_requirements": [
+    "Both stages have successful g2_script_verification receipts and independently matching artifact hashes.",
+    "Actual Transformers AdamW parameter groups: epsilon 1e-6, weight decay 0, betas [0.9,0.999], lr stage1 0.001 / stage2 0.0001.",
+    "Each stage has exactly two real updates: normal G2 direction with three CE reads, two replay calls, one base commit, exact BASE restore; no Fisher/history/projection/HVP.",
+    "Trainable and saved adapter values finite FP32; saved cumulative rank8 then rank16, with original rank8 historical slices byte/value identical.",
+    "Predictions have exact expected smoke population and finite metrics."
+  ],
+  "observed_errors": [],
+  "issues": [],
+  "pending": [
+    "First-stage artifacts and second-stage artifacts have not yet been emitted. Actual model/update success cannot yet be accepted."
+  ],
+  "latest_active_log_tail": [
+    "10/11/2026 21:29:01 - INFO - datasets.builder - Generating split test",
+    "",
+    "0 examples [00:00, ? examples/s]10/11/2026 21:29:01 - INFO - datasets_modules.datasets.uie_dataset_lora.fdf1b628c1d413558348b3c26f85fff8d29ec7503e3391a763631e407a4ac19a.uie_dataset_lora - Generating tasks from = /data/140-1/users/liying/O-LoRA/CL_Benchmark",
+    "",
+    "3117 examples [00:00, 31162.90 examples/s]",
+    "6234 examples [00:00, 19978.35 examples/s]",
+    "                                          ",
+    "10/11/2026 21:29:01 - INFO - datasets.utils.info_utils - Unable to verify splits sizes.",
+    "Dataset uie_instructions downloaded and prepared to /data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry1/cache/uie/eval_all_task/order_1/ed494819db74646c96693598ed815768/uie_instructions/default-3f79f26027eb21b3/2.0.0/fdf1b628c1d413558348b3c26f85fff8d29ec7503e3391a763631e407a4ac19a. Subsequent calls will reuse this data.",
+    "",
+    "  0%|          | 0/2 [00:00<?, ?it/s]",
+    "100%|██████████| 2/2 [00:00<00:00, 755.12it/s]"
+  ]
+}

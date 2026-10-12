@@ -1,0 +1,93 @@
+{
+  "arm": "task2_shaping",
+  "completed_tasks": 2,
+  "identity_sha256": "66f8bad0ba12c32346733f87a7ec3aef6151bc48bf990c4bb5cd494a3020dcbf",
+  "manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task2_shaping_seed0/run_manifest.json",
+  "smoke_only": false,
+  "status": "complete",
+  "time_unix": 1790071273.932984,
+  "validation": {
+    "accuracy_CIL": {
+      "a11": 87.3,
+      "a21": 81.43,
+      "a22": 83.07
+    },
+    "checkpoint_assets": {
+      "checkpoints/fisher_state_1.pt": {
+        "bytes": 56631506,
+        "sha256": "fba724a6d85b5996b2ae3c992671aec561815627717ccaac7ecc8dae6ea3744d"
+      },
+      "checkpoints/rng_state_01.pt": {
+        "bytes": 14390,
+        "sha256": "b439ae7714ab49753ebcc4432ef4575cf1366ad93ffaf1cc1eff1fa36a1a1d9f"
+      },
+      "checkpoints/task_01.pt": {
+        "bytes": 688098550,
+        "sha256": "5e1a0143100d247a577dd2bc6cc73b3a5a4b99289b88a5624796d70d618317c4"
+      }
+    },
+    "effective_weight_displacement": 0.45796215718675,
+    "endpoint_ewc_penalty": 0.01698951056454162,
+    "epochs_per_new_task": 50,
+    "fisher_policy": "recomputed_native_task0_raw_fisher_no_trace_normalization",
+    "fisher_weighted_displacement": 1.698951056454162e-06,
+    "gradients": {
+      "batches": 400,
+      "component_norms_available": true,
+      "component_sample_count": 51,
+      "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+      "component_source": "native_clean_and_fisher_grad_caches; gam_direction=actual_combined-EWC; float64_norms",
+      "cos_clean_fisher_mean": -6.73261545815515e-05,
+      "fisher_to_clean_norm_ratio_mean": 0.09454775845012982,
+      "grad_clean_norm_mean": 1.5169591039987185,
+      "grad_combined_norm_max": 12.724472258998391,
+      "grad_combined_norm_mean": 4.013914073713419,
+      "grad_fisher_norm_mean": 0.13289549346931473,
+      "grad_gam_direction_norm_mean": 4.0622855961621385,
+      "single_ewc_injection_verified": true,
+      "source": "actual_native_gam_base_optimizer_gradients_immediately_before_step",
+      "step1_ewc": 0.00395645247772336,
+      "step1_grad_fisher_norm": 0.22350510405925775
+    },
+    "losses": {
+      "train_clean_loss_mean": 0.4271668890491128,
+      "train_fisher_loss_mean": 0.017565686621237545
+    },
+    "mechanism_task1_verified": true,
+    "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/training/task2_shaping_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/task2_shaping_seed0/imageneta/0/task2_shaping_seed0/exp_run/20/task2_shaping_seed0_vit_base_patch16_224_cl_metrics.json",
+    "metrics_sha256": "9e6acafc934570d3d8827eaa00c754ebb2895dd281f763742e762821497417b7",
+    "pairing": {
+      "epochs": 50,
+      "fit_fisher_passes": 1,
+      "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+      "passed": true,
+      "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/rng_receipts.jsonl",
+      "reference_sha256": "2c2282cc25498d39ad6dc500cfcaef28b2e73baa7213d7c5cbdb00da6bc5a213",
+      "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+    },
+    "prepared_fisher": {
+      "anchor_method": "sgd",
+      "execution_ready": true,
+      "fisher_policy": "recomputed_native_task0_raw_fisher_no_trace_normalization",
+      "numel": 14155776,
+      "parent_checkpoint_sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229",
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed0/fisher_state_raw.pt",
+      "payload_sha256": "cfdcd801f773d3d33cb48885c84ff31f032a60bf4a4cccbdead5008d67aacd95",
+      "raw_trace": 34.069888104965315,
+      "receipt_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepared_fisher/sgd_seed0/PREPARED.json",
+      "receipt_sha256": "4db83303c36702344f7dc7828854343b40aa56e0eaf6617860573a89f0f784b2",
+      "seed": 0,
+      "source_manifest_sha256": "fe3b5ef75e89bab32010c1aa9a0581cbaeb2b068eaa2f4718f11a9cc314d0a2b",
+      "status": "verified",
+      "tensor_count": 24
+    },
+    "rng_receipts_sha256": "9ae4a4afb3a32c2f4409be8e8f81bfaa52ef7b1905b8cdf7038e1eac66c5694e",
+    "runtime_receipts_sha256": "6f5d9f6220658f991d80337c852495b551333c32839e492e05346f6b9421f0dd",
+    "smoke_only": false,
+    "task0_local_metrics_sha256": "85b6a88238efcaa3ce7c4e2bb07db90401cd525a305fa81dc959f4b6a4737feb",
+    "training_batch_metrics_sha256": "7ab2e7c350a0b3056fee807ce1b0294f26ba6737fdb28116fb02a65f3714c525",
+    "validated_tasks": [
+      1
+    ]
+  }
+}

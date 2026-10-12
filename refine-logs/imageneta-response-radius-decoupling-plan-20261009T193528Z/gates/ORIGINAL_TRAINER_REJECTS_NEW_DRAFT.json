@@ -1,0 +1,19 @@
+{
+  "status": "passed_expected_rejection_of_unimplemented_new_mode",
+  "returncode": 1,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/configs/currentg2_fixedinner_cl10_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-radius-decoupling-plan-20261009T193528Z/outputs/check_only",
+    "--dry-run"
+  ],
+  "stderr_tail": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py\", line 458, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py\", line 380, in main\n    cfg=resolve_config(json.loads(Path(cli.config).read_text()),cli)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py\", line 50, in resolve_config\n    raise ValueError('The first version fixes the dynamic radius to eta*||g0||')\nValueError: The first version fixes the dynamic radius to eta*||g0||\n",
+  "outputs_created": false,
+  "training_started": false,
+  "original_core_trainer_unchanged": true
+}

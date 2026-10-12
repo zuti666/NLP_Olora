@@ -1,0 +1,142 @@
+{
+  "status": "numerical_gate_failed_no_confirmed_implementation_bug",
+  "audited_at_utc": "2026-10-12T09:13:37.773333+00:00",
+  "read_only_no_cuda_launches": true,
+  "first_failure": {
+    "seed": 2,
+    "branch": "S",
+    "epoch": 1,
+    "batch": 0,
+    "checkpoint": "/data/115-2/users/liying/cache/tmp/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_001.pt",
+    "checkpoint_sha256": "c833da93efa3737e7681110cf824b168ac59b93fee5b64dd2eba7be812825096",
+    "gate": {
+      "repeated_native_gradient_exact": true,
+      "first_order_backend_agreement": {
+        "a_norm": 8.574653908856739,
+        "b_norm": 8.574656214625504,
+        "cosine": 0.9999999997798941,
+        "relative_error": 2.098294491423849e-05,
+        "degenerate": false,
+        "degeneracy_threshold": 3.2709717615606324e-05
+      },
+      "gradient_gate": {
+        "relative_error_max": 0.0002,
+        "cosine_min": 0.99999
+      },
+      "hvp_gate": {
+        "relative_error_max": 0.08,
+        "required_adjacent_grid_points": 2,
+        "absolute_normalized_displacements": [
+          0.001,
+          0.003,
+          0.01
+        ]
+      },
+      "curvature": "exact native mean CE loss Hessian at base trainable parameters",
+      "second_hvp_vector_detached": true,
+      "microbatch": 16,
+      "microbatch_mean_same_gradient_checked": true,
+      "backend": "explicit_math_after_native_first_order_agreement",
+      "first_order_gate_passed": true,
+      "status": "failed_hvp_finite_difference_gate",
+      "finite_difference": {
+        "H_g0": {
+          "grid": [
+            {
+              "distance": 0.001,
+              "a_norm": 294.8046088760555,
+              "b_norm": 295.68939488572113,
+              "cosine": 0.999967392523693,
+              "relative_error": 0.008600788438707803,
+              "degenerate": false,
+              "degeneracy_threshold": 0.0011279655261448712
+            },
+            {
+              "distance": 0.003,
+              "a_norm": 287.68944415154266,
+              "b_norm": 295.68939488572113,
+              "cosine": 0.9968699365790927,
+              "relative_error": 0.08259990396536869,
+              "degenerate": false,
+              "degeneracy_threshold": 0.0011279655261448712
+            },
+            {
+              "distance": 0.01,
+              "a_norm": 285.20629100827205,
+              "b_norm": 295.68939488572113,
+              "cosine": 0.994254915894414,
+              "relative_error": 0.11108432862292608,
+              "degenerate": false,
+              "degeneracy_threshold": 0.0011279655261448712
+            }
+          ],
+          "passed": false
+        },
+        "H_detached_H_g0": {
+          "grid": [
+            {
+              "distance": 0.001,
+              "a_norm": 28677.636289917536,
+              "b_norm": 55409.994812596975,
+              "cosine": 0.9818744739524153,
+              "relative_error": 0.5015141992170695,
+              "degenerate": false,
+              "degeneracy_threshold": 0.21137235569990911
+            },
+            {
+              "distance": 0.003,
+              "a_norm": 10837.237435309433,
+              "b_norm": 55409.994812596975,
+              "cosine": 0.2234711131669391,
+              "relative_error": 0.9751094421475621,
+              "degenerate": false,
+              "degeneracy_threshold": 0.21137235569990911
+            },
+            {
+              "distance": 0.01,
+              "a_norm": 10699.904399531739,
+              "b_norm": 55409.994812596975,
+              "cosine": 0.1754078806852869,
+              "relative_error": 0.984654882033483,
+              "degenerate": false,
+              "degeneracy_threshold": 0.21137235569990911
+            }
+          ],
+          "passed": false
+        }
+      },
+      "accepted": false,
+      "numerical_implementation_failed": true,
+      "q_norm": 295.68939488572113,
+      "p_norm": 55409.994812596975,
+      "g0_norm": 8.574656214625504,
+      "frozen_H_quadratic_form": 1067.2002114507864,
+      "quadratic_form_can_be_negative": true
+    }
+  },
+  "formal_offline_coverage": {
+    "planned_state_batch_combinations": 36,
+    "inspected_combinations": 1,
+    "accepted_combinations": 0,
+    "unattempted_combinations": 35,
+    "planned_correction_scale_records": 72,
+    "accepted_correction_scale_records": 0,
+    "planned_matched_effective_step_records": 24,
+    "observed_matched_effective_step_records": 0,
+    "seed0_seed1": "pending_not_started",
+    "submitted_training_updates": 0
+  },
+  "review_conclusion": "HVP and central difference algebra match stated definitions; no concrete implementation bug found in static review. A failed finite-distance gate is evidence of numerical validation failure, not proof exact HVP implementation is wrong or method fails. Remaining Hessian correspondence claims are unavailable.",
+  "evidence_sha256": {
+    "outputs/offline_s2/checkpoint00_batch00.json": "80a59859d7bb0010f3f0a06722738d2d2d7b7c598f3960f3eb0fb96a46abf3e1",
+    "outputs/offline_s2/completion_receipt.json": "1f2a1f357daed1d9bbf19e2dd40ee0108959a8c5881b8a48f799810eb84927c6",
+    "outputs/offline_s2/diagnostic_results.json": "577a9801619049a38cf9e790bdb569790388621b184e9745c34bce5f46be1a2c",
+    "runtime/jobs/offline_s2/exit.json": "31faaab3cbde7b7340e36bb5dd36a5371f9712fa1e80d98815d5601ebdf12413",
+    "runtime/jobs/offline_s2/failed.json": "f274e3413dc025bc10c794cfde39d839fa1e35b50a5952a3a995f2bc72616a77",
+    "diagnostics/offline_core.py": "ffc67d89c56bb1d14acc2153ec140445b684380fef23de18606ba50af23c3fb6",
+    "diagnostics/offline_diagnostics.py": "23d5a71701810f0b6ef6825b9aa445fea47f5719ec376e4de2860174de77ae7f",
+    "trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "trainer/response_chain_train.py": "f5a2232ece5065a6c31387ef099308913765cb76a7e3ee1ac99709424012041e",
+    "diagnostics/CPU_TEST_RECEIPT.json": "02e2fb3ddc1a21049c1dea615e90613f825786618478fa98829924c8ee32f05b"
+  }
+}

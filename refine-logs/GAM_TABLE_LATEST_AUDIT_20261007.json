@@ -1,0 +1,781 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-07T06:58:45.626311+00:00",
+  "scope": "Four new formal seed-2 ImageNet-A positive replay runs; no jobs launched or frozen files changed",
+  "campaigns": [
+    {
+      "run_id": "imageneta-g0-plus-g1-plus-g2-20261006T144354Z",
+      "queue_state": "completed",
+      "queue_jobs": 5,
+      "formal_jobs": 2,
+      "pinned_files": 28,
+      "source_files": 190,
+      "validators": [
+        {
+          "job": "smoke_sum012_r025_k10_s2",
+          "phase": "smoke",
+          "validation": {
+            "summary_sha256": "ee886546464543ebe64bfb829eb5f88dfdea9e1bca1c670ab164cb9fececfb3d",
+            "trace_sha256": "f241bb288d24bb41f093de6b7627f3075a7aa659de3ea753002ba4999d1bbaa6",
+            "matrix_sha256": "a4fb5d22f6f4e98b17ae957bf65f7123abc0ce8441aba47c85d27ddf3fa6f042",
+            "updates": 2,
+            "tasks": 2,
+            "metric_recomputation": true
+          }
+        },
+        {
+          "job": "smoke_sum012_r1_k10_s2",
+          "phase": "smoke",
+          "validation": {
+            "summary_sha256": "9875877e092f70cf699b191846bf9fa9864f5f00705372a38da462b2e3be69c0",
+            "trace_sha256": "548203bef456acb9aa2ba03c31df89392660915c3346bd1ef088a135efc5e0f1",
+            "matrix_sha256": "4cdffbdeec2302f21d884a025cddc38622f4c839dbffe2168ea41e6a66e0482b",
+            "updates": 2,
+            "tasks": 2,
+            "metric_recomputation": true
+          }
+        },
+        {
+          "job": "smoke_pairing_gate",
+          "phase": "acceptance",
+          "validation": {
+            "summary_sha256": "e6d4b3e9ee5235b019d7c5fc2b081e339d84604c0ca22067e757d20b12e8d908",
+            "gate": "passed"
+          }
+        },
+        {
+          "job": "formal_sum012_r025_k10_s2",
+          "phase": "formal",
+          "validation": {
+            "summary_sha256": "a50a38cddd5f7d58006438b43fbc1250758d90d5bba14a9055defaf3c7cf47c2",
+            "trace_sha256": "ef2021fe43bd9ed9ab21e66961dc161e5a4230373606d56f39c724d12d442643",
+            "matrix_sha256": "cb24db4615114057bf587a8824ca3d3fe2b10ed7f2571932ca4d3d2432e325d2",
+            "updates": 2550,
+            "tasks": 10,
+            "metric_recomputation": true
+          }
+        },
+        {
+          "job": "formal_sum012_r1_k10_s2",
+          "phase": "formal",
+          "validation": {
+            "summary_sha256": "50cb403a74e356206cc5dc86905a8ced4ee4df885f4f0cf2b3ddfeb3e4ee695d",
+            "trace_sha256": "1b097d9fd446c09913f0478ded976e67083828cb84b799f030ba633dff21187c",
+            "matrix_sha256": "c36e66f54e21dc07f6499e4afa2bed51419fb559b99337371ab1c14e2f3ab69f",
+            "updates": 2550,
+            "tasks": 10,
+            "metric_recomputation": true
+          }
+        }
+      ],
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "cpu_gate": {
+        "status": "passed",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "device": "cpu",
+        "cuda_visible_devices": "",
+        "radii": [
+          0.25,
+          1.0
+        ],
+        "directions": [
+          "g0_plus_g1_plus_g2"
+        ],
+        "formulas": {
+          "g0_plus_g1_plus_g2": "g0+g1_plus+g2"
+        },
+        "g3_unused_final_verified": true,
+        "no_projection_verified": true,
+        "new_minus_old_sum_equals_g0_verified": true,
+        "nonlinear_analytic_locations": true,
+        "four_gradient_one_sgd_verified": true,
+        "rng_replay_R0_final_R1_verified": true
+      },
+      "source_environment_gate": {
+        "status": "passed",
+        "source_files": 190,
+        "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+        "environment_file_sha256": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+        "canonical_env_spec_sha256": "4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+        "warm_environment_reuse": true,
+        "no_packages_changed": true,
+        "cuda_kernel_witness": "pending per-worker allocation",
+        "trainer_entrypoints": [
+          {
+            "job": "smoke_sum012_r025_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/smoke_sum012_r025_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/smoke_sum012_r025_k10_s2",
+              "--max-tasks",
+              "2",
+              "--max-epochs",
+              "1",
+              "--max-batches",
+              "1",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/smoke_sum012_r025_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/smoke_sum012_r025_k10_s2",
+              "branch": "P",
+              "direction": "g0_plus_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 0.25,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 2,
+              "epochs": 1,
+              "seed": 2
+            }
+          },
+          {
+            "job": "smoke_sum012_r1_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/smoke_sum012_r1_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/smoke_sum012_r1_k10_s2",
+              "--max-tasks",
+              "2",
+              "--max-epochs",
+              "1",
+              "--max-batches",
+              "1",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/smoke_sum012_r1_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/smoke_sum012_r1_k10_s2",
+              "branch": "P",
+              "direction": "g0_plus_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 1.0,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 2,
+              "epochs": 1,
+              "seed": 2
+            }
+          },
+          {
+            "job": "formal_sum012_r025_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/formal_sum012_r025_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r025_k10_s2",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/formal_sum012_r025_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r025_k10_s2",
+              "branch": "P",
+              "direction": "g0_plus_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 0.25,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 10,
+              "epochs": 50,
+              "seed": 2
+            }
+          },
+          {
+            "job": "formal_sum012_r1_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/formal_sum012_r1_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r1_k10_s2",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/formal_sum012_r1_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r1_k10_s2",
+              "branch": "P",
+              "direction": "g0_plus_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 1.0,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 10,
+              "epochs": 50,
+              "seed": 2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "run_id": "imageneta-half-g1-plus-g2-20261006T145451Z",
+      "queue_state": "completed",
+      "queue_jobs": 5,
+      "formal_jobs": 2,
+      "pinned_files": 28,
+      "source_files": 190,
+      "validators": [
+        {
+          "job": "smoke_halfsum12_r025_k10_s2",
+          "phase": "smoke",
+          "validation": {
+            "summary_sha256": "c68cb63c49e01334d151f0fdf9483b1ac9e5962a7e8584080eb92ac27f947340",
+            "trace_sha256": "825f3fd53535d18174dc6ddefc00021ced7b0a1413923fe51930c94e7f6ee78e",
+            "matrix_sha256": "a93d1e26e33f46ae65fa4876c1a45193ef63302988b171835f2dff8526299640",
+            "updates": 2,
+            "tasks": 2,
+            "metric_recomputation": true
+          }
+        },
+        {
+          "job": "smoke_halfsum12_r1_k10_s2",
+          "phase": "smoke",
+          "validation": {
+            "summary_sha256": "b2e816628661c039eb0a07970a002bd01616093173c73c8eaa7634e5abf37178",
+            "trace_sha256": "19b247438f32c5a12cca6d641c02fc603e50ca63be19abd74b6e3da4e2ddccc0",
+            "matrix_sha256": "c6ec5df6e87e38051bc861d27911ae2b2309a5e9d07242cfbe43721dd4c5c804",
+            "updates": 2,
+            "tasks": 2,
+            "metric_recomputation": true
+          }
+        },
+        {
+          "job": "smoke_pairing_gate",
+          "phase": "acceptance",
+          "validation": {
+            "summary_sha256": "cda58978d31ccd36800b0f0dcc5b7384c93559283880a0c107d8ca40a62d6221",
+            "gate": "passed"
+          }
+        },
+        {
+          "job": "formal_halfsum12_r025_k10_s2",
+          "phase": "formal",
+          "validation": {
+            "summary_sha256": "e635dd79728e29ead3ff58d88b648dd94d16f7056f72d064a7cbc7c6381feef9",
+            "trace_sha256": "6e1bc4a59f28c1a62d21c516bfb55e7b1ee5c0a52bbba383d477cefd7539003e",
+            "matrix_sha256": "fc6bced5cc9e29069a0db7892ac9b117550385fcae8245c8a0d97a9f31e4ad75",
+            "updates": 2550,
+            "tasks": 10,
+            "metric_recomputation": true
+          }
+        },
+        {
+          "job": "formal_halfsum12_r1_k10_s2",
+          "phase": "formal",
+          "validation": {
+            "summary_sha256": "1eac4730955bb9559e20c312b6ab3d39be2160a1a5cf3615c17c0f8ea182ef58",
+            "trace_sha256": "d792eae579100119b6a94277c2be34cda1c0b2b4d2c5bece56791282150d08c4",
+            "matrix_sha256": "172241b4972127f3fdbaf116542db528bcb42020a31396c32f9931d89ca3bcd0",
+            "updates": 2550,
+            "tasks": 10,
+            "metric_recomputation": true
+          }
+        }
+      ],
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "cpu_gate": {
+        "status": "passed",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "device": "cpu",
+        "cuda_visible_devices": "",
+        "radii": [
+          0.25,
+          1.0
+        ],
+        "directions": [
+          "half_g1_plus_g2"
+        ],
+        "formulas": {
+          "half_g1_plus_g2": "(g1_plus+g2)/2"
+        },
+        "g3_unused_final_verified": true,
+        "no_projection_verified": true,
+        "twice_half_equals_old_sum_verified": true,
+        "same_gradient_half_lr_equivalence_verified": true,
+        "nominal_lr_not_halved_verified": true,
+        "nonlinear_analytic_locations": true,
+        "four_gradient_one_sgd_verified": true,
+        "rng_replay_R0_final_R1_verified": true
+      },
+      "source_environment_gate": {
+        "status": "passed",
+        "source_files": 190,
+        "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+        "environment_file_sha256": "b5ab04f52f4d82c46ddba615d4b8f93d7db3e0c8bf57b8b52132aef913da33c6",
+        "canonical_env_spec_sha256": "4df25e5efd1138e99d7388dd692dc7285fdab47e8b090c76d650c33cf32e74d8",
+        "warm_environment_reuse": true,
+        "no_packages_changed": true,
+        "cuda_kernel_witness": "pending per-worker allocation",
+        "trainer_entrypoints": [
+          {
+            "job": "smoke_halfsum12_r025_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/smoke_halfsum12_r025_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/smoke_halfsum12_r025_k10_s2",
+              "--max-tasks",
+              "2",
+              "--max-epochs",
+              "1",
+              "--max-batches",
+              "1",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/smoke_halfsum12_r025_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/smoke_halfsum12_r025_k10_s2",
+              "branch": "P",
+              "direction": "half_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 0.25,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 2,
+              "epochs": 1,
+              "seed": 2
+            }
+          },
+          {
+            "job": "smoke_halfsum12_r1_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/smoke_halfsum12_r1_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/smoke_halfsum12_r1_k10_s2",
+              "--max-tasks",
+              "2",
+              "--max-epochs",
+              "1",
+              "--max-batches",
+              "1",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/smoke_halfsum12_r1_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/smoke_halfsum12_r1_k10_s2",
+              "branch": "P",
+              "direction": "half_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 1.0,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 2,
+              "epochs": 1,
+              "seed": 2
+            }
+          },
+          {
+            "job": "formal_halfsum12_r025_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r025_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r025_k10_s2",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r025_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r025_k10_s2",
+              "branch": "P",
+              "direction": "half_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 0.25,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 10,
+              "epochs": 50,
+              "seed": 2
+            }
+          },
+          {
+            "job": "formal_halfsum12_r1_k10_s2",
+            "command": [
+              "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/trainer/four_probe_train.py",
+              "--source",
+              "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "--config",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+              "--output-dir",
+              "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2",
+              "--dry-run"
+            ],
+            "result": {
+              "status": "valid",
+              "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+              "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+              "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2",
+              "branch": "P",
+              "direction": "half_g1_plus_g2",
+              "mode": "natural",
+              "backend": "native",
+              "rho": 0.05,
+              "r": 1.0,
+              "gradients_per_step": 4,
+              "updates_per_step": 1,
+              "g3_used_in_final": false,
+              "projection_calls_per_step": 0,
+              "tasks": 10,
+              "epochs": 50,
+              "seed": 2
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "results": [
+    {
+      "run_id": "imageneta-g0-plus-g1-plus-g2-20261006T144354Z",
+      "job": "formal_sum012_r025_k10_s2",
+      "direction": "g0_plus_g1_plus_g2",
+      "radius": 0.25,
+      "seed": 2,
+      "FAA": 48.888999999999996,
+      "AAA": 65.42995119047619,
+      "BWT": -8.167777777777776,
+      "LA": 56.239999999999995,
+      "forgetting": 8.298888888888888,
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r025_k10_s2/task_matrix.json",
+      "matrix_sha256": "cb24db4615114057bf587a8824ca3d3fe2b10ed7f2571932ca4d3d2432e325d2",
+      "summary_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r025_k10_s2/final_summary.json",
+      "summary_sha256": "a50a38cddd5f7d58006438b43fbc1250758d90d5bba14a9055defaf3c7cf47c2",
+      "trace_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r025_k10_s2/step_trace.jsonl",
+      "trace_sha256": "ef2021fe43bd9ed9ab21e66961dc161e5a4230373606d56f39c724d12d442643",
+      "final_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/runtime/jobs/formal_sum012_r025_k10_s2/completed.json",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/formal_sum012_r025_k10_s2.json",
+      "config_sha256": "30ddfc33aa24fa2ea4c20fea587a2e81b48b9719fd565665faf16006c9b1186e",
+      "compute_g3_probe_effective_config_field": false,
+      "actual_g3_calls": 2550,
+      "g3_used_in_final": false,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "g3_computed_unused": true,
+        "original_positive_probe": true,
+        "requested_projection_only": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "completed_at": "2026-10-06T17:17:08.052966+00:00",
+      "delta_vs_sum12": {
+        "AAA": -1.4347972222222296,
+        "FAA": -1.7170000000000059,
+        "BWT": -0.11222222222221845
+      },
+      "sum12_reference": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r025_k10_s2"
+    },
+    {
+      "run_id": "imageneta-g0-plus-g1-plus-g2-20261006T144354Z",
+      "job": "formal_sum012_r1_k10_s2",
+      "direction": "g0_plus_g1_plus_g2",
+      "radius": 1.0,
+      "seed": 2,
+      "FAA": 53.56999999999999,
+      "AAA": 68.37171071428571,
+      "BWT": -6.104444444444448,
+      "LA": 59.064,
+      "forgetting": 6.2388888888888925,
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r1_k10_s2/task_matrix.json",
+      "matrix_sha256": "c36e66f54e21dc07f6499e4afa2bed51419fb559b99337371ab1c14e2f3ab69f",
+      "summary_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r1_k10_s2/final_summary.json",
+      "summary_sha256": "50cb403a74e356206cc5dc86905a8ced4ee4df885f4f0cf2b3ddfeb3e4ee695d",
+      "trace_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/outputs/formal_sum012_r1_k10_s2/step_trace.jsonl",
+      "trace_sha256": "1b097d9fd446c09913f0478ded976e67083828cb84b799f030ba633dff21187c",
+      "final_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/runtime/jobs/formal_sum012_r1_k10_s2/completed.json",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0-plus-g1-plus-g2-20261006T144354Z/configs/formal_sum012_r1_k10_s2.json",
+      "config_sha256": "27c1f29df0a241f8c81b46a455a7ecdaedc889ef29037901bd530f4ff97bb3a2",
+      "compute_g3_probe_effective_config_field": false,
+      "actual_g3_calls": 2550,
+      "g3_used_in_final": false,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "g3_computed_unused": true,
+        "original_positive_probe": true,
+        "requested_projection_only": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "completed_at": "2026-10-06T17:16:07.185006+00:00",
+      "delta_vs_sum12": {
+        "AAA": -0.2331297619047632,
+        "FAA": -1.1520000000000081,
+        "BWT": -0.8544444444444474
+      },
+      "sum12_reference": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2"
+    },
+    {
+      "run_id": "imageneta-half-g1-plus-g2-20261006T145451Z",
+      "job": "formal_halfsum12_r025_k10_s2",
+      "direction": "half_g1_plus_g2",
+      "radius": 0.25,
+      "seed": 2,
+      "FAA": 48.775,
+      "AAA": 65.91116587301588,
+      "BWT": -7.254444444444443,
+      "LA": 55.303999999999995,
+      "forgetting": 7.387777777777777,
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r025_k10_s2/task_matrix.json",
+      "matrix_sha256": "fc6bced5cc9e29069a0db7892ac9b117550385fcae8245c8a0d97a9f31e4ad75",
+      "summary_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r025_k10_s2/final_summary.json",
+      "summary_sha256": "e635dd79728e29ead3ff58d88b648dd94d16f7056f72d064a7cbc7c6381feef9",
+      "trace_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r025_k10_s2/step_trace.jsonl",
+      "trace_sha256": "6e1bc4a59f28c1a62d21c516bfb55e7b1ee5c0a52bbba383d477cefd7539003e",
+      "final_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/runtime/jobs/formal_halfsum12_r025_k10_s2/completed.json",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r025_k10_s2.json",
+      "config_sha256": "2b460bffd1e436e2ed9e7353c1da876a756d6b59f52f97b0007c05ed1ba288e0",
+      "compute_g3_probe_effective_config_field": false,
+      "actual_g3_calls": 2550,
+      "g3_used_in_final": false,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "g3_computed_unused": true,
+        "original_positive_probe": true,
+        "requested_projection_only": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "completed_at": "2026-10-06T19:42:57.287004+00:00",
+      "delta_vs_sum12": {
+        "AAA": -0.953582539682543,
+        "FAA": -1.831000000000003,
+        "BWT": 0.8011111111111138
+      },
+      "sum12_reference": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r025_k10_s2"
+    },
+    {
+      "run_id": "imageneta-half-g1-plus-g2-20261006T145451Z",
+      "job": "formal_halfsum12_r1_k10_s2",
+      "direction": "half_g1_plus_g2",
+      "radius": 1.0,
+      "seed": 2,
+      "FAA": 49.432,
+      "AAA": 66.55442103174603,
+      "BWT": -7.2988888888888885,
+      "LA": 56.001,
+      "forgetting": 7.559999999999999,
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2/task_matrix.json",
+      "matrix_sha256": "172241b4972127f3fdbaf116542db528bcb42020a31396c32f9931d89ca3bcd0",
+      "summary_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2/final_summary.json",
+      "summary_sha256": "1eac4730955bb9559e20c312b6ab3d39be2160a1a5cf3615c17c0f8ea182ef58",
+      "trace_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/outputs/formal_halfsum12_r1_k10_s2/step_trace.jsonl",
+      "trace_sha256": "d792eae579100119b6a94277c2be34cda1c0b2b4d2c5bece56791282150d08c4",
+      "final_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/runtime/jobs/formal_halfsum12_r1_k10_s2/completed.json",
+      "config_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+      "config_sha256": "30c77bce7f5bb427c61b8c6c8ea97a999fd5caad0265758eaec1e8aa26947481",
+      "compute_g3_probe_effective_config_field": false,
+      "actual_g3_calls": 2550,
+      "g3_used_in_final": false,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "g3_computed_unused": true,
+        "original_positive_probe": true,
+        "requested_projection_only": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "completed_at": "2026-10-06T19:42:36.745288+00:00",
+      "delta_vs_sum12": {
+        "AAA": -2.0504194444444437,
+        "FAA": -5.289999999999999,
+        "BWT": -2.0488888888888876
+      },
+      "sum12_reference": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2"
+    }
+  ],
+  "limitations": [
+    "All four runs use one seed (2); no uncertainty estimates or statistical significance claims.",
+    "effective_config inherited compute_g3_probe=false; dedicated FourProbeStep computes g3 unconditionally. Actual code, all traces and 2550 g3 calls prove four probes. This field does not govern this trainer and should not be read alone.",
+    "disabled_merge_hook_calls=20 records calls to disabled lifecycle hooks; actual weight_merge_updates=0.",
+    "Same realized batches and initial state are verified, but native GPU numerical differences preclude claiming bitwise-identical separately launched trajectories.",
+    "Half direction is exactly same common-state direction with half magnitude in CPU gates; it is not half of the trained sum12 trajectory at every later step.",
+    "Changing update sum changes magnitude and direction. Natural-step comparisons alone do not isolate a Hessian mechanism."
+  ],
+  "pairing": {
+    "all_six_trajectories_have_same_2550_realized_augmented_batches": true,
+    "task0_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+    "final_model_trajectories_expected_to_differ_after_updates": true
+  },
+  "code_verification": {
+    "sum012_formula": "U=g0+g1_plus+g2",
+    "half12_formula": "U=0.5*g1_plus+0.5*g2",
+    "sgd_formula": "theta=base-nominal_lr*U",
+    "nominal_lr_unchanged": true,
+    "double_scaling": false,
+    "positive_first_point": "base+rho*N(g0)",
+    "outer_point": "base+r*N(g1_plus-g0)",
+    "fourth_point": "outer+rho*N(g2)",
+    "projections": 0,
+    "ewc_lambda": 0,
+    "fisher_estimation_passes": 0,
+    "actual_weight_merge_updates": 0,
+    "inherited_beta_gamma_not_used_by_custom_final_direction": true
+  }
+}

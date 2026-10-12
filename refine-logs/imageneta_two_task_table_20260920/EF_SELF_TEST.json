@@ -1,0 +1,76 @@
+{
+  "batch_proxy_checks": {
+    "new_local20": {
+      "batch_proxy": 0.7349431712212423,
+      "distinct_from_per_example_EF": true,
+      "logical_batch_sizes": [
+        3,
+        2
+      ],
+      "max_microbatch_absolute_error": 2.220446049250313e-16,
+      "micro_batch_sizes_checked": [
+        1,
+        2,
+        4
+      ],
+      "passed": true,
+      "per_example_EF_trace": 1.5352004863002136
+    },
+    "old_local20": {
+      "batch_proxy": 0.8200832342815565,
+      "distinct_from_per_example_EF": true,
+      "logical_batch_sizes": [
+        3,
+        2
+      ],
+      "max_microbatch_absolute_error": 1.1102230246251565e-16,
+      "micro_batch_sizes_checked": [
+        1,
+        2,
+        4
+      ],
+      "passed": true,
+      "per_example_EF_trace": 1.6205594929487297
+    }
+  },
+  "device": "cpu",
+  "dtype": "float64",
+  "passed": true,
+  "sampler_check": "fixed, without replacement, exact sample count",
+  "scope_checks": {
+    "new_local20": {
+      "batch_partition_check": "1,2,5 agree, including incomplete final microbatch",
+      "direction_dot_max_absolute_error": {
+        "delta": 6.522560269672795e-16
+      },
+      "loss_scope": "new_local20",
+      "passed": true,
+      "samples": 5,
+      "trace_max_absolute_error": 6.661338147750939e-16,
+      "trace_max_relative_error": 5.538547729291408e-16
+    },
+    "old_local20": {
+      "batch_partition_check": "1,2,5 agree, including incomplete final microbatch",
+      "direction_dot_max_absolute_error": {
+        "delta": 4.996003610813204e-16
+      },
+      "loss_scope": "old_local20",
+      "passed": true,
+      "samples": 5,
+      "trace_max_absolute_error": 8.881784197001252e-16,
+      "trace_max_relative_error": 5.873920799397125e-16
+    },
+    "seen40": {
+      "batch_partition_check": "1,2,5 agree, including incomplete final microbatch",
+      "direction_dot_max_absolute_error": {
+        "delta": 2.7755575615628914e-16
+      },
+      "loss_scope": "seen40",
+      "passed": true,
+      "samples": 5,
+      "trace_max_absolute_error": 1.1102230246251565e-16,
+      "trace_max_relative_error": 3.369734246246208e-16
+    }
+  },
+  "status": "complete"
+}

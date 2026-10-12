@@ -1,0 +1,72 @@
+{
+  "curvature": {
+    "status": "FAIL",
+    "checks": {
+      "legal_available_result": "ACCEPTED",
+      "legal_explicit_unsupported_result": "ACCEPTED",
+      "nan": {
+        "status": "REJECTED",
+        "reason": "nonfinite observed value"
+      },
+      "wrong_origin_rule": {
+        "status": "REJECTED",
+        "reason": "wrong curvature origin"
+      },
+      "wrong_origin_path": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "wrong_source_hash": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "wrong_closure_counter": {
+        "status": "REJECTED",
+        "reason": "curvature native probes missing"
+      },
+      "wrong_ce_counter": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "failed_restore": {
+        "status": "REJECTED",
+        "reason": "HVP restoration failed"
+      },
+      "empty_restore": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "wrong_native_point": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "missing_response": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "wrong_script_hash": {
+        "status": "REJECTED",
+        "reason": "curvature input pins mismatch"
+      },
+      "hvp_availability_mismatch": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "unsupported_without_evidence": {
+        "status": "INCORRECTLY_ACCEPTED"
+      },
+      "changed_native_file": {
+        "status": "REJECTED",
+        "reason": "curvature checkpoint changed"
+      },
+      "legal_result_after_negative_cleanup": "ACCEPTED"
+    },
+    "incorrectly_accepted": [
+      "wrong_origin_path",
+      "wrong_source_hash",
+      "wrong_ce_counter",
+      "empty_restore",
+      "wrong_native_point",
+      "missing_response",
+      "hvp_availability_mismatch",
+      "unsupported_without_evidence"
+    ],
+    "fixture_scope": "Actual CPU native-GAM curvature numbers inside a synthetic completion envelope; not scientific data"
+  },
+  "status": "FAIL",
+  "validator_sha256": "aecd5b6233051eae58b94a964c81fdeb2bdc78cc38ab77e77d25ce5dc004ae8b",
+  "test_script_sha256": "01697c17b5f54d0a4a3e6488944f029177c02d9f0ea330e088cbfdfd9ad4343a"
+}

@@ -1,0 +1,43 @@
+% Requires graphicx and amsmath. Put these PDFs beside the manuscript or set
+% \graphicspath to this directory. Final figure numbering is assigned by LaTeX.
+% Figure A below is former B2; Figure B below is former B1.
+% Displayed t = source task + 1 = source T. Source IDs remain unchanged.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{Figure_A_realized_future.pdf}
+\caption{Realized future-learning diagnostics on ImageNet-A for EWCLoRA and FS-EWCLoRA under the formal EWC configuration $\lambda=2000$.
+From left to right: effective-weight drift, Task-1 signed test-loss change, Task-1 test accuracy, and path Fisher sensitivity.
+All horizontal axes show the number of learned tasks $t=1,\ldots,10$.
+For each method and seed, $\Delta\mathbf w_t=\mathbf w_t-\mathbf w_1$ is the displacement from its own Task-1 anchor in the 24 effective Q/V matrices and $d_t=\|\Delta\mathbf w_t\|_2$.
+The signed loss change is $D_{1,t}^{\mathrm{test}}=\widehat{\mathcal L}_{1,\mathrm{test}}(\mathbf w_t)-\widehat{\mathcal L}_{1,\mathrm{test}}(\mathbf w_1)$; negative values are retained.
+Loss and accuracy $A_{1,t}^{\mathrm{test}}$ use all 307 Task-1 test examples and the fixed 20-class Task-1 head.
+The first three panels contain all ten endpoints per method and seed (60 endpoint records).
+Path sensitivity is $\overline S_{F,1}^{\mathrm{path}}(t)=\int_0^1\mathbf v_t^\top F_{1,\mathrm{tr}}^{\mathrm{emp}}(\mathbf w_1+s\Delta\mathbf w_t)\mathbf v_t\,\mathrm ds$, where $\mathbf v_t=\Delta\mathbf w_t/d_t$.
+It uses raw true-label per-example empirical Fisher on all 1,259 Task-1 training examples, without EWC coefficient scaling, trace normalization, damping, floor, or added regularization.
+Straight anchor-to-endpoint chords are independently measured at $t=2,\ldots,10$; no estimate is plotted at $t=1$ because $d_1=0$.
+Adaptive nested Simpson quadrature uses 9 or 17 measured nodes per chord, for 54 chords and 502 nodes in total.
+The chords are not the optimizer's chronological trajectory, and their directional sensitivity is not an endpoint Fisher trace.
+Curves show arithmetic means over training seeds 0, 1, and 2, with each seed's integral divided by its own squared displacement before averaging.
+Standard-deviation shading is omitted; sample standard deviations remain available in the source CSV.}
+\label{fig:rq2-realized-future}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{Figure_B_controlled_neighborhood.pdf}
+\caption{Controlled neighborhood diagnostics on ImageNet-A around the formal seed-0 Task-1 anchors of EWCLoRA and FS-EWCLoRA under the EWC configuration $\lambda=2000$.
+From left to right: Task-1 train accuracy, mean positive loss increase, neighborhood Fisher trace, and measured tolerance radius.
+The first three horizontal axes show controlled perturbation radius $d$; the fourth shows allowed loss increase $\tau$.
+The direction-averaged accuracy is $\overline A_1^{\mathrm{nbr}}(d)=K_D^{-1}\sum_k A_{1,\mathrm{tr}}(\mathbf w_1+d\mathbf u_k)$ in percent.
+The positive-loss statistic is $\overline D_1^+(d)=K_D^{-1}\sum_k[\widehat{\mathcal L}_{1,\mathrm{tr}}(\mathbf w_1+d\mathbf u_k)-\widehat{\mathcal L}_{1,\mathrm{tr}}(\mathbf w_1)]_+$: the positive part is taken for each direction before averaging.
+Loss and accuracy use all 1,259 Task-1 training examples, the fixed 20-class Task-1 head, $K_D=50$ paired random unit directions, and 107 measured radii per method; the coincident directions at $d=0$ require one anchor evaluation.
+The raw neighborhood Fisher statistic is $\overline R_{F,1}^{\mathrm{nbr}}(d)=K_F^{-1}\sum_k\operatorname{tr}F_{1,\mathrm{tr}}^{\mathrm{emp}}(\mathbf w_1+d\mathbf u_k)$, using 256 fixed training examples, $K_F=16$ paired directions, and 42 measured radii per method.
+It averages true-label per-example gradient squared norms in the 24 effective Q/V matrices, without EWC coefficient scaling, trace normalization, or damping.
+Anchors use rank-10 LoRA; diagnostic perturbations occupy the full effective-weight space without a rank-10 constraint.
+The measured tolerance radius is $\widehat d_\tau=\max\{d_j:\overline D_1^+(d_i)\leq\tau\ \text{for all }i\leq j\}$, computed on the measured grid without interpolation or a continuous-radius certificate.
+All eleven thresholds through $\tau=0.1$ are retained.
+Radii $d=21,22,23,24$ were not measured, limiting tolerance resolution; connecting lines are visual guides.
+The measured Fisher peak at $d=17$ is retained.
+These are direction means from one training seed, with no cross-seed uncertainty band.}
+\label{fig:rq2-controlled-neighborhood}
+\end{figure*}

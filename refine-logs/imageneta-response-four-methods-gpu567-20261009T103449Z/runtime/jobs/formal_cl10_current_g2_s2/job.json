@@ -1,0 +1,35 @@
+{
+  "id": "formal_cl10_current_g2_s2",
+  "kind": "training",
+  "phase": "cl10",
+  "smoke": false,
+  "method": "current_g2",
+  "layout": "cl10",
+  "seed": 2,
+  "history_weight": 0.0,
+  "history_source": null,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/trainer/response_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_cl10_current_g2_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2"
+  ],
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/outputs/formal_cl10_current_g2_s2",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/configs/formal_cl10_current_g2_s2.json",
+  "config_sha256": "c2cd806349e5b2032c3c126a077065a03f505a4a4f54df4d66ba9424a5fdb96a",
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "depends_on": [
+    "formal_single200_sgd_s2",
+    "formal_single200_current_g2_s2",
+    "formal_single200_history_fusion_s2",
+    "formal_single200_history_g2_s2"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-gpu567-20261009T103449Z/runtime/jobs/formal_cl10_current_g2_s2/cuda_witness.json"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "real_model_probe_gate",
+  "kind": "model_gate",
+  "smoke": false,
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/configs/real_model_probe_gate.json",
+  "config_sha256": "f057267cf28f7ae8cc53c263d02ee05d9f7d4ddab48b333238e315b4f438baf2",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/outputs/real_model_probe_gate",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/real_model_regression.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--reference",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/configs/real_model_probe_gate.json",
+    "--diagnostic-output",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/outputs/diagnostic_smoke",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/outputs/real_model_probe_gate"
+  ],
+  "report_file": "model_gate.json",
+  "depends_on": [
+    "diagnostic_smoke"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "suite_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/suite.json",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/runtime/jobs/real_model_probe_gate/cuda_witness.json",
+  "assigned_gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825"
+}

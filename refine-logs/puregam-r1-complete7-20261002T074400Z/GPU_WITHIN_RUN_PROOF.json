@@ -1,0 +1,497 @@
+{
+  "passed": true,
+  "scope": "SAME-RUN native gradient/actual SGD implementation integrity, NOT cross-run parameter trajectory equivalence",
+  "created_at": "2026-10-02T07:43:50.287789+00:00",
+  "smoke_campaign": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z",
+  "helper_sha256": "8776dc581d93e18f967d6fc20d17ce9bce508a06b49393621792832bec5873fc",
+  "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "smoke_completed": 5,
+  "actual_gpu_steps": 90,
+  "paired_control_batches_input_target_rng_equal": 18,
+  "control_cnn_matrix_equal": true,
+  "cross_gpu_checkpoint_equivalence": "FAILED_ORIGINAL_THRESHOLD_PRESERVED",
+  "original_failure_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/formal_g0_r1_k10_s2/queue_failed.json",
+  "original_failure": {
+    "id": "formal_g0_r1_k10_s2",
+    "status": "failed",
+    "time": "2026-10-02T07:38:53.320375+00:00",
+    "error": "GPU smoke integration proof failed: RuntimeError('Control parameter deviation exceeds predeclared tolerance: lora_w_b_1.pt/0/state_dict/weight')"
+  },
+  "bindings": {
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/RUN_PINS.json": "20e6e20a3913c2c79f275d8cb40b91b01a4265c2e1e376cd692b502b92588915",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/suite.json": "13ceb61d20a0c26d6d9ce48b4466452489bd9145d32cfe4a45bae6cdaed6ebb1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_native_control_r1_k10_s2/completed.json": "305e17bbd8f86c7687c68d7926f9ef5fc03b6f13f146f31ee668400ed2ceac50",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_native_control_r1_k10_s2/started.json": "a2260387f69400a54d6799dfa8c48738ea210c279929b9c6dcc283c560daaa12",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_native_control_r1_k10_s2/config.json": "1a1c654b05d0286569f50596a72ce6f9af90ab3838cd85183c5ad30d64727b6f",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_native_control_r1_k10_s2/direction_audit.jsonl": "fde9e4cbe440c89072531eb7475785956c402d35e4b9e7e5bc924487b8f29f53",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_native_control_r1_k10_s2/direction_audit_summary.json": "46a5686f4b6aadd78f44812141c868d6fd5001526764411c569681abfc577873",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/20/smoke_native_control_r1_k10_s2_vit_base_patch16_224_cl_metrics.json": "2e74479800c6a0a0e23146a2a7b6f901cc4c63c170196e3fd897efa98e5db63f",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/CLs_bias0.pt": "44e44d4f1be274eda04315cf5d1120906211c832debd8e0a6392850c1018c31a",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/CLs_bias1.pt": "374b44b93d6e014f632acd0992762880732894df293965d6d551ece8bc010feb",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/CLs_weight0.pt": "a3b573715ec00bfaa5714a06480039cbf176a3b1192d1b60873dfe7ba6b4396d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/CLs_weight1.pt": "d5d64151a4aafaec8f7071e633165b58226577215e8ccbccfc1b2f70ddf04e54",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/fc_state_0.pt": "991fbaa0bad3129cf046adbacaa6b8e6e61378235b5219e936b48eeea6c8acc4",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/fc_state_1.pt": "742b39ea8ba6d1052a8f09a3aab7aef890aa2d4094baee5aa8860542fd686857",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/lora_w_a_0.pt": "8862fd1506f61e02d294b9b874965cbcf08aa99b9129d769ad7d3da9df058912",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/lora_w_a_1.pt": "3303e9cf7686c09d39741eae2554f5e32f4e8088ac406f8e2da828b2dc70e4e0",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/lora_w_b_0.pt": "c6b6b82fd54591ec6de38633b06214c052e2e4455a3c1f3e6e1408a84e9003f7",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/checkpoints/lora_w_b_1.pt": "efd0e2a01781f1c7daa70152bb5e872ba5f494f4c164d251653aca542749d3f4",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g1_control_r1_k10_s2/completed.json": "8f45a65935d04d28ed7c274fbda45c08e4127c779983ad6417c52f635e56fed1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g1_control_r1_k10_s2/started.json": "82ca86fb3c5744f52eba1df95eb84654b1bc40598402516db8cc33e6fefd8fa1",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g1_control_r1_k10_s2/config.json": "1652dbab08b6e1de4f436675e41f3c2fb262e120196b6f20a6a3d8647388a659",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g1_control_r1_k10_s2/direction_audit.jsonl": "6dcc663e64062b7c39e3be2cbc04f6268bf6ac61abac143a4199f217a5d9804d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g1_control_r1_k10_s2/direction_audit_summary.json": "d08a95ccff6f9a405f55904a166f0346946d5ec1a54b07d786ef370568c0c7f5",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/20/smoke_g1_control_r1_k10_s2_vit_base_patch16_224_cl_metrics.json": "b53c5bc9f3ac85bfd52b6ba94e330953ecd75b3167e7f0e351910c39e61dace7",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/CLs_bias0.pt": "a3f09349e09e802af7e19cad1c3a8d8d07aeed8f31e653d353f84babcdecc33c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/CLs_bias1.pt": "1986f08c273d4ac28911a2bca5fc6002247abb2dfce91b16b8f33481ce4ef51b",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/CLs_weight0.pt": "6616aca9cbbbdcb3daa3034eda2767e4452f3d1134ff2aa51787cdf9ac4c0b50",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/CLs_weight1.pt": "6702fa50d3dd6f4deee4680543c8f7c65565a736b27fca2920dd8c0b5baa695a",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/fc_state_0.pt": "2462f432fed68243121443b1cf33373d973dfa2125a0808d113989e5e59474b8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/fc_state_1.pt": "14f55f3aac7d7b682b908a1aff81113a89391b28c246f5022857a5300ec7f49c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/lora_w_a_0.pt": "be282949f8f1c5483430531fad5ca44b29df93f1d788da5be60dc7d2b924ae22",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/lora_w_a_1.pt": "4fa55f8c5f6b904bab7652bc28f03971428b4fc78dce4f8c13a55e0db8508d1c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/lora_w_b_0.pt": "199e91a1ce90018f98dac3ef45e87f86e751f25d6e39bc7c8666882a18249270",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/checkpoints/lora_w_b_1.pt": "3e982d90824d278eb3d0675293035e78a80dbb6a863647a824eb012870b3b337",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g0_r1_k10_s2/completed.json": "0cdf3eb7ba15ec10172784e23bcd94b17a52f3d1989c8fbcb90044098bd5c7d7",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g0_r1_k10_s2/started.json": "777b27045839c574b6951e85fe96e597a6913292b9bae950321b19567da9acba",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g0_r1_k10_s2/config.json": "51886e2f7365605e683adfa8d2e315fd860377fcbf86604a3d7b7dc51f0f4817",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g0_r1_k10_s2/direction_audit.jsonl": "12848eb099086edbfd5556357ee810794317f6588b9e89aba1fe656e1e67e560",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g0_r1_k10_s2/direction_audit_summary.json": "6b6bcb5fd3f58cf8055180dddf1a3bb5e3bcdac063059f4abad8da32bbb3b964",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/20/smoke_g0_r1_k10_s2_vit_base_patch16_224_cl_metrics.json": "09684a7aae42079bf791edb99c07a62cd27b300e6224ea2bd16d8e96a83f8815",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/CLs_bias0.pt": "9b2e89258be8c91f61a78c4a6b6237003d3c96df80bbbe97f2c76a6bf505cef0",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/CLs_bias1.pt": "c119b48a42d3bdab57b1714e8d2d2ff318ff119811d0217bce84ddde42b2ae83",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/CLs_weight0.pt": "aa2df53fbc738e24a385748f2fa98cfaea04d0863b02a5183fff25809c3eecb3",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/CLs_weight1.pt": "a7a894d3af52dc6c76f301bb4258f479bb5b28bcf0cfafd0a790b67183ad5d78",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/fc_state_0.pt": "6d379347f2ad9e1234762c5a3bc754c96e39e61f95e9946af66ecc34647d0468",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/fc_state_1.pt": "60ce24868be77a7910c3aabe0e82dc6e2dc46d2645ac9028010ad7066f8621c8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/lora_w_a_0.pt": "40a6910fbc08454e13656d84ce5024c17139bdfddcff2930d34f992bc68e860c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/lora_w_a_1.pt": "87b5cca7dd3f972f34e9eefdd55e6e9861cf07cd64e481c1e1217984d95fd69e",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/lora_w_b_0.pt": "84113da19bfa747507a898185009ec1933ef28cc532e75b2268305e4d9cc87f8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/checkpoints/lora_w_b_1.pt": "671d53bf217dc1369c7b15acfc3fa7712d379342779c36c477f21dbf2ca7d995",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g2_r1_k10_s2/completed.json": "1ae192231e8e3c3f1467fb2709eee0ae2db111ee66512f0941ef352a2a81d2ca",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g2_r1_k10_s2/started.json": "804a59d977e3fa0d5b707279fbda8959ea0f90a282631ef8982c0b75da2d2b7d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g2_r1_k10_s2/config.json": "a641fd158530c01ed7570f3374d79fdc7cb70904950e66f1c0d80776fc47f5a5",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g2_r1_k10_s2/direction_audit.jsonl": "dca1899622d74d89dbe4f40812a9dacaac14c96e8a76dd3ac9d9f3a6b3cbdbee",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_g2_r1_k10_s2/direction_audit_summary.json": "1776f251c17bf4e76e991f0191b17c9fb671ebb54bb7506888606f2ec84379af",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/20/smoke_g2_r1_k10_s2_vit_base_patch16_224_cl_metrics.json": "5db95f33a81d2237b056e932aff711f375179c80683e2c78dc96783d408170a3",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/CLs_bias0.pt": "2d85cb57ee7a3360c48062fb87e46bb6f34915e0fd0a15ad7b121a13d7737b1d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/CLs_bias1.pt": "3bcbe271e6977edb3f0920c27aa9311d18e16861605f966b6bebe22e598744aa",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/CLs_weight0.pt": "3012a61a6984b5de57883eae16d2df5851a9e0286279e1b3d8dbc37885b7f01c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/CLs_weight1.pt": "5ea9dbd510dc26b32129891ad12e6bf0c71804b77b626dfb888ebdd9371f1dcf",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/fc_state_0.pt": "4f727e2dd3e65a10b8e598bd2405a801c553868e7d5e9e378c73b3ddc565c3e6",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/fc_state_1.pt": "24802ffac0cbef980ffe59a502bc8d51a7eb5c014f72d0910896c1342e844ab7",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/lora_w_a_0.pt": "74014c193c1bc4b57397ed8d99cdf9f740313cf7714a62da362146497b2da0ed",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/lora_w_a_1.pt": "1652da88afbdb5b5b50ed76a36517f9b5cfdc1483ba62cb78d4de0655b5af285",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/lora_w_b_0.pt": "f9c425f3f6ab3bcb812eb7eed2e09dc6e872a4eb6a3d505fba794c64cf72d008",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/checkpoints/lora_w_b_1.pt": "413739bb6bdace53852422ab1a622f467e199546862b354b9759ce6722850443",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_ug_r1_k10_s2/completed.json": "8749569a24c9bc683b3343d9fb614add7f1209d7b6ec842b460a677cc40577f3",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_ug_r1_k10_s2/started.json": "82feafec48259b29c677c8b8f596850ec2da69956ad7f3a4cb6fafbbef2b1ce6",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_ug_r1_k10_s2/config.json": "84e2ffca106c18eafa873f0673fb09bc792b6813e0121d15cd8e7c7c5b1119b9",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_ug_r1_k10_s2/direction_audit.jsonl": "1a91006d0878706060059dc7406fd2871a165fe446d8032965cba9157e813869",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/smoke_ug_r1_k10_s2/direction_audit_summary.json": "14ec6d4e52fa3e86a7bb1fc1149a4d9261f6faea536a35142034f890cc0f66b0",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/20/smoke_ug_r1_k10_s2_vit_base_patch16_224_cl_metrics.json": "172e2e3f8a6a9d9dd0a14e1c44b0ef60496845070ac369dcdc82f87c8678e733",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/CLs_bias0.pt": "e56b7ba00189e53aa1e55a02688cae0dd219f7bb0b7db0619bed6be5dec6d5ab",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/CLs_bias1.pt": "a13eb768492dd1b422ca2a1e50da230342ebe18be21e8da54c7274dfa4a83888",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/CLs_weight0.pt": "adff21a6083e19f1a4e2e6af4f63e5707a1113703b82fb1091a833e920d85627",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/CLs_weight1.pt": "57cb1ed09782c7d7ba9680bd4ccc0370de4fb6f87d294d69491d9ceb49ecd71b",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/fc_state_0.pt": "6aca9306797b88a2457c36028f39950f8fc86ef9437f6b518dd2ed7d4e4b1630",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/fc_state_1.pt": "b72934e4950eb4580bd994ffd1df440201e4ef6df8a89f5b336963384e805c1e",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/lora_w_a_0.pt": "2291cc43f433098a3ab5a584c5c3fef8b92b39ffdf74d79b993f56c7614b2ff4",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/lora_w_a_1.pt": "15153bba9353e4bf615f73a1108b1718965a28b9e4e23d51f7f74e366eeb32e8",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/lora_w_b_0.pt": "3e4ef0e159c22bd13f2172667403991d8f338afa9a382690fec2e6392c487c9d",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/checkpoints/lora_w_b_1.pt": "3babcff249852f5a3d5161710614aa45d22df4240fe917c35fce93c2cddba19c",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/runtime/jobs/formal_g0_r1_k10_s2/queue_failed.json": "e81e3467be5fedf32cc4cf9a0ddf59cdcf8a033ab3ec6ecdc359cd82438a14cd"
+  },
+  "jobs": {
+    "smoke_native_control_r1_k10_s2": {
+      "steps": 18,
+      "samples": 2256,
+      "selector": "native_control",
+      "metrics": {
+        "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_native_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_native_control_r1_k10_s2/exp_run/20/smoke_native_control_r1_k10_s2_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "2e74479800c6a0a0e23146a2a7b6f901cc4c63c170196e3fd897efa98e5db63f",
+        "tasks_completed": 2,
+        "expected_tasks": 2,
+        "faa_task_macro": 39.745000000000005,
+        "aaa_task_macro": 49.1875,
+        "forgetting": 7.490000000000002,
+        "bwt": -7.490000000000002,
+        "faa_sample_weighted": 40.82,
+        "aaa_sample_weighted": 49.725,
+        "cnn_top1_curve": [
+          58.63,
+          40.82
+        ],
+        "cnn_matrix": [
+          [
+            58.63,
+            null
+          ],
+          [
+            51.14,
+            28.35
+          ]
+        ],
+        "native_final": {
+          "ACA": 43.49,
+          "ABWT": -7.490000000000002,
+          "AFG": null,
+          "FWT": null,
+          "FAA": 39.745000000000005,
+          "Acc": 39.745000000000005,
+          "AAA": 46.04,
+          "BWT_final_avg": -7.490000000000002,
+          "Forget_avg": 7.490000000000002,
+          "CA": [
+            58.63,
+            28.35
+          ],
+          "BWT": [
+            null,
+            -7.490000000000002
+          ],
+          "FG": [
+            null,
+            null
+          ],
+          "vectors": {
+            "CA": [
+              58.63,
+              28.35
+            ],
+            "BWT_t": [
+              null,
+              -7.490000000000002
+            ],
+            "FG_t": [
+              null,
+              null
+            ],
+            "prefix_mean_t": [
+              58.63,
+              39.745000000000005
+            ],
+            "BWT_final_per_task": [
+              -7.490000000000002
+            ],
+            "Forget_per_task": [
+              7.490000000000002
+            ]
+          }
+        }
+      }
+    },
+    "smoke_g1_control_r1_k10_s2": {
+      "steps": 18,
+      "samples": 2256,
+      "selector": "g1_control",
+      "metrics": {
+        "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g1_control_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g1_control_r1_k10_s2/exp_run/20/smoke_g1_control_r1_k10_s2_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "b53c5bc9f3ac85bfd52b6ba94e330953ecd75b3167e7f0e351910c39e61dace7",
+        "tasks_completed": 2,
+        "expected_tasks": 2,
+        "faa_task_macro": 39.745000000000005,
+        "aaa_task_macro": 49.1875,
+        "forgetting": 7.490000000000002,
+        "bwt": -7.490000000000002,
+        "faa_sample_weighted": 40.82,
+        "aaa_sample_weighted": 49.725,
+        "cnn_top1_curve": [
+          58.63,
+          40.82
+        ],
+        "cnn_matrix": [
+          [
+            58.63,
+            null
+          ],
+          [
+            51.14,
+            28.35
+          ]
+        ],
+        "native_final": {
+          "ACA": 43.49,
+          "ABWT": -7.490000000000002,
+          "AFG": null,
+          "FWT": null,
+          "FAA": 39.745000000000005,
+          "Acc": 39.745000000000005,
+          "AAA": 46.04,
+          "BWT_final_avg": -7.490000000000002,
+          "Forget_avg": 7.490000000000002,
+          "CA": [
+            58.63,
+            28.35
+          ],
+          "BWT": [
+            null,
+            -7.490000000000002
+          ],
+          "FG": [
+            null,
+            null
+          ],
+          "vectors": {
+            "CA": [
+              58.63,
+              28.35
+            ],
+            "BWT_t": [
+              null,
+              -7.490000000000002
+            ],
+            "FG_t": [
+              null,
+              null
+            ],
+            "prefix_mean_t": [
+              58.63,
+              39.745000000000005
+            ],
+            "BWT_final_per_task": [
+              -7.490000000000002
+            ],
+            "Forget_per_task": [
+              7.490000000000002
+            ]
+          }
+        }
+      }
+    },
+    "smoke_g0_r1_k10_s2": {
+      "steps": 18,
+      "samples": 2256,
+      "selector": "g0",
+      "metrics": {
+        "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g0_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g0_r1_k10_s2/exp_run/20/smoke_g0_r1_k10_s2_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "09684a7aae42079bf791edb99c07a62cd27b300e6224ea2bd16d8e96a83f8815",
+        "tasks_completed": 2,
+        "expected_tasks": 2,
+        "faa_task_macro": 38.93,
+        "aaa_task_macro": 48.620000000000005,
+        "forgetting": 8.800000000000004,
+        "bwt": -8.800000000000004,
+        "faa_sample_weighted": 39.93,
+        "aaa_sample_weighted": 49.120000000000005,
+        "cnn_top1_curve": [
+          58.31,
+          39.93
+        ],
+        "cnn_matrix": [
+          [
+            58.31,
+            null
+          ],
+          [
+            49.51,
+            28.35
+          ]
+        ],
+        "native_final": {
+          "ACA": 43.33,
+          "ABWT": -8.800000000000004,
+          "AFG": null,
+          "FWT": null,
+          "FAA": 38.93,
+          "Acc": 38.93,
+          "AAA": 45.38999999999999,
+          "BWT_final_avg": -8.800000000000004,
+          "Forget_avg": 8.800000000000004,
+          "CA": [
+            58.31,
+            28.35
+          ],
+          "BWT": [
+            null,
+            -8.800000000000004
+          ],
+          "FG": [
+            null,
+            null
+          ],
+          "vectors": {
+            "CA": [
+              58.31,
+              28.35
+            ],
+            "BWT_t": [
+              null,
+              -8.800000000000004
+            ],
+            "FG_t": [
+              null,
+              null
+            ],
+            "prefix_mean_t": [
+              58.31,
+              38.93
+            ],
+            "BWT_final_per_task": [
+              -8.800000000000004
+            ],
+            "Forget_per_task": [
+              8.800000000000004
+            ]
+          }
+        }
+      }
+    },
+    "smoke_g2_r1_k10_s2": {
+      "steps": 18,
+      "samples": 2256,
+      "selector": "g2",
+      "metrics": {
+        "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_g2_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_g2_r1_k10_s2/exp_run/20/smoke_g2_r1_k10_s2_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "5db95f33a81d2237b056e932aff711f375179c80683e2c78dc96783d408170a3",
+        "tasks_completed": 2,
+        "expected_tasks": 2,
+        "faa_task_macro": 43.36,
+        "aaa_task_macro": 53.275,
+        "forgetting": 5.210000000000001,
+        "bwt": -5.210000000000001,
+        "faa_sample_weighted": 44.74,
+        "aaa_sample_weighted": 53.965,
+        "cnn_top1_curve": [
+          63.19,
+          44.74
+        ],
+        "cnn_matrix": [
+          [
+            63.19,
+            null
+          ],
+          [
+            57.98,
+            28.74
+          ]
+        ],
+        "native_final": {
+          "ACA": 45.964999999999996,
+          "ABWT": -5.210000000000001,
+          "AFG": null,
+          "FWT": null,
+          "FAA": 43.36,
+          "Acc": 43.36,
+          "AAA": 49.97,
+          "BWT_final_avg": -5.210000000000001,
+          "Forget_avg": 5.210000000000001,
+          "CA": [
+            63.19,
+            28.74
+          ],
+          "BWT": [
+            null,
+            -5.210000000000001
+          ],
+          "FG": [
+            null,
+            null
+          ],
+          "vectors": {
+            "CA": [
+              63.19,
+              28.74
+            ],
+            "BWT_t": [
+              null,
+              -5.210000000000001
+            ],
+            "FG_t": [
+              null,
+              null
+            ],
+            "prefix_mean_t": [
+              63.19,
+              43.36
+            ],
+            "BWT_final_per_task": [
+              -5.210000000000001
+            ],
+            "Forget_per_task": [
+              5.210000000000001
+            ]
+          }
+        }
+      }
+    },
+    "smoke_ug_r1_k10_s2": {
+      "steps": 18,
+      "samples": 2256,
+      "selector": "ug",
+      "metrics": {
+        "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z/outputs/smoke_ug_r1_k10_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_expanded_scan/imageneta/2/smoke_ug_r1_k10_s2/exp_run/20/smoke_ug_r1_k10_s2_vit_base_patch16_224_cl_metrics.json",
+        "metrics_sha256": "172e2e3f8a6a9d9dd0a14e1c44b0ef60496845070ac369dcdc82f87c8678e733",
+        "tasks_completed": 2,
+        "expected_tasks": 2,
+        "faa_task_macro": 38.86,
+        "aaa_task_macro": 48.585,
+        "forgetting": 8.150000000000006,
+        "bwt": -8.150000000000006,
+        "faa_sample_weighted": 39.93,
+        "aaa_sample_weighted": 49.120000000000005,
+        "cnn_top1_curve": [
+          58.31,
+          39.93
+        ],
+        "cnn_matrix": [
+          [
+            58.31,
+            null
+          ],
+          [
+            50.16,
+            27.56
+          ]
+        ],
+        "native_final": {
+          "ACA": 42.935,
+          "ABWT": -8.150000000000006,
+          "AFG": null,
+          "FWT": null,
+          "FAA": 38.86,
+          "Acc": 38.86,
+          "AAA": 45.343333333333334,
+          "BWT_final_avg": -8.150000000000006,
+          "Forget_avg": 8.150000000000006,
+          "CA": [
+            58.31,
+            27.56
+          ],
+          "BWT": [
+            null,
+            -8.150000000000006
+          ],
+          "FG": [
+            null,
+            null
+          ],
+          "vectors": {
+            "CA": [
+              58.31,
+              27.56
+            ],
+            "BWT_t": [
+              null,
+              -8.150000000000006
+            ],
+            "FG_t": [
+              null,
+              null
+            ],
+            "prefix_mean_t": [
+              58.31,
+              38.86
+            ],
+            "BWT_final_per_task": [
+              -8.150000000000006
+            ],
+            "Forget_per_task": [
+              8.150000000000006
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+% Requires \usepackage{booktabs}. Every row has three completed seeds.
+\providecommand{\ExpRes}[2]{\ensuremath{#1_{\!\pm #2}}}
+\begin{table*}[t]
+\centering
+\caption{Two-task diagnostics of solution shaping and historical protection with rank-10 Q/V LoRA on ImageNet-A. $\mathsf C$, $\mathsf F$, and $\mathsf P$ denote current-task fitting, the implemented GAM shaping update, and historical EWC protection. Values are means over seeds 0, 1, and 2; subscripts show sample standard deviations. $\mathcal B_1$ is the unnormalized Task-1 endpoint batch-gradient Fisher proxy. $d_{QV}^{\mathrm{cont}}$ measures the effective Q/V weight change of the same continued LoRA branch during Task 2, excluding classifier heads. References are endpoints without trajectory averaging. Avg. is $(a_{21}+a_{22})/2$.}
+\label{tab:two_task_lora_diagnostics_imageneta}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Training objective} & \multicolumn{2}{c}{Task 1 endpoint} & \multicolumn{3}{c}{Task 2 endpoint} & Task 2 update & Mean \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-8}
+Variant & Task 1 & Task 2 & $a_{11}\uparrow$ & $\mathcal B_1$ & $a_{21}\uparrow$ & $a_{22}\uparrow$ & BWT$\uparrow$ & $d_{QV}^{\mathrm{cont}}$ & Avg.$\uparrow$ \\
+\midrule
+Vanilla LoRA & $\mathsf C$ & $\mathsf C$ & \ExpRes{87.08}{0.38} & \ExpRes{31.441}{4.235} & \ExpRes{82.41}{1.13} & \ExpRes{76.38}{0.40} & \ExpRes{-4.67}{1.35} & \ExpRes{0.3775}{0.0163} & \ExpRes{79.39}{0.74} \\
+Shaping only & $\mathsf C+\mathsf F$ & $\mathsf C+\mathsf F$ & \ExpRes{87.30}{0.56} & \ExpRes{21.933}{2.982} & \ExpRes{83.39}{0.33} & \ExpRes{80.84}{1.14} & \ExpRes{-3.91}{0.65} & \ExpRes{0.5023}{0.0149} & \ExpRes{82.11}{0.59} \\
+EWCLoRA & $\mathsf C$ & $\mathsf C+\mathsf P$ & \ExpRes{87.08}{0.38} & \ExpRes{31.441}{4.235} & \ExpRes{82.41}{0.86} & \ExpRes{76.38}{0.40} & \ExpRes{-4.67}{1.05} & \ExpRes{0.3749}{0.0167} & \ExpRes{79.39}{0.60} \\
+FS-EWCLoRA & $\mathsf C+\mathsf F$ & $\mathsf C+\mathsf F+\mathsf P$ & \ExpRes{87.30}{0.56} & \ExpRes{21.933}{2.982} & \ExpRes{83.39}{0.33} & \ExpRes{80.84}{0.82} & \ExpRes{-3.91}{0.65} & \ExpRes{0.5009}{0.0159} & \ExpRes{82.11}{0.40} \\
+\midrule
+Task-1 shaping without EWC & $\mathsf C+\mathsf F$ & $\mathsf C$ & \ExpRes{87.30}{0.56} & \ExpRes{21.933}{2.982} & \ExpRes{86.54}{0.82} & \ExpRes{72.96}{1.38} & \ExpRes{-0.76}{1.36} & \ExpRes{0.3583}{0.0147} & \ExpRes{79.75}{1.10} \\
+Task-1 shaping & $\mathsf C+\mathsf F$ & $\mathsf C+\mathsf P$ & \ExpRes{87.30}{0.56} & \ExpRes{21.933}{2.982} & \ExpRes{86.64}{0.98} & \ExpRes{72.96}{1.38} & \ExpRes{-0.65}{1.49} & \ExpRes{0.3570}{0.0148} & \ExpRes{79.80}{1.18} \\
+Task-2 shaping & $\mathsf C$ & $\mathsf C+\mathsf F+\mathsf P$ & \ExpRes{87.08}{0.38} & \ExpRes{31.441}{4.235} & \ExpRes{80.13}{0.33} & \ExpRes{82.15}{0.99} & \ExpRes{-6.95}{0.19} & \ExpRes{0.5770}{0.0162} & \ExpRes{81.14}{0.42} \\
+\bottomrule
+\end{tabular*}
+\end{table*}

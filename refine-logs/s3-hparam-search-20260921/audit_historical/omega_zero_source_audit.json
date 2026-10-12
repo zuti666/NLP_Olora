@@ -1,0 +1,53 @@
+{
+  "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py",
+  "source_sha256": "b089024027a877b38febcb4e789c71c1ea0be3e5bb76d3e929a3d904194e4d17",
+  "snapshot_gate_lines": [
+    166,
+    173
+  ],
+  "snapshot_ce_lines": [
+    190,
+    197
+  ],
+  "parent_source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+  "parent_sha256": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69",
+  "parent_start_task_guard_lines": [
+    880,
+    888
+  ],
+  "convex_merge_lines": [
+    915,
+    920
+  ],
+  "executable_gate_witness": [
+    {
+      "case": "center",
+      "omega": 0.3,
+      "merge_start_task": 0,
+      "snapshot_epochs_50_epochs": [
+        20,
+        40
+      ],
+      "snapshot_CE_enabled_at_captured_epochs": true
+    },
+    {
+      "case": "native_omega0",
+      "omega": 0.0,
+      "merge_start_task": 0,
+      "snapshot_epochs_50_epochs": [],
+      "snapshot_CE_enabled_at_captured_epochs": true
+    },
+    {
+      "case": "matched_no_merge",
+      "omega": 0.3,
+      "merge_start_task": 10,
+      "snapshot_epochs_50_epochs": [
+        20,
+        40
+      ],
+      "snapshot_CE_enabled_at_captured_epochs": true
+    }
+  ],
+  "native_omega0_equivalent_to_matched_no_merge": false,
+  "conclusion": "omega=0 disables snapshot/CE calls before task-end; start_task=10 retains snapshot/CE RNG consumption, only skips task-end merge. Use matched-no-merge as effective_omega=0 for controlled weight-only axis, and keep native omega0/module-off separate."
+}

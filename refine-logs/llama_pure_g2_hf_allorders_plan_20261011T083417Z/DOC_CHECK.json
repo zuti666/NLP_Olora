@@ -1,0 +1,185 @@
+{
+  "schema": "PureG2AllOrdersIndependentDocCheck_v1",
+  "reviewed_at": "2026-10-11T08:46:45+00:00",
+  "reviewer": "/root/g2_allorders_doc_review",
+  "status": "PASS",
+  "working_directory": "/data/140-1/users/liying/O-LoRA",
+  "first_documented_dry_run": {
+    "command": "python3 scripts_llama/run_g2_llama.py --config configs/g2_llama/inclora_g2_llama1b_order1.json --seed 0 --run-root /tmp/llama_g2_allorders_documented_dry_run --dry-run",
+    "executed_verbatim": true,
+    "exit_code": 0,
+    "run_root": "/tmp/llama_g2_allorders_documented_dry_run",
+    "run_root_absent_after": true,
+    "uses_only_standard_library": true,
+    "cuda_or_full_model_loading": false
+  },
+  "cpu_suite": {
+    "command": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python -m unittest scripts_llama.test_run_g2_llama_cpu scripts_llama.test_g2_orders_queue_cpu -v",
+    "exit_code": 0,
+    "tests_run": 34,
+    "passed": 34,
+    "cuda_or_full_model_loading": false
+  },
+  "guarded_manual_collection": {
+    "exact_documented_block": "cat /data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T083417Z/runtime/queue_state.json\npython3 - <<'PY'\nfrom pathlib import Path\nimport runpy\nroot = Path('/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T083417Z')\nqueue = runpy.run_path(str(root / 'source/scripts_llama/run_g2_orders_queue.py'))\nqueue['verify_manifest'](root)\ncollector = runpy.run_path(str(root / 'source/scripts_llama/collect_g2_orders_results.py'))\ncollector['main'](['--queue-root', str(root)])\nPY",
+    "syntax_valid": true,
+    "verification_precedes_collection": true,
+    "loads_frozen_queue_and_collector": true,
+    "execution": "structural review only; control roots being freshly prepared",
+    "cuda_or_full_model_loading": false
+  },
+  "environment_spec": {
+    "canonical_json_sha256": "0715917e1ad74c80ae4defaf61a143c33d13857323b67d09ead666a792fa61b2",
+    "raw_file_sha256": "e45ab90933d3e0968a8743569b207fbf3de0fd202178c0b07dafbed644099301",
+    "documentation_matches": true
+  },
+  "checks": {
+    "six_hf_configs_and_executable_wrappers": true,
+    "six_wrapper_cpu_dry_runs_exit_zero_and_create_no_output_roots": true,
+    "campaign_seed0_only_six_independent_chains_24_formal_stages_12_smoke_stages": true,
+    "fixed_physical_gpu_indices_0_1_2_3_and_uuid_child_binding": true,
+    "idle_admission_memory_lt_500mib_util_le_5_no_compute_pids": true,
+    "shared_index_uuid_leases_no_external_preemption": true,
+    "frozen_manifest_source_config_commands_local_models_tokenizers_data_baseline_inputs": true,
+    "bulk_adapters_predictions_caches_training_logs_under_cache_tmp": true,
+    "two_verified_smoke_tasks_before_own_formal_chain": true,
+    "hf_adamw_epsilon_1e_6_decay_zero_betas_0_9_0_999": true,
+    "fixed_tasks_stage_budgets_ddp4_batch64_lengths_lr": true,
+    "cumulative_rank_8_16_24_32_and_previous_adapter_chain": true,
+    "stage_acceptance_trace_runtime_audit_adapter_prefix_prediction_population": true,
+    "normalized_exact_match_matches_current_and_historical_export": true,
+    "exact_canonical_dataset_id_population_and_frozen_labels": true,
+    "smoke_excluded_and_final_faa_aaa_bwt_completion_gated": true,
+    "faa_aaa_bwt_formulas_match_plan_and_closed_form_cpu_test": true,
+    "same_model_order_seed0_inclora_baseline_all_six_rows_available": true,
+    "paired_baseline_faa_reconciles_correct_counts_30400_and_four_task_mean": true,
+    "stage_cost_fields_updates_phases_replays_fallback_timings_trace": true,
+    "stop_while_waiting_or_paused_prevents_new_stage_in_cpu_tests": true,
+    "preserve_existing_failed_interrupted_outputs": true
+  },
+  "orders": [
+    {
+      "model_sizes": [
+        "1B",
+        "3B"
+      ],
+      "order": 1,
+      "tasks": [
+        "dbpedia",
+        "amazon",
+        "yahoo",
+        "agnews"
+      ],
+      "formal_updates": [
+        218,
+        78,
+        156,
+        62
+      ]
+    },
+    {
+      "model_sizes": [
+        "1B",
+        "3B"
+      ],
+      "order": 2,
+      "tasks": [
+        "dbpedia",
+        "amazon",
+        "agnews",
+        "yahoo"
+      ],
+      "formal_updates": [
+        218,
+        78,
+        62,
+        156
+      ]
+    },
+    {
+      "model_sizes": [
+        "1B",
+        "3B"
+      ],
+      "order": 3,
+      "tasks": [
+        "yahoo",
+        "amazon",
+        "agnews",
+        "dbpedia"
+      ],
+      "formal_updates": [
+        156,
+        78,
+        62,
+        218
+      ]
+    }
+  ],
+  "resolved_findings": [
+    "Documentation now distinguishes canonical JSON environment-spec digest from raw file digest.",
+    "Documented CPU suite now uses installed canonical conda Python; initial system-python invocation lacked torch.",
+    "Collector rejects decimal aliases such as 00 and checks exact canonical test-set identities.",
+    "Direct collection pins manifest, baseline and test labels; documented regeneration also verifies all frozen source/input hashes.",
+    "Stage report now includes update, phase/replay, fallback, timing and trace provenance fields.",
+    "STOP_AFTER_STAGE is rechecked during GPU waiting and PAUSE loops."
+  ],
+  "limitations": [
+    "No GPU snapshot, GPU reservation, CUDA witness, model smoke, full model load, formal training or real result claim was performed by this reviewer.",
+    "Queue scheduling/control tests mock GPU admission and children; actual CUDA/BF16 and training/runtime acceptance remain future runtime gates.",
+    "Manual guarded collection command was syntax/structure checked but not executed while execution roots were being re-prepared.",
+    "Archived paired baseline numeric consistency and exporter normalization were reviewed; archived prediction files were not fully recomputed.",
+    "Runtime stage timings are populated when standard train/predict runtime fields are available; absent optional timing fields remain blank.",
+    "A STOP/PAUSE flag created during successful lease acquisition or CUDA witnesses may be observed at the next stage boundary after the first admitted stage; bounded CPU mocks reproduced this timing limitation.",
+    "Prepared snapshot manifest and all frozen-source hashes were verified, including live/frozen controller/runner/collector equality; model/data/binary input hashes were not recomputed by this reviewer."
+  ],
+  "reviewed_sha256": {
+    "scripts_llama/run_g2_llama.py": "d4481cb92a32fc7fe3344f2220e34fdf3e07be3137c2c9f7096c40ad01a41578",
+    "scripts_llama/run_g2_orders_queue.py": "4a5cf7e5b457319731278b760573587338476c612b0527e0e10e9c9d06193b23",
+    "scripts_llama/collect_g2_orders_results.py": "6fc8d00f5fb528cd4646d3c4f4a6b37eef9eb84ed14954121759240bdf00047d",
+    "scripts_llama/test_run_g2_llama_cpu.py": "6b24fb6e83a7d723520b2914ab83608df7ee7fdb080159fb13ced76fee1a161e",
+    "scripts_llama/test_g2_orders_queue_cpu.py": "b5f2bbc3c413b2017975c312b9a69e462e7095a4e71e68be3e7e2c76bb4e4984",
+    "EXPERIMENT_PLAN.md": "e681ff66b1a99bd63c2d6432f2a09c4bb363876db7ba2d1a419f5376ef6848aa",
+    "ENVIRONMENT.md": "e67644cc2269be80d1d2beff67978679736b27f710ba86508f804718bc7be6a9"
+  },
+  "independent_queue_control_review": {
+    "reviewer": "/root/g2_allorders_doc_review/queue_controls_readonly",
+    "status": "PASS",
+    "queue_tests_passed": 10,
+    "gpu_commands_or_edits": false,
+    "findings": "PAUSE during retry prevents new claims/witnesses/stages; STOP waiting/paused exits at next poll; cleanup closes only owned handles; timeout termination targets only owned witness."
+  },
+  "prepared_snapshot": {
+    "queue_root": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T083417Z",
+    "manifest_sha256": "5aae2d3d5ca935bb8f93da8a0c65d34aba507c9ba87252ada986aae612393dbc",
+    "manifest_sha256_valid": true,
+    "seeds": [
+      0
+    ],
+    "gpus": "0,1,2,3",
+    "formal_stages": 24,
+    "smoke_stages": 12,
+    "queue_status_at_review": "prepared",
+    "all_frozen_source_hashes_valid": true,
+    "frozen_source_files": 106,
+    "controller_runner_collector_match_reviewed_live": {
+      "scripts_llama/run_g2_llama.py": {
+        "reviewed_live_sha256": "d4481cb92a32fc7fe3344f2220e34fdf3e07be3137c2c9f7096c40ad01a41578",
+        "frozen_sha256": "d4481cb92a32fc7fe3344f2220e34fdf3e07be3137c2c9f7096c40ad01a41578",
+        "matches": true
+      },
+      "scripts_llama/run_g2_orders_queue.py": {
+        "reviewed_live_sha256": "4a5cf7e5b457319731278b760573587338476c612b0527e0e10e9c9d06193b23",
+        "frozen_sha256": "4a5cf7e5b457319731278b760573587338476c612b0527e0e10e9c9d06193b23",
+        "matches": true
+      },
+      "scripts_llama/collect_g2_orders_results.py": {
+        "reviewed_live_sha256": "6fc8d00f5fb528cd4646d3c4f4a6b37eef9eb84ed14954121759240bdf00047d",
+        "frozen_sha256": "6fc8d00f5fb528cd4646d3c4f4a6b37eef9eb84ed14954121759240bdf00047d",
+        "matches": true
+      }
+    },
+    "frozen_input_file_population": 47,
+    "input_content_hashes_recomputed_by_this_reviewer": false
+  }
+}

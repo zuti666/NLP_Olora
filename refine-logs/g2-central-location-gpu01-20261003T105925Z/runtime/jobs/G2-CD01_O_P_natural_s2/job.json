@@ -1,0 +1,37 @@
+{
+  "id": "G2-CD01_O_P_natural_s2",
+  "kind": "training",
+  "phase": "formal",
+  "branch": "P",
+  "direction": "g2",
+  "mode": "natural",
+  "backend": "math",
+  "smoke": false,
+  "gpu_required": true,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/trainer/four_probe_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/configs/G2-CD01_O_P_natural_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD01_O_P_natural_s2"
+  ],
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/configs/G2-CD01_O_P_natural_s2.json",
+  "config_sha256": "52940e1ba817e44258adbf3414d21cf077ace39065303f8686191604e03c8825",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD01_O_P_natural_s2",
+  "depends_on": [
+    "smoke_G2-CD01_O_P_natural_s2",
+    "smoke_G2-CD02_O_C_natural_s2",
+    "smoke_G2-CD03_O_CD_natural_s2",
+    "G2-CD_smoke_pairing"
+  ],
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "expected_training_ce": 10200,
+  "expected_isolated_replay_ce": 80,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/runtime/jobs/G2-CD01_O_P_natural_s2/cuda_witness.json"
+}

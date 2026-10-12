@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "name": "inclora_g2_llama1b_order1_tokv2_fixed_q005_r005",
+  "method": "inclora_g2",
+  "model_size": "1B",
+  "model_name_or_path": "/data/140-1/users/liying/Sharing/Models/meta-llama/Llama-3.2-1B",
+  "order": 1,
+  "tasks": [
+    "dbpedia",
+    "amazon",
+    "yahoo",
+    "agnews"
+  ],
+  "seeds": [
+    0,
+    42,
+    1993
+  ],
+  "default_seed": 0,
+  "python_executable": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+  "data_dir": "/data/140-1/users/liying/O-LoRA/CL_Benchmark",
+  "instruction_file": "/data/140-1/users/liying/O-LoRA/configs/instruction_config.json",
+  "execution": {
+    "world_size": 4,
+    "global_batch": 64,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16
+  },
+  "adapter_geometry": {
+    "rank": 8,
+    "alpha": 32,
+    "dropout": 0.1,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "stage_learning_rates": [
+    0.001,
+    0.0001,
+    0.0001,
+    0.0001
+  ],
+  "formal_stage_updates": [
+    218,
+    78,
+    156,
+    62
+  ],
+  "optimizer_class": "transformers.AdamW",
+  "training": {
+    "train_method": "lora",
+    "lora_dim": 8,
+    "num_train_epochs": 1,
+    "bf16": true,
+    "fp16": false,
+    "bf16_full_eval": false,
+    "fp16_full_eval": false,
+    "ddp_find_unused_parameters": false,
+    "lr_scheduler_type": "constant",
+    "warmup_steps": 0,
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.999,
+    "max_grad_norm": 1.0,
+    "per_device_eval_batch_size": 4,
+    "max_source_length": 512,
+    "max_target_length": 50,
+    "generation_max_length": 50,
+    "instruction_strategy": "single",
+    "add_task_name": true,
+    "add_dataset_name": true,
+    "logging_strategy": "steps",
+    "logging_steps": 10,
+    "evaluation_strategy": "no",
+    "save_strategy": "no",
+    "report_to": "none",
+    "g2_inner_radius_mode": "fixed_l2",
+    "g2_outer_radius_mode": "fixed_l2",
+    "g2_inner_radius": 0.05,
+    "g2_outer_radius": 0.05,
+    "g2_xi": 1e-12,
+    "g2_replay_rng_state": true,
+    "g2_grad_reduce": "mean",
+    "g2_require_fp32_trainable": true,
+    "olora_lamda_2": 0.0,
+    "lora_strategy": "inclora",
+    "optimizer_type": "g2-adamw_hf",
+    "adam_epsilon": 1e-06,
+    "weight_decay": 0.0,
+    "ewclora_lambda": 0.0,
+    "olora_lamda_1": 0.0,
+    "g2_quantization_diagnostics_interval": 20
+  },
+  "reference_comparator": "Fresh same-seed IncLoRA using decoder_token_ids_v2; historical v1 results are not clean paired controls",
+  "reference_results": "refine-logs/llama_g2_token_boundary_fix_20261012/IMPLEMENTATION_AND_PLAN.md",
+  "probe_definition": "g0=CE(theta); g1=CE(theta-q*N(g0)); a=g0-g1; g2=CE(theta+R*N(a)); restore BASE; submit only g2 to the named optimizer",
+  "radius_note": "Independent global L2 probes: inner q=0.05; outer R=0.05. This is a proposed calibration point, not a validated best setting.",
+  "budget_note": "max_steps explicitly preserves the historical full effective-batch update budgets; no extra tail-window update is submitted",
+  "status": "planned_not_launched",
+  "decoder_pipeline_version": "decoder_token_ids_v2",
+  "require_gradient_diagnostics": true,
+  "data_pipeline_note": "Prompt and target separately tokenized without automatic special tokens, explicit single BOS/EOS, direct token-ID concatenation, exact causal target supervision."
+}

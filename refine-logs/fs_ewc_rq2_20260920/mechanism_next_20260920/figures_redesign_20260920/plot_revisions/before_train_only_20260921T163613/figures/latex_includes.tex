@@ -1,0 +1,23 @@
+% Requires \usepackage{graphicx,booktabs}. Paths assume this figures/ directory is beside the main TeX file.
+
+\input{figures/TABLE_A_controlled_continuation.tex}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/Figure_B_neighborhood.pdf}
+\caption{Equal-radius neighborhoods around historical SGD+EWC and visual GAM+EWC Task0 anchors (training seed 0; current full-FP32 deterministic re-evaluation). For each split and anchor, define $D(r,u)=L_0(\theta_0+ru)-L_0(\theta_0)$ and $D_+=\max(D,0)$. (a) $G_{\rm mean}=K^{-1}\sum_k D_+(r,u_k)$. (b) $G_{95}$ is the empirical 95th percentile of $D_+$ (linear interpolation). Solid and dashed curves denote train and test, respectively; train/test losses use 1,259/307 old-task examples and the fixed Task0 20-class head. (c) Mean, empirical 95th percentile, and sampled maximum of the raw empirical Fisher trace across directions, where $\widehat F_{\rm emp}=N^{-1}\sum_{i=1}^{N}g_i g_i^\top$, $N=256$, and $g_i$ is the gradient of the unscaled per-example CE on the same stratified old-task training examples. The empirical mean includes $1/N$; raw means no trace normalization, floor, or regularization. All perturbations and gradients use the ambient coordinates of 24 effective Q/V $BA$ matrices (scaling 1); $r$ is their joint Euclidean/Frobenius displacement. Each positive radius has $K=16$ paired unit directions shared across anchors; $r=0$ is one reused origin measurement. These are direction statistics, not independent training replicates, confidence intervals, or worst-case neighborhood guarantees. Radius axes in (a--c) use a symmetric-log scale with a linear region through $r=0.5$; damage axes in (a,b) use a symmetric-log scale with a linear region through $10^{-4}$. (d) Prefix-safe $G_{\rm mean}$ tolerance is the largest sampled radius such that all sampled radii up to it meet threshold $\epsilon$. Co-located blue outer and orange inner markers/lines preserve exact ties without moving data; triangles and $\geq20$ indicate right censoring at the largest tested radius. Both methods tie at every tested $G_{\rm mean}$ tolerance threshold on each split. GAM+EWC has smaller train $G_{\rm mean}$ and mean raw trace on the measured grid, while its test $G_{\rm mean}$ is larger at every positive radius; the plot does not support a higher $G_{\rm mean}$ tolerance radius.}
+\label{fig:rq2_neighborhood}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/Figure_C_sequence_and_endpoint.pdf}
+\caption{Historical SGD+EWC and visual GAM+EWC sequences, training seed 0, re-evaluated in current full FP32. The historical sequences use SGD-to-SGD and GAM-to-GAM optimizers, respectively, so their future optimizers differ; Table A separately controls the future optimizer, including GAM-to-SGD. (a) Task0 test accuracy and (b) signed Task0 test CE damage relative to each method's Task0 anchor after completed tasks $t=0,\ldots,9$, using the fixed local 20-class head and the same 307 deterministic test examples throughout; these are not all-seen-class accuracies. (c) Measured endpoint directional sensitivity only at $t=9$, $S_{\rm path}(9)=I_9/\|\Delta_9\|_2^2$, where $I_9=\int_0^1\Delta_9^\top\widehat F(\theta_0+s\Delta_9)\Delta_9\,ds$. The empirical Fisher is the mean of per-example outer products of unscaled CE gradients over the same 256 stratified old-task training examples, with no trace normalization, floor, or regularization and with the Task0 head fixed. The effective-weight straight segment between the Task0 and Task9 endpoints is evaluated at 9 composite-Simpson nodes; it is not the actual optimizer-step training trajectory. Both 5-versus-9-node quadrature checks pass the 5\% gate and the matched-subset numerical bound checks pass the stated 2\% tolerance. No $S_{\rm path}$ measurements are available at $t=1,\ldots,8$, so no sensitivity trajectory is drawn. (d) Displacement $\|\Delta_t\|_2$ is measured in the ambient coordinates of 24 effective Q/V $BA$ matrices (scaling 1). GAM+EWC has lower endpoint sensitivity despite a larger endpoint displacement. Curves connect task checkpoints as visual guides; this single-seed case supplies no uncertainty estimate over training runs.}
+\label{fig:rq2_sequence_endpoint}
+\end{figure*}
+
+% Appendix tables (move to the appendix when integrating):
+
+\input{figures/TABLE_B_Q95_tolerance.tex}
+
+\input{figures/TABLE_B_existing_bridge.tex}

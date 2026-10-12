@@ -275,9 +275,10 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
     train_method: str = field(default="finetune") #  use_probe, finetune,Cl
     finetune_strategy: str = field(default="full")  # 'full', 'ewc', 'er'
     lora_strategy: str = field(default="lora")  # 'lora', 'Nlora', 'er'
+    treelora_reg: float = field(default=0.5, metadata={"help": "TreeLoRA trajectory regularizer (upstream reg)."})
     ewclora_lambda: float = field(
         default=1.0,
-        metadata={"help": "EWC penalty weight for lora_strategy=ewclora/ewclora_gam."},
+        metadata={"help": "EWC penalty weight for EWCLoRA, EWCLoRA-GAM, and EWCLoRA-FisherShape."},
     )
     ewclora_gamma: float = field(
         default=1.0,
@@ -294,6 +295,129 @@ class UIETrainingArguments(Seq2SeqTrainingArguments):
     ewclora_project_eps: float = field(
         default=1e-12,
         metadata={"help": "Numerical epsilon for EWCLoRA+GAM gradient projection."},
+    )
+    ewclora_normalize_fisher: bool = field(
+        default=False,
+        metadata={"help": "Trace-normalize each post-task full-Delta-W Fisher before accumulation."},
+    )
+    ewclora_normalize_accumulated_fisher: bool = field(
+        default=False,
+        metadata={"help": "Trace-normalize accumulated EWCLoRA Fisher after applying gamma."},
+    )
+    ewclora_fisher_damping_beta: float = field(
+        default=0.0,
+        metadata={"help": "Isotropic damping beta applied after per-task Fisher trace normalization."},
+    )
+    ewclora_fisher_eps: float = field(
+        default=1e-12,
+        metadata={"help": "Numerical epsilon for EWCLoRA Fisher normalization."},
+    )
+    ewclora_allow_state_mismatch: bool = field(
+        default=False,
+        metadata={"help": "Allow loading a Fisher sidecar whose normalization mode differs from this run."},
+    )
+
+    # ===== FisherShape optimizer hyperparameters =====
+    fs_rho: float = field(
+        default=0.05,
+        metadata={"help": "Finite-difference probing radius for FisherShape."},
+    )
+    fs_alpha: float = field(
+        default=0.2,
+        metadata={"help": "FisherShape strength: relative c in ratio mode or absolute alpha in fixed mode."},
+    )
+    fs_alpha_mode: str = field(
+        default="ratio",
+        metadata={"help": "FisherShape coefficient mode: 'ratio' (recommended) or 'fixed'."},
+    )
+    fs_xi: float = field(
+        default=1e-12,
+        metadata={"help": "Numerical epsilon for FisherShape norm divisions."},
+    )
+    fs_sam_equivalent: bool = field(
+        default=False,
+        metadata={"help": "Use coefficient 1 so FisherShape exactly reduces to the CE-SAM direction."},
+    )
+    fs_adaptive: bool = field(
+        default=False,
+        metadata={"help": "Use SAM-style parameter-adaptive probing (off for the FisherShape method)."},
+    )
+    fs_grad_reduce: str = field(
+        default="mean",
+        metadata={"help": "Final FisherShape gradient reduction across workers: 'mean' or 'sum'."},
+    )
+    fs_replay_rng_state: bool = field(
+        default=True,
+        metadata={"help": "Replay each micro-batch with its clean-pass RNG state so dropout masks match."},
+    )
+    fs_include_olora_regularization: bool = field(
+        default=False,
+        metadata={"help": "Optionally add the legacy EWCLoRA OLoRA-base gradient at the clean point, outside both CE probes."},
+    )
+
+    # ===== GAMFisherShape-SAM optimizer hyperparameters =====
+    gamfs_mode: str = field(
+        default="sam",
+        metadata={"help": "GAMFisherShape mode. Phase 1 supports only 'sam'."},
+    )
+    gamfs_rho: float = field(
+        default=0.05,
+        metadata={"help": "SAM probing radius for GAMFisherShape-SAM."},
+    )
+    gamfs_adaptive: bool = field(
+        default=False,
+        metadata={"help": "Use parameter-adaptive probing in GAMFisherShape-SAM."},
+    )
+    gamfs_xi: float = field(
+        default=1e-12,
+        metadata={"help": "Numerical epsilon for GAMFisherShape norm divisions."},
+    )
+    gamfs_grad_reduce: str = field(
+        default="mean",
+        metadata={"help": "Final GAMFisherShape gradient reduction: 'mean' or 'sum'."},
+    )
+    gamfs_replay_rng_state: bool = field(
+        default=False,
+        metadata={"help": "Replay clean-pass RNG during the probe. False matches the legacy SAM dropout behavior."},
+    )
+    gamfs_include_olora_regularization: bool = field(
+        default=False,
+        metadata={"help": "Add legacy OLoRA at the clean point; keep false for SAM equivalence."},
+    )
+    # Current-G2: three task-CE reads; first probe descends, final direction g2.
+    g2_inner_radius_mode: str = field(
+        default="sgd_step", metadata={"help": "G2 inner mode: sgd_step or fixed_l2."},
+    )
+    g2_outer_radius_mode: str = field(
+        default="sgd_step", metadata={"help": "G2 outer mode: sgd_step or fixed_l2."},
+    )
+    g2_inner_radius: Optional[float] = field(
+        default=None, metadata={"help": "Positive L2 radius required only for fixed inner mode."},
+    )
+    g2_outer_radius: Optional[float] = field(
+        default=None, metadata={"help": "Positive L2 radius required only for fixed outer mode."},
+    )
+    g2_xi: float = field(default=1e-12, metadata={"help": "G2 numerical epsilon."})
+    g2_grad_reduce: str = field(default="mean", metadata={"help": "G2 requires mean reduction."})
+    g2_replay_rng_state: bool = field(
+        default=True, metadata={"help": "Required clean-pass dropout replay for G2 probes."},
+    )
+    g2_require_fp32_trainable: bool = field(
+        default=True, metadata={"help": "Required FP32 adapter parameters; BF16 forward remains allowed."},
+    )
+    g2_quantization_diagnostics_interval: int = field(
+        default=0,
+        metadata={"help": "Sample BF16 weight-cast visibility every N G2 updates (0 disables). This is a parameter proxy, not proof of forward visibility."},
+    )
+    probe_mode: str = field(
+        default="reverse", metadata={"help": "Direction: probe-adamw_hf uses reverse, sam, sgd; threepoint-adamw_hf uses g1_plus, backward_reflected, central, g0 and always reads both sides; final optimizer is HF AdamW."}
+    )
+    probe_rho: float = field(
+        default=0.05, metadata={"help": "Independent L2 radius of the unit-normalized virtual SGD probe."}
+    )
+    probe_eps: float = field(default=1e-12, metadata={"help": "Two-/three-point probe numerical epsilon."})
+    probe_quantization_diagnostics_interval: int = field(
+        default=0, metadata={"help": "BF16 parameter-cast diagnostics every N two-/three-point probe steps; 0 disables this observational proxy."}
     )
     # optimizer_type: str = field(default="sam-adam")  # 'sgd' 或 'sam'
     # momentum: float = field(default=0)          # 仅用于 sgd 或 sam
@@ -576,6 +700,20 @@ def main():
     else:
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
+    bf16_audit_protocol = UIETrainer._bf16_completion_audit_expected_protocol()
+    if bf16_audit_protocol is not None:
+        # Initialize TrainingArguments' distributed state before local PEFT can
+        # deserialize an adapter with map_location='cuda'.
+        rank_device = training_args.device
+        local_rank = int(os.environ.get("LOCAL_RANK", "-1"))
+        if (local_rank < 0 or rank_device != torch.device("cuda", local_rank)
+                or training_args.world_size != bf16_audit_protocol["world_size"]):
+            raise RuntimeError(
+                "BF16 completion requires torchrun with "
+                f"{bf16_audit_protocol['world_size']} correctly bound local ranks."
+            )
+        torch.cuda.set_device(local_rank)
+
     # Setup logging
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
@@ -599,7 +737,7 @@ def main():
     logger.info(f"data_args parameters {data_args}")
     logger.info(f"Training/evaluation parameters {training_args}")
     if (
-        training_args.lora_strategy.lower() in {"ewclora", "ewclora_gam", "ewclora-gam"}
+        training_args.lora_strategy.lower() in UIETrainer.EWCLORA_STRATEGIES
         and not training_args.ewclora_fisher_path
         and "adapter" in model_args.model_name_or_path
     ):
@@ -627,15 +765,27 @@ def main():
 
 
 
+    # Keep the historical location as the default, but allow launchers on a
+    # different checkout/mount to select a writable cache root.
+    data_cache_root = os.environ.get(
+        "UIE_DATA_CACHE_ROOT",
+        "/data/140-0/users/liying/O-LoRA/data_cache",
+    )
     # data_cache_dir = gen_cache_path('logs_and_outputs/order_1', data_args)
     # if getattr(training_args, "use_probe", False):
     # 这个设定下 训练集和测试集都只有一个  /data/140-0/users/liying/O-LoRA/src
     # 当进行flat 的评估的时候，应该也只在训练集上可视化 计算 lossland 信息
     # zero-shot 的时候，评估也是在所有测试集上的
     if training_args.train_method.lower() == 'use_probe' or training_args.do_flatminal :
-        data_cache_dir = gen_cache_path('/data/140-0/users/liying/O-LoRA/data_cache/eval_one_task/order_1', data_args)
+        data_cache_dir = gen_cache_path(
+            os.path.join(data_cache_root, 'eval_one_task/order_1'),
+            data_args,
+        )
     else:
-        data_cache_dir = gen_cache_path('/data/140-0/users/liying/O-LoRA/data_cache/eval_all_task/order_1', data_args)
+        data_cache_dir = gen_cache_path(
+            os.path.join(data_cache_root, 'eval_all_task/order_1'),
+            data_args,
+        )
 
     # Get the UIE dataset
     # 输出所有传入参数信息
@@ -665,10 +815,25 @@ def main():
     if "trust_remote_code" in inspect.signature(load_dataset).parameters:
         dataset_kwargs["trust_remote_code"] = True
 
-    raw_datasets = load_dataset(
-        os.path.join(CURRENT_DIR, "uie_dataset_lora.py"),
-        **dataset_kwargs,
-    )
+    if (
+        bf16_audit_protocol is not None
+        or training_args.lora_strategy.lower() == "treelora"
+        or UIETrainer._optimizer_family(training_args.optimizer_type) in {"g2", "two_point_probe", "three_point_probe"}
+    ):
+        # datasets 1.17 can race while renaming its shared .incomplete cache
+        # directory.  Rank 0 builds it first; followers must reuse the finished
+        # cache instead of entering download_and_prepare concurrently.
+        with training_args.main_process_first(local=False, desc="prepare shared UIE dataset cache"):
+            raw_datasets = load_dataset(
+                os.path.join(CURRENT_DIR, "uie_dataset_lora.py"),
+                download_mode="reuse_dataset_if_exists",
+                **dataset_kwargs,
+            )
+    else:
+        raw_datasets = load_dataset(
+            os.path.join(CURRENT_DIR, "uie_dataset_lora.py"),
+            **dataset_kwargs,
+        )
 
     # if getattr(training_args, "use_probe", False):
     if training_args.train_method.lower() == 'use_probe':
@@ -888,6 +1053,31 @@ def main():
 ###################################################################################
 
     config, tokenizer, resolved_model_source, is_adapter_model, is_llama_model = _load_model_config_and_tokenizer(model_args)
+    sequential_sam_ewc = (
+        training_args.lora_strategy.lower()
+        in UIETrainer.SEQLORA_SAM_EWC_STRATEGIES
+    )
+
+    def build_lora_config(task_type):
+        kwargs = dict(
+            task_type=task_type,
+            inference_mode=False,
+            r=model_args.lora_dim,
+            lora_alpha=32,
+            lora_dropout=0.1,
+        )
+        if training_args.lora_strategy.lower() == "treelora":
+            # Upstream TreeLoRA continually updates one fixed-rank loranew
+            # branch. Persist it separately so reload never grows the rank.
+            kwargs.update(r_sum=0, save_loranew=True)
+        if sequential_sam_ewc:
+            # SeqLoRA updates one fixed-rank shared adapter.  The fresh branch
+            # remains frozen and must not be concatenated at save time.
+            kwargs.update(
+                r_sum=model_args.lora_dim,
+                save_lora_only=True,
+            )
+        return LoraConfig(**kwargs)
 
     logger.info('*****2***Load model_class**')
     if is_llama_model:  # add llama
@@ -948,9 +1138,7 @@ def main():
                     param.requires_grad = False
 
 
-        peft_config = LoraConfig(
-            task_type=TaskType.CAUSAL_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
-        )
+        peft_config = build_lora_config(TaskType.CAUSAL_LM)
         model = get_peft_model(model, peft_config)
     else:
         logger.info(f'***3***--3-else  {model_args.model_name_or_path}')
@@ -982,14 +1170,42 @@ def main():
                 
         logger.info(
             f'***3***--3- LoraConfig** task_type:{TaskType.SEQ_2_SEQ_LM},  ')
-        peft_config = LoraConfig(
-            task_type=TaskType.SEQ_2_SEQ_LM, inference_mode=False, r=model_args.lora_dim, lora_alpha=32, lora_dropout=0.1
-        )
+        peft_config = build_lora_config(TaskType.SEQ_2_SEQ_LM)
         logger.info(f'***3***--3- LoraConfig** peft_config:{peft_config},  ')
 
         # logger.info(f'***3***--3- isinstance(peft_config, PromptLearningConfig):{isinstance(peft_config, PromptLearningConfig)},  ')
 
         model = get_peft_model(model, peft_config)
+
+    if sequential_sam_ewc:
+        peft_config = model.peft_config.get("default")
+        if not bool(getattr(peft_config, "save_lora_only", False)):
+            raise ValueError(
+                "SeqLoRA-SAM-EWC requires a fixed-rank adapter created with "
+                "save_lora_only=true; the supplied adapter is incompatible."
+            )
+        if not is_adapter_model:
+            # LoraLayer initializes the shared branch to zeros because it is
+            # normally historical state.  For the first SeqLoRA task, copy the
+            # standard fresh-A initialization into shared A while keeping B=0.
+            with torch.no_grad():
+                for module in model.modules():
+                    if not (
+                        hasattr(module, "lora_A")
+                        and hasattr(module, "lora_B")
+                        and hasattr(module, "loranew_A")
+                    ):
+                        continue
+                    adapter_name = getattr(module, "active_adapter", "default")
+                    if (
+                        adapter_name in module.lora_A
+                        and adapter_name in module.lora_B
+                        and adapter_name in module.loranew_A
+                    ):
+                        module.lora_A[adapter_name].weight.copy_(
+                            module.loranew_A[adapter_name].weight
+                        )
+                        module.lora_B[adapter_name].weight.zero_()
 
     model.resize_token_embeddings(len(tokenizer))
 
@@ -1031,7 +1247,7 @@ def main():
                     elif name.find("shared") != -1:
                         param.requires_grad = False
                     logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
-            elif training_args.lora_strategy.lower() == 'inclora':
+            elif training_args.lora_strategy.lower() in ('inclora', 'treelora'):
                 logger.debug(f'---set paramter:inclora---')
                 for name, param in model.named_parameters():
                     if name.find("loranew_") != -1:
@@ -1042,7 +1258,23 @@ def main():
                     elif name.find("shared") != -1:
                         param.requires_grad = False
                     logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
-            elif training_args.lora_strategy.lower() in {'ewclora', 'ewclora_gam', 'ewclora-gam'}:
+            elif training_args.lora_strategy.lower() in UIETrainer.SEQLORA_SAM_EWC_STRATEGIES:
+                logger.debug(f'---set parameter:seqlora_sam_ewc---')
+                shared_trainable_numel = 0
+                for name, param in model.named_parameters():
+                    if name.find("loranew_") != -1:
+                        param.requires_grad = False
+                    elif name.find("lora_") != -1:
+                        param.requires_grad = True
+                        shared_trainable_numel += param.numel()
+                    elif name.find("shared") != -1:
+                        param.requires_grad = False
+                    logger.info(f"Param: {name}, requires_grad: {param.requires_grad}")
+                if shared_trainable_numel == 0:
+                    raise ValueError(
+                        "SeqLoRA-SAM-EWC found no non-empty shared lora_A/B parameters."
+                    )
+            elif training_args.lora_strategy.lower() in UIETrainer.EWCLORA_STRATEGIES:
                 logger.debug(f'---set paramter:ewclora---')
                 for name, param in model.named_parameters():
                     if name.find("loranew_") != -1:
@@ -1116,6 +1348,26 @@ def main():
                 "resize the model's position encodings by passing `--resize_position_embeddings`."
             )
 
+    if UIETrainer._optimizer_family(training_args.optimizer_type) in {"g2", "two_point_probe", "three_point_probe"}:
+        # Keep frozen Llama weights and forward autocast in their original
+        # precision.  Tiny probes act on the FP32 trainable LoRA scope only.
+        promoted = []
+        trainable_count = 0
+        for name, param in model.named_parameters():
+            if not param.requires_grad:
+                continue
+            if "lora" not in name.lower():
+                raise ValueError(f"Pure probes expected LoRA-only trainables; found {name}.")
+            trainable_count += param.numel()
+            if param.dtype != torch.float32:
+                promoted.append({"name": name, "from_dtype": str(param.dtype), "numel": param.numel()})
+                param.data = param.data.float()
+        logger.info(
+            "Pure probe precision scope: trainable_adapter_elements=%d FP32, "
+            "promoted=%s; frozen backbone precision unchanged, bf16_forward=%s",
+            trainable_count, promoted, training_args.bf16,
+        )
+
     if training_args.do_train:
         if "train" not in raw_datasets:
             raise ValueError("--do_train requires a train dataset")
@@ -1180,6 +1432,27 @@ def main():
         use_probe=getattr(training_args, "use_probe", False), #   # 兼容旧版 training_args
     )
 
+    # Keep the token-boundary protocol explicit in each new output directory.
+    # A fixed-pipeline result must not inherit a historical baseline identity.
+    data_pipeline_audit = {
+        "schema": "UIEDataPipelineAudit_v1",
+        "decoder_version": getattr(data_collator, "decoder_pipeline_version", None),
+        "tokenizer_class": tokenizer.__class__.__name__,
+        "tokenizer_source": getattr(tokenizer, "name_or_path", None),
+        "bos_token_id": tokenizer.bos_token_id,
+        "eos_token_id": tokenizer.eos_token_id,
+        "pad_token_id": tokenizer.pad_token_id,
+        "max_source_length": data_args.max_source_length,
+        "max_target_length": data_args.max_target_length,
+        "label_pad_token_id": label_pad_token_id,
+    }
+    logger.info("UIE data pipeline: %s", json.dumps(data_pipeline_audit, sort_keys=True))
+    if training_args.process_index == 0:
+        os.makedirs(training_args.output_dir, exist_ok=True)
+        with open(os.path.join(training_args.output_dir, "data_pipeline_audit.json"), "w") as handle:
+            json.dump(data_pipeline_audit, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+
     # Log a few random samples from the training set
     if training_args.do_predict:
         sample = predict_dataset[0]
@@ -1218,7 +1491,7 @@ def main():
             pred != tokenizer.pad_token_id) for pred in preds]
         result["gen_len"] = np.mean(prediction_lens)
         result = {k: round(v, 4) for k, v in result.items()}
-        if save_prefix is not None:
+        if save_prefix is not None and training_args.process_index == 0:
             with open(os.path.join(training_args.output_dir, f"{save_prefix}_eval_predictions.jsonl"), "w") as fout:
                 for example, pred in zip(dataset, decoded_preds):
                     fout.write(json.dumps({
@@ -1332,7 +1605,13 @@ def main():
         compute_metrics_fn = compute_rouge_metrics
 
     
-    trainer = UIETrainer(
+    trainer_class = UIETrainer
+    trainer_kwargs = {}
+    if training_args.lora_strategy.lower() == "treelora":
+        from uie_trainer_treelora import TreeLoRATrainer
+        trainer_class = TreeLoRATrainer
+        trainer_kwargs["treelora_adapter_path"] = model_args.model_name_or_path if is_adapter_model else None
+    trainer = trainer_class(
         model=model,
         args=training_args,
         train_dataset=train_dataset if training_args.do_train else None,
@@ -1341,7 +1620,8 @@ def main():
         data_collator=data_collator,
         compute_metrics=compute_metrics_fn,
         callbacks=[
-            DenserEvalCallback] if training_args.denser_evaluation else None
+            DenserEvalCallback] if training_args.denser_evaluation else None,
+        **trainer_kwargs,
     )
 
     all_metrics = {"run_name": training_args.run_name}
@@ -1370,19 +1650,35 @@ def main():
         logger.debug("Start TRAINGININININININ")
 
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
+        trainer.finish_g2_training_audit()
+        trainer.finish_two_point_probe_training_audit()
+        trainer.finish_three_point_probe_training_audit()
+        if training_args.lora_strategy.lower() == "treelora":
+            trainer.finish_treelora_task()
+        trainer.audit_bf16_ddp5_train_end()
         if training_args.train_method.lower() == 'lora':
             trainer.maybe_update_ewclora_fisher()
 
         # 默认只保存 adapter
         if training_args.train_method.lower() == 'seqlora':
-            peft_model_id = training_args.output_dir + "/Seq_adapter"
-            trainer.model.save_pretrained(peft_model_id)
-            tokenizer.save_pretrained(peft_model_id)
+            if trainer.is_world_process_zero():
+                peft_model_id = training_args.output_dir + "/Seq_adapter"
+                trainer.model.save_pretrained(peft_model_id)
+                tokenizer.save_pretrained(peft_model_id)
         elif training_args.train_method.lower() == 'lora':
-            peft_model_id = training_args.output_dir + "/adapter"
-            trainer.model.save_pretrained(peft_model_id)
-            tokenizer.save_pretrained(peft_model_id)
-            trainer.save_ewclora_state(peft_model_id)
+            if trainer.is_world_process_zero():
+                peft_model_id = training_args.output_dir + "/adapter"
+                trainer.model.save_pretrained(peft_model_id)
+                tokenizer.save_pretrained(peft_model_id)
+                trainer.save_ewclora_state(peft_model_id)
+                if training_args.lora_strategy.lower() == "treelora":
+                    trainer.save_treelora_state(peft_model_id)
+        if torch.distributed.is_available() and torch.distributed.is_initialized():
+            # Fisher computation is collective on every rank, but adapter and
+            # tokenizer files must have exactly one writer.  Synchronize before
+            # any rank continues into prediction or process teardown.
+            torch.distributed.barrier()
+        trainer.audit_bf16_ddp5_save_end()
         
 
         # 修改保存新的模型 

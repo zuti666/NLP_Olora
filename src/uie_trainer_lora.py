@@ -7,7 +7,10 @@ from absl import logging
 logging.set_verbosity(logging.ERROR)
 
 import logging
-from contextlib import nullcontext
+import math
+import random
+import numpy as np
+from contextlib import contextmanager, nullcontext
 import torch
 from transformers import GenerationConfig
 from transformers.trainer_seq2seq import Seq2SeqTrainer
@@ -21,6 +24,16 @@ from uie_dataset_lora import ANSWER_PREFIX
 
 from optimer_sam import SAM, disable_running_stats, enable_running_stats
 from optimer_gam import GAM
+from optimer_fishershape import (
+    FisherShape,
+    damp_trace_normalized_fisher,
+    fisher_trace,
+    normalize_fisher_by_trace,
+)
+from optimer_gamfishershape import GAMFisherShapeSAM
+from optimer_g2 import CurrentG2
+from optimer_reverse_probe import TwoPointProbe
+from optimer_three_point_probe import ThreePointProbe
 from optimer_rwp import RWP, RWPAdamW, generate_pertubation
 # disable_running_stats
 
@@ -30,6 +43,7 @@ from datetime import datetime
 from torch.nn import functional as F
 from torch.utils.data import DistributedSampler
 import json
+import hashlib
 
 def skip_instructions(model, predictions_ids, tokenizer, ignore_idx=-100):
     predictions_ids = np.where(predictions_ids == ignore_idx, tokenizer.pad_token_id, predictions_ids)
@@ -76,10 +90,53 @@ class DenserEvalCallback(TrainerCallback):
 
 
 class UIETrainer(Seq2SeqTrainer):
-    EWCLORA_STRATEGIES = {"ewclora", "ewclora_gam", "ewclora-gam"}
+    BASE_EWCLORA_STRATEGIES = {"ewclora", "ewclora_gam", "ewclora-gam"}
+    INCLORA_SAM_EWC_STRATEGIES = {
+        "inclora_sam_ewc",
+        "inclora-sam-ewc",
+    }
+    SEQLORA_SAM_EWC_STRATEGIES = {
+        "seqlora_sam_ewc",
+        "seqlora-sam-ewc",
+    }
+    BASE_FISHERSHAPE_EWCLORA_STRATEGIES = {
+        "ewclora_fishershape",
+        "ewclora-fishershape",
+        "fs_ewclora",
+    } | INCLORA_SAM_EWC_STRATEGIES | SEQLORA_SAM_EWC_STRATEGIES
+    GAMFISHERSHAPE_EWCLORA_STRATEGIES = {
+        "ewclora_gamfishershape",
+        "ewclora_gam_fishershape",
+        "ewclora-gam-fishershape",
+        "ewclora_gamfishershape_sam",
+        "ewclora-gamfishershape-sam",
+    }
+    FISHERSHAPE_EWCLORA_STRATEGIES = (
+        BASE_FISHERSHAPE_EWCLORA_STRATEGIES
+        | GAMFISHERSHAPE_EWCLORA_STRATEGIES
+    )
+    EWCLORA_STRATEGIES = BASE_EWCLORA_STRATEGIES | FISHERSHAPE_EWCLORA_STRATEGIES
+    G2_OPTIMIZERS = {
+        "g2-adamw_hf", "g2_adamw_hf", "g2-adamw_torch", "g2_adamw_torch",
+        "g2-sgd", "g2_sgd",
+    }
+    TWO_POINT_PROBE_OPTIMIZERS = {"probe-adamw_hf", "probe_adamw_hf"}
+    THREE_POINT_PROBE_OPTIMIZERS = {"threepoint-adamw_hf", "threepoint_adamw_hf"}
+    GAMFISHERSHAPE_OPTIMIZERS = {
+        "gamfishershape-adamw_hf",
+        "gamfishershape_adamw_hf",
+    }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        # Older Trainer versions expose these flags directly; newer
+        # Accelerate-based versions do not.  The custom loop still references
+        # them, so provide the no-scaling defaults used by fp32/bf16 runs.
+        if not hasattr(self, "do_grad_scaling"):
+            self.do_grad_scaling = False
+        if not hasattr(self, "use_apex"):
+            self.use_apex = False
 
         # logger.debug("UIETrainer args: %r", args)
         # logger.debug("UIETrainer kwargs: %r", kwargs)
@@ -168,19 +225,544 @@ class UIETrainer(Seq2SeqTrainer):
             logger.info(f"use_probe, probe_num_classes: {probe_num_classes}; probe_feature_mode:{probe_feature_mode}")
 
         self.ewclora_omega = {}
+        self.ewclora_reference = {}
         self.ewclora_count_updates = 0
         self._last_ewclora_fisher_info = ""
+        self._last_fishershape_step_info = {}
+        self._last_g2_step_info = {}
+        self._last_two_point_probe_step_info = {}
+        self._last_three_point_probe_step_info = {}
+        self._validate_g2_training_configuration()
+        self._validate_two_point_probe_training_configuration()
+        self._validate_three_point_probe_training_configuration()
+        if self._is_fishershape_ewclora_strategy() and bool(
+            getattr(self.args, "do_train", False)
+        ):
+            optimizer_family = self._optimizer_family(
+                getattr(self.args, "optimizer_type", "")
+            )
+            expected_family = (
+                "gamfishershape"
+                if self._is_gamfishershape_ewclora_strategy()
+                else "fishershape"
+            )
+            if optimizer_family != expected_family:
+                raise ValueError(
+                    f"lora_strategy={self._lora_strategy()} requires optimizer "
+                    f"family {expected_family!r}; got "
+                    f"{getattr(self.args, 'optimizer_type', '')!r}."
+                )
+        damping_beta = float(
+            getattr(self.args, "ewclora_fisher_damping_beta", 0.0)
+        )
+        if not math.isfinite(damping_beta) or not 0.0 <= damping_beta <= 1.0:
+            raise ValueError(
+                "ewclora_fisher_damping_beta must be in [0, 1], "
+                f"got {damping_beta}."
+            )
+        fisher_eps = float(getattr(self.args, "ewclora_fisher_eps", 1e-12))
+        if not math.isfinite(fisher_eps) or fisher_eps <= 0.0:
+            raise ValueError(
+                f"ewclora_fisher_eps must be positive, got {fisher_eps}."
+            )
+        normalize_per_task = bool(
+            getattr(self.args, "ewclora_normalize_fisher", False)
+        )
+        if damping_beta > 0.0 and not normalize_per_task:
+            raise ValueError(
+                "ewclora_fisher_damping_beta > 0 requires "
+                "--ewclora_normalize_fisher true so damping has the documented "
+                "trace-preserving meaning."
+            )
+        ewclora_gamma = float(getattr(self.args, "ewclora_gamma", 1.0))
+        if not math.isfinite(ewclora_gamma) or ewclora_gamma < 0.0:
+            raise ValueError(
+                f"ewclora_gamma must be finite and non-negative, got {ewclora_gamma}."
+            )
+        if (
+            self._is_fishershape_ewclora_strategy()
+            and not self._is_gamfishershape_ewclora_strategy()
+            and str(getattr(self.args, "fs_alpha_mode", "ratio")).lower() == "fixed"
+            and float(getattr(self.args, "fs_alpha", 0.2)) >= 1e-2
+        ):
+            logger.warning(
+                "FisherShape fixed alpha=%s is large; the reference implementation "
+                "diverged at fixed alpha=0.2. Prefer ratio mode or sweep fixed alpha "
+                "from roughly 1e-5 to 1e-3.",
+                self.args.fs_alpha,
+            )
         if self._is_ewclora_strategy():
             self._load_ewclora_state()
+        if self._is_seqlora_sam_ewc_strategy():
+            self._initialize_seqlora_ewc_reference()
+        if (
+            self._is_inclora_sam_ewc_strategy()
+            or self._is_seqlora_sam_ewc_strategy()
+        ):
+            self._validate_sam_ewc_state_against_model()
 
     def _lora_strategy(self):
         return str(getattr(self.args, "lora_strategy", "")).lower()
+
+    @staticmethod
+    def _bf16_completion_audit_expected_protocol():
+        """Select one explicit completion protocol without changing normal runs."""
+        legacy = os.environ.get("INCLORA_BF16_DDP5_AUDIT") == "1"
+        batch64 = os.environ.get("INCLORA_BF16_BATCH64_AUDIT") == "1"
+        gam_batch64 = os.environ.get("INCLORA_GAM_BF16_BATCH64_AUDIT") == "1"
+        if sum((legacy, batch64, gam_batch64)) > 1:
+            raise RuntimeError("Select only one BF16 completion audit protocol.")
+        if not (legacy or batch64 or gam_batch64):
+            return None
+        return {
+            "world_size": 4 if (batch64 or gam_batch64) else 5,
+            "per_device_train_batch_size": 1,
+            "gradient_accumulation_steps": 16 if (batch64 or gam_batch64) else 8,
+            "ewclora_lambda": 0.5 if batch64 else 1.0,
+            "ewclora_gamma": 1.0, "olora_lamda_1": 0.0, "olora_lamda_2": 0.0,
+            "bf16": True, "fp16": False, "ddp_find_unused_parameters": False,
+            "train_method": "lora", "lora_strategy": "ewclora_gam" if gam_batch64 else "ewclora",
+            "optimizer_type": "gam-adamw_hf" if gam_batch64 else "adamw_hf", "seed": 42 if batch64 else 1993,
+            "data_seed": None if batch64 else 1993,
+        }
+
+    @staticmethod
+    def _bf16_gam_batch64_audit_enabled():
+        return os.environ.get("INCLORA_GAM_BF16_BATCH64_AUDIT") == "1"
+
+    @staticmethod
+    def _audit_tensor_l2(tensors):
+        terms = [tensor.detach().double().square().sum() for tensor in tensors]
+        value = math.sqrt(float(torch.stack(terms).sum().item())) if terms else 0.0
+        if not math.isfinite(value):
+            raise RuntimeError("Nonfinite tensor norm in GAM execution audit.")
+        return value
+
+    def _bf16_ddp5_audit_enabled(self):
+        # Keep the original helper names for compatibility with existing tools.
+        return self._bf16_completion_audit_expected_protocol() is not None
+
+    def _write_bf16_ddp5_audit(self):
+        if not self._bf16_ddp5_audit_enabled() or not hasattr(self, "_runtime_audit"):
+            return
+        os.makedirs(self.args.output_dir, exist_ok=True)
+        path = os.path.join(
+            self.args.output_dir, f"runtime_audit_rank{self._runtime_audit['rank']}.json"
+        )
+        with open(path + ".tmp", "w", encoding="utf-8") as handle:
+            json.dump(self._runtime_audit, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        os.replace(path + ".tmp", path)
+
+    @staticmethod
+    def _audit_trainable_sha256(model):
+        digest = hashlib.sha256()
+        for name, parameter in sorted(model.named_parameters()):
+            if not parameter.requires_grad:
+                continue
+            value = parameter.detach().cpu().contiguous()
+            if not bool(torch.isfinite(value).all()):
+                raise RuntimeError(f"Nonfinite trainable parameter in DDP audit: {name}")
+            digest.update(name.encode("utf-8"))
+            digest.update(str((tuple(value.shape), value.dtype)).encode("utf-8"))
+            digest.update(value.view(torch.uint8).numpy().tobytes())
+        return digest.hexdigest()
+
+    def _start_bf16_ddp5_audit(self, model, train_dataloader):
+        """Opt-in witnesses for the selected BF16 completion protocol.
+
+        Sampler iteration uses DistributedSampler's private generator and does
+        not consume the training RNG.  The forward hook only observes tensors.
+        """
+        expected = self._bf16_completion_audit_expected_protocol()
+        if expected is None:
+            return
+        args = self.args
+        dist = torch.distributed
+        world_size = expected["world_size"]
+        if not dist.is_initialized() or dist.get_world_size() != world_size:
+            raise RuntimeError(
+                f"BF16 completion audit requires an initialized {world_size}-rank process group."
+            )
+        rank = dist.get_rank()
+        local_rank = int(os.environ["LOCAL_RANK"])
+        if not isinstance(model, torch.nn.parallel.DistributedDataParallel):
+            raise RuntimeError(f"Expected actual DistributedDataParallel wrapper, got {type(model)}.")
+        protocol = {
+            "world_size": args.world_size,
+            "per_device_train_batch_size": args.per_device_train_batch_size,
+            "gradient_accumulation_steps": args.gradient_accumulation_steps,
+            "ewclora_lambda": args.ewclora_lambda,
+            "ewclora_gamma": args.ewclora_gamma,
+            "olora_lamda_1": args.olora_lamda_1,
+            "olora_lamda_2": args.olora_lamda_2,
+            "bf16": args.bf16,
+            "fp16": args.fp16,
+            "ddp_find_unused_parameters": args.ddp_find_unused_parameters,
+            "train_method": args.train_method,
+            "lora_strategy": args.lora_strategy,
+            "optimizer_type": args.optimizer_type,
+            "seed": args.seed,
+            "data_seed": args.data_seed,
+        }
+        if protocol != expected:
+            raise RuntimeError(f"BF16 completion protocol mismatch: actual={protocol}, expected={expected}")
+        if (
+            torch.cuda.current_device() != local_rank
+            or args.device != torch.device("cuda", local_rank)
+            or not torch.cuda.is_bf16_supported()
+        ):
+            raise RuntimeError("Incorrect rank/device binding or unsupported native BF16 device.")
+        if model.device_ids != [local_rank] or model.find_unused_parameters is not False:
+            raise RuntimeError("Actual DDP device_ids/find_unused_parameters do not match the protocol.")
+        for suffix, actual in (("MATMUL", torch.backends.cuda.matmul.allow_tf32),
+                               ("CUDNN", torch.backends.cudnn.allow_tf32)):
+            expected_tf32 = os.environ.get("INCLORA_BF16_DDP5_EXPECTED_TF32_" + suffix)
+            if expected_tf32 is not None and expected_tf32 != str(actual).lower():
+                raise RuntimeError(f"TF32 {suffix} changed: expected {expected_tf32}, got {actual}.")
+        trainable = [(name, p) for name, p in self.model.named_parameters() if p.requires_grad]
+        if len(trainable) != 64 or any("loranew_" not in name for name, _ in trainable):
+            raise RuntimeError("Expected exactly 64 trainable fresh LoRA A/B tensors (32 target modules).")
+        if any(p.device != args.device or p.dtype != torch.float32 for _, p in trainable):
+            raise RuntimeError("Fresh LoRA parameters must remain FP32 on the local rank device under AMP.")
+        sampler = train_dataloader.sampler
+        if not isinstance(sampler, DistributedSampler):
+            raise RuntimeError(f"Expected DistributedSampler, got {type(sampler)}.")
+        if sampler.rank != rank or sampler.num_replicas != world_size:
+            raise RuntimeError("DistributedSampler rank/world size mismatch.")
+        local_indices = list(iter(sampler))
+        partitions = [None] * world_size
+        dist.all_gather_object(partitions, local_indices)
+        flat_indices = [index for partition in partitions for index in partition]
+        disjoint = len(flat_indices) == len(set(flat_indices))
+        complete = sorted(flat_indices) == list(range(len(self.train_dataset)))
+        if not disjoint or not complete:
+            raise RuntimeError("Training sampler partitions must be disjoint and cover the full dataset.")
+        gam_audit = self._bf16_gam_batch64_audit_enabled()
+        optimizer = self.optimizer.base_optimizer if gam_audit else self.optimizer
+        expected_module = "torch.optim.adamw" if gam_audit else "transformers.optimization"
+        if type(optimizer).__module__ != expected_module or type(optimizer).__name__ != "AdamW":
+            raise RuntimeError(f"Expected {expected_module}.AdamW, got {type(optimizer)}.")
+        optimizer_groups = [{key: value for key, value in group.items() if key != "params"}
+                            for group in optimizer.param_groups]
+        for group in optimizer_groups:
+            if (tuple(group["betas"]) != (0.9, 0.999)
+                    or group["eps"] != (1e-8 if gam_audit else 1e-6)
+                    or group["weight_decay"] != (0.01 if gam_audit else 0)
+                    or (not gam_audit and group["correct_bias"] is not True)):
+                raise RuntimeError(f"Actual AdamW defaults differ from frozen protocol: {group}")
+        fisher_path = self._resolve_ewclora_state_file(args.ewclora_fisher_path)
+        modules = list(self._iter_loranew_modules(self.model))
+        module_names = {name for name, _ in modules}
+        if len(modules) != 32:
+            raise RuntimeError(f"Expected 32 fresh target modules, found {len(modules)}.")
+        if fisher_path:
+            if not os.path.isfile(fisher_path) or set(self.ewclora_omega) != module_names:
+                raise RuntimeError("Requested previous Fisher is missing or has incomplete module coverage.")
+            if self.ewclora_count_updates < 1:
+                raise RuntimeError("Previous Fisher has no completed task update.")
+        elif self.ewclora_omega or self.ewclora_count_updates:
+            raise RuntimeError("First task must start without any previous Fisher state.")
+        with torch.no_grad():
+            initial_ewc = float(self._compute_ewclora_loss(self.model).item())
+        if initial_ewc != 0.0:
+            raise RuntimeError(f"Fresh B must give zero initial EWC penalty, got {initial_ewc}.")
+        self._runtime_audit = {
+            "schema_version": 1, "status": "training", "rank": rank,
+            "local_rank": local_rank, "world_size": world_size, "device": str(args.device),
+            "current_cuda_device": torch.cuda.current_device(),
+            "gpu_name": torch.cuda.get_device_name(),
+            "device_capability": list(torch.cuda.get_device_capability()),
+            "bf16_supported": bool(torch.cuda.is_bf16_supported()),
+            "ddp_wrapper": type(model).__name__, "protocol": protocol,
+            "tf32": {"matmul": torch.backends.cuda.matmul.allow_tf32,
+                     "cudnn": torch.backends.cudnn.allow_tf32},
+            "evaluation_precision": {"bf16_full_eval": args.bf16_full_eval,
+                                     "fp16_full_eval": args.fp16_full_eval},
+            "optimizer": {"class": f"{type(optimizer).__module__}.{type(optimizer).__name__}",
+                          "defaults": dict(optimizer.defaults), "param_groups": optimizer_groups},
+            "sampler": {"class": type(sampler).__name__, "rank": sampler.rank,
+                        "num_replicas": sampler.num_replicas, "indices_count": len(local_indices),
+                        "partition_counts": [len(part) for part in partitions],
+                        "indices_sha256": hashlib.sha256(json.dumps(local_indices).encode()).hexdigest(),
+                        "disjoint": disjoint, "complete": complete,
+                        "dataset_size": len(self.train_dataset), "epoch": sampler.epoch},
+            "trainable": {"names": [name for name, _ in trainable], "count": len(trainable),
+                          "numel": sum(p.numel() for _, p in trainable), "only_fresh": True,
+                          "dtypes": sorted({str(p.dtype) for _, p in trainable})},
+            "previous_fisher_path": None if not fisher_path else os.path.abspath(fisher_path),
+            "previous_fisher_count_updates": self.ewclora_count_updates,
+            "ewc_initial": initial_ewc,
+            "initial_trainable_sha256": self._audit_trainable_sha256(self.model),
+        }
+        if gam_audit:
+            wrapper = self.optimizer
+            if not isinstance(wrapper, GAM) or wrapper.model is not model:
+                raise RuntimeError("GAM must wrap the actual local DistributedDataParallel model.")
+            settings = {name: getattr(args, name) for name in (
+                "gam_grad_rho", "gam_grad_norm_rho", "gam_grad_gamma", "gam_adaptive",
+                "gam_grad_beta_1", "gam_grad_beta_2", "gam_grad_beta_3",
+                "gam_grad_reduce", "gam_perturb_eps", "ewclora_project_eps")}
+            expected_settings = {
+                "gam_grad_rho": 0.02, "gam_grad_norm_rho": 0.2, "gam_grad_gamma": 0.03,
+                "gam_adaptive": False, "gam_grad_beta_1": 1.0, "gam_grad_beta_2": 1.0,
+                "gam_grad_beta_3": 1.0, "gam_grad_reduce": "mean", "gam_perturb_eps": 1e-12,
+                "ewclora_project_eps": 1e-12,
+            }
+            if settings != expected_settings:
+                raise RuntimeError(f"GAM historical settings mismatch: {settings}")
+            self._runtime_audit["gam"] = {
+                "wrapper_class": f"{type(wrapper).__module__}.{type(wrapper).__name__}",
+                "opt_model_is_ddp": True, "settings": settings,
+                "optimizer_steps": 0, "closure_calls": 0, "closure_microbatch_counts": [],
+                "closures_no_sync": True, "projector_calls": 0,
+                "ewc_cache_nonzero_steps": 0, "perturbation_l2_max": 0.0,
+                "post_projection_delta_l2_max": 0.0, "gradient_sync_calls": 0,
+                "local_gam_then_final_gradient_mean": True,
+                "gradient_sync_samples": [],
+            }
+            initial_hashes = [None] * world_size
+            dist.all_gather_object(initial_hashes, self._runtime_audit["initial_trainable_sha256"])
+            self._runtime_audit["gam"]["initial_rank_sha256"] = initial_hashes
+            if len(set(initial_hashes)) != 1:
+                raise RuntimeError("Initial GAM parameters differ across ranks.")
+            original_sync = wrapper._sync_grad
+
+            def audit_final_gradient_sync():
+                original_sync()
+                gam = self._runtime_audit["gam"]
+                gam["gradient_sync_calls"] += 1
+                if self.state.global_step == 0 or self.state.global_step + 1 == self.state.max_steps:
+                    digest = hashlib.sha256()
+                    for name, parameter in sorted(self.model.named_parameters()):
+                        if not parameter.requires_grad or parameter.grad is None:
+                            continue
+                        value = parameter.grad.detach().cpu().contiguous()
+                        if not bool(torch.isfinite(value).all()):
+                            raise RuntimeError("Nonfinite synchronized GAM gradient.")
+                        digest.update(name.encode())
+                        digest.update(value.view(torch.uint8).numpy().tobytes())
+                    hashes = [None] * world_size
+                    dist.all_gather_object(hashes, digest.hexdigest())
+                    gam["gradient_sync_samples"].append({
+                        "optimizer_step": self.state.global_step + 1, "rank_sha256": hashes,
+                        "identical": len(set(hashes)) == 1})
+                    if len(set(hashes)) != 1:
+                        raise RuntimeError("GAM final gradients differ after all_reduce.")
+
+            wrapper._sync_grad = audit_final_gradient_sync
+        prefix, first_module = modules[0]
+        active_adapter = getattr(first_module, "active_adapter", "default")
+
+        def observe_bf16_forward(module, inputs, output):
+            if "bf16_forward" in self._runtime_audit:
+                return
+            evidence = {
+                "module": prefix + "loranew_B." + active_adapter,
+                "autocast_enabled": torch.is_autocast_enabled(),
+                "autocast_dtype": str(torch.get_autocast_gpu_dtype()),
+                "input_dtype": str(inputs[0].dtype), "output_dtype": str(output.dtype),
+            }
+            self._runtime_audit["bf16_forward"] = evidence
+            self._write_bf16_ddp5_audit()
+            if (not evidence["autocast_enabled"] or output.dtype != torch.bfloat16
+                    or torch.get_autocast_gpu_dtype() != torch.bfloat16):
+                raise RuntimeError(f"Actual training forward did not execute BF16 autocast: {evidence}")
+
+        self._bf16_audit_hook = first_module.loranew_B[active_adapter].register_forward_hook(observe_bf16_forward)
+        self._write_bf16_ddp5_audit()
+
+    def audit_bf16_ddp5_train_end(self):
+        if not self._bf16_ddp5_audit_enabled():
+            return
+        if not hasattr(self, "_runtime_audit") or "bf16_forward" not in self._runtime_audit:
+            raise RuntimeError("Missing BF16 completion training/forward witness.")
+        self._bf16_audit_hook.remove()
+        digest = self._audit_trainable_sha256(self.model)
+        rank_hashes = [None] * torch.distributed.get_world_size()
+        torch.distributed.all_gather_object(rank_hashes, digest)
+        identical = len(set(rank_hashes)) == 1
+        parameters_close, max_rank_abs_diff = identical, 0.0
+        if self._bf16_gam_batch64_audit_enabled():
+            # Historical local GAM adds/subtracts different rank-local FP32
+            # perturbations. Observe the resulting rounding residual, without
+            # broadcasting over model weights or changing the update algorithm.
+            parameters_close = True
+            for _, parameter in sorted(self.model.named_parameters()):
+                if not parameter.requires_grad:
+                    continue
+                reference = parameter.detach().clone()
+                torch.distributed.broadcast(reference, src=0)
+                max_rank_abs_diff = max(max_rank_abs_diff, float((parameter - reference).abs().max().item()))
+                parameters_close = parameters_close and bool(torch.allclose(
+                    parameter.detach(), reference, atol=1e-6, rtol=1e-5))
+            agreement = torch.tensor([float(parameters_close), max_rank_abs_diff], device=self.args.device)
+            torch.distributed.all_reduce(agreement[:1], op=torch.distributed.ReduceOp.MIN)
+            torch.distributed.all_reduce(agreement[1:], op=torch.distributed.ReduceOp.MAX)
+            parameters_close, max_rank_abs_diff = bool(agreement[0].item()), float(agreement[1].item())
+            gam = self._runtime_audit["gam"]
+            steps = self.state.global_step
+            if (gam["optimizer_steps"] != steps or gam["closure_calls"] != 4 * steps
+                    or gam["gradient_sync_calls"] != steps or gam["projector_calls"] != steps
+                    or gam["closure_microbatch_counts"] != [16] or not gam["closures_no_sync"]
+                    or gam["perturbation_l2_max"] <= 0):
+                raise RuntimeError(f"GAM update/closure/perturbation witness failed: {gam}")
+            if self.ewclora_omega and (gam["ewc_cache_nonzero_steps"] <= 0
+                    or gam["post_projection_delta_l2_max"] <= 0):
+                raise RuntimeError("Later-task GAM updates must witness nonzero projected EWC effects.")
+        updated = digest != self._runtime_audit["initial_trainable_sha256"]
+        penalty = self._compute_ewclora_loss(self.model)
+        penalty_value = float(penalty.detach().item())
+        grad_l2 = 0.0
+        if self.ewclora_omega:
+            parameters = [p for p in self.model.parameters() if p.requires_grad]
+            gradients = torch.autograd.grad(penalty, parameters, allow_unused=True)
+            grad_l2 = math.sqrt(sum(float(g.detach().double().square().sum().item())
+                                    for g in gradients if g is not None))
+        self._runtime_audit["train_end"] = {
+            "global_step": self.state.global_step, "trainable_sha256": digest,
+            "rank_sha256": rank_hashes, "parameters_identical": identical,
+            "parameters_updated": updated, "ewc_after_updates": penalty_value,
+            "ewc_gradient_l2": grad_l2,
+            "parameters_close": parameters_close, "max_rank_abs_diff": max_rank_abs_diff,
+            "rank_allclose_atol": 1e-6, "rank_allclose_rtol": 1e-5,
+        }
+        self._write_bf16_ddp5_audit()
+        if not parameters_close or not updated or self.state.global_step <= 0:
+            raise RuntimeError("Ranks disagree on trained parameters, or no parameter update occurred.")
+        if not math.isfinite(penalty_value) or not math.isfinite(grad_l2):
+            raise RuntimeError("Nonfinite post-update EWC penalty or gradient.")
+        if self.ewclora_omega and not (penalty_value > 0.0 and grad_l2 > 0.0):
+            raise RuntimeError("Previous Fisher must produce positive EWC penalty and gradient after updates.")
+
+    def audit_bf16_ddp5_save_end(self):
+        if not self._bf16_ddp5_audit_enabled():
+            return
+        self._runtime_audit["save"] = {
+            "writer_rank": 0, "rank_wrote_adapter": self.is_world_process_zero(),
+            "barrier_completed": True,
+        }
+        self._runtime_audit["status"] = "trained_fisher_saved"
+        self._write_bf16_ddp5_audit()
 
     def _is_ewclora_strategy(self):
         return self._lora_strategy() in self.EWCLORA_STRATEGIES
 
     def _is_ewclora_gam_strategy(self):
         return self._lora_strategy() in {"ewclora_gam", "ewclora-gam"}
+
+    def _is_inclora_sam_ewc_strategy(self):
+        return self._lora_strategy() in self.INCLORA_SAM_EWC_STRATEGIES
+
+    def _is_seqlora_sam_ewc_strategy(self):
+        return self._lora_strategy() in self.SEQLORA_SAM_EWC_STRATEGIES
+
+    def _is_fishershape_ewclora_strategy(self):
+        return self._lora_strategy() in self.FISHERSHAPE_EWCLORA_STRATEGIES
+
+    def _is_gamfishershape_ewclora_strategy(self):
+        return self._lora_strategy() in self.GAMFISHERSHAPE_EWCLORA_STRATEGIES
+
+    def _validate_g2_training_configuration(self):
+        """Keep G2 probes CE-only and make unsupported execution fail early."""
+
+        family = self._optimizer_family(getattr(self.args, "optimizer_type", ""))
+        if family != "g2" or not bool(getattr(self.args, "do_train", False)):
+            return
+        strategy = self._lora_strategy()
+        if strategy != "inclora":
+            raise ValueError("Pure G2 requires lora_strategy=inclora, without EWC/OLoRA.")
+        if str(getattr(self.args, "train_method", "")).lower() != "lora":
+            raise ValueError("G2 requires train_method=lora.")
+        if getattr(self.args, "rwp_type", ""):
+            raise ValueError("G2 cannot be combined with an RWP probe path.")
+        if not bool(getattr(self.args, "g2_replay_rng_state", True)):
+            raise ValueError("G2 requires replay of each clean-pass RNG state.")
+        if str(getattr(self.args, "g2_grad_reduce", "mean")).lower() != "mean":
+            raise ValueError("G2 requires globally averaged effective-batch gradients.")
+        if not bool(getattr(self.args, "g2_require_fp32_trainable", True)):
+            raise ValueError("G2 requires FP32 trainable parameters; BF16 autocast is supported.")
+        if int(getattr(self.args, "past_index", -1)) >= 0:
+            raise NotImplementedError("G2 does not support the Trainer past-state cache.")
+
+    def _validate_two_point_probe_training_configuration(self):
+        """Use the same clean/replayed effective batch for all new controls."""
+
+        family = self._optimizer_family(getattr(self.args, "optimizer_type", ""))
+        if family != "two_point_probe" or not bool(getattr(self.args, "do_train", False)):
+            return
+        if self._lora_strategy() != "inclora":
+            raise ValueError("Two-point probes require lora_strategy=inclora, without EWC/OLoRA.")
+        if str(getattr(self.args, "train_method", "")).lower() != "lora":
+            raise ValueError("Two-point probes require train_method=lora.")
+        if getattr(self.args, "rwp_type", ""):
+            raise ValueError("Two-point probes cannot use an RWP probe or history path.")
+        if str(getattr(self.args, "probe_mode", "reverse")).lower() not in {"reverse", "sam", "sgd"}:
+            raise ValueError("probe_mode must be reverse, sam, or sgd.")
+        if float(getattr(self.args, "adam_epsilon", 1e-6)) != 1e-6:
+            raise ValueError("Two-point probes require HF AdamW adam_epsilon=1e-6.")
+        if float(getattr(self.args, "weight_decay", 0.0)) != 0.0:
+            raise ValueError("Two-point probes require weight_decay=0.")
+        if int(getattr(self.args, "past_index", -1)) >= 0:
+            raise NotImplementedError("Two-point probes do not support the Trainer past-state cache.")
+        if getattr(getattr(self, "data_collator", None), "decoder_pipeline_version", None) != "decoder_token_ids_v2":
+            raise ValueError("Two-point probes require the corrected decoder_token_ids_v2 collator.")
+
+    def _validate_three_point_probe_training_configuration(self):
+        """Use the same clean/replayed effective batch for all new controls."""
+
+        family = self._optimizer_family(getattr(self.args, "optimizer_type", ""))
+        if family != "three_point_probe" or not bool(getattr(self.args, "do_train", False)):
+            return
+        if self._lora_strategy() != "inclora":
+            raise ValueError("Three-point probes require lora_strategy=inclora, without EWC/OLoRA.")
+        if str(getattr(self.args, "train_method", "")).lower() != "lora":
+            raise ValueError("Three-point probes require train_method=lora.")
+        if getattr(self.args, "rwp_type", ""):
+            raise ValueError("Three-point probes cannot use an RWP probe or history path.")
+        if str(getattr(self.args, "probe_mode", "central")).lower() not in {"g1_plus", "backward_reflected", "central", "g0"}:
+            raise ValueError("probe_mode must be g1_plus, backward_reflected, central, or g0.")
+        if float(getattr(self.args, "adam_epsilon", 1e-6)) != 1e-6:
+            raise ValueError("Three-point probes require HF AdamW adam_epsilon=1e-6.")
+        if float(getattr(self.args, "weight_decay", 0.0)) != 0.0:
+            raise ValueError("Three-point probes require weight_decay=0.")
+        if int(getattr(self.args, "past_index", -1)) >= 0:
+            raise NotImplementedError("Three-point probes do not support the Trainer past-state cache.")
+        if getattr(getattr(self, "data_collator", None), "decoder_pipeline_version", None) != "decoder_token_ids_v2":
+            raise ValueError("Three-point probes require the corrected decoder_token_ids_v2 collator.")
+
+    @classmethod
+    def _optimizer_family(cls, optimizer_type):
+        """Return one mutually exclusive custom-optimizer family."""
+
+        name = str(optimizer_type or "").lower()
+        if name in cls.G2_OPTIMIZERS:
+            return "g2"
+        if name in cls.TWO_POINT_PROBE_OPTIMIZERS:
+            return "two_point_probe"
+        if name in cls.THREE_POINT_PROBE_OPTIMIZERS:
+            return "three_point_probe"
+        if name in cls.GAMFISHERSHAPE_OPTIMIZERS:
+            return "gamfishershape"
+        if name.startswith("fishershape-") or name.startswith("fishershape_"):
+            return "fishershape"
+        if name.startswith("sam-") or name.startswith("sam_"):
+            return "sam"
+        if name.startswith("gam-") or name.startswith("gam_"):
+            return "gam"
+        return "standard"
+
+    def _shaped_arg(self, suffix, default):
+        """Read independent GAMFisherShape or FisherShape settings."""
+
+        family = self._optimizer_family(getattr(self.args, "optimizer_type", ""))
+        if family == "g2":
+            prefix = "g2"
+        elif family in {"two_point_probe", "three_point_probe"}:
+            prefix = "probe"
+        else:
+            prefix = "gamfs" if self._is_gamfishershape_ewclora_strategy() else "fs"
+        return getattr(self.args, f"{prefix}_{suffix}", default)
 
     @staticmethod
     def _resolve_ewclora_state_file(path):
@@ -196,25 +778,183 @@ class UIETrainer(Seq2SeqTrainer):
         return prefix
 
     def _load_ewclora_state(self):
-        state_file = self._resolve_ewclora_state_file(getattr(self.args, "ewclora_fisher_path", ""))
-        if not state_file or not os.path.isfile(state_file):
+        requested_path = getattr(self.args, "ewclora_fisher_path", "")
+        state_file = self._resolve_ewclora_state_file(requested_path)
+        if not state_file:
+            logger.info("EWCLoRA starts without previous full-Delta-W Fisher.")
+            return
+        if not os.path.isfile(state_file):
+            if (
+                self._is_inclora_sam_ewc_strategy()
+                or self._is_seqlora_sam_ewc_strategy()
+            ):
+                raise FileNotFoundError(
+                    "A Fisher path was explicitly requested for "
+                    f"{self._lora_strategy()}, but no sidecar exists at "
+                    f"{state_file}. Only an empty path denotes the first task."
+                )
             logger.info("EWCLoRA starts without previous full-Delta-W Fisher.")
             return
 
         payload = torch.load(state_file, map_location="cpu")
+        if not isinstance(payload, dict):
+            raise ValueError(
+                f"EWCLoRA Fisher sidecar must contain a dictionary, got {type(payload).__name__}."
+            )
+        state_format = str(payload.get("format", "legacy"))
+        supported_formats = {
+            "legacy",
+            "full_delta_w_fisher_v1",
+            "full_delta_w_fisher_v2",
+            "full_delta_w_fisher_v3",
+        }
+        if state_format not in supported_formats:
+            raise ValueError(
+                f"Unsupported EWCLoRA Fisher format {state_format!r}; "
+                f"expected one of {sorted(supported_formats)}."
+            )
+        if state_format in {"full_delta_w_fisher_v2", "full_delta_w_fisher_v3"}:
+            fisher_space = payload.get("fisher_space")
+            estimator = payload.get("estimator")
+            if fisher_space != "full_delta_w":
+                raise ValueError(
+                    "EWCLoRA Fisher v2 sidecar must use fisher_space='full_delta_w', "
+                    f"got {fisher_space!r}."
+                )
+            if estimator != "batch_empirical":
+                raise ValueError(
+                    "EWCLoRA Fisher v2 sidecar must use estimator='batch_empirical', "
+                    f"got {estimator!r}."
+                )
+        if self._is_seqlora_sam_ewc_strategy():
+            if state_format != "full_delta_w_fisher_v3":
+                raise ValueError(
+                    "SeqLoRA-SAM-EWC requires a v3 Fisher sidecar with a "
+                    "task-start effective-Delta-W reference."
+                )
+            if payload.get("anchor_mode") != "task_start_effective_delta_w":
+                raise ValueError(
+                    "SeqLoRA-SAM-EWC v3 sidecar must use "
+                    "anchor_mode='task_start_effective_delta_w'."
+                )
+            if payload.get("adapter_update_space") != "sequential_shared":
+                raise ValueError(
+                    "SeqLoRA-SAM-EWC v3 sidecar must use "
+                    "adapter_update_space='sequential_shared'."
+                )
+            if payload.get("reference_encoding") != "lora_factors_v1":
+                raise ValueError(
+                    "SeqLoRA-SAM-EWC v3 sidecar must use the compact "
+                    "reference_encoding='lora_factors_v1'."
+                )
+        elif state_format == "full_delta_w_fisher_v3":
+            raise ValueError(
+                "A SeqLoRA anchored Fisher sidecar cannot initialize a fresh-branch "
+                f"EWCLoRA strategy ({self._lora_strategy()!r})."
+            )
         omega = payload.get("omega", payload)
         if isinstance(omega, list):
             names = payload.get("names", [str(i) for i in range(len(omega))])
             omega = dict(zip(names, omega))
+        if not isinstance(omega, dict):
+            raise ValueError("EWCLoRA Fisher omega must be a dictionary or named list.")
+        if (
+            not omega
+            and (
+                self._is_inclora_sam_ewc_strategy()
+                or self._is_seqlora_sam_ewc_strategy()
+            )
+        ):
+            raise ValueError(
+                f"Explicit {self._lora_strategy()} Fisher sidecar has an empty omega."
+            )
+        for key, value in omega.items():
+            if not torch.is_tensor(value):
+                raise ValueError(
+                    f"EWCLoRA Fisher block {key!r} is not a tensor."
+                )
+            if not torch.isfinite(value).all() or (value < 0).any():
+                raise ValueError(
+                    f"EWCLoRA Fisher block {key!r} must be finite and non-negative."
+                )
         self.ewclora_omega = {
             self._normalize_lora_prefix(str(k)): v.detach().cpu().float()
             for k, v in omega.items()
         }
+        if self._is_seqlora_sam_ewc_strategy():
+            reference = payload.get("reference")
+            if not isinstance(reference, dict) or not reference:
+                raise ValueError(
+                    "SeqLoRA-SAM-EWC v3 sidecar must contain a non-empty "
+                    "reference Delta-W dictionary."
+                )
+            normalized_reference = {}
+            for key, value in reference.items():
+                if not isinstance(value, dict):
+                    raise ValueError(
+                        f"SeqLoRA EWC reference block {key!r} is not a factor dictionary."
+                    )
+                a_ref = value.get("a")
+                b_ref = value.get("b")
+                if not torch.is_tensor(a_ref) or not torch.is_tensor(b_ref):
+                    raise ValueError(
+                        f"SeqLoRA EWC reference block {key!r} must contain tensor factors a/b."
+                    )
+                if not torch.isfinite(a_ref).all() or not torch.isfinite(b_ref).all():
+                    raise ValueError(
+                        f"SeqLoRA EWC reference factors {key!r} must be finite."
+                    )
+                normalized_reference[self._normalize_lora_prefix(str(key))] = {
+                    "a": a_ref.detach().cpu().float(),
+                    "b": b_ref.detach().cpu().float(),
+                }
+            self.ewclora_reference = normalized_reference
         self.ewclora_count_updates = int(payload.get("count_updates", 0))
+        normalization = payload.get("normalization", {}) if isinstance(payload, dict) else {}
+        stored_per_task_norm = bool(normalization.get("per_task_trace", False))
+        stored_accumulated_norm = bool(normalization.get("accumulated_trace", False))
+        stored_damping_beta = float(normalization.get("damping_beta", 0.0))
+        requested_per_task_norm = bool(
+            getattr(self.args, "ewclora_normalize_fisher", False)
+        )
+        requested_accumulated_norm = bool(
+            getattr(self.args, "ewclora_normalize_accumulated_fisher", False)
+        )
+        requested_damping_beta = float(
+            getattr(self.args, "ewclora_fisher_damping_beta", 0.0)
+        )
+        mode_mismatch = (
+            stored_per_task_norm != requested_per_task_norm
+            or stored_accumulated_norm != requested_accumulated_norm
+            or abs(stored_damping_beta - requested_damping_beta) > 1e-12
+        )
+        if self.ewclora_omega and mode_mismatch:
+            message = (
+                "EWCLoRA Fisher normalization mismatch: sidecar uses "
+                f"per_task={stored_per_task_norm}, accumulated={stored_accumulated_norm}; "
+                f"damping_beta={stored_damping_beta}; "
+                f"this run requests per_task={requested_per_task_norm}, "
+                f"accumulated={requested_accumulated_norm}, "
+                f"damping_beta={requested_damping_beta}. Mixing these states changes "
+                "the EWC geometry."
+            )
+            continuing_training = bool(getattr(self.args, "do_train", False))
+            if continuing_training and not bool(
+                getattr(self.args, "ewclora_allow_state_mismatch", False)
+            ):
+                raise ValueError(
+                    message
+                    + " Pass --ewclora_allow_state_mismatch true only for an intentional ablation."
+                )
+            if continuing_training:
+                logger.warning(message)
+            else:
+                logger.info("Ignoring Fisher normalization mismatch for prediction-only load: %s", message)
         logger.info(
-            "Loaded EWCLoRA Fisher from %s with %d Delta-W blocks.",
+            "Loaded EWCLoRA Fisher from %s with %d Delta-W blocks (format=%s).",
             state_file,
             len(self.ewclora_omega),
+            state_format,
         )
 
     def _iter_loranew_pairs(self, model):
@@ -240,6 +980,137 @@ class UIETrainer(Seq2SeqTrainer):
                 if active_adapter in module.loranew_A and active_adapter in module.loranew_B:
                     yield self._normalize_lora_prefix(f"{module_name}."), module
 
+    def _iter_seqlora_delta_modules(self, model):
+        """Yield the factor pair defining SeqLoRA's effective trainable Delta-W."""
+
+        for module_name, module in model.named_modules():
+            if not (
+                hasattr(module, "lora_A")
+                and hasattr(module, "lora_B")
+                and hasattr(module, "loranew_A")
+                and hasattr(module, "loranew_B")
+            ):
+                continue
+            active_adapter = getattr(module, "active_adapter", "default")
+            if (
+                active_adapter in module.lora_A
+                and active_adapter in module.lora_B
+                and module.lora_A[active_adapter].weight.shape[0] > 0
+            ):
+                a_param = module.lora_A[active_adapter].weight
+                b_param = module.lora_B[active_adapter].weight
+                source = "shared"
+            elif (
+                active_adapter in module.loranew_A
+                and active_adapter in module.loranew_B
+            ):
+                # Compatibility fallback for a first task created with r_sum=0.
+                a_param = module.loranew_A[active_adapter].weight
+                b_param = module.loranew_B[active_adapter].weight
+                source = "fresh"
+            else:
+                continue
+            yield (
+                self._normalize_lora_prefix(f"{module_name}."),
+                module,
+                a_param,
+                b_param,
+                source,
+            )
+
+    def _snapshot_seqlora_ewc_reference(self, model):
+        return {
+            prefix: {
+                "a": a_param.detach().cpu().float().clone(),
+                "b": b_param.detach().cpu().float().clone(),
+            }
+            for prefix, _, a_param, b_param, _ in self._iter_seqlora_delta_modules(model)
+        }
+
+    def _initialize_seqlora_ewc_reference(self):
+        current = self._snapshot_seqlora_ewc_reference(self.model)
+        if not current:
+            raise ValueError(
+                "SeqLoRA-SAM-EWC found no effective shared LoRA factor pairs."
+            )
+        if not self.ewclora_reference:
+            self.ewclora_reference = current
+            return
+
+        if set(current) != set(self.ewclora_reference):
+            raise ValueError(
+                "SeqLoRA-SAM-EWC sidecar reference modules do not match the loaded adapter."
+            )
+        for prefix, factors in current.items():
+            stored = self.ewclora_reference[prefix]
+            for factor_name in ("a", "b"):
+                actual = factors[factor_name]
+                expected = stored[factor_name]
+                if tuple(actual.shape) != tuple(expected.shape):
+                    raise ValueError(
+                        f"SeqLoRA EWC reference shape mismatch for {prefix}{factor_name}: "
+                        f"adapter={tuple(actual.shape)}, sidecar={tuple(expected.shape)}."
+                    )
+                if not torch.allclose(actual, expected, rtol=1e-5, atol=1e-7):
+                    raise ValueError(
+                        "SeqLoRA EWC task-start reference does not match the loaded "
+                        f"adapter factors for {prefix}{factor_name}."
+                    )
+            fisher = self.ewclora_omega.get(prefix)
+            expected_delta_shape = (factors["b"].shape[0], factors["a"].shape[1])
+            if fisher is not None and tuple(fisher.shape) != tuple(expected_delta_shape):
+                raise ValueError(
+                    f"SeqLoRA EWC Fisher shape mismatch for {prefix}: "
+                    f"Fisher={tuple(fisher.shape)}, Delta-W={tuple(expected_delta_shape)}."
+                )
+
+    def _set_seqlora_delta_hooks(self, model, enabled):
+        for _, module, _, _, _ in self._iter_seqlora_delta_modules(model):
+            module.seqlora_ewc_register_hook = enabled
+            module.seqlora_ewc_delta_grad = None
+
+    def _validate_sam_ewc_state_against_model(self):
+        """Reject partial or mis-shaped Fisher state for the public methods."""
+
+        if not self.ewclora_omega:
+            return
+        if self._is_seqlora_sam_ewc_strategy():
+            expected_shapes = {
+                prefix: (int(b_param.shape[0]), int(a_param.shape[1]))
+                for prefix, _, a_param, b_param, _
+                in self._iter_seqlora_delta_modules(self.model)
+            }
+            reference_keys = set(self.ewclora_reference)
+            if reference_keys != set(expected_shapes):
+                missing = sorted(set(expected_shapes) - reference_keys)
+                extra = sorted(reference_keys - set(expected_shapes))
+                raise ValueError(
+                    "SeqLoRA-SAM-EWC reference coverage mismatch: "
+                    f"missing={missing}, extra={extra}."
+                )
+        else:
+            expected_shapes = {
+                prefix: (int(p_b.shape[0]), int(p_a.shape[1]))
+                for prefix, p_a, p_b in self._iter_loranew_pairs(self.model)
+            }
+
+        actual_keys = set(self.ewclora_omega)
+        expected_keys = set(expected_shapes)
+        if actual_keys != expected_keys:
+            missing = sorted(expected_keys - actual_keys)
+            extra = sorted(actual_keys - expected_keys)
+            raise ValueError(
+                f"{self._lora_strategy()} Fisher coverage mismatch: "
+                f"missing={missing}, extra={extra}."
+            )
+        for prefix, expected_shape in expected_shapes.items():
+            actual_shape = tuple(self.ewclora_omega[prefix].shape)
+            if actual_shape != expected_shape:
+                raise ValueError(
+                    f"{self._lora_strategy()} Fisher shape mismatch for {prefix!r}: "
+                    f"Fisher={actual_shape}, Delta-W={expected_shape}."
+                )
+
     def _empty_ewclora_scalar(self, model):
         try:
             device = next(model.parameters()).device
@@ -248,6 +1119,8 @@ class UIETrainer(Seq2SeqTrainer):
         return torch.zeros((), device=device)
 
     def _compute_ewclora_loss(self, model):
+        if self._is_seqlora_sam_ewc_strategy():
+            return self._compute_seqlora_ewc_loss(model)
         if not self.ewclora_omega:
             return self._empty_ewclora_scalar(model)
 
@@ -258,7 +1131,44 @@ class UIETrainer(Seq2SeqTrainer):
                 continue
             delta_w = p_b @ p_a
             fisher = fisher.to(device=delta_w.device, dtype=delta_w.dtype)
+            if tuple(fisher.shape) != tuple(delta_w.shape):
+                raise ValueError(
+                    f"EWCLoRA Fisher shape mismatch for {prefix!r}: "
+                    f"Fisher={tuple(fisher.shape)}, Delta-W={tuple(delta_w.shape)}."
+                )
             term = (fisher * delta_w.pow(2)).sum()
+            penalty = term if penalty is None else penalty + term
+
+        if penalty is None:
+            return self._empty_ewclora_scalar(model)
+        return 0.5 * float(getattr(self.args, "ewclora_lambda", 1.0)) * penalty
+
+    def _compute_seqlora_ewc_loss(self, model):
+        if not self.ewclora_omega:
+            return self._empty_ewclora_scalar(model)
+        if not self.ewclora_reference:
+            raise RuntimeError(
+                "SeqLoRA-SAM-EWC has Fisher state but no task-start Delta-W reference."
+            )
+
+        penalty = None
+        for prefix, _, a_param, b_param, _ in self._iter_seqlora_delta_modules(model):
+            fisher = self.ewclora_omega.get(prefix)
+            reference = self.ewclora_reference.get(prefix)
+            if fisher is None or reference is None:
+                continue
+            delta_w = b_param @ a_param
+            a_ref = reference["a"].to(device=delta_w.device, dtype=delta_w.dtype)
+            b_ref = reference["b"].to(device=delta_w.device, dtype=delta_w.dtype)
+            delta_ref = b_ref @ a_ref
+            fisher = fisher.to(device=delta_w.device, dtype=delta_w.dtype)
+            if tuple(fisher.shape) != tuple(delta_w.shape):
+                raise ValueError(
+                    f"SeqLoRA EWC Fisher shape mismatch for {prefix!r}: "
+                    f"Fisher={tuple(fisher.shape)}, Delta-W={tuple(delta_w.shape)}."
+                )
+            delta_update = delta_w - delta_ref
+            term = (fisher * delta_update.pow(2)).sum()
             penalty = term if penalty is None else penalty + term
 
         if penalty is None:
@@ -283,7 +1193,7 @@ class UIETrainer(Seq2SeqTrainer):
                 return int(value.size(0))
         return 1
 
-    def _distributed_average_fisher(self, fisher_sums, sample_count):
+    def _distributed_average_fisher(self, fisher_sums, sample_count, batch_count=None):
         if not (torch.distributed.is_available() and torch.distributed.is_initialized()):
             denom = max(float(sample_count), 1.0)
             return {k: (v / denom).detach().cpu() for k, v in fisher_sums.items()}
@@ -294,9 +1204,21 @@ class UIETrainer(Seq2SeqTrainer):
         for tensor in fisher_sums.values():
             torch.distributed.all_reduce(tensor, op=torch.distributed.ReduceOp.SUM)
         denom = max(float(count_tensor.item()), 1.0)
+        if self._bf16_ddp5_audit_enabled():
+            batches_tensor = torch.tensor(float(batch_count or 0), device=device)
+            torch.distributed.all_reduce(batches_tensor, op=torch.distributed.ReduceOp.SUM)
+            self._runtime_audit["fisher"] = {
+                "local_samples": int(sample_count), "global_samples": int(count_tensor.item()),
+                "local_batches": int(batch_count or 0), "global_batches": int(batches_tensor.item()),
+                "aggregation": "all_reduce_sum_then_divide_global_sample_count",
+            }
+            if sample_count <= 0:
+                raise RuntimeError("Each rank must contribute samples to the post-task Fisher.")
         return {k: (v / denom).detach().cpu() for k, v in fisher_sums.items()}
 
     def _compute_ewclora_fisher(self, model, max_batches=None):
+        if self._is_seqlora_sam_ewc_strategy():
+            return self._compute_seqlora_ewc_fisher(model, max_batches=max_batches)
         modules = list(self._iter_loranew_modules(model))
         fisher_sums = {}
         for prefix, module in modules:
@@ -310,6 +1232,7 @@ class UIETrainer(Seq2SeqTrainer):
 
         max_batches = None if max_batches in (None, 0) else int(max_batches)
         sample_count = 0
+        batch_count = 0
         was_training = model.training
         model.eval()
         self._set_ewclora_delta_hooks(model, True)
@@ -337,9 +1260,65 @@ class UIETrainer(Seq2SeqTrainer):
                     if grad is not None:
                         fisher_sums[prefix] += grad.detach().float().pow(2) * batch_size
                 sample_count += batch_size
+                batch_count += 1
                 model.zero_grad()
         finally:
             self._set_ewclora_delta_hooks(model, False)
+            if was_training:
+                model.train()
+
+        return self._distributed_average_fisher(fisher_sums, sample_count, batch_count=batch_count)
+
+    def _compute_seqlora_ewc_fisher(self, model, max_batches=None):
+        modules = list(self._iter_seqlora_delta_modules(model))
+        fisher_sums = {
+            prefix: torch.zeros(
+                (b_param.shape[0], a_param.shape[1]),
+                dtype=torch.float32,
+                device=a_param.device,
+            )
+            for prefix, _, a_param, b_param, _ in modules
+        }
+        if not fisher_sums:
+            logger.warning(
+                "SeqLoRA EWC Fisher skipped because no effective shared Delta-W blocks were found."
+            )
+            return {}
+
+        max_batches = None if max_batches in (None, 0) else int(max_batches)
+        sample_count = 0
+        was_training = model.training
+        model.eval()
+        self._set_seqlora_delta_hooks(model, True)
+        dataloader = self.get_train_dataloader()
+        try:
+            for step, inputs in enumerate(dataloader):
+                if max_batches is not None and step >= max_batches:
+                    break
+                local_inputs = self._prepare_inputs(inputs)
+                batch_size = self._infer_batch_size(local_inputs)
+                model.zero_grad()
+                for _, module, _, _, _ in modules:
+                    module.seqlora_ewc_delta_grad = None
+
+                with self.compute_loss_context_manager():
+                    # As in fresh EWCLoRA, estimate only the current-task CE
+                    # Fisher in full effective Delta-W space.
+                    loss = self.compute_loss(model, local_inputs)
+                if self.args.n_gpu > 1:
+                    loss = loss.mean()
+                loss.backward()
+
+                for prefix, module, _, _, _ in modules:
+                    grad = getattr(module, "seqlora_ewc_delta_grad", None)
+                    if grad is not None:
+                        fisher_sums[prefix] += (
+                            grad.detach().float().pow(2) * batch_size
+                        )
+                sample_count += batch_size
+                model.zero_grad()
+        finally:
+            self._set_seqlora_delta_hooks(model, False)
             if was_training:
                 model.train()
 
@@ -353,20 +1332,85 @@ class UIETrainer(Seq2SeqTrainer):
             self.model,
             max_batches=getattr(self.args, "ewclora_fisher_max_batches", None),
         )
+        if not fisher_current:
+            logger.warning("EWCLoRA Fisher update produced no Delta-W blocks; state was not changed.")
+            return
+
+        eps = float(getattr(self.args, "ewclora_fisher_eps", 1e-12))
+        raw_trace = fisher_trace(fisher_current)
+        normalize_per_task = bool(
+            getattr(self.args, "ewclora_normalize_fisher", False)
+        )
+        if normalize_per_task:
+            fisher_current, _ = normalize_fisher_by_trace(fisher_current, eps=eps)
+
+        damping_beta = float(
+            getattr(self.args, "ewclora_fisher_damping_beta", 0.0)
+        )
+        if damping_beta > 0.0:
+            if not normalize_per_task:
+                logger.warning(
+                    "ewclora_fisher_damping_beta is being applied to a non-normalized "
+                    "Fisher; the trace-preserving interpretation no longer holds."
+                )
+            fisher_current = damp_trace_normalized_fisher(
+                fisher_current,
+                beta=damping_beta,
+            )
+
+        task_trace = fisher_trace(fisher_current)
         gamma = float(getattr(self.args, "ewclora_gamma", 1.0))
-        updated = {}
+        # Preserve historical blocks if a target-module set changes, while
+        # still decaying them according to online EWC.
+        updated = {
+            prefix: gamma * fisher
+            for prefix, fisher in self.ewclora_omega.items()
+        }
         for prefix, fisher in fisher_current.items():
-            old = self.ewclora_omega.get(prefix)
-            updated[prefix] = fisher if old is None else gamma * old + fisher
+            previous = updated.get(prefix)
+            updated[prefix] = fisher if previous is None else previous + fisher
+
+        normalize_accumulated = bool(
+            getattr(self.args, "ewclora_normalize_accumulated_fisher", False)
+        )
+        if normalize_accumulated:
+            updated, _ = normalize_fisher_by_trace(updated, eps=eps)
         self.ewclora_omega = updated
+        if self._is_seqlora_sam_ewc_strategy():
+            # Online EWC anchors the next task at the adapter produced by the
+            # task whose Fisher was just estimated.  Store compact factors
+            # rather than another full Delta-W tensor per target module.
+            self.ewclora_reference = self._snapshot_seqlora_ewc_reference(
+                self.model
+            )
+        if (
+            self._is_inclora_sam_ewc_strategy()
+            or self._is_seqlora_sam_ewc_strategy()
+        ):
+            self._validate_sam_ewc_state_against_model()
         self.ewclora_count_updates += 1
         if updated:
             means = [v.float().mean().item() for v in updated.values()]
             maxs = [v.float().max().item() for v in updated.values()]
+            accumulated_trace = fisher_trace(updated)
             self._last_ewclora_fisher_info = (
-                f"blocks={len(updated)}, mean={sum(means) / len(means):.3e}, max={max(maxs):.3e}"
+                f"blocks={len(updated)}, raw_task_trace={raw_trace:.3e}, "
+                f"task_trace={task_trace:.3e}, accumulated_trace={accumulated_trace:.3e}, "
+                f"mean={sum(means) / len(means):.3e}, max={max(maxs):.3e}, "
+                f"normalized={normalize_per_task}, damping_beta={damping_beta:.3g}"
             )
             logger.info("EWCLoRA Fisher updated: %s", self._last_ewclora_fisher_info)
+            if self._bf16_ddp5_audit_enabled():
+                self._runtime_audit["fisher"].update({
+                    "raw_task_trace": raw_trace, "accumulated_trace": accumulated_trace,
+                    "count_updates": self.ewclora_count_updates, "target_modules": len(updated),
+                })
+                self._write_bf16_ddp5_audit()
+                if (not math.isfinite(raw_trace) or not math.isfinite(accumulated_trace)
+                        or raw_trace <= 0 or accumulated_trace <= 0 or len(updated) != 32
+                        or any(not bool(torch.isfinite(v).all()) or bool((v < 0).any())
+                               for v in updated.values())):
+                    raise RuntimeError("Fisher must have 32 finite nonnegative blocks and positive traces.")
 
     def save_ewclora_state(self, save_directory):
         if not self._is_ewclora_strategy() or not self.ewclora_omega:
@@ -375,16 +1419,77 @@ class UIETrainer(Seq2SeqTrainer):
             return
         os.makedirs(save_directory, exist_ok=True)
         state_file = os.path.join(save_directory, "ewclora_fisher.pt")
-        torch.save(
-            {
-                "omega": {k: v.detach().cpu() for k, v in self.ewclora_omega.items()},
-                "count_updates": self.ewclora_count_updates,
-                "lambda": float(getattr(self.args, "ewclora_lambda", 1.0)),
-                "gamma": float(getattr(self.args, "ewclora_gamma", 1.0)),
-                "format": "full_delta_w_fisher_v1",
-            },
-            state_file,
+        payload = {
+            "omega": {k: v.detach().cpu() for k, v in self.ewclora_omega.items()},
+            "count_updates": self.ewclora_count_updates,
+            "lambda": float(getattr(self.args, "ewclora_lambda", 1.0)),
+            "gamma": float(getattr(self.args, "ewclora_gamma", 1.0)),
+            "format": "full_delta_w_fisher_v1",
+        }
+        uses_shaped_fisher_state = (
+            self._is_fishershape_ewclora_strategy()
+            or bool(getattr(self.args, "ewclora_normalize_fisher", False))
+            or bool(
+                getattr(self.args, "ewclora_normalize_accumulated_fisher", False)
+            )
+            or float(getattr(self.args, "ewclora_fisher_damping_beta", 0.0)) != 0.0
         )
+        if uses_shaped_fisher_state:
+            payload.update(
+                {
+                    "format": "full_delta_w_fisher_v2",
+                    "fisher_space": "full_delta_w",
+                    "estimator": "batch_empirical",
+                    "strategy": self._lora_strategy(),
+                    "normalization": {
+                        "per_task_trace": bool(
+                            getattr(self.args, "ewclora_normalize_fisher", False)
+                        ),
+                        "accumulated_trace": bool(
+                            getattr(
+                                self.args,
+                                "ewclora_normalize_accumulated_fisher",
+                                False,
+                            )
+                        ),
+                        "damping_beta": float(
+                            getattr(
+                                self.args,
+                                "ewclora_fisher_damping_beta",
+                                0.0,
+                            )
+                        ),
+                        "eps": float(
+                            getattr(self.args, "ewclora_fisher_eps", 1e-12)
+                        ),
+                    },
+                }
+            )
+        if self._is_seqlora_sam_ewc_strategy():
+            if not self.ewclora_reference:
+                raise RuntimeError(
+                    "SeqLoRA-SAM-EWC cannot save Fisher state without an "
+                    "effective-Delta-W reference."
+                )
+            payload.update(
+                {
+                    "format": "full_delta_w_fisher_v3",
+                    "fisher_space": "full_delta_w",
+                    "estimator": "batch_empirical",
+                    "strategy": self._lora_strategy(),
+                    "adapter_update_space": "sequential_shared",
+                    "anchor_mode": "task_start_effective_delta_w",
+                    "reference_encoding": "lora_factors_v1",
+                    "reference": {
+                        prefix: {
+                            "a": factors["a"].detach().cpu(),
+                            "b": factors["b"].detach().cpu(),
+                        }
+                        for prefix, factors in self.ewclora_reference.items()
+                    },
+                }
+            )
+        torch.save(payload, state_file)
         logger.info("Saved EWCLoRA Fisher state to %s", state_file)
 
     @staticmethod
@@ -421,10 +1526,131 @@ class UIETrainer(Seq2SeqTrainer):
             if grad is not None
         }
 
+    def _compute_fishershape_regularization_grad_cache(self, model, params):
+        """Build clean-point EWC/OLoRA gradients outside both FS probes."""
+
+        regularization = None
+        metrics = {"ewc_loss": 0.0, "olora_loss": 0.0}
+        with torch.enable_grad():
+            # lambda=0 is the phase-1 SAM-equivalence path.  Skip the EWC
+            # graph entirely even when a historical sidecar was loaded, so
+            # the training direction is exactly the two-pass task gradient.
+            if self.ewclora_omega and float(
+                getattr(self.args, "ewclora_lambda", 1.0)
+            ) != 0.0:
+                ewc_loss = self._compute_ewclora_loss(model)
+                metrics["ewc_loss"] = float(ewc_loss.detach().float().item())
+                if ewc_loss.requires_grad:
+                    regularization = ewc_loss
+
+            if bool(self._shaped_arg("include_olora_regularization", False)):
+                orthogonal_loss, l2_loss = self._compute_olora_regularization_terms(model)
+                lambda_1 = float(getattr(self.args, "olora_lamda_1", 0.0))
+                lambda_2 = float(getattr(self.args, "olora_lamda_2", 0.0))
+                olora_loss = None
+                if lambda_1 != 0.0:
+                    olora_loss = lambda_1 * orthogonal_loss
+                if lambda_2 != 0.0:
+                    weighted_l2 = lambda_2 * l2_loss
+                    olora_loss = weighted_l2 if olora_loss is None else olora_loss + weighted_l2
+                if olora_loss is not None:
+                    metrics["olora_loss"] = float(olora_loss.detach().float().item())
+                    regularization = (
+                        olora_loss
+                        if regularization is None
+                        else regularization + olora_loss
+                    )
+
+        if regularization is None or not regularization.requires_grad:
+            return {}, metrics
+        grads = torch.autograd.grad(
+            regularization,
+            params,
+            allow_unused=True,
+            retain_graph=False,
+        )
+        cache = {
+            id(param): grad.detach().clone()
+            for param, grad in zip(params, grads)
+            if grad is not None
+        }
+        return cache, metrics
+
+    def _build_fishershape_additive_projector(self, regularization_grad_cache, metrics):
+        """Compose g_final = g_FS + g_EWC (+ optional clean OLoRA)."""
+
+        def projector(param_groups):
+            fs_norm_sq = 0.0
+            regularization_norm_sq = 0.0
+            combined_norm_sq = 0.0
+            dot = 0.0
+            with torch.no_grad():
+                for group in param_groups:
+                    for param in group["params"]:
+                        fs_grad = None if param.grad is None else param.grad.detach().clone()
+                        regularization_grad = regularization_grad_cache.get(id(param))
+                        if regularization_grad is not None:
+                            regularization_grad = regularization_grad.to(
+                                device=param.device,
+                                dtype=param.dtype,
+                            )
+                        if fs_grad is None and regularization_grad is None:
+                            continue
+                        if fs_grad is None:
+                            combined = regularization_grad.clone()
+                        elif regularization_grad is None:
+                            combined = fs_grad
+                        else:
+                            combined = fs_grad + regularization_grad
+
+                        if param.grad is None:
+                            param.grad = combined.clone()
+                        else:
+                            param.grad.copy_(combined)
+
+                        if fs_grad is not None:
+                            fs_norm_sq += float(fs_grad.detach().float().pow(2).sum().item())
+                        if regularization_grad is not None:
+                            regularization_norm_sq += float(
+                                regularization_grad.detach().float().pow(2).sum().item()
+                            )
+                        if fs_grad is not None and regularization_grad is not None:
+                            dot += float(
+                                (fs_grad.detach().float() * regularization_grad.detach().float())
+                                .sum()
+                                .item()
+                            )
+                        combined_norm_sq += float(
+                            combined.detach().float().pow(2).sum().item()
+                        )
+
+            fs_norm = fs_norm_sq ** 0.5
+            regularization_norm = regularization_norm_sq ** 0.5
+            metrics.update(
+                {
+                    "fs_direction_norm": fs_norm,
+                    "regularization_grad_norm": regularization_norm,
+                    "combined_grad_norm": combined_norm_sq ** 0.5,
+                    "regularization_to_fs_ratio": regularization_norm
+                    / (fs_norm + float(self._shaped_arg("xi", 1e-12))),
+                    "cos_fs_regularization": dot
+                    / (
+                        fs_norm * regularization_norm
+                        + float(self._shaped_arg("xi", 1e-12))
+                    ),
+                }
+            )
+
+        return projector
+
     def _build_ewclora_gam_projector(self, ewc_grad_cache):
         eps = float(getattr(self.args, "ewclora_project_eps", 1e-12))
 
         def projector(param_groups):
+            audit = self._runtime_audit["gam"] if self._bf16_gam_batch64_audit_enabled() else None
+            delta_norms = []
+            if audit is not None:
+                audit["projector_calls"] += 1
             for group in param_groups:
                 for param in group["params"]:
                     if param.grad is None:
@@ -436,9 +1662,48 @@ class UIETrainer(Seq2SeqTrainer):
                     denom = torch.sum(g_ewc * g_ewc) + eps
                     coeff = torch.sum(g_gam * g_ewc) / denom
                     # Reference projected GAM: project GAM away from EWC, then add EWC back.
-                    param.grad.data.copy_(g_gam - coeff * g_ewc + g_ewc)
+                    projected = g_gam - coeff * g_ewc + g_ewc
+                    if audit is not None:
+                        delta_norms.append((projected - g_gam).double().square().sum())
+                    param.grad.data.copy_(projected)
+            if audit is not None:
+                delta_l2 = math.sqrt(float(torch.stack(delta_norms).sum().item())) if delta_norms else 0.0
+                if not math.isfinite(delta_l2):
+                    raise RuntimeError("Nonfinite GAM projected EWC direction change.")
+                audit["post_projection_delta_l2_max"] = max(audit["post_projection_delta_l2_max"], delta_l2)
 
         return projector
+
+    def _compute_olora_regularization_terms(self, model):
+        orthogonal_loss = self._empty_ewclora_scalar(model)
+        l2_loss = self._empty_ewclora_scalar(model)
+        named_params = list(model.named_parameters())
+
+        for name, param in named_params:
+            if "lora_A" not in name:
+                continue
+            prefix = name.split("lora_A")[0]
+            for name_, param_ in named_params:
+                if "loranew_A" in name_ and prefix == name_.split("loranew_A")[0]:
+                    orthogonal_loss = orthogonal_loss + torch.abs(torch.mm(param, param_.T)).sum()
+                    break
+
+        for name, param in named_params:
+            if "loranew_" in name:
+                l2_loss = l2_loss + torch.norm(param, p=2)
+
+        return orthogonal_loss, l2_loss
+
+    def _apply_olora_regularization(self, model, loss, log_prefix="", label="OLoRA"):
+        orthogonal_loss, l2_loss = self._compute_olora_regularization_terms(model)
+        lamda_1 = self.args.olora_lamda_1
+        lamda_2 = self.args.olora_lamda_2
+        logger.info(
+            f"{log_prefix}{label} orthogonal_loss: {orthogonal_loss.item():.4f}; "
+            f"l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; "
+            f"lambda_olora_1: {lamda_1}; lambda_olora_2: {lamda_2}"
+        )
+        return loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
 
     def _is_deepspeed_enabled_compat(self, args):
         return bool(getattr(self, "is_deepspeed_enabled", False) or getattr(args, "deepspeed", None))
@@ -843,7 +2108,17 @@ class UIETrainer(Seq2SeqTrainer):
         len_dataloader = None
         if has_length(train_dataloader):
             len_dataloader = len(train_dataloader)
-            num_update_steps_per_epoch = len_dataloader // args.gradient_accumulation_steps
+            if self._optimizer_family(getattr(args, "optimizer_type", "")) in {
+                "fishershape", "gamfishershape", "g2", "two_point_probe", "three_point_probe",
+            }:
+                # FisherShape caches and replays a complete effective batch.
+                # Keep the final short window instead of silently carrying it
+                # into the next epoch or dropping it at the end of training.
+                num_update_steps_per_epoch = math.ceil(
+                    len_dataloader / args.gradient_accumulation_steps
+                )
+            else:
+                num_update_steps_per_epoch = len_dataloader // args.gradient_accumulation_steps
             num_update_steps_per_epoch = max(num_update_steps_per_epoch, 1)
             num_examples = self.num_examples(train_dataloader)
             if args.max_steps > 0:
@@ -934,6 +2209,8 @@ class UIETrainer(Seq2SeqTrainer):
 
         # Check if saved optimizer or scheduler states exist
         self._load_optimizer_and_scheduler(resume_from_checkpoint)
+
+        self._start_bf16_ddp5_audit(model, train_dataloader)
 
         # important: at this point:
         # self.model         is the Transformers Model
@@ -1038,14 +2315,39 @@ class UIETrainer(Seq2SeqTrainer):
 
         total_batched_samples = 0
         optimizer_type_name = str(getattr(self.args, "optimizer_type", "")).lower()
-        sam_optimizer_active = "sam" in optimizer_type_name
-        gam_optimizer_active = "gam" in optimizer_type_name
+        optimizer_family = self._optimizer_family(optimizer_type_name)
+        sam_optimizer_active = optimizer_family == "sam"
+        gam_optimizer_active = optimizer_family == "gam"
+        g2_optimizer_active = optimizer_family == "g2"
+        two_point_probe_optimizer_active = optimizer_family == "two_point_probe"
+        three_point_probe_optimizer_active = optimizer_family == "three_point_probe"
+        fishershape_optimizer_active = optimizer_family in {
+            "fishershape",
+            "gamfishershape",
+        }
+        pure_probe_optimizer_active = (g2_optimizer_active or two_point_probe_optimizer_active
+                                       or three_point_probe_optimizer_active)
+        probe_window_optimizer_active = fishershape_optimizer_active or pure_probe_optimizer_active
         sam_accumulated_inputs = []
         gam_accumulated_inputs = []
+        fishershape_accumulated_inputs = []
+        fishershape_accumulated_rng_states = []
         if sam_optimizer_active and self.deepspeed:
             raise NotImplementedError("Accumulation-aware SAM currently supports the standard/DDP path only, not DeepSpeed.")
         if gam_optimizer_active and self.deepspeed:
             raise NotImplementedError("Accumulation-aware GAM currently supports the standard/DDP path only, not DeepSpeed.")
+        if probe_window_optimizer_active and self.deepspeed:
+            raise NotImplementedError(
+                "Accumulation-aware probes currently support the standard/DDP path only, not DeepSpeed."
+            )
+        if probe_window_optimizer_active and (
+            bool(getattr(self.args, "fp16", False))
+            or self.do_grad_scaling
+            or self.use_apex
+        ):
+            raise NotImplementedError(
+                "Accumulation-aware probes support fp32/bf16 autocast, but not fp16/Apex gradient scaling."
+            )
         for epoch in range(epochs_trained, num_train_epochs):
             if isinstance(train_dataloader, DataLoader) and isinstance(train_dataloader.sampler, DistributedSampler):
                 train_dataloader.sampler.set_epoch(epoch)
@@ -1110,9 +2412,57 @@ class UIETrainer(Seq2SeqTrainer):
                     # GAM needs the whole accumulation window so each closure replay sees the same effective batch.
                     gam_accumulated_inputs.append(inputs)
 
+                if probe_window_optimizer_active:
+                    # Both FisherShape probes must replay the same effective
+                    # batch, including every micro-batch in this accumulation window.
+                    fishershape_accumulated_inputs.append(inputs)
+                    fishershape_accumulated_rng_states.append(
+                        (self._capture_g2_rng_state() if pure_probe_optimizer_active
+                         else self._capture_fishershape_rng_state())
+                        if bool(self._shaped_arg("replay_rng_state", True))
+                        else None
+                    )
+
+                # skip_first_batches() restarts enumerate() at zero on resume;
+                # account for the consumed prefix when locating the epoch tail.
+                is_last_micro_batch = (
+                    step + 1 + steps_skipped
+                ) == steps_in_epoch
+                fishershape_window_size = len(fishershape_accumulated_inputs)
+                flush_fishershape_remainder = (
+                    probe_window_optimizer_active
+                    and is_last_micro_batch
+                    and fishershape_window_size < args.gradient_accumulation_steps
+                )
+                accumulation_window_incomplete = (
+                    fishershape_window_size < args.gradient_accumulation_steps
+                    if probe_window_optimizer_active
+                    else total_batched_samples % args.gradient_accumulation_steps != 0
+                )
 
 
-                if self.args.gradient_accumulation_steps == 1 and  ("rpw_single_jiou" in self.args.rwp_type):
+
+                if pure_probe_optimizer_active:
+                    # Pure probe methods differentiate task CE only.
+                    # No EWC, OLoRA, Fisher or projection path is entered.
+                    no_sync = (
+                        accumulation_window_incomplete
+                        and not flush_fishershape_remainder
+                        and hasattr(model, "no_sync")
+                    )
+                    sync_context = model.no_sync() if no_sync else nullcontext()
+                    with sync_context:
+                        model.train()
+                        local_inputs = self._prepare_inputs(inputs)
+                        with self.compute_loss_context_manager():
+                            loss = self.compute_loss(model, local_inputs)
+                        if args.n_gpu > 1:
+                            loss = loss.mean()
+                        loss = loss / float(args.gradient_accumulation_steps)
+                        self._backward_loss(loss)
+                    tr_loss_step = loss.detach()
+                    loss_cleaned_log = tr_loss_step
+                elif self.args.gradient_accumulation_steps == 1 and  ("rpw_single_jiou" in self.args.rwp_type):
                 # 添加一个分支,专门处理 Rwp 按着论文,奇偶不同的情形,作为一起进行合并的情形
 
                     if step % 2 == 0:
@@ -1125,7 +2475,8 @@ class UIETrainer(Seq2SeqTrainer):
                 else :
 
                     if (
-                        (total_batched_samples % args.gradient_accumulation_steps != 0)
+                        accumulation_window_incomplete
+                        and not flush_fishershape_remainder
                         and args.local_rank != -1
                         and args._no_sync_in_gradient_accumulation
                         
@@ -1739,10 +3090,24 @@ class UIETrainer(Seq2SeqTrainer):
 
 
                 # 真正进行梯度更新的地方
-                if total_batched_samples % args.gradient_accumulation_steps == 0 or (
-                    # last step in epoch but step is always smaller than gradient_accumulation_steps
-                    steps_in_epoch <= args.gradient_accumulation_steps
-                    and (step + 1) == steps_in_epoch
+                standard_optimizer_step_due = (
+                    total_batched_samples % args.gradient_accumulation_steps == 0
+                    or (
+                        # Preserve the legacy short-epoch behavior for the
+                        # existing optimizers.
+                        steps_in_epoch <= args.gradient_accumulation_steps
+                        and (step + 1) == steps_in_epoch
+                    )
+                )
+                fishershape_optimizer_step_due = (
+                    probe_window_optimizer_active
+                    and (
+                        fishershape_window_size >= args.gradient_accumulation_steps
+                        or is_last_micro_batch
+                    )
+                )
+                if fishershape_optimizer_step_due or (
+                    not probe_window_optimizer_active and standard_optimizer_step_due
                 ):
                     
                     # total_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), float('inf'))
@@ -1750,7 +3115,13 @@ class UIETrainer(Seq2SeqTrainer):
 
                     # Gradient clipping
                     # 进行梯度裁剪
-                    if args.max_grad_norm is not None and args.max_grad_norm > 0 and not self.deepspeed and not gam_optimizer_active:
+                    if (
+                        args.max_grad_norm is not None
+                        and args.max_grad_norm > 0
+                        and not self.deepspeed
+                        and not gam_optimizer_active
+                        and not probe_window_optimizer_active
+                    ):
                         self._clip_gradients_for_step(model)
 
                     
@@ -1783,7 +3154,7 @@ class UIETrainer(Seq2SeqTrainer):
                     # else:
                     #     self.optimizer.step()
                     # elif hasattr(self.optimizer, "first_step") and hasattr(self.optimizer, "second_step"):
-                    elif 'sam' in self.args.optimizer_type:
+                    elif sam_optimizer_active:
                         # === For SAM Optimizer: first_step-second_step two phases ===
                         logger.debug(f"SAM优化器训练步骤开始,参数 rho={self.args.sam_rho}")
                         if not sam_accumulated_inputs:
@@ -1823,7 +3194,152 @@ class UIETrainer(Seq2SeqTrainer):
                     
                     
                     
-                    elif 'gam' in self.args.optimizer_type:
+                    elif g2_optimizer_active:
+                        self._run_g2_optimizer_window(
+                            model, fishershape_accumulated_inputs,
+                            fishershape_accumulated_rng_states,
+                        )
+                    elif two_point_probe_optimizer_active:
+                        self._run_two_point_probe_optimizer_window(
+                            model, fishershape_accumulated_inputs,
+                            fishershape_accumulated_rng_states,
+                        )
+                    elif three_point_probe_optimizer_active:
+                        self._run_three_point_probe_optimizer_window(
+                            model, fishershape_accumulated_inputs,
+                            fishershape_accumulated_rng_states,
+                        )
+                    elif fishershape_optimizer_active:
+                        if not fishershape_accumulated_inputs:
+                            raise RuntimeError(
+                                "FisherShape accumulation window is empty before optimizer replay."
+                            )
+                        if not self._is_fishershape_ewclora_strategy():
+                            raise ValueError(
+                                "A FisherShape-family optimizer requires a "
+                                "FisherShape EWCLoRA strategy."
+                            )
+
+                        params = self._flatten_optimizer_params(self.optimizer)
+                        actual_window_size = len(fishershape_accumulated_inputs)
+                        if actual_window_size < args.gradient_accumulation_steps:
+                            # The first pass divided every micro-loss by the
+                            # configured GA.  Rescale the short final window to
+                            # its actual mean before constructing the probe.
+                            remainder_scale = (
+                                float(args.gradient_accumulation_steps)
+                                / float(actual_window_size)
+                            )
+                            with torch.no_grad():
+                                for param in params:
+                                    if param.grad is not None:
+                                        param.grad.mul_(remainder_scale)
+                        regularization_grad_cache, fs_step_metrics = (
+                            self._compute_fishershape_regularization_grad_cache(
+                                model,
+                                params,
+                            )
+                        )
+                        self.optimizer.set_direction_projector(
+                            self._build_fishershape_additive_projector(
+                                regularization_grad_cache,
+                                fs_step_metrics,
+                            )
+                        )
+
+                        def fishershape_closure():
+                            self.optimizer.zero_grad(set_to_none=True)
+                            total_fs_loss = self._run_fishershape_replay_pass(
+                                model,
+                                fishershape_accumulated_inputs,
+                                fishershape_accumulated_rng_states,
+                            )
+                            return None, total_fs_loss
+
+                        try:
+                            _, fs_loss_value = self.optimizer.step(
+                                closure=fishershape_closure,
+                                first_grad_ready=True,
+                                clip_grad_norm=(
+                                    args.max_grad_norm
+                                    if args.max_grad_norm is not None
+                                    and args.max_grad_norm > 0
+                                    and not self.deepspeed
+                                    else None
+                                ),
+                            )
+                            fs_step_metrics.update(
+                                dict(getattr(self.optimizer, "last_stats", {}) or {})
+                            )
+                            self._last_fishershape_step_info = fs_step_metrics
+                            if optimizer_family == "gamfishershape":
+                                method_label = (
+                                    "GAMFisherShape-SAM-OLoRA"
+                                    if bool(
+                                        self._shaped_arg(
+                                            "include_olora_regularization",
+                                            False,
+                                        )
+                                    )
+                                    else "GAMFisherShape-SAM"
+                                )
+                            else:
+                                method_label = "FisherShape"
+                            logger.info(
+                                "%s step: probe_loss=%.6f g0=%.3e delta_g=%.3e "
+                                "rF=%.3e cos(g0,rF)=%.3e coeff=%.3e shape/g0=%.3e ewc_loss=%.3e "
+                                "olora_loss=%.3e reg_grad=%.3e reg/fs=%.3e "
+                                "cos(fs,reg)=%.3e gam_probes=%.0f",
+                                method_label,
+                                float(
+                                    fs_loss_value.detach().float().item()
+                                    if torch.is_tensor(fs_loss_value)
+                                    else fs_loss_value
+                                ),
+                                float(fs_step_metrics.get("fs_g0_norm", 0.0)),
+                                float(fs_step_metrics.get("fs_delta_grad_norm", 0.0)),
+                                float(fs_step_metrics.get("fs_rf_norm", 0.0)),
+                                float(fs_step_metrics.get("fs_cos_g0_rf", 0.0)),
+                                float(fs_step_metrics.get("fs_coefficient", 0.0)),
+                                float(
+                                    fs_step_metrics.get(
+                                        "fs_shaping_to_g0_ratio",
+                                        0.0,
+                                    )
+                                ),
+                                float(fs_step_metrics.get("ewc_loss", 0.0)),
+                                float(fs_step_metrics.get("olora_loss", 0.0)),
+                                float(
+                                    fs_step_metrics.get(
+                                        "regularization_grad_norm",
+                                        0.0,
+                                    )
+                                ),
+                                float(
+                                    fs_step_metrics.get(
+                                        "regularization_to_fs_ratio",
+                                        0.0,
+                                    )
+                                ),
+                                float(
+                                    fs_step_metrics.get(
+                                        "cos_fs_regularization",
+                                        0.0,
+                                    )
+                                ),
+                                float(
+                                    fs_step_metrics.get(
+                                        "gamfs_gam_probe_count",
+                                        0.0,
+                                    )
+                                ),
+                            )
+                        finally:
+                            self.optimizer.set_direction_projector(None)
+                            fishershape_accumulated_inputs.clear()
+                            fishershape_accumulated_rng_states.clear()
+
+                    elif gam_optimizer_active:
                         # === GAM Optimizer: multi-step closure-based update ===
                         logger.debug("GAM优化器训练步骤开始")
                         if not gam_accumulated_inputs:
@@ -1831,12 +3347,25 @@ class UIETrainer(Seq2SeqTrainer):
 
                         def gam_closure():
                             self.optimizer.zero_grad()
+                            if self._bf16_gam_batch64_audit_enabled():
+                                audit = self._runtime_audit["gam"]
+                                audit["closure_calls"] += 1
+                                counts = audit["closure_microbatch_counts"]
+                                count = len(gam_accumulated_inputs)
+                                if count not in counts:
+                                    counts.append(count)
+                                    counts.sort()
+                                audit["closures_no_sync"] = audit["closures_no_sync"] and (
+                                    model.require_backward_grad_sync is False)
                             total_gam_loss = self._run_gam_replay_pass(model, gam_accumulated_inputs)
                             return None, total_gam_loss
 
                         if self._is_ewclora_gam_strategy():
                             params = self._flatten_optimizer_params(self.optimizer)
                             ewc_grad_cache = self._compute_ewclora_grad_cache(model, params)
+                            if self._bf16_gam_batch64_audit_enabled():
+                                if self._audit_tensor_l2(ewc_grad_cache.values()) > 0:
+                                    self._runtime_audit["gam"]["ewc_cache_nonzero_steps"] += 1
                             self.optimizer.set_direction_projector(
                                 self._build_ewclora_gam_projector(ewc_grad_cache)
                             )
@@ -1849,6 +3378,13 @@ class UIETrainer(Seq2SeqTrainer):
                                     else None
                                 ),
                             )
+                            if self._bf16_gam_batch64_audit_enabled():
+                                audit = self._runtime_audit["gam"]
+                                audit["optimizer_steps"] += 1
+                                perturbations = [state["e_w_0"] for state in self.optimizer.state.values()
+                                                 if "e_w_0" in state]
+                                norm = self._audit_tensor_l2(perturbations)
+                                audit["perturbation_l2_max"] = max(audit["perturbation_l2_max"], norm)
                         finally:
                             if hasattr(self.optimizer, "set_direction_projector"):
                                 self.optimizer.set_direction_projector(None)
@@ -2205,6 +3741,179 @@ class UIETrainer(Seq2SeqTrainer):
                     args=gam_args,
                     grad_reduce=str(getattr(self.args, "gam_grad_reduce", "mean")),
                 )
+            elif optim_name in self.TWO_POINT_PROBE_OPTIMIZERS:
+                self._validate_two_point_probe_training_configuration()
+                trainable_params = [p for p in self.model.parameters() if p.requires_grad]
+                if not trainable_params:
+                    raise ValueError("Two-point probe found no trainable model parameters.")
+                from transformers import AdamW as HFAdamW
+                base_opt = HFAdamW(
+                    trainable_params, lr=self.args.learning_rate,
+                    betas=(float(self.args.adam_beta1), float(self.args.adam_beta2)),
+                    eps=1e-6, weight_decay=0.0,
+                )
+                self.optimizer = TwoPointProbe(
+                    trainable_params, base_optimizer=base_opt, model=self.model,
+                    mode=str(getattr(self.args, "probe_mode", "reverse")),
+                    radius=float(getattr(self.args, "probe_rho", 0.05)),
+                    eps=float(getattr(self.args, "probe_eps", 1e-12)),
+                    grad_reduce="mean", closure_gradients_reduced=True,
+                    require_fp32_trainable=True,
+                    quantization_diagnostics_interval=getattr(
+                        self.args, "probe_quantization_diagnostics_interval", 0),
+                )
+                logger.info(
+                    "Created TwoPointProbe: mode=%s radius=%s; normalized virtual "
+                    "SGD probe, one HF AdamW commit, no G2/G3/Fisher/projection/history",
+                    self.optimizer.mode, self.optimizer.radius,
+                )
+            elif optim_name in self.THREE_POINT_PROBE_OPTIMIZERS:
+                self._validate_three_point_probe_training_configuration()
+                trainable_params = [p for p in self.model.parameters() if p.requires_grad]
+                if not trainable_params:
+                    raise ValueError("Three-point probe found no trainable model parameters.")
+                from transformers import AdamW as HFAdamW
+                base_opt = HFAdamW(
+                    trainable_params, lr=self.args.learning_rate,
+                    betas=(float(self.args.adam_beta1), float(self.args.adam_beta2)),
+                    eps=1e-6, weight_decay=0.0,
+                )
+                self.optimizer = ThreePointProbe(
+                    trainable_params, base_optimizer=base_opt, model=self.model,
+                    mode=str(getattr(self.args, "probe_mode", "central")),
+                    radius=float(getattr(self.args, "probe_rho", 0.05)),
+                    eps=float(getattr(self.args, "probe_eps", 1e-12)),
+                    grad_reduce="mean", closure_gradients_reduced=True,
+                    require_fp32_trainable=True,
+                    quantization_diagnostics_interval=getattr(
+                        self.args, "probe_quantization_diagnostics_interval", 0),
+                )
+                logger.info(
+                    "Created ThreePointProbe: mode=%s radius=%s; normalized virtual "
+                    "SGD probes at BASE +/- rho N(g0), three CE phases, one HF AdamW "
+                    "commit, no G2/G3/Fisher/projection/history",
+                    self.optimizer.mode, self.optimizer.radius,
+                )
+            elif optim_name in self.G2_OPTIMIZERS:
+                trainable_params = [p for p in self.model.parameters() if p.requires_grad]
+                if not trainable_params:
+                    raise ValueError("G2 found no trainable model parameters.")
+                if optim_name.replace("_", "-") == "g2-sgd":
+                    if float(self.args.weight_decay) != 0.0:
+                        raise ValueError("Faithful G2-SGD requires weight_decay=0.")
+                    base_opt = torch.optim.SGD(
+                        trainable_params, lr=self.args.learning_rate,
+                        momentum=0.0, weight_decay=0.0,
+                    )
+                else:
+                    if "adamw_torch" in optim_name:
+                        base_class = torch.optim.AdamW
+                    else:
+                        from transformers import AdamW as base_class
+                    base_opt = base_class(
+                        trainable_params, lr=self.args.learning_rate,
+                        betas=(float(self.args.adam_beta1), float(self.args.adam_beta2)),
+                        eps=float(self.args.adam_epsilon),
+                        weight_decay=float(self.args.weight_decay),
+                    )
+                self.optimizer = CurrentG2(
+                    trainable_params, base_optimizer=base_opt, model=self.model,
+                    inner_radius_mode=str(getattr(self.args, "g2_inner_radius_mode", "sgd_step")),
+                    outer_radius_mode=str(getattr(self.args, "g2_outer_radius_mode", "sgd_step")),
+                    inner_radius=getattr(self.args, "g2_inner_radius", None),
+                    outer_radius=getattr(self.args, "g2_outer_radius", None),
+                    eps=float(getattr(self.args, "g2_xi", 1e-12)),
+                    grad_reduce=str(getattr(self.args, "g2_grad_reduce", "mean")),
+                    require_fp32_trainable=True,
+                    closure_gradients_reduced=True,
+                    quantization_diagnostics_interval=getattr(
+                        self.args, "g2_quantization_diagnostics_interval", 0),
+                )
+                logger.info(
+                    "Created Current-G2: backend=%s inner=%s/%s outer=%s/%s; "
+                    "three CE reads, descent first probe, final gradient=g2, no history",
+                    base_opt.__class__.__module__ + "." + base_opt.__class__.__name__,
+                    self.args.g2_inner_radius_mode, self.args.g2_inner_radius,
+                    self.args.g2_outer_radius_mode, self.args.g2_outer_radius,
+                )
+            elif optim_name in self.GAMFISHERSHAPE_OPTIMIZERS:
+                trainable_params = [
+                    param for param in self.model.parameters() if param.requires_grad
+                ]
+                if not trainable_params:
+                    raise ValueError(
+                        "GAMFisherShape-SAM found no trainable model parameters."
+                    )
+                base_opt = torch.optim.AdamW(
+                    trainable_params,
+                    lr=self.args.learning_rate,
+                    betas=(
+                        float(getattr(self.args, "adam_beta1", 0.9)),
+                        float(getattr(self.args, "adam_beta2", 0.999)),
+                    ),
+                    eps=float(getattr(self.args, "adam_epsilon", 1e-8)),
+                    weight_decay=float(getattr(self.args, "weight_decay", 0.0)),
+                )
+                self.optimizer = GAMFisherShapeSAM(
+                    trainable_params,
+                    base_optimizer=base_opt,
+                    model=self.model,
+                    rho=float(getattr(self.args, "gamfs_rho", 0.05)),
+                    mode=str(getattr(self.args, "gamfs_mode", "sam")),
+                    adaptive=bool(getattr(self.args, "gamfs_adaptive", False)),
+                    perturb_eps=float(getattr(self.args, "gamfs_xi", 1e-12)),
+                    grad_reduce=str(
+                        getattr(self.args, "gamfs_grad_reduce", "mean")
+                    ),
+                )
+                logger.info(
+                    "Created GAMFisherShape-SAM AdamW: mode=%s rho=%s "
+                    "adaptive=%s; GAM four-probe path disabled",
+                    self.args.gamfs_mode,
+                    self.args.gamfs_rho,
+                    self.args.gamfs_adaptive,
+                )
+            elif optim_name == "fishershape-adamw_hf":
+                trainable_params = [
+                    param for param in self.model.parameters() if param.requires_grad
+                ]
+                if not trainable_params:
+                    raise ValueError("FisherShape found no trainable model parameters.")
+                # torch.optim.AdamW remains available across Transformers
+                # versions, including releases that removed transformers.AdamW.
+                base_opt = torch.optim.AdamW(
+                    trainable_params,
+                    lr=self.args.learning_rate,
+                    betas=(
+                        float(getattr(self.args, "adam_beta1", 0.9)),
+                        float(getattr(self.args, "adam_beta2", 0.999)),
+                    ),
+                    eps=float(getattr(self.args, "adam_epsilon", 1e-8)),
+                    weight_decay=float(getattr(self.args, "weight_decay", 0.0)),
+                )
+                self.optimizer = FisherShape(
+                    trainable_params,
+                    base_optimizer=base_opt,
+                    model=self.model,
+                    rho=float(getattr(self.args, "fs_rho", 0.05)),
+                    alpha=float(getattr(self.args, "fs_alpha", 0.2)),
+                    alpha_mode=str(getattr(self.args, "fs_alpha_mode", "ratio")),
+                    sam_equivalent=bool(
+                        getattr(self.args, "fs_sam_equivalent", False)
+                    ),
+                    adaptive=bool(getattr(self.args, "fs_adaptive", False)),
+                    perturb_eps=float(getattr(self.args, "fs_xi", 1e-12)),
+                    grad_reduce=str(getattr(self.args, "fs_grad_reduce", "mean")),
+                )
+                logger.info(
+                    "Created FisherShape-AdamW: rho=%s alpha=%s alpha_mode=%s "
+                    "sam_equivalent=%s adaptive=%s",
+                    self.args.fs_rho,
+                    self.args.fs_alpha,
+                    self.args.fs_alpha_mode,
+                    self.args.fs_sam_equivalent,
+                    self.args.fs_adaptive,
+                )
             elif optim_name == "rwp-adamw_hf":
                 # RWP wrapping AdamW — single-class convenience variant
                 self.optimizer = RWPAdamW(
@@ -2239,7 +3948,8 @@ class UIETrainer(Seq2SeqTrainer):
             from transformers.optimization import get_constant_schedule
             self.lr_scheduler = get_constant_schedule(
                 self.optimizer.base_optimizer)
-        elif 'gam' in optim_name:
+        elif ('gam' in optim_name or 'fishershape' in optim_name
+              or optim_name in self.G2_OPTIMIZERS or optim_name in self.TWO_POINT_PROBE_OPTIMIZERS):
             from transformers.optimization import get_constant_schedule
             self.lr_scheduler = get_constant_schedule(self.optimizer.base_optimizer)
         else:
@@ -2253,27 +3963,7 @@ class UIETrainer(Seq2SeqTrainer):
 
         strategy = self.args.lora_strategy.lower()
         if strategy == "olora":
-            orthogonal_loss = 0.
-            for name, param in model.named_parameters():
-                if "lora_A" in name:
-                    for name_, param_ in model.named_parameters():
-                        if "loranew_A" in name_ and name.split("lora_A")[0] == name_.split("loranew_A")[0]:
-                            orthogonal_loss += torch.abs(torch.mm(param, param_.T)).sum()
-                            break
-
-            l2_loss = 0.
-            for name, param in model.named_parameters():
-                if "loranew_" in name:
-                    l2_loss += torch.norm(param, p=2)
-
-            lamda_1 = self.args.olora_lamda_1
-            lamda_2 = self.args.olora_lamda_2
-            logger.info(
-                f"{log_prefix}orthogonal_loss: {orthogonal_loss.item():.4f}; "
-                f"l2_loss: {l2_loss.item():.4f}; accuracy_loss: {loss.item():.4f}; "
-                f"λ1: {lamda_1}; λ2: {lamda_2}"
-            )
-            loss = loss + orthogonal_loss * lamda_1 + l2_loss * lamda_2
+            loss = self._apply_olora_regularization(model, loss, log_prefix=log_prefix)
         elif strategy == "nlora":
             l1_loss = 0.
             loranew_A_params = {}
@@ -2294,13 +3984,36 @@ class UIETrainer(Seq2SeqTrainer):
         elif strategy == "inclora":
             logger.debug(f"{log_prefix}inclora accuracy_loss: {loss.item():.4f}")
         elif strategy in self.EWCLORA_STRATEGIES:
+            if self._bf16_gam_batch64_audit_enabled():
+                # Recover historical ewclora_gam's CE-only replay. Zero OLoRA
+                # flags are asserted by the opt-in runtime protocol above;
+                # clean-point EWC is injected once by the direction projector.
+                return loss
+            if self._is_fishershape_ewclora_strategy():
+                # The actual FS update replays this accumulation window twice
+                # with CE only. EWC and optional OLoRA gradients are evaluated
+                # once at the clean point and injected after direction compose.
+                logger.debug(
+                    "%sFisherShape-EWCLoRA defers EWC/OLoRA to its clean-point additive projector.",
+                    log_prefix,
+                )
+                return loss
+            loss = self._apply_olora_regularization(
+                model,
+                loss,
+                log_prefix=log_prefix,
+                label="EWCLoRA OLoRA-base",
+            )
             if self._is_ewclora_gam_strategy() and "gam" in str(getattr(self.args, "optimizer_type", "")).lower():
-                logger.debug(f"{log_prefix}ewclora_gam uses projected EWC gradient outside the GAM CE closure.")
+                logger.info(
+                    f"{log_prefix}EWCLoRA-GAM uses OLoRA-base loss here and projected EWC gradient "
+                    f"outside the GAM closure; ewc_lambda: {self.args.ewclora_lambda}"
+                )
             else:
                 ewc_loss = self._compute_ewclora_loss(model)
                 logger.info(
                     f"{log_prefix}EWCLoRA ewc_loss: {ewc_loss.item():.4f}; "
-                    f"accuracy_loss: {loss.item():.4f}; lambda: {self.args.ewclora_lambda}"
+                    f"olora_base_loss: {loss.item():.4f}; lambda: {self.args.ewclora_lambda}"
                 )
                 loss = loss + ewc_loss
         elif strategy == "seqlora":
@@ -2420,6 +4133,668 @@ class UIETrainer(Seq2SeqTrainer):
             self.current_flos += float(self.floating_point_ops(local_inputs))
 
         return total_gam_loss
+
+    def _capture_fishershape_rng_state(self):
+        """Capture the local RNG streams used by model dropout on this rank."""
+
+        state = {"cpu": torch.get_rng_state().clone()}
+        device = getattr(self.args, "device", None)
+        if (
+            torch.cuda.is_available()
+            and device is not None
+            and torch.device(device).type == "cuda"
+        ):
+            device_index = torch.device(device).index
+            if device_index is None:
+                device_index = torch.cuda.current_device()
+            state["cuda_device"] = int(device_index)
+            state["cuda"] = torch.cuda.get_rng_state(device_index).clone()
+        return state
+
+    @contextmanager
+    def _fishershape_rng_replay_context(self, state):
+        """Temporarily restore a clean-pass RNG state without rewinding training."""
+
+        if state is None:
+            yield
+            return
+        devices = []
+        if "cuda" in state:
+            devices.append(int(state["cuda_device"]))
+        with torch.random.fork_rng(devices=devices, enabled=True):
+            torch.set_rng_state(state["cpu"])
+            if "cuda" in state:
+                torch.cuda.set_rng_state(
+                    state["cuda"],
+                    device=int(state["cuda_device"]),
+                )
+            yield
+
+    def _run_fishershape_replay_pass(
+        self,
+        model,
+        fishershape_micro_batches,
+        fishershape_rng_states=None,
+    ):
+        """Replay one effective batch using the task CE only.
+
+        EWC and the optional OLoRA-base term are deliberately absent here.
+        Their clean-point gradients are added after the two-pass FisherShape
+        direction has been composed.
+        """
+
+        if not fishershape_micro_batches:
+            raise RuntimeError(
+                "FisherShape replay requires the cached micro-batches from the "
+                "current accumulation window."
+            )
+        if fishershape_rng_states is None:
+            fishershape_rng_states = [None] * len(fishershape_micro_batches)
+        if len(fishershape_rng_states) != len(fishershape_micro_batches):
+            raise ValueError(
+                "FisherShape RNG-state count must match the cached micro-batch count."
+            )
+
+        model.train()
+        total_loss = None
+        accumulation_denominator = float(len(fishershape_micro_batches))
+        use_no_sync = (
+            self.args.local_rank != -1
+            and self.args._no_sync_in_gradient_accumulation
+            and hasattr(model, "no_sync")
+        )
+        for micro_step, (micro_inputs, rng_state) in enumerate(
+            zip(fishershape_micro_batches, fishershape_rng_states)
+        ):
+            should_sync = (not use_no_sync) or (
+                micro_step == len(fishershape_micro_batches) - 1
+            )
+            sync_context = nullcontext() if should_sync else model.no_sync()
+            with sync_context, self._fishershape_rng_replay_context(rng_state):
+                local_inputs = self._prepare_inputs(micro_inputs)
+                with self.compute_loss_context_manager():
+                    loss = self.compute_loss(model, local_inputs)
+                if self.args.n_gpu > 1:
+                    loss = loss.mean()
+                if accumulation_denominator > 1.0 and not self.deepspeed:
+                    loss = loss / accumulation_denominator
+                total_loss = (
+                    loss.detach()
+                    if total_loss is None
+                    else total_loss + loss.detach()
+                )
+                self._backward_loss(loss)
+                self.current_flos += float(self.floating_point_ops(local_inputs))
+        return total_loss
+
+    @staticmethod
+    def _g2_mean_reduce_gradients(params):
+        """Average one complete probe window exactly once across DDP ranks.
+
+        Presence is collective too: rank-specific unused parameters must not
+        make ranks enter different all-reduce sequences.
+        """
+
+        if not torch.distributed.is_available() or not torch.distributed.is_initialized():
+            return
+        world_size = torch.distributed.get_world_size()
+        if world_size == 1:
+            return
+        for param in params:
+            present = torch.tensor(
+                0 if param.grad is None else 1, device=param.device, dtype=torch.int32,
+            )
+            torch.distributed.all_reduce(present, op=torch.distributed.ReduceOp.SUM)
+            if int(present.item()) == 0:
+                continue
+            if param.grad is None:
+                param.grad = torch.zeros_like(param)
+            torch.distributed.all_reduce(param.grad, op=torch.distributed.ReduceOp.SUM)
+            param.grad.div_(float(world_size))
+
+    def _capture_g2_rng_state(self):
+        state = self._capture_fishershape_rng_state()
+        state["python"] = random.getstate()
+        state["numpy"] = np.random.get_state()
+        return state
+
+    @contextmanager
+    def _g2_rng_replay_context(self, state):
+        python_after_clean = random.getstate()
+        numpy_after_clean = np.random.get_state()
+        try:
+            random.setstate(state["python"])
+            np.random.set_state(state["numpy"])
+            with self._fishershape_rng_replay_context(state):
+                yield
+        finally:
+            random.setstate(python_after_clean)
+            np.random.set_state(numpy_after_clean)
+
+    def _run_g2_replay_pass(self, model, micro_batches, rng_states):
+        """CE-only replay with all local backward calls under no_sync.
+
+        Each micro-batch uses its clean-pass dropout RNG state.  The context
+        restores the post-clean RNG afterward, so only BASE advances training.
+        """
+
+        if not micro_batches or len(micro_batches) != len(rng_states):
+            raise ValueError("G2 requires one RNG state per cached micro-batch.")
+        if any(state is None for state in rng_states):
+            raise ValueError("G2 cannot replay a probe without a clean-pass RNG state.")
+        total_loss = None
+        model.train()
+        for inputs, rng_state in zip(micro_batches, rng_states):
+            sync_context = model.no_sync() if hasattr(model, "no_sync") else nullcontext()
+            with sync_context, self._g2_rng_replay_context(rng_state):
+                local_inputs = self._prepare_inputs(inputs)
+                with self.compute_loss_context_manager():
+                    loss = self.compute_loss(model, local_inputs)
+                if self.args.n_gpu > 1:
+                    loss = loss.mean()
+                loss = loss / float(len(micro_batches))
+                self._backward_loss(loss)
+                total_loss = loss.detach() if total_loss is None else total_loss + loss.detach()
+                self.current_flos += float(self.floating_point_ops(local_inputs))
+        self._g2_mean_reduce_gradients(self._flatten_optimizer_params(self.optimizer))
+        return total_loss
+
+    def _run_g2_optimizer_window(self, model, micro_batches, rng_states):
+        """Commit pure task gradient g2 at BASE without regularization."""
+
+        if not micro_batches:
+            raise RuntimeError("G2 accumulation window is empty.")
+        params = self._flatten_optimizer_params(self.optimizer)
+        actual_window_size = len(micro_batches)
+        configured_ga = int(self.args.gradient_accumulation_steps)
+        if actual_window_size > configured_ga:
+            raise RuntimeError("G2 accumulation window exceeds configured GA.")
+        if actual_window_size < configured_ga:
+            with torch.no_grad():
+                for param in params:
+                    if param.grad is not None:
+                        param.grad.mul_(float(configured_ga) / float(actual_window_size))
+        metrics = {"ewc_loss": 0.0, "olora_loss": 0.0}
+
+        def closure():
+            self.optimizer.zero_grad(set_to_none=True)
+            return None, self._run_g2_replay_pass(model, micro_batches, rng_states)
+
+        try:
+            _, probe_loss = self.optimizer.step(
+                closure=closure, first_grad_ready=True,
+                clip_grad_norm=(
+                    self.args.max_grad_norm
+                    if self.args.max_grad_norm is not None and self.args.max_grad_norm > 0
+                    else None
+                ),
+            )
+            metrics.update(dict(getattr(self.optimizer, "last_stats", {}) or {}))
+            metrics.update({
+                "schema": "CurrentG2TrainerStep_v1",
+                "step": int(self.state.global_step) + 1,
+                "actual_micro_batches": actual_window_size,
+                "configured_gradient_accumulation_steps": configured_ga,
+                "effective_window_mean_denominator": actual_window_size,
+                "tail_gradient_rescale": float(configured_ga) / actual_window_size,
+                "world_size": int(getattr(self.args, "world_size", 1)),
+                "replay_rng_state": True,
+                "replay_ddp_no_sync_all_micro_batches": True,
+                "replay_reduction": "explicit_global_mean_once_per_probe",
+                "clean_gradient_reduction": "native_ddp_mean",
+                "strategy": self._lora_strategy(),
+                "clean_regularization_enabled": False,
+                "history_enabled": False,
+                "configured_clip_grad_norm": float(self.args.max_grad_norm or 0),
+                "base_optimizer": (
+                    self.optimizer.base_optimizer.__class__.__module__ + "."
+                    + self.optimizer.base_optimizer.__class__.__name__
+                ),
+                "probe_loss": (
+                    None if probe_loss is None else float(
+                        probe_loss.detach().float().item()
+                        if torch.is_tensor(probe_loss) else probe_loss
+                    )
+                ),
+            })
+            self._last_g2_step_info = metrics
+            logger.info("Current-G2 step: %s", json.dumps(metrics, sort_keys=True))
+            if int(getattr(self.args, "process_index", 0)) == 0:
+                os.makedirs(self.args.output_dir, exist_ok=True)
+                with open(os.path.join(self.args.output_dir, "g2_step_trace.jsonl"), "a") as handle:
+                    handle.write(json.dumps(metrics, sort_keys=True, allow_nan=False) + "\n")
+        finally:
+            micro_batches.clear()
+            rng_states.clear()
+
+    def finish_g2_training_audit(self):
+        """Verify completed pure-G2 update receipts on the single writer."""
+
+        if self._optimizer_family(getattr(self.args, "optimizer_type", "")) != "g2":
+            return None
+        if not self.is_world_process_zero():
+            return None
+        path = os.path.join(self.args.output_dir, "g2_step_trace.jsonl")
+        with open(path) as handle:
+            rows = [json.loads(line) for line in handle if line.strip()]
+        expected = int(self.state.global_step)
+        if len(rows) != expected or [row["step"] for row in rows] != list(range(1, expected + 1)):
+            raise RuntimeError("G2 completed trace does not match the actual Trainer update budget.")
+        fallback_counts = {}
+        normal_three_read_steps = 0
+        for row in rows:
+            if not (
+                row["strategy"] == "inclora"
+                and row["g2_restore_base_exact"]
+                and row["g2_base_optimizer_steps"] == 1
+                and row["g2_core_explicit_mean_reductions"] == 0
+                and not row["g2_regularization_hook_used"]
+                and not row["clean_regularization_enabled"]
+                and not row["g2_history_used"]
+                and row["g2_fisher_probe_calls"] == 0
+                and row["g2_projection_calls"] == 0
+                and row["g2_hvp_calls"] == 0
+                and row["replay_rng_state"]
+                and row["replay_ddp_no_sync_all_micro_batches"]
+            ):
+                raise RuntimeError("G2 pure-method execution audit failed.")
+            reason = row["g2_fallback_reason"]
+            if reason is None:
+                if row["g2_ce_gradient_phases"] != 3 or row["g2_final_direction"] != "g2":
+                    raise RuntimeError("Non-degenerate G2 must execute three CE phases and submit g2.")
+                normal_three_read_steps += 1
+            else:
+                if row["g2_ce_gradient_phases"] not in {1, 2} or row["g2_final_direction"] != "g0_fallback":
+                    raise RuntimeError("G2 fallback must be explicit and submit the clean gradient.")
+                fallback_counts[reason] = fallback_counts.get(reason, 0) + 1
+        trainables = [p for p in self.model.parameters() if p.requires_grad]
+        if any(p.dtype != torch.float32 for p in trainables) or self.ewclora_omega:
+            raise RuntimeError("Pure G2 requires FP32 trainable adapters and no Fisher state.")
+        with open(path, "rb") as handle:
+            trace_hash = hashlib.sha256(handle.read()).hexdigest()
+        groups = [
+            {key: value for key, value in group.items()
+             if key in {"lr", "betas", "eps", "weight_decay", "momentum", "dampening", "nesterov"}}
+            for group in self.optimizer.base_optimizer.param_groups
+        ]
+        audit = {
+            "schema": "CurrentG2TrainerAudit_v1", "status": "passed",
+            "global_step": expected, "num_records": len(rows),
+            "normal_three_read_steps": normal_three_read_steps,
+            "fallback_steps": expected - normal_three_read_steps,
+            "fallback_counts": fallback_counts,
+            "tail_windows": sum(row["tail_gradient_rescale"] != 1.0 for row in rows),
+            "trainable_precision": "torch.float32",
+            "trainable_elements": sum(p.numel() for p in trainables),
+            "bf16_forward": bool(getattr(self.args, "bf16", False)),
+            "base_optimizer": rows[0]["base_optimizer"] if rows else None,
+            "base_optimizer_param_groups": groups,
+            "strategy": "inclora", "fisher_state_entries": 0,
+            "regularization_enabled": False, "history_enabled": False,
+            "projection_enabled": False, "trace_file": path, "trace_sha256": trace_hash,
+            "actual_micro_batch_counts": sorted({row["actual_micro_batches"] for row in rows}),
+            "world_size": int(getattr(self.args, "world_size", 1)),
+            "decoder_pipeline_version": getattr(
+                getattr(self, "data_collator", None), "decoder_pipeline_version", None,
+            ),
+            "g2_quantization_diagnostics_interval": getattr(
+                self.optimizer, "quantization_diagnostics_interval", 0,
+            ),
+        }
+        audit_path = os.path.join(self.args.output_dir, "g2_runtime_audit.json")
+        with open(audit_path, "w") as handle:
+            json.dump(audit, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        return audit
+
+    @staticmethod
+    def _two_point_probe_tensor_hash(values):
+        """Hash tensor contents without changing RNG; used only on step one."""
+
+        digest = hashlib.sha256()
+        for name, value in values:
+            digest.update(str(name).encode("utf-8"))
+            if value is None:
+                digest.update(b"none")
+                continue
+            tensor = value.detach().cpu().contiguous()
+            digest.update(str(tensor.dtype).encode("ascii"))
+            digest.update(str(tuple(tensor.shape)).encode("ascii"))
+            digest.update(tensor.reshape(-1).view(torch.uint8).numpy().tobytes())
+        return digest.hexdigest()
+
+    def _run_two_point_probe_optimizer_window(self, model, micro_batches, rng_states):
+        """Restore BASE, clip once and submit the selected direction to HF AdamW."""
+
+        if not micro_batches or len(micro_batches) != len(rng_states):
+            raise RuntimeError("Two-point probe requires a complete cached effective window.")
+        params = self._flatten_optimizer_params(self.optimizer)
+        actual_window_size = len(micro_batches)
+        configured_ga = int(self.args.gradient_accumulation_steps)
+        if actual_window_size > configured_ga:
+            raise RuntimeError("Two-point probe accumulation window exceeds configured GA.")
+        if actual_window_size < configured_ga:
+            with torch.no_grad():
+                for param in params:
+                    if param.grad is not None:
+                        param.grad.mul_(float(configured_ga) / actual_window_size)
+        metrics = {"ewc_loss": 0.0, "olora_loss": 0.0}
+        if int(self.state.global_step) == 0:
+            metrics["initial_trainable_sha256"] = self._two_point_probe_tensor_hash(
+                [(index, param) for index, param in enumerate(params)])
+            metrics["clean_gradient_sha256"] = self._two_point_probe_tensor_hash(
+                [(index, param.grad) for index, param in enumerate(params)])
+            batch_tensors = []
+            for index, batch in enumerate(micro_batches):
+                for key in sorted(batch):
+                    if torch.is_tensor(batch[key]):
+                        batch_tensors.append((f"{index}:{key}", batch[key]))
+            metrics["first_window_batch_sha256"] = self._two_point_probe_tensor_hash(batch_tensors)
+
+        def closure():
+            self.optimizer.zero_grad(set_to_none=True)
+            return None, self._run_g2_replay_pass(model, micro_batches, rng_states)
+
+        try:
+            _, probe_loss = self.optimizer.step(
+                closure=closure, first_grad_ready=True,
+                clip_grad_norm=(self.args.max_grad_norm
+                                if self.args.max_grad_norm is not None and self.args.max_grad_norm > 0
+                                else None),
+            )
+            metrics.update(dict(self.optimizer.last_stats))
+            metrics.update({
+                "schema": "TwoPointProbeTrainerStep_v1",
+                "step": int(self.state.global_step) + 1,
+                "mode": self.optimizer.mode,
+                "radius": self.optimizer.radius,
+                "actual_micro_batches": actual_window_size,
+                "configured_gradient_accumulation_steps": configured_ga,
+                "effective_window_mean_denominator": actual_window_size,
+                "tail_gradient_rescale": float(configured_ga) / actual_window_size,
+                "world_size": int(getattr(self.args, "world_size", 1)),
+                "replay_rng_state": True,
+                "replay_rng_state_used": metrics.get("probe_replay_closure_calls", 0) > 0,
+                "replay_ddp_no_sync_all_micro_batches": True,
+                "replay_reduction": "explicit_global_mean_once_per_probe",
+                "clean_gradient_reduction": "native_ddp_mean",
+                "strategy": self._lora_strategy(),
+                "clean_regularization_enabled": False,
+                "history_enabled": False,
+                "configured_clip_grad_norm": float(self.args.max_grad_norm or 0),
+                "base_optimizer": (self.optimizer.base_optimizer.__class__.__module__ + "."
+                                   + self.optimizer.base_optimizer.__class__.__name__),
+                "probe_loss": (None if probe_loss is None else float(
+                    probe_loss.detach().float().item() if torch.is_tensor(probe_loss) else probe_loss)),
+            })
+            self._last_two_point_probe_step_info = metrics
+            logger.info("TwoPointProbe step: %s", json.dumps(metrics, sort_keys=True))
+            if int(getattr(self.args, "process_index", 0)) == 0:
+                os.makedirs(self.args.output_dir, exist_ok=True)
+                path = os.path.join(self.args.output_dir, "probe_step_trace.jsonl")
+                with open(path, "a") as handle:
+                    handle.write(json.dumps(metrics, sort_keys=True, allow_nan=False) + "\n")
+        finally:
+            micro_batches.clear()
+            rng_states.clear()
+
+    def finish_two_point_probe_training_audit(self):
+        """Validate final update receipts without mixing legacy SAM or G2 paths."""
+
+        if self._optimizer_family(getattr(self.args, "optimizer_type", "")) != "two_point_probe":
+            return None
+        if not self.is_world_process_zero():
+            return None
+        trace_path = os.path.join(self.args.output_dir, "probe_step_trace.jsonl")
+        with open(trace_path) as handle:
+            rows = [json.loads(line) for line in handle if line.strip()]
+        expected = int(self.state.global_step)
+        if len(rows) != expected or [row["step"] for row in rows] != list(range(1, expected + 1)):
+            raise RuntimeError("Two-point probe trace does not match the Trainer update budget.")
+        mode = self.optimizer.mode
+        expected_phases = 1 if mode == "sgd" else 2
+        expected_replays = expected_phases - 1
+        expected_direction = {"reverse": "2g0_minus_g1_descent", "sam": "g1_ascent", "sgd": "g0"}[mode]
+        fallback_counts = {}
+        for row in rows:
+            if not (row["mode"] == mode and row["probe_mode"] == mode
+                    and row["strategy"] == "inclora"
+                    and row["probe_restore_base_exact"]
+                    and row["probe_base_optimizer_steps"] == 1
+                    and row["probe_core_explicit_mean_reductions"] == 0
+                    and not row["probe_regularization_hook_used"]
+                    and not row["clean_regularization_enabled"]
+                    and not row["probe_history_used"]
+                    and row["probe_fisher_probe_calls"] == 0
+                    and row["probe_projection_calls"] == 0
+                    and row["probe_hvp_calls"] == 0
+                    and row["probe_g2_calls"] == 0 and row["probe_g3_calls"] == 0
+                    and row["replay_rng_state"]
+                    and row["replay_ddp_no_sync_all_micro_batches"]
+                    and row["base_optimizer"] == "transformers.optimization.AdamW"):
+                raise RuntimeError("Two-point probe pure-method audit failed.")
+            reason = row["probe_fallback_reason"]
+            if reason is None:
+                if (row["probe_ce_gradient_phases"] != expected_phases
+                        or row["probe_replay_closure_calls"] != expected_replays
+                        or row["probe_final_direction"] != expected_direction):
+                    raise RuntimeError("Two-point probe phase/direction audit failed.")
+            else:
+                if (row["probe_ce_gradient_phases"] not in {1, 2}
+                        or row["probe_final_direction"] != "g0_fallback"):
+                    raise RuntimeError("Two-point probe fallback must explicitly submit g0.")
+                fallback_counts[reason] = fallback_counts.get(reason, 0) + 1
+        trainables = [p for p in self.model.parameters() if p.requires_grad]
+        if any(p.dtype != torch.float32 for p in trainables) or self.ewclora_omega:
+            raise RuntimeError("Two-point probes require FP32 trainables and no Fisher state.")
+        groups = [{key: value for key, value in group.items()
+                   if key in {"lr", "betas", "eps", "weight_decay"}}
+                  for group in self.optimizer.base_optimizer.param_groups]
+        if any(group["eps"] != 1e-6 or group["weight_decay"] != 0 for group in groups):
+            raise RuntimeError("Two-point probes changed the fixed HF AdamW epsilon or decay.")
+        with open(trace_path, "rb") as handle:
+            trace_hash = hashlib.sha256(handle.read()).hexdigest()
+        fallback_steps = sum(fallback_counts.values())
+        audit = {
+            "schema": "TwoPointProbeTrainerAudit_v1", "status": "passed",
+            "global_step": expected, "num_records": len(rows),
+            "mode": mode, "radius": self.optimizer.radius,
+            "ce_gradient_phases": expected_phases,
+            "replay_closure_calls": expected_replays,
+            "normal_steps": expected - fallback_steps,
+            "fallback_steps": fallback_steps, "fallback_counts": fallback_counts,
+            "total_ce_gradient_phases": sum(row["probe_ce_gradient_phases"] for row in rows),
+            "total_replay_closure_calls": sum(row["probe_replay_closure_calls"] for row in rows),
+            "total_base_optimizer_steps": sum(row["probe_base_optimizer_steps"] for row in rows),
+            "tail_windows": sum(row["tail_gradient_rescale"] != 1.0 for row in rows),
+            "trainable_precision": "torch.float32",
+            "trainable_elements": sum(p.numel() for p in trainables),
+            "bf16_forward": bool(getattr(self.args, "bf16", False)),
+            "base_optimizer": "transformers.optimization.AdamW",
+            "base_optimizer_param_groups": groups,
+            "strategy": "inclora", "fisher_state_entries": 0,
+            "regularization_enabled": False, "history_enabled": False,
+            "projection_enabled": False, "g2_enabled": False, "g3_enabled": False,
+            "trace_file": trace_path, "trace_sha256": trace_hash,
+            "actual_micro_batch_counts": sorted({row["actual_micro_batches"] for row in rows}),
+            "world_size": int(getattr(self.args, "world_size", 1)),
+            "decoder_pipeline_version": getattr(self.data_collator, "decoder_pipeline_version", None),
+            "probe_quantization_diagnostics_interval": self.optimizer.quantization_diagnostics_interval,
+        }
+        for key in ("initial_trainable_sha256", "clean_gradient_sha256", "first_window_batch_sha256"):
+            audit[key] = rows[0].get(key) if rows else None
+        path = os.path.join(self.args.output_dir, "two_point_probe_training_audit.json")
+        with open(path, "w") as handle:
+            json.dump(audit, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        return audit
+
+    def _run_three_point_probe_optimizer_window(self, model, micro_batches, rng_states):
+        """Restore BASE, clip once and submit the selected direction to HF AdamW."""
+
+        if not micro_batches or len(micro_batches) != len(rng_states):
+            raise RuntimeError("Three-point probe requires a complete cached effective window.")
+        params = self._flatten_optimizer_params(self.optimizer)
+        actual_window_size = len(micro_batches)
+        configured_ga = int(self.args.gradient_accumulation_steps)
+        if actual_window_size > configured_ga:
+            raise RuntimeError("Three-point probe accumulation window exceeds configured GA.")
+        if actual_window_size < configured_ga:
+            with torch.no_grad():
+                for param in params:
+                    if param.grad is not None:
+                        param.grad.mul_(float(configured_ga) / actual_window_size)
+        metrics = {"ewc_loss": 0.0, "olora_loss": 0.0}
+        if int(self.state.global_step) == 0:
+            metrics["initial_trainable_sha256"] = self._two_point_probe_tensor_hash(
+                [(index, param) for index, param in enumerate(params)])
+            metrics["clean_gradient_sha256"] = self._two_point_probe_tensor_hash(
+                [(index, param.grad) for index, param in enumerate(params)])
+            batch_tensors = []
+            for index, batch in enumerate(micro_batches):
+                for key in sorted(batch):
+                    if torch.is_tensor(batch[key]):
+                        batch_tensors.append((f"{index}:{key}", batch[key]))
+            metrics["first_window_batch_sha256"] = self._two_point_probe_tensor_hash(batch_tensors)
+
+        def closure():
+            self.optimizer.zero_grad(set_to_none=True)
+            return None, self._run_g2_replay_pass(model, micro_batches, rng_states)
+
+        try:
+            _, probe_loss = self.optimizer.step(
+                closure=closure, first_grad_ready=True,
+                clip_grad_norm=(self.args.max_grad_norm
+                                if self.args.max_grad_norm is not None and self.args.max_grad_norm > 0
+                                else None),
+            )
+            metrics.update(dict(self.optimizer.last_stats))
+            metrics.update({
+                "schema": "ThreePointProbeTrainerStep_v1",
+                "step": int(self.state.global_step) + 1,
+                "mode": self.optimizer.mode,
+                "radius": self.optimizer.radius,
+                "actual_micro_batches": actual_window_size,
+                "configured_gradient_accumulation_steps": configured_ga,
+                "effective_window_mean_denominator": actual_window_size,
+                "tail_gradient_rescale": float(configured_ga) / actual_window_size,
+                "world_size": int(getattr(self.args, "world_size", 1)),
+                "replay_rng_state": True,
+                "replay_rng_state_used": metrics.get("probe_replay_closure_calls", 0) > 0,
+                "replay_ddp_no_sync_all_micro_batches": True,
+                "replay_reduction": "explicit_global_mean_once_per_probe",
+                "clean_gradient_reduction": "native_ddp_mean",
+                "strategy": self._lora_strategy(),
+                "clean_regularization_enabled": False,
+                "history_enabled": False,
+                "configured_clip_grad_norm": float(self.args.max_grad_norm or 0),
+                "base_optimizer": (self.optimizer.base_optimizer.__class__.__module__ + "."
+                                   + self.optimizer.base_optimizer.__class__.__name__),
+                "probe_loss": (None if probe_loss is None else float(
+                    probe_loss.detach().float().item() if torch.is_tensor(probe_loss) else probe_loss)),
+            })
+            self._last_three_point_probe_step_info = metrics
+            logger.info("ThreePointProbe step: %s", json.dumps(metrics, sort_keys=True))
+            if int(getattr(self.args, "process_index", 0)) == 0:
+                os.makedirs(self.args.output_dir, exist_ok=True)
+                path = os.path.join(self.args.output_dir, "three_point_probe_step_trace.jsonl")
+                with open(path, "a") as handle:
+                    handle.write(json.dumps(metrics, sort_keys=True, allow_nan=False) + "\n")
+        finally:
+            micro_batches.clear()
+            rng_states.clear()
+
+    def finish_three_point_probe_training_audit(self):
+        """Validate final update receipts without mixing legacy SAM or G2 paths."""
+
+        if self._optimizer_family(getattr(self.args, "optimizer_type", "")) != "three_point_probe":
+            return None
+        if not self.is_world_process_zero():
+            return None
+        trace_path = os.path.join(self.args.output_dir, "three_point_probe_step_trace.jsonl")
+        with open(trace_path) as handle:
+            rows = [json.loads(line) for line in handle if line.strip()]
+        expected = int(self.state.global_step)
+        if len(rows) != expected or [row["step"] for row in rows] != list(range(1, expected + 1)):
+            raise RuntimeError("Three-point probe trace does not match the Trainer update budget.")
+        mode = self.optimizer.mode
+        expected_phases = 3
+        expected_replays = expected_phases - 1
+        expected_direction = {"g1_plus": "gplus",
+                              "backward_reflected": "2g0_minus_gminus",
+                              "central": "g0_plus_half_gplus_minus_gminus", "g0": "g0"}[mode]
+        fallback_counts = {}
+        for row in rows:
+            if not (row["mode"] == mode and row["probe_mode"] == mode
+                    and row["strategy"] == "inclora"
+                    and row["probe_restore_base_exact"]
+                    and row["probe_base_optimizer_steps"] == 1
+                    and row["probe_core_explicit_mean_reductions"] == 0
+                    and not row["probe_regularization_hook_used"]
+                    and not row["clean_regularization_enabled"]
+                    and not row["probe_history_used"]
+                    and row["probe_fisher_probe_calls"] == 0
+                    and row["probe_projection_calls"] == 0
+                    and row["probe_hvp_calls"] == 0
+                    and row["probe_g2_calls"] == 0 and row["probe_g3_calls"] == 0
+                    and row["replay_rng_state"]
+                    and row["replay_ddp_no_sync_all_micro_batches"]
+                    and row["base_optimizer"] == "transformers.optimization.AdamW"):
+                raise RuntimeError("Three-point probe pure-method audit failed.")
+            if (row["probe_fallback_reason"] is not None
+                    or row["probe_ce_gradient_phases"] != expected_phases
+                    or row["probe_replay_closure_calls"] != expected_replays
+                    or row["probe_final_direction"] != expected_direction
+                    or row["probe_signs"] != [1, -1]
+                    or row["probe_protocol"] != "paired_three_point"
+                    or row["probe_schema"] != "ThreePointProbe_v1"
+                    or row["probe_sign"] != 0
+                    or row["probe_outer_probe_calls"] != 0):
+                raise RuntimeError("Three-point probe must execute both signs with exactly three CE phases.")
+        trainables = [p for p in self.model.parameters() if p.requires_grad]
+        if any(p.dtype != torch.float32 for p in trainables) or self.ewclora_omega:
+            raise RuntimeError("Three-point probes require FP32 trainables and no Fisher state.")
+        groups = [{key: value for key, value in group.items()
+                   if key in {"lr", "betas", "eps", "weight_decay"}}
+                  for group in self.optimizer.base_optimizer.param_groups]
+        if any(group["eps"] != 1e-6 or group["weight_decay"] != 0 for group in groups):
+            raise RuntimeError("Three-point probes changed the fixed HF AdamW epsilon or decay.")
+        with open(trace_path, "rb") as handle:
+            trace_hash = hashlib.sha256(handle.read()).hexdigest()
+        fallback_steps = sum(fallback_counts.values())
+        audit = {
+            "schema": "ThreePointProbeTrainerAudit_v1", "status": "passed",
+            "global_step": expected, "num_records": len(rows),
+            "mode": mode, "radius": self.optimizer.radius,
+            "ce_gradient_phases": expected_phases,
+            "replay_closure_calls": expected_replays,
+            "normal_steps": expected - fallback_steps,
+            "fallback_steps": fallback_steps, "fallback_counts": fallback_counts,
+            "total_ce_gradient_phases": sum(row["probe_ce_gradient_phases"] for row in rows),
+            "total_replay_closure_calls": sum(row["probe_replay_closure_calls"] for row in rows),
+            "total_base_optimizer_steps": sum(row["probe_base_optimizer_steps"] for row in rows),
+            "tail_windows": sum(row["tail_gradient_rescale"] != 1.0 for row in rows),
+            "trainable_precision": "torch.float32",
+            "trainable_elements": sum(p.numel() for p in trainables),
+            "bf16_forward": bool(getattr(self.args, "bf16", False)),
+            "base_optimizer": "transformers.optimization.AdamW",
+            "base_optimizer_param_groups": groups,
+            "strategy": "inclora", "fisher_state_entries": 0,
+            "regularization_enabled": False, "history_enabled": False,
+            "projection_enabled": False, "g2_enabled": False, "g3_enabled": False,
+            "trace_file": trace_path, "trace_sha256": trace_hash,
+            "actual_micro_batch_counts": sorted({row["actual_micro_batches"] for row in rows}),
+            "world_size": int(getattr(self.args, "world_size", 1)),
+            "decoder_pipeline_version": getattr(self.data_collator, "decoder_pipeline_version", None),
+            "probe_quantization_diagnostics_interval": self.optimizer.quantization_diagnostics_interval,
+        }
+        for key in ("initial_trainable_sha256", "clean_gradient_sha256", "first_window_batch_sha256"):
+            audit[key] = rows[0].get(key) if rows else None
+        path = os.path.join(self.args.output_dir, "three_point_probe_training_audit.json")
+        with open(path, "w") as handle:
+            json.dump(audit, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        return audit
 
     def print_trainable_parameters(self,model):
         total_params = 0

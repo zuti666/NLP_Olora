@@ -1,0 +1,6149 @@
+{
+  "audited_at": "2026-09-21T09:35:03.430595+00:00",
+  "scope": "Only the two named native S3 campaigns; no queue mutation and no GPU use.",
+  "center_config": {
+    "outputs_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+    "prefix": "s3_center_s2",
+    "memory_size": 0,
+    "memory_per_class": 0,
+    "fixed_memory": false,
+    "dataset": "imageneta",
+    "class_shuffle": false,
+    "init_cls": 20,
+    "increment": 20,
+    "nb_tasks": 10,
+    "total_sessions": 10,
+    "seed": [
+      2
+    ],
+    "all_or_inc": "inc",
+    "backbone_type": "vit_base_patch16_224",
+    "device": [
+      0
+    ],
+    "model_name": "ewclora_normfisher_gam_intask_damp",
+    "lora_rank": 10,
+    "lambda_flat": 1.0,
+    "ewc_lambda": 2000,
+    "ewc_gamma": 0.9,
+    "ewc_eta": 0.0,
+    "ewc_max_batches": 100,
+    "ewc_normalize_fisher": true,
+    "ewc_fisher_norm_eps": 1e-12,
+    "ewc_dual_ascent": false,
+    "approximate_fisher_in_task": true,
+    "in_task_fisher_interval": 20,
+    "in_task_fisher_omega": 0.3,
+    "ewc_normalize_accumulated_fisher": true,
+    "in_task_path_start_ratio": 0.0,
+    "in_task_path_beta": 3.0,
+    "in_task_path_weighted": true,
+    "in_task_path_normalize_snapshots": true,
+    "in_task_path_loss_max_batches": 100,
+    "ewc_fisher_damping_alpha": 0.2,
+    "in_task_weight_merge": true,
+    "in_task_weight_merge_start_task": 0,
+    "mechanism_eval": true,
+    "mechanism_grad_stats": true,
+    "mechanism_top_fraction": 0.1,
+    "mechanism_eps": 1e-12,
+    "batch_size": 128,
+    "optimizer": "sgd",
+    "gam_base_optimizer": "sgd",
+    "optimizer_type": "gam",
+    "optimizer_tag_override": "s3_reference_native_center",
+    "gam_adaptive": false,
+    "gam_grad_beta_1": 1.0,
+    "gam_grad_beta_2": 1.0,
+    "gam_grad_beta_3": 1.0,
+    "gam_grad_gamma": 0.1,
+    "gam_grad_rho": 0.05,
+    "gam_grad_norm_rho": 0.2,
+    "scheduler": "cosine",
+    "init_epoch": 50,
+    "init_lr": 0.04,
+    "init_momentum": 0,
+    "init_weight_decay": 0.0,
+    "epochs": 50,
+    "lrate": 0.02,
+    "momentum": 0,
+    "weight_decay": 0.0,
+    "linear_probe_eval_num_workers": 0,
+    "linear_probe_softmax_joint_seen_eval": false,
+    "linear_probe_softmax_per_task_eval": false,
+    "probe_train_mode": "train",
+    "probe_test_mode": "test",
+    "probe_fit_epochs": 20,
+    "probe_fit_lr": 0.015,
+    "probe_fit_moment": 0,
+    "probe_fit_wd": 0.0005,
+    "probe_fit_train_batch_size": 128,
+    "flat_eval": false,
+    "feature_flat_eval": false,
+    "feature_cka_eval": false,
+    "feature_proto_eval": false,
+    "attention_probe_eval": false,
+    "fisher_mode": "batch_empirical",
+    "ewc_preserve_fisher_rng": false,
+    "fisher_split": false,
+    "ewc_skip_task_fisher": false,
+    "train_num_workers": 8,
+    "eval_num_workers": 8,
+    "data_root": "/data/140-1/datasets"
+  },
+  "campaigns": [
+    {
+      "name": "s3-reference-hyperparams-20260920",
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920",
+      "results_updated_at": "2026-09-20T15:28:58.442916+00:00",
+      "results_sha256": "da0271300a95c273357693c6ba04a8bd511c76f5345862196eb8b14f6079082b",
+      "suite_sha256": "67819b4cf958f6c71023723d3e58a5cb7ed89e2be2e6247c7611f8bc4c73f930",
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "source_files_count": 190,
+      "source_mismatches": [],
+      "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/source_manifest.json"
+    },
+    {
+      "name": "s3-mechanisms-20260920",
+      "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920",
+      "results_updated_at": "2026-09-21T09:34:49.978916+00:00",
+      "results_sha256": "19087425112ae5fac587e3230eb7ffbfbe6887dd339947661f2f25849bc23330",
+      "suite_sha256": "6645a6fae2b718984d6aba81a5a4c4083701fd7adc106cf4f9ee1513eb41a0a7",
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "source_files_count": 191,
+      "source_mismatches": [],
+      "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/source_manifest.json"
+    }
+  ],
+  "jobs": [
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_center_s2",
+      "seed": 2,
+      "axis": "center",
+      "value": null,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_center_s2.json",
+      "config_sha256": "2192fad2d451bf7254a7652550769d14c6ec3efec54083dcd0311481a2acc3e6",
+      "scientific_diff": {},
+      "observer_diff": {},
+      "all_config_differences": {},
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_center_s2/completed.json",
+      "receipt_sha256": "fac74203f5a4b5fee8b75290035c1adf5aa9214190ac5146881a81b104662135",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_center_s2/console.log",
+      "log_sha256": "54d23a86f3e42af267ce68309cd87c3da364383707ed29651dfe8a982ee36f1c",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        80.93,
+        76.43,
+        75.61,
+        70.81,
+        67.59,
+        63.55,
+        61.51,
+        60.14,
+        60.7
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.419,
+      "aaa_task_macro": 66.74554087301587,
+      "forgetting": 6.286666666666667,
+      "bwt": -6.286666666666667,
+      "faa_sample_weighted": 60.7,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_center/imageneta/2/s3_center_s2/exp_run/20/s3_center_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "052a9fce1ce70474079d6774ac987d5432ccf829206def02c22dd10699dddfd7",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          78.35,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          78.35,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.46,
+          77.95,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          74.41,
+          67.44,
+          69.09,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          72.44,
+          65.89,
+          66.06,
+          46.08,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.57,
+          71.65,
+          64.34,
+          63.64,
+          42.16,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.29,
+          70.08,
+          64.73,
+          63.03,
+          44.12,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.59,
+          70.47,
+          62.79,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          40.0,
+          45.56,
+          null
+        ],
+        [
+          75.24,
+          73.23,
+          64.73,
+          64.24,
+          39.22,
+          40.85,
+          33.73,
+          40.0,
+          43.33,
+          59.62
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_lambda0_s2",
+      "seed": 2,
+      "axis": "ewc_lambda",
+      "value": 0,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_lambda0_s2.json",
+      "config_sha256": "8a65057e295b4cad2f644e738fc980efdfa05857f4e3b6b3207d767de0212735",
+      "scientific_diff": {
+        "ewc_lambda": [
+          2000,
+          0
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "ewc_lambda": [
+          2000,
+          0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_lambda0"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_lambda0_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_lambda0_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_lambda0_s2/completed.json",
+      "receipt_sha256": "91340ff9410ff2e5f1e7df3884d118d48544bafa4c4befc0f929a6877b99bfea",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_lambda0_s2/console.log",
+      "log_sha256": "8de168c7b1ffb9905f182dc1518418fb3d09d85219ee7acf2b6abe5be59563dc",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        80.75,
+        76.43,
+        75.61,
+        70.53,
+        67.68,
+        63.95,
+        61.81,
+        60.21,
+        60.9
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.5,
+      "aaa_task_macro": 66.76143611111111,
+      "forgetting": 6.24,
+      "bwt": -6.196666666666667,
+      "faa_sample_weighted": 60.9,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_lambda0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_lambda0/imageneta/2/s3_lambda0_s2/exp_run/20/s3_lambda0_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "51161eddfc8f512e01cb28610aff7a2ac81ee3cc9e51337db68ddd5f740190f1",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          78.35,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.8,
+          78.74,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.56,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          74.02,
+          67.05,
+          68.48,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.2,
+          72.05,
+          66.28,
+          66.06,
+          48.04,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.22,
+          71.65,
+          65.12,
+          63.64,
+          43.14,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          74.27,
+          70.87,
+          65.12,
+          63.03,
+          43.14,
+          40.85,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.92,
+          70.47,
+          63.18,
+          64.85,
+          40.2,
+          39.44,
+          34.94,
+          40.0,
+          45.56,
+          null
+        ],
+        [
+          75.57,
+          73.23,
+          65.12,
+          64.85,
+          40.2,
+          39.44,
+          32.53,
+          40.0,
+          44.44,
+          59.62
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_lambda200_s2",
+      "seed": 2,
+      "axis": "ewc_lambda",
+      "value": 200,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_lambda200_s2.json",
+      "config_sha256": "2d9d4e63d33e1b74ab33b1bbf368d4be296052494a752b4290756f1caae5aa35",
+      "scientific_diff": {
+        "ewc_lambda": [
+          2000,
+          200
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "ewc_lambda": [
+          2000,
+          200
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_lambda200"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_lambda200_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_lambda200_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_lambda200_s2/completed.json",
+      "receipt_sha256": "24f8fc35c80eec966d117183bd6457b2f08ef2d77acb80eb92f3d1a0462be93d",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_lambda200_s2/console.log",
+      "log_sha256": "6db08ff1d2f5f2682589b12aaeac2025f727eebaceadd2123e0eb947aea77fd8",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.3,
+        80.93,
+        76.31,
+        75.61,
+        70.44,
+        67.68,
+        63.71,
+        62.11,
+        60.07,
+        60.57
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.404999999999994,
+      "aaa_task_macro": 66.71496706349207,
+      "forgetting": 6.1533333333333315,
+      "bwt": -6.1533333333333315,
+      "faa_sample_weighted": 60.57,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_lambda200_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_lambda200/imageneta/2/s3_lambda200_s2/exp_run/20/s3_lambda200_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "bc5c50dbc80f5c74f2153813503fd5da24d62e3feb7cac4e4acfe2728273eccb",
+      "raw_matrix": [
+        [
+          87.3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          78.74,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.8,
+          78.35,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.56,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.85,
+          74.02,
+          67.05,
+          68.48,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          71.65,
+          66.28,
+          66.06,
+          47.06,
+          46.48,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.57,
+          71.65,
+          65.12,
+          63.64,
+          42.16,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          74.92,
+          70.87,
+          64.73,
+          63.03,
+          45.1,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.59,
+          70.08,
+          62.79,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          40.0,
+          45.56,
+          null
+        ],
+        [
+          74.59,
+          73.23,
+          64.73,
+          63.64,
+          39.22,
+          40.85,
+          33.73,
+          40.0,
+          44.44,
+          59.62
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_lambda20000_s2",
+      "seed": 2,
+      "axis": "ewc_lambda",
+      "value": 20000,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_lambda20000_s2.json",
+      "config_sha256": "d799f3e47b0965ad4a6f704ae61745150f526f0a292691bfc56d30bfee973819",
+      "scientific_diff": {
+        "ewc_lambda": [
+          2000,
+          20000
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "ewc_lambda": [
+          2000,
+          20000
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_lambda20000"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_lambda20000_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_lambda20000_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_lambda20000_s2/completed.json",
+      "receipt_sha256": "299b047f13d662ddb2e2ae71f729c7f19bda6a91b5d777106fba96867574829d",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_lambda20000_s2/console.log",
+      "log_sha256": "7410ca254f6ef8e72f4e21f8853ffd644a0fb9f3e32727239860d6b55c986658",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.3,
+        80.57,
+        76.56,
+        75.51,
+        70.63,
+        67.5,
+        63.63,
+        61.58,
+        60.49,
+        60.7
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.426,
+      "aaa_task_macro": 66.68394404761905,
+      "forgetting": 6.285555555555556,
+      "bwt": -6.1977777777777785,
+      "faa_sample_weighted": 60.7,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_lambda20000_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_lambda20000/imageneta/2/s3_lambda20000_s2/exp_run/20/s3_lambda20000_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "30fea200784f67c1771848c3b6a6c3de40800c0f53a68e96347b91e567278603",
+      "raw_matrix": [
+        [
+          87.3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          77.56,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          78.35,
+          70.54,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.95,
+          68.99,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.85,
+          74.02,
+          67.44,
+          69.09,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.87,
+          72.44,
+          65.89,
+          66.67,
+          46.08,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.9,
+          71.26,
+          64.73,
+          63.64,
+          42.16,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          70.47,
+          64.73,
+          63.03,
+          42.16,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.92,
+          70.87,
+          63.57,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          41.18,
+          45.56,
+          null
+        ],
+        [
+          74.92,
+          73.23,
+          65.12,
+          64.24,
+          39.22,
+          40.85,
+          33.73,
+          40.0,
+          43.33,
+          59.62
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_strength0_s2",
+      "seed": 2,
+      "axis": "lambda_flat",
+      "value": 0,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_strength0_s2.json",
+      "config_sha256": "a1232199ea18900efae78d14a624d7f2e05f45565d48e719ddf057edaf531e77",
+      "scientific_diff": {
+        "lambda_flat": [
+          1.0,
+          0.0
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "lambda_flat": [
+          1.0,
+          0.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_strength0"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_strength0_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_strength0_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_strength0_s2/completed.json",
+      "receipt_sha256": "0c2533f3f736fa26083d8cd5bf79d486232a3c23b700ab0c9732f02f187b6cec",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_strength0_s2/console.log",
+      "log_sha256": "1038d35d5de7b5c96e53fe7c3fcc986b41edbad3b193f4582e1ae5483ec346a9",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        85.34,
+        78.97,
+        74.73,
+        71.95,
+        66.67,
+        61.88,
+        57.74,
+        54.57,
+        49.96,
+        46.28
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 38.036,
+      "aaa_task_macro": 60.16531785714286,
+      "forgetting": 13.871111111111112,
+      "bwt": -13.572222222222223,
+      "faa_sample_weighted": 46.28,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_strength0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_strength0/imageneta/2/s3_strength0_s2/exp_run/20/s3_strength0_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "1afb523678a4c9aa9294c2ee9e8d2e73835652f1f806f03668ece1bd6035c033",
+      "raw_matrix": [
+        [
+          85.34,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          76.77,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.2,
+          78.35,
+          68.22,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.2,
+          76.38,
+          66.67,
+          63.64,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.24,
+          74.02,
+          62.79,
+          59.39,
+          44.12,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          67.72,
+          63.18,
+          56.36,
+          38.24,
+          30.99,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          72.31,
+          66.14,
+          62.79,
+          53.33,
+          33.33,
+          25.35,
+          28.92,
+          null,
+          null,
+          null
+        ],
+        [
+          70.03,
+          65.35,
+          59.69,
+          52.73,
+          34.31,
+          26.76,
+          24.1,
+          31.76,
+          null,
+          null
+        ],
+        [
+          66.78,
+          61.81,
+          55.43,
+          50.3,
+          27.45,
+          25.35,
+          21.69,
+          29.41,
+          33.33,
+          null
+        ],
+        [
+          64.82,
+          59.84,
+          51.16,
+          44.85,
+          24.51,
+          19.72,
+          18.07,
+          23.53,
+          34.44,
+          39.42
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_strength05_s2",
+      "seed": 2,
+      "axis": "lambda_flat",
+      "value": 0.5,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_strength05_s2.json",
+      "config_sha256": "20fce9f2702052791a432603b777a2cd332238be63f6d12b45fdcbc4cc530e8a",
+      "scientific_diff": {
+        "lambda_flat": [
+          1.0,
+          0.5
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "lambda_flat": [
+          1.0,
+          0.5
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_strength05"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_strength05_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_strength05_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_strength05_s2/completed.json",
+      "receipt_sha256": "81c2661036f6d4abe6538852801a4bc65ffa0c70b045d560ce3c98acc4a1fa8e",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_strength05_s2/console.log",
+      "log_sha256": "9935064ebba9c2b3ab8a653edcab1671d9186a70d76d9d5801fb563103a1337f",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        86.97,
+        80.75,
+        75.95,
+        74.39,
+        69.06,
+        66.9,
+        63.95,
+        61.51,
+        59.15,
+        59.45
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 51.986000000000004,
+      "aaa_task_macro": 65.96449642857144,
+      "forgetting": 6.471111111111109,
+      "bwt": -6.204444444444442,
+      "faa_sample_weighted": 59.45,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_strength05_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_strength05/imageneta/2/s3_strength05_s2/exp_run/20/s3_strength05_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "c3c11f8ca6f6d11dbc57a43dab864f7d478539864aeadf4434e7ca50f06f0110",
+      "raw_matrix": [
+        [
+          86.97,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          77.95,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          77.17,
+          69.77,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          74.8,
+          68.99,
+          71.52,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          72.44,
+          63.95,
+          67.27,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          70.08,
+          66.28,
+          64.85,
+          48.04,
+          43.66,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.2,
+          69.69,
+          65.12,
+          64.85,
+          47.06,
+          42.25,
+          31.33,
+          null,
+          null,
+          null
+        ],
+        [
+          75.24,
+          69.69,
+          63.57,
+          63.64,
+          45.1,
+          40.85,
+          32.53,
+          42.35,
+          null,
+          null
+        ],
+        [
+          73.29,
+          69.29,
+          62.4,
+          64.24,
+          41.18,
+          36.62,
+          33.73,
+          38.82,
+          44.44,
+          null
+        ],
+        [
+          74.59,
+          71.65,
+          63.95,
+          61.82,
+          42.16,
+          36.62,
+          30.12,
+          40.0,
+          42.22,
+          56.73
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_radius01_s2",
+      "seed": 2,
+      "axis": "gam_grad_norm_rho",
+      "value": 0.1,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_radius01_s2.json",
+      "config_sha256": "9635633cb167d6cbb338017254bebf77f7055b6dc1d8876379f029f50b98ab1c",
+      "scientific_diff": {
+        "gam_grad_norm_rho": [
+          0.2,
+          0.1
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "gam_grad_norm_rho": [
+          0.2,
+          0.1
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_radius01"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_radius01_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_radius01_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_radius01_s2/completed.json",
+      "receipt_sha256": "d62a376698e0c94e3f3159afe2f643a707878a2dc9055c1b0ee5d7b55f2c8e85",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_radius01_s2/console.log",
+      "log_sha256": "32d882da51cdfdcc767166206c50ee2454b7c39d00b75bc038ba6ec0a4012ca4",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.3,
+        80.39,
+        75.95,
+        74.59,
+        69.71,
+        66.46,
+        63.31,
+        61.06,
+        59.15,
+        59.58
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 52.462,
+      "aaa_task_macro": 66.05202738095238,
+      "forgetting": 6.357777777777776,
+      "bwt": -6.314444444444443,
+      "faa_sample_weighted": 59.58,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_radius01_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_radius01/imageneta/2/s3_radius01_s2/exp_run/20/s3_radius01_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "56a98eb3d28a4d4b783ad6a5ebb5281316fbad0f35d99aa99a2e11caa74c3adc",
+      "raw_matrix": [
+        [
+          87.3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.41,
+          77.95,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.56,
+          68.6,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.15,
+          76.38,
+          68.99,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          72.44,
+          65.5,
+          68.48,
+          51.96,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.87,
+          70.47,
+          65.5,
+          63.64,
+          46.08,
+          46.48,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.9,
+          69.29,
+          64.73,
+          63.03,
+          44.12,
+          45.07,
+          33.73,
+          null,
+          null,
+          null
+        ],
+        [
+          73.62,
+          70.08,
+          63.57,
+          63.03,
+          42.16,
+          43.66,
+          33.73,
+          41.18,
+          null,
+          null
+        ],
+        [
+          73.29,
+          69.69,
+          62.79,
+          63.03,
+          38.24,
+          40.85,
+          33.73,
+          38.82,
+          44.44,
+          null
+        ],
+        [
+          74.92,
+          71.26,
+          63.18,
+          62.42,
+          38.24,
+          42.25,
+          31.33,
+          40.0,
+          43.33,
+          57.69
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-reference-hyperparams-20260920",
+      "id": "s3_radius05_s2",
+      "seed": 2,
+      "axis": "gam_grad_norm_rho",
+      "value": 0.5,
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_radius05_s2.json",
+      "config_sha256": "4f3d8826198ca359f72d275d33c75eeac57d45ce08126d0ca4cc41cfc18e2148",
+      "scientific_diff": {
+        "gam_grad_norm_rho": [
+          0.2,
+          0.5
+        ]
+      },
+      "observer_diff": {},
+      "all_config_differences": {
+        "gam_grad_norm_rho": [
+          0.2,
+          0.5
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_reference_native_radius05"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_radius05_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_radius05_s2"
+        ]
+      },
+      "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_radius05_s2/completed.json",
+      "receipt_sha256": "b20b0b6529e229bd675dba13ca6918911a1aba9bb9cb1a9b4b8c557d193a65c8",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/runtime/jobs/s3_radius05_s2/console.log",
+      "log_sha256": "5065aeb6ccde0228f764d3c010f74fd6b3cc44b9d7c1efa9d25d38981c0b6cdf",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        81.82,
+        77.9,
+        75.91,
+        71.45,
+        69.06,
+        65.0,
+        63.09,
+        61.13,
+        62.34
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 54.977999999999994,
+      "aaa_task_macro": 67.88607619047619,
+      "forgetting": 6.240000000000003,
+      "bwt": -6.106666666666669,
+      "faa_sample_weighted": 62.34,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_radius05_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_reference_native_radius05/imageneta/2/s3_radius05_s2/exp_run/20/s3_radius05_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "20e792cf8b4b765ab25ee5cf4dbc09d3e53fdf9d74582dbc9d889a507000bb56",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          81.43,
+          82.28,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          81.1,
+          72.09,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          81.5,
+          70.16,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.22,
+          78.74,
+          67.83,
+          67.88,
+          53.92,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          74.92,
+          77.17,
+          67.44,
+          68.48,
+          50.98,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          74.27,
+          75.59,
+          64.73,
+          66.67,
+          48.04,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          74.27,
+          74.02,
+          64.34,
+          66.67,
+          46.08,
+          43.66,
+          33.73,
+          44.71,
+          null,
+          null
+        ],
+        [
+          73.94,
+          74.02,
+          63.57,
+          66.67,
+          41.18,
+          40.85,
+          36.14,
+          38.82,
+          46.67,
+          null
+        ],
+        [
+          75.24,
+          75.98,
+          66.28,
+          67.88,
+          43.14,
+          39.44,
+          32.53,
+          42.35,
+          44.44,
+          62.5
+        ]
+      ],
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_a_nomerge_matched_s2",
+      "seed": 2,
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_nomerge_matched_s2.json",
+      "config_sha256": "23f83c09cd43f0fa59ab510acc0146313670fb89837d95981fe04c47451927fd",
+      "scientific_diff": {
+        "in_task_weight_merge_start_task": [
+          0,
+          10
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "in_task_weight_merge_start_task": [
+          0,
+          10
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_nomerge_matched_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_a_nomerge_matched_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_nomerge_matched_s2/completed.json",
+      "receipt_sha256": "96c64748c9f5716715ef65112537940dead4ca7627ec905a0ab341db34185640",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_nomerge_matched_s2/console.log",
+      "log_sha256": "bd22d992c2368112d51ae0a3dd0468063eb10397d5635cb41da55f0ddabd1549",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        80.93,
+        76.31,
+        75.61,
+        70.53,
+        67.5,
+        63.79,
+        61.74,
+        60.0,
+        60.63
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.098,
+      "aaa_task_macro": 66.69221746031747,
+      "forgetting": 6.6433333333333335,
+      "bwt": -6.6433333333333335,
+      "faa_sample_weighted": 60.63,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_nomerge_matched_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_a_nomerge_matched_s2/exp_run/20/s3_mech_a_nomerge_matched_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "fe049e31a17816d30f420e2bb88a53d16b6be4e3b03a11c3b9cef3b0c4741cca",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          78.35,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.8,
+          78.35,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.46,
+          77.95,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.85,
+          73.62,
+          67.44,
+          69.09,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          71.26,
+          66.28,
+          66.06,
+          47.06,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.9,
+          71.65,
+          64.73,
+          64.24,
+          42.16,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.62,
+          71.26,
+          64.34,
+          63.64,
+          43.14,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.27,
+          70.08,
+          63.18,
+          64.85,
+          40.2,
+          39.44,
+          34.94,
+          40.0,
+          45.56,
+          null
+        ],
+        [
+          75.57,
+          73.62,
+          65.12,
+          63.64,
+          39.22,
+          39.44,
+          32.53,
+          40.0,
+          42.22,
+          59.62
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "merge_applied": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance",
+      "note": "start_task=10 keeps snapshot CE while suppressing actual fusion on tasks0..9. Not literal native omega=0, which skips capture/CE."
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_gam_half_direction_s2",
+      "seed": 2,
+      "axis": "gam_total_direction_scale",
+      "value": "half",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_gam_half_direction_s2.json",
+      "config_sha256": "6b0d242369abedf038d526a012d8da27e1e2e3795487184aa3b1beafa71e0a48",
+      "scientific_diff": {
+        "gam_grad_beta_1": [
+          1.0,
+          0.5
+        ],
+        "gam_grad_beta_3": [
+          1.0,
+          0.5
+        ],
+        "gam_grad_gamma": [
+          0.1,
+          0.05
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "gam_grad_beta_1": [
+          1.0,
+          0.5
+        ],
+        "gam_grad_beta_3": [
+          1.0,
+          0.5
+        ],
+        "gam_grad_gamma": [
+          0.1,
+          0.05
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_gam_half_direction_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_gam_half_direction_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_gam_half_direction_s2/completed.json",
+      "receipt_sha256": "c04badad93e989ed182c1dfda794b1911af0e426c65522d2d04bc4e759dcc86b",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_gam_half_direction_s2/console.log",
+      "log_sha256": "952235a9522791cb402ded52ae365224b242764ae8728c42f5850cf34d2d6537",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        85.67,
+        80.04,
+        76.56,
+        74.19,
+        70.07,
+        66.81,
+        63.55,
+        61.36,
+        59.15,
+        59.78
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 51.834,
+      "aaa_task_macro": 65.69203055555555,
+      "forgetting": 5.319999999999998,
+      "bwt": -4.75222222222222,
+      "faa_sample_weighted": 59.78,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_gam_half_direction_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_gam_half_direction_s2/exp_run/20/s3_mech_gam_half_direction_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "9d47d01e38f38ec9e715c5a85dc6b48bb7817d02d0a0a874103f8723880a3490",
+      "raw_matrix": [
+        [
+          85.67,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          76.77,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          81.11,
+          78.35,
+          69.38,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.83,
+          76.38,
+          69.38,
+          69.7,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.55,
+          73.23,
+          68.22,
+          67.88,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.55,
+          70.47,
+          66.28,
+          64.85,
+          49.02,
+          43.66,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.22,
+          70.08,
+          65.5,
+          63.64,
+          47.06,
+          40.85,
+          30.12,
+          null,
+          null,
+          null
+        ],
+        [
+          76.22,
+          70.08,
+          65.12,
+          62.42,
+          44.12,
+          39.44,
+          30.12,
+          37.65,
+          null,
+          null
+        ],
+        [
+          74.92,
+          68.5,
+          63.18,
+          62.42,
+          42.16,
+          38.03,
+          30.12,
+          38.82,
+          43.33,
+          null
+        ],
+        [
+          76.22,
+          71.26,
+          65.5,
+          63.03,
+          42.16,
+          35.21,
+          27.71,
+          41.18,
+          42.22,
+          53.85
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_sgd_ewc_s2",
+      "seed": 2,
+      "axis": "gam_execution",
+      "value": "sgd_ewc",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_sgd_ewc_s2.json",
+      "config_sha256": "e23f0997e98bcd7579f710ba5fb2ffaf0baf48c0b496f1b1fa4638a1238a2b2a",
+      "scientific_diff": {
+        "optimizer_type": [
+          "gam",
+          "sgd"
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "optimizer_type": [
+          "gam",
+          "sgd"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_sgd_ewc_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_sgd_ewc_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_sgd_ewc_s2/completed.json",
+      "receipt_sha256": "fcb98198cf1722db9c7547e2f111df0d6f2fe456fe8da3afa9fabd804c9245ee",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_sgd_ewc_s2/console.log",
+      "log_sha256": "ec4fe545f02bb9f3ad5182c43737803937079e32213d329cec843f600e42ff75",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        84.69,
+        80.93,
+        75.34,
+        71.75,
+        67.4,
+        62.75,
+        57.66,
+        53.28,
+        48.55,
+        47.07
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 40.123000000000005,
+      "aaa_task_macro": 61.012882142857144,
+      "forgetting": 13.30888888888889,
+      "bwt": -13.185555555555556,
+      "faa_sample_weighted": 47.07,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_sgd_ewc_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_sgd_ewc_s2/exp_run/20/s3_mech_sgd_ewc_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "61f278f42a6fd87147917be67a985bcd7beb0e5fb8c5a46a6ecfb77e780103f9",
+      "raw_matrix": [
+        [
+          84.69,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          81.43,
+          80.31,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.5,
+          76.38,
+          70.54,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.24,
+          74.41,
+          66.67,
+          69.09,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          74.59,
+          70.47,
+          65.89,
+          64.85,
+          46.08,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          73.62,
+          66.14,
+          64.34,
+          59.39,
+          39.22,
+          39.44,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          70.68,
+          64.57,
+          61.63,
+          53.94,
+          33.33,
+          38.03,
+          30.12,
+          null,
+          null,
+          null
+        ],
+        [
+          68.4,
+          61.42,
+          58.14,
+          51.52,
+          30.39,
+          32.39,
+          27.71,
+          32.94,
+          null,
+          null
+        ],
+        [
+          64.17,
+          58.27,
+          52.71,
+          51.52,
+          26.47,
+          32.39,
+          21.69,
+          29.41,
+          31.11,
+          null
+        ],
+        [
+          62.21,
+          57.87,
+          52.71,
+          49.09,
+          26.47,
+          35.21,
+          19.28,
+          30.59,
+          32.22,
+          35.58
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_center_s1",
+      "seed": 1,
+      "axis": "weight_fusion_primary",
+      "value": "center",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_center_s1.json",
+      "config_sha256": "e3692be855c79a1e2156a0e71b54e7c65374ca6ea71683aed5ca099aa45f0db0",
+      "scientific_diff": {},
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_center_s1"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_center_s1"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ],
+        "seed": [
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_center_s1/completed.json",
+      "receipt_sha256": "8a4cb9e342897b7f9a904950e15014e261fc9062c84f08bc9393a237a5ec9d1e",
+      "results_declared_tasks": 10,
+      "target_seed": false,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_center_s1/console.log",
+      "log_sha256": "03eff9b7f03d2ff06aef6418ce5b300909ceeec3f40408da6de55580bdee2958",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        86.32,
+        83.07,
+        78.63,
+        75.61,
+        72.01,
+        68.19,
+        64.92,
+        61.96,
+        58.02,
+        58.33
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 51.138999999999996,
+      "aaa_task_macro": 67.07849880952381,
+      "forgetting": 8.116666666666667,
+      "bwt": -7.992222222222223,
+      "faa_sample_weighted": 58.33,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_center_s1/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/1/s3_mech_center_s1/exp_run/20/s3_mech_center_s1_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "3592a58c9a52a79fc99b87bfcb3d2d90c5641fb4ae569e881c465335961077cb",
+      "raw_matrix": [
+        [
+          86.32,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          84.04,
+          81.89,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          84.36,
+          79.92,
+          70.54,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          75.98,
+          69.38,
+          75.15,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.48,
+          75.98,
+          66.28,
+          71.52,
+          54.9,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.87,
+          73.62,
+          63.18,
+          72.12,
+          47.06,
+          50.7,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.57,
+          72.83,
+          62.79,
+          70.3,
+          42.16,
+          45.07,
+          42.17,
+          null,
+          null,
+          null
+        ],
+        [
+          74.27,
+          71.65,
+          62.4,
+          70.3,
+          38.24,
+          43.66,
+          40.96,
+          35.29,
+          null,
+          null
+        ],
+        [
+          72.96,
+          68.9,
+          60.85,
+          67.27,
+          37.25,
+          40.85,
+          34.94,
+          31.76,
+          34.44,
+          null
+        ],
+        [
+          73.94,
+          68.11,
+          61.24,
+          67.88,
+          40.2,
+          42.25,
+          37.35,
+          32.94,
+          35.56,
+          51.92
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_a_nomerge_matched_s1",
+      "seed": 1,
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_nomerge_matched_s1.json",
+      "config_sha256": "48b29a10993b5824914558201c6c2b6708047b876f2b9026adc9527e9552eca0",
+      "scientific_diff": {
+        "in_task_weight_merge_start_task": [
+          0,
+          10
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "in_task_weight_merge_start_task": [
+          0,
+          10
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_nomerge_matched_s1"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_a_nomerge_matched_s1"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ],
+        "seed": [
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_nomerge_matched_s1/completed.json",
+      "receipt_sha256": "6d7c16660593bc92ac423399940ba4a8ff2c19a2f21b33868e7e29ac31380595",
+      "results_declared_tasks": 10,
+      "target_seed": false,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_nomerge_matched_s1/console.log",
+      "log_sha256": "7b6a538e414a8bb9f1ebf202ec3c597936f918f8daed1fa2e9d51ab8fcc71363",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        86.97,
+        82.89,
+        78.51,
+        75.61,
+        72.1,
+        68.11,
+        64.92,
+        62.19,
+        58.09,
+        58.26
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 51.05,
+      "aaa_task_macro": 67.16277222222223,
+      "forgetting": 8.294444444444444,
+      "bwt": -8.294444444444444,
+      "faa_sample_weighted": 58.26,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_nomerge_matched_s1/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/1/s3_mech_a_nomerge_matched_s1/exp_run/20/s3_mech_a_nomerge_matched_s1_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "0bff56b1899210d838e0d04bebf2cb7fb2793805873152883d66d4411e1223e5",
+      "raw_matrix": [
+        [
+          86.97,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          84.04,
+          81.5,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          84.04,
+          80.31,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          75.98,
+          69.77,
+          75.76,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.8,
+          75.59,
+          66.28,
+          72.12,
+          54.9,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.55,
+          74.41,
+          63.18,
+          71.52,
+          46.08,
+          50.7,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.9,
+          72.83,
+          62.79,
+          69.7,
+          42.16,
+          45.07,
+          42.17,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          71.26,
+          62.79,
+          71.52,
+          39.22,
+          43.66,
+          40.96,
+          36.47,
+          null,
+          null
+        ],
+        [
+          72.31,
+          69.29,
+          60.85,
+          67.27,
+          37.25,
+          40.85,
+          36.14,
+          31.76,
+          35.56,
+          null
+        ],
+        [
+          73.62,
+          68.11,
+          61.63,
+          67.88,
+          40.2,
+          42.25,
+          37.35,
+          32.94,
+          35.56,
+          50.96
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "merge_applied": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points",
+      "note": "start_task=10 keeps snapshot CE while suppressing actual fusion on tasks0..9. Not literal native omega=0, which skips capture/CE."
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_a_off_s2",
+      "seed": 2,
+      "axis": "weight_fusion_execution",
+      "value": "whole_module_off",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_off_s2.json",
+      "config_sha256": "f2f05379ecc6e0652a509c4071e994cb3bce0f7e11a11c76f95c1d68592b1898",
+      "scientific_diff": {
+        "in_task_weight_merge": [
+          true,
+          false
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "in_task_weight_merge": [
+          true,
+          false
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_off_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_a_off_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_off_s2/completed.json",
+      "receipt_sha256": "9a62619ba99a5615ba2bc260c56d92d62da84ff3743c978815ac1e67f0f80bfd",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_off_s2/console.log",
+      "log_sha256": "8e5b5a4d9fd8978b7630a51697383eb37ec274212dc09c3a1b3e187345f5fc44",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.3,
+        82.89,
+        77.05,
+        75.61,
+        71.73,
+        66.9,
+        63.87,
+        60.6,
+        58.73,
+        59.51
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 52.15,
+      "aaa_task_macro": 67.16390793650794,
+      "forgetting": 8.203333333333335,
+      "bwt": -8.203333333333335,
+      "faa_sample_weighted": 59.51,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_off_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_a_off_s2/exp_run/20/s3_mech_a_off_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "aaf2f4bcc4ee484e70195de2245c30e8ee1c30e6a907fe7068ce940a97624dbe",
+      "raw_matrix": [
+        [
+          87.3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          84.04,
+          81.5,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.46,
+          77.56,
+          72.48,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          78.35,
+          70.16,
+          76.36,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.57,
+          77.95,
+          67.05,
+          72.12,
+          55.88,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          73.62,
+          74.8,
+          61.63,
+          69.7,
+          48.04,
+          49.3,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          72.31,
+          71.65,
+          62.4,
+          67.27,
+          49.02,
+          45.07,
+          40.96,
+          null,
+          null,
+          null
+        ],
+        [
+          71.66,
+          70.08,
+          60.47,
+          65.45,
+          42.16,
+          45.07,
+          37.35,
+          41.18,
+          null,
+          null
+        ],
+        [
+          71.66,
+          70.08,
+          60.47,
+          63.03,
+          43.14,
+          47.89,
+          36.14,
+          38.82,
+          35.56,
+          null
+        ],
+        [
+          73.62,
+          73.23,
+          63.18,
+          64.85,
+          41.18,
+          43.66,
+          32.53,
+          40.0,
+          34.44,
+          54.81
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "merge_applied": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance",
+      "note": "Whole A module off also skips snapshot CE and its RNG consumption; not matched_no_merge. Do not silently relabel as an executed omega=0 configuration."
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_center_s3",
+      "seed": 3,
+      "axis": "weight_fusion_primary",
+      "value": "center",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_center_s3.json",
+      "config_sha256": "34488edf20e3d484fcad4f7fc7916652cdc0e113d515f3984be64944bda62ae6",
+      "scientific_diff": {},
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_center_s3"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_center_s3"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ],
+        "seed": [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_center_s3/completed.json",
+      "receipt_sha256": "5693e65c26097beb8b78ff36dee4864e45d08981d416154e980462b6650297e6",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_center_s3/console.log",
+      "log_sha256": "d9c6a56b1e4f0993283eec2c73096d40938c5af822124b52826d38c9065d2b23",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        81.28,
+        78.75,
+        76.02,
+        72.28,
+        68.02,
+        64.44,
+        62.11,
+        60.85,
+        59.97
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 52.00600000000001,
+      "aaa_task_macro": 67.51107063492063,
+      "forgetting": 8.332222222222223,
+      "bwt": -8.20888888888889,
+      "faa_sample_weighted": 59.97,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_center_s3/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/3/s3_mech_center_s3/exp_run/20/s3_mech_center_s3_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "93f417b0f8933c477dc0242b052755b254c2e98ee5d5f8e8f35bd612cc127cbc",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.41,
+          79.92,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          79.13,
+          73.26,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.46,
+          77.17,
+          70.93,
+          73.94,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.55,
+          77.56,
+          68.22,
+          71.52,
+          57.84,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          74.27,
+          74.8,
+          65.5,
+          68.48,
+          50.0,
+          50.7,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          72.31,
+          74.41,
+          63.95,
+          69.7,
+          43.14,
+          46.48,
+          37.35,
+          null,
+          null,
+          null
+        ],
+        [
+          72.64,
+          73.62,
+          62.4,
+          69.7,
+          40.2,
+          42.25,
+          36.14,
+          42.35,
+          null,
+          null
+        ],
+        [
+          75.57,
+          71.65,
+          63.95,
+          69.09,
+          40.2,
+          42.25,
+          34.94,
+          37.65,
+          40.0,
+          null
+        ],
+        [
+          74.92,
+          72.83,
+          64.73,
+          69.09,
+          38.24,
+          38.03,
+          31.33,
+          38.82,
+          41.11,
+          50.96
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_a_nomerge_matched_s3",
+      "seed": 3,
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_nomerge_matched_s3.json",
+      "config_sha256": "1b8314e8d84ae84f8ed717b8cceaedb1e7be097b7970dec42e589bff69f19294",
+      "scientific_diff": {
+        "in_task_weight_merge_start_task": [
+          0,
+          10
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "in_task_weight_merge_start_task": [
+          0,
+          10
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_nomerge_matched_s3"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_a_nomerge_matched_s3"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ],
+        "seed": [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_nomerge_matched_s3/completed.json",
+      "receipt_sha256": "9623c83e26743573b4fe03b1d34151d2f16e360ac347f2ec182612b3ae9d4f83",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_nomerge_matched_s3/console.log",
+      "log_sha256": "b667654654d8901706efde9134146053c4fc7023915acde2e4b6c3927436bf04",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.3,
+        81.64,
+        78.75,
+        76.22,
+        71.92,
+        68.19,
+        64.11,
+        61.81,
+        60.92,
+        59.97
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 51.935,
+      "aaa_task_macro": 67.45099880952381,
+      "forgetting": 8.166666666666666,
+      "bwt": -8.043333333333333,
+      "faa_sample_weighted": 59.97,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_nomerge_matched_s3/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/3/s3_mech_a_nomerge_matched_s3/exp_run/20/s3_mech_a_nomerge_matched_s3_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "70ee849887644be72d66a60097cbc2e5ba2d573165586607755f1e57a4245d02",
+      "raw_matrix": [
+        [
+          87.3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          80.31,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          79.13,
+          73.26,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          76.77,
+          71.32,
+          74.55,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.22,
+          77.95,
+          67.44,
+          70.91,
+          56.86,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          74.59,
+          75.2,
+          65.89,
+          67.88,
+          49.02,
+          52.11,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          71.99,
+          74.41,
+          63.18,
+          69.09,
+          43.14,
+          46.48,
+          37.35,
+          null,
+          null,
+          null
+        ],
+        [
+          72.64,
+          72.05,
+          61.63,
+          70.3,
+          43.14,
+          42.25,
+          36.14,
+          40.0,
+          null,
+          null
+        ],
+        [
+          75.57,
+          72.05,
+          63.95,
+          70.3,
+          40.2,
+          40.85,
+          34.94,
+          36.47,
+          40.0,
+          null
+        ],
+        [
+          74.92,
+          72.83,
+          64.73,
+          70.3,
+          37.25,
+          38.03,
+          32.53,
+          37.65,
+          41.11,
+          50.0
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "merge_applied": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance",
+      "note": "start_task=10 keeps snapshot CE while suppressing actual fusion on tasks0..9. Not literal native omega=0, which skips capture/CE."
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_fisher_endpoint_anchor_s2",
+      "seed": 2,
+      "axis": "fisher_anchor_location",
+      "value": "pre_merge_endpoint",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_endpoint_anchor_s2.json",
+      "config_sha256": "8839bf152e5d886e8aa487e05cb1526f3c927634029878bb738789799c7fe82c",
+      "scientific_diff": {
+        "s3_fisher_location": [
+          "retained",
+          "endpoint"
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "endpoint"
+        ]
+      },
+      "all_config_differences": {
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_endpoint_anchor_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_fisher_endpoint_anchor_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "endpoint"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_endpoint_anchor_s2/completed.json",
+      "receipt_sha256": "67685c6e710634fd5697bae1b7e6a06aa4f12caaf590d34fb8e0ca1da16497b4",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_endpoint_anchor_s2/console.log",
+      "log_sha256": "2e9491a27475cd5a21dbfb127ebc5278c597e875c9d2641f48ab1bf239f3b493",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        80.93,
+        76.56,
+        75.61,
+        70.63,
+        67.59,
+        63.95,
+        61.81,
+        60.35,
+        60.83
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.45399999999999,
+      "aaa_task_macro": 66.85022698412698,
+      "forgetting": 6.333333333333335,
+      "bwt": -6.333333333333335,
+      "faa_sample_weighted": 60.83,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_endpoint_anchor_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_fisher_endpoint_anchor_s2/exp_run/20/s3_mech_fisher_endpoint_anchor_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "dd8dcc6f7d6a5b779e23370d174248d8fdd1518d6b05b4bdad85d0e212b46525",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          78.74,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          78.35,
+          70.54,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.56,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          73.62,
+          67.44,
+          69.09,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.87,
+          72.05,
+          65.89,
+          67.27,
+          47.06,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.57,
+          72.05,
+          65.12,
+          63.64,
+          43.14,
+          45.07,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          71.26,
+          64.73,
+          63.03,
+          43.14,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.59,
+          70.47,
+          63.57,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          41.18,
+          45.56,
+          null
+        ],
+        [
+          75.24,
+          73.62,
+          65.12,
+          64.24,
+          40.2,
+          39.44,
+          33.73,
+          40.0,
+          43.33,
+          59.62
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "endpoint",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points",
+      "note": "Changes Fisher estimation position via s3_fisher_location; not a center point or damping coefficient sweep."
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_a_uniform_s2",
+      "seed": 2,
+      "axis": "weight_fusion_weights",
+      "value": "uniform",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_uniform_s2.json",
+      "config_sha256": "ace649c7d6dcf2c89f7143443dbb2bffd11cf44801e2823a3518f10fe713cc7e",
+      "scientific_diff": {
+        "in_task_path_beta": [
+          3.0,
+          0.0
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "in_task_path_beta": [
+          3.0,
+          0.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_uniform_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_a_uniform_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_uniform_s2/completed.json",
+      "receipt_sha256": "53b9d694a61690c9667e4368cbd0aee58b1338a1cd6e39e4a5de226b96eab53e",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_uniform_s2/console.log",
+      "log_sha256": "0e18f369b14d3884a9046496f54c366c9112a888f66ba0c90090a9b7dbfb73e5",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        86.64,
+        80.57,
+        76.56,
+        75.61,
+        70.72,
+        67.76,
+        64.11,
+        61.96,
+        60.21,
+        60.83
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.590999999999994,
+      "aaa_task_macro": 66.71814206349207,
+      "forgetting": 5.814444444444446,
+      "bwt": -5.770000000000002,
+      "faa_sample_weighted": 60.83,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_uniform_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_a_uniform_s2/exp_run/20/s3_mech_a_uniform_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "27cbffff239c1e5c4ae11b12cd7d41b5962c6a9e93d23dc5d0343ea3bfa22bef",
+      "raw_matrix": [
+        [
+          86.64,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          77.95,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          78.35,
+          70.54,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.46,
+          78.35,
+          69.38,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          74.02,
+          67.83,
+          68.48,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.2,
+          71.65,
+          66.67,
+          67.27,
+          47.06,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.55,
+          71.65,
+          65.12,
+          63.64,
+          44.12,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          74.59,
+          70.87,
+          65.12,
+          63.64,
+          43.14,
+          40.85,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.59,
+          70.87,
+          63.18,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          38.82,
+          45.56,
+          null
+        ],
+        [
+          75.24,
+          72.83,
+          65.12,
+          64.85,
+          41.18,
+          40.85,
+          32.53,
+          41.18,
+          44.44,
+          57.69
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_a_latest_s2",
+      "seed": 2,
+      "axis": "weight_fusion_weights",
+      "value": "latest_epoch40",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_latest_s2.json",
+      "config_sha256": "54ee56fd263274a8af1f458a10fde75178967c089632475de5f3217776eaf1de",
+      "scientific_diff": {
+        "in_task_path_start_ratio": [
+          0.0,
+          0.6
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "in_task_path_start_ratio": [
+          0.0,
+          0.6
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_latest_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_a_latest_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_latest_s2/completed.json",
+      "receipt_sha256": "8fc1343a771994de1213556b1622f475b03594b49331d98d795c01c14e0daf1c",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_a_latest_s2/console.log",
+      "log_sha256": "1cb517baa2a73fe27d8714ef67053c1d473fb285e33a7626fbf8da3e77d88fe5",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.3,
+        80.93,
+        76.56,
+        75.61,
+        70.53,
+        67.42,
+        63.63,
+        61.81,
+        60.0,
+        60.43
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.298,
+      "aaa_task_macro": 66.64384761904762,
+      "forgetting": 6.1644444444444435,
+      "bwt": -6.1644444444444435,
+      "faa_sample_weighted": 60.43,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_a_latest_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_a_latest_s2/exp_run/20/s3_mech_a_latest_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "149063553801e97e6bd8a21c2a325579bedc8e6c9e28c814870c73604e1a380a",
+      "raw_matrix": [
+        [
+          87.3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          78.74,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.13,
+          78.74,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.56,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.5,
+          74.02,
+          66.67,
+          68.48,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          72.44,
+          65.89,
+          65.45,
+          46.08,
+          46.48,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.9,
+          71.65,
+          64.73,
+          63.64,
+          42.16,
+          42.25,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          71.65,
+          64.34,
+          63.03,
+          43.14,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.27,
+          70.47,
+          62.4,
+          64.85,
+          40.2,
+          39.44,
+          34.94,
+          41.18,
+          45.56,
+          null
+        ],
+        [
+          74.92,
+          72.83,
+          63.95,
+          63.64,
+          40.2,
+          39.44,
+          33.73,
+          41.18,
+          44.44,
+          58.65
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ],
+          [
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_fisher_alpha0_s2",
+      "seed": 2,
+      "axis": "fisher_damping",
+      "value": "alpha0",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_alpha0_s2.json",
+      "config_sha256": "e321bdce9076852941cacbe9209dc749d749505d8aedd9985c93306bba337d3f",
+      "scientific_diff": {
+        "ewc_fisher_damping_alpha": [
+          0.2,
+          0.0
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "ewc_fisher_damping_alpha": [
+          0.2,
+          0.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_alpha0_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_fisher_alpha0_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_alpha0_s2/completed.json",
+      "receipt_sha256": "2075826a9be4b8da20254d0a4b5beb337e49ab46b599c4cfc02ad66ea4f02943",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_alpha0_s2/console.log",
+      "log_sha256": "6e69bea81ccb87cbb1a32d2ef9cea657573cbd291c6ecf91350779df315b5297",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        81.11,
+        76.31,
+        75.71,
+        70.63,
+        67.33,
+        63.63,
+        61.66,
+        60.28,
+        60.63
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.431,
+      "aaa_task_macro": 66.77442579365079,
+      "forgetting": 6.316666666666666,
+      "bwt": -6.316666666666666,
+      "faa_sample_weighted": 60.63,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_alpha0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_fisher_alpha0_s2/exp_run/20/s3_mech_fisher_alpha0_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "1ec514e23cbdcaf26badd97b89f09fd2d883325014bcf8119c5c7517a01f0212",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          83.06,
+          78.74,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.8,
+          78.35,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.95,
+          69.77,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.5,
+          73.62,
+          67.05,
+          69.09,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          76.87,
+          71.65,
+          65.5,
+          66.67,
+          47.06,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.24,
+          71.26,
+          65.12,
+          63.64,
+          43.14,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          70.47,
+          64.73,
+          63.03,
+          43.14,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.92,
+          70.47,
+          62.79,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          41.18,
+          45.56,
+          null
+        ],
+        [
+          74.59,
+          73.23,
+          64.34,
+          64.85,
+          41.18,
+          39.44,
+          33.73,
+          40.0,
+          43.33,
+          59.62
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_fisher_alpha1_s2",
+      "seed": 2,
+      "axis": "fisher_damping",
+      "value": "alpha1_isotropic",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_alpha1_s2.json",
+      "config_sha256": "8ff95ac011b491ea36c2a4adda75e4db14cc83c6746cbce1a43f011548c69b2c",
+      "scientific_diff": {
+        "ewc_fisher_damping_alpha": [
+          0.2,
+          1.0
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "ewc_fisher_damping_alpha": [
+          0.2,
+          1.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_alpha1_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_fisher_alpha1_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_alpha1_s2/completed.json",
+      "receipt_sha256": "539b90c36142e568673b4f21d625a97782e8e327086da8247b1d72c5f13e5a4d",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": true,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_alpha1_s2/console.log",
+      "log_sha256": "49108b9d9209fb9a0745493eb561411ee6f53e2df849847059efdb3d3c3a1f84",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        80.75,
+        76.31,
+        75.81,
+        70.72,
+        67.5,
+        63.95,
+        61.81,
+        60.14,
+        60.76
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.352999999999994,
+      "aaa_task_macro": 66.79321626984127,
+      "forgetting": 6.326666666666666,
+      "bwt": -6.326666666666666,
+      "faa_sample_weighted": 60.76,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_alpha1_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_fisher_alpha1_s2/exp_run/20/s3_mech_fisher_alpha1_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "3663622a3f3281f446918005a1ae68765f3b10d61ceceadfae9192ee4f4667e8",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          78.35,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.8,
+          78.35,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.78,
+          77.95,
+          70.16,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          74.02,
+          67.44,
+          69.09,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.2,
+          71.65,
+          65.89,
+          66.67,
+          48.04,
+          46.48,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.9,
+          71.26,
+          65.5,
+          63.64,
+          44.12,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          70.87,
+          64.73,
+          63.03,
+          44.12,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.27,
+          70.08,
+          63.18,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          40.0,
+          46.67,
+          null
+        ],
+        [
+          74.92,
+          73.62,
+          65.5,
+          64.24,
+          39.22,
+          39.44,
+          32.53,
+          40.0,
+          44.44,
+          59.62
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "eligible scientific single-axis/center point; preserve campaign/run provenance"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_fisher_gamma0_s2",
+      "seed": 2,
+      "axis": "fisher_history",
+      "value": "gamma0_no_history",
+      "status": "completed",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_gamma0_s2.json",
+      "config_sha256": "0ba6da077ce1b306357306597d7f1467602f8bd19451b26b306083351426ace6",
+      "scientific_diff": {
+        "ewc_gamma": [
+          0.9,
+          0.0
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "ewc_gamma": [
+          0.9,
+          0.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_gamma0_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_fisher_gamma0_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_gamma0_s2/completed.json",
+      "receipt_sha256": "2d0c735555852a7f8c1d80c91933817ac6748533fcb2aeefe0b6087315e88bf9",
+      "results_declared_tasks": 10,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_gamma0_s2/console.log",
+      "log_sha256": "9c722603a7e131fd5595fbfabdfced4bb0112e194936ed00f5d7dbf4a79601e6",
+      "epoch_pairs": 500,
+      "sample_curve": [
+        87.62,
+        80.93,
+        76.31,
+        75.3,
+        70.53,
+        67.59,
+        63.71,
+        61.81,
+        60.35,
+        60.9
+      ],
+      "last_task_epoch": [
+        9,
+        50
+      ],
+      "faa_task_macro": 53.574,
+      "aaa_task_macro": 66.75515396825396,
+      "forgetting": 6.033333333333334,
+      "bwt": -6.033333333333334,
+      "faa_sample_weighted": 60.9,
+      "tasks_completed": 10,
+      "metrics_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_gamma0_s2/logs_inc_lora/ewclora_normfisher_gam_intask_damp/s3_native_mechanism/imageneta/2/s3_mech_fisher_gamma0_s2/exp_run/20/s3_mech_fisher_gamma0_s2_vit_base_patch16_224_cl_metrics.json",
+      "metrics_sha256": "effa2db6353ef4d926043e11d627512bff081303c75c038e98302e6be500676d",
+      "raw_matrix": [
+        [
+          87.62,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          82.74,
+          78.74,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          79.48,
+          78.74,
+          70.16,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          80.46,
+          77.56,
+          68.99,
+          72.12,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          78.18,
+          73.62,
+          67.44,
+          68.48,
+          50.98,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          77.52,
+          71.65,
+          65.89,
+          66.67,
+          47.06,
+          47.89,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          75.57,
+          71.65,
+          64.73,
+          63.64,
+          43.14,
+          43.66,
+          34.94,
+          null,
+          null,
+          null
+        ],
+        [
+          73.94,
+          70.87,
+          65.12,
+          63.03,
+          43.14,
+          42.25,
+          34.94,
+          43.53,
+          null,
+          null
+        ],
+        [
+          74.92,
+          70.47,
+          63.57,
+          64.85,
+          40.2,
+          40.85,
+          34.94,
+          41.18,
+          44.44,
+          null
+        ],
+        [
+          75.24,
+          73.62,
+          64.73,
+          64.85,
+          41.18,
+          39.44,
+          33.73,
+          40.0,
+          43.33,
+          59.62
+        ]
+      ],
+      "boundary_receipt_summary": {
+        "passed": true,
+        "tasks": 10,
+        "fisher_location": "retained",
+        "selected_epochs": [
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            20,
+            40
+          ]
+        ],
+        "merge_applied": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "scope": "Validated existing completion receipt; large .pt boundary files not independently rehashed or loaded in this audit."
+      },
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true,
+        "completion_receipt_status": true,
+        "completion_source_matches": true,
+        "completion_config_matches": true,
+        "full_500_epochs": true,
+        "raw_matrix_10_tasks_finite": true,
+        "metrics_hash_matches_receipt_and_results": true,
+        "metrics_recomputed_match_receipt_and_results": true,
+        "sample_curve_matches": true,
+        "boundary_receipt_passed_10_tasks": true
+      },
+      "checks_passed": true,
+      "reuse_scope": "other mechanism axis or seed1; not one of requested seed2/3 primary hyperparameter points"
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_fisher_gamma1_s2",
+      "seed": 2,
+      "axis": "fisher_history",
+      "value": "gamma1_no_decay",
+      "status": "running",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_gamma1_s2.json",
+      "config_sha256": "65a63ad67a215be181efd3223f68da230186607eba3e1b21d2e5fb5da4972c01",
+      "scientific_diff": {
+        "ewc_gamma": [
+          0.9,
+          1.0
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "ewc_gamma": [
+          0.9,
+          1.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_gamma1_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_fisher_gamma1_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_gamma1_s2/started.json",
+      "receipt_sha256": "a6bc167abdfc430eec9e4246fe93c6291c7d141c98bd8a7d7787792e88f4bcc3",
+      "results_declared_tasks": 6,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_gamma1_s2/console.log",
+      "log_sha256": "2d2736505ce070cf53ea9353ddb2ba23a26f68febf5e17509c4585c4b051a440",
+      "epoch_pairs": 330,
+      "sample_curve": [
+        87.62,
+        80.75,
+        76.56,
+        75.61,
+        70.63,
+        67.33
+      ],
+      "last_task_epoch": [
+        6,
+        30
+      ],
+      "tasks_completed": 6,
+      "reuse_scope": "incomplete; final performance unavailable",
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true
+      },
+      "checks_passed": true
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_fisher_tasknorm_off_s2",
+      "seed": 2,
+      "axis": "fisher_task_normalization",
+      "value": "off",
+      "status": "running",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_tasknorm_off_s2.json",
+      "config_sha256": "a79fa3a9d6667ce915078ba61ca8882b0223f96d88005f57375c1f28a20f50bb",
+      "scientific_diff": {
+        "ewc_normalize_fisher": [
+          true,
+          false
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "ewc_normalize_fisher": [
+          true,
+          false
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_fisher_tasknorm_off_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_fisher_tasknorm_off_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_tasknorm_off_s2/started.json",
+      "receipt_sha256": "b5a32e9b7abcec96ef3197f8e01c7c511ef832eeda143e23627d602cb13d1e21",
+      "results_declared_tasks": 2,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_fisher_tasknorm_off_s2/console.log",
+      "log_sha256": "e00d198c09ceb4eeab66d1c625cf44d324ade0c1c4c1e199a21d5412a3c75c1a",
+      "epoch_pairs": 147,
+      "sample_curve": [
+        87.3,
+        80.75
+      ],
+      "last_task_epoch": [
+        2,
+        47
+      ],
+      "tasks_completed": 2,
+      "reuse_scope": "incomplete; final performance unavailable",
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true
+      },
+      "checks_passed": true
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_gam_projection_off_s2",
+      "seed": 2,
+      "axis": "gam_projection",
+      "value": "off",
+      "status": "running",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_gam_projection_off_s2.json",
+      "config_sha256": "fcfd9349114ec7571413e62452ebfaf648e220c7898b9bfe308e20975c2ca785",
+      "scientific_diff": {
+        "gam_grad_gamma": [
+          0.1,
+          0.0
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "gam_grad_gamma": [
+          0.1,
+          0.0
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_gam_projection_off_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_gam_projection_off_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_gam_projection_off_s2/started.json",
+      "receipt_sha256": "64dad5a1d08fc1bb2dfaedb620e12ac75eb400c9ccbe0e153209ba4d8f147b5e",
+      "results_declared_tasks": 1,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_gam_projection_off_s2/console.log",
+      "log_sha256": "30cedbfbbc635e990edeeb2b18378fd90bc65fa46fad23608a0fe37e6671fde1",
+      "epoch_pairs": 97,
+      "sample_curve": [
+        87.3
+      ],
+      "last_task_epoch": [
+        1,
+        47
+      ],
+      "tasks_completed": 1,
+      "reuse_scope": "incomplete; final performance unavailable",
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true
+      },
+      "checks_passed": true
+    },
+    {
+      "campaign": "s3-mechanisms-20260920",
+      "id": "s3_mech_gam_rho025_s2",
+      "seed": 2,
+      "axis": "gam_first_radius",
+      "value": "rho0.025",
+      "status": "running",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_gam_rho025_s2.json",
+      "config_sha256": "57980741fa374c3ed9a7143871e10c4f9c8068967bcf7aeed47be12cb33c46f3",
+      "scientific_diff": {
+        "gam_grad_rho": [
+          0.05,
+          0.025
+        ]
+      },
+      "observer_diff": {
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "all_config_differences": {
+        "gam_grad_rho": [
+          0.05,
+          0.025
+        ],
+        "optimizer_tag_override": [
+          "s3_reference_native_center",
+          "s3_native_mechanism"
+        ],
+        "outputs_root": [
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2",
+          "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/outputs/s3_mech_gam_rho025_s2"
+        ],
+        "prefix": [
+          "s3_center_s2",
+          "s3_mech_gam_rho025_s2"
+        ],
+        "s3_boundary_capture": [
+          null,
+          true
+        ],
+        "s3_fisher_location": [
+          null,
+          "retained"
+        ]
+      },
+      "source_manifest_sha256": "775e24b4e319e8dc9bd87f80371377d7ea677c31deddc3e6709edacbaa476ae2",
+      "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_gam_rho025_s2/started.json",
+      "receipt_sha256": "c9d3f304a430e7d7e89f8c1ece01eb4bf80230778cd6f4d3e5bb047333148c89",
+      "results_declared_tasks": null,
+      "target_seed": true,
+      "core_axis_eligible": false,
+      "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/runtime/jobs/s3_mech_gam_rho025_s2/console.log",
+      "log_sha256": "e0d48ee602e996c2e17885b0038a60591af13c9da6740f9a11085c5f66df7fb8",
+      "epoch_pairs": 49,
+      "sample_curve": [],
+      "last_task_epoch": [
+        0,
+        49
+      ],
+      "tasks_completed": 0,
+      "reuse_scope": "incomplete; final performance unavailable",
+      "checks": {
+        "source_files_unchanged": true,
+        "config_matches_suite": true,
+        "started_source_receipt_matches": true,
+        "started_config_receipt_matches": true,
+        "runtime_config_identical": true,
+        "epochs_50_50": true,
+        "no_traceback_or_oom": true,
+        "no_observed_nonfinite_training_metrics": true
+      },
+      "checks_passed": true,
+      "note": "Changes inner rho=0.025; outer training r remains0.2. Not the requested outer-r axis."
+    }
+  ],
+  "source_compatibility": {
+    "parent_unchanged_files": 190,
+    "changed_parent_files": [],
+    "added_files": [
+      "utils/s3_mechanism_controls.py"
+    ]
+  },
+  "native_boundary_witness": {
+    "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/NATIVE_BOUNDARY_WITNESS.json",
+    "sha256": "adfdab8a6aeb23de89c09397cfe0b47700834b9ddce58b90739c63fe673645b9",
+    "passed": true,
+    "source_manifest_matches": true
+  },
+  "short_test_review": {
+    "path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/preflight/smoke_review.json",
+    "sha256": "fab36e883ca7ae61a1d18e8309565d6dc054b7933c370b8c565be15e472f5bf8",
+    "passed": true,
+    "source_manifest_matches": true
+  },
+  "original_reference_config_diff": {
+    "config": [
+      "config_save/s3_damp_c3_alpha02_int20_s2.yaml",
+      null
+    ],
+    "data_root": [
+      null,
+      "/data/140-1/datasets"
+    ],
+    "device": [
+      "[device(type='cuda', index=0)]",
+      [
+        0
+      ]
+    ],
+    "eval_num_workers": [
+      null,
+      8
+    ],
+    "ewc_preserve_fisher_rng": [
+      null,
+      false
+    ],
+    "ewc_skip_task_fisher": [
+      null,
+      false
+    ],
+    "feature_flat_save_path": [
+      "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+      null
+    ],
+    "filepath": [
+      "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints/",
+      null
+    ],
+    "fisher_mode": [
+      null,
+      "batch_empirical"
+    ],
+    "fisher_split": [
+      null,
+      false
+    ],
+    "optimizer_tag_override": [
+      "gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30",
+      "s3_reference_native_center"
+    ],
+    "outputs_root": [
+      null,
+      "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/outputs/s3_center_s2"
+    ],
+    "prefix": [
+      "s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2",
+      "s3_center_s2"
+    ],
+    "seed": [
+      2,
+      [
+        2
+      ]
+    ],
+    "train_num_workers": [
+      null,
+      8
+    ]
+  },
+  "summary": {
+    "status_counts": {
+      "completed": 22,
+      "running": 4
+    },
+    "all_row_checks_passed": true,
+    "target_completed_core_rows": [
+      "s3_center_s2",
+      "s3_lambda0_s2",
+      "s3_lambda200_s2",
+      "s3_lambda20000_s2",
+      "s3_radius01_s2",
+      "s3_radius05_s2",
+      "s3_mech_a_nomerge_matched_s2",
+      "s3_mech_a_off_s2",
+      "s3_mech_center_s3",
+      "s3_mech_a_nomerge_matched_s3",
+      "s3_mech_a_uniform_s2",
+      "s3_mech_a_latest_s2",
+      "s3_mech_fisher_alpha0_s2",
+      "s3_mech_fisher_alpha1_s2"
+    ],
+    "target_running_core_rows": []
+  }
+}

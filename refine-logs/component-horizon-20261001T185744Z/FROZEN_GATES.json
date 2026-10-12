@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "frozen_before_new_screen_training",
+  "primary_metric": "AAA_task_macro",
+  "secondary": [
+    "FAA_task_macro",
+    "LA",
+    "BWT",
+    "forgetting"
+  ],
+  "seed": 2,
+  "exploratory_only": true,
+  "matched_target": "projected native g1 counterfactual actual FP32 SGD from candidate own post-unperturb base",
+  "target_is_independent_S_trace": false,
+  "matching_relative_tolerance": 0.001,
+  "US_identity": {
+    "required": true,
+    "c_equals_nominal_eta_exact": true
+  },
+  "eligible_candidate": {
+    "AAA_gain_min_pp": 1.0,
+    "FAA_gain_min_pp": -1.0,
+    "must_be_validated": true
+  },
+  "approx_symbol": "within +/-1 pp for AAA and FAA is exploratory proximity, not statistical equivalence",
+  "X_selection": {
+    "eligible": [
+      "ug",
+      "uo",
+      "ufull"
+    ],
+    "ranking": [
+      "largest AAA gain",
+      "largest FAA gain",
+      "fixed tie order uo,ug,ufull"
+    ],
+    "no_eligible": "no candidate chosen; examine magnitude/schedule; do not claim proof of zero direction effect"
+  },
+  "phase2": {
+    "auto_launch": false,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "rules": [
+      "SS",
+      "XS",
+      "SX",
+      "XX"
+    ],
+    "independent_retraining": true
+  },
+  "phase3": {
+    "auto_launch": false,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "formation_dominates": [
+      "SSS",
+      "XSS"
+    ],
+    "continuation_dominates": [
+      "SSS",
+      "SXS",
+      "SSX"
+    ],
+    "both": [
+      "SSS",
+      "XSS",
+      "SXS",
+      "SSX",
+      "XXX"
+    ]
+  },
+  "radius1_robustness": {
+    "auto_launch": false,
+    "after": "choose component X; same protocol recheck S and X"
+  },
+  "Hessian_interpretation": "requires available same-point verified HVP, FD step convergence and observed relative error; performance alone cannot prove Hessian mechanism",
+  "reuse": "legacy natural g3 r.25 is historical background; fresh natural ufull required for same-cohort scale comparison"
+}

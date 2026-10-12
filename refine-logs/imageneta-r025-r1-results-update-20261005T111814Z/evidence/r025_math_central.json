@@ -1,0 +1,514 @@
+{
+  "audited_at": "2026-10-05T11:09:15.882218+00:00",
+  "campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z",
+  "status": "completed",
+  "count_new": 3,
+  "count_reused": 0,
+  "rows": [
+    {
+      "job": "G2-CD01_O_P_natural_s2",
+      "branch": "P",
+      "direction": "g2",
+      "mode": "natural",
+      "backend": "math",
+      "status": "completed",
+      "campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z",
+      "source": "new_full10",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD01_O_P_natural_s2",
+      "tasks": 10,
+      "steps": 2550,
+      "seed": 2,
+      "rank": 10,
+      "radius": 0.25,
+      "rho": 0.05,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "gradient_passes_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_gradient_projection_passes": 0,
+        "training_forward_calls": 10200,
+        "sgd_updates": 2550,
+        "diagnostic_replay_ce_gradient_passes": 80,
+        "isolated_diagnostic_ce_gradient_passes": 80,
+        "diagnostic_replay_forward_calls": 80
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true,
+        "strict_bitwise_first_batch_replay": true,
+        "all_task_invariants_passed": true,
+        "natural_g2_only": true,
+        "complete_task_lifecycle": true
+      },
+      "metrics": {
+        "AAA": 66.62132777777778,
+        "FAA": 49.995,
+        "LA": 56.6,
+        "BWT": -7.338888888888889,
+        "forgetting": 7.338888888888889
+      },
+      "matrix": [
+        [
+          86.32
+        ],
+        [
+          83.06,
+          79.92
+        ],
+        [
+          83.06,
+          79.53,
+          70.93
+        ],
+        [
+          78.83,
+          76.77,
+          68.6,
+          73.33
+        ],
+        [
+          75.9,
+          77.17,
+          67.44,
+          67.88,
+          54.9
+        ],
+        [
+          76.55,
+          74.41,
+          65.5,
+          67.27,
+          44.12,
+          50.7
+        ],
+        [
+          74.92,
+          74.41,
+          65.5,
+          64.85,
+          44.12,
+          47.89,
+          40.96
+        ],
+        [
+          72.96,
+          72.44,
+          63.95,
+          64.24,
+          40.2,
+          47.89,
+          39.76,
+          34.12
+        ],
+        [
+          73.29,
+          70.87,
+          63.57,
+          63.03,
+          40.2,
+          43.66,
+          38.55,
+          31.76,
+          34.44
+        ],
+        [
+          72.96,
+          70.87,
+          63.95,
+          60.61,
+          40.2,
+          45.07,
+          37.35,
+          34.12,
+          34.44,
+          40.38
+        ]
+      ],
+      "validation": "passed",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/runtime/jobs/G2-CD01_O_P_natural_s2/completed.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/configs/G2-CD01_O_P_natural_s2.json",
+      "config_sha256": "52940e1ba817e44258adbf3414d21cf077ace39065303f8686191604e03c8825",
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD01_O_P_natural_s2/task_matrix.json",
+      "matrix_sha256": "c45fd8cdd06a1c08a07e37b1e511aa72e2ed7616c27b360bccf5e8eb98ee7b25",
+      "trace_sha256": "218296f8fe562b2928412b9d56bab2f5022c762ec265cca214ed2436b25f9d3a",
+      "summary_sha256": "02e51b32e76aef2f60dcb5448a8beb5398a9d051581cd142157b71016c4792cb",
+      "completed_at": "2026-10-03T13:27:01.544221+00:00",
+      "base_settings": {
+        "dataset": "imageneta",
+        "init_cls": 20,
+        "increment": 20,
+        "class_shuffle": false,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "scheduler": "cosine",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "gam_grad_gamma": 0.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false
+      },
+      "max_match_relative_error": null,
+      "performance_collapse": false
+    },
+    {
+      "job": "G2-CD02_O_C_natural_s2",
+      "branch": "C",
+      "direction": "g2",
+      "mode": "natural",
+      "backend": "math",
+      "status": "completed",
+      "campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z",
+      "source": "new_full10",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD02_O_C_natural_s2",
+      "tasks": 10,
+      "steps": 2550,
+      "seed": 2,
+      "rank": 10,
+      "radius": 0.25,
+      "rho": 0.05,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "gradient_passes_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_gradient_projection_passes": 0,
+        "training_forward_calls": 10200,
+        "sgd_updates": 2550,
+        "diagnostic_replay_ce_gradient_passes": 80,
+        "isolated_diagnostic_ce_gradient_passes": 80,
+        "diagnostic_replay_forward_calls": 80
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true,
+        "strict_bitwise_first_batch_replay": true,
+        "all_task_invariants_passed": true,
+        "natural_g2_only": true,
+        "complete_task_lifecycle": true
+      },
+      "metrics": {
+        "AAA": 66.69566547619047,
+        "FAA": 49.952,
+        "LA": 56.488,
+        "BWT": -7.262222222222221,
+        "forgetting": 7.385555555555554
+      },
+      "matrix": [
+        [
+          86.32
+        ],
+        [
+          83.39,
+          81.1
+        ],
+        [
+          83.39,
+          79.53,
+          71.32
+        ],
+        [
+          79.15,
+          77.17,
+          68.6,
+          72.73
+        ],
+        [
+          75.57,
+          77.56,
+          66.28,
+          69.09,
+          53.92
+        ],
+        [
+          75.57,
+          74.41,
+          64.73,
+          67.88,
+          44.12,
+          50.7
+        ],
+        [
+          73.62,
+          75.2,
+          65.12,
+          65.45,
+          44.12,
+          47.89,
+          40.96
+        ],
+        [
+          72.96,
+          72.83,
+          63.57,
+          64.85,
+          42.16,
+          47.89,
+          38.55,
+          34.12
+        ],
+        [
+          72.96,
+          71.26,
+          62.79,
+          63.64,
+          40.2,
+          43.66,
+          38.55,
+          32.94,
+          33.33
+        ],
+        [
+          73.29,
+          72.44,
+          63.18,
+          62.42,
+          38.24,
+          43.66,
+          37.35,
+          34.12,
+          34.44,
+          40.38
+        ]
+      ],
+      "validation": "passed",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/runtime/jobs/G2-CD02_O_C_natural_s2/completed.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/configs/G2-CD02_O_C_natural_s2.json",
+      "config_sha256": "f05a462af8a6031d52a97d051e41bd5deb28e9e047f9705453878885797e673e",
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD02_O_C_natural_s2/task_matrix.json",
+      "matrix_sha256": "199203de37a5554148bf3cdad0108dc34d64673faba6f6572783cc36cb3fef9a",
+      "trace_sha256": "885d1a970b9422da0c94d72d113c259587ff8957546597d79e360cc14d397e64",
+      "summary_sha256": "0cf4f29615c230506925b6f97110b088e1b2e59365990fa6dc8ded1b430efcfb",
+      "completed_at": "2026-10-03T15:41:03.946713+00:00",
+      "base_settings": {
+        "dataset": "imageneta",
+        "init_cls": 20,
+        "increment": 20,
+        "class_shuffle": false,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "scheduler": "cosine",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "gam_grad_gamma": 0.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false
+      },
+      "max_match_relative_error": null,
+      "performance_collapse": false
+    },
+    {
+      "job": "G2-CD03_O_CD_natural_s2",
+      "branch": "CD",
+      "direction": "g2",
+      "mode": "natural",
+      "backend": "math",
+      "status": "completed",
+      "campaign": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z",
+      "source": "new_full10",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD03_O_CD_natural_s2",
+      "tasks": 10,
+      "steps": 2550,
+      "seed": 2,
+      "rank": 10,
+      "radius": 0.25,
+      "rho": 0.05,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "gradient_passes_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_gradient_projection_passes": 0,
+        "training_forward_calls": 10200,
+        "sgd_updates": 2550,
+        "diagnostic_replay_ce_gradient_passes": 80,
+        "isolated_diagnostic_ce_gradient_passes": 80,
+        "diagnostic_replay_forward_calls": 80
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_base_probes": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true,
+        "strict_bitwise_first_batch_replay": true,
+        "all_task_invariants_passed": true,
+        "natural_g2_only": true,
+        "complete_task_lifecycle": true
+      },
+      "metrics": {
+        "AAA": 66.68632103174603,
+        "FAA": 50.007999999999996,
+        "LA": 56.577,
+        "BWT": -7.2988888888888885,
+        "forgetting": 7.423333333333334
+      },
+      "matrix": [
+        [
+          86.32
+        ],
+        [
+          83.39,
+          81.1
+        ],
+        [
+          82.74,
+          79.92,
+          71.71
+        ],
+        [
+          78.83,
+          77.17,
+          69.38,
+          72.12
+        ],
+        [
+          75.57,
+          77.95,
+          67.05,
+          67.88,
+          53.92
+        ],
+        [
+          76.55,
+          74.8,
+          66.67,
+          67.27,
+          42.16,
+          50.7
+        ],
+        [
+          73.62,
+          75.2,
+          65.12,
+          65.45,
+          44.12,
+          47.89,
+          40.96
+        ],
+        [
+          72.96,
+          73.62,
+          63.95,
+          64.24,
+          41.18,
+          46.48,
+          39.76,
+          34.12
+        ],
+        [
+          72.31,
+          71.65,
+          63.18,
+          63.03,
+          40.2,
+          43.66,
+          38.55,
+          30.59,
+          34.44
+        ],
+        [
+          72.96,
+          72.05,
+          62.79,
+          61.21,
+          41.18,
+          43.66,
+          37.35,
+          32.94,
+          35.56,
+          40.38
+        ]
+      ],
+      "validation": "passed",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/runtime/jobs/G2-CD03_O_CD_natural_s2/completed.json",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/configs/G2-CD03_O_CD_natural_s2.json",
+      "config_sha256": "594e26fd794d698aa2d4b021ce2e6bd763f9bad87c2df1b4593a38dd95bef4ac",
+      "matrix_path": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD03_O_CD_natural_s2/task_matrix.json",
+      "matrix_sha256": "5a5da220bb034070f25c4c884c804f2fa05b804e08372372c2a5b731f364db52",
+      "trace_sha256": "42b687635aa7b40508698a1bd4df7e2534be8ef99f1b2a0014b89589e603c85b",
+      "summary_sha256": "7452c4412b970e3c7e5d8a914ee84bc7c67aca7a2250ceb33ea1800986f2bcf4",
+      "completed_at": "2026-10-03T16:25:34.440672+00:00",
+      "base_settings": {
+        "dataset": "imageneta",
+        "init_cls": 20,
+        "increment": 20,
+        "class_shuffle": false,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "scheduler": "cosine",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "momentum": 0.0,
+        "weight_decay": 0.0,
+        "gam_grad_gamma": 0.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false
+      },
+      "max_match_relative_error": null,
+      "performance_collapse": false
+    }
+  ],
+  "contract_verified": null,
+  "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "source_files_count": 190,
+  "queue_counts": {
+    "completed": 8
+  },
+  "diagnostics": {
+    "offline_status": "passed",
+    "state_batch_count": 18,
+    "diagnostic_report": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD_location_diagnostics/g2_location_report.json",
+    "diagnostics_validation": "passed",
+    "P_C_CD_first_batch_replay": "strict_bitwise_each_of_10_tasks_passed"
+  }
+}

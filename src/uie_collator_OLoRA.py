@@ -1,5 +1,7 @@
 import logging
 
+from uie_collator import DataCollatorForUIE as _SharedDataCollatorForUIE
+
 import torch
 from transformers.data.data_collator import *
 
@@ -20,6 +22,7 @@ def check_model(model_name, supported_models):
 
 @dataclass
 class DataCollatorForUIE:
+    decoder_pipeline_version = _SharedDataCollatorForUIE.decoder_pipeline_version
     tokenizer: PreTrainedTokenizerBase
     model: Optional[Any] = None
     padding: Union[bool, str, PaddingStrategy] = True
@@ -136,99 +139,7 @@ class DataCollatorForUIE:
 
         return model_inputs
 
-    def decoder_call(self, batch, return_tensors):
-        self.tokenizer.padding_side = 'left'
-        sources = []
-        label_lens = []
-        labels = []
-        max_len = -1
-        if batch[0]['subset'] == "train":
-            limit_input_len = self.max_source_length + self.max_target_length
-        else:
-            limit_input_len = self.max_source_length
-
-        for instance in batch:
-            label = instance['Instance']['label']
-            labels.append(label)
-            instruction = self.get_instruction(instance)
-
-            # add bos and eos
-            task_input = self.tokenizer.bos_token + instruction
-            label = label + self.tokenizer.eos_token
-
-            tokenized_input = self.tokenizer(task_input)["input_ids"]
-            tokenized_label = self.tokenizer(label)["input_ids"]
-
-            # (input) for inference, (input + label) for training
-            if instance['subset'] in ['dev', 'test']:
-                label_lens.append(0)
-                if len(tokenized_input) <= limit_input_len:
-                    max_len = max(len(tokenized_input), max_len)
-                    sources.append(task_input)
-                else:
-                    max_len = limit_input_len
-                    input_wo_label = self.tokenizer.decode(
-                        tokenized_input[: limit_input_len],
-                        skip_special_tokens=False
-                    )
-                    sources.append(input_wo_label)
-            else:
-                if len(tokenized_input) + len(tokenized_label) <= limit_input_len:
-                    max_len = max(len(tokenized_input) + len(tokenized_label), max_len)
-                    label_lens.append(len(tokenized_label))
-                    sources.append(task_input + label)
-                else:
-                    max_len = self.max_source_length
-                    input_w_label = self.tokenizer.decode(
-                        (tokenized_input + tokenized_label)[: limit_input_len],
-                        skip_special_tokens=False
-                    )
-                    sources.append(input_w_label)
-                    label_lens.append(max(0, limit_input_len - len(tokenized_input)))
-
-        # TODO, support online demo
-        if self.text_only:
-            model_inputs = {"inputs": sources, 'labels': labels}
-        else:
-            model_inputs = self.tokenizer(
-                sources,
-                max_length=self.max_source_length,
-                padding=self.padding,
-                return_tensors=return_tensors,
-                truncation=True,
-                pad_to_multiple_of=self.pad_to_multiple_of
-            )
-
-            label_mask = model_inputs["attention_mask"].bool()
-            model_inputs["labels"] = model_inputs['input_ids'].masked_fill(~label_mask, self.label_pad_token_id)
-
-            # loss mask
-            max_len = min(max_len, limit_input_len)
-            loss_mask = torch.ones((label_mask.shape))
-            for k, label_len in enumerate(label_lens):
-                loss_mask[k, : max_len - label_len - 1] = 0
-            model_inputs['loss_mask'] = loss_mask.masked_fill(~label_mask, 0)
-
-            self._save_samples(model_inputs, sources, labels)
-
-        return model_inputs
-
-    def _save_samples(self, model_inputs, sources, labels):
-        if not self.input_record_file:
-            return
-
-        loss_label = []
-        if hasattr(model_inputs, 'loss_mask'):
-            for loss, id in zip(model_inputs.loss_mask, model_inputs.input_ids):
-                loss_label.append(self.tokenizer.decode((loss * id).view(-1).int()))
-
-            with open(self.input_record_file, 'a+', encoding='utf-8') as f:
-                for text, label, mask_label in zip(sources, labels, loss_label):
-                    f.write(text+'\n')
-                    f.write(label + '\n')
-                    f.write(mask_label+'\n\n')
-        else:
-            with open(self.input_record_file, 'a+', encoding='utf-8') as f:
-                for text, label in zip(sources, labels['input_ids']):
-                    f.write(text + '\n')
-                    f.write(self.tokenizer.decode(label, clean_up_tokenization_spaces=False) + '\n')
+    # Keep the legacy import path consistent with the main decoder implementation.
+    # Seq2seq tokenization and the legacy constructor above remain unchanged.
+    decoder_call = _SharedDataCollatorForUIE.decoder_call
+    _save_samples = _SharedDataCollatorForUIE._save_samples

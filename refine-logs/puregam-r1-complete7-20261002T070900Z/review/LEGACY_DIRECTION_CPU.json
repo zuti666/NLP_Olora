@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "passed": true,
+  "device": "cpu",
+  "cases": {
+    "g0": {
+      "steps": 4,
+      "oracle_parameters_gradients_losses_mechanism_RNG_and_next_inputs_exact": true,
+      "native_forward_count": 20,
+      "native_gradient_closures": 16,
+      "reference_is_completely_unpatched": false
+    },
+    "g2": {
+      "steps": 4,
+      "oracle_parameters_gradients_losses_mechanism_RNG_and_next_inputs_exact": true,
+      "native_forward_count": 20,
+      "native_gradient_closures": 16,
+      "reference_is_completely_unpatched": false
+    },
+    "ug": {
+      "steps": 4,
+      "oracle_parameters_gradients_losses_mechanism_RNG_and_next_inputs_exact": true,
+      "native_forward_count": 20,
+      "native_gradient_closures": 16,
+      "reference_is_completely_unpatched": false
+    },
+    "g1_control": {
+      "steps": 4,
+      "oracle_parameters_gradients_losses_mechanism_RNG_and_next_inputs_exact": true,
+      "native_forward_count": 20,
+      "native_gradient_closures": 16,
+      "reference_is_completely_unpatched": true
+    },
+    "native_control": {
+      "steps": 4,
+      "oracle_parameters_gradients_losses_mechanism_RNG_and_next_inputs_exact": true,
+      "native_forward_count": 20,
+      "native_gradient_closures": 16,
+      "reference_is_completely_unpatched": true
+    }
+  },
+  "negative_cases": [
+    {
+      "case": "gamma_changed",
+      "error": "AssertionError('Extension must use historical gamma0 g1 base configuration')"
+    },
+    {
+      "case": "radius_changed",
+      "error": "AssertionError('Historical nonadaptive rho=.05/r=1/no-SGV protocol differs')"
+    },
+    {
+      "case": "lambda_flat_changed",
+      "error": "AssertionError('Historical lambda_flat must remain 1')"
+    },
+    {
+      "case": "projector_corrupted",
+      "error": "AssertionError('native clean+(selected-clean) projector exact own-spec mismatch')"
+    },
+    {
+      "case": "actual_SGD_corrupted",
+      "error": "AssertionError('actual SGD from native restored point exact own-spec mismatch')"
+    },
+    {
+      "case": "native_gradient_cache_corrupted",
+      "error": "AssertionError('native g0 cache exact own-spec mismatch')"
+    },
+    {
+      "case": "missing_actual_SGD",
+      "error": "AssertionError('Historical clean+four-closure/one-decomposition/one-SGD count changed')"
+    },
+    {
+      "case": "partial_install_failure_restores_methods_and_forward_hook",
+      "error": "RuntimeError('intentional partial optimizer-hook installation failure')"
+    }
+  ],
+  "same_start_four_probe_gradients_equal_across_all_selectors": true,
+  "factory_first_training_learner_only_and_other_GAM_instances_untouched": true,
+  "full_ViT_or_GPU_not_exercised": true,
+  "legacy_direction_sha256": "8776dc581d93e18f967d6fc20d17ce9bce508a06b49393621792832bec5873fc",
+  "test_sha256": "1f92e1b539de7527dffdc9b4380a2d80343bac05a658d021437a3d15a2b86a3b",
+  "source_gam_sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+  "source_files_sha256": {
+    "optimer_PerturabtionType/gam.py": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+    "models_LoRAbasedCL/as1_normfisher_gam_intask.py": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69",
+    "models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8"
+  },
+  "native_AST_methods": [
+    "as1_normfisher_gam_intask._step_batch_with_log",
+    "as1_normfisher_gam_intask._build_direction_projector",
+    "ewclora_youyue_fitArchitechture_gam._compute_clean_task_grad_cache",
+    "ewclora_youyue_fitArchitechture_gam._flatten_optimizer_params"
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "records": [
+    {
+      "epoch": 1,
+      "batch": 0,
+      "task": 0,
+      "source": "isolated_GAM_diagnostic_plus_native_SAM_training",
+      "geometry": {
+        "identified": true,
+        "a": 1.988049822272981,
+        "a_clipped": false,
+        "r_perp_norm": 1.034477620206264,
+        "r_perp_over_g3": 0.44545708839398035,
+        "orthogonality_dot": -3.6720177631205386e-08,
+        "gradient_norms": {
+          "g0": 1.0097035024853436,
+          "g1": 1.0458228893752386,
+          "g2": 2.236715878872658,
+          "g3": 2.322283441343131
+        },
+        "cos_g0_g1": 0.9996956846621027,
+        "cos_g0_g3": 0.8853866355465537,
+        "cos_g1_g3": 0.895303291724351
+      },
+      "probe_points": [
+        {
+          "parameter_norm": 0.0,
+          "effective_lora_ba_norm": 0.0,
+          "fc_norm": 0.0,
+          "effective_joint_norm": 0.0,
+          "per_lora_pair_ba_norm": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "parameter_norm": 0.050000008461674385,
+          "effective_lora_ba_norm": 0.027115277774699763,
+          "fc_norm": 0.04255500698989043,
+          "effective_joint_norm": 0.050459557159261224,
+          "per_lora_pair_ba_norm": [
+            0.022333447548362032,
+            0.015377106665549567
+          ]
+        },
+        {
+          "parameter_norm": 1.00000007989672,
+          "effective_lora_ba_norm": 1.1245980666816748,
+          "fc_norm": 0.5413714025070443,
+          "effective_joint_norm": 1.2481201092189025,
+          "per_lora_pair_ba_norm": [
+            0.8712067987291775,
+            0.7111395963045647
+          ]
+        },
+        {
+          "parameter_norm": 1.0458514190693298,
+          "effective_lora_ba_norm": 1.1800734366961978,
+          "fc_norm": 0.5726589778785975,
+          "effective_joint_norm": 1.311682744012795,
+          "per_lora_pair_ba_norm": [
+            0.9170437372656024,
+            0.7427005452656621
+          ]
+        }
+      ],
+      "actual_update": {
+        "parameter_norm": 0.04141872988534253,
+        "effective_lora_ba_norm": 0.022782445596067687,
+        "fc_norm": 0.03497138119781105,
+        "effective_joint_norm": 0.04173772071185004,
+        "per_lora_pair_ba_norm": [
+          0.018704254691486556,
+          0.013007331923718531
+        ]
+      },
+      "final_gradient_norm": 1.035468220050341,
+      "training_closure_count": 2,
+      "per_layer_gradient_norms": {
+        "g0": {
+          "fc": 0.8593586836598817,
+          "block_00_q": 0.4343332816352133,
+          "block_00_v": 0.3039052750669396
+        },
+        "g1": {
+          "fc": 0.8830271332224292,
+          "block_00_q": 0.4595256463598384,
+          "block_00_v": 0.3206942130312357
+        },
+        "g2": {
+          "fc": 1.5110481467822323,
+          "block_00_q": 1.3324797006549407,
+          "block_00_v": 0.9716631454622467
+        },
+        "g3": {
+          "fc": 1.552500490257232,
+          "block_00_q": 1.3933464845178658,
+          "block_00_v": 1.0204548906097004
+        }
+      },
+      "selected_gradient_reference": "independent_CE_gradient_at_actual_SAM_probe",
+      "cross_algorithm_comparison": {
+        "sam_g1_vs_isolated_gam_g1_relative_error": 0.009900977909472928,
+        "sam_g1_vs_isolated_gam_g1_max_abs_error": 0.0026758015155792236,
+        "sam_g1_vs_isolated_gam_g1_cosine": 1.0,
+        "used_as_correctness_gate": false,
+        "note": "Separate finite-precision algorithms: equivalence is measured, not assumed bitwise."
+      },
+      "self_sam_audit": {
+        "sam_clean_gradient_norm": 1.009703516960144,
+        "gam_reduction_norm_of_same_gradient": 1.0097033977508545,
+        "norm_reduction_relative_difference": 1.1806365685412067e-07,
+        "sam_g0_vs_isolated_gam_g0_relative_error": 0.0,
+        "probe_parameter_check": {
+          "passed": true,
+          "finite": true,
+          "tensor_count": 6,
+          "max_abs_error": 0.0,
+          "per_tensor_allclose_rtol": 1e-05,
+          "per_tensor_allclose_atol": 1e-07,
+          "all_tensors_exact": true
+        },
+        "saved_clean_parameters_exact": true,
+        "actual_sam_probe": {
+          "parameter_norm": 0.050000008461674385,
+          "effective_lora_ba_norm": 0.027115277774699763,
+          "fc_norm": 0.04255500698989043,
+          "effective_joint_norm": 0.050459557159261224,
+          "per_lora_pair_ba_norm": [
+            0.022333447548362032,
+            0.015377106665549567
+          ]
+        },
+        "actual_probe_gradient_check": {
+          "passed": true,
+          "finite": true,
+          "tensor_count": 6,
+          "max_abs_error": 0.0,
+          "per_tensor_allclose_rtol": 1e-05,
+          "per_tensor_allclose_atol": 1e-07
+        }
+      },
+      "selected_gradient_relative_error": 0.0,
+      "actual_step_vs_selected_relative_error": 1.8471460756716222e-06,
+      "base_sgd_audit": {
+        "probe_roundtrip_parameter_norm": 0.0,
+        "probe_roundtrip_max_abs": 0.0,
+        "sam_saved_copy_restored_exactly": true,
+        "passed": true,
+        "predicted_after_max_abs_error": 0.0,
+        "base_step_parameter_norm": 0.04141872988534253,
+        "note": "Prediction starts after native unperturb and uses actual final gradient in parameter dtype."
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\caption{Fine-grained continual learning under documented configurations. Entries report mean and sample standard deviation (ddof=1) across seeds 0, 1, and 2; $^{\dagger}$ reports only successful seeds 0 and 2 because seed 1 diverged. FAA and stage-averaged AAA are percentages. 5Datasets is the cross-dataset task stream.}
+\label{tab:exp_fine}
+\scriptsize\setlength{\tabcolsep}{2.2pt}\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l*{10}{r}@{}}
+\toprule
+Method & \multicolumn{2}{c}{Aircraft} & \multicolumn{2}{c}{Cars} & \multicolumn{2}{c}{CUB-200} & \multicolumn{2}{c}{Flowers} & \multicolumn{2}{c}{5Datasets}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+ & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA\\\midrule
+Vanilla LoRA & \ExpRes{39.85}{0.78} & \ExpRes{38.42}{1.19} & \ExpRes{31.74}{2.57} & \ExpRes{41.67}{2.07} & \ExpRes{58.31}{1.72} & \ExpRes{69.61}{0.57} & \ExpRes{52.92}{1.27} & \ExpRes{66.49}{1.29} & \ExpRes{66.90}{1.46} & \ExpRes{68.85}{0.24}\\
+InfLoRA & \ExpRes{41.35}{0.29} & \ExpRes{39.62}{0.59} & \ExpRes{35.98}{2.28} & \ExpRes{44.57}{1.98} & \ExpRes{61.36}{0.42} & \ExpRes{70.38}{0.53} & \ExpRes{57.34}{3.38} & \ExpRes{69.98}{2.97} & \ExpRes{78.77}{1.08} & \ExpRes{77.25}{0.67}\\
+OLoRA & \ExpRes{37.67}{1.22} & \ExpRes{37.77}{0.88} & \ExpRes{35.30}{0.53} & \ExpRes{44.70}{0.67} & \ExpRes{60.70}{1.26} & \ExpRes{68.71}{0.52} & \ExpRes{47.68}{1.32} & \ExpRes{63.18}{1.17} & \ExpRes{79.12}{0.45} & \ExpRes{76.96}{0.13}\\
+SDLoRA & -- & -- & -- & -- & -- & -- & -- & -- & \ExpRes{74.70}{0.34} & \ExpRes{73.90}{0.20}\\
+CL-LoRA & \ExpRes{29.35}{0.06} & \ExpRes{26.54}{0.06} & \ExpRes{34.01}{0.63} & \ExpRes{41.86}{0.30} & \ExpRes{78.31}{0.07} & \ExpRes{81.01}{0.12} & \ExpRes{97.83}{0.005} & \ExpRes{98.34}{0.002} & \ExpRes{67.05}{0.07} & \ExpRes{61.97}{0.08}\\
+EWCLoRA & \ExpRes{40.64}{1.61} & \ExpRes{38.44}{1.10} & -- & -- & \ExpRes{61.34}{0.91} & \ExpRes{70.36}{1.38} & \ExpRes{52.02}{1.10} & \ExpRes{65.36}{0.32} & \ExpRes{73.30}{0.57} & \ExpRes{72.93}{0.24}\\
+GAM-EWCLoRA & \ExpRes{45.97}{1.02}$^{\dagger}$ & \ExpRes{43.41}{0.38}$^{\dagger}$ & \ExpRes{53.04}{2.02} & \ExpRes{56.26}{1.52} & \ExpRes{73.42}{0.97} & \ExpRes{76.26}{0.38} & \ExpRes{84.68}{1.96} & \ExpRes{90.00}{0.17} & \ExpRes{83.24}{0.38} & \ExpRes{81.19}{0.28}\\
+\bottomrule
+\end{tabular*}
+\par\vspace{3pt}
+\begin{minipage}{\linewidth}\scriptsize
+Missing entries have no valid complete run in this campaign: SDLoRA on the four single-dataset streams ran out of memory; EWCLoRA/Cars diverged. Their dependent seeds were not started. The $^{\dagger}$ entry is incomplete and must not be described as a three-seed result. Small nonzero standard deviations use three decimals. CL-LoRA seed 0 on all datasets and GAM-EWCLoRA/5Datasets seed 0 are validated archived runs. Dataset-specific and method-specific documented settings are retained; this is not an equal-compute comparison.
+\end{minipage}
+\end{table*}

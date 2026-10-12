@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-09-20T18:32:30Z",
+  "review_type": "result-to-claim",
+  "claim_supported": "partial",
+  "confidence": "high",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "integrity_status": "unavailable",
+  "integrity_note": "No scope-matched EXPERIMENT_AUDIT.json exists. This is non-blocking under the result-to-claim protocol.",
+  "evidence_precheck": {
+    "status": "verified",
+    "acceptance_status": "accepted_for_existence_only",
+    "numeric_claims_extracted": 104,
+    "summary_files_verified": 12,
+    "semantic_effect": "The cited files and values exist; this does not establish claim support.",
+    "source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/evidence_precheck.json"
+  },
+  "scope": {
+    "target_method": "current visual GAM+EWC implementation",
+    "dataset": "ImageNet-A",
+    "model": "ViT-B/16 with Q/V LoRA rank 10",
+    "training_seeds": [0],
+    "random_direction_count_per_nonzero_radius": 16,
+    "random_directions_are_training_replicates": false,
+    "A_scope": "Only the completed two-row seed0 A_two_task.csv in fs_ewc_rq2_20260920 is judged.",
+    "excluded_scope": [
+      "The separate imageneta_two_task_table_20260920 campaign, which has smoke/anchor artifacts but no formal result table at this gate",
+      "ImageNet-R results",
+      "The September 17 full-paper FS-EWC numerical implementation"
+    ],
+    "method_version_boundary": "METHOD_ALIGNMENT.md finds differences between historical visual GAM and the September 17 paper algorithm. The user selected the current visual GAM+EWC implementation as the target, so this is a reporting boundary rather than a retraining blocker."
+  },
+  "intended_claim": "Task0 shaping lowers neighborhood sensitivity and enlarges empirical damage tolerance, enabling future learning to move through less damaging directions and improve retention without sacrificing plasticity.",
+  "overall_verdict": "The complete causal and split-robust chain is not supported. Narrow train-sample sensitivity and historical full-sequence endpoint-segment observations are supported, while A and B-test provide direct counterevidence to the proposed accuracy and generalization links.",
+  "what_results_support": [
+    "A is an auditable package-level comparison of two inherited Task0 states under the same future SGD+EWC Task1 procedure and matched recorded randomness.",
+    "For seed0 and the chosen effective-weight coordinates, the GAM Task0 anchor has lower train256 raw empirical-Fisher trace and lower sampled train-neighborhood G and Q95 at all six nonzero radii.",
+    "In the historical GAM-to-GAM sequence, Task0 test-local CE damage is lower and effective-weight displacement is larger than in SGD-to-SGD at every Task1-Task9 endpoint.",
+    "At Task9, the GAM endpoint chord has lower S_path and D_subset, with passed quadrature and same-sample bound checks."
+  ],
+  "what_results_dont_support": [
+    "A pure Task0-geometry effect independent of the inherited old head and EWC Fisher",
+    "Improved a21, a22, or two-task class-IL mean from inheriting the GAM Task0 package under future SGD+EWC",
+    "Lower test-neighborhood mean positive damage or generally larger test tolerance radii",
+    "Continuous-ball or worst-case robustness",
+    "A Hessian-flatness claim or reparameterization-invariant geometry",
+    "An optimization-trajectory integral; C measures endpoint straight segments",
+    "Causal mediation from Task0 shaping through sensitivity to later accuracy",
+    "Cross-seed, cross-dataset, or full-paper-FS-EWC generalization"
+  ],
+  "missing_evidence": [
+    "Test-split raw per-example empirical Fisher; B's raw_trace_mean_train256 column is train-only even when repeated on test rows",
+    "A finite equal-budget directed probe; existing random and realized-chain directions do not approximate a certified supremum",
+    "Task1 and Task5 endpoint-segment integrals; only Task9 S_path is currently measured",
+    "Independent training seeds for any population-level or across-seed claim",
+    "A shared-head/shared-protection intervention if a pure Task0-geometry causal claim is retained",
+    "Exact historical training-source SHA binding; current frozen source/config mapping is adequate for the selected current-visual implementation scope but not bitwise historical-source identity"
+  ],
+  "claims": [
+    {
+      "id": "A1_controlled_package_comparison",
+      "claim": "A compares two inherited Task0 packages under the same future SGD+EWC Task1 rule.",
+      "claim_supported": "yes",
+      "confidence": "high",
+      "what_results_support": "Future optimizer/hyperparameters match, and the RNG receipt matches the new head, sample order, and first-batch image/label hashes over all 51 loader iterations.",
+      "what_results_dont_support": "The inherited weights, old head, and EWC Fisher differ; A does not isolate geometry or Fisher as a single causal variable.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/A_two_task.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/A_PAIRED_RNG_CHECK.json"
+      ],
+      "suggested_claim_revision": "Under an audited common future SGD+EWC continuation, the two inherited Task0 packages yield the reported seed0 outcomes.",
+      "next_experiments_needed": []
+    },
+    {
+      "id": "A2_retention_plasticity_benefit",
+      "claim": "The GAM Task0 package improves retention and plasticity under fixed future SGD+EWC.",
+      "claim_supported": "no",
+      "confidence": "high",
+      "key_values": {
+        "sgd": {"a21": 84.36, "a22": 74.8, "two_task_mean": 79.58, "drift": 0.3749495707076054, "D0_train": 0.0036743754316498067, "D0_test": -0.019245972975083903},
+        "gam_origin": {"a21": 84.04, "a22": 72.05, "two_task_mean": 78.045, "drift": 0.34987579697360244, "D0_train": -0.002156767962053538, "D0_test": -0.013388091220670861}
+      },
+      "what_results_support": "The GAM-origin branch moves 6.69% less and has lower train/subset damage and lower raw trace.",
+      "what_results_dont_support": "Its a21, a22, and two-task mean are all lower; its signed test CE improvement is also smaller in magnitude.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/A_two_task.csv"
+      ],
+      "suggested_claim_revision": "For seed0, lower train sensitivity in the inherited GAM package does not guarantee better subsequent class-IL retention or plasticity under common SGD+EWC.",
+      "next_experiments_needed": []
+    },
+    {
+      "id": "B1_train_sampled_sensitivity",
+      "claim": "The GAM Task0 anchor has lower sampled train-neighborhood sensitivity in the selected effective-weight coordinates.",
+      "claim_supported": "yes",
+      "confidence": "high",
+      "what_results_support": "Train G and Q95 are lower at every nonzero radius in {0.5,1,2,5,10,20}; GAM/SGD train256 raw-trace ratios range from 0.468 to 0.520 over all measured radii.",
+      "what_results_dont_support": "This does not cover the test Fisher, continuous balls, worst-case directions, other coordinate systems, or independent training runs.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_neighborhood_deterministic.csv"
+      ],
+      "suggested_claim_revision": "On the fixed deterministic train sample and paired random directions, the seed0 GAM anchor shows lower raw gradient energy and sampled positive damage.",
+      "next_experiments_needed": ["B_test_raw_fisher", "B_finite_directed_probe"]
+    },
+    {
+      "id": "B2_split_robust_tolerance",
+      "claim": "GAM lowers neighborhood damage across train and test and generally increases empirical tolerance radius.",
+      "claim_supported": "no",
+      "confidence": "high",
+      "what_results_support": "Train G/Q95 are favorable and train Q95 tolerance is larger at epsilon 0.001 and 0.05, with the latter right-censored.",
+      "what_results_dont_support": "Test D_mean and G are higher at all six nonzero radii. All reported test G/Q95 tolerance radii are identical, and all train G tolerance radii are identical.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_neighborhood_deterministic.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_tolerance_deterministic.csv"
+      ],
+      "suggested_claim_revision": "The sampled neighborhood benefit is train-split specific; the present test curves and prefix-safe radii do not show a general tolerance advantage.",
+      "next_experiments_needed": ["B_test_raw_fisher"]
+    },
+    {
+      "id": "B3_worst_case_robustness",
+      "claim": "The neighborhood scan establishes worst-case robustness.",
+      "claim_supported": "no",
+      "confidence": "high",
+      "what_results_support": "It establishes behavior for 16 paired random directions and realized historical chain directions.",
+      "what_results_dont_support": "No directed raw-Fisher search or certified supremum was performed; K=16 Q95 and sampled maxima are exploratory finite-set statistics.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_actual_direction_bridge.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/METHOD_ALIGNMENT.md"
+      ],
+      "suggested_claim_revision": "Use sampled-random and finite-directed language; do not use worst-case or supremum language.",
+      "next_experiments_needed": ["B_finite_directed_probe"]
+    },
+    {
+      "id": "C1_displacement_not_sufficient",
+      "claim": "The historical sequence's old-task damage ordering cannot be explained by smaller endpoint displacement alone.",
+      "claim_supported": "yes",
+      "confidence": "high",
+      "what_results_support": "At every Task1-Task9 checkpoint, GAM-to-GAM has larger effective-weight displacement and lower Task0 test-local CE change than SGD-to-SGD. At Task9, drift is 1.400472589 versus 1.197584100 and test damage is 0.034347380 versus 0.260130529.",
+      "what_results_dont_support": "This comparison does not identify which component of the GAM-to-GAM training procedure causes the lower damage.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_current_FP32_task_trajectory.csv"
+      ],
+      "suggested_claim_revision": "In this seed0 historical sequence, displacement magnitude alone does not order old-task damage.",
+      "next_experiments_needed": []
+    },
+    {
+      "id": "C2_path_sensitivity_mechanism",
+      "claim": "Lower unit-displacement path sensitivity causally mediates the historical chain's lower damage.",
+      "claim_supported": "partial",
+      "confidence": "high",
+      "key_values": {
+        "sgd": {"S_path": 0.3680576024116533, "D_subset": 0.16382227891843115, "drift": 1.197584099887894},
+        "gam": {"S_path": 0.014793092786504949, "D_subset": 0.03809727218539649, "drift": 1.4004725891407084}
+      },
+      "what_results_support": "At Task9, lower S_path, lower same-sample damage, and larger displacement co-occur; quadrature convergence and D_subset-squared bound checks pass.",
+      "what_results_dont_support": "Only the Task0-to-Task9 ambient endpoint chord was integrated. It is not the optimization trajectory, and the two full chains use different future optimizers, so causal mediation is not identified.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_summary.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_nodes.csv"
+      ],
+      "suggested_claim_revision": "At Task9, the historical GAM endpoint chord has lower directional empirical-Fisher sensitivity associated with lower same-sample damage; no optimizer-trajectory or causal-mediation claim is made.",
+      "next_experiments_needed": ["C_task1_task5_endpoint_chords"]
+    },
+    {
+      "id": "M1_complete_causal_chain",
+      "claim": "Task0 shaping causes lower sensitivity, larger tolerance, and improved later class-IL performance.",
+      "claim_supported": "no",
+      "confidence": "high",
+      "what_results_support": "Some train-sensitivity and historical full-sequence directional observations have the anticipated sign.",
+      "what_results_dont_support": "B-test reverses for G, reported tolerance is not generally larger, A class-IL is worse, and A/B/C do not share one intervention chain.",
+      "evidence": [
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/A_two_task.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_neighborhood_deterministic.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/B_tolerance_deterministic.csv",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_summary.csv"
+      ],
+      "suggested_claim_revision": "Report coordinate-specific sensitivity observations and the negative A/test results as separate findings; do not join them into a causal chain.",
+      "next_experiments_needed": ["B_test_raw_fisher", "B_finite_directed_probe", "C_task1_task5_endpoint_chords"]
+    }
+  ],
+  "coordinate_caveat": "All B/C norms, radii, traces, and S_path values use 24 dense effective Q/V matrices with a joint Frobenius metric. Effective weights remove the trivial reciprocal A/B scaling ambiguity, but the measurements remain dependent on layer coordinates and scaling and are not invariant to arbitrary reparameterization. Random dense perturbations can leave the rank-10 LoRA manifold.",
+  "path_caveat": "C integrates the ambient straight segment between realized endpoints. Intermediate points are not asserted to be optimizer iterates or rank-10 factorized states. The supported term is endpoint-segment sensitivity, not optimization-trajectory sensitivity.",
+  "split_caveat": "B raw Fisher is train256 only; repeated CSV values on test rows do not create a test Fisher measurement. C's I, S_path, D_subset, and bound check use the same train256 subset, while full-test loss and accuracy are parallel descriptive outcomes and are not used in the bound.",
+  "revised_claim_prose": "In one ImageNet-A seed of the current visual GAM+EWC implementation, the GAM-trained Task0 anchor exhibits lower raw empirical-Fisher trace and lower sampled positive loss damage on a fixed deterministic Task0 training sample in effective Q/V-weight coordinates. This advantage does not extend to mean positive test-neighborhood damage or to the reported test tolerance radii. Under a paired common SGD+EWC Task1 continuation, inheriting the GAM Task0 state does not improve class-IL accuracy. Separately, in the historical full GAM-to-GAM ten-task chain, old-task loss damage remains lower despite larger endpoint displacement, and the Task0-to-Task9 endpoint segment has lower directional empirical-Fisher sensitivity. These observations show direction-dependent, coordinate-specific sensitivity structure, but do not establish a causal chain from Task0 shaping to later accuracy.",
+  "minimal_followups": [
+    {
+      "id": "B_test_raw_fisher",
+      "priority": "required_for_split_interpretation",
+      "training_required": false,
+      "scope": "Both anchors; all 307 Task0 test images; existing 16 paired directions; r={0,1,5,10,20}; fixed Task0 head; FP32 effective-weight protocol.",
+      "budget": "130 unique states and 39,910 per-example gradient evaluations.",
+      "outputs": ["raw trace mean", "raw trace Q95", "sampled maximum", "test G", "test Q95"],
+      "guardrail": "Test samples are evaluation-only and may not select directions or hyperparameters."
+    },
+    {
+      "id": "B_finite_directed_probe",
+      "priority": "required_only_for_directed_language",
+      "training_required": false,
+      "scope": "Use the current visual GAM factor/head inner-search once at each source anchor on an independent fixed training calibration subset; restore the anchor; form the exact induced BA_after-BA_before displacement including the factor-product cross term; jointly normalize it in effective Q/V-weight space; cross-apply two source directions to two anchors at r={1,5,10,20}; evaluate on train256 and test307.",
+      "budget": "16 evaluation states plus two equal-budget direction searches.",
+      "guardrail": "Record the discarded head displacement, search budget, and direction hashes. This is a GAM-directed aggregate-gradient proxy, not raw-Fisher maximization or a worst-case certificate. Direct W-space raw-trace ascent is optional only for explicit trace-directed language."
+    },
+    {
+      "id": "C_task1_task5_endpoint_chords",
+      "priority": "required_for_sequence_wide_path_language",
+      "training_required": false,
+      "scope": "Both historical chains; Task1 and Task5 endpoints; s={0,1/8,...,1}; same train256; 9-node Simpson with 5-vs-9 convergence and same-sample D_subset-squared bound check.",
+      "budget": "Four paths; 34 unique states with shared-origin multi-direction evaluation, otherwise 36 passes.",
+      "guardrail": "Label all values endpoint-segment sensitivity, not optimization-trajectory sensitivity."
+    }
+  ],
+  "not_default_followups": [
+    "No A rerun and no automatic four-cell A expansion.",
+    "No dense tolerance grid unless the manuscript retains a larger-tolerance claim.",
+    "No broad Fisher-estimator comparison.",
+    "Seeds 1 and 2 are required only for an across-seed formal claim and follow the low-cost diagnostic stage."
+  ],
+  "next_experiments_needed": [
+    "B_test_raw_fisher",
+    "B_finite_directed_probe",
+    "C_task1_task5_endpoint_chords"
+  ],
+  "routing_action": "Narrow the paper claim now, preserve A and B-test counterevidence, run only the three scoped offline followups if the corresponding stronger language is retained, then re-run result-to-claim."
+}

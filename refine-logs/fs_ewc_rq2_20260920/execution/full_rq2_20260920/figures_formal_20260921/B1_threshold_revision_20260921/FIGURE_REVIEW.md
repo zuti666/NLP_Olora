@@ -1,0 +1,5 @@
+# Threshold revision review: PASS
+
+Root viewed the actual rendered PNG, then a fresh gpt-5.6-sol xhigh reviewer independently inspected the image, caption, validation and threshold exports. All five original epsilon ticks are visible and correctly located on a linear axis without collision/clipping. Added thresholds are transparently derived by CPU postprocessing from the same 81 measured radii; per-seed prefix inversion precedes aggregation. Capped tails are omitted only under the previously disclosed rule. The caption correctly distinguishes sample-mean CE, sum CE and per-example positive changes. No required corrections.
+
+A separate numerical/source audit reproduced every saved original tolerance entry and checked the added five levels. The evaluation sums per-example CE and divides by N (1259 train / 307 test); then each direction's sample-mean change is clipped at zero and averaged over 100 directions. New threshold results in the CSVs agree with the independent audit. No GPU evaluation was run.

@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-10-09 09:22:01 UTC",
+  "verifier": "fresh_minimal_context_documented_invocation",
+  "read_inputs": [
+    "refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/RUN.md",
+    ".aris/compute/local.md relevant latest Pilot_new_local ledger entries"
+  ],
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "no_environment_or_package_changes": true,
+  "training_launched": false,
+  "gpu_compute_requested": false,
+  "host": {
+    "hostname": "cudahpc40.cvc.uab.es",
+    "pid_namespace": "pid:[4026531836]",
+    "queue_invocation_sandbox_permissions": "require_escalated"
+  },
+  "checks": [
+    {
+      "name": "cpu_response_step",
+      "command": "CUDA_VISIBLE_DEVICES='' /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/trainer/test_response_step_cpu.py",
+      "exit_code": 0,
+      "tests_passed": 23,
+      "log": "logs/fresh_doc_cpu_step.log"
+    },
+    {
+      "name": "cpu_response_lifecycle",
+      "command": "CUDA_VISIBLE_DEVICES='' /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/trainer/test_response_lifecycle_cpu.py",
+      "exit_code": 0,
+      "tests_passed": 11,
+      "log": "logs/fresh_doc_cpu_lifecycle.log"
+    },
+    {
+      "name": "single200_config",
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/trainer/response_train.py --source /data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source --config /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/configs/formal_single200_history_g2_s2.json --output-dir /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/outputs/formal_single200_history_g2_s2 --dry-run",
+      "exit_code": 0,
+      "observed": {
+        "status": "valid",
+        "protocol": "four_response_methods_sgd_prediction_exact_restore_rng_replay_v1",
+        "response_method": "history_g2",
+        "response_layout": "single200",
+        "seed": 2,
+        "gradients_per_normal_step": 3,
+        "updates_per_step": 1,
+        "diagnostic_forwards_per_step": 1,
+        "history_weight": 0.5,
+        "history_source": "final",
+        "prediction_distance": "current_lr_times_global_gradient_norm",
+        "response_radius_mode": "sgd_step",
+        "gam_radii_active": false,
+        "init_cls": 200,
+        "increment": 200,
+        "full_partition_tasks": 1,
+        "classes": 200,
+        "tasks": 1,
+        "epochs": 50
+      },
+      "log": "logs/fresh_doc_single200_config.log"
+    },
+    {
+      "name": "host_queue_dry_run",
+      "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-four-methods-plan-20261009T090226Z/run_queue.py --dry-run",
+      "exit_code": 0,
+      "observed": {
+        "status": "valid",
+        "jobs": 9,
+        "formal": 0,
+        "smokes": 8,
+        "allowed_gpus": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "max_parallel": 2
+      },
+      "log": "logs/fresh_doc_host_queue.log"
+    }
+  ],
+  "integrity_validation": {
+    "status": "PASS_by_documented_queue_dry_run",
+    "expected_run_pins": 42,
+    "expected_frozen_source_files": 190,
+    "verification_basis": "RUN.md specifies the documented queue dry-run verifies RUN_PINS and the frozen source. Its real-host invocation returned status=valid and exit_code=0.",
+    "file_counts_explicit_in_stdout": false
+  },
+  "execution_boundary": {
+    "formal_jobs": 0,
+    "smoke_jobs": 8,
+    "pairing_jobs": 1,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 2
+  },
+  "limitation": "Queue stdout does not enumerate pin/source counts; 42/190 are the supplied expected counts, with hash verification accepted through the documented queue dry-run."
+}

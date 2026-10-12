@@ -1,0 +1,67 @@
+"""One immutable job, explicit exit receipt, finite complete-matrix validation."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import statistics
+import sys
+import time
+import traceback
+
+HERE=Path(__file__).resolve().parent
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def save(p,v):
+    q=p.with_suffix('.tmp');q.write_text(json.dumps(v,indent=2,allow_nan=False)+'\n');q.replace(p)
+def main():
+    ap=argparse.ArgumentParser();ap.add_argument('--job',required=True);ns=ap.parse_args()
+    suite=json.loads((HERE/'suite.json').read_text());job=next(j for j in suite['jobs']if j['id']==ns.job)
+    receipt=HERE/'receipts'/(ns.job+'.json');assert not receipt.exists(),'Existing attempt must not be overwritten'
+    r=dict(job,status='running',pid=os.getpid(),started_unix=time.time(),gpu_visible=os.environ.get('CUDA_VISIBLE_DEVICES'))
+    save(receipt,r)
+    try:
+        assert sha(job['config'])==job['config_sha256']
+        for rel,h in json.loads((HERE/'source_frozen.json').read_text())['files'].items():assert sha(HERE/'code'/rel)==h,rel
+        for rel,h in json.loads((HERE/'runtime_frozen.json').read_text())['files'].items():assert sha(HERE/rel)==h,rel
+        check=json.loads((HERE/'preflight.json').read_text());assert check['passed']
+        for data in check['data']:
+            if data['dataset']==job['dataset']:assert sha(data['manifest'])==data['sha256']
+        sys.path.insert(0,str(HERE/'code'));os.chdir(HERE/'code')
+        import torch
+        torch.set_num_threads(2)
+        if not torch.cuda.is_available():raise RuntimeError('CUDA unavailable; refuse CPU training fallback')
+        # Detection only: never clip, rescale or change a finite update.
+        original_step=torch.optim.SGD.step
+        def finite_step(optimizer,*args,**kwargs):
+            for group in optimizer.param_groups:
+                for p in group['params']:
+                    if p.grad is not None and not torch.isfinite(p.grad).all():
+                        raise FloatingPointError('Nonfinite SGD update gradient; run invalid')
+            result=original_step(optimizer,*args,**kwargs)
+            for group in optimizer.param_groups:
+                for p in group['params']:
+                    if not torch.isfinite(p).all():raise FloatingPointError('Nonfinite SGD endpoint parameter; run invalid')
+            return result
+        torch.optim.SGD.step=finite_step
+        from src.main import main as train
+        train(['--config',job['config'],'--override','device=[0]'])
+        cfg=json.loads(Path(job['config']).read_text())
+        candidates=list(Path(cfg['outputs_root']).glob('**/'+cfg['prefix']+'*cl_metrics.json'))
+        assert len(candidates)==1,candidates
+        path=candidates[0];raw=json.loads(path.read_text());matrix=raw['cnn']['matrices']['final']
+        assert len(matrix)==job['expected_tasks'],len(matrix)
+        import math
+        lower=[row[:i+1]for i,row in enumerate(matrix)]
+        assert all(len(row)==i+1 and all(math.isfinite(x) and 0<=x<=100 for x in row)for i,row in enumerate(lower))
+        log=path.with_name(path.name.replace('_cl_metrics.json','.log'))
+        assert log.exists()
+        assert not re.search(r'(?:Loss|loss)[^\n]{0,80}?(?:\bnan\b|\binf\b)',log.read_text())
+        r.update(status='completed',exit_code=0,finished_unix=time.time(),metric_path=str(path),metric_sha256=sha(path),
+                 log=str(log),log_sha256=sha(log),metrics=dict(tasks=len(lower),faa=statistics.mean(lower[-1]),
+                 aaa_stage=statistics.mean(statistics.mean(row)for row in lower)),peak_cuda_bytes=torch.cuda.max_memory_allocated())
+        save(receipt,r);return 0
+    except BaseException as exc:
+        r.update(status='failed',exit_code=1,finished_unix=time.time(),error=repr(exc),traceback=traceback.format_exc())
+        save(receipt,r);traceback.print_exc();return 1
+if __name__=='__main__':raise SystemExit(main())

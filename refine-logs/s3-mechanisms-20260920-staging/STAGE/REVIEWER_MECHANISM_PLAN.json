@@ -1,0 +1,257 @@
+{
+  "jobs": [
+    {
+      "id": "s3_mech_a_nomerge_matched_s2",
+      "seed": 2,
+      "overrides": {
+        "in_task_weight_merge_start_task": 10,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Weight-fusion effect with snapshots and quality-CE forward budget retained but no merge applied.",
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_gam_half_direction_s2",
+      "seed": 2,
+      "overrides": {
+        "gam_grad_beta_1": 0.5,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 0.5,
+        "gam_grad_gamma": 0.05,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Exactly half of the complete raw GAM direction while leaving EWC unchanged.",
+      "axis": "gam_total_direction_scale",
+      "value": "half",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_sgd_ewc_s2",
+      "seed": 2,
+      "overrides": {
+        "optimizer_type": "sgd",
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "True single-forward SGD+EWC without GAM probes, retaining center EWC and fusion settings.",
+      "axis": "gam_execution",
+      "value": "sgd_ewc",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_center_s1",
+      "seed": 1,
+      "overrides": {
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Native center replication and seed-1 member of the paired fusion contrast.",
+      "axis": "weight_fusion_primary",
+      "value": "center",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_a_nomerge_matched_s1",
+      "seed": 1,
+      "overrides": {
+        "in_task_weight_merge_start_task": 10,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Weight-fusion effect with native execution matched at seed 1.",
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_a_off_s2",
+      "seed": 2,
+      "overrides": {
+        "in_task_weight_merge": false,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Whole fusion module off; comparison to matched no-merge diagnoses snapshot-evaluation and RNG execution effects.",
+      "axis": "weight_fusion_execution",
+      "value": "whole_module_off",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_center_s3",
+      "seed": 3,
+      "overrides": {
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Native center replication and seed-3 member of the paired fusion contrast.",
+      "axis": "weight_fusion_primary",
+      "value": "center",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_a_nomerge_matched_s3",
+      "seed": 3,
+      "overrides": {
+        "in_task_weight_merge_start_task": 10,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Weight-fusion effect with native execution matched at seed 3.",
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_fisher_endpoint_anchor_s2",
+      "seed": 2,
+      "overrides": {
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "endpoint"
+      },
+      "what_it_tests": "Current-task Fisher estimated at the pre-fusion endpoint while the fused state remains theta-star, using exactly one Fisher pass.",
+      "axis": "fisher_anchor_location",
+      "value": "pre_merge_endpoint",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_a_uniform_s2",
+      "seed": 2,
+      "overrides": {
+        "in_task_path_weighted": true,
+        "in_task_path_beta": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Equal checkpoint weighting with the same two CE-quality forwards.",
+      "axis": "weight_fusion_weights",
+      "value": "uniform",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_a_latest_s2",
+      "seed": 2,
+      "overrides": {
+        "in_task_path_start_ratio": 0.6,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Latest-only checkpoint choice while epochs 20 and 40 are still captured and quality-evaluated.",
+      "axis": "weight_fusion_weights",
+      "value": "latest_epoch40",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_fisher_alpha0_s2",
+      "seed": 2,
+      "overrides": {
+        "ewc_fisher_damping_alpha": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Fisher without isotropic damping.",
+      "axis": "fisher_damping",
+      "value": "alpha0",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_fisher_alpha1_s2",
+      "seed": 2,
+      "overrides": {
+        "ewc_fisher_damping_alpha": 1.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Trace-matched isotropic L2 in place of anisotropic Fisher geometry.",
+      "axis": "fisher_damping",
+      "value": "alpha1_isotropic",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_fisher_gamma0_s2",
+      "seed": 2,
+      "overrides": {
+        "ewc_gamma": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Current-task Fisher only, dropping all older Fisher history before each addition.",
+      "axis": "fisher_history",
+      "value": "gamma0_no_history",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_fisher_gamma1_s2",
+      "seed": 2,
+      "overrides": {
+        "ewc_gamma": 1.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Undiscounted Fisher history versus center gamma 0.9.",
+      "axis": "fisher_history",
+      "value": "gamma1_no_decay",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_fisher_tasknorm_off_s2",
+      "seed": 2,
+      "overrides": {
+        "ewc_normalize_fisher": false,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Raw task-Fisher trace weighting while accumulated-Fisher normalization remains enabled.",
+      "axis": "fisher_task_normalization",
+      "value": "off",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_gam_projection_off_s2",
+      "seed": 2,
+      "overrides": {
+        "gam_grad_gamma": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Removes the perpendicular GAM correction while retaining the probe-derived plus direction.",
+      "axis": "gam_projection",
+      "value": "off",
+      "depends_on": []
+    },
+    {
+      "id": "s3_mech_gam_rho025_s2",
+      "seed": 2,
+      "overrides": {
+        "gam_grad_rho": 0.025,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Half of the first GAM perturbation radius relative to center rho 0.05.",
+      "axis": "gam_first_radius",
+      "value": "rho0.025",
+      "depends_on": []
+    }
+  ],
+  "optional_jobs": [
+    {
+      "id": "s3_mech_fisher_accumnorm_off_alpha0_s2",
+      "seed": 2,
+      "overrides": {
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "s3_boundary_capture": true,
+        "s3_fisher_location": "retained"
+      },
+      "what_it_tests": "Raw history-dependent accumulated-Fisher scale, compared only with the core alpha0 arm.",
+      "axis": "fisher_accumulated_normalization",
+      "value": "off_alpha0",
+      "depends_on": [
+        "s3_mech_fisher_alpha0_s2"
+      ]
+    }
+  ]
+}

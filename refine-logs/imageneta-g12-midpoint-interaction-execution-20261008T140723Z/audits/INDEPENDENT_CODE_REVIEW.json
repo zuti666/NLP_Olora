@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent_midpoint_launch_review",
+  "reviewed_at": "2026-10-08T15:47:43.468953+00:00",
+  "scope": "Read-only launch code review; no GPU work, no execution-source edits, no experiment claims.",
+  "status": "passed_launch_pipeline_allowed",
+  "decision": {
+    "smoke_launch_allowed": true,
+    "launch_pipeline_allowed": true,
+    "formal_launch_allowed_after_runtime_dependency_gates_pass": true,
+    "algorithm_implementation_blocking_bugs": 0,
+    "formal_gate_implementation_gaps": 0
+  },
+  "verified": {
+    "minimal_native_reads": "sum12=3, base02=3, two_midpoint=3, sum13=4; gm/g2/g3 only read as required",
+    "midpoint": "already-rounded actual theta1/theta2 LoRA A/B and FC coordinate average; no effective BA fusion",
+    "transaction": "each read restores full entry State and R0; ordinary create_graph=False gradients; final entry restore and R1 from g0",
+    "submission": "one torch.optim.SGD step with all trainables, common LR, zero momentum/dampening/weight_decay, no clipping/matching/projection/HVP",
+    "auxiliary_work": "Fisher/EWC/merge guarded and disabled; no diagnostic held-out examples used in gradient construction or SGD",
+    "precision": "aligned per-sample four-loss differences convert to FP64 before subtraction/accumulation; calibration upcasts already-materialized FP32 virtual SGD coordinates; 6 calibrated / 18 uncalibrated combinations",
+    "pairing": "common initial parameters/head/frozen origin/RNG/g0,g1/points compared; later step trajectories are allowed to differ while realized batches remain paired",
+    "gpu_policy": "suite allows only physical GPUs 2–6, max_parallel=4, shared index+UUID flock leases, no-compute PID idle rule checked before/after leases, UUID CUDA visibility",
+    "artifacts": "Follow-up load_suite, verify_pins/CPU children/source files, and verify_config for all training, diagnostic, and model_gate jobs passed after freeze; 12 jobs including the real-model GPU gate",
+    "dependency_barriers": "4 smokes → pairing → diagnostic smoke → real_model_probe_gate → full 24-combination diagnostic → 4 formal runs; validator requires passed nonempty all-true checks and 33/8 four-direction accounting",
+    "real_model_native_audit_gate": "four native schedules versus audit_all=True on saved real Task0-entry model state/input/LR; exact submitted model/gradient/cache/buffer/mode/all-RNG state and next all-stream random draws; 33 reads / 8 isolated SGD steps; source artifacts unchanged"
+  },
+  "reviewed_sha256": {
+    "trainer/direction_step.py": "020ec05cd20f78ba80b0c8137c96012396158a461a659ab3bad011265c3cef83",
+    "trainer/four_probe_train.py": "bca1393d386a4a4986437d67822b04820f40c43c852266f9c21cfefddacbdd63",
+    "trainer/offline_diagnostics.py": "02cb7e19d634f5b0986ad20232e9d1c1184d1fd04494072715e70616c645a6a3",
+    "trainer/state_transaction.py": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee",
+    "trainer/native_lifecycle.py": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf",
+    "common.py": "54b575dbfce1ce19ec4a7346da13acab107de8a1cfc95a133f65948b938ed5e4",
+    "validate_job.py": "f569f68b9f2c3d8042fac4e08411c88b82d923a0a05c4ea6d7098e978b86cf01",
+    "smoke_pairing.py": "cf210254af5b395e15e2e34192253938e4c117b19e8358f786236f058ed6581d",
+    "run_queue.py": "15f4cd9f77958e09a51fe18938365ad13383c6df6b7104014440622b07755c97",
+    "job_worker.py": "277e1c7b9f797109334211431ad22c69895c3461afc4a60631fd52bdb8dfbe25",
+    "suite.json": "f418e906667de947e7fa8f609eae5f68999292de5f97ae24bf93adfe1d1f326e",
+    "RUN_PINS.json": "0204192ec893629c7f4c2d155c50f6dfdac6e1225c3fcddac15017d8241e8445",
+    "RUN.md": "cdb6a320b5cf026752035182d699931b261514b197805b9fd1dcd52aeaadfdfb",
+    "trainer/real_model_regression.py": "d2188ef42f4dc9b847f82e830c72c549b89a8901117203b08b2633c082d892c3",
+    "configs/real_model_probe_gate.json": "f057267cf28f7ae8cc53c263d02ee05d9f7d4ddab48b333238e315b4f438baf2"
+  },
+  "must_fix": [],
+  "resolved_findings": [
+    {
+      "id": "R-GATE-001",
+      "severity": "formal_launch_blocker",
+      "files": [
+        "trainer/four_probe_train.py",
+        "smoke_pairing.py",
+        "suite.json"
+      ],
+      "finding": "The queued real-model smoke path only runs minimal native reads. It never compares the same real CUDA model/state/batch using minimal native reads versus audit_all=True five reads before submitting SGD.",
+      "evidence": "four_probe_train.py calls compute(inputs,targets,closure,lr) without audit_all. smoke_pairing.py compares four native initial states and paired realized data; only test_midpoint_cpu.py invokes audit_all=True. EXPERIMENT_PLAN.md sections 6 and 8 require the native/five-read gate on the real GPU path, including submitted parameters, RNG, and next-batch identity.",
+      "required_fix": "Add an isolated smoke-only same-state CUDA comparison for each direction (prefer both Task0 and expanded-FC Task1), preserve native training counters/timing, verify exact U/submitted parameters/RNG/next-batch identity, and make formal launch depend on acceptance of its report.",
+      "impact": "The implementation looks correct and CPU equivalence evidence passes, so preflight smoke can launch. Formal training must not bypass the planned real-model minimal/full-read acceptance check.",
+      "status": "resolved_in_code_pending_runtime_execution",
+      "resolution": "trainer/real_model_regression.py now compares all four directions from the same real Task0-entry ViT FP32 coordinates and saved augmented current-training batch: native 3/3/3/4 reads versus five-read audit, exact U/common gradients/probe points/submitted named parameters/grads/full State/RNG and next draws for every RNG stream, one natural SGD each, final anchor restoration. The existing two-task smoke pairing checks actual realized data. Gate accounting is 33 ordinary gradients and 8 isolated SGD updates, excluded from formal training. Runtime acceptance is mandatory before full diagnosis and thereby all formal training."
+    }
+  ],
+  "runtime_evidence_status": "The real GPU model gate and all 24 historical diagnostic combinations executed and were queue accepted. All four formal jobs have actual first natural SGD updates, matching first actual batch identity, common g0/g1 and phi0/phi1/phi2/phim fingerprints, and startup acceptance status passed. Complete ten-task training and final results remain running.",
+  "runtime_model_gate_report_sha256": "d97889195787e912685834335b3ce5835dc2f066e71f8eaa15bdd76e13dca3d4",
+  "startup_acceptance_report_sha256": "cdbbc43c962f27261751f367dace3613cfc6fee67fefca8722a836e46dda346f"
+}

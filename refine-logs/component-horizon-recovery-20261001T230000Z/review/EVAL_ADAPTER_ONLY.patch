@@ -1,0 +1,44 @@
+--- old/trainer/component_horizon.py
++++ recovery/trainer/component_horizon.py
+@@ -36,6 +36,29 @@
+     if rule=='ufull':return state['g_3'].detach().clone()
+     raise ValueError('Unknown component rule '+str(rule))
+ 
++
++def seen_accuracy_row(cnn,task,seen_classes,history_rows):
++    """Read only canonical seen-task groups from native all-ten-boundary output.
++
++    Native accuracy emits NaN placeholders for future tasks with no examples.
++    Those canonical future keys are not observations in the current matrix row.
++    Missing/invalid seen groups and unexpected numeric ranges remain errors.
++    """
++    if type(task) is not int or not 0<=task<10 or history_rows!=task or seen_classes!=20*(task+1):
++        raise AssertionError('Native evaluation task/history/seen-class mismatch')
++    grouped=cnn['grouped']
++    keys=['%02d-%02d'%(20*t,20*t+19) for t in range(10)]
++    numeric={key for key in grouped if re.fullmatch(r'\d+-\d+',key)}
++    if numeric-set(keys):raise AssertionError('Unexpected native evaluation class range')
++    expected=keys[:task+1]
++    if any(key not in grouped for key in expected):raise AssertionError('Missing seen native evaluation class range')
++    if any(key in grouped and not math.isnan(float(grouped[key])) for key in keys[task+1:]):
++        raise AssertionError('Future native evaluation range contains observed/non-NaN accuracy')
++    row=[float(grouped[key]) for key in expected]
++    values=row+[float(cnn['top1'])]
++    if any(not math.isfinite(value) or not 0.<=value<=100. for value in values):
++        raise AssertionError('Nonfinite or invalid seen native evaluation accuracy')
++    return row
+ 
+ def resolve_config(raw,cli):
+     rule=str(raw.get('component_rule','')).lower()
+@@ -353,10 +376,7 @@
+         def evaluate(_self,*args,**kwargs):
+             with base.observational(l._unwrap_network()):result=original_eval(*args,**kwargs)
+             cnn,_=result
+-            groups=[(key,value) for key,value in cnn['grouped'].items() if re.fullmatch(r'\d+-\d+',key)]
+-            groups.sort(key=lambda kv:int(kv[0].split('-')[0]))
+-            row=[float(value) for _,value in groups]
+-            if len(row)!=self.task+1 or self.task!=len(self.matrix) or audit.nonfinite_paths(row):raise AssertionError('Incomplete native all-seen evaluation row')
++            row=seen_accuracy_row(cnn,self.task,l._total_classes,len(self.matrix))
+             self.matrix.append(row);self.sample_curve.append(float(cnn['top1']))
+             self.write_matrix();return result
+         l.eval_task=MethodType(evaluate,l)

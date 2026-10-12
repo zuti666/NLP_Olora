@@ -1,0 +1,277 @@
+{
+  "schema": "Formation20IndependentDesignReview_v1",
+  "status": "accepted_design_subject_to_code_and_runtime_gates",
+  "reviewed_at_utc": "2026-10-10T21:00:56.095730+00:00",
+  "scope": "Independent protocol/scientific review only; no new implementation, GPU smoke or result acceptance is implied.",
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Under identical Task1 SGD, the prespecified Task0 training policy affects acquired performance and later old-task retention.",
+      "contrasts": [
+        "V2−V1",
+        "V3−V1",
+        "V4−V1"
+      ],
+      "required_endpoints": [
+        "Task0 test accuracy over20classes",
+        "after-expansion old accuracy over40classes",
+        "Task1 final old/current accuracy over40classes",
+        "old accuracy drop from post-expansion epoch0",
+        "final two-task FAA"
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "The prespecified early/late half-duration S_F G2 policies may retain part of full-duration G2 performance.",
+      "contrasts": [
+        "V5−V6",
+        "V5−V4",
+        "V6−V4"
+      ],
+      "caveat": "Equal G2 epoch/read budgets do not imply equal cumulative learning rate, inner-probe distance, update length, or trained states."
+    }
+  ],
+  "formal_conditions": [
+    {
+      "condition": "V1",
+      "task0_epochs_1_10": "SGD",
+      "task0_epochs_11_20": "SGD",
+      "task1_epochs_1_20": "SGD",
+      "formal_sgd_updates_per_seed": 340,
+      "formal_gradient_reads_per_seed_nominal": 340
+    },
+    {
+      "condition": "V2",
+      "task0_epochs_1_10": "SAM",
+      "task0_epochs_11_20": "SAM",
+      "task1_epochs_1_20": "SGD",
+      "formal_sgd_updates_per_seed": 340,
+      "formal_gradient_reads_per_seed_nominal": 520
+    },
+    {
+      "condition": "V3",
+      "task0_epochs_1_10": "residual_GAM",
+      "task0_epochs_11_20": "residual_GAM",
+      "task1_epochs_1_20": "SGD",
+      "formal_sgd_updates_per_seed": 340,
+      "formal_gradient_reads_per_seed_nominal": 880
+    },
+    {
+      "condition": "V4",
+      "task0_epochs_1_10": "SF_G2",
+      "task0_epochs_11_20": "SF_G2",
+      "task1_epochs_1_20": "SGD",
+      "formal_sgd_updates_per_seed": 340,
+      "formal_gradient_reads_per_seed_nominal": 700
+    },
+    {
+      "condition": "V5",
+      "task0_epochs_1_10": "SF_G2",
+      "task0_epochs_11_20": "SGD",
+      "task1_epochs_1_20": "SGD",
+      "formal_sgd_updates_per_seed": 340,
+      "formal_gradient_reads_per_seed_nominal": 520
+    },
+    {
+      "condition": "V6",
+      "task0_epochs_1_10": "SGD",
+      "task0_epochs_11_20": "SF_G2",
+      "task1_epochs_1_20": "SGD",
+      "formal_sgd_updates_per_seed": 340,
+      "formal_gradient_reads_per_seed_nominal": 520
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "independent_formal_jobs": 18,
+  "trained_tasks_per_job": 2,
+  "epochs_per_task": 20,
+  "full_source_partition": "ImageNet-A fixed0…199,10×20classes; onlyTasks0/1 trained",
+  "data_counts": {
+    "0": {
+      "full": 1259,
+      "train": 1141,
+      "dev": 118
+    },
+    "1": {
+      "full": 997,
+      "train": 906,
+      "dev": 91
+    }
+  },
+  "batches_per_task_per_epoch": {
+    "0": 9,
+    "1": 8
+  },
+  "nominal_formal_sgd_updates_all_jobs": 6120,
+  "nominal_formal_gradient_reads_all_jobs": 10440,
+  "algorithm_definitions": {
+    "SGD": "g0 at theta; theta←theta−eta*g0",
+    "SAM": "g1=gradL(theta+.05*g0/(||g0||+eps)); theta←theta−eta*g1",
+    "residual_GAM": "positive firstprobe g1=gradL(theta+.05*N(g0)); g2=gradL(theta+1*N(g1−g0)); g3=gradL(theta+1*N(g1−g0)+.05*N(g2)); U=g0+(g3−g2); update restored theta−eta*U",
+    "SF_G2": "descending firstprobe theta−eta*g0; g1^− there; v=(g0−g1^−)/||g0−g1^−|| aboveeps; g2=gradL(theta+.25*v); U=g2; final restored theta−eta*g2",
+    "normalization": "Preserve each frozen kernel exactly: GAM norm+eps, S_F division by norm aboveeps, no final-gradient normalization.",
+    "gradient_scope": "All trainable LoRA parameters plus full current classifier; native current-task20-class CE slice."
+  },
+  "fixed_settings": {
+    "lora_rank": 10,
+    "batch_size": 128,
+    "optimizer": "ordinarySGD",
+    "momentum": 0,
+    "weight_decay": 0,
+    "lr_task0": 0.04,
+    "lr_task1": 0.02,
+    "cosine_T_max": 20,
+    "eta_min_ratio": 0.1,
+    "epoch11_model_optimizer_scheduler_reset": false,
+    "Task1_optimizer_reset_at_taskboundary": "ordinary native new-stage SGD (zero momentum); not an epoch11 reset",
+    "precision": "FP32/native attention; strict deterministic; noTF32/AMP",
+    "history": false,
+    "EWC_Fisher": false,
+    "weight_merge": false,
+    "projection": false,
+    "replay": false,
+    "extra_components_or_radius_search": false,
+    "physical_gpus": [
+      4,
+      5,
+      6
+    ],
+    "old_50epoch_pooling": false
+  },
+  "metrics": {
+    "Task0_acquisition": "Official Task0 accuracy classified among20 seen classes at epoch20.",
+    "old_start": "Official Task0 testaccuracy classified among40 seen classes after classifier expansion and before the first Task1 SGD update.",
+    "old_drop": "old_start40−old_final40; positive means accuracy lost during Task1 learning.",
+    "head_expansion_damage": "Task0endpoint_old20−Task1epoch0_old40; separate from Task1 training loss of accuracy.",
+    "new_accuracy": "Official Task1 testaccuracy classified among all40 seen classes, not current20-only.",
+    "FAA": "(old_final40+new_final40)/2 taskmacro; not pooled sample accuracy.",
+    "BWT": "If traditionalBWT is provided, old_final40−Task0endpoint_old20, separately from post-expansion trainingdelta.",
+    "AAA": "If provided, (Task0endpoint_old20+final_two_task_FAA)/2; two-stage statistic, not an epochcurve statistic.",
+    "Task1_curve": "Epoch0 and all20 completed epochs, fixedendpoint reporting; untouched test not used tochoose arm/epoch.",
+    "retention_auc": "If provided, uniform mean of old accuracy over completed Task1epochs1…20, excludingepoch0 bydefinition.",
+    "uncertainty": "Report three independent seed values, mean±sampleSD(ddof=1), and within-seed paired differences; no strongsignificance inference fromn3."
+  },
+  "mandatory_gates": [
+    {
+      "id": "CPU_ALGORITHMS",
+      "requirement": "Independent quadratic/formula witness for SGD,SAM,residualGAM,S_F G2; exact state/RNG rollback and oneordinarySGD commit; existing frozenkernels reusable."
+    },
+    {
+      "id": "CPU_PHASE_LIFECYCLE",
+      "requirement": "Task0method changes at epoch11 exactly; optimizer and cosineT20 scheduler identity/state continuous;20 epochs forboth tasks; Task1everyupdate SGD."
+    },
+    {
+      "id": "GPU_BOUNDED_SMOKE",
+      "requirement": "Six seed2conditions,20epochs perTask with1batch/epoch,40 realcommits each; actualepoch11 exercised; test epoch0/20 accuracy outputs present; accepted receipts, finite losses, correct probes/flags."
+    },
+    {
+      "id": "GPU_PAIRING",
+      "requirement": "Withinseed commonTask0 initialization/newFCrows/inputtensors/order/LRs. V1=V6 bitwise throughTask0epoch10; V4=V5 bitwise throughepoch10. Task1newrowsinit common; inheritedoldrows exact within eachrun. Crossmethod learnedTask0 endpoints must differ, not be forced identical."
+    },
+    {
+      "id": "DEVICE_ENV_ADMISSION",
+      "requirement": "Onlyphysical4/5/6, index+UUIDsharedlocks and under-lock idle check; no preemption. Real leaseddevice warmenvironment witness and frozen source/filehash pins. CPU design approval alone cannot mark CUDA passed."
+    },
+    {
+      "id": "FORMAL_ACCEPTANCE",
+      "requirement": "18 distinct jobs,2 tasks×20completeepochs,340ordinarySGD commits/job,actualmethod/probe counts including explicitS_Ffallbacks; Task1epoch0+1…20 retentioncurve, finite endpoints, immutable completionreceipts. Formal jobs require successful smoke/pair receipts."
+    }
+  ],
+  "interpretation_limits": [
+    "Changing Task0 method changes the endpoint, trajectory, gradient magnitude and reading cost; this cannot prove trajectory-only rather than endpoint-only effects.",
+    "Early/late policies intentionally operate under different sections of a common cosine schedule. No method-switch LR restart is permitted; phase efficacy is not isolated from eta/norm/time.",
+    "Retention benefit must be read alongside Task0 acquired accuracy and Task1 new-task learning; a poorly learned Task0 or suppressed Task1 can otherwise appear to forget less.",
+    "Joint40 classification includes new-head competition; old20-only accuracy is a useful auxiliary, not a replacement for primary joint40 outcomes.",
+    "S_F descending-response G2 and upward-GAM internal G2 are different construction families. Neither directionname alone permits pooling results.",
+    "Three paired seeds support descriptive robustness under this20epoch2task protocol; no10task or50epoch outcome claims follow."
+  ],
+  "source_evidence": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/probe_study_data.py",
+      "sha256": "4f941df406ca7dcd88f87d9fa343a044b1080d4118d205071ac18c6c2a71d473"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/independent_response_step.py",
+      "sha256": "59d5b622c861043ef0c3b9e552993ec4ca4bd30077a7004803d3a86de9ffe18a"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/response_step.py",
+      "sha256": "fe5b2056df14ba10eb8a00722b126986fc83b19cd66905b5bfe7dcfd30eb2e70"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/state_transaction.py",
+      "sha256": "2b23480cf296f3a20ef6d5f93e14af5498680661f1f8ef19d6196f83ce80cfee"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/response_train.py",
+      "sha256": "8c46880b596b276500b9af043a24470dfb5a8ccd46a2136aa5ea47e90858fa7f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/trainer/native_lifecycle.py",
+      "sha256": "e1760b2e7b9514411bb37986f24c277fe12a4db6a32daa5818f56226fb16a4cf"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/trainer/upward_residual_step.py",
+      "sha256": "b2aab6328fcf046e5f8b9fea339e82b7775fbadde33364e75c3f7f4c3a81fa94"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/trainer/upward_fork_train.py",
+      "sha256": "0f2a045fb44cfc34808b71da6483b03e7bc50dc0be20c682ddeba4227b8d310d"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-sgd-sam-residual-comparison-20261010/REPORT.md",
+      "sha256": "9bf8243932d024feeedcb8ec36cc470ff73c929c32ace2ae1a3d3ad6ead01c12"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g2-minimal-fork-gpu456-20261009T223549Z/dev_split.json",
+      "sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a"
+    }
+  ],
+  "implementation_files_reviewed_in_new_campaign": [],
+  "new_runtime_results_reviewed": false,
+  "scientific_critical_unresolved_ambiguities": [],
+  "new_protocol_documents_reviewed": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/EXPERIMENT_PLAN.md",
+      "sha256": "bf22498d3e079e6f1df8f5e0244d632f474d4a901928ba0749e00b4a7994765e"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/protocol.json",
+      "sha256": "5e4de4c6bdc7f7d89e239754b9e6279f6d69149e9ad424c41dc0ec448f68a5a3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/suite.json",
+      "sha256": "cff361b1b5bf3c8a7a1ebf94d6653195f97158d61c4f7c4046e2350d957ac773"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/dev_split.json",
+      "sha256": "78a258d467456460e641c704ec3fa67594c78ea4f0a9676195e4fa8345046b2a"
+    }
+  ],
+  "registered_suite_checks": {
+    "passed": true,
+    "registered_jobs": 25,
+    "formal_jobs": 18,
+    "native_smokes": 6,
+    "pairing_gates": 1,
+    "formal_updates": 6120,
+    "formal_gradient_reads_nominal": 10440,
+    "smoke_updates": 240,
+    "smoke_gradient_reads_nominal": 400,
+    "per_seed_condition_grid_exact": true,
+    "all_config_declared_budgets_flags_hashes_match": true
+  },
+  "implementation_followup_points": [
+    "Resolved: active per-epochFormationStep schedule and corrected residualGAMg3 flags are validated independently.",
+    "Resolved: plan distinguishes exact upward norm+eps and S_F norm-aboveeps kernels; anynumericalfallback quarantines acceptance."
+  ],
+  "implementation_review": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-task0-formation-20ep-gpu456-20261010T205804Z/gates/INDEPENDENT_IMPLEMENTATION_REVIEW.json",
+    "sha256": "eb01ca98e4dfe48cece5ccaa0c9d9a99591c62b23109628482fd9f6ec394c460",
+    "scope": "Static andCPU code acceptance only; noCUDA/result claim."
+  }
+}

@@ -1,0 +1,5 @@
+PASS. Root and independent gpt-5.6-sol (xhigh), task `/root/review_rereordered_pair`, inspected both rendered PNGs. No clipping, text/legend collisions, or hidden curves were found. Both PDFs embed Times New Roman; every subplot contains its method legend, and no SD shading is drawn.
+
+Both use the same 7.6×1.65 inch canvas, wspace=0.38, and 10.5pt two-line titles. Figure A uses source T as the one-based display task with no second increment. Figure B relabels source radius/epsilon as d/tau without altering values. The latest user request explicitly authorizes internal subplot titles and restores explicit positive-loss notation.
+
+Numerical checks preserve all 78 three-seed mean/SD groups, all 54 per-seed path ratios, all 512 direct B1 curve values, and all 22 measured tolerance values. Source files and previous figures remain unchanged. The captions distinguish test metrics from training Fisher, per-seed normalization from aggregation, measured straight chords from chronological paths, and discrete-grid tolerance from continuous certification.

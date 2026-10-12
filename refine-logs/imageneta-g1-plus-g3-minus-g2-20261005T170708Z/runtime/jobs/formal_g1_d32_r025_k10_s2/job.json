@@ -1,0 +1,33 @@
+{
+  "id": "formal_g1_d32_r025_k10_s2",
+  "kind": "training",
+  "phase": "formal",
+  "branch": "P",
+  "direction": "g1_plus_second_difference",
+  "mode": "natural",
+  "backend": "native",
+  "radius": 0.25,
+  "rho": 0.05,
+  "smoke": false,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/trainer/four_probe_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/configs/formal_g1_d32_r025_k10_s2.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2"
+  ],
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/configs/formal_g1_d32_r025_k10_s2.json",
+  "config_sha256": "ab44588046c2005269d168a6b562699bf8afc32a7ba9233dadac924319a2e7fe",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2",
+  "depends_on": [
+    "smoke_pairing_gate"
+  ],
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/runtime/jobs/formal_g1_d32_r025_k10_s2/cuda_witness.json"
+}

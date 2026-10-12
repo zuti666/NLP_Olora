@@ -1,0 +1,4144 @@
+[
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s0_gpu4.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s0_gpu4.log",
+    "sha256": "4721ed1f85d6ff9dbeb06c03935f447ef8f3b819e04ce9dcec970c85f49d7f81",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 0,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s0",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 200000,
+      "lambda": 200000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.05,
+      "gam_grad_rho": 0.01,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.05,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(85.34), '00-19': np.float64(85.34), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.34)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 24.82,
+    "faa_macro": 23.14,
+    "aaa_stage": 45.14971388888889,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 200000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "gam_grad_gamma": {
+        "reference": 0.1,
+        "actual": 0.05
+      },
+      "gam_grad_rho": {
+        "reference": 0.05,
+        "actual": 0.01
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s0_gpu4.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/wmergethenfisher_imageneta_fullmodel_e50_gpu5.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/wmergethenfisher_imageneta_fullmodel_e50_gpu5.log",
+    "sha256": "d22885162eb8a503a6f71a50edf85f64376f9ac8263289b5dab31dc859eed95d",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 0,
+    "prefix": "imageneta_full_wmergethenfisher_norm_e50_lr001_lam2000_int20_omega030_alpha02_s0",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_wmergethenfisher_norm_e50_lr001_lam2000_int20_omega030_alpha02_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 2000,
+      "lambda": 2000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e50_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.1,
+      "gam_grad_rho": 0.05,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.1,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 50,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 50,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e50_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e50_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_wmergethenfisher_norm_e50_lr001_lam2000_int20_omega030_alpha02_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e50_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_wmergethenfisher_norm_e50_lr001_lam2000_int20_omega030_alpha02_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(5.54), '00-19': np.float64(5.54), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(5.54)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 7.11,
+    "faa_macro": 11.552,
+    "aaa_stage": 6.9691261904761905,
+    "epoch_coverage": {
+      "0": [
+        50,
+        50
+      ],
+      "1": [
+        50,
+        50
+      ],
+      "2": [
+        50,
+        50
+      ],
+      "3": [
+        50,
+        50
+      ],
+      "4": [
+        50,
+        50
+      ],
+      "5": [
+        50,
+        50
+      ],
+      "6": [
+        50,
+        50
+      ],
+      "7": [
+        50,
+        50
+      ],
+      "8": [
+        50,
+        50
+      ],
+      "9": [
+        50,
+        50
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e50_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_wmergethenfisher_norm_e50_lr001_lam2000_int20_omega030_alpha02_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/wmergethenfisher_imageneta_fullmodel_e50_gpu5.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_gpu5.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_gpu5.log",
+    "sha256": "877b5623d36d191dd85ca816f4b59df83b1bde0809ac8daee4f4eb4cae9162b8",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 0,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s0",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 2000,
+      "lambda": 2000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.05,
+      "gam_grad_rho": 0.01,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.05,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(86.64), '00-19': np.float64(86.64), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(86.64)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 26.2,
+    "faa_macro": 24.832,
+    "aaa_stage": 44.99377420634921,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "gam_grad_gamma": {
+        "reference": 0.1,
+        "actual": 0.05
+      },
+      "gam_grad_rho": {
+        "reference": 0.05,
+        "actual": 0.01
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_gpu5.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_s1_gpu3.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_s1_gpu3.log",
+    "sha256": "48afbf1e050a033a99376c24bd3f519b487ad62594f831d362f6488bac701cce",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 1,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s1",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s1",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 1,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 2000,
+      "lambda": 2000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.05,
+      "gam_grad_rho": 0.01,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.05,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/1/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s1/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/1/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s1/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(86.64), '00-19': np.float64(86.64), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(86.64)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 27.58,
+    "faa_macro": 24.518,
+    "aaa_stage": 47.05225595238095,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "gam_grad_gamma": {
+        "reference": 0.1,
+        "actual": 0.05
+      },
+      "gam_grad_rho": {
+        "reference": 0.05,
+        "actual": 0.01
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/1/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s1/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_s1_gpu3.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_lr001_lam2000_gpu5.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_lr001_lam2000_gpu5.log",
+    "sha256": "7798a2e125d6f445fd14ee2239293551cd7d3dd3a114df0f7a606b68964f6efc",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 0,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_s0",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 2000,
+      "lambda": 2000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.1,
+      "gam_grad_rho": 0.05,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.1,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(5.54), '00-19': np.float64(5.54), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(5.54)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 1.25,
+    "faa_macro": 1.827,
+    "aaa_stage": 3.0974182539682538,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho005_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/0/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_lr001_lam2000_gpu5.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s2_gpu6.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s2_gpu6.log",
+    "sha256": "7f93335d2e63829ca0fd0f18d31c6651d135a7fa2c6dce5f1135d417a4fa10c4",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 2,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s2",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s2",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 2,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 200000,
+      "lambda": 200000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.05,
+      "gam_grad_rho": 0.01,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.05,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/2/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s2/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/2/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s2/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(28.01), '00-19': np.float64(28.01), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(28.01)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 0.99,
+    "faa_macro": 0.489,
+    "aaa_stage": 3.7767654761904765,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": true,
+    "status": "nonfinite_training",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 200000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "gam_grad_gamma": {
+        "reference": 0.1,
+        "actual": 0.05
+      },
+      "gam_grad_rho": {
+        "reference": 0.05,
+        "actual": 0.01
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/2/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s2/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s2_gpu6.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_s2_gpu3.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_s2_gpu3.log",
+    "sha256": "4c48a8394f0e12f104dcdd31f5c5cdcf5929e802f295ddf2a5a02003059752da",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 2,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s2",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s2",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 2,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 2000,
+      "lambda": 2000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.05,
+      "gam_grad_rho": 0.01,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.05,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/2/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s2/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/2/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s2/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(5.54), '00-19': np.float64(5.54), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(5.54)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 13.96,
+    "faa_macro": 17.303,
+    "aaa_stage": 18.658195634920634,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "gam_grad_gamma": {
+        "reference": 0.1,
+        "actual": 0.05
+      },
+      "gam_grad_rho": {
+        "reference": 0.05,
+        "actual": 0.01
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/2/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam2000_int20_omega030_alpha02_rho001_s2/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam2000_s2_gpu3.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s1_gpu5.log",
+    "relative_path": "logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s1_gpu5.log",
+    "sha256": "95fc404199c270fcfbe3bd71d4d7ee065024d27275f6feee0a16c2528175d909",
+    "dataset": "imageneta",
+    "model_name": "ewc_gam_wmergethenfisher",
+    "seed": 1,
+    "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s1",
+    "params": {
+      "outputs_root": "outputs_logs/fullmodel_imageneta_aligned",
+      "prefix": "imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s1",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "data_root": "/data/115-2/users/liying/datasets",
+      "class_shuffle": false,
+      "shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 1,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "ewc_gam_wmergethenfisher",
+      "lora_rank": 10,
+      "lambda_flat": 1.0,
+      "ewc_lambda": 200000,
+      "lambda": 200000,
+      "ewc_gamma": 1.0,
+      "gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_fisher_normalize_type": "trace",
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_include_classifier": false,
+      "ewc_include_fc": false,
+      "ewc_dual_ascent": false,
+      "use_ewc": true,
+      "compute_fisher": true,
+      "fisher_mode": "batch_empirical",
+      "ewc_fisher_modes": "batch_empirical",
+      "ewc_fisher_mode_weights": 1.0,
+      "ewc_multi_fisher_normalize_each": true,
+      "ewc_multi_fisher_merge": "weighted_mean",
+      "compute_full_fisher": false,
+      "eval_nme": false,
+      "approximate_fisher_in_task": true,
+      "in_task_fisher_interval": 20,
+      "in_task_fisher_omega": 0.3,
+      "in_task_fisher_max_snapshots": null,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_start_task": 0,
+      "in_task_weight_checkpoint_interval": 20,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_beta": 3.0,
+      "in_task_path_weighted": true,
+      "in_task_path_normalize_snapshots": true,
+      "in_task_path_loss_max_batches": 100,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_euclidean_trust": false,
+      "ewc_delta_penalty": false,
+      "ewc_euclidean_exclude_classifier": true,
+      "ewc_delta_penalty_exclude_classifier": true,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "gam_base_optimizer": "sgd",
+      "optimizer_type": "gam",
+      "optimizer_tag_override": "gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30",
+      "gam_adaptive": false,
+      "gam_perturb_eps": 1e-12,
+      "gam_grad_reduce": "mean",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.05,
+      "gam_grad_rho": 0.01,
+      "gam_grad_norm_rho": 0.2,
+      "grad_beta_1": 1.0,
+      "grad_beta_2": 1.0,
+      "grad_beta_3": 1.0,
+      "grad_gamma": 0.05,
+      "scheduler": "cosine",
+      "min_lr": 0.0,
+      "cosine_eta_min": 0.0,
+      "init_epoch": 20,
+      "init_lr": 0.01,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.01,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "anchor_eval": false,
+      "endpoint_eval": false,
+      "save_final_model": false,
+      "config": "config_FullModel/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_aligned.json",
+      "filepath": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/1/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s1/exp_run/checkpoints/",
+      "feature_flat_save_path": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/1/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s1/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(87.3), '00-19': np.float64(87.3), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(87.3)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 26.93,
+    "faa_macro": 24.567,
+    "aaa_stage": 47.50334087301587,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "85798656",
+      "85814036",
+      "85829416",
+      "85844796",
+      "85860176",
+      "85875556",
+      "85890936",
+      "85906316",
+      "85921696",
+      "85937076"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "ewc_gam_wmergethenfisher"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 200000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "gam_grad_gamma": {
+        "reference": 0.1,
+        "actual": 0.05
+      },
+      "gam_grad_rho": {
+        "reference": 0.05,
+        "actual": 0.01
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_lr": {
+        "reference": 0.04,
+        "actual": 0.01
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "lrate": {
+        "reference": 0.02,
+        "actual": 0.01
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "outputs_logs/fullmodel_imageneta_aligned/logs_inc/ewc_gam_wmergethenfisher/gam_full_wmergethenfisher_lr001_e20_rho001_normrho02_f100_int20_wmerge_omega030_alpha02_sr00_wpathbeta30/imageneta/1/imageneta_full_ewc_gam_wmergethenfisher_norm_e20_lr001_lam200000_int20_omega030_alpha02_rho001_s1/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_run/fullmodel_imageneta_aligned/ewc_gam_wmergethenfisher_imageneta_fullmodel_e20_rho001_gamma005_lam200000_s1_gpu5.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu4.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu4.log",
+    "sha256": "1844760223a493cc23ea51b6240b86737240b3d636956b75586741094533b2c5",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 0,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_noewc_initlr004_lr002_e20_rho005_lam0",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "ewc_skip_task_fisher": true,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_initlr004_lr002_e20_rho005_lam0/imageneta/0/lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_initlr004_lr002_e20_rho005_lam0/imageneta/0/lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints",
+      "CNN": "{'total': np.float64(82.08), '00-19': np.float64(82.08), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(82.08)}",
+      "NME": "{'total': np.float64(85.67), '00-19': np.float64(85.67), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.67)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 52.01,
+    "faa_macro": 42.480000000000004,
+    "aaa_stage": 60.86643412698413,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 0
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_initlr004_lr002_e20_rho005_lam0/imageneta/0/lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu4.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_initlr004_lr002_e20_rho005_lam0/imageneta/0/lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/20/lora_factorfs_sameq_noewc_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_gpu6.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_gpu6.log",
+    "sha256": "1643cf61f08c186a84dba053ea75219da9898ea6e6e185890a23170ae9621df6",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 400000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam4e5_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(83.06), '00-19': np.float64(83.06), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(83.06)}",
+      "NME": "{'total': np.float64(85.34), '00-19': np.float64(85.34), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.34)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 52.01,
+    "faa_macro": 42.309,
+    "aaa_stage": 61.498054761904754,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 400000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_gpu6.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/20/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0_gpu4.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0_gpu4.log",
+    "sha256": "ac6d5bda0a0040737ee15fd499133b40f45b3e4a28792587f379cff47cf15dee",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 150000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1p5e5_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.1,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": false,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0.9,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0.9,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_mom09_batch_empirical_lam4e5_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1p5e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1p5e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(86.97), '00-19': np.float64(86.97), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(86.97)}",
+      "NME": "{'total': np.float64(84.69), '00-19': np.float64(84.69), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(84.69)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 58.53,
+    "faa_macro": 52.052,
+    "aaa_stage": 66.97415515873016,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 150000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1p5e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0_gpu4.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1p5e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0/exp_run/20/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1p5e5_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu6.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu6.log",
+    "sha256": "bf876a9d8b271c85ea829f2fe755cc42e9f8289b7cae418b32c9b25e1d988607",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 0,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_noewc_rho002_initlr004_lr002_e20_lam0",
+      "fs_rho": 0.02,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "ewc_skip_task_fisher": true,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho002_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho002_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(81.76), '00-19': np.float64(81.76), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(81.76)}",
+      "NME": "{'total': np.float64(86.32), '00-19': np.float64(86.32), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(86.32)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 52.27,
+    "faa_macro": 42.425,
+    "aaa_stage": 60.62753095238095,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 0
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho002_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu6.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho002_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/20/lora_factorfs_sameq_noewc_rho002_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_gpu5.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_gpu5.log",
+    "sha256": "da69348f1cabc94c7ab7d292a37209eb7b8ea3be5f6dbd2b7f1d1b6e88af9084",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 400000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam4e5_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.1,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": false,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0.9,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0.9,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_mom09_batch_empirical_lam4e5_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/checkpoints",
+      "CNN": "{'total': np.float64(86.64), '00-19': np.float64(86.64), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(86.64)}",
+      "NME": "{'total': np.float64(83.71), '00-19': np.float64(83.71), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(83.71)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 58.53,
+    "faa_macro": 51.496,
+    "aaa_stage": 67.33809484126985,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 400000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_gpu5.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam4e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0/exp_run/20/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam4e5_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0_gpu4.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0_gpu4.log",
+    "sha256": "e26c6a99c2abfcbe057d4c06927098b0cf29b4858ee7fc82956f13b73675e3d5",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 2000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2000_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2000_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2000_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0/exp_run/checkpoints",
+      "CNN": "{'total': np.float64(81.76), '00-19': np.float64(81.76), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(81.76)}",
+      "NME": "{'total': np.float64(85.67), '00-19': np.float64(85.67), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.67)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 51.48,
+    "faa_macro": 41.818,
+    "aaa_stage": 60.729463888888894,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2000_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0_gpu4.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2000_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0/exp_run/20/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0_gpu1.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0_gpu1.log",
+    "sha256": "06ea540b62b984564421dd91d256acddf66d01971741eaae336328fced9ae140",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 20000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e4_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0/exp_run/checkpoints",
+      "CNN": "{'total': np.float64(83.06), '00-19': np.float64(83.06), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(83.06)}",
+      "NME": "{'total': np.float64(85.34), '00-19': np.float64(85.34), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.34)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 50.63,
+    "faa_macro": 41.31,
+    "aaa_stage": 61.416801587301585,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 20000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0_gpu1.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0/exp_run/20/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e4_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_gpu1.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_gpu1.log",
+    "sha256": "849018caf44cdb6444144fd51f568600e5fef0531b6e5227dc891985fb949df1",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 200000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e5_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(83.06), '00-19': np.float64(83.06), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(83.06)}",
+      "NME": "{'total': np.float64(85.34), '00-19': np.float64(85.34), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.34)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 51.61,
+    "faa_macro": 42.08,
+    "aaa_stage": 61.457509126984135,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 200000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_gpu1.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/20/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0_gpu3.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0_gpu3.log",
+    "sha256": "0ef70e778c05948d52157afbf9796505dd0573cc5295e008e82db362725f2662",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 100000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1e5_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.1,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": false,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0.9,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0.9,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_mom09_batch_empirical_lam4e5_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(86.97), '00-19': np.float64(86.97), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(86.97)}",
+      "NME": "{'total': np.float64(84.69), '00-19': np.float64(84.69), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(84.69)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 58.46,
+    "faa_macro": 51.852,
+    "aaa_stage": 66.99227380952381,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 100000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0_gpu3.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam1e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0/exp_run/20/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam1e5_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_gpu3.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_gpu3.log",
+    "sha256": "3391f8279e914ffd9ce530b38579e4bb62b3b078d86831d663a848ceaf668887",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 200000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam2e5_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.1,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": false,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0.9,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0.9,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_mom09_batch_empirical_lam4e5_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(87.3), '00-19': np.float64(87.3), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(87.3)}",
+      "NME": "{'total': np.float64(83.71), '00-19': np.float64(83.71), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(83.71)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 59.25,
+    "faa_macro": 52.624,
+    "aaa_stage": 67.39945714285714,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 200000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "init_momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "momentum": {
+        "reference": 0,
+        "actual": 0.9
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_gpu3.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_c010_mom09_batch_empirical_initlr004_lr002_e20_rho005_lam2e5_g10_damp020/imageneta/0/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0/exp_run/20/lora_factorfs_c010_mom09_batchfisher_imageneta_t10c20_r10_e20_initlr004_lr002_lam2e5_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0_gpu3.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0_gpu3.log",
+    "sha256": "5cd54a12ccd8977c24ce5f861319712103ce50ea6473cc34a481889607eb7a35",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 80000,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam8e4_g10_damp020",
+      "fs_rho": 0.05,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam8e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam8e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(83.06), '00-19': np.float64(83.06), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(83.06)}",
+      "NME": "{'total': np.float64(85.34), '00-19': np.float64(85.34), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.34)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 50.95,
+    "faa_macro": 41.617000000000004,
+    "aaa_stage": 61.28355436507936,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 80000
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam8e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0_gpu3.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_initlr004_lr002_e20_rho005_lam8e4_g10_damp020/imageneta/0/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0/exp_run/20/lora_factorfs_sameq_imageneta_t10c20_r10_e20_initlr004_lr002_lam8e4_s0_vit_base_patch16_224.log"
+    ]
+  },
+  {
+    "path": "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu5.log",
+    "relative_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu5.log",
+    "sha256": "0c385cf4d46e74c4f64fb0e0f0a1b2ea7077a46bd4eee7688eadf181f7629ab7",
+    "dataset": "imageneta",
+    "model_name": "as1_normfisher_fishershape",
+    "seed": 0,
+    "prefix": "lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0",
+    "params": {
+      "outputs_root": "logs_our_joost/imageneta_lora_factorfs_dampnorm",
+      "prefix": "lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0",
+      "memory_size": 0,
+      "memory_per_class": 0,
+      "fixed_memory": false,
+      "dataset": "imageneta",
+      "class_shuffle": false,
+      "init_cls": 20,
+      "increment": 20,
+      "nb_tasks": 10,
+      "total_sessions": 10,
+      "seed": 0,
+      "all_or_inc": "inc",
+      "backbone_type": "vit_base_patch16_224",
+      "device": "[device(type='cuda', index=0)]",
+      "model_name": "as1_normfisher_fishershape",
+      "lora_rank": 10,
+      "ewc_lambda": 0,
+      "ewc_gamma": 1.0,
+      "ewc_eta": 0.0,
+      "ewc_max_batches": 100,
+      "fisher_mode": "batch_empirical",
+      "ewc_normalize_fisher": true,
+      "ewc_normalize_accumulated_fisher": false,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_dual_ascent": false,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "mechanism_top_fraction": 0.1,
+      "mechanism_eps": 1e-12,
+      "batch_size": 128,
+      "optimizer": "sgd",
+      "optimizer_type": "fishershape",
+      "fs_base_optimizer": "sgd",
+      "optimizer_tag_override": "lora_factorfs_sameq_noewc_rho010_initlr004_lr002_e20_lam0",
+      "fs_rho": 0.1,
+      "fs_alpha": 0.2,
+      "fs_alpha_mode": "ratio",
+      "fs_xi": 1e-12,
+      "fs_sam_equivalent": true,
+      "fs_adaptive": false,
+      "fs_grad_reduce": "mean",
+      "scheduler": "cosine",
+      "init_epoch": 20,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "epochs": 20,
+      "lrate": 0.02,
+      "momentum": 0,
+      "weight_decay": 0.0,
+      "linear_probe_eval_num_workers": 0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "probe_train_mode": "train",
+      "probe_test_mode": "test",
+      "probe_fit_epochs": 20,
+      "probe_fit_lr": 0.015,
+      "probe_fit_moment": 0,
+      "probe_fit_wd": 0.0005,
+      "probe_fit_train_batch_size": 128,
+      "flat_eval": false,
+      "feature_flat_eval": false,
+      "feature_cka_eval": false,
+      "feature_proto_eval": false,
+      "attention_probe_eval": false,
+      "ewc_skip_task_fisher": true,
+      "config": "config_Expand/fishershape_lora_imageneta/factorfs_lora_imageneta_t10c20_r10_e20_initlr004_lr002_lam2000_gamma1_damp020.yaml",
+      "filepath": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho010_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints/",
+      "feature_flat_save_path": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho010_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints",
+      "Warning": "You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.",
+      "CNN": "{'total': np.float64(82.74), '00-19': np.float64(82.74), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(82.74)}",
+      "NME": "{'total': np.float64(85.34), '00-19': np.float64(85.34), '20-39': nan, '40-59': nan, '60-79': nan, '80-99': nan, '100-119': nan, '120-139': nan, '140-159': nan, '160-179': nan, '180-199': nan, 'old': 0, 'new': np.float64(85.34)}"
+    },
+    "matrix_tasks": 10,
+    "matrix_lower_finite": true,
+    "cnn_curve_tasks": 10,
+    "sample_final": 51.35,
+    "faa_macro": 42.013999999999996,
+    "aaa_stage": 60.79004841269841,
+    "epoch_coverage": {
+      "0": [
+        20,
+        20
+      ],
+      "1": [
+        20,
+        20
+      ],
+      "2": [
+        20,
+        20
+      ],
+      "3": [
+        20,
+        20
+      ],
+      "4": [
+        20,
+        20
+      ],
+      "5": [
+        20,
+        20
+      ],
+      "6": [
+        20,
+        20
+      ],
+      "7": [
+        20,
+        20
+      ],
+      "8": [
+        20,
+        20
+      ],
+      "9": [
+        20,
+        20
+      ]
+    },
+    "traceback": false,
+    "nonfinite_training": false,
+    "status": "complete_console_10tasks",
+    "s3_runtime_marker": false,
+    "trainable_params": [
+      "368640",
+      "384020",
+      "399400",
+      "414780",
+      "430160",
+      "445540",
+      "460920",
+      "476300",
+      "491680",
+      "507060"
+    ],
+    "s3_reference_difference": {
+      "model_name": {
+        "reference": "ewclora_normfisher_gam_intask_damp",
+        "actual": "as1_normfisher_fishershape"
+      },
+      "ewc_lambda": {
+        "reference": 2000,
+        "actual": 0
+      },
+      "ewc_gamma": {
+        "reference": 0.9,
+        "actual": 1.0
+      },
+      "ewc_normalize_accumulated_fisher": {
+        "reference": true,
+        "actual": false
+      },
+      "optimizer_type": {
+        "reference": "gam",
+        "actual": "fishershape"
+      },
+      "init_epoch": {
+        "reference": 50,
+        "actual": 20
+      },
+      "epochs": {
+        "reference": 50,
+        "actual": 20
+      },
+      "feature_flat_save_path": {
+        "reference": "outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/2/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s2/exp_run/checkpoints",
+        "actual": "logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho010_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/checkpoints"
+      }
+    },
+    "direct_s3_reuse": false,
+    "not_direct_reason": "model or training protocol differs from the S3 LoRA 10x50 reference; inspect printed parameters",
+    "related_log_paths": [
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_gpu5.log",
+      "/data/140-1/users/liying/CopyFlatCV/logs_our_joost/imageneta_lora_factorfs_dampnorm/logs_inc/as1_normfisher_fishershape/lora_factorfs_sameq_noewc_rho010_initlr004_lr002_e20_lam0/imageneta/0/lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0/exp_run/20/lora_factorfs_sameq_noewc_rho010_imageneta_t10c20_r10_e20_initlr004_lr002_lam0_s0_vit_base_patch16_224.log"
+    ]
+  }
+]

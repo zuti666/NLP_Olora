@@ -1,0 +1,192 @@
+{
+  "current_task_batch_fisher_proxy": {
+    "damping": null,
+    "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+    "floor": null,
+    "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+    "input_tensors_sha256": "c632cfd53d023b536c1bca32c0db98ed77a57b9492ec561d7dd3ae9115cbafe2",
+    "logical_batch_size": 128,
+    "logical_batches": [
+      {
+        "batch_mean_gradient_squared_trace": 125.39044983100952,
+        "index": 0,
+        "input_tensors_sha256": "c2f8e3cdd4ad0de7893c1e131b3a2cf449471e05f20f6a4a6df7c1522593f62e",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 193.08410899753693,
+        "index": 1,
+        "input_tensors_sha256": "62ff43f3a218df1f824a42b3db168dc971a105db25a26eabf6201f5598d79e59",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 173.2315307784264,
+        "index": 2,
+        "input_tensors_sha256": "9ed78b80db8f1822983fd57f5ecb9c2e133ee1078c1878cff2a2ea0c70de22df",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 122.22688819267972,
+        "index": 3,
+        "input_tensors_sha256": "d1569f98be01de2715a64305fc57ca07be31f5a9dfad27c727d6c891b2265be0",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 128.11390914102955,
+        "index": 4,
+        "input_tensors_sha256": "0a8c024bbf4cd9946025248f583d4f53937aac5af5e41bf4249204e614afca02",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 136.7931509531361,
+        "index": 5,
+        "input_tensors_sha256": "b2977ca53fe319cbf6e606be8d9a2dceba0f03a61f1d1ac0eafb7afc6d6e64a9",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 141.98605341022187,
+        "index": 6,
+        "input_tensors_sha256": "ad2b4e66c565b297e2114b7f80582763905367f0ad6d959fb0f8d05111848313",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 85.04079565186605,
+        "index": 7,
+        "input_tensors_sha256": "c14d06a557fbe4b00be9d28f1c31f6fb4077eea8838aa7537dfa036d4f1671e9",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 167.1415606897603,
+        "index": 8,
+        "input_tensors_sha256": "a756f7e78004d5f5d4a7f18b7d422a808d173add2c22c66c3e7df3016afd7950",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 163.8222620541157,
+        "index": 9,
+        "input_tensors_sha256": "8fb02fb9269e7cf7be59a49119f382eba6a57c1a3507e60c1bf59611344d94f7",
+        "samples": 107
+      }
+    ],
+    "loss": 0.8449761924049813,
+    "loss_scope": "old_local20",
+    "micro_batch_size": 8,
+    "normalization": "sample-weighted mean only",
+    "normalized": false,
+    "parameter_scope": "24 effective Q/V weights; excludes head",
+    "raw_trace": 143.34715118223642,
+    "regularizer": null,
+    "samples": 1259,
+    "seconds": 14.829156760999467,
+    "source": "full current-task train; deterministic test transform; fixed dataset order"
+  },
+  "fisher": {
+    "old_local20": {
+      "damping": null,
+      "estimator": "mean of true-label per-example CE gradient outer products",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "input_tensor_records": [
+        {
+          "dataset_index": 65,
+          "label": 1,
+          "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+        },
+        {
+          "dataset_index": 177,
+          "label": 2,
+          "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+        },
+        {
+          "dataset_index": 265,
+          "label": 3,
+          "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+        },
+        {
+          "dataset_index": 369,
+          "label": 5,
+          "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+        },
+        {
+          "dataset_index": 575,
+          "label": 8,
+          "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+        },
+        {
+          "dataset_index": 708,
+          "label": 10,
+          "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+        },
+        {
+          "dataset_index": 839,
+          "label": 12,
+          "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+        },
+        {
+          "dataset_index": 1094,
+          "label": 16,
+          "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+        }
+      ],
+      "input_tensors_sha256": "a543b4938a9ddf78826e06304220bfb29e75519c3c7edb23efe58124274049cd",
+      "loss_scope": "old_local20",
+      "normalization": "sample mean only",
+      "normalized": false,
+      "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+      "q": {
+        "task0_to_task1_delta": 3.4490110093022525e-05
+      },
+      "raw_trace": 3290.9836888430846,
+      "regularizer": null,
+      "samples": 8,
+      "seconds": 0.27220258297165856,
+      "subset_loss": 0.49898508097976446,
+      "unit_displacement_sensitivity": 0.014553682462094798
+    }
+  },
+  "metrics": {
+    "old_test": {
+      "old_local20": {
+        "accuracy": 73.61563517915309,
+        "correct": 226,
+        "loss": 0.9897773304001614,
+        "loss_scope": "old_local20",
+        "samples": 307
+      }
+    },
+    "old_train": {
+      "old_local20": {
+        "accuracy": 78.07783955520254,
+        "correct": 983,
+        "loss": 0.8449761924049813,
+        "loss_scope": "old_local20",
+        "samples": 1259
+      }
+    }
+  },
+  "model_sha256_after": "ad881cdd41f27646a9ee0c382696df784f2cdd5c8a514ad50a1d89faf811cd46",
+  "model_sha256_before": "ad881cdd41f27646a9ee0c382696df784f2cdd5c8a514ad50a1d89faf811cd46",
+  "sanity": {
+    "native_to_effective_logits_max_absolute_error": 0.0,
+    "old_local20": {
+      "direction_dot_max_absolute_error": {
+        "task0_to_task1_delta": 1.9005834647669445e-07
+      },
+      "loss_scope": "old_local20",
+      "passed": true,
+      "samples": 2,
+      "trace_max_absolute_error": 0.15221802235646464,
+      "trace_max_relative_error": 1.2386543768451238e-05
+    },
+    "training_batch_proxy_match": {
+      "absolute_difference": 0.0005609315059018627,
+      "absolute_tolerance": 1e-06,
+      "offline_raw_trace": 143.34715118223642,
+      "passed": true,
+      "relative_tolerance": 0.001,
+      "training_raw_trace": 143.34659025073051
+    }
+  },
+  "seconds": 28.265884847030975,
+  "task_index": 0
+}

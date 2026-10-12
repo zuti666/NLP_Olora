@@ -1,0 +1,89 @@
+{
+  "dry_run": true,
+  "stages": 17,
+  "jobs": 61,
+  "max_parallel": 2,
+  "dependencies": {
+    "smoke_s0_anchors": [],
+    "smoke_s0_branches": [
+      "smoke_s0_anchors"
+    ],
+    "smoke_s0_evaluations": [
+      "smoke_s0_branches"
+    ],
+    "smoke_s0_summary": [
+      "smoke_s0_evaluations"
+    ],
+    "smoke_verified": [
+      "smoke_s0_summary"
+    ],
+    "formal_s0_anchors": [
+      "smoke_verified"
+    ],
+    "formal_s0_branches": [
+      "formal_s0_anchors"
+    ],
+    "formal_s0_evaluations": [
+      "formal_s0_branches"
+    ],
+    "formal_s0_summary": [
+      "formal_s0_evaluations"
+    ],
+    "formal_s1_anchors": [
+      "formal_s0_summary"
+    ],
+    "formal_s1_branches": [
+      "formal_s1_anchors"
+    ],
+    "formal_s1_evaluations": [
+      "formal_s1_branches"
+    ],
+    "formal_s1_summary": [
+      "formal_s1_evaluations"
+    ],
+    "formal_s2_anchors": [
+      "formal_s1_summary"
+    ],
+    "formal_s2_branches": [
+      "formal_s2_anchors"
+    ],
+    "formal_s2_evaluations": [
+      "formal_s2_branches"
+    ],
+    "formal_s2_summary": [
+      "formal_s2_evaluations"
+    ]
+  },
+  "fingerprints": {
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/eval_common.py": "1943d9232011eca1d4279678f8facfe32a77b502a31713d00ba8689fc452ca62",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py": "ba85c7e871efd73211dff11ee53d537590f35bfce79a5ac6297859110cda7369",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/learner.py": "0aaba335cc162cefe73a0e6c7f813b04ea5ddb052f90861336b7395f81403b6d",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/make_plan.py": "928e1259a389660450ffa4740229c1a6b330d6346a4d86601720caa3458efaec",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/pipeline.py": "92af2c52c322f954c625e47a79843683dc170214a0698cdd9142b19f48b0af30",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize.py": "079d87a768d35f929d7466fcad5bb5c6d50bc581d2a07d5101f6ae572e4c094a",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/summarize_stage.py": "f0af8ef8a7e996585d04a2d66d5dacd8c33b1355b91f20f1e6083bfed6e6a89a",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/train.py": "0de31d25cbd7a4ac0585b8dca021eef1efcc807ef99818afb0bbff87c3f3517b",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/verify_smoke.py": "d9e72b819455f8d32f3988c155c473666703784f80774081e38f998a3120c0b0",
+    "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/config.json": "44b318dfd53e03d2b913a253072c27e10450ff6d06301441c3dcdf9f420f41e7",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/env_probe.py": "035453ec04e69f8b393f90e66aab590b46c28d3401f0d9ad94fca969ddad30b9",
+    "/data/140-1/users/liying/O-LoRA/scripts/imagenetr_gam_ewc_1x1/train.py": "e103a47f2afc56b991efbaae5767c0ca39407b1affa45ff8e641964f8c208596",
+    "/data/140-1/users/liying/O-LoRA/scripts/imagenetr_gam_ewc_1x1/learner.py": "154fc392e9b9e85bbd62390f084b220653935d8a2b91114f9f86fdea2c2b7333",
+    "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/gam.py": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+    "/data/140-1/users/liying/CopyFlatCV/optimer_PerturabtionType/util.py": "c0ebe73bb176d2adbc91070f21ca9bc6369cdf90c1f7003f87f7981de322da86",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam.py": "39bce968dece86804e1d2e19898f775ec92e2af05311a7316c1e8775f286c54e",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/seqlora.py": "479e2eb20fd536ddd5e803a44b15c88fcdae7a3574d62a07fb7ae020cb9402c2",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/baseLoRA.py": "6a29a544b29cfda83054fe98f6c605561b1545d49130977ee8c6db823b4f740e",
+    "/data/140-1/users/liying/CopyFlatCV/utils/inc_net.py": "5ebf7d6c607f20f3387d153bef3a43657e88d8c1f6ebedb1e82d2cf64e33a4ab",
+    "/data/140-1/users/liying/CopyFlatCV/utils/data.py": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9",
+    "/data/140-1/users/liying/CopyFlatCV/utils/data_manager.py": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6",
+    "/data/140-1/users/liying/CopyFlatCV/backbone/lora.py": "995119b1aea75e27049ff6a20aeafac08daa2c212fd2d7c3eff517c1bf581446",
+    "/data/140-1/users/liying/CopyFlatCV/backbone/linears.py": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7",
+    "/data/140-1/users/liying/CopyFlatCV/src/trainer.py": "e59acaac94189a75f3b9342dd5e183ff39daa2c3b5ba23cfa6776d1cac6b33cc",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam_intask.py": "71db6f3096ae9e10f5961b3e99cb36796ea02d72d0cc3d2447f9d7ec716ace69",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py": "28dc063d4f5dd8ee6bbf98c93ff5aa5b4efb1104d8c045576f87e2466eca33a4",
+    "/data/140-1/users/liying/CopyFlatCV/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py": "b089024027a877b38febcb4e789c71c1ea0be3e5bb76d3e929a3d904194e4d17",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/campaign/plan.json": "04d32a75932fe6526955bd6a76a1a89a7b55cf3a2682409c303a71eeb49fa318"
+  }
+}

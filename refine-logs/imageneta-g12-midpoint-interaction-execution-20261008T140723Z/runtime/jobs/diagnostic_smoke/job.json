@@ -1,0 +1,29 @@
+{
+  "id": "diagnostic_smoke",
+  "kind": "diagnostic",
+  "smoke": true,
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/configs/diagnostic_smoke.json",
+  "config_sha256": "77f8d614e5a63f7fde832fa58d23c19a04b08f3ec02b597e2d5b485b429ee91c",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/outputs/diagnostic_smoke",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/trainer/offline_diagnostics.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--reference",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-positive-g012-combinations-20261005T185032Z/outputs/formal_sum12_r1_k10_s2",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/configs/diagnostic_smoke.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/outputs/diagnostic_smoke",
+    "--smoke"
+  ],
+  "report_file": "diagnostics_summary.json",
+  "depends_on": [
+    "smoke_pairing"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "suite_path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/suite.json",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g12-midpoint-interaction-execution-20261008T140723Z/runtime/jobs/diagnostic_smoke/cuda_witness.json",
+  "assigned_gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825"
+}

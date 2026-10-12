@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Fine-grained continual learning under documented configurations. FAA and stage-averaged AAA are percentages. 5Datasets is the cross-dataset task stream.}
+\label{tab:exp_fine}
+\scriptsize\setlength{\tabcolsep}{2.2pt}\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l*{10}{r}@{}}
+\toprule
+Method & \multicolumn{2}{c}{Aircraft} & \multicolumn{2}{c}{Cars} & \multicolumn{2}{c}{CUB-200} & \multicolumn{2}{c}{Flowers} & \multicolumn{2}{c}{5Datasets}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+ & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA & FAA & AAA\\
+\midrule
+Vanilla LoRA & 40.66 & 39.51 & 28.52 & 39.41 & 57.79 & 70.00 & 53.05 & 66.90 & 66.80 & 68.81\\
+InfLoRA & 40.96 & 41.23 & 34.34 & 42.20 & 60.61 & 70.60 & 60.06 & 72.98 & \underline{77.75} & \underline{77.02}\\
+OLoRA & 36.10 & 37.81 & 32.85 & 42.30 & 62.38 & 70.17 & 48.90 & 64.26 & 77.58 & 74.52\\
+SDLoRA & 25.96 & 26.63 & \underline{34.89} & \underline{43.28} & 62.01 & 69.52 & 49.05 & 64.59 & 74.42 & 74.10\\
+CL-LoRA & 29.28 & 26.53 & 34.51 & 42.17 & \textbf{78.29} & \textbf{80.88} & \textbf{97.82} & \textbf{98.33} & 66.98 & 61.99\\
+EWCLoRA & \underline{41.83} & \underline{39.70} & 34.56 & 43.94 & 60.41 & 69.40 & 53.43 & 65.45 & 73.87 & 73.07\\
+GAM-EWCLoRA & \textbf{46.66} & \textbf{43.65} & \textbf{51.74} & \textbf{55.44} & \underline{74.22} & \underline{76.47} & \underline{86.75} & \underline{91.76} & \textbf{83.37} & \textbf{81.16}\\
+\bottomrule
+\end{tabular*}
+\end{table*}

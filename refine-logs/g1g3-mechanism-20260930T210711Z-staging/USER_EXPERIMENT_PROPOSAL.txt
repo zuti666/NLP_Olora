@@ -1,0 +1,1433 @@
+有，而且我认为这组结果实际上提供了一个**比“Full vs. LoRA 的 Hessian/Fisher 几何差异”更直接的切入口**。
+
+当前最有价值的现象不是简单的
+
+$$
+g_1+g_3>g_3>g_1,
+$$
+
+而是：
+
+$$
+\boxed{
+\text{SAM-like 的局部梯度 }g_1
+\text{ 与更深层 probe 得到的 }g_3
+\text{之间究竟多出了什么信息？}
+}
+$$
+
+而且当前分析还混合了三个完全不同的因素：
+
+$$
+\boxed{
+\text{更新尺度}
++
+\text{新增方向}
++
+\text{更远的 probe radius}.
+}
+$$
+
+我建议优先把这三个因素拆开，再回到 Fisher、Hessian spectrum 或 LoRA geometry。
+
+---
+
+# 1. 先重新理解当前结果到底说明了什么
+
+目前得到：
+
+$$
+\begin{array}{c|cc}
+\text{Update} & \mathrm{AAA} & \mathrm{FAA}\\
+\hline
+g_1 & 62.166 & 45.132\\
+g_3 & 65.993 & 50.679\\
+g_1+g_3 & 67.861 & 54.726
+\end{array}
+$$
+
+因此：
+
+$$
+g_3-g_1:
+\qquad
++3.827\ \mathrm{AAA},
+\qquad
++5.547\ \mathrm{FAA},
+$$
+
+而：
+
+$$
+(g_1+g_3)-g_3:
+\qquad
++1.868\ \mathrm{AAA},
+\qquad
++4.047\ \mathrm{FAA}.
+$$
+
+所以至少存在两个现象：
+
+$$
+\boxed{
+g_3\gg g_1
+}
+$$
+
+以及：
+
+$$
+\boxed{
+g_1+g_3>g_3.
+}
+$$
+
+它们其实应该分别解释。
+
+第一个问题是：
+
+$$
+\text{为什么 GAM deeper probe 比 SAM-like probe 更好？}
+$$
+
+第二个问题是：
+
+$$
+\text{为什么已经有了 }g_3\text{，重新加入 }g_1\text{ 还会继续提高？}
+$$
+
+这两个机制不一定相同。
+
+---
+
+# 2. 更重要的是，对 $g_1$ 和 $g_3$ 做一阶展开
+
+设
+
+$$
+u_0=N(g_0).
+$$
+
+由于
+
+$$
+g_1
+=
+\nabla L(\theta+\rho u_0),
+$$
+
+局部 Taylor 展开给出：
+
+$$
+\boxed{
+g_1
+=
+g_0+\rho H u_0+O(\rho^2).
+}
+$$
+
+因此：
+
+$$
+z=g_1-g_0
+$$
+
+满足：
+
+$$
+\boxed{
+z
+\approx
+\rho H u_0.
+}
+$$
+
+也就是说，$z$ 才是最直接的 curvature-induced component。
+
+定义：
+
+$$
+v=N(z).
+$$
+
+那么：
+
+$$
+g_2
+=
+\nabla L(\theta+r v)
+$$
+
+近似为：
+
+$$
+g_2
+\approx
+g_0+rHv.
+$$
+
+最后：
+
+$$
+g_3
+=
+\nabla L
+\left(
+\theta+r v+\rho N(g_2)
+\right),
+$$
+
+局部近似为：
+
+$$
+\boxed{
+g_3
+\approx
+g_0
++
+rHv
++
+\rho HN(g_2)
++
+\text{higher-order terms}.
+}
+$$
+
+所以 $g_1$ 和 $g_3$ 的性质其实非常不同。
+
+$$
+\boxed{
+g_1
+\approx
+\underbrace{g_0}_{\text{clean descent}}
++
+\underbrace{\rho Hu_0}_{\text{local curvature correction}}
+}
+$$
+
+而：
+
+$$
+\boxed{
+g_3
+\approx
+\underbrace{g_0}_{\text{clean descent}}
++
+\underbrace{rHv}_{\text{outer curvature-guided correction}}
++
+\underbrace{\rho HN(g_2)}_{\text{local correction at outer point}}.
+}
+$$
+
+这比把 $g_3$ 简单称为“更高曲率方向”准确得多。
+
+---
+
+# 3. 于是 $g_1+g_3$ 的解释也变了
+
+将上面两式相加：
+
+$$
+g_1+g_3
+\approx
+2g_0
++
+\rho Hu_0
++
+rHv
++
+\rho HN(g_2).
+$$
+
+这意味着当前最好的方法 $g_1+g_3$ 同时做了三件事情：
+
+$$
+\boxed{
+\begin{aligned}
+&1.\quad \text{把 clean-gradient component 大约加入了两次},\\
+&2.\quad \text{保留 local SAM-like curvature correction},\\
+&3.\quad \text{加入 outer curvature-guided correction}.
+\end{aligned}
+}
+$$
+
+因此现在说：
+
+> $g_1$ 与 $g_3$ 包含互补信息，所以组合更好
+
+还太早。
+
+因为组合的优势也可能只是：
+
+$$
+2g_0
+$$
+
+这一部分更大。
+
+---
+
+# 4. 因此 $\beta_1=\beta_3=0.5$ 是必要实验，但还不够
+
+你提出：
+
+$$
+\frac{g_1+g_3}{2}
+$$
+
+是正确的第一步。
+
+因为：
+
+$$
+g_1+g_3
+=
+2
+\left(
+\frac{g_1+g_3}{2}
+\right).
+$$
+
+两者**方向完全相同**，只差尺度。
+
+所以这个实验可以非常干净地区分：
+
+$$
+\boxed{
+\text{raw update scale effect}
+}
+$$
+
+和：
+
+$$
+\boxed{
+\text{mixture direction effect}.
+}
+$$
+
+如果：
+
+$$
+g_1+g_3
+\gg
+\frac{g_1+g_3}{2},
+$$
+
+那么当前收益中存在很强的 update magnitude contribution。
+
+如果：
+
+$$
+\frac{g_1+g_3}{2}
+>
+g_3,
+$$
+
+那么才开始有证据表明：
+
+$$
+\boxed{
+\text{加入 }g_1\text{ 的方向信息本身有价值。}
+}
+$$
+
+但是我建议不要停在这里。
+
+---
+
+# 5. 更好的办法：把 $g_3$ 精确分解成“缩放”和“新增方向”
+
+这是我认为现在**最值得做的分析**。
+
+对同一个 checkpoint、同一个 batch，定义：
+
+$$
+a
+=
+\frac{
+\langle g_3,g_1\rangle
+}{
+\|g_1\|^2
+}.
+$$
+
+然后：
+
+$$
+\boxed{
+g_3
+=
+a g_1+r_\perp,
+}
+$$
+
+其中：
+
+$$
+\langle r_\perp,g_1\rangle=0.
+$$
+
+那么：
+
+$$
+g_1+g_3
+=
+(1+a)g_1+r_\perp.
+$$
+
+这个分解极其重要。
+
+因为现在问题直接变成：
+
+$$
+\boxed{
+\underbrace{(1+a)g_1}_{\text{SAM direction scaling}}
++
+\underbrace{r_\perp}_{\text{new direction from deeper probe}}.
+}
+$$
+
+于是可以真正问：
+
+> $g_3$ 的收益究竟来自把 SAM 方向走得更强，还是来自 $r_\perp$ 这个 SAM 根本没有的新方向？
+
+这比比较 $g_1,g_3,g_1+g_3$ 强很多。
+
+---
+
+# 6. 我建议做三个 counterfactual updates
+
+在完全相同的 $\theta$、batch 上构造：
+
+### A. SAM
+
+$$
+u_1=g_1.
+$$
+
+### B. 只有 scale correction
+
+$$
+\boxed{
+u_{\mathrm{scale}}
+=
+(1+a)g_1.
+}
+$$
+
+它具有 $g_1+g_3$ 中沿 $g_1$ 的全部分量，但没有：
+
+$$
+r_\perp.
+$$
+
+### C. 加入真正新增方向
+
+$$
+\boxed{
+u_{\mathrm{new}}
+=
+(1+a)g_1+r_\perp
+=
+g_1+g_3.
+}
+$$
+
+然后最关键的是全部匹配 actual update size，例如：
+
+$$
+\|\Delta W\|_F=\delta
+$$
+
+或者更严格：
+
+$$
+\mathbb E_x
+D_{\mathrm{KL}}
+\left(
+p_\theta(\cdot|x)
+\|
+p_{\theta+\Delta\theta}(\cdot|x)
+\right)
+=
+\kappa.
+$$
+
+如果匹配尺度以后仍然：
+
+$$
+u_{\mathrm{new}}>u_{\mathrm{scale}},
+$$
+
+你就获得非常直接的证据：
+
+$$
+\boxed{
+r_\perp
+\text{，即 }g_3\text{ 相对于 SAM 新增加的方向信息，是有效的。}
+}
+$$
+
+这个结论要比“GAM 比 SAM 更好”强得多。
+
+---
+
+# 7. 还可以做一个更漂亮的连续实验
+
+定义：
+
+$$
+\hat g_1
+=
+\frac{g_1}{\|g_1\|},
+\qquad
+\hat g_3
+=
+\frac{g_3}{\|g_3\|}.
+$$
+
+然后：
+
+$$
+\boxed{
+u_\alpha
+=
+N
+\left(
+(1-\alpha)\hat g_1
++
+\alpha\hat g_3
+\right),
+}
+$$
+
+其中：
+
+$$
+\alpha
+\in
+\{0,0.25,0.5,0.75,1\}.
+$$
+
+所有条件固定相同的实际 update magnitude。
+
+这样：
+
+$$
+\alpha=0
+$$
+
+是纯 $g_1$，
+
+$$
+\alpha=1
+$$
+
+是纯 $g_3$，
+
+中间值是真正的方向插值。
+
+如果性能出现：
+
+$$
+\boxed{
+\alpha^\star\in(0,1)
+}
+$$
+
+而不是端点最好，那么你可以非常有力地说：
+
+$$
+\boxed{
+g_1\text{ 与 }g_3\text{ 存在 directional complementarity}.
+}
+$$
+
+这比只跑：
+
+$$
+\beta_1=\beta_3=0.5
+$$
+
+更有解释力。
+
+---
+
+# 8. 但是还有一个比 gradient scale 更大的 confound：$r=1$ vs $\rho=0.05$
+
+这是我认为当前分析里**最需要警惕的地方**。
+
+你的：
+
+$$
+g_1
+$$
+
+是在：
+
+$$
+\rho=0.05
+$$
+
+邻域获得。
+
+而 $g_3$ 的构造中有：
+
+$$
+r=1.0.
+$$
+
+因此 raw parameter radius 相差：
+
+$$
+\boxed{
+\frac{r}{\rho}=20.
+}
+$$
+
+所以：
+
+$$
+g_3>g_1
+$$
+
+可能有至少两种解释。
+
+第一种：
+
+$$
+\text{curvature-guided direction is better}.
+$$
+
+第二种：
+
+$$
+\text{you simply probe much farther away}.
+$$
+
+现在还无法区分。
+
+---
+
+# 9. 好消息是，你的公式天然提供了一个非常漂亮的 causal sweep
+
+注意：
+
+如果：
+
+$$
+r=0,
+$$
+
+那么：
+
+$$
+g_2=g_0,
+$$
+
+并且：
+
+$$
+g_3
+=
+\nabla L
+\left(
+\theta+\rho N(g_0)
+\right)
+=
+g_1.
+$$
+
+也就是说：
+
+$$
+\boxed{
+g_3(r=0)=g_1.
+}
+$$
+
+这非常有价值。
+
+因为 $r$ 可以成为一个**连续 intervention variable**：
+
+$$
+r\in
+\{0,0.1,0.25,0.5,1.0\}.
+$$
+
+于是：
+
+$$
+\boxed{
+\text{SAM}
+\quad
+\xrightarrow{r\uparrow}
+\quad
+\text{increasingly deeper curvature-guided probe}.
+}
+$$
+
+比直接比较 $g_1$ 和 $g_3$ 更干净。
+
+---
+
+# 10. 每个 $r$ 不应该只看 accuracy，而应该同时测三件事
+
+第一，方向偏转：
+
+$$
+D_{\mathrm{dir}}(r)
+=
+1-
+\cos
+\left(
+\Delta W_{g_1},
+\Delta W_{g_3(r)}
+\right).
+$$
+
+第二，实际 probe 距离。
+
+不要只看：
+
+$$
+\|\epsilon_\phi\|.
+$$
+
+LoRA 下应至少记录：
+
+$$
+D_W(r)
+=
+\|
+W_{\mathrm{probe}}(r)-W
+\|_F.
+$$
+
+最好再测：
+
+$$
+\boxed{
+D_{\mathrm{fun}}(r)
+=
+\mathbb E_x
+D_{\mathrm{KL}}
+\left[
+p_\theta(\cdot|x)
+\|
+p_{\theta_{\mathrm{probe}}(r)}(\cdot|x)
+\right].
+}
+$$
+
+第三，最终性能：
+
+$$
+\mathrm{AAA}(r),
+\qquad
+\mathrm{FAA}(r).
+$$
+
+那么就可以看：
+
+$$
+r
+\rightarrow
+D_{\mathrm{dir}}
+\rightarrow
+\mathrm{FAA}.
+$$
+
+还是：
+
+$$
+r
+\rightarrow
+D_{\mathrm{fun}}
+\rightarrow
+\mathrm{FAA}.
+$$
+
+两者代表完全不同的机制。
+
+---
+
+# 11. 甚至应该增加一个“larger-radius SAM” control
+
+假设 $g_3$ 对应的 probe 在 function space 中距离是：
+
+$$
+D_{\mathrm{fun}}^{g_3}.
+$$
+
+找到一个 SAM radius：
+
+$$
+\rho^\star
+$$
+
+使：
+
+$$
+D_{\mathrm{fun}}^{\mathrm{SAM}(\rho^\star)}
+\approx
+D_{\mathrm{fun}}^{g_3}.
+$$
+
+然后比较：
+
+$$
+\boxed{
+\mathrm{SAM}(\rho^\star)
+\quad\text{vs}\quad
+g_3.
+}
+$$
+
+如果 $g_3$ 仍然更好，才能比较有力地排除：
+
+> GAM 好只是因为它 probe 得更远。
+
+这一步我认为非常关键。
+
+---
+
+# 12. 当前那些 cosine 平均值其实不能支持太多几何结论
+
+你现在有：
+
+$$
+\cos(g_1,g_0)\approx0.992,
+$$
+
+$$
+\cos(g_3,g_0)\approx0.749.
+$$
+
+这个结果只能说：
+
+$$
+g_1
+$$
+
+几乎沿着 clean gradient，
+
+而：
+
+$$
+g_3
+$$
+
+发生了更明显旋转。
+
+但当前这些值来自：
+
+$$
+\boxed{
+\text{different training trajectories}.
+}
+$$
+
+因此不能把它们和：
+
+$$
+\|g_1\|,
+\quad
+\|g_3\|,
+\quad
+\|g_1+g_3\|
+$$
+
+放在一起做向量代数解释。
+
+最好的方法是：
+
+$$
+\boxed{
+\text{same checkpoint}
++
+\text{same batch}
+}
+$$
+
+同时计算：
+
+$$
+g_0,\quad g_1,\quad g_3.
+$$
+
+然后逐 checkpoint 保存：
+
+$$
+\cos(g_1,g_0),
+$$
+
+$$
+\cos(g_3,g_0),
+$$
+
+$$
+\boxed{
+\cos(g_1,g_3)
+}
+$$
+
+以及：
+
+$$
+\frac{\|r_\perp\|}{\|g_3\|}.
+$$
+
+最后再跨 checkpoint 汇总。
+
+这是 paired geometry，而不是 trajectory-confounded geometry。
+
+---
+
+# 13. 对 continual learning 来说，还有一个比 Hessian 更直接的问题
+
+现在只有：
+
+$$
+\mathrm{AAA},
+\qquad
+\mathrm{FAA}.
+$$
+
+其实还不能判断：
+
+$$
+g_3
+$$
+
+究竟是：
+
+$$
+\text{learns each task better}
+$$
+
+还是：
+
+$$
+\text{learns solutions that are forgotten less later}.
+$$
+
+特别是你这里：
+
+$$
+g_3-g_1
+$$
+
+在 FAA 上的增益：
+
+$$
++5.547
+$$
+
+大于 AAA 的：
+
+$$
++3.827,
+$$
+
+而组合相对于 $g_3$：
+
+$$
++4.047\ \mathrm{FAA}
+$$
+
+也明显大于：
+
+$$
++1.868\ \mathrm{AAA}.
+$$
+
+这个模式**值得关注**，因为它与“后期 retention improvement”相容。
+
+但还不能由此得出 retention 结论。
+
+---
+
+# 14. 下一步一定要打开完整 accuracy matrix
+
+查看：
+
+$$
+a_{i,j}.
+$$
+
+至少分成：
+
+### Acquisition
+
+$$
+\boxed{
+\mathrm{LA}
+=
+\frac1T
+\sum_{j=1}^T
+a_{j,j}.
+}
+$$
+
+### Final retention
+
+$$
+a_{T,j},
+\qquad j<T.
+$$
+
+### Backward change
+
+$$
+\boxed{
+\mathrm{BWT}
+=
+\frac1{T-1}
+\sum_{j=1}^{T-1}
+(a_{T,j}-a_{j,j}).
+}
+$$
+
+真正有意义的结果是：
+
+如果：
+
+$$
+\mathrm{LA}_{g_1}
+\approx
+\mathrm{LA}_{g_3},
+$$
+
+但是：
+
+$$
+\mathrm{BWT}_{g_3}
+>
+\mathrm{BWT}_{g_1},
+$$
+
+那么才能说：
+
+$$
+\boxed{
+g_3
+\text{ 主要改变的是 retention，而不是 acquisition。}
+}
+$$
+
+而如果：
+
+$$
+\mathrm{LA}_{g_3}
+\gg
+\mathrm{LA}_{g_1},
+$$
+
+那么首先应该解释为：
+
+$$
+\boxed{
+g_3\text{ 是一个更好的当前任务 optimizer}.
+}
+$$
+
+这两个故事完全不同。
+
+---
+
+# 15. 如果确实是 retention，接下来反而有一个非常漂亮的问题
+
+因为当前：
+
+$$
+\gamma=0,
+$$
+
+没有：
+
+$$
+\text{Fisher},
+\quad
+\text{EWC},
+\quad
+\text{old-task gradients},
+\quad
+\text{replay}.
+$$
+
+那么 $g_3$ 根本不知道旧任务是什么。
+
+如果它仍然产生更小 forgetting，那么真正有趣的结论不是：
+
+> GAM protects previous tasks.
+
+而应该是：
+
+$$
+\boxed{
+\text{different within-task optimization produces solutions
+with different susceptibility to future learning}.
+}
+$$
+
+这与你 FS-EWC 的“solution formation matters”故事其实非常一致。
+
+也就是说：
+
+$$
+\text{retention}
+$$
+
+不仅取决于后续如何保护参数，还取决于：
+
+$$
+\boxed{
+\text{当前任务最终形成了怎样的 solution geometry}.
+}
+$$
+
+这是一个很有价值的方向。
+
+---
+
+# 16. 此时再使用 old-task data 做诊断，而不是训练
+
+在训练 task $t$ 时，不让旧数据参与 update。
+
+但为了**事后机制分析**，在保存 checkpoint 上取旧任务 held-out batches。
+
+对候选方向 $u$ 测：
+
+$$
+\Delta L_j(u)
+=
+L_j(\theta-\eta u)-L_j(\theta).
+$$
+
+或者一阶：
+
+$$
+\Delta L_j(u)
+\approx
+-\eta
+\nabla L_j^\top u.
+$$
+
+于是可以直接比较：
+
+$$
+I_{\mathrm{old}}(g_1),
+$$
+
+$$
+I_{\mathrm{old}}(g_3),
+$$
+
+$$
+I_{\mathrm{old}}(g_1+g_3).
+$$
+
+如果发现：
+
+$$
+\boxed{
+g_3
+\text{ 的新增分量 }r_\perp
+\text{ 对旧任务损失更加 benign},
+}
+$$
+
+那么就出现了一条真正的机制链：
+
+$$
+g_3
+\rightarrow
+r_\perp
+\rightarrow
+\text{less old-task interference}
+\rightarrow
+\text{better FAA}.
+$$
+
+注意这里旧任务数据只是**诊断工具**，没有进入优化，不破坏 replay-free protocol。
+
+---
+
+# 17. 我会把第一阶段重新组织成下面四步
+
+## Step A：先解决 scale confound
+
+补：
+
+$$
+\boxed{
+\frac{g_1+g_3}{2}.
+}
+$$
+
+更进一步做 matched effective update norm。
+
+这是最低成本实验。
+
+---
+
+## Step B：解决“是否真的有新增方向”
+
+在同 checkpoint、同 batch 上：
+
+$$
+g_3=a g_1+r_\perp.
+$$
+
+报告：
+
+$$
+a,
+$$
+
+$$
+\boxed{
+R_\perp
+=
+\frac{\|r_\perp\|}{\|g_3\|}
+}
+$$
+
+以及：
+
+$$
+\cos(g_1,g_3).
+$$
+
+然后做：
+
+$$
+g_1+\lambda r_\perp
+$$
+
+的 matched-norm intervention。
+
+---
+
+## Step C：解决“curvature 还是单纯远距离 probe”
+
+做：
+
+$$
+r\in\{0,0.1,0.25,0.5,1\}.
+$$
+
+因为：
+
+$$
+\boxed{
+r=0\Rightarrow g_3=g_1.
+}
+$$
+
+同时记录：
+
+$$
+D_{\mathrm{dir}}(r),
+\quad
+D_W(r),
+\quad
+D_{\mathrm{fun}}(r).
+$$
+
+再做 matched-radius SAM。
+
+---
+
+## Step D：解决“优化更好还是遗忘更少”
+
+不要只报 AAA/FAA。
+
+拆：
+
+$$
+\boxed{
+\mathrm{LA}
++
+\mathrm{BWT}
++
+\mathrm{FAA}
+}
+$$
+
+并查看完整：
+
+$$
+a_{i,j}.
+$$
+
+---
+
+# 18. 然后再回到我们之前讨论的 LoRA geometry
+
+只有前面确认：
+
+$$
+g_3
+$$
+
+确实贡献了一个有益的新增方向之后，才值得继续问：
+
+$$
+\boxed{
+\text{为什么这种新增方向在 LoRA 中特别有价值？}
+}
+$$
+
+这时再比较：
+
+$$
+\text{Full},
+\qquad
+\text{Fixed-}A\text{ LoRA},
+\qquad
+\text{Dynamic LoRA},
+$$
+
+以及：
+
+$$
+H_\phi g_\phi,
+\qquad
+J^\top H_WJg_\phi,
+\qquad
+F_\phi.
+$$
+
+逻辑会清楚很多。
+
+也就是说，新的顺序应该是：
+
+$$
+\boxed{
+\begin{aligned}
+g_1+g_3>g_3>g_1
+&\\
+\Downarrow&\\
+\text{scale or direction?}
+&\\
+\Downarrow&\\
+\text{what unique component does }g_3\text{ add?}
+&\\
+\Downarrow&\\
+\text{curvature-guided or merely farther probe?}
+&\\
+\Downarrow&\\
+\text{better acquisition or better retention?}
+&\\
+\Downarrow&\\
+\text{why is this effect amplified by LoRA?}
+\end{aligned}
+}
+$$
+
+---
+
+# 19. 我认为现在最值得优先做的不是 Fisher
+
+如果只选择**三个新增实验**，我会按这个顺序：
+
+$$
+\boxed{
+\textbf{Experiment 1: }
+g_1,\;
+g_3,\;
+g_1+g_3,\;
+\frac{g_1+g_3}{2}
+}
+$$
+
+先解决尺度。
+
+然后：
+
+$$
+\boxed{
+\textbf{Experiment 2: }
+g_3=a g_1+r_\perp
+}
+$$
+
+做 matched-norm：
+
+$$
+g_1
+\quad\text{vs}\quad
+g_1+\lambda r_\perp.
+$$
+
+这直接检验 $g_3$ 是否提供真正的新方向信息。
+
+最后：
+
+$$
+\boxed{
+\textbf{Experiment 3: }
+r=0\rightarrow0.1\rightarrow0.25\rightarrow0.5\rightarrow1.0
+}
+$$
+
+因为：
+
+$$
+r=0
+\iff
+g_3=g_1,
+$$
+
+这是目前最自然、最强的 mechanism intervention。
+
+---
+
+## 最核心的研究问题，我现在会改成
+
+$$
+\boxed{
+\begin{minipage}{0.88\linewidth}
+Why does the deeper GAM probe $g_3$ outperform the SAM-like gradient
+$g_1$, and does its benefit arise from a larger effective step, a
+farther perturbation, or a genuinely new curvature-induced update
+component that produces solutions less susceptible to subsequent
+interference?
+\end{minipage}
+}
+$$
+
+这比直接研究“LoRA 的 Hessian/Fisher 是否更 concentrated”更接近你现在已经观察到的真实现象。
+
+而且如果最后发现：
+
+$$
+\mathrm{LA}
+\approx\text{same},
+\qquad
+\mathrm{BWT}_{g_3}>
+\mathrm{BWT}_{g_1},
+$$
+
+同时 matched-scale 的：
+
+$$
+r_\perp
+$$
+
+确实降低未来 interference，那么这个故事会非常强：
+
+$$
+\boxed{
+\text{curvature-aware within-task solution formation}
+\rightarrow
+\text{reduced susceptibility to future updates}
+\rightarrow
+\text{less forgetting},
+}
+$$
+
+而且这个结论是在**没有 Fisher、没有 EWC、没有 replay、没有 old-task information 参与训练**的情况下得到的。这会比单纯说“GAM 比 SAM 高几个点”更有机制意义。

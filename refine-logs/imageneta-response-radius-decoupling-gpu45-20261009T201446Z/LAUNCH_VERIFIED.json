@@ -1,0 +1,251 @@
+{
+  "status": "passed",
+  "at_utc": "2026-10-09T20:30:19.754168+00:00",
+  "queue_status": "running",
+  "controller": {
+    "pid": 3009214,
+    "proc_starttime": "38229206"
+  },
+  "checks": {
+    "only_gpu45": true,
+    "host_namespace_correct": true,
+    "pins_source_and_provenance_unchanged": true,
+    "controller_live": true
+  },
+  "gpus": {
+    "0": {
+      "index": 0,
+      "uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "memory_used_mb": 40890,
+      "utilization_percent": 82,
+      "compute_pids": [
+        3003639
+      ]
+    },
+    "1": {
+      "index": 1,
+      "uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "memory_used_mb": 2,
+      "utilization_percent": 0,
+      "compute_pids": []
+    },
+    "2": {
+      "index": 2,
+      "uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "memory_used_mb": 2,
+      "utilization_percent": 0,
+      "compute_pids": []
+    },
+    "3": {
+      "index": 3,
+      "uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "memory_used_mb": 2,
+      "utilization_percent": 0,
+      "compute_pids": []
+    },
+    "4": {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mb": 12034,
+      "utilization_percent": 23,
+      "compute_pids": [
+        3030711
+      ]
+    },
+    "5": {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mb": 12034,
+      "utilization_percent": 100,
+      "compute_pids": [
+        3030712
+      ]
+    },
+    "6": {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mb": 2,
+      "utilization_percent": 0,
+      "compute_pids": []
+    }
+  },
+  "jobs": [
+    {
+      "job": "smoke_cl10_original_s2",
+      "kind": "training",
+      "smoke": true,
+      "status": "completed",
+      "gpu": 4,
+      "worker_live": false,
+      "cuda_witness_passed": true,
+      "updates": 4,
+      "first_step": {
+        "loss0": 3.5640087127685547,
+        "post_update_ce": 2.814990282058716,
+        "nominal_lr": 0.04,
+        "h": 0.17143508470839572,
+        "inner_probe_radius_actual": null,
+        "outer_probe_radius_actual": null,
+        "inner_probe_radius_theoretical": null,
+        "outer_probe_radius_theoretical": null,
+        "ordinary_gradient_calls": 3,
+        "U_sha256": "0c37a2ed3b827771661223aa30984ceec0af03f6c061a2fe9226b4759390671e",
+        "g2_sha256": "0c37a2ed3b827771661223aa30984ceec0af03f6c061a2fe9226b4759390671e",
+        "natural_sgd_exact": true
+      }
+    },
+    {
+      "job": "smoke_cl10_fixed_outer_s2",
+      "kind": "training",
+      "smoke": true,
+      "status": "completed",
+      "gpu": 5,
+      "worker_live": false,
+      "cuda_witness_passed": true,
+      "updates": 4,
+      "first_step": {
+        "loss0": 3.5640087127685547,
+        "post_update_ce": 2.8470520973205566,
+        "nominal_lr": 0.04,
+        "h": 0.17143508470839572,
+        "inner_probe_radius_actual": 0.1714350824015719,
+        "outer_probe_radius_actual": 0.05000000052684101,
+        "inner_probe_radius_theoretical": 0.17143508470839572,
+        "outer_probe_radius_theoretical": 0.05,
+        "ordinary_gradient_calls": 3,
+        "U_sha256": "812bd4b7ffb705521a8b3681ed250aa1e3e06fb8bc78a5e18393c7e1b44a5dd1",
+        "g2_sha256": "812bd4b7ffb705521a8b3681ed250aa1e3e06fb8bc78a5e18393c7e1b44a5dd1",
+        "natural_sgd_exact": true
+      }
+    },
+    {
+      "job": "smoke_cl10_fixed_inner_s2",
+      "kind": "training",
+      "smoke": true,
+      "status": "completed",
+      "gpu": 4,
+      "worker_live": false,
+      "cuda_witness_passed": true,
+      "updates": 4,
+      "first_step": {
+        "loss0": 3.5640087127685547,
+        "post_update_ce": 2.8223021030426025,
+        "nominal_lr": 0.04,
+        "h": 0.17143508470839572,
+        "inner_probe_radius_actual": 0.050000000833559766,
+        "outer_probe_radius_actual": 0.17143508797174792,
+        "inner_probe_radius_theoretical": 0.05,
+        "outer_probe_radius_theoretical": 0.17143508470839572,
+        "ordinary_gradient_calls": 3,
+        "U_sha256": "d0c410ef2a84a95fec4003e25f1d78a241a4122d73bee876e16592df6ad40729",
+        "g2_sha256": "d0c410ef2a84a95fec4003e25f1d78a241a4122d73bee876e16592df6ad40729",
+        "natural_sgd_exact": true
+      }
+    },
+    {
+      "job": "smoke_cl10_fixed_both_s2",
+      "kind": "training",
+      "smoke": true,
+      "status": "completed",
+      "gpu": 5,
+      "worker_live": false,
+      "cuda_witness_passed": true,
+      "updates": 4,
+      "first_step": {
+        "loss0": 3.5640087127685547,
+        "post_update_ce": 2.850407361984253,
+        "nominal_lr": 0.04,
+        "h": 0.17143508470839572,
+        "inner_probe_radius_actual": 0.050000000833559766,
+        "outer_probe_radius_actual": 0.04999999839129007,
+        "inner_probe_radius_theoretical": 0.05,
+        "outer_probe_radius_theoretical": 0.05,
+        "ordinary_gradient_calls": 3,
+        "U_sha256": "fe605952821db680f1de1df53f2547410b8ebd5067716cb215eb52eed8274009",
+        "g2_sha256": "fe605952821db680f1de1df53f2547410b8ebd5067716cb215eb52eed8274009",
+        "natural_sgd_exact": true
+      }
+    },
+    {
+      "job": "radius_smoke_pairing",
+      "kind": "pairing",
+      "smoke": false,
+      "status": "completed",
+      "gpu": 4,
+      "worker_live": false,
+      "cuda_witness_passed": true
+    },
+    {
+      "job": "formal_cl10_fixed_outer_s2",
+      "kind": "training",
+      "smoke": false,
+      "status": "running",
+      "gpu": 4,
+      "worker_live": true,
+      "cuda_witness_passed": true,
+      "updates": 14,
+      "first_step": {
+        "loss0": 3.5640087127685547,
+        "post_update_ce": 2.8470520973205566,
+        "nominal_lr": 0.04,
+        "h": 0.17143508470839572,
+        "inner_probe_radius_actual": 0.1714350824015719,
+        "outer_probe_radius_actual": 0.05000000052684101,
+        "inner_probe_radius_theoretical": 0.17143508470839572,
+        "outer_probe_radius_theoretical": 0.05,
+        "ordinary_gradient_calls": 3,
+        "U_sha256": "812bd4b7ffb705521a8b3681ed250aa1e3e06fb8bc78a5e18393c7e1b44a5dd1",
+        "g2_sha256": "812bd4b7ffb705521a8b3681ed250aa1e3e06fb8bc78a5e18393c7e1b44a5dd1",
+        "natural_sgd_exact": true
+      },
+      "worker_children": [
+        3030711
+      ],
+      "nvml_compute_pids": [
+        3030711
+      ],
+      "trainer_pid_matches_gpu": true
+    },
+    {
+      "job": "formal_cl10_fixed_inner_s2",
+      "kind": "training",
+      "smoke": false,
+      "status": "running",
+      "gpu": 5,
+      "worker_live": true,
+      "cuda_witness_passed": true,
+      "updates": 13,
+      "first_step": {
+        "loss0": 3.5640087127685547,
+        "post_update_ce": 2.8223021030426025,
+        "nominal_lr": 0.04,
+        "h": 0.17143508470839572,
+        "inner_probe_radius_actual": 0.050000000833559766,
+        "outer_probe_radius_actual": 0.17143508797174792,
+        "inner_probe_radius_theoretical": 0.05,
+        "outer_probe_radius_theoretical": 0.17143508470839572,
+        "ordinary_gradient_calls": 3,
+        "U_sha256": "d0c410ef2a84a95fec4003e25f1d78a241a4122d73bee876e16592df6ad40729",
+        "g2_sha256": "d0c410ef2a84a95fec4003e25f1d78a241a4122d73bee876e16592df6ad40729",
+        "natural_sgd_exact": true
+      },
+      "worker_children": [
+        3030712
+      ],
+      "nvml_compute_pids": [
+        3030712
+      ],
+      "trainer_pid_matches_gpu": true
+    }
+  ],
+  "formal_running": [
+    "formal_cl10_fixed_outer_s2",
+    "formal_cl10_fixed_inner_s2"
+  ],
+  "formal_first_real_steps_verified": [
+    "formal_cl10_fixed_outer_s2",
+    "formal_cl10_fixed_inner_s2"
+  ],
+  "full_new_results": 0,
+  "limitation": "Launch evidence only, not final training performance"
+}

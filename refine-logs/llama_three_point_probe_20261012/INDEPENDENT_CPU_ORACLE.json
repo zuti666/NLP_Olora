@@ -1,0 +1,181 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "mode": "g0",
+      "clip": null,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.06299998307228127,
+        0.9153200336955702
+      ]
+    },
+    {
+      "mode": "g0",
+      "clip": null,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.06299998307228127,
+        0.9153200336955702
+      ]
+    },
+    {
+      "mode": "g0",
+      "clip": 0.4,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.06299998307228127,
+        0.9153200336955702
+      ]
+    },
+    {
+      "mode": "g0",
+      "clip": 0.4,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.06299998307228127,
+        0.9153200336955702
+      ]
+    },
+    {
+      "mode": "g1_plus",
+      "clip": null,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.10178705231526405,
+        0.9520141193349084
+      ]
+    },
+    {
+      "mode": "g1_plus",
+      "clip": null,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.10178705231526405,
+        0.9520141193349084
+      ]
+    },
+    {
+      "mode": "g1_plus",
+      "clip": 0.4,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.10178705231526405,
+        0.9520141193349084
+      ]
+    },
+    {
+      "mode": "g1_plus",
+      "clip": 0.4,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.10178705231526405,
+        0.9520141193349084
+      ]
+    },
+    {
+      "mode": "backward_reflected",
+      "clip": null,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.10139502553468216,
+        0.9503340872519342
+      ]
+    },
+    {
+      "mode": "backward_reflected",
+      "clip": null,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.10139502553468216,
+        0.9503340872519342
+      ]
+    },
+    {
+      "mode": "backward_reflected",
+      "clip": 0.4,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.10139502553468216,
+        0.9503340872519342
+      ]
+    },
+    {
+      "mode": "backward_reflected",
+      "clip": 0.4,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.10139502553468216,
+        0.9503340872519342
+      ]
+    },
+    {
+      "mode": "central",
+      "clip": null,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.1015910389249731,
+        0.9511741032934213
+      ]
+    },
+    {
+      "mode": "central",
+      "clip": null,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.1015910389249731,
+        0.9511741032934213
+      ]
+    },
+    {
+      "mode": "central",
+      "clip": 0.4,
+      "first_grad_ready": false,
+      "status": "passed",
+      "raw_gradient": [
+        0.1015910389249731,
+        0.9511741032934213
+      ]
+    },
+    {
+      "mode": "central",
+      "clip": 0.4,
+      "first_grad_ready": true,
+      "status": "passed",
+      "raw_gradient": [
+        0.1015910389249731,
+        0.9511741032934213
+      ]
+    }
+  ],
+  "checks": 16,
+  "loss": "x^4/4 + x^2*y/2 + exp(y)",
+  "gradient": "[x^3+x*y, x^2/2+exp(y)]",
+  "all_points_analytic": true,
+  "cpu_only": true,
+  "gpu_actions": false,
+  "checks_per_case": [
+    "BASE/plus/minus analytic points",
+    "selected analytic gradient",
+    "exact BASE restored before commit",
+    "forward buffer restored",
+    "clip exactly once or disabled",
+    "one HF AdamW commit and moment step",
+    "independent ordinary HF AdamW reference displacement",
+    "three reads and two replays"
+  ]
+}

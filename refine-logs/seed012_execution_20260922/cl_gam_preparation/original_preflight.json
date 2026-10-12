@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "checks": {
+    "frozen_complete_training_entrypoint_import": true,
+    "class_mapping_[12, 10]": true,
+    "class_mapping_[16, 20]": true,
+    "class_mapping_[5, 4, 4]": true,
+    "class_mapping_[10, 10, 10, 7]": true,
+    "class_mapping_[200, 100, 196, 102, 37]": true,
+    "two_task_training_and_frozen_old_adapters": true,
+    "zero_adapter_checkpoint_feature_parity": true,
+    "six_real_dataset_paths_labels_transforms": true
+  },
+  "checkpoint_feature_max_absolute_error": 5.245208740234375e-06,
+  "data": [
+    {
+      "dataset": "cub200",
+      "task_sizes": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "train": 9430,
+      "test": 2358,
+      "manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/cub200.json",
+      "sha256": "ed8a5be997220b5f908375beae25b6e4b2c88d60ab582ca24baaf1424d8b10a7",
+      "transforms": "[Resize(size=(256, 256), interpolation=bicubic, max_size=None, antialias=True), RandomCrop(size=(224, 224), padding=None), RandomHorizontalFlip(p=0.5)][ToTensor(), Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]"
+    },
+    {
+      "dataset": "cars196",
+      "task_sizes": [
+        16,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "train": 8144,
+      "test": 8041,
+      "manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/cars196.json",
+      "sha256": "2d74917abdf0550b7550004facc7eaeb6da5feb19ed6126b209de905ee528765",
+      "transforms": "[Resize(size=224, interpolation=bicubic, max_size=None, antialias=True), CenterCrop(size=(224, 224)), RandomHorizontalFlip(p=0.5)][ToTensor(), Normalize(mean=(0.0, 0.0, 0.0), std=(1.0, 1.0, 1.0))]"
+    },
+    {
+      "dataset": "aircraft",
+      "task_sizes": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "train": 6667,
+      "test": 3333,
+      "manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/aircraft.json",
+      "sha256": "fff1258e409c882f6a0a77e52f61b397f8d8f2d8be78e3998e453589c6fec415",
+      "transforms": "[Resize(size=(256, 256), interpolation=bicubic, max_size=None, antialias=True), RandomCrop(size=(224, 224), padding=None), RandomHorizontalFlip(p=0.5)][ConvertImageDtype(), Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]"
+    },
+    {
+      "dataset": "flowers",
+      "task_sizes": [
+        12,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "train": 2040,
+      "test": 6149,
+      "manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/flowers.json",
+      "sha256": "3a5ea9babbfd3d2692e58f38d0fc29fcba7d1409ed265a68fdb36a567c69ecce",
+      "transforms": "[Resize(size=(256, 256), interpolation=bicubic, max_size=None, antialias=True), RandomCrop(size=(224, 224), padding=None), RandomHorizontalFlip(p=0.5)][ToTensor(), Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]"
+    },
+    {
+      "dataset": "pets",
+      "task_sizes": [
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "train": 3680,
+      "test": 3669,
+      "manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/pets.json",
+      "sha256": "7a076bae807903e3f76b0247eaf7a0d0c3797c83eff6c531405fb333f2e4140f",
+      "transforms": "[Resize(size=(256, 256), interpolation=bicubic, max_size=None, antialias=True), RandomCrop(size=(224, 224), padding=None), RandomHorizontalFlip(p=0.5)][ToTensor(), Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]"
+    },
+    {
+      "dataset": "het5",
+      "task_sizes": [
+        200,
+        100,
+        196,
+        102,
+        37
+      ],
+      "train": 29961,
+      "test": 23550,
+      "manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/data_manifests/het5.json",
+      "sha256": "cac31362cb29d63ee3c2ae5e5fbbf1c0011706badb0dc29930bf46f647b9140b",
+      "transforms": "[Resize(size=(256, 256), interpolation=bicubic, max_size=None, antialias=True), RandomCrop(size=(224, 224), padding=None), RandomHorizontalFlip(p=0.5)][ToTensor(), Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]"
+    }
+  ],
+  "note": "Only synthetic CPU training; real GPU smokes are separate. No test-based hyperparameter selection."
+}

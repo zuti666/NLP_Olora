@@ -1,0 +1,381 @@
+{
+  "status": "PASS",
+  "device": "cpu",
+  "analytic_hvp": {
+    "analytic_relative_error": 1.9264910406561472e-16,
+    "forward_relative_errors": [
+      0.0011559340520710365,
+      0.0006398764303583871,
+      0.00033542550797117297
+    ],
+    "central_relative_errors": [
+      0.00025078842395053575,
+      6.27111772314117e-05,
+      1.567867402619078e-05
+    ],
+    "direction_detached": true,
+    "restore": {
+      "parameters_exact": true,
+      "frozen_versions_exact": true,
+      "buffers_exact": true,
+      "modes_exact": true,
+      "gradients_exact": true,
+      "rng_exact": true
+    }
+  },
+  "fallback_contract": {
+    "explicit_math_fallback": true,
+    "math_only_including_cudnn_disabled": true,
+    "backend_flags_restored": true,
+    "unsupported_reported": true,
+    "oom_not_masked": true
+  },
+  "file_pin_contract": {
+    "unchanged_passed": true,
+    "changed_checkpoint_rejected": true,
+    "added_source_file_rejected": true
+  },
+  "native_gam": {
+    "native": {
+      "closure_count": 4,
+      "training_ce_gradient_passes": 5,
+      "training_forward_count": 5,
+      "native_point_checks": {
+        "g1_native_perturb_exact": true,
+        "g2_native_roundtrip_outer_exact": true,
+        "g3_native_perturb_exact": true
+      },
+      "probe_ce": [
+        3.486013889312744,
+        3.526890516281128,
+        3.6028244495391846,
+        3.6468377113342285
+      ],
+      "outer_point_vs_ideal_without_roundtrip": {
+        "first_norm": 4.499656473845107,
+        "reference_norm": 4.499656473844325,
+        "cosine": 1.0,
+        "relative_l2": 1.0348818626811681e-10,
+        "norm_ratio": 1.0000000000001736,
+        "max_abs": 4.656612873077393e-10,
+        "degenerate": false
+      },
+      "native_step_lr": 0.0,
+      "source_loss": "frozen learner current-task sliced CE"
+    },
+    "rho": 0.05,
+    "r": 0.25,
+    "epsilons": [
+      0.05,
+      0.025,
+      0.0125
+    ],
+    "responses": {
+      "original": {
+        "native_closure_index": 0,
+        "native_baseline_ce": 3.486013889312744,
+        "replayed_baseline_ce": 3.486013889312744,
+        "same_point_native_gradient": {
+          "first_norm": 0.8143049207032919,
+          "reference_norm": 0.8143049207032919,
+          "cosine": 1.0,
+          "relative_l2": 0.0,
+          "norm_ratio": 1.0,
+          "max_abs": 0.0,
+          "degenerate": false
+        },
+        "native_normalization_direction_norm": 0.9999999587885066,
+        "hvp": {
+          "status": "available",
+          "backend": "native",
+          "same_point_gradient": {
+            "first_norm": 0.8143049207032919,
+            "reference_norm": 0.8143049207032919,
+            "cosine": 1.0,
+            "relative_l2": 0.0,
+            "norm_ratio": 1.0,
+            "max_abs": 0.0,
+            "degenerate": false
+          },
+          "same_point_ce": 3.486013889312744,
+          "attempts": [],
+          "direction_detached": true
+        },
+        "native_finite_response_vs_hvp": {
+          "first_norm": 0.24084204280859134,
+          "reference_norm": 0.2430542614169742,
+          "cosine": 0.9996470233683336,
+          "relative_l2": 0.027970871798573722,
+          "norm_ratio": 0.9908982521207984,
+          "max_abs": 0.00278613343834877,
+          "degenerate": false
+        },
+        "finite_difference_scan": [
+          {
+            "epsilon": 0.05,
+            "forward_vs_hvp": {
+              "first_norm": 0.24084204280859134,
+              "reference_norm": 0.2430542614169742,
+              "cosine": 0.9996470233683336,
+              "relative_l2": 0.027970871798573722,
+              "norm_ratio": 0.9908982521207984,
+              "max_abs": 0.00278613343834877,
+              "degenerate": false
+            },
+            "central_vs_hvp": {
+              "first_norm": 0.24297226483405882,
+              "reference_norm": 0.2430542614169742,
+              "cosine": 0.9999999261347686,
+              "relative_l2": 0.0005113627200060448,
+              "norm_ratio": 0.999662640834037,
+              "max_abs": 8.033215999603271e-05,
+              "degenerate": false
+            },
+            "forward_vs_central": {
+              "first_norm": 0.24084204280859134,
+              "reference_norm": 0.24297226483405882,
+              "cosine": 0.9996490797867775,
+              "relative_l2": 0.027794846863790985,
+              "norm_ratio": 0.9912326535420727,
+              "max_abs": 0.0027671456336975098,
+              "degenerate": false
+            },
+            "forward_vs_native_response_at_training_rho": {
+              "first_norm": 0.24084204280859134,
+              "reference_norm": 0.24084204280859134,
+              "cosine": 1.0,
+              "relative_l2": 0.0,
+              "norm_ratio": 1.0,
+              "max_abs": 0.0,
+              "degenerate": false
+            }
+          },
+          {
+            "epsilon": 0.025,
+            "forward_vs_hvp": {
+              "first_norm": 0.24194798801569306,
+              "reference_norm": 0.2430542614169742,
+              "cosine": 0.9999128482742677,
+              "relative_l2": 0.013936523950650167,
+              "norm_ratio": 0.9954484509144924,
+              "max_abs": 0.0013875104486942291,
+              "degenerate": false
+            },
+            "central_vs_hvp": {
+              "first_norm": 0.24303427375832334,
+              "reference_norm": 0.2430542614169742,
+              "cosine": 0.9999999953568686,
+              "relative_l2": 0.0001266813174585215,
+              "norm_ratio": 0.9999177646236921,
+              "max_abs": 2.0094215869903564e-05,
+              "degenerate": false
+            },
+            "forward_vs_central": {
+              "first_norm": 0.24194798801569306,
+              "reference_norm": 0.24303427375832334,
+              "cosine": 0.9999130722344226,
+              "relative_l2": 0.013894477429681196,
+              "norm_ratio": 0.9955303187248787,
+              "max_abs": 0.0013834238052368164,
+              "degenerate": false
+            },
+            "forward_vs_native_response_at_training_rho": null
+          },
+          {
+            "epsilon": 0.0125,
+            "forward_vs_hvp": {
+              "first_norm": 0.2424997870426651,
+              "reference_norm": 0.2430542614169742,
+              "cosine": 0.9999782500948392,
+              "relative_l2": 0.00697171464737472,
+              "norm_ratio": 0.9977187218562777,
+              "max_abs": 0.000695500522851944,
+              "degenerate": false
+            },
+            "central_vs_hvp": {
+              "first_norm": 0.2430479952412154,
+              "reference_norm": 0.2430542614169742,
+              "cosine": 0.9999999995746561,
+              "relative_l2": 3.89271674529532e-05,
+              "norm_ratio": 0.9999742190253227,
+              "max_abs": 5.062669515609741e-06,
+              "degenerate": false
+            },
+            "forward_vs_central": {
+              "first_norm": 0.2424997870426651,
+              "reference_norm": 0.2430479952412154,
+              "cosine": 0.9999783312494244,
+              "relative_l2": 0.006951782564141841,
+              "norm_ratio": 0.9977444446805405,
+              "max_abs": 0.0006926059722900391,
+              "degenerate": false
+            },
+            "forward_vs_native_response_at_training_rho": null
+          }
+        ]
+      },
+      "outer": {
+        "native_closure_index": 2,
+        "native_baseline_ce": 3.6028244495391846,
+        "replayed_baseline_ce": 3.6028244495391846,
+        "same_point_native_gradient": {
+          "first_norm": 0.8775354858560922,
+          "reference_norm": 0.8775354858560922,
+          "cosine": 1.0,
+          "relative_l2": 0.0,
+          "norm_ratio": 1.0,
+          "max_abs": 0.0,
+          "degenerate": false
+        },
+        "native_normalization_direction_norm": 0.99999995721286,
+        "hvp": {
+          "status": "available",
+          "backend": "native",
+          "same_point_gradient": {
+            "first_norm": 0.8775354858560922,
+            "reference_norm": 0.8775354858560922,
+            "cosine": 1.0,
+            "relative_l2": 0.0,
+            "norm_ratio": 1.0,
+            "max_abs": 0.0,
+            "degenerate": false
+          },
+          "same_point_ce": 3.6028244495391846,
+          "attempts": [],
+          "direction_detached": true
+        },
+        "native_finite_response_vs_hvp": {
+          "first_norm": 0.28066898614875424,
+          "reference_norm": 0.2815803858693836,
+          "cosine": 0.9992852330347128,
+          "relative_l2": 0.03788645321210667,
+          "norm_ratio": 0.996763269864073,
+          "max_abs": 0.005613461136817932,
+          "degenerate": false
+        },
+        "finite_difference_scan": [
+          {
+            "epsilon": 0.05,
+            "forward_vs_hvp": {
+              "first_norm": 0.28066898614875424,
+              "reference_norm": 0.2815803858693836,
+              "cosine": 0.9992852330347128,
+              "relative_l2": 0.03788645321210667,
+              "norm_ratio": 0.996763269864073,
+              "max_abs": 0.005613461136817932,
+              "degenerate": false
+            },
+            "central_vs_hvp": {
+              "first_norm": 0.28148299328574455,
+              "reference_norm": 0.2815803858693836,
+              "cosine": 0.9999997346140748,
+              "relative_l2": 0.0008063623013222735,
+              "norm_ratio": 0.9996541215634095,
+              "max_abs": 0.00012261420488357544,
+              "degenerate": false
+            },
+            "forward_vs_central": {
+              "first_norm": 0.28066898614875424,
+              "reference_norm": 0.28148299328574455,
+              "cosine": 0.9992690239428985,
+              "relative_l2": 0.03828951779193219,
+              "norm_ratio": 0.9971081480714397,
+              "max_abs": 0.0056868791580200195,
+              "degenerate": false
+            },
+            "forward_vs_native_response_at_training_rho": {
+              "first_norm": 0.28066898614875424,
+              "reference_norm": 0.28066898614875424,
+              "cosine": 0.9999999999999998,
+              "relative_l2": 0.0,
+              "norm_ratio": 1.0,
+              "max_abs": 0.0,
+              "degenerate": false
+            }
+          },
+          {
+            "epsilon": 0.025,
+            "forward_vs_hvp": {
+              "first_norm": 0.281098449060578,
+              "reference_norm": 0.2815803858693836,
+              "cosine": 0.9998196198126326,
+              "relative_l2": 0.0190544560634136,
+              "norm_ratio": 0.9982884574601402,
+              "max_abs": 0.002828434109687805,
+              "degenerate": false
+            },
+            "central_vs_hvp": {
+              "first_norm": 0.28155601336324704,
+              "reference_norm": 0.2815803858693836,
+              "cosine": 0.9999999838322341,
+              "relative_l2": 0.00019956125759391192,
+              "norm_ratio": 0.9999134438783394,
+              "max_abs": 3.053247928619385e-05,
+              "degenerate": false
+            },
+            "forward_vs_central": {
+              "first_norm": 0.281098449060578,
+              "reference_norm": 0.28155601336324704,
+              "cosine": 0.9998176242254486,
+              "relative_l2": 0.019152018679956802,
+              "norm_ratio": 0.9983748729171034,
+              "max_abs": 0.0028461217880249023,
+              "degenerate": false
+            },
+            "forward_vs_native_response_at_training_rho": null
+          },
+          {
+            "epsilon": 0.0125,
+            "forward_vs_hvp": {
+              "first_norm": 0.2813326007239799,
+              "reference_norm": 0.2815803858693836,
+              "cosine": 0.9999546168240959,
+              "relative_l2": 0.009563516312313287,
+              "norm_ratio": 0.9991200198670136,
+              "max_abs": 0.0014193803071975708,
+              "degenerate": false
+            },
+            "central_vs_hvp": {
+              "first_norm": 0.2815732658184794,
+              "reference_norm": 0.2815803858693836,
+              "cosine": 0.999999998996481,
+              "relative_l2": 5.1442892890559693e-05,
+              "norm_ratio": 0.9999747139670889,
+              "max_abs": 7.577240467071533e-06,
+              "degenerate": false
+            },
+            "forward_vs_central": {
+              "first_norm": 0.2813326007239799,
+              "reference_norm": 0.2815732658184794,
+              "cosine": 0.9999543866607408,
+              "relative_l2": 0.009585366168881138,
+              "norm_ratio": 0.999145284287555,
+              "max_abs": 0.0014233589172363281,
+              "degenerate": false
+            },
+            "forward_vs_native_response_at_training_rho": null
+          }
+        ]
+      }
+    },
+    "deltaG_vs_deltaS": {
+      "first_norm": 0.014033449281846438,
+      "reference_norm": 0.012042102140429566,
+      "cosine": 0.8954048222835996,
+      "relative_l2": 0.5207004152300623,
+      "norm_ratio": 1.1653654086466532,
+      "max_abs": 0.0030200108885765076,
+      "degenerate": false
+    },
+    "restore": {
+      "parameters_exact": true,
+      "frozen_versions_exact": true,
+      "buffers_exact": true,
+      "modes_exact": true,
+      "gradients_exact": true,
+      "rng_exact": true
+    }
+  },
+  "script_sha256": "fd90e737dea8d6420b5e4b2b226326475c6bae805f27d72a3c1fe2caace7020a",
+  "tests_sha256": "39eb6cbb0858a93e8cd17f3dd62ea49e10b45cd3c39fd2131c8df198c18a867d"
+}

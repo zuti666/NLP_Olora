@@ -1,0 +1,1130 @@
+{
+  "status": "within_run_exact_pass_cross_GPU_original_gate_failed",
+  "checked_utc": "2026-10-02T07:46:11.959238+00:00",
+  "source_campaign": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-puregam-r1-complete7-20261002T073400Z",
+  "suite_sha256": "13ceb61d20a0c26d6d9ce48b4466452489bd9145d32cfe4a45bae6cdaed6ebb1",
+  "helper_sha256": "8776dc581d93e18f967d6fc20d17ce9bce508a06b49393621792832bec5873fc",
+  "scope": "Read-only audit/checkpoints; all tensor loads map_location=cpu; CUDA_VISIBLE_DEVICES empty; no CUDA calls/new training/old-file edits",
+  "within_run": {
+    "steps": 90,
+    "control_g1_identity_steps": 36,
+    "jobs": [
+      {
+        "id": "smoke_native_control_r1_k10_s2",
+        "selector": "native_control",
+        "rows": 18,
+        "audit_sha256": "fde9e4cbe440c89072531eb7475785956c402d35e4b9e7e5bc924487b8f29f53",
+        "summary_sha256": "46a5686f4b6aadd78f44812141c868d6fd5001526764411c569681abfc577873",
+        "own_spec_pass": true
+      },
+      {
+        "id": "smoke_g1_control_r1_k10_s2",
+        "selector": "g1_control",
+        "rows": 18,
+        "audit_sha256": "6dcc663e64062b7c39e3be2cbc04f6268bf6ac61abac143a4199f217a5d9804d",
+        "summary_sha256": "d08a95ccff6f9a405f55904a166f0346946d5ec1a54b07d786ef370568c0c7f5",
+        "own_spec_pass": true
+      },
+      {
+        "id": "smoke_g0_r1_k10_s2",
+        "selector": "g0",
+        "rows": 18,
+        "audit_sha256": "12848eb099086edbfd5556357ee810794317f6588b9e89aba1fe656e1e67e560",
+        "summary_sha256": "6b6bcb5fd3f58cf8055180dddf1a3bb5e3bcdac063059f4abad8da32bbb3b964",
+        "own_spec_pass": true
+      },
+      {
+        "id": "smoke_g2_r1_k10_s2",
+        "selector": "g2",
+        "rows": 18,
+        "audit_sha256": "dca1899622d74d89dbe4f40812a9dacaac14c96e8a76dd3ac9d9f3a6b3cbdbee",
+        "summary_sha256": "1776f251c17bf4e76e991f0191b17c9fb671ebb54bb7506888606f2ec84379af",
+        "own_spec_pass": true
+      },
+      {
+        "id": "smoke_ug_r1_k10_s2",
+        "selector": "ug",
+        "rows": 18,
+        "audit_sha256": "1a91006d0878706060059dc7406fd2871a165fe446d8032965cba9157e813869",
+        "summary_sha256": "14ec6d4e52fa3e86a7bb1fc1149a4d9261f6faea536a35142034f890cc0f66b0",
+        "own_spec_pass": true
+      }
+    ],
+    "meaning": "Each control selected its own native g1 exactly; original FP32 clean+(g1-clean) projector and actual SGD from native unperturb point checked exactly. New three selectors checked by their own runtime formula/cache/SGD proof."
+  },
+  "cross_GPU": {
+    "paired_steps": 18,
+    "input_target_rng_order_LR_exact": true,
+    "first_probe_origin_sha_equal": true,
+    "first_g0_gradient_sha_equal": false,
+    "first_g0_norms": [
+      4.327186423466665,
+      4.327186423960445
+    ],
+    "max_gradient_norm_relative_differences": {
+      "g0": 1.9593704362313233e-05,
+      "g1": 0.00011024594587288612,
+      "g2": 0.003270006797376364,
+      "g3": 0.003601502984979061
+    },
+    "original_gate": {
+      "atol": 1e-07,
+      "rtol": 1e-06,
+      "definition": "Per tensor maxabs(diff) <= atol + rtol*maxabs(native tensor)",
+      "passed": false,
+      "failed_tensors": 61,
+      "total_tensors": 104
+    },
+    "unique_trainable_A_B_FC_by_task": {
+      "0": {
+        "maxabs": 2.4119086447171867e-05,
+        "tensors": 50,
+        "absolute_l2": 0.00033544538225708316,
+        "reference_l2": 10.01611074021577,
+        "relative_l2": 3.349058241840654e-05
+      },
+      "1": {
+        "maxabs": 3.115643630735576e-05,
+        "tensors": 50,
+        "absolute_l2": 0.00043562356294756687,
+        "reference_l2": 10.962033454801768,
+        "relative_l2": 3.973930245184099e-05
+      }
+    },
+    "files": [
+      {
+        "file": "CLs_bias0.pt",
+        "native_sha256": "44e44d4f1be274eda04315cf5d1120906211c832debd8e0a6392850c1018c31a",
+        "hook_sha256": "a3f09349e09e802af7e19cad1c3a8d8d07aeed8f31e653d353f84babcdecc33c",
+        "tensors": 1,
+        "maxabs": 8.032657206058502e-08,
+        "relative_l2": 1.2042211896850241e-05,
+        "original_gate_failed_tensors": 0
+      },
+      {
+        "file": "CLs_bias1.pt",
+        "native_sha256": "374b44b93d6e014f632acd0992762880732894df293965d6d551ece8bc010feb",
+        "hook_sha256": "1986f08c273d4ac28911a2bca5fc6002247abb2dfce91b16b8f33481ce4ef51b",
+        "tensors": 1,
+        "maxabs": 8.032657206058502e-08,
+        "relative_l2": 1.1355641814647782e-05,
+        "original_gate_failed_tensors": 0
+      },
+      {
+        "file": "CLs_weight0.pt",
+        "native_sha256": "a3b573715ec00bfaa5714a06480039cbf176a3b1192d1b60873dfe7ba6b4396d",
+        "hook_sha256": "6616aca9cbbbdcb3daa3034eda2767e4452f3d1134ff2aa51787cdf9ac4c0b50",
+        "tensors": 1,
+        "maxabs": 1.126900315284729e-06,
+        "relative_l2": 3.525252166227174e-06,
+        "original_gate_failed_tensors": 1
+      },
+      {
+        "file": "CLs_weight1.pt",
+        "native_sha256": "d5d64151a4aafaec8f7071e633165b58226577215e8ccbccfc1b2f70ddf04e54",
+        "hook_sha256": "6702fa50d3dd6f4deee4680543c8f7c65565a736b27fca2920dd8c0b5baa695a",
+        "tensors": 1,
+        "maxabs": 1.6763806343078613e-06,
+        "relative_l2": 3.334941228883986e-06,
+        "original_gate_failed_tensors": 1
+      },
+      {
+        "file": "fc_state_0.pt",
+        "native_sha256": "991fbaa0bad3129cf046adbacaa6b8e6e61378235b5219e936b48eeea6c8acc4",
+        "hook_sha256": "2462f432fed68243121443b1cf33373d973dfa2125a0808d113989e5e59474b8",
+        "tensors": 2,
+        "maxabs": 1.126900315284729e-06,
+        "relative_l2": 3.525427080544331e-06,
+        "original_gate_failed_tensors": 1
+      },
+      {
+        "file": "fc_state_1.pt",
+        "native_sha256": "742b39ea8ba6d1052a8f09a3aab7aef890aa2d4094baee5aa8860542fd686857",
+        "hook_sha256": "14f55f3aac7d7b682b908a1aff81113a89391b28c246f5022857a5300ec7f49c",
+        "tensors": 2,
+        "maxabs": 1.6763806343078613e-06,
+        "relative_l2": 3.335124838776986e-06,
+        "original_gate_failed_tensors": 1
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "native_sha256": "8862fd1506f61e02d294b9b874965cbcf08aa99b9129d769ad7d3da9df058912",
+        "hook_sha256": "be282949f8f1c5483430531fad5ca44b29df93f1d788da5be60dc7d2b924ae22",
+        "tensors": 24,
+        "maxabs": 4.466623067855835e-06,
+        "relative_l2": 2.2558707586804553e-06,
+        "original_gate_failed_tensors": 10
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "native_sha256": "3303e9cf7686c09d39741eae2554f5e32f4e8088ac406f8e2da828b2dc70e4e0",
+        "hook_sha256": "4fa55f8c5f6b904bab7652bc28f03971428b4fc78dce4f8c13a55e0db8508d1c",
+        "tensors": 24,
+        "maxabs": 5.245208740234375e-06,
+        "relative_l2": 3.2976674854537868e-06,
+        "original_gate_failed_tensors": 10
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "native_sha256": "c6b6b82fd54591ec6de38633b06214c052e2e4455a3c1f3e6e1408a84e9003f7",
+        "hook_sha256": "199e91a1ce90018f98dac3ef45e87f86e751f25d6e39bc7c8666882a18249270",
+        "tensors": 24,
+        "maxabs": 2.4119086447171867e-05,
+        "relative_l2": 0.002799880297741249,
+        "original_gate_failed_tensors": 17
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "native_sha256": "efd0e2a01781f1c7daa70152bb5e872ba5f494f4c164d251653aca542749d3f4",
+        "hook_sha256": "3e982d90824d278eb3d0675293035e78a80dbb6a863647a824eb012870b3b337",
+        "tensors": 24,
+        "maxabs": 3.115643630735576e-05,
+        "relative_l2": 0.0029955004169882012,
+        "original_gate_failed_tensors": 20
+      }
+    ],
+    "tensors": [
+      {
+        "file": "CLs_bias0.pt",
+        "tensor": "",
+        "bitwise_equal": false,
+        "maxabs": 8.032657206058502e-08,
+        "relative_l2": 1.2042211896850241e-05,
+        "original_threshold": 1.0674055004492402e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "CLs_bias1.pt",
+        "tensor": "",
+        "bitwise_equal": false,
+        "maxabs": 8.032657206058502e-08,
+        "relative_l2": 1.1355641814647782e-05,
+        "original_threshold": 1.0674055004492402e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "CLs_weight0.pt",
+        "tensor": "",
+        "bitwise_equal": false,
+        "maxabs": 1.126900315284729e-06,
+        "relative_l2": 3.525252166227174e-06,
+        "original_threshold": 2.0768466442823407e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "CLs_weight1.pt",
+        "tensor": "",
+        "bitwise_equal": false,
+        "maxabs": 1.6763806343078613e-06,
+        "relative_l2": 3.334941228883986e-06,
+        "original_threshold": 2.0768466442823407e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "fc_state_0.pt",
+        "tensor": "/bias",
+        "bitwise_equal": false,
+        "maxabs": 8.032657206058502e-08,
+        "relative_l2": 1.2042211896850241e-05,
+        "original_threshold": 1.0674055004492402e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "fc_state_0.pt",
+        "tensor": "/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.126900315284729e-06,
+        "relative_l2": 3.525252166227174e-06,
+        "original_threshold": 2.0768466442823407e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "fc_state_1.pt",
+        "tensor": "/bias",
+        "bitwise_equal": false,
+        "maxabs": 8.032657206058502e-08,
+        "relative_l2": 1.1355641814647782e-05,
+        "original_threshold": 1.0674055004492402e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "fc_state_1.pt",
+        "tensor": "/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.6763806343078613e-06,
+        "relative_l2": 3.334941228883986e-06,
+        "original_threshold": 2.0768466442823407e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/0/weight",
+        "bitwise_equal": false,
+        "maxabs": 7.566995918750763e-07,
+        "relative_l2": 2.0426335568810785e-06,
+        "original_threshold": 1.36081675440073e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/1/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.466623067855835e-06,
+        "relative_l2": 8.402459581710206e-06,
+        "original_threshold": 1.3608333319425581e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/2/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.384185791015625e-07,
+        "relative_l2": 5.114717341084762e-07,
+        "original_threshold": 1.3608020395040512e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/3/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.7285346984863281e-06,
+        "relative_l2": 4.188979332043369e-06,
+        "original_threshold": 1.3608669340610504e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/4/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.1013041734695435e-07,
+        "relative_l2": 9.261803482908761e-07,
+        "original_threshold": 1.3608283773064613e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/5/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.1047890186309814e-06,
+        "relative_l2": 4.818122957801824e-06,
+        "original_threshold": 1.3608875349164008e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/6/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.289912223815918e-07,
+        "relative_l2": 1.3159941653353256e-06,
+        "original_threshold": 1.3608522936701774e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/7/weight",
+        "bitwise_equal": false,
+        "maxabs": 7.990747690200806e-07,
+        "relative_l2": 1.5835394870992665e-06,
+        "original_threshold": 1.3608784452080727e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/8/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.5331974029541016e-07,
+        "relative_l2": 5.909111241007837e-07,
+        "original_threshold": 1.3607799485325812e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/9/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.8638169169425964e-07,
+        "relative_l2": 8.664787605917421e-07,
+        "original_threshold": 1.3608813509345053e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/10/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.9802322387695312e-08,
+        "relative_l2": 2.1792165479215845e-07,
+        "original_threshold": 1.3607869893312453e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/11/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.774199962615967e-08,
+        "relative_l2": 2.357529139126652e-07,
+        "original_threshold": 1.3609753400087356e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/12/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.0978193283081055e-08,
+        "relative_l2": 2.3665953402122297e-07,
+        "original_threshold": 1.3608297184109688e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/13/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.284083843231201e-08,
+        "relative_l2": 2.4589413602496075e-07,
+        "original_threshold": 1.3609458357095717e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/14/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.60770320892334e-08,
+        "relative_l2": 1.9010586078401474e-07,
+        "original_threshold": 1.360778458416462e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/15/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.9802322387695312e-08,
+        "relative_l2": 2.1153512143563326e-07,
+        "original_threshold": 1.3607326745986937e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/16/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.2351741790771484e-08,
+        "relative_l2": 1.8327729558836885e-07,
+        "original_threshold": 1.360722169280052e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/17/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.60770320892334e-08,
+        "relative_l2": 2.0734896541112427e-07,
+        "original_threshold": 1.3608809784054756e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/18/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.60770320892334e-08,
+        "relative_l2": 1.9050638504237867e-07,
+        "original_threshold": 1.3606891632080077e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/19/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.9802322387695312e-08,
+        "relative_l2": 2.0631734039940774e-07,
+        "original_threshold": 1.361349619925022e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/20/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.2351741790771484e-08,
+        "relative_l2": 1.9206291998323943e-07,
+        "original_threshold": 1.3608298674225806e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/21/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.9802322387695312e-08,
+        "relative_l2": 2.0834333524712461e-07,
+        "original_threshold": 1.3609108552336693e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/22/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.60770320892334e-08,
+        "relative_l2": 1.9491840781568309e-07,
+        "original_threshold": 1.3607777878642083e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_0.pt",
+        "tensor": "/23/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.9802322387695312e-08,
+        "relative_l2": 2.1204148799081034e-07,
+        "original_threshold": 1.3613647446036338e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/0/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.94646418094635e-06,
+        "relative_l2": 2.927169809387898e-06,
+        "original_threshold": 1.3608147799968718e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/1/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.245208740234375e-06,
+        "relative_l2": 1.2578603705382794e-05,
+        "original_threshold": 1.360862389206886e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/2/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.5762786865234375e-07,
+        "relative_l2": 6.918398143721238e-07,
+        "original_threshold": 1.3608077391982077e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/3/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.2202730178833008e-06,
+        "relative_l2": 5.334862068261198e-06,
+        "original_threshold": 1.3609103336930275e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/4/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.6193599700927734e-07,
+        "relative_l2": 1.2882019168473465e-06,
+        "original_threshold": 1.3608378767967224e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/5/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.3583492040634155e-06,
+        "relative_l2": 7.131605950927526e-06,
+        "original_threshold": 1.361073985695839e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/6/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.140900611877441e-07,
+        "relative_l2": 1.5916643681239722e-06,
+        "original_threshold": 1.3611275553703308e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/7/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.2256205081939697e-06,
+        "relative_l2": 2.7294773392211297e-06,
+        "original_threshold": 1.360814221203327e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/8/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.9546208679676056e-07,
+        "relative_l2": 1.0292403629097476e-06,
+        "original_threshold": 1.3607739880681037e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/9/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.364418029785156e-07,
+        "relative_l2": 1.2336140121438494e-06,
+        "original_threshold": 1.3608398884534836e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/10/weight",
+        "bitwise_equal": false,
+        "maxabs": 7.939524948596954e-08,
+        "relative_l2": 3.39468003720973e-07,
+        "original_threshold": 1.360783189535141e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/11/weight",
+        "bitwise_equal": false,
+        "maxabs": 8.195638656616211e-08,
+        "relative_l2": 3.352719031071697e-07,
+        "original_threshold": 1.3612441197037698e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/12/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.960464477539063e-08,
+        "relative_l2": 3.464725171124386e-07,
+        "original_threshold": 1.360831506550312e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/13/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.960464477539063e-08,
+        "relative_l2": 3.3699410226860157e-07,
+        "original_threshold": 1.361335314810276e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/14/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.3527612686157227e-08,
+        "relative_l2": 2.602026097908448e-07,
+        "original_threshold": 1.3607834875583648e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/15/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.0978193283081055e-08,
+        "relative_l2": 2.892268586375141e-07,
+        "original_threshold": 1.3612352535128593e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/16/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.725290298461914e-08,
+        "relative_l2": 2.5555945666252803e-07,
+        "original_threshold": 1.3607211261987685e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/17/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.0978193283081055e-08,
+        "relative_l2": 2.786872322465947e-07,
+        "original_threshold": 1.3609076514840125e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/18/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.725290298461914e-08,
+        "relative_l2": 2.679802033182439e-07,
+        "original_threshold": 1.3606890514492988e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/19/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.725290298461914e-08,
+        "relative_l2": 2.775933348042091e-07,
+        "original_threshold": 1.361810177564621e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/20/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.0978193283081055e-08,
+        "relative_l2": 2.6839940194718273e-07,
+        "original_threshold": 1.3608300536870956e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/21/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.3527612686157227e-08,
+        "relative_l2": 2.843633257205443e-07,
+        "original_threshold": 1.3609316423535346e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/22/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.725290298461914e-08,
+        "relative_l2": 2.567664056970605e-07,
+        "original_threshold": 1.3607823699712752e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_a_1.pt",
+        "tensor": "/23/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.0978193283081055e-08,
+        "relative_l2": 2.882041399746455e-07,
+        "original_threshold": 1.3654191642999648e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/0/weight",
+        "bitwise_equal": false,
+        "maxabs": 6.406800821423531e-06,
+        "relative_l2": 0.004203231835872564,
+        "original_threshold": 1.0127476139459758e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/1/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.4119086447171867e-05,
+        "relative_l2": 0.004325340712773128,
+        "original_threshold": 1.0516356946900487e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/2/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.5047123674303293e-06,
+        "relative_l2": 0.004897149740512494,
+        "original_threshold": 1.0084516941569745e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/3/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.241924474015832e-05,
+        "relative_l2": 0.0045597872376436435,
+        "original_threshold": 1.0307312724180519e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/4/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.1019059456884861e-05,
+        "relative_l2": 0.007563918100687246,
+        "original_threshold": 1.0132678740192204e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/5/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.7255311831831932e-05,
+        "relative_l2": 0.004319155038921022,
+        "original_threshold": 1.0335882045328616e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/6/weight",
+        "bitwise_equal": false,
+        "maxabs": 6.6597131080925465e-06,
+        "relative_l2": 0.005461994248079865,
+        "original_threshold": 1.0153868866618722e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/7/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.468834958970547e-06,
+        "relative_l2": 0.001998789585720003,
+        "original_threshold": 1.0269760750234127e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/8/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.7468929551541805e-06,
+        "relative_l2": 0.002483964381109366,
+        "original_threshold": 1.0105295132379979e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/9/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.379319190979004e-06,
+        "relative_l2": 0.0008718592926771061,
+        "original_threshold": 1.0190210551954806e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/10/weight",
+        "bitwise_equal": false,
+        "maxabs": 9.34116542339325e-07,
+        "relative_l2": 0.0004558378051496645,
+        "original_threshold": 1.017368400003761e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/11/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.153078745934181e-07,
+        "relative_l2": 0.00024432920874950347,
+        "original_threshold": 1.0157388148363679e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/12/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.8891951185651124e-06,
+        "relative_l2": 0.0007744663876491359,
+        "original_threshold": 1.0113994930870831e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/13/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.034671630710363e-07,
+        "relative_l2": 0.00020168716654386318,
+        "original_threshold": 1.0320208398625254e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/14/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.5579280443489552e-07,
+        "relative_l2": 0.00017137344998226578,
+        "original_threshold": 1.0080202298704534e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/15/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.2436066754162312e-07,
+        "relative_l2": 7.718111653892916e-05,
+        "original_threshold": 1.0170668284408748e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/16/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.844049155712128e-08,
+        "relative_l2": 0.00011142286672640925,
+        "original_threshold": 1.0074069004040211e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/17/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.0203802958130836e-07,
+        "relative_l2": 6.142242553247148e-05,
+        "original_threshold": 1.0230909674428402e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/18/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.0188159649260342e-07,
+        "relative_l2": 8.698813875792284e-05,
+        "original_threshold": 1.0215991330333053e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/19/weight",
+        "bitwise_equal": false,
+        "maxabs": 6.988193490542471e-08,
+        "relative_l2": 5.500595464851133e-05,
+        "original_threshold": 1.0136154470965265e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/20/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.843800419010222e-07,
+        "relative_l2": 9.936699516979417e-05,
+        "original_threshold": 1.0198310706764459e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/21/weight",
+        "bitwise_equal": false,
+        "maxabs": 8.061761036515236e-08,
+        "relative_l2": 4.0436919924741265e-05,
+        "original_threshold": 1.0231782346963882e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/22/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.3190084397792816e-08,
+        "relative_l2": 4.451934905808232e-05,
+        "original_threshold": 1.0144975841976702e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_0.pt",
+        "tensor": "/23/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.3405528888106346e-08,
+        "relative_l2": 1.977542383058642e-05,
+        "original_threshold": 1.0320324464701116e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/0/weight",
+        "bitwise_equal": false,
+        "maxabs": 7.098686182871461e-06,
+        "relative_l2": 0.004117072837150485,
+        "original_threshold": 1.0124328886158763e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/1/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.115643630735576e-05,
+        "relative_l2": 0.005683829337641854,
+        "original_threshold": 1.0574941514059901e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/2/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.94011294702068e-06,
+        "relative_l2": 0.005479733702267522,
+        "original_threshold": 1.007457171450369e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/3/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.6272475477308035e-05,
+        "relative_l2": 0.005016145030770428,
+        "original_threshold": 1.0305512035265565e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/4/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.2061093002557755e-05,
+        "relative_l2": 0.007136816230671164,
+        "original_threshold": 1.0183117133565247e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/5/weight",
+        "bitwise_equal": false,
+        "maxabs": 2.150190994143486e-05,
+        "relative_l2": 0.004637561245422125,
+        "original_threshold": 1.0338017218746244e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/6/weight",
+        "bitwise_equal": false,
+        "maxabs": 8.219445589929819e-06,
+        "relative_l2": 0.005981416284371328,
+        "original_threshold": 1.0152016372885554e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/7/weight",
+        "bitwise_equal": false,
+        "maxabs": 9.15903365239501e-06,
+        "relative_l2": 0.0019865231672659836,
+        "original_threshold": 1.0281731528230011e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/8/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.603127647191286e-06,
+        "relative_l2": 0.0021021889770497216,
+        "original_threshold": 1.0134543981403112e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/9/weight",
+        "bitwise_equal": false,
+        "maxabs": 3.968365490436554e-06,
+        "relative_l2": 0.0005946862805282106,
+        "original_threshold": 1.0310459965839982e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/10/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.2282689567655325e-06,
+        "relative_l2": 0.00039610111384625875,
+        "original_threshold": 1.0233033299446106e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/11/weight",
+        "bitwise_equal": false,
+        "maxabs": 4.943576641380787e-07,
+        "relative_l2": 0.00022709990326638796,
+        "original_threshold": 1.0199428596533834e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/12/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.9552535377442837e-06,
+        "relative_l2": 0.0006689357067860901,
+        "original_threshold": 1.0129975471645593e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/13/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.034671630710363e-07,
+        "relative_l2": 0.00016545109224742026,
+        "original_threshold": 1.0389310508035123e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/14/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.41968484967947e-07,
+        "relative_l2": 0.00016069589482914753,
+        "original_threshold": 1.008481724653393e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/15/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.5363912098109722e-07,
+        "relative_l2": 7.874242459388983e-05,
+        "original_threshold": 1.0224159867502748e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/16/weight",
+        "bitwise_equal": false,
+        "maxabs": 8.469214662909508e-08,
+        "relative_l2": 0.0001239182728153693,
+        "original_threshold": 1.0096941587980836e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/17/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.2422970030456781e-07,
+        "relative_l2": 6.546450596426019e-05,
+        "original_threshold": 1.0225935690104961e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/18/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.8166610971093178e-07,
+        "relative_l2": 0.00010157519929797664,
+        "original_threshold": 1.0244960538111627e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/19/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.0384246706962585e-07,
+        "relative_l2": 5.822429205705413e-05,
+        "original_threshold": 1.019557864870876e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/20/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.7206184566020966e-07,
+        "relative_l2": 9.434423103761989e-05,
+        "original_threshold": 1.0291674653999507e-07,
+        "original_gate_passed": false
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/21/weight",
+        "bitwise_equal": false,
+        "maxabs": 1.0244548320770264e-07,
+        "relative_l2": 4.2856720210916205e-05,
+        "original_threshold": 1.0305825052782893e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/22/weight",
+        "bitwise_equal": false,
+        "maxabs": 8.405186235904694e-08,
+        "relative_l2": 4.667922511907648e-05,
+        "original_threshold": 1.0189782830420881e-07,
+        "original_gate_passed": true
+      },
+      {
+        "file": "lora_w_b_1.pt",
+        "tensor": "/23/weight",
+        "bitwise_equal": false,
+        "maxabs": 5.99684426560998e-08,
+        "relative_l2": 2.1108609088739957e-05,
+        "original_threshold": 1.0381374591961502e-07,
+        "original_gate_passed": true
+      }
+    ]
+  },
+  "scientific_boundary": {
+    "supported": "Per-run exact own-spec plus CPU unpatched-reference equality supports faithful implementation of requested update, without requiring cross-GPU trajectory identity.",
+    "not_supported": "Cross-GPU bitwise/original-threshold trajectory equality, no accumulated numerical effect, or exact reproduction of historical scores.",
+    "policy": "Original failure/tolerances retained. Replacing a trajectory-identity release criterion with implementation own-spec is an explicit new gate policy, not retrospective PASS or relaxed threshold."
+  }
+}

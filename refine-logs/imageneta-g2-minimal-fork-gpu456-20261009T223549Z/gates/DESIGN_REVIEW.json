@@ -1,0 +1,24 @@
+{
+  "status": "passed_design_only",
+  "scope": "two_task_single_seed_mechanism_screening",
+  "seed": 2,
+  "arms": ["B0", "R25", "S_F", "F_S", "S_S", "R100"],
+  "shared_parent_method": "sgd",
+  "primary_endpoint": "current_task_development_cross_entropy_fixed_epoch_50",
+  "old_formal_results_reusable_as_new_split_baseline": false,
+  "trained_direction_only_identification": false,
+  "trained_radius_policy_identification": true,
+  "offline_common_state_direction_controls_required": true,
+  "test_adaptive_selection_allowed": false,
+  "gpu_allowlist": [4, 5, 6],
+  "formal_launch_requires_bounded_pairing_gate": true,
+  "implementation_review_status": "pending",
+  "limits": [
+    "single seed; no sampling uncertainty or robustness claim",
+    "two tasks; not ten-task FAA/AAA confirmation",
+    "fixed versus coupled compares complete policies with unequal possible initial scales",
+    "natural updates confound direction with magnitude and compute cost",
+    "local counterfactuals do not replace trained same-radius direction controls",
+    "no H-squared causal, schedule, history, or three-task inheritance claim"
+  ]
+}

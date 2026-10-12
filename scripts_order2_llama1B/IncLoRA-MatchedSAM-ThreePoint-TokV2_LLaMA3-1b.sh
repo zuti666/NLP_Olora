@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+exec "${THREE_POINT_PROBE_PYTHON:-python3}" "$REPO_ROOT/scripts_llama/run_three_point_probe_llama.py" --config "$REPO_ROOT/configs/three_point_probe_llama/inclora_threepoint_g1_plus_llama1b_order2_tokv2_rho005.json" "$@"

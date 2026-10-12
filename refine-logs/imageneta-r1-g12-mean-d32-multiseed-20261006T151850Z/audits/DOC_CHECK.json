@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-06 15:32:30 UTC",
+  "audit_type": "fresh_independent_documented_invocation",
+  "agent": "/root/g12_multiseed_fresh_doc_check_1006",
+  "documents_read": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/ENVIRONMENT.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/RUN.md",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md"
+  ],
+  "command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/suite.json --dry-run",
+  "invocation_verbatim": true,
+  "execution": {
+    "tool": "tools.exec_command",
+    "sandbox_permissions": "require_escalated",
+    "route": "direct host execution; no SSH",
+    "workdir": "/data/140-1/users/liying/O-LoRA"
+  },
+  "result": {
+    "exit_code": 0,
+    "stdout": "{\"status\": \"valid\", \"jobs\": 13, \"formal\": 6, \"smokes\": 6, \"allowed_gpus\": [2, 3, 4, 5, 6], \"max_parallel\": 2}\n",
+    "parsed_stdout": {
+      "status": "valid",
+      "jobs": 13,
+      "formal": 6,
+      "smokes": 6,
+      "allowed_gpus": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "max_parallel": 2
+    }
+  },
+  "expected": {
+    "status": "valid",
+    "jobs": 13,
+    "formal": 6,
+    "smokes": 6,
+    "allowed_gpus": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 2
+  },
+  "doc_vs_reality": {
+    "verdict": "PASS",
+    "divergences": [],
+    "notes": [
+      "ENVIRONMENT.md and RUN.md document the same exact read-only invocation.",
+      "The documented Python path and canonical environment SHA256 agree with the warm Pilot_new_local entries in the local compute ledger.",
+      "The documented dry-run output exactly matches the observed status, job counts, allowed GPU pool, and maximum parallelism.",
+      "This check verifies documented prelaunch invocation only; allocated-GPU CUDA witnesses, six actual model smokes, and within-seed pairing remain launch acceptance gates."
+    ]
+  },
+  "scope": {
+    "controller_launched": false,
+    "gpu_allocation_attempted": false,
+    "frozen_sources_configs_docs_modified": false,
+    "audit_file_not_pinned": true
+  }
+}

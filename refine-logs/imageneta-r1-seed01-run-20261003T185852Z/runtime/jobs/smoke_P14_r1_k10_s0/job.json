@@ -1,0 +1,79 @@
+{
+  "id": "smoke_P14_r1_k10_s0",
+  "condition": "P14",
+  "family": "four_probe_exact_restore_rng_replay",
+  "block": "B3",
+  "label": "S1-14_A_C_matched",
+  "seed": 0,
+  "status": "registered",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/smoke_P14_r1_k10_s0.json",
+  "config_sha256": "2549b38c95b86886482945189af72521acef26ae2a213aebf9975bb1e403eefb",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/outputs/smoke_P14_r1_k10_s0",
+  "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/configs/S1-14_A_C_matched_s2.json",
+  "source_config_sha256": "d0bdc803305b74bf8789d235bc487c240292d3b41f2b73b9b1f96d290eeb49fe",
+  "config_diff": {
+    "outputs_root": {
+      "source": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/outputs/S1-14_A_C_matched_s2/native",
+      "current": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/outputs/smoke_P14_r1_k10_s0/native"
+    },
+    "prefix": {
+      "source": "S1-14_A_C_matched_s2",
+      "current": "smoke_P14_r1_k10_s0"
+    },
+    "seed": {
+      "source": [
+        2
+      ],
+      "current": [
+        0
+      ]
+    }
+  },
+  "source_runner": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+  "source_entry": "/data/140-1/users/liying/O-LoRA/refine-logs/g012-r1-four-branches-20261003T072200Z/trainer/four_probe_train.py",
+  "direction_selector": null,
+  "runtime_bindings_source_template": {
+    "probe_branch": "C",
+    "update_direction": "A",
+    "step_mode": "matched",
+    "attention_backend": "native"
+  },
+  "depends_on_formal": [],
+  "requires_same_seed_smoke_gate": true,
+  "independent_reference_job": null,
+  "expected_tasks": 2,
+  "expected_epochs_per_task": 1,
+  "expected_steps": 2,
+  "expected_samples": 256,
+  "expected_task_steps": {
+    "0": 1,
+    "1": 1
+  },
+  "phase": "smoke",
+  "smoke": true,
+  "kind": "training",
+  "runtime_bindings": {
+    "probe_branch": "C",
+    "update_direction": "A",
+    "step_mode": "matched",
+    "attention_backend": "native"
+  },
+  "branch": "C",
+  "direction": "A",
+  "mode": "matched",
+  "backend": "native",
+  "outer_radius": 1.0,
+  "inner_radius": 0.05,
+  "reference_job": null,
+  "depends_on": [],
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/probe/run.py",
+    "--suite",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/suite.json",
+    "--job",
+    "smoke_P14_r1_k10_s0"
+  ],
+  "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/smoke_P14_r1_k10_s0/cuda_witness.json"
+}

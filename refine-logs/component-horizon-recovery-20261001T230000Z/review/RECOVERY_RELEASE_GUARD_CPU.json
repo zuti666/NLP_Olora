@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-10-01T23:00:11.617637+00:00",
+  "scope": "Synthetic metadata and current own PID; isolated parent subprocess proves own common context. No queue/GPU invoked. Production requires host PID namespace.",
+  "implementation_sha256": {
+    "wait_then_launch.py": "aa84bbbd477713fecda89899e59377710ab4183aedaa2987a562ca480f7e4703",
+    "run_queue.py": "6d3ed54edc55bde5c0cb73b8015b8663694e415d9e25add2de5a8ee9dfe00676",
+    "validate_job.py": "8a5e420e3b597c420d2e7bd3806178a0322807f6f139711d75bd49c14bcbfa34",
+    "common.py": "a8b750e65b599445d97476a455cbd9f9fec94aab87b2f9023e6e1d0d17c16042",
+    "validate_parent.py": "9df487189de5882e7c6c45d604719e7bcddf18248abe481563ba4ea6adc94421"
+  },
+  "checks": {
+    "live_running_parent_waits": true,
+    "completed_but_live_parent_waits": true,
+    "completed_exited_valid_parent_accepted": true,
+    "direct_queue_verified_parent_accepted": true,
+    "wrong_pid_namespace_blocks_waiter": {
+      "rejected": true,
+      "reason": "host PID namespace mismatch"
+    },
+    "wrong_pid_namespace_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "host PID namespace mismatch"
+    },
+    "parent_pinned_file_change_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "parent pinned file changed validate_job.py"
+    },
+    "parent_pending_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "parent cohort not successfully finished"
+    },
+    "exited_incomplete_parent_blocks_waiter": {
+      "rejected": true,
+      "reason": "parent controller exited before successful completion"
+    },
+    "parent_failure_blocks_waiter": {
+      "rejected": true,
+      "reason": "parent contains failed jobs; downstream not released"
+    },
+    "changed_parent_receipt_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "validated parent receipt changed"
+    },
+    "parent_exit_nonzero_blocks_waiter": {
+      "rejected": true,
+      "reason": "Command '['/data/115-2/users/liying/miniconda3_shared/bin/python', '-I', '-B', '/data/140-1/users/liying/O-LoRA/refine-logs/component-horizon-recovery-20261001T230000Z/validate_parent.py', '/data/115-2/users/liying/cache/tmp/component-release-cpu-mmyiges3/parent']' returned non-zero exit status 1."
+    },
+    "wrong_parent_count_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "parent release not validated"
+    },
+    "missing_parent_receipt_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "validated parent receipt changed"
+    },
+    "changed_guard_blocks_direct_queue": {
+      "rejected": true,
+      "reason": "parent release not validated"
+    },
+    "valid_current_smoke_release_accepted": true,
+    "stale_smoke_suite_rejected": {
+      "rejected": true,
+      "reason": "current GPU smoke release not validated"
+    },
+    "changed_smoke_receipt_rejected": {
+      "rejected": true,
+      "reason": "GPU smoke receipt changed"
+    }
+  }
+}

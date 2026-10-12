@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "tests": 14,
+  "command": "env CUDA_VISIBLE_DEVICES= HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 /data/140-1/users/liying/conda_envs/nlora_req/bin/python -m unittest discover -s scripts_llama -p test_three_point_probe_launch_cpu.py -v",
+  "log": "refine-logs/llama_three_point_probe_20261012/LAUNCHER_CPU_TESTS.log",
+  "dry_run_exit_code": 0,
+  "dry_run_created_output": false,
+  "config_catalog": 24,
+  "wrapper_catalog": 24,
+  "proposed_cohort": {
+    "order": 1,
+    "seed": 0,
+    "models": [
+      "1B",
+      "3B"
+    ],
+    "modes": [
+      "g0",
+      "g1_plus",
+      "backward_reflected",
+      "central"
+    ],
+    "chains": 8,
+    "formal_stages": 32,
+    "smoke_stages": 16,
+    "formal_commits": 4112,
+    "formal_ce_phases": 12336,
+    "formal_replays": 8224
+  },
+  "prepared": false,
+  "gpu_actions": false,
+  "files_sha256": {
+    "scripts_llama/run_three_point_probe_llama.py": "0c7df783ab1dbdd6fe49f8cb87b3b7b786b71152214d086173e1608152f1863a",
+    "scripts_llama/run_three_point_probe_queue.py": "180f92e0f33d9f6626b77b886478f6be9d7a9fd210e9593d30727f4584ff46dd",
+    "scripts_llama/collect_three_point_probe_results.py": "d8016522c5b0864a811d3f7001be9cb2c3bb1492eed00935e712178fee14caad",
+    "scripts_llama/test_three_point_probe_launch_cpu.py": "56ccdb4c08d3a4d8de9fdc4fd6775715fe3f9c7ec1e9a0ac85f9f83bb9af63c3"
+  },
+  "additional_integrity_checks": [
+    "Pin accepted train/predict timing JSONs",
+    "Pin native Trainer step state and decoder pipeline audit",
+    "Central paired deltas vs all three matched controls",
+    "Reject native timing/pipeline/state edits before collection"
+  ]
+}

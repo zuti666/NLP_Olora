@@ -1,0 +1,354 @@
+{
+  "status": "passed",
+  "audited_at_utc": "2026-10-09T09:28:11.501550+00:00",
+  "actual_host": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "cpu_only_parsing": true,
+  "new_gpu_work_started_by_auditor": false,
+  "source_files_verified": 190,
+  "execution_pins_verified": 42,
+  "registered_formal_training": 0,
+  "completed_formal_training": 0,
+  "completed_smokes": 8,
+  "completed_pairing_gate": 1,
+  "totals": {
+    "actual_sgd_updates": 24,
+    "new_gradient_reads": 54,
+    "passive_diagnostic_forwards": 24,
+    "total_training_and_diagnostic_forwards": 78,
+    "history_used_steps": 6
+  },
+  "pairing_checks": {
+    "single200_initial_state": true,
+    "single200_realized_inputs": true,
+    "single200_learning_rates": true,
+    "single200_first_base_gradient": true,
+    "single200_first_future_gradient": true,
+    "single200_first_relocation_and_update": true,
+    "single200_actual_history": true,
+    "single200_no_history": true,
+    "single200_task_reset": true,
+    "cl10_initial_state": true,
+    "cl10_realized_inputs": true,
+    "cl10_learning_rates": true,
+    "cl10_first_base_gradient": true,
+    "cl10_first_future_gradient": true,
+    "cl10_first_relocation_and_update": true,
+    "cl10_actual_history": true,
+    "cl10_no_history": true,
+    "cl10_task_reset": true
+  },
+  "pairing_report_sha256": "68dbaa7b447dbaeb41d8537bb2ca0d14c668687a95ccd04bb534d916ca4ad1fc",
+  "forbidden_work_zero": true,
+  "all_losses_finite": true,
+  "task_history_reset_verified": true,
+  "full200_single_task_real_receipt_head_ce_verified": true,
+  "history_base_vs_full_final_cache_verified": true,
+  "evidence": [
+    {
+      "job": "smoke_single200_sgd_s2",
+      "method": "sgd",
+      "layout": "single200",
+      "gpu": 2,
+      "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "completed_at_utc": "2026-10-09T09:25:24.502880+00:00",
+      "updates": 2,
+      "gradient_reads": 2,
+      "diagnostic_forwards": 2,
+      "history_used_steps": 0,
+      "head_widths": [
+        200,
+        200
+      ],
+      "acceptance": {
+        "summary_sha256": "8f027110504346135d0dd7356bdbf453da7298d4e04ea7c2e98671c8a7fddc83",
+        "trace_sha256": "18af7c6c2a4712bd280e6a3b2eed21c84bfb2b3aa267be9ffe46a7cc4f7edb97",
+        "updates": 2,
+        "tasks": 1,
+        "history_used_steps": 0,
+        "cache_source": null,
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "227a9e3b061d8064199eb5550cd758d1553466fa5fe14b4f6a6c2d6dd78e9aa0",
+      "exit_receipt": {
+        "job_id": "smoke_single200_sgd_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:25:23.234295+00:00",
+        "runner_pid": 1411633
+      }
+    },
+    {
+      "job": "smoke_single200_current_g2_s2",
+      "method": "current_g2",
+      "layout": "single200",
+      "gpu": 3,
+      "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "completed_at_utc": "2026-10-09T09:25:29.838836+00:00",
+      "updates": 2,
+      "gradient_reads": 6,
+      "diagnostic_forwards": 2,
+      "history_used_steps": 0,
+      "head_widths": [
+        200,
+        200
+      ],
+      "acceptance": {
+        "summary_sha256": "e54b9a8b2d82f86d0332218b8f42d3887f5dc9d968b64052c07c980286dd3e86",
+        "trace_sha256": "d1311e5718a246464fcd19c86ef7c1f489f21c624327dab3f6b5a6aea463c874",
+        "updates": 2,
+        "tasks": 1,
+        "history_used_steps": 0,
+        "cache_source": null,
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "d06d2a0c8540a90f730e1ae426ca4439d335bc9803c49d6ea02e50725ed2be54",
+      "exit_receipt": {
+        "job_id": "smoke_single200_current_g2_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:25:25.330120+00:00",
+        "runner_pid": 1411634
+      }
+    },
+    {
+      "job": "smoke_single200_history_fusion_s2",
+      "method": "history_fusion",
+      "layout": "single200",
+      "gpu": 2,
+      "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "completed_at_utc": "2026-10-09T09:26:06.181251+00:00",
+      "updates": 2,
+      "gradient_reads": 4,
+      "diagnostic_forwards": 2,
+      "history_used_steps": 1,
+      "head_widths": [
+        200,
+        200
+      ],
+      "acceptance": {
+        "summary_sha256": "25c50324277c037b8f79d0e6bcedeee5bb75e897d119fc2618857b042babeb95",
+        "trace_sha256": "b86d88ffaa79f771a57d8815d5fdc5da1a359d8d702ca281391f3266d2fb2073",
+        "updates": 2,
+        "tasks": 1,
+        "history_used_steps": 1,
+        "cache_source": "base",
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "227a9e3b061d8064199eb5550cd758d1553466fa5fe14b4f6a6c2d6dd78e9aa0",
+      "exit_receipt": {
+        "job_id": "smoke_single200_history_fusion_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:26:02.149645+00:00",
+        "runner_pid": 1418137
+      }
+    },
+    {
+      "job": "smoke_single200_history_g2_s2",
+      "method": "history_g2",
+      "layout": "single200",
+      "gpu": 3,
+      "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "completed_at_utc": "2026-10-09T09:26:11.540300+00:00",
+      "updates": 2,
+      "gradient_reads": 6,
+      "diagnostic_forwards": 2,
+      "history_used_steps": 1,
+      "head_widths": [
+        200,
+        200
+      ],
+      "acceptance": {
+        "summary_sha256": "70897fd2294c48d30a69e4326e63eb3c546b9d95589d9dd601c05a27a812c065",
+        "trace_sha256": "c5fe652f65acceb4cce5b6d28cc57f80f6abc69b043eb89b463c6e1f73763727",
+        "updates": 2,
+        "tasks": 1,
+        "history_used_steps": 1,
+        "cache_source": "final",
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "d06d2a0c8540a90f730e1ae426ca4439d335bc9803c49d6ea02e50725ed2be54",
+      "exit_receipt": {
+        "job_id": "smoke_single200_history_g2_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:26:08.519118+00:00",
+        "runner_pid": 1418733
+      }
+    },
+    {
+      "job": "smoke_cl10_sgd_s2",
+      "method": "sgd",
+      "layout": "cl10",
+      "gpu": 2,
+      "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "completed_at_utc": "2026-10-09T09:26:37.614283+00:00",
+      "updates": 4,
+      "gradient_reads": 4,
+      "diagnostic_forwards": 4,
+      "history_used_steps": 0,
+      "head_widths": [
+        20,
+        20,
+        40,
+        40
+      ],
+      "acceptance": {
+        "summary_sha256": "81b1fb24137b66bb25ea01d8ed84150d79e7bae2bae3b0fa7804ec9514f1cc0f",
+        "trace_sha256": "8f4f7ffc6abdab0130901ec3fca7f2c51367f11a2c8704b5b99e4ad91741dc35",
+        "updates": 4,
+        "tasks": 2,
+        "history_used_steps": 0,
+        "cache_source": null,
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "227a9e3b061d8064199eb5550cd758d1553466fa5fe14b4f6a6c2d6dd78e9aa0",
+      "exit_receipt": {
+        "job_id": "smoke_cl10_sgd_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:26:37.061227+00:00",
+        "runner_pid": 1424668
+      }
+    },
+    {
+      "job": "smoke_cl10_current_g2_s2",
+      "method": "current_g2",
+      "layout": "cl10",
+      "gpu": 3,
+      "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "completed_at_utc": "2026-10-09T09:26:48.135459+00:00",
+      "updates": 4,
+      "gradient_reads": 12,
+      "diagnostic_forwards": 4,
+      "history_used_steps": 0,
+      "head_widths": [
+        20,
+        20,
+        40,
+        40
+      ],
+      "acceptance": {
+        "summary_sha256": "2353ea6c1cf110e5b736c085f529e4101aaf67effb566c2bad7ebaa0c0c79ce9",
+        "trace_sha256": "f50e6f1e56389a2a05b69c35c303913185ab5db571d8983fe77001d5d2d54000",
+        "updates": 4,
+        "tasks": 2,
+        "history_used_steps": 0,
+        "cache_source": null,
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "d06d2a0c8540a90f730e1ae426ca4439d335bc9803c49d6ea02e50725ed2be54",
+      "exit_receipt": {
+        "job_id": "smoke_cl10_current_g2_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:26:47.941569+00:00",
+        "runner_pid": 1425270
+      }
+    },
+    {
+      "job": "smoke_cl10_history_fusion_s2",
+      "method": "history_fusion",
+      "layout": "cl10",
+      "gpu": 2,
+      "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "completed_at_utc": "2026-10-09T09:27:14.143427+00:00",
+      "updates": 4,
+      "gradient_reads": 8,
+      "diagnostic_forwards": 4,
+      "history_used_steps": 2,
+      "head_widths": [
+        20,
+        20,
+        40,
+        40
+      ],
+      "acceptance": {
+        "summary_sha256": "1d9f88e2d1cd8814c7bf3e89e0654a16485c6037b19b92592158d942f2ddc9b9",
+        "trace_sha256": "fd930768236f520cff10d5f08b89d2e5d8ada96c00392f4d880ac4aeda2b76b5",
+        "updates": 4,
+        "tasks": 2,
+        "history_used_steps": 2,
+        "cache_source": "base",
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "227a9e3b061d8064199eb5550cd758d1553466fa5fe14b4f6a6c2d6dd78e9aa0",
+      "exit_receipt": {
+        "job_id": "smoke_cl10_history_fusion_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:27:11.614311+00:00",
+        "runner_pid": 1433822
+      }
+    },
+    {
+      "job": "smoke_cl10_history_g2_s2",
+      "method": "history_g2",
+      "layout": "cl10",
+      "gpu": 3,
+      "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "completed_at_utc": "2026-10-09T09:27:29.663385+00:00",
+      "updates": 4,
+      "gradient_reads": 12,
+      "diagnostic_forwards": 4,
+      "history_used_steps": 2,
+      "head_widths": [
+        20,
+        20,
+        40,
+        40
+      ],
+      "acceptance": {
+        "summary_sha256": "fbf74e39057ae787ebf77103b4d605bf5b41472689df6ffeb196473bc66593b7",
+        "trace_sha256": "7b1f8b65e6b4a34af4f839f0bb281b440a10119f595ecb9919c123fde766a948",
+        "updates": 4,
+        "tasks": 2,
+        "history_used_steps": 2,
+        "cache_source": "final",
+        "full_class_partition_verified": true,
+        "checkpoint_tensor_cache_verified": true,
+        "metric_recomputation": true,
+        "full_formal_training": false
+      },
+      "witness_sha256": "d06d2a0c8540a90f730e1ae426ca4439d335bc9803c49d6ea02e50725ed2be54",
+      "exit_receipt": {
+        "job_id": "smoke_cl10_history_g2_s2",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:27:24.833194+00:00",
+        "runner_pid": 1436516
+      }
+    },
+    {
+      "job": "smoke_pairing",
+      "acceptance": {
+        "summary_sha256": "68dbaa7b447dbaeb41d8537bb2ca0d14c668687a95ccd04bb534d916ca4ad1fc",
+        "gate": "passed",
+        "full_formal_training": false
+      },
+      "exit_receipt": {
+        "job_id": "smoke_pairing",
+        "returncode": 0,
+        "exited_at": "2026-10-09T09:27:32.735892+00:00",
+        "runner_pid": 1446045
+      }
+    }
+  ],
+  "post_completion_gpu_snapshot": "0, GPU-fd7e2955-3733-e30a-dff1-5da992423839, 2, 0\n1, GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a, 2, 0\n2, GPU-fe4ca05a-b7fd-efa7-8192-201e24573825, 2, 0\n3, GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26, 2, 0\n4, GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5, 2, 0\n5, GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e, 2, 0\n6, GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a, 2, 0\n",
+  "post_completion_compute_apps": "",
+  "limitation": "Bounded CUDA implementation checks only (single200 two updates, cl10 four updates each); no new 50-epoch method result or learning-performance conclusion."
+}

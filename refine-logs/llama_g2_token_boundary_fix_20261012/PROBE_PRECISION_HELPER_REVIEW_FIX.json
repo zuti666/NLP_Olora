@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-10-12T09:35:49.271109+00:00",
+  "status": "PASS_FOCUSED_CPU_TESTS",
+  "test_count": 14,
+  "command": "env CUDA_VISIBLE_DEVICES= HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false /data/140-1/users/liying/conda_envs/nlora_req/bin/python -m unittest tests.test_g2_probe_precision -v",
+  "files_sha256": {
+    "scripts_llama/diagnose_g2_probe_precision.py": "678ef50adf72247827693798219d0c7508cbfdc460f99488a16d38b9387bd2f2",
+    "tests/test_g2_probe_precision.py": "71fb7da5d6cac59ca3a8a74dc5d42cbfbc6e713390d1e8f2a45a195e6198f5e8"
+  },
+  "fixes": [
+    "autocast weight cache disabled in both precision modes; ambient autocast disabled for backward",
+    "single selected-device CUDA RNG capture/restore; reject model mixed devices",
+    "reject fresh-base-only nondefault adapter options",
+    "formal-profile task/dataset prefixes true by default, explicitly configurable and recorded",
+    "distinct fixed-radius names via repr instead of rounded .8g"
+  ],
+  "validation_scope": "14 CPU tests only; selected-device CUDA RNG behavior mocked; no GPU or full-size Llama run",
+  "performance_claim": null
+}

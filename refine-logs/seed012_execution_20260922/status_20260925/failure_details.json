@@ -1,0 +1,777 @@
+{
+  "generated_utc": "2026-09-25T15:32:28.384865+00:00",
+  "scope": "Read-only analysis; no training restart, GPU experiment, source/config mutation, or recovery performed.",
+  "queue_status": "partial_failure",
+  "counts": {
+    "completed": 92,
+    "failed": 6,
+    "held_dependency_failure": 10
+  },
+  "formal_counts": {
+    "completed": 83,
+    "failed": 6,
+    "held_dependency_failure": 10
+  },
+  "failed_runs": [
+    {
+      "job_id": "sdlora_aircraft_s0",
+      "status": "failed",
+      "dataset": "aircraft",
+      "seed": 0,
+      "method": "SDLoRA",
+      "error_type": "CUDA_OOM",
+      "error": "OutOfMemoryError('CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 167.09 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)')",
+      "first_failure_task_zero_based": 6,
+      "first_failure_task_one_based": 7,
+      "first_failure_epoch_one_based": 1,
+      "epoch_identification": "Inferred from completed-epoch progress counter and the frozen training-loop order; no batch index is logged.",
+      "minibatch_index": null,
+      "completed_tasks": 6,
+      "expected_tasks": 10,
+      "last_completed_epoch": {
+        "task_zero_based": 5,
+        "epoch_one_based": 40,
+        "loss_display": 0.112,
+        "console_line": 1036,
+        "text": "2026-09-23 08:33:05,057 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.112, Train_accy 57.81, Test_accy 26.15"
+      },
+      "partial_cnn_metrics_NOT_FINAL": {
+        "last_stage_key": "t05",
+        "last_stage_task_macro_accuracy": 26.148333333333333,
+        "mean_completed_stage_task_macro_accuracy": 26.506999999999998,
+        "last_matrix_row": [
+          12.01,
+          5.41,
+          3.29,
+          34.53,
+          49.55,
+          52.1
+        ],
+        "stage_task_macro_accuracies": [
+          37.84,
+          25.674999999999997,
+          21.496666666666666,
+          22.36,
+          25.522,
+          26.148333333333333
+        ],
+        "final_present": false,
+        "eligible_for_final_faa_aaa": false
+      },
+      "sources": [
+        {
+          "role": "receipt",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_aircraft_s0.json",
+          "sha256": "45a06b66e5b43e9d095b85910825c8c928c9c5d3d008555bba5b0f4265cc649f"
+        },
+        {
+          "role": "console_log",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/logs/sdlora_aircraft_s0.log",
+          "sha256": "fe6a13f58aa3649dfcd916459a4dbce3588061b15b7bce1a8aa94018dd7a24a9"
+        },
+        {
+          "role": "partial_metrics",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/sdlora_aircraft_s0/logs_inc_lora/sdlora/sgd/aircraft/0/seed012_sdlora_aircraft_s0/exp_run/10/seed012_sdlora_aircraft_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "fa148ed83f8f5edad75b9cc73376ac7fe93f168630666feb3b9c89a168a9520b"
+        },
+        {
+          "role": "config",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/sdlora_aircraft_s0.json",
+          "sha256": "237f8464c1f02c2029cac4c33a915f522a8ef374709e922ebdfaa6d6f7742bf1"
+        }
+      ],
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11",
+      "source_manifest_sha256": "f09b4f6a8b12472d0d1af8278246e3b6e6615a3a2e1789c460a3706dd758bd13",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/main.py\", line 98, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 187, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 389, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 139, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 249, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 607, in _update_representation\n    logits = self._network(inputs)[\"logits\"]\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/utils/inc_net.py\", line 457, in forward\n    feats_or_out = self.backbone(x, **kwargs) if kwargs else self.backbone(x)\n                                                             ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/backbone/lora.py\", line 768, in forward\n    return self.lora_vit(x)\n           ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 826, in forward\n    x = self.forward_features(x)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 807, in forward_features\n    x = self.blocks(x)\n        ^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/container.py\", line 219, in forward\n    input = module(input)\n            ^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 166, in forward\n    x = x + self.drop_path2(self.ls2(self.mlp(self.norm2(x))))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/layers/mlp.py\", line 42, in forward\n    x = self.fc1(x)\n        ^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/linear.py\", line 117, in forward\n    return F.linear(input, self.weight, self.bias)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 167.09 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n",
+      "evidence_lines": [
+        {
+          "line": 936,
+          "text": "2026-09-23 08:21:41,351 [baseLoRA.py] => Task 4, Epoch 40/40 => Loss 0.195, Train_accy 69.12, Test_accy 25.51"
+        },
+        {
+          "line": 947,
+          "text": "2026-09-23 08:23:39,422 [baseLoRA.py] => Learning on 50-60"
+        },
+        {
+          "line": 1036,
+          "text": "2026-09-23 08:33:05,057 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.112, Train_accy 57.81, Test_accy 26.15"
+        },
+        {
+          "line": 1047,
+          "text": "2026-09-23 08:35:29,013 [baseLoRA.py] => Learning on 60-70"
+        },
+        {
+          "line": 1138,
+          "text": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 167.09 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+        }
+      ],
+      "observed_memory": {
+        "allocation_request_mib": 296.0,
+        "device_capacity_gib": 23.46,
+        "device_free_mib": 72.88,
+        "process_used_gib": 23.38,
+        "pytorch_allocated_gib": 22.97,
+        "reserved_unallocated_mib": 167.09
+      },
+      "observed_failure_site": "sdlora.py:607 network forward -> timm vision_transformer MLP -> mlp.py:42 fc1 -> F.linear; not optimizer.step or model loading.",
+      "supported_inference": "Task-dependent activation memory growth is the leading explanation: all four streams fail at task 7, with batch128, prior-task branches and trainable SD scalars. This is static-source inference supported by the repeated boundary, not a per-task GPU-memory profile.",
+      "not_established": "Not established that each task retains another full ViT, that external GPU competition caused failure, or that allocator tuning alone suffices."
+    },
+    {
+      "job_id": "sdlora_cars196_s0",
+      "status": "failed",
+      "dataset": "cars196",
+      "seed": 0,
+      "method": "SDLoRA",
+      "error_type": "CUDA_OOM",
+      "error": "OutOfMemoryError('CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 166.89 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)')",
+      "first_failure_task_zero_based": 6,
+      "first_failure_task_one_based": 7,
+      "first_failure_epoch_one_based": 1,
+      "epoch_identification": "Inferred from completed-epoch progress counter and the frozen training-loop order; no batch index is logged.",
+      "minibatch_index": null,
+      "completed_tasks": 6,
+      "expected_tasks": 10,
+      "last_completed_epoch": {
+        "task_zero_based": 5,
+        "epoch_one_based": 40,
+        "loss_display": 0.016,
+        "console_line": 1036,
+        "text": "2026-09-23 17:14:37,746 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.016, Train_accy 57.18, Test_accy 36.38"
+      },
+      "partial_cnn_metrics_NOT_FINAL": {
+        "last_stage_key": "t05",
+        "last_stage_task_macro_accuracy": 36.97833333333333,
+        "mean_completed_stage_task_macro_accuracy": 48.91408333333333,
+        "last_matrix_row": [
+          53.72,
+          23.75,
+          36.56,
+          29.19,
+          36.71,
+          41.94
+        ],
+        "stage_task_macro_accuracies": [
+          75.39,
+          52.735,
+          51.656666666666666,
+          39.082499999999996,
+          37.641999999999996,
+          36.97833333333333
+        ],
+        "final_present": false,
+        "eligible_for_final_faa_aaa": false
+      },
+      "sources": [
+        {
+          "role": "receipt",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_cars196_s0.json",
+          "sha256": "6efc94cbd01dc2f888131dd73ed84c5f6dac677314e117ca10e9a98f0f54f3a2"
+        },
+        {
+          "role": "console_log",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/logs/sdlora_cars196_s0.log",
+          "sha256": "ef736d04dd361e394044fc13e27c033070bcbeb17b17897f011afd2ee9fcc0b0"
+        },
+        {
+          "role": "partial_metrics",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/sdlora_cars196_s0/logs_inc_lora/sdlora/sgd/cars196/0/seed012_sdlora_cars196_s0/exp_run/20/seed012_sdlora_cars196_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "fe1e1e2458db16435b17c58205f1397af98908a7d898529c4d26ca2ee1872639"
+        },
+        {
+          "role": "config",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/sdlora_cars196_s0.json",
+          "sha256": "90ed1c0b40c759287271ac804b66e78768ec4b3fb35126369b6a941add17d86c"
+        }
+      ],
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11",
+      "source_manifest_sha256": "f09b4f6a8b12472d0d1af8278246e3b6e6615a3a2e1789c460a3706dd758bd13",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/main.py\", line 98, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 187, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 389, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 139, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 249, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 607, in _update_representation\n    logits = self._network(inputs)[\"logits\"]\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/utils/inc_net.py\", line 457, in forward\n    feats_or_out = self.backbone(x, **kwargs) if kwargs else self.backbone(x)\n                                                             ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/backbone/lora.py\", line 768, in forward\n    return self.lora_vit(x)\n           ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 826, in forward\n    x = self.forward_features(x)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 807, in forward_features\n    x = self.blocks(x)\n        ^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/container.py\", line 219, in forward\n    input = module(input)\n            ^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 166, in forward\n    x = x + self.drop_path2(self.ls2(self.mlp(self.norm2(x))))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/layers/mlp.py\", line 42, in forward\n    x = self.fc1(x)\n        ^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/linear.py\", line 117, in forward\n    return F.linear(input, self.weight, self.bias)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 166.89 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n",
+      "evidence_lines": [
+        {
+          "line": 936,
+          "text": "2026-09-23 17:00:34,549 [baseLoRA.py] => Task 4, Epoch 40/40 => Loss 0.016, Train_accy 73.38, Test_accy 37.20"
+        },
+        {
+          "line": 947,
+          "text": "2026-09-23 17:02:47,733 [baseLoRA.py] => Learning on 96-116"
+        },
+        {
+          "line": 1036,
+          "text": "2026-09-23 17:14:37,746 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.016, Train_accy 57.18, Test_accy 36.38"
+        },
+        {
+          "line": 1047,
+          "text": "2026-09-23 17:17:20,820 [baseLoRA.py] => Learning on 116-136"
+        },
+        {
+          "line": 1138,
+          "text": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 166.89 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+        }
+      ],
+      "observed_memory": {
+        "allocation_request_mib": 296.0,
+        "device_capacity_gib": 23.46,
+        "device_free_mib": 72.88,
+        "process_used_gib": 23.38,
+        "pytorch_allocated_gib": 22.97,
+        "reserved_unallocated_mib": 166.89
+      },
+      "observed_failure_site": "sdlora.py:607 network forward -> timm vision_transformer MLP -> mlp.py:42 fc1 -> F.linear; not optimizer.step or model loading.",
+      "supported_inference": "Task-dependent activation memory growth is the leading explanation: all four streams fail at task 7, with batch128, prior-task branches and trainable SD scalars. This is static-source inference supported by the repeated boundary, not a per-task GPU-memory profile.",
+      "not_established": "Not established that each task retains another full ViT, that external GPU competition caused failure, or that allocator tuning alone suffices."
+    },
+    {
+      "job_id": "sdlora_cub200_s0",
+      "status": "failed",
+      "dataset": "cub200",
+      "seed": 0,
+      "method": "SDLoRA",
+      "error_type": "CUDA_OOM",
+      "error": "OutOfMemoryError('CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 166.88 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)')",
+      "first_failure_task_zero_based": 6,
+      "first_failure_task_one_based": 7,
+      "first_failure_epoch_one_based": 1,
+      "epoch_identification": "Inferred from completed-epoch progress counter and the frozen training-loop order; no batch index is logged.",
+      "minibatch_index": null,
+      "completed_tasks": 6,
+      "expected_tasks": 10,
+      "last_completed_epoch": {
+        "task_zero_based": 5,
+        "epoch_one_based": 40,
+        "loss_display": 0.229,
+        "console_line": 1036,
+        "text": "2026-09-23 21:36:10,756 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.229, Train_accy 67.97, Test_accy 67.26"
+      },
+      "partial_cnn_metrics_NOT_FINAL": {
+        "last_stage_key": "t05",
+        "last_stage_task_macro_accuracy": 67.36166666666666,
+        "mean_completed_stage_task_macro_accuracy": 73.96094444444445,
+        "last_matrix_row": [
+          71.43,
+          50.0,
+          80.43,
+          65.45,
+          82.81,
+          54.05
+        ],
+        "stage_task_macro_accuracies": [
+          86.15,
+          77.295,
+          71.78,
+          69.875,
+          71.304,
+          67.36166666666666
+        ],
+        "final_present": false,
+        "eligible_for_final_faa_aaa": false
+      },
+      "sources": [
+        {
+          "role": "receipt",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_cub200_s0.json",
+          "sha256": "0d4a1dc96f13bbf1a458e619ef666b98c40c785d5b799b7e32b9b982bf617528"
+        },
+        {
+          "role": "console_log",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/logs/sdlora_cub200_s0.log",
+          "sha256": "1291eec310ea5d1dd0feec268b3c49b876b1099d2cc4954aebf5a5e8dd360d2b"
+        },
+        {
+          "role": "partial_metrics",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/sdlora_cub200_s0/logs_inc_lora/sdlora/sgd/cub200/0/seed012_sdlora_cub200_s0/exp_run/20/seed012_sdlora_cub200_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "9c86564ca53faaf37f8a04ec691d44e69642e006d060d4260fa93ecd4b70a33b"
+        },
+        {
+          "role": "config",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/sdlora_cub200_s0.json",
+          "sha256": "7cbd6b77fb50cc36568653a5084119a3982e1fccf05f5bd702dbe9f4f4f62b62"
+        }
+      ],
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11",
+      "source_manifest_sha256": "f09b4f6a8b12472d0d1af8278246e3b6e6615a3a2e1789c460a3706dd758bd13",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/main.py\", line 98, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 187, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 389, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 139, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 249, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 607, in _update_representation\n    logits = self._network(inputs)[\"logits\"]\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/utils/inc_net.py\", line 457, in forward\n    feats_or_out = self.backbone(x, **kwargs) if kwargs else self.backbone(x)\n                                                             ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/backbone/lora.py\", line 768, in forward\n    return self.lora_vit(x)\n           ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 826, in forward\n    x = self.forward_features(x)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 807, in forward_features\n    x = self.blocks(x)\n        ^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/container.py\", line 219, in forward\n    input = module(input)\n            ^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 166, in forward\n    x = x + self.drop_path2(self.ls2(self.mlp(self.norm2(x))))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/layers/mlp.py\", line 42, in forward\n    x = self.fc1(x)\n        ^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/linear.py\", line 117, in forward\n    return F.linear(input, self.weight, self.bias)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 166.88 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n",
+      "evidence_lines": [
+        {
+          "line": 936,
+          "text": "2026-09-23 21:24:35,699 [baseLoRA.py] => Task 4, Epoch 40/40 => Loss 0.110, Train_accy 89.19, Test_accy 71.05"
+        },
+        {
+          "line": 947,
+          "text": "2026-09-23 21:26:10,266 [baseLoRA.py] => Learning on 100-120"
+        },
+        {
+          "line": 1036,
+          "text": "2026-09-23 21:36:10,756 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.229, Train_accy 67.97, Test_accy 67.26"
+        },
+        {
+          "line": 1047,
+          "text": "2026-09-23 21:38:03,431 [baseLoRA.py] => Learning on 120-140"
+        },
+        {
+          "line": 1138,
+          "text": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 166.88 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+        }
+      ],
+      "observed_memory": {
+        "allocation_request_mib": 296.0,
+        "device_capacity_gib": 23.46,
+        "device_free_mib": 72.88,
+        "process_used_gib": 23.38,
+        "pytorch_allocated_gib": 22.97,
+        "reserved_unallocated_mib": 166.88
+      },
+      "observed_failure_site": "sdlora.py:607 network forward -> timm vision_transformer MLP -> mlp.py:42 fc1 -> F.linear; not optimizer.step or model loading.",
+      "supported_inference": "Task-dependent activation memory growth is the leading explanation: all four streams fail at task 7, with batch128, prior-task branches and trainable SD scalars. This is static-source inference supported by the repeated boundary, not a per-task GPU-memory profile.",
+      "not_established": "Not established that each task retains another full ViT, that external GPU competition caused failure, or that allocator tuning alone suffices."
+    },
+    {
+      "job_id": "sdlora_flowers_s0",
+      "status": "failed",
+      "dataset": "flowers",
+      "seed": 0,
+      "method": "SDLoRA",
+      "error_type": "CUDA_OOM",
+      "error": "OutOfMemoryError('CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 167.08 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)')",
+      "first_failure_task_zero_based": 6,
+      "first_failure_task_one_based": 7,
+      "first_failure_epoch_one_based": 1,
+      "epoch_identification": "Inferred from completed-epoch progress counter and the frozen training-loop order; no batch index is logged.",
+      "minibatch_index": null,
+      "completed_tasks": 6,
+      "expected_tasks": 10,
+      "last_completed_epoch": {
+        "task_zero_based": 5,
+        "epoch_one_based": 40,
+        "loss_display": 0.24,
+        "console_line": 1036,
+        "text": "2026-09-22 19:01:35,334 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.240, Train_accy 45.00, Test_accy 56.83"
+      },
+      "partial_cnn_metrics_NOT_FINAL": {
+        "last_stage_key": "t05",
+        "last_stage_task_macro_accuracy": 57.98166666666667,
+        "mean_completed_stage_task_macro_accuracy": 73.49236111111111,
+        "last_matrix_row": [
+          68.42,
+          60.34,
+          73.23,
+          49.78,
+          60.05,
+          36.07
+        ],
+        "stage_task_macro_accuracies": [
+          92.32,
+          82.305,
+          75.69,
+          69.25750000000001,
+          63.4,
+          57.98166666666667
+        ],
+        "final_present": false,
+        "eligible_for_final_faa_aaa": false
+      },
+      "sources": [
+        {
+          "role": "receipt",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_flowers_s0.json",
+          "sha256": "ab9b88e3b92c3f00629396415a3f671f320b55c52abac03326940cb9385cb489"
+        },
+        {
+          "role": "console_log",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/logs/sdlora_flowers_s0.log",
+          "sha256": "798fd156410364b98399c6912b8e8ae402a4151816bc20b8e7c72b83a7c95700"
+        },
+        {
+          "role": "partial_metrics",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/sdlora_flowers_s0/logs_inc_lora/sdlora/sgd/flowers/0/seed012_sdlora_flowers_s0/exp_run/10/seed012_sdlora_flowers_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "e968aa1be802a954acbd4e6cdd6c8d6259a6f6c5bf0dab7b9c0e76646f7af856"
+        },
+        {
+          "role": "config",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/sdlora_flowers_s0.json",
+          "sha256": "a874bdb42ea7c0254985753551bf666f2a7af8e98394cade2d36bf5f480f26c9"
+        }
+      ],
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11",
+      "source_manifest_sha256": "f09b4f6a8b12472d0d1af8278246e3b6e6615a3a2e1789c460a3706dd758bd13",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/main.py\", line 98, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 187, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py\", line 389, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 139, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 249, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py\", line 607, in _update_representation\n    logits = self._network(inputs)[\"logits\"]\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/utils/inc_net.py\", line 457, in forward\n    feats_or_out = self.backbone(x, **kwargs) if kwargs else self.backbone(x)\n                                                             ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/backbone/lora.py\", line 768, in forward\n    return self.lora_vit(x)\n           ^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 826, in forward\n    x = self.forward_features(x)\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 807, in forward_features\n    x = self.blocks(x)\n        ^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/container.py\", line 219, in forward\n    input = module(input)\n            ^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/models/vision_transformer.py\", line 166, in forward\n    x = x + self.drop_path2(self.ls2(self.mlp(self.norm2(x))))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/timm/layers/mlp.py\", line 42, in forward\n    x = self.fc1(x)\n        ^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/nn/modules/linear.py\", line 117, in forward\n    return F.linear(input, self.weight, self.bias)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 167.08 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n",
+      "evidence_lines": [
+        {
+          "line": 936,
+          "text": "2026-09-22 18:55:21,990 [baseLoRA.py] => Task 4, Epoch 40/40 => Loss 0.237, Train_accy 67.50, Test_accy 62.73"
+        },
+        {
+          "line": 947,
+          "text": "2026-09-22 18:56:27,305 [baseLoRA.py] => Learning on 52-62"
+        },
+        {
+          "line": 1036,
+          "text": "2026-09-22 19:01:35,334 [baseLoRA.py] => Task 5, Epoch 40/40 => Loss 0.240, Train_accy 45.00, Test_accy 56.83"
+        },
+        {
+          "line": 1047,
+          "text": "2026-09-22 19:02:57,479 [baseLoRA.py] => Learning on 62-72"
+        },
+        {
+          "line": 1138,
+          "text": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 296.00 MiB. GPU 0 has a total capacity of 23.46 GiB of which 72.88 MiB is free. Including non-PyTorch memory, this process has 23.38 GiB memory in use. Of the allocated memory 22.97 GiB is allocated by PyTorch, and 167.08 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+        }
+      ],
+      "observed_memory": {
+        "allocation_request_mib": 296.0,
+        "device_capacity_gib": 23.46,
+        "device_free_mib": 72.88,
+        "process_used_gib": 23.38,
+        "pytorch_allocated_gib": 22.97,
+        "reserved_unallocated_mib": 167.08
+      },
+      "observed_failure_site": "sdlora.py:607 network forward -> timm vision_transformer MLP -> mlp.py:42 fc1 -> F.linear; not optimizer.step or model loading.",
+      "supported_inference": "Task-dependent activation memory growth is the leading explanation: all four streams fail at task 7, with batch128, prior-task branches and trainable SD scalars. This is static-source inference supported by the repeated boundary, not a per-task GPU-memory profile.",
+      "not_established": "Not established that each task retains another full ViT, that external GPU competition caused failure, or that allocator tuning alone suffices."
+    },
+    {
+      "job_id": "ewclora_cars196_s0",
+      "status": "failed",
+      "dataset": "cars196",
+      "seed": 0,
+      "method": "EWCLoRA",
+      "error_type": "NONFINITE_SGD_GRADIENT",
+      "error": "FloatingPointError('Nonfinite SGD gradient')",
+      "first_failure_task_zero_based": 9,
+      "first_failure_task_one_based": 10,
+      "first_failure_epoch_one_based": 3,
+      "epoch_identification": "Inferred from completed-epoch progress counter and the frozen training-loop order; no batch index is logged.",
+      "minibatch_index": null,
+      "completed_tasks": 9,
+      "expected_tasks": 10,
+      "last_completed_epoch": {
+        "task_zero_based": 9,
+        "epoch_one_based": 2,
+        "loss_display": 40312.454,
+        "console_line": 1457,
+        "text": "Task 9, Epoch 2/40 => Loss 40312.454, Train_accy 64.75:   5%|▌         | 2/40 [00:45<14:27, 22.82s/it]"
+      },
+      "partial_cnn_metrics_NOT_FINAL": {
+        "last_stage_key": "t08",
+        "last_stage_task_macro_accuracy": 34.263333333333335,
+        "mean_completed_stage_task_macro_accuracy": 42.257640211640215,
+        "last_matrix_row": [
+          57.89,
+          19.12,
+          30.4,
+          27.71,
+          36.95,
+          23.76,
+          34.34,
+          35.13,
+          43.07
+        ],
+        "stage_task_macro_accuracies": [
+          75.7,
+          52.30500000000001,
+          47.07666666666667,
+          37.5525,
+          33.664,
+          34.818333333333335,
+          32.10142857142857,
+          32.8375,
+          34.263333333333335
+        ],
+        "final_present": false,
+        "eligible_for_final_faa_aaa": false
+      },
+      "sources": [
+        {
+          "role": "receipt",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/ewclora_cars196_s0.json",
+          "sha256": "22e1cae99bf41f955dab7ea300a76583a5b8490b676cd275a71ffe4c3a23dca7"
+        },
+        {
+          "role": "console_log",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/logs/ewclora_cars196_s0.log",
+          "sha256": "d912c1e446dd7a8cf474d3e7822c70520b5cf83a414c6eb3c5ed0d5d00352234"
+        },
+        {
+          "role": "partial_metrics",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/ewclora_cars196_s0/logs_inc/as1_normfisher_fishershape/as1fs_g0_ewc_c000_rho005_lam80000_beta000/cars196/0/seed012_ewclora_cars196_s0/exp_run/20/seed012_ewclora_cars196_s0_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "56208b192d91c79ba27438c0572133db93e14db287d78e073ec2e0c7dc910839"
+        },
+        {
+          "role": "config",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/ewclora_cars196_s0.json",
+          "sha256": "438fe5a088267e1cb8daf0945bdd8c003bbc342515fc1c75a247807ea6ab7266"
+        }
+      ],
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18",
+      "source_manifest_sha256": "228911fb67ba645cc38f2dd5508ade60d50b8144d3e5a2a0f4cfdd1b9fe6b735",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/src/main.py\", line 133, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/src/trainer.py\", line 829, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/src/trainer.py\", line 1116, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/seqlora.py\", line 431, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/seqlora.py\", line 1558, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py\", line 639, in _update_representation\n    self._run_regularized_train(\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py\", line 473, in _run_regularized_train\n    logits, loss_value = self._step_batch(\n                         ^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/as1_normfisher_fishershape.py\", line 446, in _step_batch\n    outputs, clean_loss = optimizer.step(closure=closure)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/lr_scheduler.py\", line 130, in wrapper\n    return func.__get__(opt, opt.__class__)(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/optimizer.py\", line 484, in wrapper\n    out = func(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/optimer_PerturabtionType/fishershape.py\", line 331, in step\n    self.base_optimizer.step()\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/optimizer.py\", line 484, in wrapper\n    out = func(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 51, in finite_step\n    if p.grad is not None and not torch.isfinite(p.grad).all():raise FloatingPointError('Nonfinite SGD gradient')\n                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFloatingPointError: Nonfinite SGD gradient\n",
+      "evidence_lines": [
+        {
+          "line": 1341,
+          "text": "2026-09-23 18:39:48,529 [baseLoRA.py] => Learning on 156-176"
+        },
+        {
+          "line": 1425,
+          "text": "2026-09-23 18:58:24,515 [baseLoRA.py] => Task 8, Epoch 40/40 => Loss 0.014, Train_accy 100.00, Test_accy 33.70, CurTask_Test 89.57"
+        },
+        {
+          "line": 1450,
+          "text": "2026-09-23 19:02:40,164 [baseLoRA.py] => Learning on 176-196"
+        },
+        {
+          "line": 1491,
+          "text": "    if p.grad is not None and not torch.isfinite(p.grad).all():raise FloatingPointError('Nonfinite SGD gradient')"
+        },
+        {
+          "line": 1493,
+          "text": "FloatingPointError: Nonfinite SGD gradient"
+        }
+      ],
+      "observed_failure_site": "run_job.py:51 SGD finite-gradient gate, before this base SGD update.",
+      "supported_inference": "Numerical instability; no per-batch tensors/parameter names were saved, so the earliest nonfinite operation cannot be attributed uniquely to CE, EWC penalty, or optimizer probing/composition.",
+      "selected_configuration": {
+        "model_name": "as1_normfisher_fishershape",
+        "optimizer_type": "fishershape",
+        "batch_size": 128,
+        "lora_rank": 16,
+        "init_lr": 0.05,
+        "lrate": 0.05,
+        "epochs": 40,
+        "ewc_lambda": 80000.0,
+        "ewc_normalize_fisher": true,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_gamma": 1.0,
+        "ewc_eta": 0.0,
+        "fs_direction_mode": "alpha0",
+        "fs_alpha": 0.0,
+        "fs_alpha_mode": "ratio",
+        "fs_preserve_probe_rng": true,
+        "ewc_preserve_fisher_rng": true
+      }
+    },
+    {
+      "job_id": "gam_ewc_aircraft_s1",
+      "status": "failed",
+      "dataset": "aircraft",
+      "seed": 1,
+      "method": "GAM-EWCLoRA",
+      "error_type": "NONFINITE_SGD_GRADIENT",
+      "error": "FloatingPointError('Nonfinite SGD gradient')",
+      "first_failure_task_zero_based": 1,
+      "first_failure_task_one_based": 2,
+      "first_failure_epoch_one_based": 1,
+      "epoch_identification": "Inferred from completed-epoch progress counter and the frozen training-loop order; no batch index is logged.",
+      "minibatch_index": null,
+      "completed_tasks": 1,
+      "expected_tasks": 10,
+      "last_completed_epoch": {
+        "task_zero_based": 0,
+        "epoch_one_based": 40,
+        "loss_display": 5.194,
+        "console_line": 536,
+        "text": "2026-09-24 17:16:34,902 [baseLoRA.py] => Task 0, Epoch 40/40 => Loss 5.194, Train_accy 9.75, Test_accy 10.51, CurTask_Test 10.51"
+      },
+      "partial_cnn_metrics_NOT_FINAL": {
+        "last_stage_key": "t00",
+        "last_stage_task_macro_accuracy": 10.51,
+        "mean_completed_stage_task_macro_accuracy": 10.51,
+        "last_matrix_row": [
+          10.51
+        ],
+        "stage_task_macro_accuracies": [
+          10.51
+        ],
+        "final_present": false,
+        "eligible_for_final_faa_aaa": false
+      },
+      "sources": [
+        {
+          "role": "receipt",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/gam_ewc_aircraft_s1.json",
+          "sha256": "031cd2001dfde15b3585ec5552cf245f55e98f086f173c93af68d9fefd967f1c"
+        },
+        {
+          "role": "console_log",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/logs/gam_ewc_aircraft_s1.log",
+          "sha256": "b44e03cb9cdfc99c5b5357d48f687baa7014335809b2f456c97a43682f3becf9"
+        },
+        {
+          "role": "partial_metrics",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/outputs/logs_inc_lora/ewclora_normfisher_gam/seed012_20260922/aircraft/1/seed012_gam_ewc_aircraft_s1/exp_run/10/seed012_gam_ewc_aircraft_s1_vit_base_patch16_224_cl_metrics.json",
+          "sha256": "e590dff2ebbd35f8357e66882bba09d3d2e4ba8baaa08227ca494a253bb000a9"
+        },
+        {
+          "role": "config",
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_aircraft_s1.json",
+          "sha256": "697ccc24b1c24c2aace1ea07ad4a7c43caca3836f0fdb31e248255b0c5642aa4"
+        }
+      ],
+      "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+      "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/src/main.py\", line 133, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/src/trainer.py\", line 829, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/src/trainer.py\", line 1116, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/seqlora.py\", line 431, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/seqlora.py\", line 1558, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py\", line 639, in _update_representation\n    self._run_regularized_train(\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py\", line 473, in _run_regularized_train\n    logits, loss_value = self._step_batch(\n                         ^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py\", line 519, in _step_batch\n    outputs, _ = optimizer.step(closure=closure)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/lr_scheduler.py\", line 130, in wrapper\n    return func.__get__(opt, opt.__class__)(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/optimizer.py\", line 484, in wrapper\n    out = func(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/optimer_PerturabtionType/gam.py\", line 283, in step\n    self.base_optimizer.step()\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/optimizer.py\", line 484, in wrapper\n    out = func(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 51, in finite_step\n    if p.grad is not None and not torch.isfinite(p.grad).all():raise FloatingPointError('Nonfinite SGD gradient')\n                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFloatingPointError: Nonfinite SGD gradient\n",
+      "evidence_lines": [
+        {
+          "line": 451,
+          "text": "2026-09-24 16:51:42,745 [baseLoRA.py] => Learning on 0-10"
+        },
+        {
+          "line": 536,
+          "text": "2026-09-24 17:16:34,902 [baseLoRA.py] => Task 0, Epoch 40/40 => Loss 5.194, Train_accy 9.75, Test_accy 10.51, CurTask_Test 10.51"
+        },
+        {
+          "line": 559,
+          "text": "2026-09-24 17:17:15,220 [baseLoRA.py] => Learning on 10-20"
+        },
+        {
+          "line": 597,
+          "text": "    if p.grad is not None and not torch.isfinite(p.grad).all():raise FloatingPointError('Nonfinite SGD gradient')"
+        },
+        {
+          "line": 599,
+          "text": "FloatingPointError: Nonfinite SGD gradient"
+        }
+      ],
+      "observed_failure_site": "run_job.py:51 SGD finite-gradient gate, before this base SGD update.",
+      "supported_inference": "Numerical instability; no per-batch tensors/parameter names were saved, so the earliest nonfinite operation cannot be attributed uniquely to CE, EWC penalty, or optimizer probing/composition.",
+      "selected_configuration": {
+        "model_name": "ewclora_normfisher_gam",
+        "optimizer_type": "gam",
+        "batch_size": 128,
+        "lora_rank": 16,
+        "init_lr": 0.05,
+        "lrate": 0.05,
+        "epochs": 40,
+        "ewc_lambda": 2000,
+        "ewc_normalize_fisher": true,
+        "ewc_normalize_accumulated_fisher": false,
+        "ewc_gamma": 1.0,
+        "ewc_eta": 0.0,
+        "ewc_preserve_fisher_rng": false,
+        "gam_grad_rho": 0.01,
+        "gam_grad_norm_rho": 0.1,
+        "gam_grad_gamma": 0.02
+      }
+    }
+  ],
+  "held_unstarted_job_ids": [
+    "sdlora_flowers_s1",
+    "sdlora_flowers_s2",
+    "sdlora_aircraft_s1",
+    "sdlora_aircraft_s2",
+    "sdlora_cars196_s1",
+    "ewclora_cars196_s1",
+    "sdlora_cars196_s2",
+    "ewclora_cars196_s2",
+    "sdlora_cub200_s1",
+    "sdlora_cub200_s2"
+  ],
+  "completed_comparators": [
+    {
+      "job_id": "sdlora_het5_s0",
+      "status": "completed",
+      "metrics": {
+        "tasks": 5,
+        "faa": 74.496,
+        "aaa_stage": 74.0922
+      },
+      "peak_cuda_bytes": 21792056320,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_het5_s0.json",
+      "sha256": "fedf00507d19995da27be6848716a05aff184cb14d72c35339ffd93ad0a4b92a"
+    },
+    {
+      "job_id": "sdlora_het5_s1",
+      "status": "completed",
+      "metrics": {
+        "tasks": 5,
+        "faa": 75.102,
+        "aaa_stage": 73.9139
+      },
+      "peak_cuda_bytes": 21792056320,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_het5_s1.json",
+      "sha256": "61674237736c341908a160d9bb21dd72cfe73c4ced7a0dc6c97b80af50e335d1"
+    },
+    {
+      "job_id": "sdlora_het5_s2",
+      "status": "completed",
+      "metrics": {
+        "tasks": 5,
+        "faa": 74.514,
+        "aaa_stage": 73.6858
+      },
+      "peak_cuda_bytes": 21792056320,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/sdlora_het5_s2.json",
+      "sha256": "2114d6aa64fa150003c63e049d165cb9108e3bfaaeca699b86e016e2f8a7f6d5"
+    },
+    {
+      "job_id": "gam_ewc_aircraft_s0",
+      "status": "completed",
+      "metrics": {
+        "tasks": 10,
+        "faa": 46.69,
+        "aaa_stage": 43.67876984126984
+      },
+      "peak_cuda_bytes": 11958986240,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/gam_ewc_aircraft_s0.json",
+      "sha256": "51ef9c1f9dbd8a8317fb4be8fce4315430ab192ef20c94a68da90c82ca34174f"
+    },
+    {
+      "job_id": "gam_ewc_aircraft_s2",
+      "status": "completed",
+      "metrics": {
+        "tasks": 10,
+        "faa": 45.25,
+        "aaa_stage": 43.148158730158734
+      },
+      "peak_cuda_bytes": 11958986240,
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/receipts/gam_ewc_aircraft_s2.json",
+      "sha256": "cee5cde3f8829474c4c33c3e0cd424c399d8961039b0900cf1ac64169c419337"
+    }
+  ],
+  "verified_relevant_source_files": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/models_LoRAbasedCL/sdlora.py",
+      "sha256": "6c6a4715ba6c0e0f6410d59a12ec0aae332efa2001355b5fd4708be4ca21c1eb",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/backbone/lora.py",
+      "sha256": "6148efe40bdb3c5a2a478badbc9c996506e342658fa9160b9bed76b255018abd",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11/src/trainer.py",
+      "sha256": "31d40f22434559f6424ea97ab7dd45918cb3832fe6f7137257ab5c4d677c22c5",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/as1_normfisher_fishershape.py",
+      "sha256": "d8711707ad4fd5d2c828e4b5cf6c0397170c143b082ce0621184b330e06cb4ba",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+      "sha256": "404955e17372e0198b0f3ab814f28dc9ec16bb54fb1590d798d2b1460f2f4334",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_ewc_sep18/optimer_PerturabtionType/fishershape.py",
+      "sha256": "668cdee1d106c6ce796eb44462aab384dc09d355d8d33af4186c096128ad9a5f",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+      "sha256": "734812994108bd755d6130e3152ff4fae20c7d14faf3d47a4d046dadfd90bbc8",
+      "matches_launch_manifest": true
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/optimer_PerturabtionType/gam.py",
+      "sha256": "0b37fca57a31952d911eba4ab99534b7952a6271c1f2c37dbf7a45b72fa5e40e",
+      "matches_launch_manifest": true
+    }
+  ],
+  "runtime_source": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py",
+    "sha256": "f556b90915c674dc9640b0f283f9d8f15bb6791b8246cf7098c04136d8e269a4"
+  },
+  "important_metric_rule": "Stage and task-specific intermediate accuracies are not final FAA/AAA; all six failed runs are excluded from completed-run final means and SD. Failed/held counts must remain visible."
+}

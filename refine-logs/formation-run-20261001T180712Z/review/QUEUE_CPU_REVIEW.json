@@ -1,0 +1,23 @@
+{
+  "reviewed_hashes": {
+    "run_queue.py": "e8837d7de9d37231cc9e754b9b215a2b26ad32f8171b02aa5e18e3c65eb8f19e",
+    "job_worker.py": "658b451359124a72b3caaf4434d5cd6ea7f9612fdc50467e555edf73588f69c7",
+    "validate_job.py": "5dfca9273d1a39d0830de71ae5721606ff1950db6647d983ba45f1184568968f",
+    "prepare_manifest.py": "a4d147d1895d1ccda0d4f4bf624c59e6a4289a6888033d4e6412b2aa4f3437b5"
+  },
+  "validator_cases": {
+    "well_formed_fixture": "accepted",
+    "empty_checkpoint_grid": "ACCEPTED",
+    "failed_base_sgd_masked_by_summary": "ACCEPTED",
+    "wrong_epoch_batch_sequence": "ACCEPTED",
+    "wrong_schedule_unchecked": "ACCEPTED",
+    "false_closure_count": "rejected: ValueError('unverified GAM step')",
+    "nonfinite_trace": "rejected: ValueError('nonfinite observed result')"
+  },
+  "lease": {
+    "worker_and_child_hold_lease": true,
+    "child_keeps_lease_after_worker_killed": true,
+    "released_after_child_exit": true,
+    "gpu_used": false
+  }
+}

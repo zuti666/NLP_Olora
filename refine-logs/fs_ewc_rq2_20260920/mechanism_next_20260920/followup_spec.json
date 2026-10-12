@@ -1,0 +1,112 @@
+{
+  "schema": "rq2-mechanism-planning-spec-v1",
+  "status": "proposed_not_queued",
+  "executable_campaign_config": false,
+  "user_selected_method": "current visual GAM+EWC implementation",
+  "training_seed": 0,
+  "dataset": "ImageNet-A",
+  "backbone": "ViT-B/16",
+  "lora_rank": 10,
+  "coordinate": "24 dense effective QV BA matrices; fixed Task0 head",
+  "reuse_A": true,
+  "training_jobs_in_first_batch": 0,
+  "source_diagnostic_config": "../execution/diagnostic_config_recovery1.json",
+  "lane_01": [
+    {
+      "id": "B_test_rawF",
+      "radii": [
+        0,
+        1,
+        5,
+        10,
+        20
+      ],
+      "paired_directions": 16,
+      "fisher_eval_split": "all Task0 test",
+      "samples": 307,
+      "unique_states": 130,
+      "gradient_sample_evaluations": 39910,
+      "search_on_test": false
+    },
+    {
+      "id": "B_GAM_generated_probe",
+      "search_space": "actual trainable LoRA factors and head; GAM inner-search only, no outer optimizer update",
+      "search_split": "fixed shared stratified64 from Task0 train excluding existing eval256",
+      "direction_mapping": "exact BA_after-BA_before; discard head displacement explicitly; normalize jointly in effective coordinates",
+      "directions_per_source_anchor": 1,
+      "source_anchors": [
+        "sgd",
+        "gam"
+      ],
+      "evaluation_anchors": [
+        "sgd",
+        "gam"
+      ],
+      "radii": [
+        1,
+        5,
+        10,
+        20
+      ],
+      "unique_states": 16,
+      "eval_train_samples": 256,
+      "eval_test_samples": 307,
+      "gradient_sample_evaluations_excluding_search": 9008,
+      "label": "GAM-generated proxy, no raw-trace ascent or worst-case guarantee",
+      "optional_distinct_probe": "raw W-space trace-gradient direction; independent second-order autograd required"
+    }
+  ],
+  "lane_23": [
+    {
+      "id": "C_path_t1_t5",
+      "targets": [
+        1,
+        5
+      ],
+      "reuse_existing_target": [
+        9
+      ],
+      "base_nodes": 9,
+      "refinement_nodes": [
+        17,
+        33
+      ],
+      "coarse_fine_relative_tolerance": 0.05,
+      "fisher_samples": 256,
+      "integral": "straight endpoint segment, not optimizer-step trajectory",
+      "base_unique_state_passes_with_multi_direction_origin": 34,
+      "gradient_sample_evaluations": 8704,
+      "required_implementation": "target-aware checkpoint routing, displacement, protocol/cache keys; existing hardcoded t9 is insufficient",
+      "bound_check": "same-subset D_squared <= I with disclosed numerical tolerance",
+      "zero_displacement_S": "undefined"
+    }
+  ],
+  "conditional_stage2": {
+    "dense_loss_radii": {
+      "start": 0.25,
+      "stop": 20,
+      "step": 0.25
+    },
+    "additional_radii": 74,
+    "additional_loss_states": 2368,
+    "epsilon": [
+      0.001,
+      0.005,
+      0.01,
+      0.02,
+      0.05
+    ],
+    "replication_seeds": [
+      1,
+      2
+    ],
+    "training_segments_if_no_matching_assets": 40
+  },
+  "required_before_launch": [
+    "Implement missing diagnostic features in new version/output directory",
+    "CPU and GPU numerical sanity",
+    "Check current GPU ownership and queue locks; wait for predecessors and sustained idle",
+    "Pin source/config/checkpoint/data hashes"
+  ],
+  "primary_reporting": "all train/test curves, fixed radii and epsilon; three-seed statistics only with actual matching independent training seeds"
+}

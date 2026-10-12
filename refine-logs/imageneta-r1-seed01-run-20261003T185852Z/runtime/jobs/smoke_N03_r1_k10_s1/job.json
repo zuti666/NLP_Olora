@@ -1,0 +1,126 @@
+{
+  "id": "smoke_N03_r1_k10_s1",
+  "condition": "N03",
+  "family": "native_global_rng_5CE",
+  "block": "B1",
+  "label": "g1 / S（审计基准）",
+  "seed": 1,
+  "status": "registered",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/smoke_N03_r1_k10_s1.json",
+  "config_sha256": "c2f35ab961ee87076230c4920590b028290c414cbe99951f68a9e45cb91fe3e0",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/outputs/smoke_N03_r1_k10_s1",
+  "source_config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/configs/formal_S_r1_k10_s2.json",
+  "source_config_sha256": "77fe9ef13b59432c515e77eb45add543a6457b799aa609a37b95e605134f1b35",
+  "config_diff": {
+    "outputs_root": {
+      "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/outputs/formal_S_r1_k10_s2",
+      "current": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/outputs/smoke_N03_r1_k10_s1"
+    },
+    "prefix": {
+      "source": "formal_S_r1_k10_s2",
+      "current": "smoke_N03_r1_k10_s1"
+    },
+    "seed": {
+      "source": [
+        2
+      ],
+      "current": [
+        1
+      ]
+    },
+    "max_train_tasks": {
+      "source": null,
+      "current": 2
+    }
+  },
+  "source_runner": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-r1-lr-controls-20261002T191527Z/run_job.py",
+  "source_entry": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/src/main.py",
+  "direction_selector": "g1_control",
+  "runtime_bindings_source_template": {
+    "id": "formal_S_r1_k10_s2",
+    "arm": "S",
+    "axis": "learning_rate_and_direction",
+    "value": "S",
+    "direction_selector": "g1_control",
+    "seed": 2,
+    "phase": "formal",
+    "lr_multiplier": 1.0,
+    "outer_radius": 1.0,
+    "config": "configs/formal_S_r1_k10_s2.json",
+    "config_sha256": "77fe9ef13b59432c515e77eb45add543a6457b799aa609a37b95e605134f1b35",
+    "expected_tasks": 10,
+    "expected_steps": 2550,
+    "expected_samples": 299050,
+    "expected_task_steps": {
+      "0": 500,
+      "1": 400,
+      "2": 400,
+      "3": 250,
+      "4": 200,
+      "5": 150,
+      "6": 150,
+      "7": 150,
+      "8": 200,
+      "9": 150
+    },
+    "depends_on": [
+      "smoke_S_r1_k10_s2",
+      "smoke_Sum_r1_k10_s2",
+      "smoke_Mean2_r1_k10_s2",
+      "smoke_S2_r1_k10_s2",
+      "smoke_Gmatch_r1_k10_s2"
+    ]
+  },
+  "depends_on_formal": [],
+  "requires_same_seed_smoke_gate": true,
+  "independent_reference_job": null,
+  "expected_tasks": 2,
+  "expected_epochs_per_task": 1,
+  "expected_steps": 18,
+  "expected_samples": 2256,
+  "expected_task_steps": {
+    "0": 10,
+    "1": 8
+  },
+  "phase": "smoke",
+  "smoke": true,
+  "kind": "training",
+  "runtime_bindings": {
+    "id": "smoke_N03_r1_k10_s1",
+    "arm": "S",
+    "axis": "learning_rate_and_direction",
+    "value": "S",
+    "direction_selector": "g1_control",
+    "seed": 1,
+    "phase": "smoke",
+    "lr_multiplier": 1.0,
+    "outer_radius": 1.0,
+    "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/configs/smoke_N03_r1_k10_s1.json",
+    "config_sha256": "c2f35ab961ee87076230c4920590b028290c414cbe99951f68a9e45cb91fe3e0",
+    "expected_tasks": 2,
+    "expected_steps": 18,
+    "expected_samples": 2256,
+    "expected_task_steps": {
+      "0": 10,
+      "1": 8
+    },
+    "depends_on": [],
+    "reference_job": null
+  },
+  "arm": "S",
+  "lr_multiplier": 1.0,
+  "outer_radius": 1.0,
+  "inner_radius": 0.05,
+  "reference_job": null,
+  "depends_on": [],
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/native/run.py",
+    "--suite",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/suite.json",
+    "--job",
+    "smoke_N03_r1_k10_s1"
+  ],
+  "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/runtime/jobs/smoke_N03_r1_k10_s1/cuda_witness.json"
+}

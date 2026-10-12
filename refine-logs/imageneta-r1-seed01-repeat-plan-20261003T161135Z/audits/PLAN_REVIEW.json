@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-10-03T16:25:43.025289+00:00",
+  "review_kind": "independent read-only experiment plan review",
+  "verdict": "PASS_FOR_PLANNING_ONLY",
+  "material_findings": [],
+  "scope": "30-condition seed0/1 pure-GAM ImageNet-A r1 repetition plan; no training, queue registration, historical run mutation, or full-trace re-audit",
+  "reviewed_artifact_sha256": {
+    "CONDITION_CATALOG.json": "578f5417c87746caea9d0d4d357a82b79619d6cda9b7605dc3701604195efeef",
+    "REPETITION_MANIFEST.draft.json": "b26242098323995432d91e735cf3095d79587ea30c578058f835b0be11efb253",
+    "EXPERIMENT_PLAN.md": "a4b5ee880430f14c78471645f183bcf85ac96fbb776bdd8e8124120bdf9d8956",
+    "IMPLEMENTATION_MAP.md": "8d7baae96cea23b3022681654461d73f8a1417b3312dc28f4fe2fc18ebeda5d7"
+  },
+  "checks": {
+    "condition_count": 30,
+    "native_conditions": 14,
+    "four_probe_conditions": 16,
+    "formal_jobs": 60,
+    "formal_configs": 60,
+    "seeds": [
+      0,
+      1
+    ],
+    "one_job_per_condition_seed": true,
+    "catalog_source_config_metric_and_listed_implementation_hashes_match": true,
+    "all_draft_config_hashes_and_declared_diffs_match": true,
+    "allowed_diff_fields_only": "seed,prefix,outputs_root; P01/P02/P03/P16 additionally inactive outer radius .25->1",
+    "canonical_seed2_g1_is_audited_S": true,
+    "new_S_reused_by_core_LR_and_same_seed_Gmatch_only": true,
+    "no_cross_protocol_deduplication": true,
+    "all16_four_probe_conditions_per_seed_including_four_baselines": true,
+    "Gmatch_dependencies": {
+      "N14_r1_k10_s0": "N03_r1_k10_s0",
+      "N14_r1_k10_s1": "N03_r1_k10_s1"
+    },
+    "seed2_metrics_recomputed_from_30_final_task_matrices": true,
+    "maximum_reported_metric_recomputation_error": 1.4210854715202004e-14,
+    "formal_updates": 153000,
+    "formal_samples": 17943000,
+    "smoke_updates": 568,
+    "formal_gpu_hours_recomputed": 138.3627391279582,
+    "old_entrypoint_and_seed_hardcoding_risks_explicitly_documented": true,
+    "native_original_Sum_g3_Mean_must_preserve_direct_beta_gamma_path": true,
+    "P_resolver_seed2_surrogate_restores_actual_run_seed": true,
+    "manifest_non_executable_and_not_started": true,
+    "GPU_pool": [
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 3
+  },
+  "evidence_limits": [
+    "This review approves plan consistency, not a runnable implementation; M1 runner/validator parameterization and smoke gates remain explicitly incomplete.",
+    "Read historical configuration, code and metric matrices; did not recalculate historical large per-step traces or rerun experiments.",
+    "Existing r.25 four-probe baseline reuse is restricted to seed2 training performance as explicitly documented; new seed0/1 configurations use r1."
+  ]
+}

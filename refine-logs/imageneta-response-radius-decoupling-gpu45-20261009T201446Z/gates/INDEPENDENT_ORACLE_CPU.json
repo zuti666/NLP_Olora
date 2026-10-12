@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "checks": {
+    "FixedInner_eta_0.04_closed_form_global_multitensor": true,
+    "FixedInner_eta_0.004_closed_form_global_multitensor": true,
+    "FixedOuter_eta_0.04_closed_form_global_multitensor": true,
+    "FixedOuter_eta_0.004_closed_form_global_multitensor": true,
+    "FixedBoth_eta_0.04_closed_form_global_multitensor": true,
+    "FixedBoth_eta_0.004_closed_form_global_multitensor": true,
+    "FixedBoth_eta_changes_leave_probes_and_U_bitwise_identical_including_eta_zero": true,
+    "two_single_fixed_variants_change_only_the_registered_distance": true,
+    "zero_response_zero_gradient_exception_state_RNG_guards": true,
+    "actual_FP32_indistinguishable_probe_accounting": true,
+    "checkpoint_geometry_rejection": true
+  },
+  "details": [
+    {
+      "variant": "FixedInner",
+      "eta": 0.04,
+      "inner_actual": 0.050000008813870546,
+      "outer_actual": 0.06457374621982905,
+      "h": 0.06457376147931167,
+      "sgd_step_actual": 0.07142935164589963
+    },
+    {
+      "variant": "FixedInner",
+      "eta": 0.004,
+      "inner_actual": 0.050000008813870546,
+      "outer_actual": 0.006457382653975965,
+      "h": 0.006457376147931166,
+      "sgd_step_actual": 0.0065251883795140395
+    },
+    {
+      "variant": "FixedOuter",
+      "eta": 0.04,
+      "inner_actual": 0.06457376328479406,
+      "outer_actual": 0.05000000992690056,
+      "h": 0.06457376147931167,
+      "sgd_step_actual": 0.06986866760138706
+    },
+    {
+      "variant": "FixedOuter",
+      "eta": 0.004,
+      "inner_actual": 0.00645738449284448,
+      "outer_actual": 0.050000002343766815,
+      "h": 0.006457376147931166,
+      "sgd_step_actual": 0.006986860789293238
+    },
+    {
+      "variant": "FixedBoth",
+      "eta": 0.04,
+      "inner_actual": 0.050000008813870546,
+      "outer_actual": 0.049999999963171705,
+      "h": 0.06457376147931167,
+      "sgd_step_actual": 0.06986866760138706
+    },
+    {
+      "variant": "FixedBoth",
+      "eta": 0.004,
+      "inner_actual": 0.050000008813870546,
+      "outer_actual": 0.049999999963171705,
+      "h": 0.006457376147931166,
+      "sgd_step_actual": 0.006986860789293238
+    }
+  ],
+  "script_sha256": "e23af08559ac60c7a3d009dbb9bbec7e33103e5a23c774c6a9ac80ee7b61f821",
+  "implementation_sha256": "59d5b622c861043ef0c3b9e552993ec4ca4bd30077a7004803d3a86de9ffe18a",
+  "test_kind": "independently authored analytic multi-tensor quadratic and transaction CPU oracle; no author tests used"
+}

@@ -1,0 +1,143 @@
+{
+  "source_files": [
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_titled_20260922/B2_trajectory_seed_data.csv",
+      "sha256": "f4ce3227a49b638868396a057456c67d442402c86e04bf816841282558a4149f"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_titled_20260922/B2_path_seed_data.csv",
+      "sha256": "d1301a87a819b4d28e5df7eed84ab6a262121e229187d177f4135accb883ece3"
+    },
+    {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_titled_20260922/B2_mean_sd.csv",
+      "sha256": "f51318ce1c995ccf3ec4da878f446e1b41948c42e9f7f7e3335eee2bfc3eac3a"
+    }
+  ],
+  "script": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_b2_compact_20260922/plot_b2_compact.py",
+    "sha256": "56304ee63d5911b2ab265af28830da87f2334619dcb2ebf77aeca20ce40b6067"
+  },
+  "font": {
+    "path": "/home-local/liying/.fonts/times.ttf",
+    "sha256": "f2cb777422a10368904d3f691e650e39da862fe723389056324927df540a35ec",
+    "family": "Times New Roman"
+  },
+  "figure_inches": [
+    7.6,
+    1.65
+  ],
+  "title_fontsize": 10.5,
+  "previous_title_fontsize": 8.6,
+  "wspace": 0.38,
+  "previous_wspace": 0.56,
+  "axes": [
+    {
+      "title": "Accuracy",
+      "ylabel": "Accuracy of Task 0 (%)",
+      "ylim": [
+        75.0,
+        95.0
+      ],
+      "xlabel": "Number of Tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "position": [
+        0.067,
+        0.26,
+        0.17976653696498052,
+        0.595
+      ]
+    },
+    {
+      "title": "Loss change",
+      "ylabel": "Loss change of Task 0",
+      "ylim": [
+        -0.05,
+        0.3
+      ],
+      "xlabel": "Number of Tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "position": [
+        0.31507782101167314,
+        0.26,
+        0.17976653696498052,
+        0.595
+      ]
+    },
+    {
+      "title": "Weight drift",
+      "ylabel": "Weight drift $\\delta_t$",
+      "ylim": [
+        0.0,
+        1.6
+      ],
+      "xlabel": "Number of Tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "position": [
+        0.5631556420233463,
+        0.26,
+        0.17976653696498035,
+        0.595
+      ]
+    },
+    {
+      "title": "Average Fisher",
+      "ylabel": "$\\overline{S}_{\\mathrm{path},t}=I_t/\\delta_t^2$",
+      "ylim": [
+        0.0,
+        0.3
+      ],
+      "xlabel": "Number of Tasks",
+      "xlim": [
+        0.7,
+        10.3
+      ],
+      "position": [
+        0.8112334630350193,
+        0.26,
+        0.17976653696498057,
+        0.595
+      ]
+    }
+  ],
+  "formula": "S_path(seed,t) = integral(seed,t) / drift(seed,t)^2; plotted value = mean over seeds",
+  "delta_definition": "delta_t = ||Delta_t||_2; Delta_t = W_t - W_0 in effective Q/V coordinates",
+  "task_axis": "T=t+1; S_path undefined at T=1",
+  "path_legend": "upper left",
+  "all_78_mean_sd_groups_unchanged": true,
+  "ratio_checked_for_all_54_paths": true,
+  "uncertainty_bands_drawn": false,
+  "no_new_model_evaluations": true,
+  "status": "passed",
+  "outputs": {
+    "pdf": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_b2_compact_20260922/Figure_B2_compact.pdf",
+      "sha256": "cb44c209b136dedce2c767390d40903ab06bdf18ded34db242511c28aa009778"
+    },
+    "png": {
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_b2_compact_20260922/Figure_B2_compact.png",
+      "sha256": "31d30ae252144ea997b46a2e92c2358546100265b192240348c2ee1d2afd2526"
+    }
+  },
+  "embedded_fonts": [
+    "EKEAWS+TimesNewRomanPSMT",
+    "GPNPUA+TimesNewRomanPS-ItalicMT"
+  ],
+  "statistics": "3 training seeds; arithmetic means shown; sample SD retained in source CSV, not drawn",
+  "no_test_neighborhood_damage_curve": true,
+  "rendered_visual_review": "passed: root and independent gpt-5.6-sol xhigh rendered-figure review",
+  "source_files_unchanged": true,
+  "independent_review": {
+    "task": "/root/review_b2_compact_formula",
+    "result": "PASS",
+    "blocking_edits": []
+  }
+}

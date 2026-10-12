@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "reference": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_damp_c3_alpha02_int20_s2.yaml",
+  "source_hash": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "explicit_defaults": {
+    "fisher_mode": "batch_empirical",
+    "ewc_preserve_fisher_rng": false,
+    "fisher_split": false,
+    "ewc_skip_task_fisher": false,
+    "train_num_workers": 8,
+    "eval_num_workers": 8,
+    "data_root": "/data/140-1/datasets"
+  },
+  "jobs": [
+    {
+      "id": "s3_center_s2",
+      "scientific_differences": {}
+    },
+    {
+      "id": "s3_lambda0_s2",
+      "scientific_differences": {
+        "ewc_lambda": [
+          2000,
+          0
+        ]
+      }
+    },
+    {
+      "id": "s3_lambda200_s2",
+      "scientific_differences": {
+        "ewc_lambda": [
+          2000,
+          200
+        ]
+      }
+    },
+    {
+      "id": "s3_lambda20000_s2",
+      "scientific_differences": {
+        "ewc_lambda": [
+          2000,
+          20000
+        ]
+      }
+    },
+    {
+      "id": "s3_strength0_s2",
+      "scientific_differences": {
+        "lambda_flat": [
+          1.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "s3_strength05_s2",
+      "scientific_differences": {
+        "lambda_flat": [
+          1.0,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "s3_radius01_s2",
+      "scientific_differences": {
+        "gam_grad_norm_rho": [
+          0.2,
+          0.1
+        ]
+      }
+    },
+    {
+      "id": "s3_radius05_s2",
+      "scientific_differences": {
+        "gam_grad_norm_rho": [
+          0.2,
+          0.5
+        ]
+      }
+    }
+  ],
+  "single_seed_exploratory": true,
+  "A_retained": true,
+  "protocol_install": false
+}

@@ -1,0 +1,17 @@
+% Requires \usepackage{booktabs,amsmath}.
+\begin{table*}[t]
+\centering\scriptsize
+\caption{ImageNet-A with two tasks of 20 classes, ViT-B/16 and continuous rank-10 Q/V LoRA. All GAM updates use SGD as the base optimizer; update rules are listed explicitly. Endpoints are the saved outputs after the configured task-trajectory factor mixing (policy \texttt{all}); only A/B factors are mixed, not classifier heads. Accuracies use the seen-class head and are percentages; BWT is in percentage points. $r_{QV}=\left[\sum_{\ell,c\in\{Q,V\}}\|B^{(2)}_{\ell c}A^{(2)}_{\ell c}-B^{(1)}_{\ell c}A^{(1)}_{\ell c}\|_F^2\right]^{1/2}$ excludes classifier parameters. Means over 1 training seed(s). $\tau_{k|t}=N_k^{-1}\sum_{i\in S_k}\|\nabla_{W^{\mathrm{eff}}_{QV}}\ell_i(\theta_t)\|_2^2$ is raw per-example empirical Fisher trace with task $k$'s local 20-class head, excluding head parameters. $S_k$ is a fixed proportional stratified training subset (256 old-task and 256 new-task images), shared across variants and seeds, with deterministic test preprocessing. No trace rescaling or positive floor is applied. $D_{\rm old}$ is signed old-task local-20 CE at the second endpoint minus that at the first; negative values are retained. Sample standard deviations are shown when available.}
+\begin{tabular}{lrrrrrr}
+\toprule
+Variant & $D_{\rm old}^{\rm train}$ & $D_{\rm old}^{\rm test}$ & $r_{QV}$ & $\tau_{1|1}$ & $\tau_{1|2}$ & $\tau_{2|2}$ \\
+\midrule
+Vanilla LoRA & $0.008$ & $-0.001$ & $0.379$ & $1524.494$ & $1958.290$ & $1580.607$ \\
+Shaping-only LoRA & $0.008$ & $-0.028$ & $0.498$ & $665.679$ & $907.541$ & $1143.182$ \\
+EWCLoRA & $0.008$ & $-0.003$ & $0.378$ & $1524.494$ & $2024.220$ & $1620.551$ \\
+Shaping + EWCLoRA & $0.009$ & $-0.028$ & $0.498$ & $665.679$ & $926.549$ & $1039.888$ \\
+EWCLoRA + Task-1 shaping & $-0.002$ & $-0.014$ & $0.360$ & $665.679$ & $967.548$ & $2122.250$ \\
+EWCLoRA + Task-2 shaping & $0.027$ & $-0.030$ & $0.564$ & $1524.494$ & $1731.454$ & $946.685$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

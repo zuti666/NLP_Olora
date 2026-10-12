@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "created_at_utc": "2026-10-05T18:44:52.233Z",
+  "exact_command": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/suite.json --dry-run",
+  "command_source": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/ENVIRONMENT.md",
+  "command_executed_verbatim": true,
+  "exit_code": 0,
+  "stdout": "{\"status\": \"valid\", \"jobs\": 9, \"formal\": 4, \"smokes\": 4, \"allowed_gpus\": [0, 1], \"max_parallel\": 2}\n",
+  "parsed_stdout": {
+    "status": "valid",
+    "jobs": 9,
+    "formal": 4,
+    "smokes": 4,
+    "allowed_gpus": [
+      0,
+      1
+    ],
+    "max_parallel": 2
+  },
+  "expected": {
+    "status": "valid",
+    "jobs": 9,
+    "formal": 4,
+    "smokes": 4,
+    "allowed_gpus": [
+      0,
+      1
+    ],
+    "max_parallel": 2
+  },
+  "execution": {
+    "sandbox_permissions": "require_escalated",
+    "host": "cudahpc40.cvc.uab.es",
+    "pid_namespace": "pid:[4026531836]",
+    "namespace_evidence_pid": 1921028,
+    "namespace_evidence_exit_code": 0,
+    "namespace_evidence_stdout": "{\"host\": \"cudahpc40.cvc.uab.es\", \"pid\": 1921028, \"pid_namespace\": \"pid:[4026531836]\"}\n"
+  },
+  "fresh_context": true,
+  "fresh_context_agent": "/root/cd_gpu01_documented_invocation",
+  "context_read": [
+    "ENVIRONMENT.md",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md (tail -n 35)"
+  ],
+  "optional_init_namespace_check": {
+    "exit_code": 1,
+    "output": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nPermissionError: [Errno 13] Permission denied: '/proc/1/ns/pid'\n",
+    "limitation": "PID1 namespace link was permission-denied; current process namespace evidence was subsequently recorded successfully."
+  },
+  "gpu_claimed": false,
+  "training_launched": false,
+  "source_or_pins_modified": false
+}

@@ -1,0 +1,344 @@
+{
+  "schema": "G2RecoveryActualModelSmokeReview_v1",
+  "reviewer": "fresh_independent_agent_g2_retry2_smoke_review",
+  "checked_at": "2026-10-11T19:44:31.658190+00:00",
+  "status": "PASS",
+  "queue_root": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2",
+  "artifact_root": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2",
+  "job": "inclora_g2_llama1b_order1",
+  "scope": "Independent read-only receipt, trace, runtime audit, prediction, source-hash and CPU adapter-tensor review. No GPU work, model load, process termination or code edits; only this review JSON is written.",
+  "stages": [
+    {
+      "stage": 1,
+      "task": "dbpedia",
+      "output_directory": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/smoke/seed_0/order_1/1-dbpedia",
+      "status": "PASS",
+      "global_step": 2,
+      "real_updates": 2,
+      "normal_g2_updates": 2,
+      "fallback_steps": 0,
+      "three_ce_two_replays_each_update": true,
+      "base_restored_exactly_one_hf_adamw_commit_each_update": true,
+      "world_size": 4,
+      "gradient_reduction": "clean native DDP mean; each CE replay globally averaged exactly once after no_sync local accumulation",
+      "base_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.001,
+          "weight_decay": 0.0
+        }
+      ],
+      "trainable_elements": 851968,
+      "trainable_precision": "torch.float32",
+      "saved_rank": 8,
+      "adapter_tensor_count": 64,
+      "adapter_pair_count": 32,
+      "adapter_finite_fp32": true,
+      "historical_prefix_values_exact": null,
+      "historical_prefix_bytes_exact": null,
+      "fresh_branch_B_nonzero_elements": 327680,
+      "prediction_samples": 16,
+      "prediction_unique_identities": 16,
+      "prediction_task_counts": {
+        "dbpedia": 16
+      },
+      "prediction_ids": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "prediction_contents_match_frozen_dataset": true,
+      "finite_training_loss": 2.846461534500122,
+      "finite_probe_losses": [
+        2.2533459663391113,
+        2.31783127784729
+      ],
+      "finite_prediction_metrics": true,
+      "predict_exact_match": 50.0,
+      "hashes": {
+        "g2_trace_sha256": "10a98abfd733987ba33b9a32749fe91fd756e097300baa1e314759e7674357fd",
+        "adapter_sha256": "bf16983ae825b5c551640fcb5241412cd42bb85184d3da807e19e3922d14019e",
+        "prediction_sha256": "6a137416643e3c618859a3a95631b5c42c9b2cc0c11ee50a0cf5841d743a534d",
+        "g2_runtime_audit_sha256": "c1bf21f8ac7fa9852ebb46a31e07f8e95e6a577fae0ea535a4b46dda81972b54"
+      },
+      "verification_receipt_sha256": "c73baeb5d861606c9c97b6cf9843f0e334f2945c1a7e9a6b50301df3caae2375"
+    },
+    {
+      "stage": 2,
+      "task": "amazon",
+      "output_directory": "/data/115-2/users/liying/cache/tmp/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/jobs/inclora_g2_llama1b_order1/smoke/seed_0/order_1/2-amazon",
+      "status": "PASS",
+      "global_step": 2,
+      "real_updates": 2,
+      "normal_g2_updates": 2,
+      "fallback_steps": 0,
+      "three_ce_two_replays_each_update": true,
+      "base_restored_exactly_one_hf_adamw_commit_each_update": true,
+      "world_size": 4,
+      "gradient_reduction": "clean native DDP mean; each CE replay globally averaged exactly once after no_sync local accumulation",
+      "base_optimizer": "transformers.optimization.AdamW",
+      "actual_optimizer_param_groups": [
+        {
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-06,
+          "lr": 0.0001,
+          "weight_decay": 0.0
+        }
+      ],
+      "trainable_elements": 851968,
+      "trainable_precision": "torch.float32",
+      "saved_rank": 16,
+      "adapter_tensor_count": 64,
+      "adapter_pair_count": 32,
+      "adapter_finite_fp32": true,
+      "historical_prefix_values_exact": true,
+      "historical_prefix_bytes_exact": true,
+      "fresh_branch_B_nonzero_elements": 327680,
+      "prediction_samples": 16,
+      "prediction_unique_identities": 16,
+      "prediction_task_counts": {
+        "amazon": 16
+      },
+      "prediction_ids": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "prediction_contents_match_frozen_dataset": true,
+      "finite_training_loss": 0.7743586301803589,
+      "finite_probe_losses": [
+        0.6850191354751587,
+        0.7619209885597229
+      ],
+      "finite_prediction_metrics": true,
+      "predict_exact_match": 12.5,
+      "hashes": {
+        "g2_trace_sha256": "553659b5a5bfbd75cf792181f6fe38ded37b2b62572f0aad02effe81fbab8f2b",
+        "adapter_sha256": "9175eafe2ba42f0fbd3180a8a868055681ed8df83d329963eab31bc81c90ff05",
+        "prediction_sha256": "c4345bb7d078599ff411053fcfd2c9c5d9f33217809e4b111d20df53eafdf4db",
+        "g2_runtime_audit_sha256": "10704207ca654b2e7fbdebd310b8ed050978cd4acea7529eddf39c6f782d20ba"
+      },
+      "verification_receipt_sha256": "cae032782b4ee7331b3b0d0031e317bf5adc9c5a89d632703c65906ed1f728eb"
+    }
+  ],
+  "issues": [],
+  "observed_errors": [],
+  "controller_state": {
+    "controller_pid": 1627079,
+    "child_pid": 1627876,
+    "status": "running_formal",
+    "active_stage": "inclora_g2_llama1b_order1:s0:formal:1",
+    "active_global_step": 45,
+    "heartbeat_at": "2026-10-11T19:43:58+00:00",
+    "smoke_completed": 2,
+    "formal_completed": 0
+  },
+  "source_identity": {
+    "status": "PASS",
+    "frozen_files_checked": 112,
+    "manifest_sha256": "f7f24aaa8acbbfe4571e34d4c65713540b8905807bcef364d1b81438cb9fa3ba",
+    "core": {
+      "src/optimer_g2.py": {
+        "sha256": "e6103c4f596a18708b30c790ea576fe28b0e6c5623591d23effa3a9863abd260",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      },
+      "src/uie_trainer_lora.py": {
+        "sha256": "faebfb2c5f7ccebccb08ab9d96265c2934a971529ebf0bb0d27d1bd96e76a500",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      },
+      "src/run_uie_lora.py": {
+        "sha256": "2f26679a889d5ba070f8a3221ac84e5a4b2242493ef15f68924017f6d336e945",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      },
+      "src/peft/tuners/lora.py": {
+        "sha256": "c038f0f63f34c7469f2fe3f32361fbfb12db01f6d8e429e9575bf530641c1e46",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      },
+      "src/peft/utils/save_and_load.py": {
+        "sha256": "d32fb13ba6508e55588c22c6e63dc886842da72a9e5faf6cbd831244ca8d5a30",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      },
+      "scripts_llama/run_g2_llama.py": {
+        "sha256": "4db3083b52d30909baba8acdce7e582491c79f09ad3789bfbc0aad9c0f2cd90a",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      },
+      "scripts_llama/run_g2_orders_queue.py": {
+        "sha256": "a1bc5d1f2fdccc6eb0d84934b870d213c32166922023cd2fa48d54833ac13c5f",
+        "matches_live_repository": true,
+        "matches_retry1_snapshot": true
+      }
+    },
+    "shared_retry1_snapshot_files": 112,
+    "shared_retry1_mismatches": []
+  },
+  "cuda_witnesses": {
+    "status": "PASS",
+    "timestamp": "2026-10-11T19:40:31+00:00",
+    "results": [
+      {
+        "gpu_index": 0,
+        "gpu_uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+        "status": "passed",
+        "log": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/runtime/cuda_witness_gpu0_1791747624757043726.log",
+        "log_sha256": "b114fec3800811e29ee504fc3c2fc97cb6dd5abce423cfeb0d1a5bc745f249bc",
+        "bf16_payload": {
+          "finite": true,
+          "device": "NVIDIA RTX 6000 Ada Generation",
+          "loss": 9.172901153564453,
+          "grad_norm": 3.0649397373199463,
+          "torch": "2.1.1+cu121",
+          "cuda": "12.1"
+        }
+      },
+      {
+        "gpu_index": 1,
+        "gpu_uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+        "status": "passed",
+        "log": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/runtime/cuda_witness_gpu1_1791747626426746461.log",
+        "log_sha256": "b114fec3800811e29ee504fc3c2fc97cb6dd5abce423cfeb0d1a5bc745f249bc",
+        "bf16_payload": {
+          "finite": true,
+          "device": "NVIDIA RTX 6000 Ada Generation",
+          "loss": 9.172901153564453,
+          "grad_norm": 3.0649397373199463,
+          "torch": "2.1.1+cu121",
+          "cuda": "12.1"
+        }
+      },
+      {
+        "gpu_index": 2,
+        "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "status": "passed",
+        "log": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/runtime/cuda_witness_gpu2_1791747628096903573.log",
+        "log_sha256": "b114fec3800811e29ee504fc3c2fc97cb6dd5abce423cfeb0d1a5bc745f249bc",
+        "bf16_payload": {
+          "finite": true,
+          "device": "NVIDIA RTX 6000 Ada Generation",
+          "loss": 9.172901153564453,
+          "grad_norm": 3.0649397373199463,
+          "torch": "2.1.1+cu121",
+          "cuda": "12.1"
+        }
+      },
+      {
+        "gpu_index": 3,
+        "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "status": "passed",
+        "log": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/runtime/cuda_witness_gpu3_1791747629716431187.log",
+        "log_sha256": "b114fec3800811e29ee504fc3c2fc97cb6dd5abce423cfeb0d1a5bc745f249bc",
+        "bf16_payload": {
+          "finite": true,
+          "device": "NVIDIA RTX 6000 Ada Generation",
+          "loss": 9.172901153564453,
+          "grad_norm": 3.0649397373199463,
+          "torch": "2.1.1+cu121",
+          "cuda": "12.1"
+        }
+      }
+    ]
+  },
+  "nccl_transport": {
+    "status": "PASS",
+    "default_exit_code": 1,
+    "default_timeout_ms": 20000,
+    "p2p_disabled_exit_code": 0,
+    "p2p_disabled_elapsed_seconds": 6.477007981971838,
+    "independently_parsed_rank_payloads": [
+      {
+        "rank": 3,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 2,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 1,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 0,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      }
+    ],
+    "runtime_environment_override": {
+      "NCCL_P2P_DISABLE": "1"
+    },
+    "logs": {
+      "default": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/NCCL_default.log",
+        "sha256": "df307de3257da726945c7bdf839f2485d21670c12eb617fec48cd9a7d880532d"
+      },
+      "p2p_disabled": {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/NCCL_p2p_disabled.log",
+        "sha256": "cb2e8075f8933a8bb213b58e44e04c79b1d3ece9ce6972e7e16e5924f99b4f85"
+      }
+    }
+  },
+  "limitations": [
+    "PASS applies to the two-task Llama-3.2-1B Order1 smoke only: two updates per task and 16 capped predictions per stage. It does not establish formal convergence, all six order completion, or 3B execution success.",
+    "The second smoke cap selects 16 amazon examples; it does not test retained dbpedia accuracy at stage 2.",
+    "Runtime execution facts are supported by instrumented traces/audits and their immutable hashes, together with source review and independent CPU artifact checks. Live host PID/NVML monitoring remains the root agent responsibility.",
+    "The prediction generation path reports predict_loss 0.0; smoke metric finiteness does not establish a held-out CE loss or a scientific quality claim."
+  ],
+  "prediction_dataset_input_identity": {
+    "dbpedia": {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/TC/dbpedia/test.json",
+      "sha256": "971c1a298668385042ce02b67444e1d45773ce0b8b22abbbc39a2592bbe7c255",
+      "matches_frozen_manifest": true
+    },
+    "amazon": {
+      "path": "/data/140-1/users/liying/O-LoRA/CL_Benchmark/SC/amazon/test.json",
+      "sha256": "0e3337b659505456dd62089f4099778043d409e54f6e9cacf35154e783fdb6a2",
+      "matches_frozen_manifest": true
+    }
+  }
+}

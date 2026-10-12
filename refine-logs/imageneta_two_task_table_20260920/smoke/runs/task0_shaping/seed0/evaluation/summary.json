@@ -1,0 +1,962 @@
+{
+  "B1": 85.95514659797315,
+  "B2": 174.90973712870397,
+  "a11": 80.13029315960912,
+  "a21": 79.80456026058631,
+  "a22": 33.46456692913386,
+  "accuracy_CIL_percent": {
+    "BWT_percentage_points": -0.32573289902281033,
+    "a11": 80.13029315960912,
+    "a21": 79.80456026058631,
+    "a22": 33.46456692913386
+  },
+  "bwt": -0.32573289902281033,
+  "checkpoint_audit": {
+    "checkpoints": [
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/checkpoints/task_00.pt",
+        "sha256": "0c66d164dfa34f26aead0ab4e650dd9f23e8e0ecf31e50998e5ba968099b2a1f",
+        "state_tensors": 350
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/checkpoints/task_01.pt",
+        "sha256": "4caf056ad101de9a00e08f1faeb70d7ad891641ede04c460c150cbb64d385409",
+        "state_tensors": 350
+      }
+    ],
+    "coordinate": "12 layers x Q,V effective BA matrices; scale=1; excludes head",
+    "delta_norm": 0.05327476993197145,
+    "delta_sha256": "8b29aa1c7db77d26e418a02ae812572f685182d549c22155336716d279438a8c",
+    "delta_squared_norm": 0.0028382011113044893,
+    "effective_blocks": 24,
+    "effective_parameters": 14155776,
+    "effective_product_precision": "CPU FP32 BA; FP32 subtraction; float64 norm reduction",
+    "frozen_state_sha256": "91f7405a556f93933e3985de054132faf93493ba47c791d02c028812122d2997",
+    "frozen_tensors_equal": 300,
+    "old_head_bitwise_equal": true
+  },
+  "delta_norm": 0.05327476993197145,
+  "delta_squared_norm": 0.0028382011113044893,
+  "endpoints": [
+    {
+      "current_task_batch_fisher_proxy": {
+        "damping": null,
+        "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+        "floor": null,
+        "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+        "input_tensors_sha256": "c632cfd53d023b536c1bca32c0db98ed77a57b9492ec561d7dd3ae9115cbafe2",
+        "logical_batch_size": 128,
+        "logical_batches": [
+          {
+            "batch_mean_gradient_squared_trace": 53.66432016450482,
+            "index": 0,
+            "input_tensors_sha256": "c2f8e3cdd4ad0de7893c1e131b3a2cf449471e05f20f6a4a6df7c1522593f62e",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 140.16376198038458,
+            "index": 1,
+            "input_tensors_sha256": "62ff43f3a218df1f824a42b3db168dc971a105db25a26eabf6201f5598d79e59",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 103.22552668894869,
+            "index": 2,
+            "input_tensors_sha256": "9ed78b80db8f1822983fd57f5ecb9c2e133ee1078c1878cff2a2ea0c70de22df",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 64.32542091345317,
+            "index": 3,
+            "input_tensors_sha256": "d1569f98be01de2715a64305fc57ca07be31f5a9dfad27c727d6c891b2265be0",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 71.88419893962484,
+            "index": 4,
+            "input_tensors_sha256": "0a8c024bbf4cd9946025248f583d4f53937aac5af5e41bf4249204e614afca02",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 72.83189104681979,
+            "index": 5,
+            "input_tensors_sha256": "b2977ca53fe319cbf6e606be8d9a2dceba0f03a61f1d1ac0eafb7afc6d6e64a9",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 114.87192593560174,
+            "index": 6,
+            "input_tensors_sha256": "ad2b4e66c565b297e2114b7f80582763905367f0ad6d959fb0f8d05111848313",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 45.714754258285105,
+            "index": 7,
+            "input_tensors_sha256": "c14d06a557fbe4b00be9d28f1c31f6fb4077eea8838aa7537dfa036d4f1671e9",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 107.1183499744604,
+            "index": 8,
+            "input_tensors_sha256": "a756f7e78004d5f5d4a7f18b7d422a808d173add2c22c66c3e7df3016afd7950",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 85.71131195683682,
+            "index": 9,
+            "input_tensors_sha256": "8fb02fb9269e7cf7be59a49119f382eba6a57c1a3507e60c1bf59611344d94f7",
+            "samples": 107
+          }
+        ],
+        "loss": 0.4894228938618761,
+        "loss_scope": "old_local20",
+        "micro_batch_size": 8,
+        "normalization": "sample-weighted mean only",
+        "normalized": false,
+        "parameter_scope": "24 effective Q/V weights; excludes head",
+        "raw_trace": 85.95514659797315,
+        "regularizer": null,
+        "samples": 1259,
+        "seconds": 15.242199957021512,
+        "source": "full current-task train; deterministic test transform; fixed dataset order"
+      },
+      "fisher": {
+        "old_local20": {
+          "damping": null,
+          "estimator": "mean of true-label per-example CE gradient outer products",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "input_tensor_records": [
+            {
+              "dataset_index": 65,
+              "label": 1,
+              "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+            },
+            {
+              "dataset_index": 177,
+              "label": 2,
+              "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+            },
+            {
+              "dataset_index": 265,
+              "label": 3,
+              "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+            },
+            {
+              "dataset_index": 369,
+              "label": 5,
+              "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+            },
+            {
+              "dataset_index": 575,
+              "label": 8,
+              "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+            },
+            {
+              "dataset_index": 708,
+              "label": 10,
+              "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+            },
+            {
+              "dataset_index": 839,
+              "label": 12,
+              "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+            },
+            {
+              "dataset_index": 1094,
+              "label": 16,
+              "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+            }
+          ],
+          "input_tensors_sha256": "a543b4938a9ddf78826e06304220bfb29e75519c3c7edb23efe58124274049cd",
+          "loss_scope": "old_local20",
+          "normalization": "sample mean only",
+          "normalized": false,
+          "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+          "q": {
+            "task0_to_task1_delta": 0.0001715026619144455
+          },
+          "raw_trace": 3235.130715491539,
+          "regularizer": null,
+          "samples": 8,
+          "seconds": 0.2950212139985524,
+          "subset_loss": 0.32024255336727947,
+          "unit_displacement_sensitivity": 0.06042653610110798
+        }
+      },
+      "metrics": {
+        "old_test": {
+          "old_local20": {
+            "accuracy": 80.13029315960912,
+            "correct": 246,
+            "loss": 0.6971866846902156,
+            "loss_scope": "old_local20",
+            "samples": 307
+          }
+        },
+        "old_train": {
+          "old_local20": {
+            "accuracy": 85.70293884034949,
+            "correct": 1079,
+            "loss": 0.4894228938618761,
+            "loss_scope": "old_local20",
+            "samples": 1259
+          }
+        }
+      },
+      "model_sha256_after": "ee7611482b4ea2a28dad4fb025e776d794953041a21bbf984a98ffbd0f684962",
+      "model_sha256_before": "ee7611482b4ea2a28dad4fb025e776d794953041a21bbf984a98ffbd0f684962",
+      "sanity": {
+        "native_to_effective_logits_max_absolute_error": 0.0,
+        "old_local20": {
+          "direction_dot_max_absolute_error": {
+            "task0_to_task1_delta": 1.3066927659582776e-08
+          },
+          "loss_scope": "old_local20",
+          "passed": true,
+          "samples": 2,
+          "trace_max_absolute_error": 0.044998368317465065,
+          "trace_max_relative_error": 9.665695138188863e-06
+        },
+        "training_batch_proxy_match": {
+          "absolute_difference": 0.0033461621916757167,
+          "absolute_tolerance": 1e-06,
+          "offline_raw_trace": 85.95514659797315,
+          "passed": true,
+          "relative_tolerance": 0.001,
+          "training_raw_trace": 85.95180043578148
+        }
+      },
+      "seconds": 28.665217457979452,
+      "task_index": 0
+    },
+    {
+      "current_task_batch_fisher_proxy": {
+        "damping": null,
+        "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+        "floor": null,
+        "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+        "input_tensors_sha256": "4b9dad57992ebe2ca5868a0579a35c5549a0b562ee08abc435c3fd53624dbd3d",
+        "logical_batch_size": 128,
+        "logical_batches": [
+          {
+            "batch_mean_gradient_squared_trace": 177.21627486989956,
+            "index": 0,
+            "input_tensors_sha256": "10fd3f308cf15c2e974b6d4b224c64425478045da613d4fc6eab7f0ccec167f2",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 174.71925680498177,
+            "index": 1,
+            "input_tensors_sha256": "f2ad72419702c359cedd39e2da861611f0d3fa9e578d3156e5d431d635dcb3c8",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 192.1009551463659,
+            "index": 2,
+            "input_tensors_sha256": "ae6d8a634e895da953fdc5c19fc33b6367d6c7558fadd7ab9a59160cc422030a",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 154.1183059885334,
+            "index": 3,
+            "input_tensors_sha256": "602bf264813a9bd160c108de05be929e3c6d1b2ef91e53a8cd551fdfa83c6915",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 160.59344352133348,
+            "index": 4,
+            "input_tensors_sha256": "5a48c885678906109af682ffc6faeb442372288a2ad3616cf3ec801348488952",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 124.55817297760552,
+            "index": 5,
+            "input_tensors_sha256": "7c19d1e1a9dd5ec3a5aa71c09d52688977bb1119ef04631edff2172b5698b1c9",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 192.7004636477078,
+            "index": 6,
+            "input_tensors_sha256": "d1e5879dc5ee8c783c703f1b7ae3695ef914714bfa443eb112600255b3102818",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 236.19928889995197,
+            "index": 7,
+            "input_tensors_sha256": "19bd390e32df8145bd92276a3d93c829a2582b5139bbf353056f6589f059179a",
+            "samples": 101
+          }
+        ],
+        "loss": 1.3137169020594197,
+        "loss_scope": "new_local20",
+        "micro_batch_size": 8,
+        "normalization": "sample-weighted mean only",
+        "normalized": false,
+        "parameter_scope": "24 effective Q/V weights; excludes head",
+        "raw_trace": 174.90973712870397,
+        "regularizer": null,
+        "samples": 997,
+        "seconds": 12.084485924977344,
+        "source": "full current-task train; deterministic test transform; fixed dataset order"
+      },
+      "fisher": {
+        "new_local20": {
+          "damping": null,
+          "estimator": "mean of true-label per-example CE gradient outer products",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "input_tensor_records": [
+            {
+              "dataset_index": 28,
+              "label": 20,
+              "tensor_sha256": "28aecf8c260aab5c172d13207d290e3fd1d1520bbb2fdec05048158dcd8381b2"
+            },
+            {
+              "dataset_index": 79,
+              "label": 21,
+              "tensor_sha256": "8ca54912aa6ba92b6b23c0accc73baae9c67dceb04b295fa48f37a5cf292b8f6"
+            },
+            {
+              "dataset_index": 251,
+              "label": 24,
+              "tensor_sha256": "836eaf9079eb3f0bfc723c2c630c91c533039c71d69f6618b0ac913b363c723c"
+            },
+            {
+              "dataset_index": 382,
+              "label": 26,
+              "tensor_sha256": "06532e26c05e7ab96f4d78b18eaa5d9419666462ae74b04340016d1a01c79fa9"
+            },
+            {
+              "dataset_index": 490,
+              "label": 27,
+              "tensor_sha256": "574093be34ed879ddba4161c7b2d933e64ec2c7bcb8b05f07ccdf2f268560d0a"
+            },
+            {
+              "dataset_index": 545,
+              "label": 28,
+              "tensor_sha256": "79a7de7a382efaea1d2d893c70a62f7909cdbb47e34c717b2b6c244a5550eba0"
+            },
+            {
+              "dataset_index": 647,
+              "label": 30,
+              "tensor_sha256": "105af304f5ad22f195eeca19af6afb26bc0fbb7738123a52493572322d3abb82"
+            },
+            {
+              "dataset_index": 811,
+              "label": 33,
+              "tensor_sha256": "40c35a15b54ec1079d98a225645114a96c6daec7eda67b2349d0ea4b820879e2"
+            }
+          ],
+          "input_tensors_sha256": "05f0534f0a7d3e04a2a68b97955662f493025300cc8e600cfdcd8861a311cf47",
+          "loss_scope": "new_local20",
+          "normalization": "sample mean only",
+          "normalized": false,
+          "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+          "q": {},
+          "raw_trace": 4359.810604076689,
+          "regularizer": null,
+          "samples": 8,
+          "seconds": 0.2923494440037757,
+          "subset_loss": 1.3064031559042633
+        },
+        "old_local20": {
+          "damping": null,
+          "estimator": "mean of true-label per-example CE gradient outer products",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "input_tensor_records": [
+            {
+              "dataset_index": 65,
+              "label": 1,
+              "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+            },
+            {
+              "dataset_index": 177,
+              "label": 2,
+              "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+            },
+            {
+              "dataset_index": 265,
+              "label": 3,
+              "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+            },
+            {
+              "dataset_index": 369,
+              "label": 5,
+              "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+            },
+            {
+              "dataset_index": 575,
+              "label": 8,
+              "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+            },
+            {
+              "dataset_index": 708,
+              "label": 10,
+              "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+            },
+            {
+              "dataset_index": 839,
+              "label": 12,
+              "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+            },
+            {
+              "dataset_index": 1094,
+              "label": 16,
+              "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+            }
+          ],
+          "input_tensors_sha256": "a543b4938a9ddf78826e06304220bfb29e75519c3c7edb23efe58124274049cd",
+          "loss_scope": "old_local20",
+          "normalization": "sample mean only",
+          "normalized": false,
+          "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+          "q": {
+            "task0_to_task1_delta": 0.00011481295189888321
+          },
+          "raw_trace": 3152.011686410111,
+          "regularizer": null,
+          "samples": 8,
+          "seconds": 0.4442025349708274,
+          "subset_loss": 0.3191887620341731,
+          "unit_displacement_sensitivity": 0.040452718956942794
+        }
+      },
+      "metrics": {
+        "new_test": {
+          "new_local20": {
+            "accuracy": 59.84251968503937,
+            "correct": 152,
+            "loss": 1.4588221637605447,
+            "loss_scope": "new_local20",
+            "samples": 254
+          },
+          "seen40": {
+            "accuracy": 33.46456692913386,
+            "correct": 85,
+            "loss": 2.4068102055177913,
+            "loss_scope": "seen40",
+            "samples": 254
+          }
+        },
+        "old_test": {
+          "old_local20": {
+            "accuracy": 80.45602605863192,
+            "correct": 247,
+            "loss": 0.6863345365712711,
+            "loss_scope": "old_local20",
+            "samples": 307
+          },
+          "seen40": {
+            "accuracy": 79.80456026058631,
+            "correct": 245,
+            "loss": 0.8580975566409734,
+            "loss_scope": "seen40",
+            "samples": 307
+          }
+        },
+        "old_train": {
+          "old_local20": {
+            "accuracy": 85.94122319301033,
+            "correct": 1082,
+            "loss": 0.4815986596335079,
+            "loss_scope": "old_local20",
+            "samples": 1259
+          },
+          "seen40": {
+            "accuracy": 84.74980142970611,
+            "correct": 1067,
+            "loss": 0.6310413851192523,
+            "loss_scope": "seen40",
+            "samples": 1259
+          }
+        }
+      },
+      "model_sha256_after": "e7f79fcb215604fd9738f9112751dd0d5b87f9cace3d78870c25b53494dd62fb",
+      "model_sha256_before": "e7f79fcb215604fd9738f9112751dd0d5b87f9cace3d78870c25b53494dd62fb",
+      "sanity": {
+        "native_to_effective_logits_max_absolute_error": 0.0,
+        "new_local20": {
+          "direction_dot_max_absolute_error": {},
+          "loss_scope": "new_local20",
+          "passed": true,
+          "samples": 2,
+          "trace_max_absolute_error": 0.010022310232898235,
+          "trace_max_relative_error": 1.3540040225744365e-05
+        },
+        "old_local20": {
+          "direction_dot_max_absolute_error": {
+            "task0_to_task1_delta": 4.915296514425294e-07
+          },
+          "loss_scope": "old_local20",
+          "passed": true,
+          "samples": 2,
+          "trace_max_absolute_error": 0.6520270416949643,
+          "trace_max_relative_error": 4.4224243266117925e-05
+        },
+        "training_batch_proxy_match": {
+          "absolute_difference": 0.0005746967486288668,
+          "absolute_tolerance": 1e-06,
+          "offline_raw_trace": 174.90973712870397,
+          "passed": true,
+          "relative_tolerance": 0.001,
+          "training_raw_trace": 174.90916243195534
+        }
+      },
+      "seconds": 26.329605962964706,
+      "task_index": 1
+    }
+  ],
+  "fisher_raw_trace": {
+    "new_at_task1": 4359.810604076689,
+    "old_at_task0": 3235.130715491539,
+    "old_at_task1": 3152.011686410111
+  },
+  "inputs": {
+    "argv": [
+      "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+      "--run-dir",
+      "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0",
+      "--device",
+      "cuda",
+      "--fisher-samples",
+      "8"
+    ],
+    "checkpoint_audit": {
+      "checkpoints": [
+        {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/checkpoints/task_00.pt",
+          "sha256": "0c66d164dfa34f26aead0ab4e650dd9f23e8e0ecf31e50998e5ba968099b2a1f",
+          "state_tensors": 350
+        },
+        {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/checkpoints/task_01.pt",
+          "sha256": "4caf056ad101de9a00e08f1faeb70d7ad891641ede04c460c150cbb64d385409",
+          "state_tensors": 350
+        }
+      ],
+      "coordinate": "12 layers x Q,V effective BA matrices; scale=1; excludes head",
+      "delta_norm": 0.05327476993197145,
+      "delta_sha256": "8b29aa1c7db77d26e418a02ae812572f685182d549c22155336716d279438a8c",
+      "delta_squared_norm": 0.0028382011113044893,
+      "effective_blocks": 24,
+      "effective_parameters": 14155776,
+      "effective_product_precision": "CPU FP32 BA; FP32 subtraction; float64 norm reduction",
+      "frozen_state_sha256": "91f7405a556f93933e3985de054132faf93493ba47c791d02c028812122d2997",
+      "frozen_tensors_equal": 300,
+      "old_head_bitwise_equal": true
+    },
+    "code_sha256": {
+      "eval_common.py": "1943d9232011eca1d4279678f8facfe32a77b502a31713d00ba8689fc452ca62",
+      "evaluate.py": "ba85c7e871efd73211dff11ee53d537590f35bfce79a5ac6297859110cda7369"
+    },
+    "config": {
+      "all_or_inc": "inc",
+      "approximate_fisher_in_task": false,
+      "as1_norm_rho": 0.2,
+      "as1_rho": 0.05,
+      "attention_probe_eval": false,
+      "backbone_type": "vit_base_patch16_224",
+      "batch_size": 128,
+      "checkpoint_require_nonempty_fisher": true,
+      "class_shuffle": false,
+      "comparison_base_optimizer": "sgd",
+      "comparison_method": "task0_shaping",
+      "compute_full_fisher": false,
+      "compute_nme_class_means": false,
+      "data_root": "/data/115-2/users/liying/datasets",
+      "dataset": "imageneta",
+      "delta_w_penalty": false,
+      "device": [
+        "0"
+      ],
+      "endpoint_eval": false,
+      "endpoint_weight_merge": false,
+      "epochs": 3,
+      "eval_num_workers": 4,
+      "ewc_dual_ascent": false,
+      "ewc_eta": 0.0,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_source": "fit",
+      "ewc_gamma": 0.9,
+      "ewc_lambda": 2000.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_normalize_fisher": true,
+      "ewc_preserve_fisher_rng": true,
+      "ewc_project_grad": false,
+      "ewc_skip_task_fisher": false,
+      "feature_cka_eval": false,
+      "feature_drift_eval": false,
+      "feature_drift_mode": "none",
+      "feature_flat_eval": false,
+      "feature_proto_eval": false,
+      "fisher_mode": "batch_empirical",
+      "fisher_split": false,
+      "fixed_memory": false,
+      "flat_eval": false,
+      "frozen_backbone_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/sgd/seed0/checkpoints/task_00.pt",
+      "gam_adaptive": false,
+      "gam_base_optimizer": "sgd",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.1,
+      "gam_grad_norm_rho": 0.2,
+      "gam_grad_rho": 0.05,
+      "in_task_fisher_interval": 1,
+      "in_task_fisher_omega": 0.3,
+      "in_task_path_beta": 3.0,
+      "in_task_path_loss_max_batches": null,
+      "in_task_path_normalize_snapshots": false,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_weighted": true,
+      "in_task_weight_checkpoint_interval": 1,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_weight_merge_start_task": 0,
+      "increment": 20,
+      "init_cls": 20,
+      "init_epoch": 3,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "lambda_flat": 0.0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "lora_rank": 10,
+      "lrate": 0.02,
+      "max_train_tasks": 2,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "memory_per_class": 0,
+      "memory_size": 0,
+      "model_name": "ewclora_normfisher_gam_intask_damp_weightmergethenfisher",
+      "momentum": 0,
+      "multi_fisher_eval": false,
+      "nb_tasks": 10,
+      "optimizer": "sgd",
+      "optimizer_tag_override": "table_task0_shaping",
+      "optimizer_type": "sgd",
+      "optimizer_type_by_task": null,
+      "outputs_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/trainer_outputs",
+      "persistent_workers": false,
+      "prefix": "task0_shaping_s0_task1",
+      "probe_flatness_eval": false,
+      "quality_and_fisher_transform": "deterministic_current_train",
+      "resume_from_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/checkpoints",
+      "resume_from_metrics_json": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/anchors/gam/seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask_damp_weightmergethenfisher/table_gam/imageneta/0/gam_s0_task0/exp_run/20/gam_s0_task0_vit_base_patch16_224_cl_metrics.json",
+      "resume_from_task": 0,
+      "resume_require_experiment_identity": false,
+      "resume_require_fisher_state": true,
+      "resume_require_model_sidecars": false,
+      "rq2_rng_protocol": "imageneta_two_task_table_weighted_merge_v1",
+      "save_final_model": false,
+      "save_task_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/checkpoints",
+      "save_task_checkpoint_required": true,
+      "scheduler": "cosine",
+      "seed": [
+        0
+      ],
+      "snapshot_epochs": [
+        1,
+        2
+      ],
+      "source": "/data/140-1/users/liying/CopyFlatCV",
+      "stage0_optimizer": "gam",
+      "stage1_optimizer": "sgd",
+      "table_run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0",
+      "task0_trajectory_eval": false,
+      "total_sessions": 10,
+      "train_num_workers": 4,
+      "training_fisher_microbatch_size": 128,
+      "trajectory_merge_policy": "all",
+      "weight_decay": 0.0,
+      "weight_merge": false
+    },
+    "data_manifest_sha256": "a35f002c980067b8885de2a9a36055fbc5dd2ddb3fde994661aeddacc9183420",
+    "data_root": "/data/115-2/users/liying/datasets",
+    "device": "cuda",
+    "precision": {
+      "autocast": false,
+      "cudnn_tf32": false,
+      "forward_backward": "FP32",
+      "matmul_tf32": false,
+      "reduction": "float64"
+    },
+    "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0",
+    "run_manifest_sha256": "c72f38ecc1c20175d20e8f04d41b7956a4f065b9b7ebd885880d0484f5703971",
+    "source": "/data/140-1/users/liying/CopyFlatCV",
+    "source_sha256": {
+      "backbone/linears.py": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7",
+      "backbone/lora.py": "995119b1aea75e27049ff6a20aeafac08daa2c212fd2d7c3eff517c1bf581446",
+      "utils/data.py": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9",
+      "utils/data_manager.py": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6"
+    },
+    "torch": "2.4.1+cu121",
+    "trajectory_audit": [
+      {
+        "checkpoint_factor_sha256": "4257ca5fce7de6b5a2676cd36112d42ab43147e7de52f30b575682c72513c02c",
+        "classifier_unchanged_by_merge": true,
+        "current_fisher": {
+          "batch_size": 128,
+          "estimation_metrics": {
+            "fisher_estimator": "batch_empirical",
+            "fisher_estimator_display": "batch-gradient delta-W Fisher proxy",
+            "fisher_estimator_family": "batch_gradient_square_proxy",
+            "fisher_gradient_aggregation": "square_of_batch_mean_delta_w_gradients",
+            "fisher_is_per_sample_empirical": false,
+            "fisher_loss_reduction": "cross_entropy_mean",
+            "fisher_mode": "batch_empirical",
+            "fisher_num_samples": 1259,
+            "fisher_space": "delta_w"
+          },
+          "estimator": "batch_gradient_square_proxy",
+          "factor_sha256": "4257ca5fce7de6b5a2676cd36112d42ab43147e7de52f30b575682c72513c02c",
+          "normalized_trace": 1.0000000116415322,
+          "raw_trace": 85.95180043578148,
+          "source": "post_merge_current_train",
+          "task": 0
+        },
+        "current_fisher_json_sha256": "8324689100fe5bc004fca5e6595d3360c3af7c2af7d74ce79e871393a20d92f2",
+        "merge": {
+          "beta": 3.0,
+          "ce": [
+            0.8686293058209802,
+            0.5564663910600663
+          ],
+          "coordinate": "LoRA_A_B_factors; classifier excluded",
+          "enabled": true,
+          "epochs": [
+            1,
+            2
+          ],
+          "metrics": {
+            "in_task_path_beta": 3.0,
+            "in_task_path_fallback_to_last": 0.0,
+            "in_task_path_loss_max": 0.8686293058209802,
+            "in_task_path_loss_mean": 0.7125478484405232,
+            "in_task_path_loss_min": 0.5564663910600663,
+            "in_task_path_loss_valid": 1.0,
+            "in_task_path_min_epoch": 1.0,
+            "in_task_path_selected_first_epoch": 1.0,
+            "in_task_path_selected_last_epoch": 2.0,
+            "in_task_path_selected_snapshots": 2.0,
+            "in_task_path_start_ratio": 0.0,
+            "in_task_path_total_epochs": 3.0,
+            "in_task_path_total_snapshots": 2.0,
+            "in_task_path_weight_effective_n": 1.0174621351985658,
+            "in_task_path_weight_entropy": 0.017311424078108102,
+            "in_task_path_weight_max": 0.9975273768432703,
+            "in_task_path_weight_min": 0.0024726231567295917,
+            "in_task_path_weight_mode": "loss_softmax",
+            "in_task_path_weighted": 1.0,
+            "in_task_weight_checkpoint_interval": 1.0,
+            "in_task_weight_final_l2": 8.961154632889137,
+            "in_task_weight_merge_applied": 1.0,
+            "in_task_weight_merge_enabled": 1.0,
+            "in_task_weight_merge_first_epoch": 1.0,
+            "in_task_weight_merge_last_epoch": 2.0,
+            "in_task_weight_merge_numel": 368640.0,
+            "in_task_weight_merge_omega": 0.3,
+            "in_task_weight_merge_shift_l2": 0.024911765004164203,
+            "in_task_weight_merge_snapshots": 2.0,
+            "in_task_weight_merge_tensors": 48.0,
+            "in_task_weight_merged_l2": 8.96002557452993,
+            "in_task_weight_path_delta_l2": 0.08303921645813579,
+            "in_task_weight_path_l2": 8.957659881520243,
+            "in_task_weight_snapshot_tensors": 96.0,
+            "weight_checkpoint_interval": 1,
+            "weight_merge_applied": true,
+            "weight_merge_omega": 0.3,
+            "weight_merge_then_fisher": 1.0,
+            "weight_merge_then_fisher_fisher_snapshots_disabled": 1.0,
+            "weight_merge_then_fisher_fisher_source_post_merge": 1.0,
+            "weight_merge_then_fisher_path_weight_l2": 8.957659881520243,
+            "weight_merge_then_fisher_path_weight_numel": 368640.0,
+            "weight_merge_then_fisher_path_weight_tensors": 48.0,
+            "weight_merge_then_fisher_selected_weight_checkpoints": 2.0,
+            "weight_merge_then_fisher_weight_checkpoints": 2.0,
+            "weight_merge_theta_end_to_merge_l2": 0.024911765004164203,
+            "weight_merge_theta_end_to_path_l2": 0.08303921645813579,
+            "weight_merge_theta_path_to_merge_l2": 0.05812745152069505
+          },
+          "omega": 0.3,
+          "post_factor_sha256": "4257ca5fce7de6b5a2676cd36112d42ab43147e7de52f30b575682c72513c02c",
+          "pre_factor_sha256": "338b01184a21c7760799f6a7eee3291954231a96ae0844ae4a2f1c8fc72cdede",
+          "step_counts": {
+            "ce_backward_count": 120,
+            "ewc_penalty_max": 0.0,
+            "updates": 30
+          },
+          "task": 0,
+          "weight_formula": "softmax(-beta*(CE-mean(CE))/(population_std(CE)+eps))",
+          "weights": [
+            0.0024726231567295917,
+            0.9975273768432703
+          ]
+        },
+        "merge_json_sha256": "5d9942033002ebdb8c9ab425e493aa1e2aa3e10a534a73d7bb62befe40e4112f",
+        "passed": true,
+        "pre_merge_endpoint_sha256": "6b7f7c70c9ce4f568c381324c65895496d59d8027bb5e719b5fa81add6198a81",
+        "snapshots": [
+          {
+            "epoch": 1,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/trajectory/task_00/epoch_01.pt",
+            "sha256": "714458824396b5bb7aef6b7ce4e90de490659be0fe10e1e1f64cfb5a256f66d7"
+          },
+          {
+            "epoch": 2,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/trajectory/task_00/epoch_02.pt",
+            "sha256": "8734c3ed5c5371f4adf3a4f9312b339d6acc5d0e0a4159246f7eb54f69b5cd16"
+          }
+        ],
+        "task": 0
+      },
+      {
+        "checkpoint_factor_sha256": "458970ff2627b64bcb68e44a96e7f2536765968b6a685803eb5b6df7693e9de2",
+        "classifier_unchanged_by_merge": true,
+        "current_fisher": {
+          "batch_size": 128,
+          "estimation_metrics": {
+            "fisher_estimator": "batch_empirical",
+            "fisher_estimator_display": "batch-gradient delta-W Fisher proxy",
+            "fisher_estimator_family": "batch_gradient_square_proxy",
+            "fisher_gradient_aggregation": "square_of_batch_mean_delta_w_gradients",
+            "fisher_is_per_sample_empirical": false,
+            "fisher_loss_reduction": "cross_entropy_mean",
+            "fisher_mode": "batch_empirical",
+            "fisher_num_samples": 997,
+            "fisher_space": "delta_w"
+          },
+          "estimator": "batch_gradient_square_proxy",
+          "factor_sha256": "458970ff2627b64bcb68e44a96e7f2536765968b6a685803eb5b6df7693e9de2",
+          "normalized_trace": 1.0000000024447218,
+          "raw_trace": 174.90916243195534,
+          "source": "post_merge_current_train",
+          "task": 1
+        },
+        "current_fisher_json_sha256": "b7ccab966e28a578ad407bf44e99b6a55fbf5fdb9353ffa336a13da6cf939715",
+        "merge": {
+          "beta": 3.0,
+          "ce": [
+            2.0129031252597973,
+            1.4592794166763903
+          ],
+          "coordinate": "LoRA_A_B_factors; classifier excluded",
+          "enabled": true,
+          "epochs": [
+            1,
+            2
+          ],
+          "metrics": {
+            "in_task_path_beta": 3.0,
+            "in_task_path_fallback_to_last": 0.0,
+            "in_task_path_loss_max": 2.0129031252597973,
+            "in_task_path_loss_mean": 1.7360912709680938,
+            "in_task_path_loss_min": 1.4592794166763903,
+            "in_task_path_loss_valid": 1.0,
+            "in_task_path_min_epoch": 1.0,
+            "in_task_path_selected_first_epoch": 1.0,
+            "in_task_path_selected_last_epoch": 2.0,
+            "in_task_path_selected_snapshots": 2.0,
+            "in_task_path_start_ratio": 0.0,
+            "in_task_path_total_epochs": 3.0,
+            "in_task_path_total_snapshots": 2.0,
+            "in_task_path_weight_effective_n": 1.0174621351983133,
+            "in_task_path_weight_entropy": 0.0173114240778598,
+            "in_task_path_weight_max": 0.9975273768433118,
+            "in_task_path_weight_min": 0.0024726231566882364,
+            "in_task_path_weight_mode": "loss_softmax",
+            "in_task_path_weighted": 1.0,
+            "in_task_weight_checkpoint_interval": 1.0,
+            "in_task_weight_final_l2": 8.963436572700308,
+            "in_task_weight_merge_applied": 1.0,
+            "in_task_weight_merge_enabled": 1.0,
+            "in_task_weight_merge_first_epoch": 1.0,
+            "in_task_weight_merge_last_epoch": 2.0,
+            "in_task_weight_merge_numel": 368640.0,
+            "in_task_weight_merge_omega": 0.3,
+            "in_task_weight_merge_shift_l2": 0.004529334600985236,
+            "in_task_weight_merge_snapshots": 2.0,
+            "in_task_weight_merge_tensors": 48.0,
+            "in_task_weight_merged_l2": 8.963272698117523,
+            "in_task_weight_path_delta_l2": 0.0150977824522245,
+            "in_task_weight_path_l2": 8.962899240448511,
+            "in_task_weight_snapshot_tensors": 96.0,
+            "weight_checkpoint_interval": 1,
+            "weight_merge_applied": true,
+            "weight_merge_omega": 0.3,
+            "weight_merge_then_fisher": 1.0,
+            "weight_merge_then_fisher_fisher_snapshots_disabled": 1.0,
+            "weight_merge_then_fisher_fisher_source_post_merge": 1.0,
+            "weight_merge_then_fisher_path_weight_l2": 8.962899240448511,
+            "weight_merge_then_fisher_path_weight_numel": 368640.0,
+            "weight_merge_then_fisher_path_weight_tensors": 48.0,
+            "weight_merge_then_fisher_selected_weight_checkpoints": 2.0,
+            "weight_merge_then_fisher_weight_checkpoints": 2.0,
+            "weight_merge_theta_end_to_merge_l2": 0.004529334600985236,
+            "weight_merge_theta_end_to_path_l2": 0.0150977824522245,
+            "weight_merge_theta_path_to_merge_l2": 0.010568447716557149
+          },
+          "omega": 0.3,
+          "post_factor_sha256": "458970ff2627b64bcb68e44a96e7f2536765968b6a685803eb5b6df7693e9de2",
+          "pre_factor_sha256": "54585611e61274648d7d5458b3cda50182666c41a880f328c6db14d5161d59f2",
+          "step_counts": {
+            "ce_backward_count": 24,
+            "ewc_penalty_max": 1.9669766970764613e-06,
+            "updates": 24
+          },
+          "task": 1,
+          "weight_formula": "softmax(-beta*(CE-mean(CE))/(population_std(CE)+eps))",
+          "weights": [
+            0.0024726231566882364,
+            0.9975273768433118
+          ]
+        },
+        "merge_json_sha256": "7e67aa1ad0b844e01e15dc85724eb2b2ab93d199f7fbd126a2f045739bacdeaf",
+        "passed": true,
+        "pre_merge_endpoint_sha256": "3d051f8d07eec13fcda4edd468355be30ddf96235c91135cc354f3365fa59cce",
+        "snapshots": [
+          {
+            "epoch": 1,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/trajectory/task_01/epoch_01.pt",
+            "sha256": "749a3110e734d0b1d3187707115b8e0c2341385c08b92484be6d7518730a8ed0"
+          },
+          {
+            "epoch": 2,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/task0_shaping/seed0/trajectory/task_01/epoch_02.pt",
+            "sha256": "5e6c3669f27bae8e12752b676506cac3ece3abc07fd7bef4af496e6ea81e42ce"
+          }
+        ],
+        "task": 1
+      }
+    ]
+  },
+  "method": "task0_shaping",
+  "new_trace_task1": 4359.810604076689,
+  "old_local20_loss_increment": {
+    "old_test": -0.010852148118944527,
+    "old_train": -0.007824234228368199
+  },
+  "old_test_loss_delta": -0.010852148118944527,
+  "old_trace_task0": 3235.130715491539,
+  "old_trace_task1": 3152.011686410111,
+  "old_train_loss_delta": -0.007824234228368199,
+  "protocol": "imageneta_two_task_continuous_qv_trajectory_mix_v1",
+  "r_eff": 0.05327476993197145,
+  "seconds": 63.01849453599425,
+  "seed": 0,
+  "smoke": true,
+  "status": "complete",
+  "units": {
+    "accuracy": "percent",
+    "bwt": "percentage points",
+    "loss": "CE nats per sample",
+    "r_eff": "effective Q/V Frobenius L2 norm; excludes classifier"
+  },
+  "variant": "task0_shaping"
+}

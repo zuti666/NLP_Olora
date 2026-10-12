@@ -1,0 +1,89 @@
+{
+  "checked_utc": "2026-09-20T15:30:27.312227+00:00",
+  "checked_madrid": "2026-09-20T17:30:27.312227+02:00",
+  "queue_pid": 1341023,
+  "pipeline_status": "running",
+  "counts": {
+    "complete": 10,
+    "running": 2,
+    "queued": 3
+  },
+  "validated": [
+    "sanity_sgd",
+    "sanity_gam",
+    "training_sgd",
+    "training_gam",
+    "table_a_sgd",
+    "table_a_gam",
+    "trajectory_sgd",
+    "trajectory_gam",
+    "path_sgd",
+    "path_gam"
+  ],
+  "active_stages": [
+    "neighborhood"
+  ],
+  "last_progress_utc": "2026-09-20T15:28:52.199081+00:00",
+  "a_endpoints": {
+    "sgd": {
+      "a11": 85.66775244299674,
+      "a21": 84.36,
+      "a22": 74.8,
+      "mean_accuracy": 79.58,
+      "test_D0_local": -0.019245972975083903,
+      "effective_weight_drift": 0.3749495707076054,
+      "raw_trace_T0": 1465.4969269027679,
+      "raw_trace_T1": 2008.3878732628307,
+      "source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/table_a/summary.json"
+    },
+    "gam": {
+      "a11": 87.62214983713355,
+      "a21": 84.04,
+      "a22": 72.05,
+      "mean_accuracy": 78.045,
+      "test_D0_local": -0.013388091220670861,
+      "effective_weight_drift": 0.34987579697360244,
+      "raw_trace_T0": 761.9007743249618,
+      "raw_trace_T1": 940.4125323057578,
+      "source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/table_a/summary.json"
+    }
+  },
+  "neighborhood_progress": {
+    "sgd": {
+      "latest_state": "r20_u06",
+      "states_completed": 43,
+      "status": "running",
+      "updated_unix": 1789918226.6955633
+    },
+    "gam": {
+      "latest_state": "r2_u07",
+      "states_completed": 46,
+      "status": "running",
+      "updated_unix": 1789918225.927351
+    }
+  },
+  "formal_report_complete": false,
+  "prior_failure": "Runner.measure tensor and metadata argument name collision; fixed and verified beyond r0",
+  "new_training_rerun": false,
+  "path_results": {
+    "sgd": {
+      "S_path": 0.3680576024116533,
+      "integral": 0.5278710387009481,
+      "drift": 1.197584099887894,
+      "D_subset": 0.16382227891843115,
+      "selected_nodes": 9,
+      "quadrature_converged": true,
+      "bound_passed_with_2pct_numeric_tolerance": true
+    },
+    "gam": {
+      "S_path": 0.014793092786504949,
+      "integral": 0.02901404011946988,
+      "drift": 1.4004725891407084,
+      "D_subset": 0.03809727218539649,
+      "selected_nodes": 9,
+      "quadrature_converged": true,
+      "bound_passed_with_2pct_numeric_tolerance": true
+    }
+  },
+  "path_results_scope": "Historical full ten-task SGD→SGD vs GAM→GAM sequences; separate from new Task0→SGD A continuations."
+}

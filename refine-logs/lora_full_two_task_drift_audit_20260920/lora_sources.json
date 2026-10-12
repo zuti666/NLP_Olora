@@ -1,0 +1,2979 @@
+{
+  "source_repository": "/data/115-2/users/liying/low-rank-cl-new",
+  "tag": "s012_rho0p05_normrho0p5_lam1e7",
+  "paper": {
+    "path": "/data/140-1/users/liying/CopyFlatCV/newmethod_design_wiki/Making_EWC_Reliable__Stabilizing_Laplace_Posterior_Surrogates_for_Replay_Free_Continual_Learning (1)/sections/A_appendix.tex",
+    "sha256": "8e84bcce92ced9282838337630aeb5f000fb9f0e6a7fd41c6a28a86cd86e1cfc",
+    "bytes": 65133
+  },
+  "table_source_csv": {
+    "path": "/data/115-2/users/liying/low-rank-cl-new/result_summary/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/table_source.csv",
+    "sha256": "c0751e03a7adddbdf6705caf8c1715dca874f8a14ee755c10b85a5b551bf3037",
+    "bytes": 18896
+  },
+  "generation_script": {
+    "path": "/data/115-2/users/liying/low-rank-cl-new/scripts/run_verify_imagenet_r_1x1_table_metrics_s012.sh",
+    "sha256": "f28bfea0d58956b0ffcc3f430e13c7b6deaca3a7e237c22095aa60ecb93c5749",
+    "bytes": 29735
+  },
+  "runs": [
+    {
+      "id": "baseline_seed0",
+      "setting": "baseline",
+      "seed": 0,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/baseline_s012_rho0p05_normrho0p5_lam1e7_seed0.log",
+        "sha256": "18792df15e4234b03e85829092734151de6f26b3f4c90a678ebfe0a7b26e2953",
+        "bytes": 82097
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed0/baseline.json",
+        "sha256": "5e79c8df481e835193c4e9116717ce423356f347f21206edd1401893746b1a2c",
+        "bytes": 1719
+      },
+      "config_values": {
+        "seed": [
+          0
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora",
+        "optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gamma": 1.0,
+        "lambda": 0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/baseline",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 296,
+        "a21_a22": 547,
+        "F1": 295,
+        "T2_delta_norm": 546
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 90.57,
+          "parsed_json_pointer": "/runs/baseline_seed0/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 0
+        },
+        "a21": {
+          "raw_value": 83.96,
+          "parsed_json_pointer": "/runs/baseline_seed0/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 0
+        },
+        "a22": {
+          "raw_value": 89.4,
+          "parsed_json_pointer": "/runs/baseline_seed0/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 0
+        },
+        "F1": {
+          "raw_value": 23.72785186767578,
+          "parsed_json_pointer": "/runs/baseline_seed0/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 0
+        },
+        "T2": {
+          "raw_value": 22.818056106567383,
+          "parsed_json_pointer": "/runs/baseline_seed0/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 0
+        },
+        "delta_norm_squared": {
+          "raw_value": 2.542313447993365,
+          "parsed_json_pointer": "/runs/baseline_seed0/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 0
+        },
+        "F_accumulated_T2": {
+          "raw_value": 46.5459098815918,
+          "parsed_json_pointer": "/runs/baseline_seed0/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 0
+        }
+      },
+      "derived": {
+        "r_eff": 1.5944633730485518,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -6.609999999999999
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-30 09:02:48,437 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "baseline_seed1",
+      "setting": "baseline",
+      "seed": 1,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/baseline_s012_rho0p05_normrho0p5_lam1e7_seed1.log",
+        "sha256": "b7316fc4a6e7c683cb41c0f7674767303dda1c7538599b84692c02f73f5a0e8e",
+        "bytes": 82092
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed1/baseline.json",
+        "sha256": "702bcdc25b2a2adee7ed76de9006adcd2f4508216fcbc833e0f64dae063ddb82",
+        "bytes": 1719
+      },
+      "config_values": {
+        "seed": [
+          1
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora",
+        "optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gamma": 1.0,
+        "lambda": 0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/baseline",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 296,
+        "a21_a22": 547,
+        "F1": 295,
+        "T2_delta_norm": 546
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 90.57,
+          "parsed_json_pointer": "/runs/baseline_seed1/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 1
+        },
+        "a21": {
+          "raw_value": 84.91,
+          "parsed_json_pointer": "/runs/baseline_seed1/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 1
+        },
+        "a22": {
+          "raw_value": 89.82,
+          "parsed_json_pointer": "/runs/baseline_seed1/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 1
+        },
+        "F1": {
+          "raw_value": 18.949718475341797,
+          "parsed_json_pointer": "/runs/baseline_seed1/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 1
+        },
+        "T2": {
+          "raw_value": 24.10664939880371,
+          "parsed_json_pointer": "/runs/baseline_seed1/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 1
+        },
+        "delta_norm_squared": {
+          "raw_value": 2.4234900716019183,
+          "parsed_json_pointer": "/runs/baseline_seed1/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 1
+        },
+        "F_accumulated_T2": {
+          "raw_value": 43.05636978149414,
+          "parsed_json_pointer": "/runs/baseline_seed1/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 1
+        }
+      },
+      "derived": {
+        "r_eff": 1.5567562659587781,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -5.659999999999997
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-28 19:53:10,829 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "baseline_seed2",
+      "setting": "baseline",
+      "seed": 2,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/baseline_s012_rho0p05_normrho0p5_lam1e7_seed2.log",
+        "sha256": "69747c02ecc0f3812b08c799dc7ebe071b9d3bf78609e00db256e7e6fe7c4927",
+        "bytes": 82117
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed2/baseline.json",
+        "sha256": "de8417d1fc9d1e3c58879dceaa75835bb76ac7897e5aa709f5f3ada11ce16724",
+        "bytes": 1719
+      },
+      "config_values": {
+        "seed": [
+          2
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora",
+        "optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gamma": 1.0,
+        "lambda": 0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/baseline",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 296,
+        "a21_a22": 547,
+        "F1": 295,
+        "T2_delta_norm": 546
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 91.04,
+          "parsed_json_pointer": "/runs/baseline_seed2/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 2
+        },
+        "a21": {
+          "raw_value": 85.69,
+          "parsed_json_pointer": "/runs/baseline_seed2/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 2
+        },
+        "a22": {
+          "raw_value": 89.54,
+          "parsed_json_pointer": "/runs/baseline_seed2/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 2
+        },
+        "F1": {
+          "raw_value": 16.978116989135742,
+          "parsed_json_pointer": "/runs/baseline_seed2/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 2
+        },
+        "T2": {
+          "raw_value": 20.481191635131836,
+          "parsed_json_pointer": "/runs/baseline_seed2/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 2
+        },
+        "delta_norm_squared": {
+          "raw_value": 2.3398414964322,
+          "parsed_json_pointer": "/runs/baseline_seed2/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 2
+        },
+        "F_accumulated_T2": {
+          "raw_value": 37.45930862426758,
+          "parsed_json_pointer": "/runs/baseline_seed2/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 2
+        }
+      },
+      "derived": {
+        "r_eff": 1.5296540446886022,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -5.3500000000000085
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-29 03:43:38,112 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "control_seed0",
+      "setting": "control",
+      "seed": 0,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/control_s012_rho0p05_normrho0p5_lam1e7_seed0.log",
+        "sha256": "c85ea9c676f55cf42a48954faead9471d48386d2f205808884ecec84f36f53c2",
+        "bytes": 82205
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed0/control.json",
+        "sha256": "c3983befb420db2603d7afdbd67345e89c6754ea7e37364eb88f574564639ed8",
+        "bytes": 1727
+      },
+      "config_values": {
+        "seed": [
+          0
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora",
+        "optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/control",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 296,
+        "a21_a22": 547,
+        "F1": 295,
+        "T2_delta_norm": 546
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 90.57,
+          "parsed_json_pointer": "/runs/control_seed0/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 3
+        },
+        "a21": {
+          "raw_value": 88.21,
+          "parsed_json_pointer": "/runs/control_seed0/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 3
+        },
+        "a22": {
+          "raw_value": 81.87,
+          "parsed_json_pointer": "/runs/control_seed0/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 3
+        },
+        "F1": {
+          "raw_value": 23.72785186767578,
+          "parsed_json_pointer": "/runs/control_seed0/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 3
+        },
+        "T2": {
+          "raw_value": 26.255470275878906,
+          "parsed_json_pointer": "/runs/control_seed0/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 3
+        },
+        "delta_norm_squared": {
+          "raw_value": 8.798652552599595e-05,
+          "parsed_json_pointer": "/runs/control_seed0/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 3
+        },
+        "F_accumulated_T2": {
+          "raw_value": 49.983314514160156,
+          "parsed_json_pointer": "/runs/control_seed0/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 3
+        }
+      },
+      "derived": {
+        "r_eff": 0.009380113300275,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -2.3599999999999994
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-30 09:02:48,438 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "control_seed1",
+      "setting": "control",
+      "seed": 1,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/control_s012_rho0p05_normrho0p5_lam1e7_seed1.log",
+        "sha256": "ed5d15c6d461a63ddb868e42f9a8aeb15ebeb45ca03e1158fb62991a9c2ffee5",
+        "bytes": 82202
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed1/control.json",
+        "sha256": "8b52ba0bd27712f35530f073e73078bfb39b92e2e4d40c288703d3efd1351e10",
+        "bytes": 1727
+      },
+      "config_values": {
+        "seed": [
+          1
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora",
+        "optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/control",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 296,
+        "a21_a22": 547,
+        "F1": 295,
+        "T2_delta_norm": 546
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 90.57,
+          "parsed_json_pointer": "/runs/control_seed1/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 4
+        },
+        "a21": {
+          "raw_value": 87.89,
+          "parsed_json_pointer": "/runs/control_seed1/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 4
+        },
+        "a22": {
+          "raw_value": 83.68,
+          "parsed_json_pointer": "/runs/control_seed1/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 4
+        },
+        "F1": {
+          "raw_value": 18.949718475341797,
+          "parsed_json_pointer": "/runs/control_seed1/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 4
+        },
+        "T2": {
+          "raw_value": 23.766782760620117,
+          "parsed_json_pointer": "/runs/control_seed1/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 4
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.00012293996469409096,
+          "parsed_json_pointer": "/runs/control_seed1/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 4
+        },
+        "F_accumulated_T2": {
+          "raw_value": 42.71650314331055,
+          "parsed_json_pointer": "/runs/control_seed1/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 4
+        }
+      },
+      "derived": {
+        "r_eff": 0.011087829575444012,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -2.6799999999999926
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-28 19:53:11,082 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "control_seed2",
+      "setting": "control",
+      "seed": 2,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/control_s012_rho0p05_normrho0p5_lam1e7_seed2.log",
+        "sha256": "0f0b4732105dd8cc09c92145c4a50669ec8155efc2db2940757372d92901b048",
+        "bytes": 82207
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed2/control.json",
+        "sha256": "4893b7ba9d3b50f2e0e8faa86b58248902f8eddd0b386239bc3ddc25f10f3bc3",
+        "bytes": 1727
+      },
+      "config_values": {
+        "seed": [
+          2
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora",
+        "optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/control",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 296,
+        "a21_a22": 547,
+        "F1": 295,
+        "T2_delta_norm": 546
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 91.04,
+          "parsed_json_pointer": "/runs/control_seed2/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 5
+        },
+        "a21": {
+          "raw_value": 87.74,
+          "parsed_json_pointer": "/runs/control_seed2/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 5
+        },
+        "a22": {
+          "raw_value": 84.8,
+          "parsed_json_pointer": "/runs/control_seed2/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 5
+        },
+        "F1": {
+          "raw_value": 16.978116989135742,
+          "parsed_json_pointer": "/runs/control_seed2/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 5
+        },
+        "T2": {
+          "raw_value": 23.775604248046875,
+          "parsed_json_pointer": "/runs/control_seed2/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 5
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.00012579799674128367,
+          "parsed_json_pointer": "/runs/control_seed2/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 5
+        },
+        "F_accumulated_T2": {
+          "raw_value": 40.75372314453125,
+          "parsed_json_pointer": "/runs/control_seed2/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 5
+        }
+      },
+      "derived": {
+        "r_eff": 0.011215970610753386,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -3.3000000000000114
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-29 03:43:38,106 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "setting2_seed0",
+      "setting": "setting2",
+      "seed": 0,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/setting2_s012_rho0p05_normrho0p5_lam1e7_seed0.log",
+        "sha256": "64278a402929203fc18d0201f4568ad0517802ceb105a122624829ce635e4f06",
+        "bytes": 86091
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed0/setting2.json",
+        "sha256": "b58107e1e6fcb654588c53240e0b63e8b4916e503a162a6183f049919c181abf",
+        "bytes": 1992
+      },
+      "config_values": {
+        "seed": [
+          0
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": false,
+        "gam_task_b": true,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/setting2",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 307,
+        "a21_a22": 570,
+        "F1": 306,
+        "T2_delta_norm": 569
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 90.57,
+          "parsed_json_pointer": "/runs/setting2_seed0/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 6
+        },
+        "a21": {
+          "raw_value": 84.43,
+          "parsed_json_pointer": "/runs/setting2_seed0/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 6
+        },
+        "a22": {
+          "raw_value": 88.28,
+          "parsed_json_pointer": "/runs/setting2_seed0/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 6
+        },
+        "F1": {
+          "raw_value": 23.72785186767578,
+          "parsed_json_pointer": "/runs/setting2_seed0/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 6
+        },
+        "T2": {
+          "raw_value": 45.946189880371094,
+          "parsed_json_pointer": "/runs/setting2_seed0/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 6
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.012315527135342563,
+          "parsed_json_pointer": "/runs/setting2_seed0/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 6
+        },
+        "F_accumulated_T2": {
+          "raw_value": 69.67403411865234,
+          "parsed_json_pointer": "/runs/setting2_seed0/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 6
+        }
+      },
+      "derived": {
+        "r_eff": 0.1109753447182867,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -6.139999999999986
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-30 09:02:48,536 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "setting2_seed1",
+      "setting": "setting2",
+      "seed": 1,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/setting2_s012_rho0p05_normrho0p5_lam1e7_seed1.log",
+        "sha256": "471269e0f8a5b4f79d6a2c28a6647ea147dd3f223129016fc6a0767bef3ec718",
+        "bytes": 86076
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed1/setting2.json",
+        "sha256": "4e57a866c9b160d20c05e0b0cf380bdd8d1ffa3cb59964b0985a057cd4eb08c2",
+        "bytes": 1992
+      },
+      "config_values": {
+        "seed": [
+          1
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": false,
+        "gam_task_b": true,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/setting2",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 307,
+        "a21_a22": 570,
+        "F1": 306,
+        "T2_delta_norm": 569
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 90.57,
+          "parsed_json_pointer": "/runs/setting2_seed1/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 7
+        },
+        "a21": {
+          "raw_value": 82.7,
+          "parsed_json_pointer": "/runs/setting2_seed1/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 7
+        },
+        "a22": {
+          "raw_value": 89.82,
+          "parsed_json_pointer": "/runs/setting2_seed1/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 7
+        },
+        "F1": {
+          "raw_value": 18.949718475341797,
+          "parsed_json_pointer": "/runs/setting2_seed1/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 7
+        },
+        "T2": {
+          "raw_value": 38.07782745361328,
+          "parsed_json_pointer": "/runs/setting2_seed1/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 7
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.021535200366997742,
+          "parsed_json_pointer": "/runs/setting2_seed1/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 7
+        },
+        "F_accumulated_T2": {
+          "raw_value": 57.02754211425781,
+          "parsed_json_pointer": "/runs/setting2_seed1/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 7
+        }
+      },
+      "derived": {
+        "r_eff": 0.14674876615153445,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -7.86999999999999
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-28 19:53:11,714 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "setting2_seed2",
+      "setting": "setting2",
+      "seed": 2,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/setting2_s012_rho0p05_normrho0p5_lam1e7_seed2.log",
+        "sha256": "739b2eec1e409bb7815dbf5cdf1f7901362ca65cb42cfeba68bc6ff6491fb736",
+        "bytes": 86085
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed2/setting2.json",
+        "sha256": "3fbdef202041990f62ed1a09faa7890ede1089e62d65106d017249f51fd294c2",
+        "bytes": 1992
+      },
+      "config_values": {
+        "seed": [
+          2
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": false,
+        "gam_task_b": true,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/setting2",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 307,
+        "a21_a22": 570,
+        "F1": 306,
+        "T2_delta_norm": 569
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 91.04,
+          "parsed_json_pointer": "/runs/setting2_seed2/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 8
+        },
+        "a21": {
+          "raw_value": 82.08,
+          "parsed_json_pointer": "/runs/setting2_seed2/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 8
+        },
+        "a22": {
+          "raw_value": 89.54,
+          "parsed_json_pointer": "/runs/setting2_seed2/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 8
+        },
+        "F1": {
+          "raw_value": 16.978116989135742,
+          "parsed_json_pointer": "/runs/setting2_seed2/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 8
+        },
+        "T2": {
+          "raw_value": 39.92258834838867,
+          "parsed_json_pointer": "/runs/setting2_seed2/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 8
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.01653422650633729,
+          "parsed_json_pointer": "/runs/setting2_seed2/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 8
+        },
+        "F_accumulated_T2": {
+          "raw_value": 56.90071105957031,
+          "parsed_json_pointer": "/runs/setting2_seed2/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 8
+        }
+      },
+      "derived": {
+        "r_eff": 0.1285854832643922,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -8.960000000000008
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-29 03:43:38,342 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "setting1_seed0",
+      "setting": "setting1",
+      "seed": 0,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/setting1_s012_rho0p05_normrho0p5_lam1e7_seed0.log",
+        "sha256": "c80336444e0154abd8499d1ad5aace11b0e1df30f65a6bfbb2f27528b2acb5dd",
+        "bytes": 90423
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed0/setting1.json",
+        "sha256": "fac45c43510e882661a6dc86956af730ad485b7e2d9402328c6cf7d397081bd4",
+        "bytes": 1992
+      },
+      "config_values": {
+        "seed": [
+          0
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": true,
+        "gam_task_b": false,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/setting1",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 317,
+        "a21_a22": 570,
+        "F1": 316,
+        "T2_delta_norm": 569
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.24,
+          "parsed_json_pointer": "/runs/setting1_seed0/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 9
+        },
+        "a21": {
+          "raw_value": 91.51,
+          "parsed_json_pointer": "/runs/setting1_seed0/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 9
+        },
+        "a22": {
+          "raw_value": 82.71,
+          "parsed_json_pointer": "/runs/setting1_seed0/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 9
+        },
+        "F1": {
+          "raw_value": 11.745674133300781,
+          "parsed_json_pointer": "/runs/setting1_seed0/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 9
+        },
+        "T2": {
+          "raw_value": 18.877416610717773,
+          "parsed_json_pointer": "/runs/setting1_seed0/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 9
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.15770809254900087,
+          "parsed_json_pointer": "/runs/setting1_seed0/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 9
+        },
+        "F_accumulated_T2": {
+          "raw_value": 30.623092651367188,
+          "parsed_json_pointer": "/runs/setting1_seed0/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 9
+        }
+      },
+      "derived": {
+        "r_eff": 0.3971247820887043,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -1.7299999999999898
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-30 09:02:48,436 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "setting1_seed1",
+      "setting": "setting1",
+      "seed": 1,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/setting1_s012_rho0p05_normrho0p5_lam1e7_seed1.log",
+        "sha256": "e9211faf74b75a06a7e355f882eaf0865a5c1e1871ff1da1c6f3d840d9196bad",
+        "bytes": 90407
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed1/setting1.json",
+        "sha256": "dc9f2583d79d49f94af436af382f8770ee6a6abe8b2b92498d8718293a0943bd",
+        "bytes": 1992
+      },
+      "config_values": {
+        "seed": [
+          1
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": true,
+        "gam_task_b": false,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/setting1",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 317,
+        "a21_a22": 570,
+        "F1": 316,
+        "T2_delta_norm": 569
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.55,
+          "parsed_json_pointer": "/runs/setting1_seed1/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 10
+        },
+        "a21": {
+          "raw_value": 91.51,
+          "parsed_json_pointer": "/runs/setting1_seed1/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 10
+        },
+        "a22": {
+          "raw_value": 84.1,
+          "parsed_json_pointer": "/runs/setting1_seed1/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 10
+        },
+        "F1": {
+          "raw_value": 11.070438385009766,
+          "parsed_json_pointer": "/runs/setting1_seed1/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 10
+        },
+        "T2": {
+          "raw_value": 17.147064208984375,
+          "parsed_json_pointer": "/runs/setting1_seed1/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 10
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.13542062133637955,
+          "parsed_json_pointer": "/runs/setting1_seed1/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 10
+        },
+        "F_accumulated_T2": {
+          "raw_value": 28.217498779296875,
+          "parsed_json_pointer": "/runs/setting1_seed1/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 10
+        }
+      },
+      "derived": {
+        "r_eff": 0.36799540939579606,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -2.039999999999992
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-28 19:53:10,693 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "setting1_seed2",
+      "setting": "setting1",
+      "seed": 2,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/setting1_s012_rho0p05_normrho0p5_lam1e7_seed2.log",
+        "sha256": "c097f605c9e2e4b6c372ef595c988ddc71fecb50b9f66cec70e60d6b317ba7fb",
+        "bytes": 90412
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed2/setting1.json",
+        "sha256": "3a0c1136ffa8840f357afa121164c45fe430258b10a168eb8b87dcb3570cdb0b",
+        "bytes": 1992
+      },
+      "config_values": {
+        "seed": [
+          2
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": true,
+        "gam_task_b": false,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/setting1",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 317,
+        "a21_a22": 570,
+        "F1": 316,
+        "T2_delta_norm": 569
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.24,
+          "parsed_json_pointer": "/runs/setting1_seed2/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 11
+        },
+        "a21": {
+          "raw_value": 92.45,
+          "parsed_json_pointer": "/runs/setting1_seed2/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 11
+        },
+        "a22": {
+          "raw_value": 80.89,
+          "parsed_json_pointer": "/runs/setting1_seed2/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 11
+        },
+        "F1": {
+          "raw_value": 10.021238327026367,
+          "parsed_json_pointer": "/runs/setting1_seed2/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 11
+        },
+        "T2": {
+          "raw_value": 20.176301956176758,
+          "parsed_json_pointer": "/runs/setting1_seed2/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 11
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.16895153926452622,
+          "parsed_json_pointer": "/runs/setting1_seed2/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 11
+        },
+        "F_accumulated_T2": {
+          "raw_value": 30.197540283203125,
+          "parsed_json_pointer": "/runs/setting1_seed2/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 11
+        }
+      },
+      "derived": {
+        "r_eff": 0.4110371507108892,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -0.789999999999992
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-29 03:43:38,114 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "full_seed0",
+      "setting": "full",
+      "seed": 0,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/full_s012_rho0p05_normrho0p5_lam1e7_seed0.log",
+        "sha256": "1fe8b6af8b81f8a5806e7b6e02801e44eda7cc3403d4804489d8103adc35af35",
+        "bytes": 92407
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed0/full.json",
+        "sha256": "bd7cf14e86b900aad6d10a36ea5083aac1dbad3f84ac2e2e668d107c5f582ecd",
+        "bytes": 1940
+      },
+      "config_values": {
+        "seed": [
+          0
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_projected",
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/full",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 314,
+        "a21_a22": 576,
+        "F1": 313,
+        "T2_delta_norm": 575
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.24,
+          "parsed_json_pointer": "/runs/full_seed0/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 12
+        },
+        "a21": {
+          "raw_value": 89.47,
+          "parsed_json_pointer": "/runs/full_seed0/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 12
+        },
+        "a22": {
+          "raw_value": 87.45,
+          "parsed_json_pointer": "/runs/full_seed0/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 12
+        },
+        "F1": {
+          "raw_value": 11.745674133300781,
+          "parsed_json_pointer": "/runs/full_seed0/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 12
+        },
+        "T2": {
+          "raw_value": 18.624237060546875,
+          "parsed_json_pointer": "/runs/full_seed0/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 12
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.0004004804108888038,
+          "parsed_json_pointer": "/runs/full_seed0/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 12
+        },
+        "F_accumulated_T2": {
+          "raw_value": 30.369911193847656,
+          "parsed_json_pointer": "/runs/full_seed0/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 12
+        }
+      },
+      "derived": {
+        "r_eff": 0.020012006668218053,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -3.769999999999996
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-30 12:21:12,601 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "full_seed1",
+      "setting": "full",
+      "seed": 1,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/full_s012_rho0p05_normrho0p5_lam1e7_seed1.log",
+        "sha256": "1e7b05dcbe4c739791bddce6e8605a9d340723d5b3520d782de50474af5f3c8c",
+        "bytes": 92392
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed1/full.json",
+        "sha256": "c22e7aa1cde00c27e7d54c40220a03946d8e0d04c5300505159e594e73249a0a",
+        "bytes": 1940
+      },
+      "config_values": {
+        "seed": [
+          1
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_projected",
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/full",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 314,
+        "a21_a22": 576,
+        "F1": 313,
+        "T2_delta_norm": 575
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.55,
+          "parsed_json_pointer": "/runs/full_seed1/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 13
+        },
+        "a21": {
+          "raw_value": 88.84,
+          "parsed_json_pointer": "/runs/full_seed1/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 13
+        },
+        "a22": {
+          "raw_value": 89.12,
+          "parsed_json_pointer": "/runs/full_seed1/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 13
+        },
+        "F1": {
+          "raw_value": 11.070438385009766,
+          "parsed_json_pointer": "/runs/full_seed1/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 13
+        },
+        "T2": {
+          "raw_value": 17.60175323486328,
+          "parsed_json_pointer": "/runs/full_seed1/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 13
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.00045227498951305733,
+          "parsed_json_pointer": "/runs/full_seed1/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 13
+        },
+        "F_accumulated_T2": {
+          "raw_value": 28.672189712524414,
+          "parsed_json_pointer": "/runs/full_seed1/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 13
+        }
+      },
+      "derived": {
+        "r_eff": 0.021266757851469916,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -4.709999999999994
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-28 23:11:42,957 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "full_seed2",
+      "setting": "full",
+      "seed": 2,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/full_s012_rho0p05_normrho0p5_lam1e7_seed2.log",
+        "sha256": "01eebb234b9c4780dad170747f70eedc7c8aed06a87cb8a028e8a0d19e99a995",
+        "bytes": 92408
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed2/full.json",
+        "sha256": "bb2d7b6b7cfbf81cd884e367778c7e333549d2c1625661a2473334da13343e21",
+        "bytes": 1940
+      },
+      "config_values": {
+        "seed": [
+          2
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_projected",
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 10000000.0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/full",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 314,
+        "a21_a22": 576,
+        "F1": 313,
+        "T2_delta_norm": 575
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.24,
+          "parsed_json_pointer": "/runs/full_seed2/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 14
+        },
+        "a21": {
+          "raw_value": 88.99,
+          "parsed_json_pointer": "/runs/full_seed2/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 14
+        },
+        "a22": {
+          "raw_value": 88.42,
+          "parsed_json_pointer": "/runs/full_seed2/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 14
+        },
+        "F1": {
+          "raw_value": 10.021238327026367,
+          "parsed_json_pointer": "/runs/full_seed2/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 14
+        },
+        "T2": {
+          "raw_value": 17.56772232055664,
+          "parsed_json_pointer": "/runs/full_seed2/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 14
+        },
+        "delta_norm_squared": {
+          "raw_value": 0.00039252001640477374,
+          "parsed_json_pointer": "/runs/full_seed2/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 14
+        },
+        "F_accumulated_T2": {
+          "raw_value": 27.588960647583008,
+          "parsed_json_pointer": "/runs/full_seed2/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 14
+        }
+      },
+      "derived": {
+        "r_eff": 0.019812117918202834,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -4.25
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-29 07:00:59,733 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "gam_only_seed0",
+      "setting": "gam_only",
+      "seed": 0,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/gam_only_s012_rho0p05_normrho0p5_lam1e7_seed0.log",
+        "sha256": "2c9b1b5c5deb1ae845ed22a5048441a09046522dd7a217bd31eddf9ba28461c8",
+        "bytes": 83191
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed0/gam_only.json",
+        "sha256": "83e1a6996cef2ed7f37a351ab9cf9f10e9d83f52d185ede872e93686fa388fe6",
+        "bytes": 2032
+      },
+      "config_values": {
+        "seed": [
+          0
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": true,
+        "gam_task_b": true,
+        "use_ewc": false,
+        "compute_fisher": true,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/gam_only",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 319,
+        "a21_a22": 582,
+        "F1": 318,
+        "T2_delta_norm": 581
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.24,
+          "parsed_json_pointer": "/runs/gam_only_seed0/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 15
+        },
+        "a21": {
+          "raw_value": 84.43,
+          "parsed_json_pointer": "/runs/gam_only_seed0/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 15
+        },
+        "a22": {
+          "raw_value": 94.14,
+          "parsed_json_pointer": "/runs/gam_only_seed0/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 15
+        },
+        "F1": {
+          "raw_value": 11.745674133300781,
+          "parsed_json_pointer": "/runs/gam_only_seed0/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 15
+        },
+        "T2": {
+          "raw_value": 10.707954406738281,
+          "parsed_json_pointer": "/runs/gam_only_seed0/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 15
+        },
+        "delta_norm_squared": {
+          "raw_value": 9.771224292326224,
+          "parsed_json_pointer": "/runs/gam_only_seed0/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 15
+        },
+        "F_accumulated_T2": {
+          "raw_value": 22.453628540039062,
+          "parsed_json_pointer": "/runs/gam_only_seed0/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 15
+        }
+      },
+      "derived": {
+        "r_eff": 3.1258957583909006,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -8.809999999999988
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-30 12:21:12,608 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "gam_only_seed1",
+      "setting": "gam_only",
+      "seed": 1,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/gam_only_s012_rho0p05_normrho0p5_lam1e7_seed1.log",
+        "sha256": "22a8ca911f555ff446a71b3cfb769aa59b58cc71135372920e438f3d2f955daa",
+        "bytes": 83172
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed1/gam_only.json",
+        "sha256": "620a66e3194323d4d9083424a3cc9c3b08de997774e5f3688de53456721d3047",
+        "bytes": 2032
+      },
+      "config_values": {
+        "seed": [
+          1
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": true,
+        "gam_task_b": true,
+        "use_ewc": false,
+        "compute_fisher": true,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/gam_only",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 319,
+        "a21_a22": 582,
+        "F1": 318,
+        "T2_delta_norm": 581
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.55,
+          "parsed_json_pointer": "/runs/gam_only_seed1/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 16
+        },
+        "a21": {
+          "raw_value": 84.43,
+          "parsed_json_pointer": "/runs/gam_only_seed1/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 16
+        },
+        "a22": {
+          "raw_value": 93.44,
+          "parsed_json_pointer": "/runs/gam_only_seed1/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 16
+        },
+        "F1": {
+          "raw_value": 11.070438385009766,
+          "parsed_json_pointer": "/runs/gam_only_seed1/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 16
+        },
+        "T2": {
+          "raw_value": 10.403759002685547,
+          "parsed_json_pointer": "/runs/gam_only_seed1/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 16
+        },
+        "delta_norm_squared": {
+          "raw_value": 9.879267350392183,
+          "parsed_json_pointer": "/runs/gam_only_seed1/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 16
+        },
+        "F_accumulated_T2": {
+          "raw_value": 21.47419548034668,
+          "parsed_json_pointer": "/runs/gam_only_seed1/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 16
+        }
+      },
+      "derived": {
+        "r_eff": 3.143130183494184,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -9.11999999999999
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-28 23:11:42,997 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    },
+    {
+      "id": "gam_only_seed2",
+      "setting": "gam_only",
+      "seed": 2,
+      "log": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/logs/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/shell/gam_only_s012_rho0p05_normrho0p5_lam1e7_seed2.log",
+        "sha256": "4798bcfb8505cc3c43c49fe2030f75fc074e6e3cb20a5e49f27bea3937cbdeb0",
+        "bytes": 83180
+      },
+      "config": {
+        "path": "/data/115-2/users/liying/low-rank-cl-new/configs_sweeps/verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/seed2/gam_only.json",
+        "sha256": "71f0efbef39efc4191ad6d2a97ca4c9dfb609a49b7dd11cd2ad3343891fb4641",
+        "bytes": 2032
+      },
+      "config_values": {
+        "seed": [
+          2
+        ],
+        "dataset": "imagenet-r",
+        "data_path": "/data/115-2/users/liying/datasets/imagenet-r",
+        "load": "vit_base_patch16_224_in21k",
+        "init_cls": 20,
+        "increment": 20,
+        "sessions": 10,
+        "shuffle": false,
+        "stop_task": 2,
+        "method": "ewclora_gam_factored",
+        "gam_task_a": true,
+        "gam_task_b": true,
+        "use_ewc": false,
+        "compute_fisher": true,
+        "optimizer": "adam",
+        "gam_base_optimizer": "adam",
+        "scheduler": "cosine",
+        "epochs": 50,
+        "lrate": 0.0005,
+        "fc_lrate": 0.0005,
+        "weight_decay": 0.005,
+        "batch_size": 128,
+        "rank": 10,
+        "num_workers": 16,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.5,
+        "gam_grad_beta_1": 1.0,
+        "gam_grad_beta_2": 1.0,
+        "gam_grad_beta_3": 1.0,
+        "gam_grad_gamma": 0.03,
+        "gamma": 1.0,
+        "lambda": 0,
+        "exp_name": "verify_imagenet_r_1x1_table_metrics/s012_rho0p05_normrho0p5_lam1e7/gam_only",
+        "mechanism_eval": true,
+        "anchor_eval": true,
+        "anchor_eval_task": 0,
+        "endpoint_eval": true,
+        "endpoint_eval_tasks": [
+          0,
+          1
+        ],
+        "flat_eval_sharpness": true,
+        "flat_eval_param_scope": "delta_w",
+        "flat_eval_sharpness_radius": 0.05,
+        "flat_eval_loss_max_batches": 30,
+        "flat_eval_first_order_grad_batches": 30,
+        "flat_eval_hessian": true,
+        "flat_eval_emp_fisher_spectrum": true,
+        "flat_eval_hessian_batch_size": 32,
+        "flat_eval_emp_fisher_batch_size": 32,
+        "flat_eval_hessian_max_batches": 10,
+        "flat_eval_hessian_power_iters": 10,
+        "flat_eval_hessian_trace_samples": 10,
+        "flat_eval_expected_sharpness": false,
+        "flat_eval_esh_samples": 0,
+        "flat_eval_fisher_quadratic_error": false,
+        "flat_eval_fqa_radii": [
+          0.0,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "flat_eval_fqa_samples": 10,
+        "flat_eval_fqa_tasks": [
+          0
+        ],
+        "flat_eval_fqa_prefixes": [
+          "endpoint"
+        ],
+        "fisher_topk_fractions": [
+          0.001,
+          0.01,
+          0.05
+        ]
+      },
+      "raw_log_line_references": {
+        "a11": 319,
+        "a21_a22": 582,
+        "F1": 318,
+        "T2_delta_norm": 581
+      },
+      "fields": {
+        "a11": {
+          "raw_value": 93.24,
+          "parsed_json_pointer": "/runs/gam_only_seed2/accuracy/0/value/00-19",
+          "csv_column": "R1_A_after_T1",
+          "csv_data_row_zero_based": 17
+        },
+        "a21": {
+          "raw_value": 85.53,
+          "parsed_json_pointer": "/runs/gam_only_seed2/accuracy/1/value/00-19",
+          "csv_column": "R2_A_after_T2",
+          "csv_data_row_zero_based": 17
+        },
+        "a22": {
+          "raw_value": 93.86,
+          "parsed_json_pointer": "/runs/gam_only_seed2/accuracy/1/value/20-39",
+          "csv_column": "R2_B_after_T2",
+          "csv_data_row_zero_based": 17
+        },
+        "F1": {
+          "raw_value": 10.021238327026367,
+          "parsed_json_pointer": "/runs/gam_only_seed2/mechanism/0/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T1_fisher_total_mass",
+          "csv_data_row_zero_based": 17
+        },
+        "T2": {
+          "raw_value": 10.300440788269043,
+          "parsed_json_pointer": "/runs/gam_only_seed2/mechanism/1/value/endpoint_fisher_total_mass",
+          "csv_column": "after_T2_fisher_total_mass",
+          "csv_data_row_zero_based": 17
+        },
+        "delta_norm_squared": {
+          "raw_value": 9.758017819935048,
+          "parsed_json_pointer": "/runs/gam_only_seed2/mechanism/1/value/delta_norm",
+          "csv_column": "theta2_minus_theta1_norm_sq",
+          "csv_data_row_zero_based": 17
+        },
+        "F_accumulated_T2": {
+          "raw_value": 20.321680068969727,
+          "parsed_json_pointer": "/runs/gam_only_seed2/mechanism/1/value/accumulated_fisher_total_mass",
+          "csv_column": "accumulated_fisher_total_mass",
+          "csv_data_row_zero_based": 17
+        }
+      },
+      "derived": {
+        "r_eff": 3.1237826140650453,
+        "formula": "sqrt(mechanism[1].delta_norm)",
+        "BWT": -7.709999999999994
+      },
+      "checkpoint_save_flag": [
+        {
+          "line": 4,
+          "text": "2026-05-29 07:00:59,608 [toolkit.py] => save_ckp: False"
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "setting": "baseline",
+      "variant": "Vanilla LoRA",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "mean": {
+        "a11": 90.72666666666666,
+        "F1": 19.885229110717773,
+        "a21": 84.85333333333332,
+        "a22": 89.58666666666667,
+        "BWT": -5.873333333333335,
+        "T2": 22.468632380167644,
+        "r_eff": 1.560291227898644
+      },
+      "sample_std_ddof1": {
+        "a11": 0.27135462651913167,
+        "F1": 3.470751409179452,
+        "a21": 0.8663909817936338,
+        "a22": 0.21385353243126565,
+        "BWT": 0.656531288921807,
+        "T2": 1.8378135662984094,
+        "r_eff": 0.032548951251218004
+      },
+      "reported": {
+        "a11": 90.73,
+        "F1": 19.885,
+        "a21": 84.85,
+        "a22": 89.59,
+        "BWT": -5.87,
+        "T2": 22.469,
+        "r_eff": 1.56
+      },
+      "rounding_matches_all_fields": true,
+      "energy_mean": 2.4352150053424944,
+      "sqrt_mean_energy": 1.5605175440675105,
+      "accumulated_F_T2_mean": 42.35386276245117
+    },
+    {
+      "setting": "gam_only",
+      "variant": "Shaping-only LoRA",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "mean": {
+        "a11": 93.34333333333333,
+        "F1": 10.945783615112305,
+        "a21": 84.79666666666667,
+        "a22": 93.81333333333333,
+        "BWT": -8.546666666666658,
+        "T2": 10.470718065897623,
+        "r_eff": 3.13093618531671
+      },
+      "sample_std_ddof1": {
+        "a11": 0.1789785834487853,
+        "F1": 0.8689498381575106,
+        "a21": 0.6350852961085851,
+        "a22": 0.3523256069793031,
+        "BWT": 0.7409678355592298,
+        "T2": 0.21184776236522337,
+        "r_eff": 0.01061303624791954
+      },
+      "reported": {
+        "a11": 93.34,
+        "F1": 10.946,
+        "a21": 84.8,
+        "a22": 93.81,
+        "BWT": -8.55,
+        "T2": 10.471,
+        "r_eff": 3.131
+      },
+      "rounding_matches_all_fields": true,
+      "energy_mean": 9.802836487551152,
+      "sqrt_mean_energy": 3.130948177078495,
+      "accumulated_F_T2_mean": 21.41650136311849
+    },
+    {
+      "setting": "control",
+      "variant": "EWCLoRA",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "mean": {
+        "a11": 90.72666666666666,
+        "F1": 19.885229110717773,
+        "a21": 87.94666666666666,
+        "a22": 83.45,
+        "BWT": -2.780000000000001,
+        "T2": 24.5992857615153,
+        "r_eff": 0.0105613044954908
+      },
+      "sample_std_ddof1": {
+        "a11": 0.27135462651913167,
+        "F1": 3.470751409179452,
+        "a21": 0.2400694344004099,
+        "a22": 1.4784789481084912,
+        "BWT": 0.47791212581394804,
+        "T2": 1.4343046447228243,
+        "r_eff": 0.001024946101497067
+      },
+      "reported": {
+        "a11": 90.73,
+        "F1": 19.885,
+        "a21": 87.95,
+        "a22": 83.45,
+        "BWT": -2.78,
+        "T2": 24.599,
+        "r_eff": 0.0106
+      },
+      "rounding_matches_all_fields": true,
+      "energy_mean": 0.0001122414956537902,
+      "sqrt_mean_energy": 0.010594408697694752,
+      "accumulated_F_T2_mean": 44.48451360066732
+    },
+    {
+      "setting": "full",
+      "variant": "Shaping + EWCLoRA",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "mean": {
+        "a11": 93.34333333333333,
+        "F1": 10.945783615112305,
+        "a21": 89.1,
+        "a22": 88.33,
+        "BWT": -4.24333333333333,
+        "T2": 17.931237538655598,
+        "r_eff": 0.020363627479296934
+      },
+      "sample_std_ddof1": {
+        "a11": 0.1789785834487853,
+        "F1": 0.8689498381575106,
+        "a21": 0.32908965343808555,
+        "a22": 0.8386298349093009,
+        "BWT": 0.4700354596552608,
+        "T2": 0.6003963514115399,
+        "r_eff": 0.0007884936461073376
+      },
+      "reported": {
+        "a11": 93.34,
+        "F1": 10.946,
+        "a21": 89.1,
+        "a22": 88.33,
+        "BWT": -4.24,
+        "T2": 17.931,
+        "r_eff": 0.0204
+      },
+      "rounding_matches_all_fields": true,
+      "energy_mean": 0.00041509180560221165,
+      "sqrt_mean_energy": 0.02037380194274529,
+      "accumulated_F_T2_mean": 28.877020517985027
+    },
+    {
+      "setting": "setting1",
+      "variant": "EWCLoRA + Task-1 shaping",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "mean": {
+        "a11": 93.34333333333333,
+        "F1": 10.945783615112305,
+        "a21": 91.82333333333334,
+        "a22": 82.56666666666666,
+        "BWT": -1.5199999999999914,
+        "T2": 18.7335942586263,
+        "r_eff": 0.3920524473984632
+      },
+      "sample_std_ddof1": {
+        "a11": 0.1789785834487853,
+        "F1": 0.8689498381575106,
+        "a21": 0.5427092530382469,
+        "a22": 1.6097929473486094,
+        "BWT": 0.6509224224129935,
+        "T2": 1.519731549970138,
+        "r_eff": 0.02196461491276859
+      },
+      "reported": {
+        "a11": 93.34,
+        "F1": 10.946,
+        "a21": 91.82,
+        "a22": 82.57,
+        "BWT": -1.52,
+        "T2": 18.734,
+        "r_eff": 0.392
+      },
+      "rounding_matches_all_fields": true,
+      "energy_mean": 0.15402675104996888,
+      "sqrt_mean_energy": 0.39246241992064523,
+      "accumulated_F_T2_mean": 29.67937723795573
+    },
+    {
+      "setting": "setting2",
+      "variant": "EWCLoRA + Task-2 shaping",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "mean": {
+        "a11": 90.72666666666666,
+        "F1": 19.885229110717773,
+        "a21": 83.07000000000001,
+        "a22": 89.21333333333334,
+        "BWT": -7.656666666666662,
+        "T2": 41.31553522745768,
+        "r_eff": 0.12876986471140445
+      },
+      "sample_std_ddof1": {
+        "a11": 0.27135462651913167,
+        "F1": 3.470751409179452,
+        "a21": 1.217908042505677,
+        "a22": 0.8203251387915222,
+        "BWT": 1.4220525072350045,
+        "T2": 4.11497358140178,
+        "r_eff": 0.017887423449135686
+      },
+      "reported": {
+        "a11": 90.73,
+        "F1": 19.885,
+        "a21": 83.07,
+        "a22": 89.21,
+        "BWT": -7.66,
+        "T2": 41.316,
+        "r_eff": 0.129
+      },
+      "rounding_matches_all_fields": true,
+      "energy_mean": 0.0167949846695592,
+      "sqrt_mean_energy": 0.12959546546681022,
+      "accumulated_F_T2_mean": 61.20076243082682
+    }
+  ],
+  "parsed_log_records": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/lora_full_two_task_drift_audit_20260920/lora_raw_log_records.json",
+    "sha256": "d026da584fa455d8730241b21cde6361f536072a76d6297e9f151cbb202e4150",
+    "bytes": 153676
+  },
+  "validation": {
+    "runs_checked": 18,
+    "every_selected_csv_value_matches_original_log": true,
+    "all_42_paper_values_match_seed_means_after_rounding": true,
+    "r_aggregation": "mean over seeds of sqrt(delta_norm), not sqrt of mean delta_norm",
+    "checkpoint_files_matching_experiment_tag": [],
+    "limitations": [
+      "save_ckp=False in all original runs; no matching checkpoint files were found, so this is independent log/CSV recomputation, not tensor-level recomputation.",
+      "Current source files may have evolved after the May 2026 runs; logs provide runtime config but not a historical source commit hash."
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "version": 2,
+  "native_SAM_parameter_and_rng_exact_match": true,
+  "self_probe_exact": true,
+  "self_gradient_check": {
+    "passed": true,
+    "finite": true,
+    "tensor_count": 6,
+    "max_abs_error": 0.0,
+    "per_tensor_allclose_rtol": 1e-05,
+    "per_tensor_allclose_atol": 1e-07
+  },
+  "base_SGD_prediction_max_abs": 0.0,
+  "injected_cross_algorithm_comparison": {
+    "sam_g1_vs_isolated_gam_g1_relative_error": 0.009900977909472928,
+    "sam_g1_vs_isolated_gam_g1_max_abs_error": 0.0026758015155792236,
+    "sam_g1_vs_isolated_gam_g1_cosine": 1.0,
+    "used_as_correctness_gate": false,
+    "note": "Separate finite-precision algorithms: equivalence is measured, not assumed bitwise."
+  },
+  "cross_difference_does_not_change_training_update": true,
+  "negative_checks": [
+    {
+      "case": "incorrect_rho_probe",
+      "rejected": true,
+      "reason": "Native SAM first_step disagrees with its own rho-normalized probe specification"
+    },
+    {
+      "case": "incorrect_self_gradient",
+      "rejected": true,
+      "reason": "Actual SAM backward disagrees with independent CE gradient at the same probe"
+    },
+    {
+      "case": "nonfinite_gradient",
+      "rejected": true,
+      "reason": "Nonfinite inner product; refusing to mask it in a norm"
+    }
+  ],
+  "norm_reduction_examples": [
+    {
+      "seed": 0,
+      "sam_norm": 215984.5625,
+      "gam_norm": 215984.578125,
+      "relative_difference": 7.234313414983262e-08
+    },
+    {
+      "seed": 1,
+      "sam_norm": 216462.734375,
+      "gam_norm": 216462.75,
+      "relative_difference": 7.218332598313282e-08
+    },
+    {
+      "seed": 3,
+      "sam_norm": 214844.34375,
+      "gam_norm": 214844.359375,
+      "relative_difference": 7.272706881167323e-08
+    },
+    {
+      "seed": 6,
+      "sam_norm": 216520.578125,
+      "gam_norm": 216520.5625,
+      "relative_difference": 7.216404185328429e-08
+    },
+    {
+      "seed": 7,
+      "sam_norm": 216294.390625,
+      "gam_norm": 216294.375,
+      "relative_difference": 7.223950859724937e-08
+    },
+    {
+      "seed": 8,
+      "sam_norm": 215591.84375,
+      "gam_norm": 215591.859375,
+      "relative_difference": 7.247491140560669e-08
+    },
+    {
+      "seed": 9,
+      "sam_norm": 215401.671875,
+      "gam_norm": 215401.6875,
+      "relative_difference": 7.253889577896189e-08
+    },
+    {
+      "seed": 13,
+      "sam_norm": 215960.546875,
+      "gam_norm": 215960.5625,
+      "relative_difference": 7.235117749360143e-08
+    },
+    {
+      "seed": 15,
+      "sam_norm": 215681.46875,
+      "gam_norm": 215681.484375,
+      "relative_difference": 7.244479860446518e-08
+    },
+    {
+      "seed": 16,
+      "sam_norm": 216752.859375,
+      "gam_norm": 216752.875,
+      "relative_difference": 7.208670638192416e-08
+    },
+    {
+      "seed": 18,
+      "sam_norm": 216671.84375,
+      "gam_norm": 216671.828125,
+      "relative_difference": 7.21136643733189e-08
+    },
+    {
+      "seed": 19,
+      "sam_norm": 216233.625,
+      "gam_norm": 216233.640625,
+      "relative_difference": 7.225980880321003e-08
+    }
+  ],
+  "limitations": "Synthetic CPU checks show semantic separation and plausible finite-precision norm differences; they do not quantitatively reproduce the observed ViT GPU epoch13 difference."
+}

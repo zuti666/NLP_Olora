@@ -1,0 +1,1 @@
+Figure review passed with no blocking findings. The optional caption suggestion has been implemented: each SeqLoRA-only LaTeX figure now has a complete caption naming Llama-3.2-1B or Llama-3.2-3B explicitly, its sample count, seed, and batch protocol. No data or rendered figure changed after review.

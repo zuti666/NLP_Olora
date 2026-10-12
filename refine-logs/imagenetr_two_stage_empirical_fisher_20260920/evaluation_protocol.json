@@ -1,0 +1,237 @@
+{
+  "schema": "imagenetr-two-stage-evaluation-plan-v1",
+  "generated_utc": "2026-09-20T16:33:09.671805+00:00",
+  "status": "planned_not_executed",
+  "dispatch_enabled": false,
+  "training_enabled": false,
+  "dataset": "imagenetr",
+  "task_ids_zero_based": [
+    0,
+    1
+  ],
+  "class_shuffle": false,
+  "init_cls": 20,
+  "increment": 20,
+  "method_identity": "Ratio-FS cohort; not a substitute for GAM",
+  "strict_gam_pair_status": "candidate GAM sidecars found; matched EWC and historical frozen base not yet verified",
+  "cohort": "ratiofs_l12c20_full_twostage_s345_v1",
+  "seeds": [
+    3,
+    4,
+    5
+  ],
+  "primary_settings": [
+    "control",
+    "fs_ewc"
+  ],
+  "supporting_settings": [
+    "factored_s1"
+  ],
+  "eval_mode": "deterministic_fp32",
+  "reduction_dtype": "float64",
+  "fisher": {
+    "estimator": "per_example_empirical",
+    "normalization": "none",
+    "damping": 0,
+    "parameter_scope": "effective_QV_weights_24_blocks_exclude_head",
+    "old_data_source": "task0_train",
+    "new_data_source": "task1_train",
+    "samples_per_task": 256,
+    "subset_rule": "shared_class_proportional_stratified",
+    "subset_manifest_status": "not_created",
+    "loss_scopes": {
+      "old": "task0_local20_CE",
+      "new": "task1_local20_CE"
+    },
+    "measurements": [
+      "old_at_task0",
+      "old_at_task1",
+      "new_at_task1"
+    ],
+    "primary_measurement_sets": 18
+  },
+  "drift": {
+    "coordinate": "effective_QV",
+    "formula": "sqrt(sum_blocks ||scale*(B1@A1-B0@A0)||_F^2)",
+    "exclude_classifier": true,
+    "require_frozen_base_check": true
+  },
+  "loss": {
+    "full_splits": [
+      "train",
+      "test"
+    ],
+    "primary_damage": "task0_local20_endpoint_minus_anchor",
+    "also_report": "endpoint_seen40_CE_and_CIL_accuracy"
+  },
+  "restore": {
+    "task0": "complete_checkpoint",
+    "task1": "own_task0_frozen_base_plus_task1_AB_FC_sidecars",
+    "restore_sanity_status": "pending"
+  },
+  "gpu_assignment": null,
+  "jobs": [
+    {
+      "setting": "control",
+      "seed": 3,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_native_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_ratiofs_stage1_native_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_control_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_control_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/20/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s3_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 7425,
+        "sha256": "112fe7fb04a8bb3dbdccb6dbeceb956cbed21293a15013f2e8a477a58b93c263"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/control_seed3.log",
+        "exists": true,
+        "bytes": 69172,
+        "sha256": "9e7407f9dfaabf0b61291a6c6343a4f71fc91124b252d3a5ee69e6c77095bba3"
+      }
+    },
+    {
+      "setting": "control",
+      "seed": 4,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_native_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_ratiofs_stage1_native_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_control_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_control_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/20/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s4_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 7396,
+        "sha256": "9b3e93540230358f9909c4f11a3e556789577732473968f977ef95b91f185a0a"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/control_seed4.log",
+        "exists": true,
+        "bytes": 69197,
+        "sha256": "c195b869e697707e15b9c980834b19b027be5208b4b8c8dff710254075be5b48"
+      }
+    },
+    {
+      "setting": "control",
+      "seed": 5,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_native_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_ratiofs_stage1_native_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_control_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_control_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/20/lora_1x1_control_ratiofs_l12c20_full_twostage_s345_v1_s5_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 7429,
+        "sha256": "9317497081bb2a4abcb7c702d770c6a9253beb9f2cb299566452e5ec52fee319"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/control_seed5.log",
+        "exists": true,
+        "bytes": 69202,
+        "sha256": "d58acf46911faab196a46111fab16e4bcefe95fe07284098f467bbb96c0ae2e6"
+      }
+    },
+    {
+      "setting": "fs_ewc",
+      "seed": 3,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/20/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s3_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 12219,
+        "sha256": "abd7b0dc962971f3d7c1530c4d4e2a166e7c18b1d9e55860576e428c33e661e1"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/fs_ewc_seed3.log",
+        "exists": true,
+        "bytes": 71976,
+        "sha256": "a39efa1c91cbca6a89292943feefdf7ac200381d0f46fd605ba07376a051da4b"
+      }
+    },
+    {
+      "setting": "fs_ewc",
+      "seed": 4,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/20/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s4_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 12230,
+        "sha256": "17bd11aa5876bd6710ca12a74d2ced5b1c8c175358a298a0d176dc73b20a1f60"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/fs_ewc_seed4.log",
+        "exists": true,
+        "bytes": 71907,
+        "sha256": "a83f831f65cdf4ca4e56a7c616bd7b4914bfd681bc550e8eb8ba3e9ef25f26d5"
+      }
+    },
+    {
+      "setting": "fs_ewc",
+      "seed": 5,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/20/lora_1x1_fs_ewc_ratiofs_l12c20_full_twostage_s345_v1_s5_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 12263,
+        "sha256": "ba83d8ae39d3e64258821f9bb7d09727e55fed1bdb32a5e3f138c1c687915b5d"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/fs_ewc_seed5.log",
+        "exists": true,
+        "bytes": 71972,
+        "sha256": "0cae8116ae11ebcb87b87ce993554ec4a24cfb7603522241f2f5535874ffcf5c"
+      }
+    },
+    {
+      "setting": "factored_s1",
+      "seed": 3,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_factored_s1_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_factored_s1_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/3/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s3/exp_run/20/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s3_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 7454,
+        "sha256": "69419cb208207c16fde49b58c33ae4441d9a2e10b041a1dfeb3e183f6d939d36"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/factored_s1_seed3.log",
+        "exists": true,
+        "bytes": 68889,
+        "sha256": "767a6f6562fc5cd03d557ef753c6625726016296ef2e909ad88a3a237d882cc6"
+      }
+    },
+    {
+      "setting": "factored_s1",
+      "seed": 4,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_factored_s1_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_factored_s1_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/4/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s4/exp_run/20/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s4_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 7433,
+        "sha256": "8564d2006d24ecd47983796e2082485ed67027e7170311f71b815ca543bcc144"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/factored_s1_seed4.log",
+        "exists": true,
+        "bytes": 68910,
+        "sha256": "1e8f3bfc0e30e708fd3149ab00bbf3ee6ee999607d07f0c19e099aac4abbfe18"
+      }
+    },
+    {
+      "setting": "factored_s1",
+      "seed": 5,
+      "anchor_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_ratiofs_stage1_ratio_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/checkpoints",
+      "endpoint_dir": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_factored_s1_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/checkpoints",
+      "metrics": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/logs_inc_lora/ewclora_normfisher_fishershape/ratiofs_full_twostage_factored_s1_ratiofs_l12c20_full_twostage_s345_v1/imagenetr/5/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s5/exp_run/20/lora_1x1_factored_s1_ratiofs_l12c20_full_twostage_s345_v1_s5_vit_base_patch16_224_cl_metrics.json",
+        "exists": true,
+        "bytes": 7262,
+        "sha256": "b17175647cb4b2aa96773a7877ed4b92e0e36bc305a3cc11432715ab6f5b5030"
+      },
+      "log": {
+        "path": "/data/140-1/users/liying/CopyFlatCV/logs/verify_imagenet_r_1x1_lora_ratio_full_twostage/ratiofs_l12c20_full_twostage_s345_v1/stage2/factored_s1_seed5.log",
+        "exists": true,
+        "bytes": 69183,
+        "sha256": "84746f9487f6c338ca5c74f05d0dff187c647dd219df72d8b6302bbd3869e295"
+      }
+    }
+  ]
+}

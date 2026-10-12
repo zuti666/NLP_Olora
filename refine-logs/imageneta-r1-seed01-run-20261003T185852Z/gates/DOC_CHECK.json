@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "reviewer": "fresh independent agent /root/repeat_doc_invocation",
+  "timestamp_utc": "2026-10-03 19:12:36 UTC",
+  "review_scope": "Agent follows documented invocation verbatim; only run-experiment skill, provider ledger, ENVIRONMENT.md and RUN.md were read directly. No code inspection or fixes.",
+  "read_inputs": [
+    "/home-local/liying/.codex/skills/run-experiment/SKILL.md",
+    "/data/140-1/users/liying/O-LoRA/.aris/compute/local.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/ENVIRONMENT.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/RUN.md"
+  ],
+  "documented_command": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/documented_check.py --gpu 4",
+  "executed_command": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-seed01-run-20261003T185852Z/documented_check.py --gpu 4",
+  "invocation_verbatim": true,
+  "execution_route": {
+    "tool": "exec_command",
+    "sandbox_permissions": "require_escalated",
+    "workdir": "/data/140-1/users/liying/O-LoRA"
+  },
+  "exit_code": 0,
+  "stdout_stderr": "{\"status\": \"valid\", \"jobs\": 120, \"formal\": 60, \"smokes\": 60, \"allowed_gpus\": [4, 5, 6], \"max_parallel\": 3}\nG012_ENV_WITNESS {\"shape\": [32, 32], \"device\": \"NVIDIA RTX 6000 Ada Generation\", \"dtype\": \"torch.float32\", \"nonempty\": true, \"finite_output\": true, \"finite_gradient\": true, \"tf32_matmul\": false, \"tf32_cudnn\": false}\n",
+  "observed_dry_run": {
+    "status": "valid",
+    "jobs": 120,
+    "formal": 60,
+    "smokes": 60,
+    "allowed_gpus": [
+      4,
+      5,
+      6
+    ],
+    "max_parallel": 3
+  },
+  "observed_gpu_witness": {
+    "requested_physical_gpu": 4,
+    "shape": [
+      32,
+      32
+    ],
+    "device": "NVIDIA RTX 6000 Ada Generation",
+    "dtype": "torch.float32",
+    "nonempty": true,
+    "finite_output": true,
+    "finite_gradient": true,
+    "tf32_matmul": false,
+    "tf32_cudnn": false
+  },
+  "doc_runtime_divergences": [],
+  "formal_queue_launched_by_reviewer": false,
+  "fixes_or_improvised_commands": false,
+  "limitations": "This pass validates the documented check's actual exit and output; it is not an independent source-code audit or a training smoke completion. GPU index is selected by the exact --gpu 4 invocation; the printed witness does not expose its UUID."
+}

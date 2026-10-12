@@ -1,0 +1,20 @@
+\providecommand{\ExpRes}[2]{\ensuremath{#1_{\pm #2}}}
+\begin{table*}[t]
+\centering
+\caption{Two-task diagnostics with rank-10 Q/V LoRA on ImageNet-A. Results are means over three seeds with sample standard deviations. All protected variants use unnormalized native batch-gradient Fisher and a common, user-fixed $\lambda=20000$; unprotected variants use $\lambda=0$. $\mathcal B_1$ is the Task-1 batch-gradient Fisher proxy. $d_{QV}^{\mathrm{cont}}$ measures the effective Q/V weight displacement of the continued adapter and excludes classifier heads.}
+\label{tab:two_task_lora_diagnostics_imageneta_raw20000}
+\scriptsize\setlength{\tabcolsep}{2.4pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc@{}}
+\toprule
+Variant & Task 1 & Task 2 & $a_{11}\uparrow$ & $\mathcal B_1$ & $a_{21}\uparrow$ & $a_{22}\uparrow$ & BWT$\uparrow$ & $d_{QV}^{\mathrm{cont}}$ & $A_2\uparrow$ \\
+\midrule
+Vanilla LoRA & $\mathsf C$ & $\mathsf C$ & \ExpRes{87.08}{0.38} & \ExpRes{31.441}{4.235} & \ExpRes{82.41}{1.13} & \ExpRes{76.38}{0.40} & \ExpRes{-4.67}{1.36} & \ExpRes{0.3775}{0.0163} & \ExpRes{79.39}{0.74} \\
+Shaping only & $\mathsf C+\mathsf F$ & $\mathsf C+\mathsf F$ & \ExpRes{87.30}{0.57} & \ExpRes{21.933}{2.982} & \ExpRes{83.39}{0.33} & \ExpRes{80.84}{1.14} & \ExpRes{-3.91}{0.65} & \ExpRes{0.5023}{0.0149} & \ExpRes{82.12}{0.59} \\
+EWCLoRA & $\mathsf C$ & $\mathsf C+\mathsf P$ & \ExpRes{87.08}{0.38} & \ExpRes{31.441}{4.235} & \ExpRes{82.95}{0.76} & \ExpRes{76.25}{0.60} & \ExpRes{-4.13}{1.00} & \ExpRes{0.2756}{0.0085} & \ExpRes{79.60}{0.67} \\
+FS-EWCLoRA & $\mathsf C+\mathsf F$ & $\mathsf C+\mathsf F+\mathsf P$ & \ExpRes{87.30}{0.57} & \ExpRes{21.933}{2.982} & \ExpRes{83.50}{0.50} & \ExpRes{79.92}{1.04} & \ExpRes{-3.80}{1.00} & \ExpRes{0.4329}{0.0137} & \ExpRes{81.71}{0.49} \\
+Task-1 shaping without EWC & $\mathsf C+\mathsf F$ & $\mathsf C$ & \ExpRes{87.30}{0.57} & \ExpRes{21.933}{2.982} & \ExpRes{86.54}{0.82} & \ExpRes{72.96}{1.38} & \ExpRes{-0.76}{1.36} & \ExpRes{0.3583}{0.0147} & \ExpRes{79.75}{1.10} \\
+Task-1 shaping & $\mathsf C+\mathsf F$ & $\mathsf C+\mathsf P$ & \ExpRes{87.30}{0.57} & \ExpRes{21.933}{2.982} & \ExpRes{86.32}{0.86} & \ExpRes{73.36}{1.20} & \ExpRes{-0.98}{1.42} & \ExpRes{0.3019}{0.0099} & \ExpRes{79.84}{1.03} \\
+Task-2 shaping & $\mathsf C$ & $\mathsf C+\mathsf F+\mathsf P$ & \ExpRes{87.08}{0.38} & \ExpRes{31.441}{4.235} & \ExpRes{81.32}{0.50} & \ExpRes{81.89}{1.04} & \ExpRes{-5.76}{0.83} & \ExpRes{0.4665}{0.0086} & \ExpRes{81.61}{0.58} \\
+\bottomrule
+\end{tabular*}
+\end{table*}

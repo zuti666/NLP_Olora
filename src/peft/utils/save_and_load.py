@@ -33,7 +33,7 @@ def get_peft_model_state_dict(model, state_dict=None, adapter_name="default"):
         state_dict = model.state_dict()
         
         # modified
-        if config.save_loranew == False:
+        if config.save_loranew == False and not getattr(config, "save_lora_only", False):
             flag = 1 # this is a switch represents whether 'r_sum' is written to the config file
             for k in state_dict:
                 if "lora_A" in k:
@@ -59,7 +59,9 @@ def get_peft_model_state_dict(model, state_dict=None, adapter_name="default"):
 
         # modified
         if bias == "none":
-            if config.save_loranew: 
+            if getattr(config, "save_lora_only", False):
+                to_return = {k: state_dict[k] for k in state_dict if "lora_" in k}
+            elif config.save_loranew:
                 to_return = {k: state_dict[k] for k in state_dict if "lora_" in k or "loranew_" in k} # modified
             else:
                 to_return = {k: state_dict[k] for k in state_dict if "lora_" in k}

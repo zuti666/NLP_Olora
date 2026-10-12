@@ -1,0 +1,64 @@
+{
+  "id": "gam_ewc_aircraft_s1",
+  "method": "GAM-EWCLoRA",
+  "dataset": "aircraft",
+  "seed": 1,
+  "stage": "formal",
+  "expected_tasks": 10,
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/configs/gam_ewc_aircraft_s1.json",
+  "config_sha256": "697ccc24b1c24c2aace1ea07ad4a7c43caca3836f0fdb31e248255b0c5642aa4",
+  "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code",
+  "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/source_manifest.json",
+  "entrypoint": "src.main.main([\"--config\", CONFIG, \"--override\", \"device=[0]\"])",
+  "depends_on": [
+    "smoke_gam_ewc_flowers_s0",
+    "gam_ewc_aircraft_s0"
+  ],
+  "candidate_seed0": false,
+  "source_status": "historical_source_unbound_candidate",
+  "source_manifest_sha256": "28493e7a2bbd36ec24c267c478c5b8a73e6f54cbe2b0f85dbf6f4471a8da8c4b",
+  "group_id": "gam_ewc_aircraft",
+  "data_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/ewc_aircraft.json",
+  "data_manifest_sha256": "c607b2e4128817d8fd8313d70645e00ba08d5de96dca00eef09ec1907d3fea82",
+  "activation": "selected_20260922_fixed_protocol",
+  "status": "failed",
+  "pid": 3102487,
+  "started_unix": 1790261494.8069143,
+  "gpu_visible": "GPU-e97b92ec-d10c-0913-e3f8-67941b20ee0c",
+  "environment": {
+    "HF_HOME": "/data/115-2/users/liying/cache/huggingface",
+    "TORCH_HOME": "/data/115-2/users/liying/cache/torch",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/115-2/users/liying/datasets",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "GPU-e97b92ec-d10c-0913-e3f8-67941b20ee0c",
+    "PYTHONHASHSEED": "1"
+  },
+  "python": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+  "torch": "2.4.1+cu121",
+  "timm": "1.0.9",
+  "torchvision": "0.19.1+cu121",
+  "checkpoint_files": [
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors",
+      "sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b"
+    },
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/refs/main",
+      "sha256": "d361dc67d2468ae8af964a388852c98df10fffe1947a1159153f8e1575fa9a35"
+    }
+  ],
+  "preflight_sha256": "1f1df204e927ef4c60ebb69dcc86e6e29f3d84141629b253c310e91d825bd6e1",
+  "suite_sha256": "71faec77b2d43a2224869c954cd6278ab63b949f86fc15291b9b6ebf31968baf",
+  "runtime_manifest_sha256": "7b8b839d739449df1b05743bb98b48bfb0633038afb9f32366189da8edf140ac",
+  "exit_code": 1,
+  "finished_unix": 1790263069.5298526,
+  "error": "FloatingPointError('Nonfinite SGD gradient')",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 60, in main\n    train(['--config',job['config'],'--override','device=[0]'])\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/src/main.py\", line 133, in main\n    train_inc(cfg)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/src/trainer.py\", line 829, in train\n    _train(args)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/src/trainer.py\", line 1116, in _train\n    model.incremental_train(data_manager)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/seqlora.py\", line 431, in incremental_train\n    self._train(self.train_loader, self.test_loader)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/seqlora.py\", line 1558, in _train\n    self._update_representation(train_loader, test_loader, optimizer, scheduler)\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py\", line 639, in _update_representation\n    self._run_regularized_train(\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py\", line 473, in _run_regularized_train\n    logits, loss_value = self._step_batch(\n                         ^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py\", line 519, in _step_batch\n    outputs, _ = optimizer.step(closure=closure)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/lr_scheduler.py\", line 130, in wrapper\n    return func.__get__(opt, opt.__class__)(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/optimizer.py\", line 484, in wrapper\n    out = func(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/cl_gam_preparation/formal_sep18_code/optimer_PerturabtionType/gam.py\", line 283, in step\n    self.base_optimizer.step()\n  File \"/data/115-2/users/liying/conda_storage/envs/Pilot_new/lib/python3.11/site-packages/torch/optim/optimizer.py\", line 484, in wrapper\n    out = func(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/run_job.py\", line 51, in finite_step\n    if p.grad is not None and not torch.isfinite(p.grad).all():raise FloatingPointError('Nonfinite SGD gradient')\n                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFloatingPointError: Nonfinite SGD gradient\n"
+}

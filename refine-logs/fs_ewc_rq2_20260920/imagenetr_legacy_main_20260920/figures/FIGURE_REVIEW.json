@@ -1,0 +1,74 @@
+{
+  "review_type": "bounded_figure_quality_review",
+  "date": "2026-09-20",
+  "verdict": "pass",
+  "provisional": true,
+  "reviewer_limitation": "Same-family Codex review, not the requested GPT-5.6-Sol independent model review.",
+  "scope": {
+    "included": [
+      "rendered PNG inspection",
+      "figure and caption scientific correctness",
+      "source CSV and raw receipt agreement",
+      "full-width readability",
+      "material figure-related statements in RESULTS_AND_MAIN_FIGURES.md"
+    ],
+    "excluded": [
+      "GPU reruns",
+      "exhaustive experiment integrity audit",
+      "checkpoint weight rehashing",
+      "plot mutation"
+    ]
+  },
+  "required_fixes": [],
+  "nits": [
+    "Captions are unusually long; protocol detail may be moved to methods or supplement if page budget requires it, while retaining all scope and causal-limit disclosures.",
+    "Figure_r_vs_learning_stage has generous vertical whitespace for stage and provenance text; compacting it is optional."
+  ],
+  "checks": {
+    "rendered_pngs_viewed_directly": true,
+    "readable_at_intended_fullwidth": true,
+    "no_clipping_or_label_overlap_seen": true,
+    "dataset_is_explicitly_imagenet_a": true,
+    "separate_from_imagenet_r_main_table": true,
+    "stage_mapping_T1_task0_T10_task9_correct": true,
+    "actual_displacement_distinguished_from_tolerance_radius": true,
+    "signed_negative_and_nonmonotonic_damage_preserved": true,
+    "fixed_head_old_task_accuracy_distinguished_from_class_il_accuracy": true,
+    "terminal_only_nine_node_straight_chord_sensitivity_correct": true,
+    "optimizer_path_not_implied": true,
+    "full_method_sequences_sgd_to_sgd_and_gam_to_gam_correct": true,
+    "isolated_anchor_causality_disclaimed": true,
+    "single_training_run_and_no_uncertainty_disclosed": true,
+    "captions_self_contained": true,
+    "numbers_match_sources": true,
+    "material_context_report_misstatement_found": false
+  },
+  "verified_values": {
+    "sgd": {
+      "negative_damage_T": [2],
+      "damage_decrease_arrival_T": [2, 5],
+      "endpoint_damage_T10": 0.2601305286017725,
+      "endpoint_r_T10": 1.197584099887894,
+      "endpoint_Sbar_T10": 0.3680576024116533
+    },
+    "gam": {
+      "negative_damage_T": [2, 3, 4],
+      "damage_peak_T": 7,
+      "damage_peak": 0.07335361887900221,
+      "endpoint_damage_T10": 0.03434737973395435,
+      "endpoint_r_T10": 1.4004725891407084,
+      "endpoint_Sbar_T10": 0.014793092786504949
+    }
+  },
+  "source_hashes": {
+    "C_current_FP32_task_trajectory.csv": "d5a71364b125d17eac3dc69a8893750dca71e3d4fe3292175e7b2de74b359945",
+    "C_path_summary.csv": "f3fe9d0a82d9a5c47399a7c9314bcd3d6039a86a948b4eaa658583de7c6e1d57"
+  },
+  "provenance_paths": {
+    "figure_directory": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/imagenetr_legacy_main_20260920/figures",
+    "trajectory_csv": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_current_FP32_task_trajectory.csv",
+    "path_summary_csv": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/report_seed0/C_path_summary.csv",
+    "raw_receipts": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/{sgd,gam}/{trajectory,path}/summary.json",
+    "context_report": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/imagenetr_legacy_main_20260920/RESULTS_AND_MAIN_FIGURES.md"
+  }
+}

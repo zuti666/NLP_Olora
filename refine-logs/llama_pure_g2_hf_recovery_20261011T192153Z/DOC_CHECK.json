@@ -1,0 +1,145 @@
+{
+  "schema": "G2RecoveryDocCheck_v1",
+  "reviewer": "fresh_independent_agent_g2_recovery_doc_witness",
+  "attempt": "retry2",
+  "checked_at": "2026-10-11T19:39:36.130268+00:00",
+  "working_directory": "/data/140-1/users/liying/O-LoRA",
+  "documentation": "refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/ENVIRONMENT.md",
+  "queue_root": "/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2",
+  "status": "PASS",
+  "first_literal_dry_run": {
+    "command": "python3 scripts_llama/run_g2_llama.py --config configs/g2_llama/inclora_g2_llama1b_order1.json --seed 0 --run-root /tmp/llama_g2_recovery_20261011T192153Z --dry-run",
+    "exit_code": 0,
+    "stdout_summary": "Valid seed0 pure IncLoRA-G2 plan: 1B Order1, 2 smoke stages, 4 formal stages, 514 formal updates, Transformers AdamW, DDP4, global batch64.",
+    "run_root_absent": true,
+    "no_cuda_allocation_evidence": "Standard-library-only dry-run path returns before execute/claim_gpus; no torch import or subprocess launch."
+  },
+  "actual_frozen_entrypoint_help": {
+    "command": "CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1 NLTK_DATA=/data/140-1/users/liying/O-LoRA/.cache/nltk_data PYTHONPATH=/data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/source/src /data/140-1/users/liying/conda_envs/nlora_req/bin/python /data/140-1/users/liying/O-LoRA/experiment_queue/llama_pure_g2_hf_allorders_gpu0123_20261011T192153Z_retry2/source/src/run_uie_lora.py --help",
+    "exit_code": 0,
+    "wall_time_seconds": 2.47785158,
+    "output_characters": 51517,
+    "stdout_summary": "Printed run_uie_lora.py usage and full argparse options; exited during argument parsing before model loading.",
+    "usage_seen": true,
+    "g2_options_seen": true
+  },
+  "additional_cpu_witness": {
+    "exit_code": 0,
+    "stdout_summary": "RETRY2_FROZEN_HELP_NETWORK_DENIED_CUDA_UNINITIALIZED_TOKENIZATION_OK",
+    "network_calls_denied": true,
+    "cuda_uninitialized_before_and_after": true,
+    "real_local_metric_tokenizer_tokenized": true
+  },
+  "frozen_source_review": {
+    "retry2_source_count": 112,
+    "retry2_all_hashes_match": true,
+    "retry2_source_record_match": true,
+    "retry2_manifest_hash_match": true,
+    "retry2_vs_retry1_source_byte_hashes_identical": true,
+    "retry2_vs_retry1_input_pins_identical": true,
+    "retry2_vs_retry1_protocol_identical_except_paths": true,
+    "old_manifest_hash_match": true,
+    "old_source_unchanged": true,
+    "dry_run_root_absent": true,
+    "six_tokenizer_assets": {
+      "data/gpt2tokenizer/config.json": {
+        "sha256": "55495c6256b36b6408afab38ca897afb44fd0d9e9529fd8f151bf9a681776800",
+        "bytes": 907,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/merges.txt": {
+        "sha256": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+        "bytes": 456356,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/special_tokens_map.json": {
+        "sha256": "6f50ab5a5a509a1c309d6171f339b196a900dc9c99ad0408ff23bb615fdae7ad",
+        "bytes": 99,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/tokenizer.json": {
+        "sha256": "86f12f9648802a0c45c4b87ef2ab235e9bfdf1a43cc40571291507c81e35c4c3",
+        "bytes": 2107625,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/tokenizer_config.json": {
+        "sha256": "0f7123cb7e1be4e9c2e8770bd3c00f73d75364fb71680d0412d6263e7af2654c",
+        "bytes": 255,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      },
+      "data/gpt2tokenizer/vocab.json": {
+        "sha256": "3ba3c3109ff33976c4bd966589c11ee14fcaa1f4c9e5e154c2ed7f99d80709e7",
+        "bytes": 798156,
+        "original_and_frozen_bytes_equal": true,
+        "input_pin_matches": true
+      }
+    }
+  },
+  "scope": "CPU-only read-only review of source/control and existing NCCL diagnostic files; only this review artifact written. No model loading, package change, algorithm edit, GPU tools/kernels, process termination, or training launch.",
+  "issues": [],
+  "nccl_transport_review": {
+    "status": "PASS_FOR_P2P_DISABLED_TRANSPORT",
+    "checks": {
+      "log_hashes_match": true,
+      "default_nonzero_exit": true,
+      "default_twenty_second_timeout_observed": true,
+      "p2p_disabled_exit_zero": true,
+      "four_complete_rank_payloads": true,
+      "all_rank_world_size4_sum10_p2p1": true,
+      "four_initial_barrier_tags": true,
+      "four_final_pass_tags": true,
+      "diagnostic_code_final_barrier_precedes_pass_print": true,
+      "validated_rank_results_match_raw_log": true
+    },
+    "raw_rank_payloads": [
+      {
+        "rank": 3,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 2,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 1,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      },
+      {
+        "rank": 0,
+        "world_size": 4,
+        "sum": 10.0,
+        "p2p_disable": "1"
+      }
+    ],
+    "elapsed_seconds": 6.477007981971838,
+    "log_sha256": {
+      "default": "df307de3257da726945c7bdf839f2485d21670c12eb617fec48cd9a7d880532d",
+      "p2p_disabled": "cb2e8075f8933a8bb213b58e44e04c79b1d3ece9ce6972e7e16e5924f99b4f85"
+    },
+    "concurrent_stdout_parsing_review": "Accepted reconciliation: four concatenated valid JSON payloads carry distinct ranks0..3; four marker occurrences and successful exit agree. Whitespace-based false flag in original JSON is preserved.",
+    "runtime_remedy": {
+      "NCCL_P2P_DISABLE": "1"
+    },
+    "environment_propagation_review": "Frozen runner environment copies os.environ, removes only distributed launcher/other experiment keys, and preserves NCCL_P2P_DISABLE. Queue passes that environment to torchrun. Documented controller command sets override explicitly.",
+    "scope_limit": "Evidence validates bounded four-rank transport test only; model smoke and scientific results remain pending."
+  },
+  "prior_retry1_review": {
+    "status": "failed",
+    "formal_completed": 0,
+    "smoke_completed": 0,
+    "trace_files_present": 0,
+    "preserved_doc_record": "/data/140-1/users/liying/O-LoRA/refine-logs/llama_pure_g2_hf_recovery_20261011T192153Z/DOC_CHECK_RETRY1.json"
+  },
+  "launch_gate": "CPU/source/documentation/recorded transport remedy accepted; actual model smoke acceptance pending"
+}

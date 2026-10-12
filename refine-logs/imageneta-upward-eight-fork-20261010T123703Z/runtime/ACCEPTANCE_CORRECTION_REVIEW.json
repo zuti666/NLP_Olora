@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "reviewer": "/root/upward_reuse_plan_review",
+  "reviewed_at_utc": "2026-10-10T13:09:43.558233+00:00",
+  "scope": "Read-only acceptance correction review and direct CPU output validation; no diagnostic/training rerun, GPU execution, controller mutation or original frozen-file changes.",
+  "checks": {
+    "all_121_original_execution_pins_unchanged": true,
+    "original_190_source_manifest_members_unchanged": true,
+    "validator_v2_changes_only_smoke_g0_epoch0_to_registered_epoch1": true,
+    "formal_expected_3_trajectories_1_10_50_unchanged": true,
+    "queue_v2_changes_only_validator_import_pinsfile_and_independent_correction_gate": true,
+    "queue_v2_correction_gate_requires_passed_checks_and_immutable_evidence_hashes": true,
+    "original_validator_reproduces_exact_coordinate_rejection": true,
+    "independent_real_output_validate_job_v2_passes_all_checks": true,
+    "independent_revalidation_exactly_matches_root_receipt": true,
+    "actual_smoke_source_is_registered_g0_completed_epoch1": true,
+    "source_summary_snapshot_sha_and_epoch1_inventory_match": true,
+    "actual_audit_code_sha_matches_original_frozen_upward_local_audit": true,
+    "24_candidate_gradient_reads_72_benchmark_gradient_reads_68_losses_confirmed": true,
+    "8_methods_16_candidate_modes_all_restores_native_probe_counts_pass": true,
+    "TRAIN_only_no_dev_test_no_old_backward_no_committed_updates_confirmed": true,
+    "original_failed_receipt_retained_and_training_outputs_not_rewritten": true,
+    "new_revision_Python_syntax_valid": true,
+    "no_GPU_or_queue_mutations_by_reviewer": true
+  },
+  "evidence_hashes": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/validate_job_v2.py": "f2b43f60e738f246f501ef1ef4fee803a7c8cab7291ebec3aa57d88fe1384bac",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/run_queue_v2.py": "8c3563a1a821c8f143fe40fe503043f05bbdf92c894d3a7661baf7dd97729ef1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/RUN_V2.md": "3583edabaeadb5fd8a20a9913ffe699ee647c5c24b43ae80d707384eceeb12d9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/RUN_PINS.json": "bc6c458f4cb5aed53012a61e31829d5dcef4b7426992bc45f216723b7c81384e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/runtime/OFFLINE_SMOKE_REVALIDATED_V2.json": "0e76a5a4f30e0307fc5baa92a1ea323aef8652887c8e6e0d270472f8121e6a5a",
+    "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_local_upward_s2/final_summary.json": "42f5ac8591a8941c4f400f6f5170576009c90ed186fd241948afe042b054018c",
+    "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_task1_g0_s2/final_summary.json": "a230d9fe53c293de53123b290f36153f828662499c4a143299d53de59ca68d4a"
+  },
+  "actual_source_state": {
+    "trajectory": "g0",
+    "epoch": 1,
+    "source_output_dir": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_task1_g0_s2",
+    "source_snapshot": "/data/115-2/users/liying/cache/tmp/imageneta-upward-eight-fork-20261010T123703Z/outputs/smoke_task1_g0_s2/snapshots/epoch_001.pt",
+    "source_snapshot_sha256": "fb7b8400501cba957c8b7a95598046012415e4a1419da5957f4a3095815e8bb4",
+    "source_summary_sha256": "a230d9fe53c293de53123b290f36153f828662499c4a143299d53de59ca68d4a"
+  },
+  "independent_validation": {
+    "summary_sha256": "42f5ac8591a8941c4f400f6f5170576009c90ed186fd241948afe042b054018c",
+    "passive_diagnostic": true,
+    "committed_training_updates": 0,
+    "full_formal_training": false,
+    "checked_snapshots": 1,
+    "checked_probe_batches": 1,
+    "candidate_virtual_updates": 16,
+    "benchmark_methods": 8,
+    "gradient_reads": 24,
+    "microbenchmark_gradient_reads": 72,
+    "holdout_loss_reads": 68,
+    "microbenchmark_temporary_sgd_updates": 24
+  },
+  "preserved_original_rejection_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-upward-eight-fork-20261010T123703Z/runtime/jobs/smoke_local_upward_s2/failed.json",
+  "next_root_actions": [
+    "Seal RUN_PINS_V2 with new revision and this review; retain original RUN_PINS and execution state.",
+    "Record corrected accepted offline completion referring to existing calculation and this review.",
+    "Run actualhost v2 queue dry-run before resuming formal admission."
+  ]
+}

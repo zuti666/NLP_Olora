@@ -1,0 +1,52 @@
+{
+  "updated_at": "2026-09-18T14:55:09.828413+00:00",
+  "status": "running",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z",
+  "supervisor_pid": 64343,
+  "gpus": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "orders": [
+    2,
+    3,
+    1
+  ],
+  "environment_spec_hash": "0715917e",
+  "doc_invocation_check": "Fresh agent executed documented dry-run verbatim: 14 commands, protocol/chains/path checks passed.",
+  "smoke": [
+    {
+      "stage": "1-dbpedia",
+      "status": "pass",
+      "r_sum": 8,
+      "historical_prefix_exact": null,
+      "fisher_count_updates": 1,
+      "parameters_identical": true,
+      "bf16_output_dtype": "torch.bfloat16",
+      "ewc_after_updates": 0.0,
+      "ewc_gradient_l2": 0.0,
+      "source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/smoke/order_2/1-dbpedia/verification.json"
+    },
+    {
+      "stage": "2-amazon",
+      "status": "pass",
+      "r_sum": 16,
+      "historical_prefix_exact": true,
+      "fisher_count_updates": 2,
+      "parameters_identical": true,
+      "bf16_output_dtype": "torch.bfloat16",
+      "ewc_after_updates": 1.8736712945610634e-06,
+      "ewc_gradient_l2": 0.00021020148268338244,
+      "source": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145252Z/smoke/order_2/2-amazon/verification.json"
+    }
+  ],
+  "first_attempt": {
+    "run_dir": "/data/140-1/users/liying/O-LoRA/experiment_queue/inclora_ewc_bf16_ddp5_20260918T145030Z",
+    "status": "failed_before_training",
+    "reason": "datasets1.17 concurrent cache construction race",
+    "fix": "Rank0 builds shared dataset cache first; followers explicitly reuse it."
+  }
+}

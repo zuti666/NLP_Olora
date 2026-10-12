@@ -1,0 +1,1619 @@
+可以。结合现在已经得到的结果，我建议下一轮实验不要继续围绕“$g_3$ 单步是否更好”展开，而是把整个实验设计集中到下面这个可证伪假设：
+
+```latex
+\section*{核心假设}
+
+现有结果显示：
+
+\begin{enumerate}
+    \item 在独立单任务上，$g_3$ 与 $g_1$ 的最终性能差异很小；
+    \item 在同状态、匹配实际有效更新步幅的单步诊断中，
+    $g_3$ 并不普遍优于 $g_1$；
+    \item $g_3$ 与 $g_1$ 的方向明显不同，但其残差分量
+    $q$ 的局部作用高度依赖当前模型状态；
+    \item 在十任务持续学习中，
+    $g_3$ 相对于 $g_1$ 同时提高任务获取并减少遗忘；
+    \item Sum 与 Mean 的差异说明长期结果对实际更新步长高度敏感。
+\end{enumerate}
+
+因此，下一阶段不再优先检验
+\[
+\text{``$g_3$ 是一个局部更优方向''},
+\]
+而检验：
+
+\[
+\boxed{
+\begin{minipage}{0.88\linewidth}
+GAM 的长期作用是否主要来自训练轨迹的累积塑形：
+尽管 $g_3$ 并不在每个局部状态上提供更优的单步下降，
+长期使用 $g_3$ 会逐渐形成一种不同的任务终点状态，
+使模型对后续任务更新具有不同的敏感性。
+\end{minipage}
+}
+\]
+
+更形式化地，设 $S$ 表示 $g_1$ 更新，
+$G$ 表示 $g_3$ 更新。
+对于完成任务 $T_1$ 后的状态
+\[
+\theta_1^S,
+\qquad
+\theta_1^G,
+\]
+即使
+\[
+L_1(\theta_1^S)
+\approx
+L_1(\theta_1^G),
+\]
+我们假设在完全相同的未来学习过程
+$\Phi_2^{S,K}$ 下，
+\[
+\boxed{
+L_1\!\left(
+\Phi_2^{S,K}(\theta_1^G)
+\right)
+-
+L_1(\theta_1^G)
+<
+L_1\!\left(
+\Phi_2^{S,K}(\theta_1^S)
+\right)
+-
+L_1(\theta_1^S).
+}
+\]
+
+这里真正研究的是
+\[
+\boxed{
+\text{future susceptibility},
+}
+\]
+而不是单步 descent quality。
+
+
+\section*{一、首先排除更新步长解释}
+
+当前 Sum 与 Mean 已经说明
+\[
+\text{update magnitude}
+\]
+对长期持续学习结果非常重要。
+
+因此在研究状态形成之前，
+必须首先将
+\[
+\text{direction effect}
+\]
+和
+\[
+\text{step-size effect}
+\]
+分开。
+
+
+\subsection*{1.1 Sum--Mean 等价性控制}
+
+已有
+\[
+u_{\mathrm{Sum}}
+=
+g_1+g_3,
+\]
+以及
+\[
+u_{\mathrm{Mean}}
+=
+\frac12(g_1+g_3).
+\]
+
+在当前
+\[
+\text{SGD},
+\qquad
+\text{momentum}=0,
+\qquad
+\text{weight decay}=0
+\]
+设置下，应满足
+\[
+\boxed{
+\mathrm{Mean}@2\eta
+\equiv
+\mathrm{Sum}@\eta.
+}
+\]
+
+因此增加一个实现控制：
+
+\[
+\boxed{
+\mathrm{Mean}@2\eta
+}
+\]
+
+并与已有
+\[
+\mathrm{Sum}@\eta
+\]
+比较。
+
+这不是主要科学实验，而是 sanity check。
+
+若两条训练轨迹出现明显差异，
+应首先检查学习率 schedule、
+参数恢复、梯度构造或随机状态，
+而不能继续解释为几何差异。
+
+
+\subsection*{1.2 $g_1$ 的学习率控制}
+
+增加：
+
+\[
+S_{1.5}
+:
+\quad
+1.5\eta g_1,
+\]
+以及
+\[
+S_{2}
+:
+\quad
+2\eta g_1.
+\]
+
+与
+\[
+G:
+\quad
+\eta g_3
+\]
+比较。
+
+首先回答：
+
+\[
+\boxed{
+\text{沿 $g_1$ 方向走得更远，
+是否已经可以复制 $g_3$ 的长期收益？}
+}
+\]
+
+若
+\[
+S_2
+\approx
+G,
+\]
+则原来的 $G>S$ 很大程度上可能是 optimization scale effect。
+
+若
+\[
+\max_{c\in\{1,1.5,2\}}
+\mathrm{Perf}(cg_1)
+<
+\mathrm{Perf}(g_3),
+\]
+则说明单纯放大 $g_1$ 不足以解释 $g_3$。
+
+
+\subsection*{1.3 全程匹配有效模型步幅}
+
+这是比固定学习率 sweep 更重要的控制。
+
+定义实际模型状态映射
+\[
+\Psi(\theta)
+=
+\operatorname{concat}
+\left(
+BA,\,
+W_{\mathrm{FC}},\,
+b_{\mathrm{FC}}
+\right).
+\]
+
+首先运行参考 $S$ trajectory，
+在每一步记录
+\[
+\delta_t^S
+=
+\left\|
+\Psi(\theta_t^S-\eta_tg_{1,t})
+-
+\Psi(\theta_t^S)
+\right\|_2.
+\]
+
+随后运行新的
+\[
+G_{\mathrm{match}}
+\]
+trajectory。
+
+在第 $t$ 步选择正标量 $c_t$，
+使
+\[
+\boxed{
+\left\|
+\Psi(\theta_t^G-c_tg_{3,t})
+-
+\Psi(\theta_t^G)
+\right\|_2
+=
+\delta_t^S.
+}
+\]
+
+因此整个训练过程中，
+$S$ 与 $G_{\mathrm{match}}$ 使用近似相同的有效模型更新长度，
+主要区别保留在更新方向和由此产生的训练状态。
+
+后续真正检验状态形成假设时，
+应以
+\[
+\boxed{
+S
+\quad\text{vs}\quad
+G_{\mathrm{match}}
+}
+\]
+作为最重要的机制对照。
+
+
+\section*{二、单任务阶段：直接观察状态是否逐渐形成}
+
+单任务不再以最终准确率高低作为核心问题。
+
+真正的问题是：
+
+\[
+\boxed{
+\text{随着训练进行，
+$S$ 和 $G$ 产生的状态是否逐渐表现出不同的未来敏感性？}
+}
+\]
+
+主条件建议为：
+
+\[
+\begin{array}{c|c}
+\text{Condition} & \text{Update}\\
+\hline
+S & g_1\\
+G_{\mathrm{raw}} & g_3,\ r=1\\
+G_{\mathrm{match}} & \text{$g_3$ with matched effective step}\\
+G_{0.25} & g_3,\ r=0.25
+\end{array}
+\]
+
+其中
+\[
+G_{\mathrm{raw}}
+\]
+用于连接已有十任务现象，
+
+\[
+G_{\mathrm{match}}
+\]
+用于检验方向和状态形成，
+
+而
+\[
+G_{0.25}
+\]
+用于检查外半径鲁棒性。
+
+
+\subsection*{2.1 保存形成过程中的 checkpoint}
+
+建议保存：
+
+\[
+e\in
+\{0,10,20,30,40,50\}.
+\]
+
+得到：
+
+\[
+\theta_e^S,
+\qquad
+\theta_e^G.
+\]
+
+
+\subsection*{2.2 Future-susceptibility probe}
+
+对于每一个
+\[
+\theta_e^S
+\quad\text{和}\quad
+\theta_e^G,
+\]
+复制模型。
+
+随后所有模型都使用完全相同的未来更新规则：
+
+\[
+\boxed{
+\text{Task 1 使用 }S=g_1.
+}
+\]
+
+并使用相同：
+
+\[
+\text{Task 1 minibatch sequence},
+\]
+\[
+\text{augmentation seed},
+\]
+\[
+\text{learning-rate schedule},
+\]
+\[
+\text{update count}.
+\]
+
+分别运行：
+
+\[
+K\in
+\{1,10,50,100\}
+\]
+个 Task 1 updates。
+
+定义：
+
+\[
+\boxed{
+\mathcal S_e^{m}(K)
+=
+L_0
+\left(
+\Phi_1^{S,K}(\theta_e^{m})
+\right)
+-
+L_0(\theta_e^{m}),
+}
+\]
+其中
+\[
+m\in\{S,G\}.
+\]
+
+同时报告旧任务准确率下降：
+
+\[
+\mathcal F_e^{m}(K)
+=
+a_0(\theta_e^{m})
+-
+a_0
+\left(
+\Phi_1^{S,K}(\theta_e^{m})
+\right).
+\]
+
+
+\subsection*{2.3 状态形成假设的关键预测}
+
+如果 GAM 真的是逐渐形成不同状态，
+应该观察到：
+
+\[
+\mathcal S_0^G(K)
+\approx
+\mathcal S_0^S(K),
+\]
+
+但随着 Task 0 训练进行：
+
+\[
+\boxed{
+\mathcal S_e^G(K)
+-
+\mathcal S_e^S(K)
+<0
+}
+\]
+逐渐出现并增大。
+
+即：
+
+\[
+\boxed{
+e
+\uparrow
+\quad\Longrightarrow\quad
+\text{future susceptibility gap emerges}.
+}
+\]
+
+这比比较 epoch50 上一次虚拟 update 强得多。
+
+因为它直接检验：
+
+\[
+\boxed{
+\text{future robustness 是否随着 formation trajectory 逐渐形成。}
+}
+\]
+
+
+\section*{三、必须同时做 matched acquisition 分析}
+
+如果
+\[
+a_{0,0}^{G}
+>
+a_{0,0}^{S},
+\]
+则未来保留差异可能只是因为 Task 0 学得更多。
+
+因此除了固定 epoch 比较，
+还要做 matched-acquisition comparison。
+
+建议基于独立 validation 或 diagnostic split，
+寻找：
+
+\[
+\theta_{e_S}^{S},
+\qquad
+\theta_{e_G}^{G}
+\]
+
+使：
+
+\[
+\boxed{
+L_0(\theta_{e_S}^{S})
+\approx
+L_0(\theta_{e_G}^{G})
+}
+\]
+
+或者：
+
+\[
+a_0(\theta_{e_S}^{S})
+\approx
+a_0(\theta_{e_G}^{G}).
+\]
+
+然后再次运行完全相同的未来 Task 1 continuation。
+
+如果即时任务性能匹配后仍然：
+
+\[
+\boxed{
+\mathcal S^{G}(K)
+<
+\mathcal S^{S}(K),
+}
+\]
+
+才真正支持：
+
+\[
+\boxed{
+\text{same current-task quality,
+different future susceptibility}.
+}
+\]
+
+
+\section*{四、两个任务：正式分解 formation 与 continuation}
+
+单任务 susceptibility probe 有信号后，
+进入完整两任务实验：
+
+\[
+T_0
+\rightarrow
+T_1.
+\]
+
+定义：
+
+\[
+S=g_1,
+\]
+
+主机制版本定义为：
+
+\[
+G=G_{\mathrm{match}}.
+\]
+
+同时保留
+\[
+G_{\mathrm{raw}}=g_3(r=1)
+\]
+用于连接原始十任务现象。
+
+
+\subsection*{4.1 核心 $2\times2$ factorial}
+
+首先对 matched-step $G$ 运行：
+
+\[
+\boxed{
+\begin{array}{c|cc}
+& T_0 & T_1\\
+\hline
+SS & S & S\\
+GS & G & S\\
+SG & S & G\\
+GG & G & G
+\end{array}
+}
+\]
+
+全部从同一 pretrained checkpoint 独立训练。
+
+
+\subsection*{4.2 Formation effect}
+
+比较：
+
+\[
+GS
+\quad\text{vs}\quad
+SS.
+\]
+
+两者未来 Task 1 完全使用：
+
+\[
+S.
+\]
+
+定义：
+
+\[
+F_{0\rightarrow1}
+=
+a_{0,0}
+-
+a_{1,0}.
+\]
+
+于是：
+
+\[
+\boxed{
+\Delta_{\mathrm{form}}
+=
+F_{0\rightarrow1}^{SS}
+-
+F_{0\rightarrow1}^{GS}.
+}
+\]
+
+若：
+
+\[
+\Delta_{\mathrm{form}}>0,
+\]
+
+意味着：
+
+\[
+\boxed{
+\text{Task 0 使用 $G$ 形成的状态，
+在面对完全相同的未来学习时更不容易遗忘。}
+}
+\]
+
+这是核心假设最直接的两任务验证。
+
+
+\subsection*{4.3 Continuation effect}
+
+比较：
+
+\[
+SG
+\quad\text{vs}\quad
+SS.
+\]
+
+两者 Task 0 状态完全由 $S$ 形成，
+唯一差异是 Task 1 使用什么更新规则。
+
+定义：
+
+\[
+\boxed{
+\Delta_{\mathrm{cont}}
+=
+F_{0\rightarrow1}^{SS}
+-
+F_{0\rightarrow1}^{SG}.
+}
+\]
+
+如果：
+
+\[
+\Delta_{\mathrm{cont}}>0,
+\]
+
+说明：
+
+\[
+\boxed{
+G
+\text{ 在学习未来任务时本身也产生更少的 backward interference}.
+}
+\]
+
+
+\subsection*{4.4 最关键的四种可能结果}
+
+若：
+
+\[
+GS>SS,
+\qquad
+SG\approx SS,
+\]
+
+则主要支持：
+
+\[
+\boxed{
+\text{solution formation effect}.
+}
+\]
+
+若：
+
+\[
+GS\approx SS,
+\qquad
+SG>SS,
+\]
+
+则主要支持：
+
+\[
+\boxed{
+\text{online continuation effect}.
+}
+\]
+
+若：
+
+\[
+GS>SS,
+\qquad
+SG>SS,
+\]
+
+则说明：
+
+\[
+\boxed{
+\text{formation 与 continuation 两种机制同时存在}.
+}
+\]
+
+若二者都不成立，
+则十任务收益更可能依赖更长时间累积或其他交互机制。
+
+
+\section*{五、Task 1 过程中不能只看终点}
+
+对于
+\[
+SS,
+\quad
+GS,
+\quad
+SG,
+\quad
+GG,
+\]
+在 Task 1 的：
+
+\[
+e=
+0,5,10,20,30,40,50
+\]
+
+记录：
+
+\[
+a_0(e),
+\qquad
+L_0(e),
+\]
+
+以及：
+
+\[
+a_1(e),
+\qquad
+L_1(e).
+\]
+
+这样可以直接观察 forgetting trajectory。
+
+
+\subsection*{5.1 Progress-matched stability}
+
+为了排除：
+
+\[
+\text{``某方法只是 Task 1 学得更慢，所以忘得更少''},
+\]
+
+不要只按 epoch 比较。
+
+同时画：
+
+\[
+\boxed{
+a_{\mathrm{old}}
+\quad\text{vs}\quad
+a_{\mathrm{new}}
+}
+\]
+
+或者：
+
+\[
+\boxed{
+L_{\mathrm{old}}
+\quad\text{vs}\quad
+L_{\mathrm{new}}.
+}
+\]
+
+如果在相同的新任务学习进度下：
+
+\[
+a_{\mathrm{old}}^{GS}
+>
+a_{\mathrm{old}}^{SS},
+\]
+
+才能真正说：
+
+\[
+\boxed{
+GS
+\text{ 具有更好的 stability--plasticity frontier}.
+}
+\]
+
+
+\section*{六、增加 pathwise 指标}
+
+当前 endpoint 单步诊断不能解释长期训练。
+
+因此建议在 Task 1 训练路径上定义：
+
+\[
+\Delta_kL_0
+=
+L_0(\theta_{k+1})
+-
+L_0(\theta_k).
+\]
+
+最终 signed change：
+
+\[
+I
+=
+\sum_k
+\Delta_kL_0
+=
+L_0(\theta_K)-L_0(\theta_0).
+\]
+
+同时定义累计破坏：
+
+\[
+\boxed{
+I_+
+=
+\sum_k
+[\Delta_kL_0]_+.
+}
+\]
+
+如果：
+
+\[
+I_+^{GS}
+<
+I_+^{SS},
+\]
+
+即使某些单独步骤中 $g_3$ 并不更好，
+仍然说明：
+
+\[
+\boxed{
+\text{G-formed state 在整个未来训练路径上经历了更少的累计破坏。}
+}
+\]
+
+这与当前
+\[
+\text{one-step weak}
+\quad\text{but}\quad
+\text{long-horizon strong}
+\]
+现象直接对应。
+
+
+\section*{七、三个任务：验证 state effect 是否持续}
+
+如果两任务确认 formation effect，
+进入：
+
+\[
+T_0
+\rightarrow
+T_1
+\rightarrow
+T_2.
+\]
+
+第一轮只需要：
+
+\[
+\boxed{
+\begin{array}{c|ccc}
+& T_0&T_1&T_2\\
+\hline
+SSS&S&S&S\\
+GSS&G&S&S\\
+SGS&S&G&S\\
+SSG&S&S&G\\
+GGG&G&G&G
+\end{array}
+}
+\]
+
+
+\subsection*{7.1 最重要的是 GSS vs SSS}
+
+这里只改变 Task 0 的形成过程。
+
+观察：
+
+\[
+a_{0,0}
+\rightarrow
+a_{1,0}
+\rightarrow
+a_{2,0}.
+\]
+
+定义：
+
+\[
+F_{0\rightarrow2}^{SSS}
+=
+a_{0,0}^{SSS}
+-
+a_{2,0}^{SSS},
+\]
+
+以及：
+
+\[
+F_{0\rightarrow2}^{GSS}
+=
+a_{0,0}^{GSS}
+-
+a_{2,0}^{GSS}.
+\]
+
+若：
+
+\[
+\boxed{
+F_{0\rightarrow2}^{GSS}
+<
+F_{0\rightarrow2}^{SSS},
+}
+\]
+
+说明：
+
+\[
+\boxed{
+\text{Task 0 的 formation effect
+能够跨越两个后续任务持续存在。}
+}
+\]
+
+
+\subsection*{7.2 SGS 的特殊作用}
+
+对于：
+
+\[
+SGS,
+\]
+
+Task 1 使用 $G$。
+
+因此它同时回答两个问题。
+
+首先：
+
+\[
+a_{1,0}^{SGS}
+-
+a_{1,0}^{SSS}
+\]
+
+测量：
+
+\[
+\boxed{
+\text{G 学习 Task 1 时是否减少对 Task 0 的破坏}.
+}
+\]
+
+其次：
+
+\[
+a_{2,1}^{SGS}
+-
+a_{2,1}^{SSS}
+\]
+
+测量：
+
+\[
+\boxed{
+\text{Task 1 使用 G 形成的状态，
+是否更耐受 Task 2}.
+}
+\]
+
+因此 SGS 可以同时检验：
+
+\[
+\boxed{
+\text{incoming stability}
++
+\text{outgoing robustness}.
+}
+\]
+
+
+\section*{八、再增加一个状态切换实验}
+
+如果想最直接验证
+\[
+\text{state effect}
+\]
+而不是
+\[
+\text{update-rule effect},
+\]
+建议做一个短程 switch experiment。
+
+从两个已经形成的状态：
+
+\[
+\theta^S,
+\qquad
+\theta^G
+\]
+
+开始。
+
+复制成：
+
+\[
+\boxed{
+\begin{array}{c|cc}
+\text{Starting state}
+&\text{Continue with }S
+&\text{Continue with }G\\
+\hline
+\theta^S
+&S\rightarrow S
+&S\rightarrow G\\
+\theta^G
+&G\rightarrow S
+&G\rightarrow G
+\end{array}
+}
+\]
+
+之后使用相同 batch sequence，
+运行例如：
+
+\[
+K\in\{10,50,100\}
+\]
+步。
+
+
+\subsection*{8.1 最关键的判断}
+
+如果：
+
+\[
+G\rightarrow S
+\]
+
+在切换回 $S$ 后仍然保留部分优势，
+说明：
+
+\[
+\boxed{
+\text{优势已经储存在当前 state 中}.
+}
+\]
+
+如果：
+
+\[
+S\rightarrow G
+\]
+
+需要若干训练步骤才逐渐出现优势，
+而不是第一个 step 立即出现，
+则进一步支持：
+
+\[
+\boxed{
+\text{G 的作用是逐步塑形状态，
+而不是提供一个即时更优方向}.
+}
+\]
+
+反之，如果：
+
+\[
+G\rightarrow S
+\]
+
+立即失去全部优势，
+同时：
+
+\[
+S\rightarrow G
+\]
+
+立即获得全部优势，
+那么解释应该转向：
+
+\[
+\boxed{
+\text{online update-rule effect},
+}
+\]
+
+而不是 solution formation。
+
+
+\section*{九、外半径的处理}
+
+现有结果显示：
+
+\[
+r=0
+\rightarrow
+0.1
+\rightarrow
+0.25
+\]
+
+性能明显改善，
+
+而：
+
+\[
+r=0.25
+\rightarrow
+0.5
+\rightarrow
+1
+\]
+
+基本进入平台。
+
+因此后续不再做完整 radius sweep。
+
+建议：
+
+\[
+\boxed{
+r=1
+}
+\]
+
+作为核心 formation 实验，
+因为当前独立 Task0 中
+\[
+g_1
+\]
+与
+\[
+g_3(r=1)
+\]
+即时准确率几乎相同，
+但十任务长期差距明显，
+特别适合检验
+\[
+\text{same immediate performance,
+different future susceptibility}.
+\]
+
+同时使用：
+
+\[
+\boxed{
+r=0.25
+}
+\]
+
+作为 radius robustness control。
+
+如果：
+
+\[
+G_{0.25}S
+\]
+
+和：
+
+\[
+G_{1}S
+\]
+
+都表现出类似 formation effect，
+则说明结论并不依赖单一外半径。
+
+
+\section*{十、分类头与 LoRA 的归因放在 formation effect 之后}
+
+当前 $g_1$ 和 $g_3$ 都作用于：
+
+\[
+A,
+\qquad
+B,
+\qquad
+W_{\mathrm{FC}},
+\qquad
+b_{\mathrm{FC}}.
+\]
+
+因此不能先把状态差异称为 LoRA geometry。
+
+如果两任务 formation effect 得到确认，
+再在相同 Task 0 checkpoint 上分解：
+
+\[
+q
+=
+(q_{\mathrm{LoRA}},q_{\mathrm{FC}}).
+\]
+
+构造：
+
+\[
+u_{\mathrm{LoRA}}
+=
+g_1+
+\lambda(q_{\mathrm{LoRA}},0),
+\]
+
+\[
+u_{\mathrm{FC}}
+=
+g_1+
+\lambda(0,q_{\mathrm{FC}}),
+\]
+
+以及：
+
+\[
+u_{\mathrm{joint}}
+=
+g_1+\lambda q.
+\]
+
+重点比较：
+
+\[
+L_{\mathrm{current,local}},
+\]
+
+\[
+L_{\mathrm{current,all}},
+\]
+
+\[
+L_{\mathrm{old}}.
+\]
+
+并定义：
+
+\[
+\boxed{
+C_{\mathrm{inter}}
+=
+L_{\mathrm{current,all}}
+-
+L_{\mathrm{current,local}}.
+}
+\]
+
+这样可以判断未来稳定性差异主要来自：
+
+\[
+\boxed{
+\text{representation state}
+}
+\]
+
+还是：
+
+\[
+\boxed{
+\text{cross-task classifier competition}.
+}
+\]
+
+
+\section*{十一、Hessian/Fisher 放在最后解释状态差异}
+
+只有确认：
+
+\[
+\theta_0^S
+\quad\text{和}\quad
+\theta_0^G
+\]
+
+具有相似当前任务性能，
+但不同 future susceptibility 后，
+再分析其局部几何。
+
+此时不要首先比较：
+
+\[
+\lambda_{\max}(H).
+\]
+
+真正应该研究的是
+\textbf{真实未来更新方向}。
+
+设 Task 1 的实际更新方向为：
+
+\[
+d_1.
+\]
+
+比较：
+
+\[
+\boxed{
+d_1^\top H_0^S d_1
+\quad\text{vs}\quad
+d_1^\top H_0^G d_1
+}
+\]
+
+以及：
+
+\[
+\boxed{
+d_1^\top F_0^S d_1
+\quad\text{vs}\quad
+d_1^\top F_0^G d_1.
+}
+\]
+
+也可以直接避免显式 Hessian，
+用 finite displacement：
+
+\[
+D_0(\theta,d)
+=
+L_0(\theta+d)-L_0(\theta).
+\]
+
+真正的问题变成：
+
+\[
+\boxed{
+\text{G-formed solution
+是否对真实 future-task movement 更不敏感？}
+}
+\]
+
+这比研究抽象的 Hessian sharpness 更直接。
+
+
+\section*{十二、推荐执行顺序}
+
+建议严格按照下面的顺序执行：
+
+\[
+\boxed{
+\begin{array}{c}
+\text{Step-size controls}
+\\
+\downarrow\\
+\mathrm{Mean}@2\eta
+\text{ vs }
+\mathrm{Sum}@\eta
+\\
+S@\eta,\ S@1.5\eta,\ S@2\eta
+\\
+G_{\mathrm{match}}
+\\[2mm]
+\downarrow\\
+\text{Task0 formation trajectory}
+\\
+\theta_e^S
+\text{ vs }
+\theta_e^G
+\\
+e=0,10,20,30,40,50
+\\[2mm]
+\downarrow\\
+\text{identical future $S$ continuation}
+\\
+K=1,10,50,100
+\\
+\downarrow\\
+\text{future susceptibility curve}
+\\[2mm]
+\downarrow\\
+\text{2-task factorial}
+\\
+SS,\ GS,\ SG,\ GG
+\\
+\downarrow\\
+\text{formation vs continuation}
+\\[2mm]
+\downarrow\\
+\text{3-task persistence}
+\\
+SSS,\ GSS,\ SGS,\ SSG,\ GGG
+\\[2mm]
+\downarrow\\
+\text{LoRA vs FC attribution}
+\\
+\downarrow\\
+\text{future-direction Hessian/Fisher analysis}.
+\end{array}
+}
+\]
+
+
+\section*{十三、最重要的判定标准}
+
+这套假设最强的支持模式应当是：
+
+\[
+\boxed{
+\begin{aligned}
+&\text{(1) }
+G_{\mathrm{match}}
+\text{ 在匹配有效更新步幅后仍产生不同长期状态};
+\\
+&\text{(2) }
+L_0(\theta^G)
+\approx
+L_0(\theta^S),
+\quad
+a_0(\theta^G)
+\approx
+a_0(\theta^S);
+\\
+&\text{(3) }
+\mathcal S^G(K)
+<
+\mathcal S^S(K)
+\text{ under identical future updates};
+\\
+&\text{(4) }
+GS
+\text{ 比 }
+SS
+\text{ 遗忘更少};
+\\
+&\text{(5) }
+G\rightarrow S
+\text{ 切换后仍保留部分优势};
+\\
+&\text{(6) }
+GSS
+\text{ 相对 }
+SSS
+\text{ 的 Task0 保留优势持续到 Task2}.
+\end{aligned}
+}
+\]
+
+如果这六项中的核心几项成立，
+那么就可以相当有力地支持：
+
+\[
+\boxed{
+\begin{minipage}{0.88\linewidth}
+GAM 的长期收益并非主要来自某一个局部更新方向在即时下降意义上更优，
+而是来自重复的非局部 probing 对训练轨迹的持续塑形。
+这种路径效应逐渐形成具有不同未来敏感性的任务解，
+从而影响后续学习中的稳定性与遗忘。
+\end{minipage}
+}
+\]
+
+
+\section*{十四、对应的反证条件}
+
+同样需要提前定义什么结果会否定这个故事。
+
+如果：
+
+\[
+S@2\eta
+\approx
+G,
+\]
+
+并且：
+
+\[
+G_{\mathrm{match}}
+\approx
+S,
+\]
+
+则主要是：
+
+\[
+\boxed{
+\text{step-size effect}.
+}
+\]
+
+如果：
+
+\[
+GS
+\approx
+SS,
+\]
+
+但：
+
+\[
+SG>SS,
+\]
+
+则主要机制不是状态形成，而是：
+
+\[
+\boxed{
+\text{online continuation effect}.
+}
+\]
+
+如果：
+
+\[
+G\rightarrow S
+\]
+
+立即完全失去优势，
+而：
+
+\[
+S\rightarrow G
+\]
+
+立即获得优势，
+则不支持持久 state formation。
+
+如果：
+
+\[
+GSS>SSS
+\]
+
+只在 Task1 后存在，
+Task2 后完全消失，
+则最多只能声称：
+
+\[
+\boxed{
+\text{one-transition robustness},
+}
+\]
+
+不能声称长期形成了稳定的抗遗忘状态。
+
+
+\section*{十五、种子与统计}
+
+当前 seed2 结果应该继续视为探索性结果。
+
+新的核心机制实验建议至少使用：
+
+\[
+\boxed{
+s\in\{0,1,2\}
+}
+\]
+
+进行第一轮确认。
+
+对于最终论文中最核心的：
+
+\[
+GS\text{ vs }SS,
+\]
+
+以及：
+
+\[
+GSS\text{ vs }SSS,
+\]
+
+若结果支持假设，
+建议扩展至：
+
+\[
+\boxed{
+5\text{ seeds}.
+}
+\]
+
+所有分析使用 seed-level paired differences。
+
+batch、
+checkpoint、
+probe batch
+只能作为同一 seed 内部重复测量，
+不能当作独立统计重复。
+```
+
+这套计划里，我认为**最关键的新实验不是继续扫描 $\lambda$ 或 $\alpha$**，而是两个：
+
+$$
+\boxed{
+\text{不同形成时间 checkpoint}
+\rightarrow
+\text{完全相同的未来 $S$ continuation}
+}
+$$
+
+和
+
+$$
+\boxed{
+GS
+\quad\text{vs}\quad
+SS.
+}
+$$
+
+前者直接检验“future susceptibility 是否随 GAM 训练时间逐渐形成”，后者则在完整两任务训练中检验“这种已经形成的状态是否真的更耐受未来学习”。
+
+同时加入 $G_{\mathrm{match}}$ 后，就能把你前面已经发现的**步长效应**从主机制中剥离出去。这样如果最后仍然看到 $G$ 状态更耐后续训练，关于“trajectory shaping $\rightarrow$ different state $\rightarrow$ different future susceptibility”的结论会比现在的局部残差或 Hessian 解释强得多。

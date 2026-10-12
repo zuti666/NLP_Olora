@@ -1,0 +1,84 @@
+{
+  "arm": "ewc_lambda_sweep",
+  "completed_tasks": 2,
+  "identity_sha256": "46f155524a6a5fa0a86890c3c347d7143284654c37efbb1c6f183b194f721e5b",
+  "manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/training/refine1_04_seed0/run_manifest.json",
+  "smoke_only": false,
+  "status": "complete",
+  "time_unix": 1790058917.9885275,
+  "validation": {
+    "accuracy_CIL": {
+      "a11": 87.3,
+      "a21": 83.06,
+      "a22": 75.98
+    },
+    "checkpoint_assets": {
+      "checkpoints/fisher_state_1.pt": {
+        "bytes": 56631506,
+        "sha256": "ce9112885ab240320b82e9f97734a41591c1cf1a63836b7bd3e0e06de0bbb56a"
+      },
+      "checkpoints/rng_state_01.pt": {
+        "bytes": 14390,
+        "sha256": "b439ae7714ab49753ebcc4432ef4575cf1366ad93ffaf1cc1eff1fa36a1a1d9f"
+      },
+      "checkpoints/task_01.pt": {
+        "bytes": 688098550,
+        "sha256": "da5929df392007c9108ad79df0cb60e513df120591ce8228f1a36b23080f540d"
+      }
+    },
+    "effective_weight_displacement": 0.1739250959218623,
+    "epochs_per_new_task": 50,
+    "fisher_policy": "recomputed_native_task0_raw_fisher_no_trace_normalization",
+    "gradients": {
+      "batches": 400,
+      "component_norms_available": true,
+      "component_sample_count": 51,
+      "component_sampling": "zero-based steps 0, 1, 8, 16, ...",
+      "component_source": "native_EWC_autograd; clean=actual_combined-EWC; float64_norms",
+      "cos_clean_fisher_mean": -0.04143329118536798,
+      "fisher_to_clean_norm_ratio_mean": 0.15460490725088874,
+      "grad_clean_norm_mean": 1.9312087778295997,
+      "grad_combined_norm_max": 7.935839405998622,
+      "grad_combined_norm_mean": 1.9848613188715882,
+      "grad_fisher_norm_mean": 0.3513039456067022,
+      "source": "actual_native_sgd_parameter_gradients_immediately_before_step"
+    },
+    "losses": {
+      "train_clean_loss_mean": 0.573211030587554,
+      "train_fisher_loss_mean": 0.0122044504864607
+    },
+    "mechanism_task1_verified": true,
+    "metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_refinement_round1_20260922/training/refine1_04_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/refine1_04_seed0/imageneta/0/refine1_04_seed0/exp_run/20/refine1_04_seed0_vit_base_patch16_224_cl_metrics.json",
+    "metrics_sha256": "fbec6ee64dcf6fa73033b14ef7f3267d4aa375a36f10310b770a0ba556b774f3",
+    "pairing": {
+      "epochs": 50,
+      "fit_fisher_passes": 1,
+      "new_head_sha256": "05d16669f438d5ad33621d339fea510fef78c6c917131a70bc769873d592d7b2",
+      "passed": true,
+      "reference": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_sgd_seed0/rng_receipts.jsonl",
+      "reference_sha256": "2fc744ebd81aee771b8523283f11e41e8352de3136e12be8ac525a754400796d",
+      "scope": "Every sample index and first augmented batch for all training and the final fit-Fisher loader traversals, not every augmented batch"
+    },
+    "prepared_fisher": {
+      "execution_ready": true,
+      "fisher_policy": "recomputed_native_task0_raw_fisher_no_trace_normalization",
+      "numel": 14155776,
+      "parent_checkpoint_sha256": "12c1c40a2bfeed89151957b5581461e512b4e0f2f2b70c99c101fb86901a5229",
+      "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/fisher_state_raw.pt",
+      "payload_sha256": "cfdcd801f773d3d33cb48885c84ff31f032a60bf4a4cccbdead5008d67aacd95",
+      "raw_trace": 34.069888104965315,
+      "receipt_path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda_sweep_seed0_20260921/prepared_fisher/PREPARED.json",
+      "receipt_sha256": "76a06376cb87e5a21bcb92c26c9a66890b5fb280d36fa372bc57dcc54f1e3cf1",
+      "source_manifest_sha256": "fe3b5ef75e89bab32010c1aa9a0581cbaeb2b068eaa2f4718f11a9cc314d0a2b",
+      "status": "verified",
+      "tensor_count": 24
+    },
+    "rng_receipts_sha256": "79b38491423098decd0a7b1649e8a38864e3468f6d6c3e2e41ef2a30af5987b8",
+    "runtime_receipts_sha256": "ea39ce9a372e34b745746f1ac7466a45f7d055f4e2400f2aa59a57f3e51cc044",
+    "smoke_only": false,
+    "training_batch_metrics_sha256": "7ba874bf2e5927a2d4884e0c4bd9ea276828f5464ccedd885130c322a5e91b2a",
+    "validated_tasks": [
+      1
+    ]
+  }
+}

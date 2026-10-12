@@ -1,0 +1,21 @@
+% Requires \usepackage{booktabs,amsmath}.
+\begin{table*}[t]
+\centering\scriptsize
+\caption{ImageNet-A with two tasks of 20 classes, ViT-B/16 and continuous rank-10 Q/V LoRA. All GAM updates use SGD as the base optimizer; update rules are listed explicitly. Endpoints are the saved outputs after the configured task-trajectory factor mixing (policy \texttt{all}); only A/B factors are mixed, not classifier heads. Accuracies use the seen-class head and are percentages; BWT is in percentage points. $r_{QV}=\left[\sum_{\ell,c\in\{Q,V\}}\|B^{(2)}_{\ell c}A^{(2)}_{\ell c}-B^{(1)}_{\ell c}A^{(1)}_{\ell c}\|_F^2\right]^{1/2}$ excludes classifier parameters. Means over 1 training seed(s). $\mathcal B_j=N_j^{-1}\sum_b n_b\|\nabla_{W^{\mathrm{eff}}_{QV}}\bar\ell_b\|_2^2$ is the current-task batch-mean-gradient proxy at endpoint $j$, using its local 20-class head. It uses all current-task training images with deterministic test preprocessing and fixed contiguous batches of 128 (the final short batch is weighted by its sample count). No trace rescaling or positive floor is applied. It is not per-example empirical Fisher, and $\mathcal B_2$ does not measure old-task sensitivity at the second endpoint. Sample standard deviations are shown when available.}
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Update rule} & \multicolumn{2}{c}{Task 1 endpoint} & \multicolumn{4}{c}{Task 2 endpoint} & Drift \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-9}
+Variant & Task 1 & Task 2 & $a_{11}\uparrow$ & $\mathcal B_1$ & $a_{21}\uparrow$ & $a_{22}\uparrow$ & BWT$\uparrow$ & $\mathcal B_2$ & $r_{QV}$ \\
+\midrule
+Vanilla LoRA & SGD & SGD & $87.296$ & $16.079$ & $83.062$ & $76.378$ & $-4.235$ & $16.625$ & $0.379$ \\
+Shaping-only LoRA & GAM & GAM & $86.971$ & $7.245$ & $83.713$ & $81.102$ & $-3.257$ & $9.794$ & $0.498$ \\
+EWCLoRA & SGD & SGD+EWC & $87.296$ & $16.079$ & $83.062$ & $75.984$ & $-4.235$ & $16.867$ & $0.378$ \\
+Shaping + EWCLoRA & GAM & GAM+EWC & $86.971$ & $7.245$ & $83.713$ & $81.496$ & $-3.257$ & $9.530$ & $0.498$ \\
+\midrule
+EWCLoRA + Task-1 shaping & GAM & SGD+EWC & $86.971$ & $7.245$ & $86.319$ & $72.835$ & $-0.651$ & $20.399$ & $0.360$ \\
+EWCLoRA + Task-2 shaping & SGD & GAM+EWC & $87.296$ & $16.079$ & $80.130$ & $82.677$ & $-7.166$ & $8.571$ & $0.564$ \\
+\bottomrule
+\end{tabular*}
+\end{table*}

@@ -1,0 +1,176 @@
+{
+  "status": "ROOT_CAUSE_REPRODUCED_CPU",
+  "scope": "Actual frozen source functions AST-extracted, synthetic labels only; not experimental accuracies.",
+  "source_files_sha256": {
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/utils/toolkit.py": "21ade1342f8a294fc927aabd1079ded2d69e768c409877720b5da043131e3438",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source/models_CL/baseLearner.py": "0fd284d7e6c0fa7f4af861b13dd6440e5683e3f3d66fe281fcf229ca76fce9b7"
+  },
+  "cases": [
+    {
+      "task": 0,
+      "grouped_task_keys": [
+        "00-19",
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "seen_finite_keys": [
+        "00-19"
+      ],
+      "future_structural_nan_keys": [
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "old_wrapper_expected_length": 1,
+      "old_wrapper_actual_length": 10,
+      "old_wrapper_would_reject": true
+    },
+    {
+      "task": 1,
+      "grouped_task_keys": [
+        "00-19",
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "seen_finite_keys": [
+        "00-19",
+        "20-39"
+      ],
+      "future_structural_nan_keys": [
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "old_wrapper_expected_length": 2,
+      "old_wrapper_actual_length": 10,
+      "old_wrapper_would_reject": true
+    },
+    {
+      "task": 4,
+      "grouped_task_keys": [
+        "00-19",
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "seen_finite_keys": [
+        "00-19",
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99"
+      ],
+      "future_structural_nan_keys": [
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "old_wrapper_expected_length": 5,
+      "old_wrapper_actual_length": 10,
+      "old_wrapper_would_reject": true
+    },
+    {
+      "task": 9,
+      "grouped_task_keys": [
+        "00-19",
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "seen_finite_keys": [
+        "00-19",
+        "20-39",
+        "40-59",
+        "60-79",
+        "80-99",
+        "100-119",
+        "120-139",
+        "140-159",
+        "160-179",
+        "180-199"
+      ],
+      "future_structural_nan_keys": [],
+      "old_wrapper_expected_length": 10,
+      "old_wrapper_actual_length": 10,
+      "old_wrapper_would_reject": false
+    }
+  ],
+  "failed_smokes": {
+    "smoke_u0_natural_r025_s2": {
+      "log_sha256": "ba6377ef3986e8ad4e948aa6dafffd0a8bbcf841c1d74d9d8eb87f1af45e9bb0",
+      "failure": "Task0 all-seen native evaluation wrapper"
+    },
+    "smoke_u0_matched_r025_s2": {
+      "log_sha256": "7329f43773aaf77c61ce452c0221f7d76c821cfab419371d885c4e5fbe07c31a",
+      "failure": "Task0 all-seen native evaluation wrapper"
+    },
+    "smoke_us_natural_r025_s2": {
+      "log_sha256": "5b87965f5826d17f7f4c5bdd59da63cfa3e8d2cbcd575243a0616dc5f7de5147",
+      "failure": "Task0 all-seen native evaluation wrapper"
+    },
+    "smoke_us_matched_r025_s2": {
+      "log_sha256": "515e4dd0ec9395103cbd64a8dff93eca625066a1b9dbb85a2e6332667f106ff9",
+      "failure": "Task0 all-seen native evaluation wrapper"
+    },
+    "smoke_ug_natural_r025_s2": {
+      "log_sha256": "5c17844619cd1d2c808352bf9951a283ecc14c8764105b4d3037531dfe176aa9",
+      "failure": "Task0 all-seen native evaluation wrapper"
+    },
+    "smoke_ug_matched_r025_s2": {
+      "log_sha256": "225576aada79688a1e045798a033fa225903b3805af67616ba3ea85dd965c4b1",
+      "failure": "Task0 all-seen native evaluation wrapper"
+    }
+  },
+  "old_state_sha256": "6e72979ab5724a8e2948260a1fe093173c5ed6159f6305deae3bd3e5975c3ddf",
+  "job_status_counts": {
+    "failed": 6,
+    "pending": 19,
+    "running": 0,
+    "completed": 0
+  },
+  "stale_top_level_counts": {
+    "running": 6,
+    "pending": 19
+  },
+  "required_fix": "Select every exact seen 20-class label; reject missing/nonfinite seen metrics; omit only known future task buckets; never filter merely by finiteness.",
+  "old_artifacts_untouched": true
+}

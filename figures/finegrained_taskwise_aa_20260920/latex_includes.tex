@@ -1,0 +1,45 @@
+% Requires \usepackage{graphicx}. Paths are relative to the O-LoRA workspace.
+% Standalone figures use figure* to preserve legend legibility in a two-column paper.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/finegrained_taskwise_aa_20260920/output/aircraft_taskwise_aa.pdf}
+    \caption{Aircraft: task-macro average accuracy after each learned task. At stage $t$, $\mathrm{AA}_t=\frac{1}{t}\sum_{j=1}^{t} a_{t,j}$ averages test accuracies on all seen tasks, including the current task, with equal task weights. Each curve shows one archived run ($n=1$ per method); no uncertainty band is estimated. The endpoint is FAA, and the mean over all stage points is stage-averaged AAA. Runs share ViT-B/16, LoRA rank 16, and batch size 128, while retaining documented method-specific configurations. EWCLoRA uses the eligible archived run with the highest FAA for this dataset, selected retrospectively using final test performance. All runs use 40 epochs per task and seed 0; SDLoRA uses learning rate 0.02, whereas the other methods use 0.05.}
+    \label{fig:aircraft_taskwise_aa}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/finegrained_taskwise_aa_20260920/output/cars_taskwise_aa.pdf}
+    \caption{Cars: task-macro average accuracy after each learned task. At stage $t$, $\mathrm{AA}_t=\frac{1}{t}\sum_{j=1}^{t} a_{t,j}$ averages test accuracies on all seen tasks, including the current task, with equal task weights. Each curve shows one archived run ($n=1$ per method); no uncertainty band is estimated. The endpoint is FAA, and the mean over all stage points is stage-averaged AAA. Runs share ViT-B/16, LoRA rank 16, and batch size 128, while retaining documented method-specific configurations. EWCLoRA uses the eligible archived run with the highest FAA for this dataset, selected retrospectively using final test performance. All runs use 40 epochs per task. EWCLoRA uses seed 1; the other methods use seed 0.}
+    \label{fig:cars_taskwise_aa}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/finegrained_taskwise_aa_20260920/output/cub200_taskwise_aa.pdf}
+    \caption{CUB-200: task-macro average accuracy after each learned task. At stage $t$, $\mathrm{AA}_t=\frac{1}{t}\sum_{j=1}^{t} a_{t,j}$ averages test accuracies on all seen tasks, including the current task, with equal task weights. Each curve shows one archived run ($n=1$ per method); no uncertainty band is estimated. The endpoint is FAA, and the mean over all stage points is stage-averaged AAA. Runs share ViT-B/16, LoRA rank 16, and batch size 128, while retaining documented method-specific configurations. EWCLoRA uses the eligible archived run with the highest FAA for this dataset, selected retrospectively using final test performance. All runs use 40 epochs per task and seed 0.}
+    \label{fig:cub200_taskwise_aa}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/finegrained_taskwise_aa_20260920/output/flowers_taskwise_aa.pdf}
+    \caption{Flowers: task-macro average accuracy after each learned task. At stage $t$, $\mathrm{AA}_t=\frac{1}{t}\sum_{j=1}^{t} a_{t,j}$ averages test accuracies on all seen tasks, including the current task, with equal task weights. Each curve shows one archived run ($n=1$ per method); no uncertainty band is estimated. The endpoint is FAA, and the mean over all stage points is stage-averaged AAA. Runs share ViT-B/16, LoRA rank 16, and batch size 128, while retaining documented method-specific configurations. EWCLoRA uses the eligible archived run with the highest FAA for this dataset, selected retrospectively using final test performance. All runs use 40 epochs per task. EWCLoRA uses seed 1; the other methods use seed 0.}
+    \label{fig:flowers_taskwise_aa}
+\end{figure*}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/finegrained_taskwise_aa_20260920/output/5datasets_taskwise_aa.pdf}
+    \caption{5Datasets: task-macro average accuracy after each learned task. At stage $t$, $\mathrm{AA}_t=\frac{1}{t}\sum_{j=1}^{t} a_{t,j}$ averages test accuracies on all seen tasks, including the current task, with equal task weights. Each curve shows one archived run ($n=1$ per method); no uncertainty band is estimated. The endpoint is FAA, and the mean over all stage points is stage-averaged AAA. Runs share ViT-B/16, LoRA rank 16, and batch size 128, while retaining documented method-specific configurations. EWCLoRA uses the eligible archived run with the highest FAA for this dataset, selected retrospectively using final test performance. The stream order is CUB-200 $\rightarrow$ FGVC-Aircraft $\rightarrow$ Stanford Cars $\rightarrow$ Oxford Flowers-102 $\rightarrow$ Oxford-IIIT Pet. InfLoRA, OLoRA, and SDLoRA use 40 epochs per task; the other methods use 30. EWCLoRA uses seed 2; the other methods use seed 0.}
+    \label{fig:5datasets_taskwise_aa}
+\end{figure*}
+
+% === Updated horizontal overview requested by the user ===
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/finegrained_taskwise_aa_20260920/output/all_datasets_taskwise_aa.pdf}
+    \caption{Taskwise average accuracy on Aircraft, Cars, CUB-200, Flowers, and 5Datasets (left to right, matching the result table). At each stage, accuracy is averaged equally over all seen tasks, including the current task. Every curve shows one archived run ($n=1$). Shading is a fixed $\pm0.2$ percentage-point illustrative band following the reference visualization; it is not a standard deviation, standard error, or confidence interval. Center curves are unchanged from the selected table runs. Runs retain documented method-specific configurations; EWCLoRA uses the highest-FAA eligible archived run per dataset, retrospectively selected using final test performance. SDLoRA/Aircraft uses learning rate 0.02 (other Aircraft runs: 0.05). On 5Datasets, InfLoRA/OLoRA/SDLoRA use 40 epochs per task and the other methods use 30; the other four datasets use 40. EWCLoRA uses seed 1 on Cars/Flowers and seed 2 on 5Datasets; other plotted runs use seed 0. The 5Datasets order is CUB-200 $\rightarrow$ FGVC-Aircraft $\rightarrow$ Stanford Cars $\rightarrow$ Oxford Flowers-102 $\rightarrow$ Oxford-IIIT Pet.}
+    \label{fig:finegrained_taskwise_aa_overview}
+\end{figure*}

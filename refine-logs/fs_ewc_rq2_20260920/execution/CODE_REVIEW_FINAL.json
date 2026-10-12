@@ -1,0 +1,44 @@
+{
+  "reviewed_at": "2026-09-20T10:11:32.583368+00:00",
+  "reviewer": "rq2_preflight",
+  "scope": "Independent final static review and CPU document dry-run; no new GPU jobs launched",
+  "decision": "NO_BLOCKER_TO_LAUNCH_WAITING_QUEUE",
+  "source_sha256": {
+    "rq2_common.py": "ae1c253e79bcfc884b27e160069d5cc40cfcb269685e103dca280a18413e0b7f",
+    "diagnostic.py": "d2f02331b4f6479822e2289b7575e2b56eb50ae58d4e2db1ac8e88eebe78b8d3",
+    "train_continuation.py": "ca239f3859c76fa3a72e19177b418439eca5488b30c537403031cdc5d038f77e",
+    "endpoint_a.py": "c2c0eab7d447f15430a4aa53777c90d19d4a2df75ba435b0427a8650a248ebae",
+    "postprocess.py": "33cf803666cd25601e6b2d5dbf65475ad7899049c0010662234016c3e9431302",
+    "pipeline.py": "58f810af5ff6e3688bf8cfdd7c3bb66186914300d9424f9b499461a9cf1be96c",
+    "diagnostic_config.json": "8bc60691d7cd8b50a0cf5c8ae069a34320e70614d8ded37b158adbe41b178d48",
+    "campaign_plan.json": "2e5ed60659700706b7a334627fbb5fd744c095c4b3aa065e374e7678b7f7d57e"
+  },
+  "document_check": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/DOC_CHECK_campaign.json",
+    "status": "PASS",
+    "jobs": 15,
+    "stages": 8
+  },
+  "findings_resolved": {
+    "historical_precision": "Four original endpoints reproduced with temporary TF32 patch-convolution operand reference, max CE error 1.3766884e-6, all accuracy exact; original 3e-5 tolerance unchanged. Both reference hooks and convolution weights restored in finally.",
+    "production_precision": "New diagnostics, all20 endpoint trajectory, continuation training and A endpoint evaluation explicitly FP32 with matmul/cuDNN TF32 disabled.",
+    "a11": "A uses freshly evaluated FP32 anchor a11, checked against continuation pretraining metrics; inherited historical a11 retained separately.",
+    "fisher": "Exact per-example QV effective-matrix gradient hook; CE sum scale; cross-block inner products summed before squaring. Independent autograd/FD GPU gates required.",
+    "report": "Current FP32 trajectory used when complete; historical CSV separate; complete requires 12 receipts, shared data hashes, two path numerical gates and A RNG pairing.",
+    "rng_pairing": "Checks Task1 new head, dedicated loader seed/config, every logged training sample-order hash and first-batch pixel/label hash, plus at least50 epoch iterations. Independent implementation author positive/negative CPU witness recorded in FINAL_CPU_VALIDATION.json.",
+    "queue": "Only GPU4/6 or CPU allowed; UUID binding, occupancy wait, lane locks, stage barriers, full fingerprints and completed receipt hashes retained. No formal seed1/2 jobs in this campaign."
+  },
+  "remaining_runtime_gates": [
+    "Both final-code sanity jobs must pass before B/C.",
+    "Both full B, bridge, trajectory and path jobs must complete before paired Task1 training.",
+    "Path quadrature_converged and bound_passed_with_2pct_numeric_tolerance are required.",
+    "Actual paired Task1 receipts and A endpoints must pass before report complete."
+  ],
+  "resource_state": "GPUs4/6 currently occupied by other jobs per root observation; expected queue behavior is waiting_for_gpu, no preemption or use of another card.",
+  "not_claimed": [
+    "Final-code scientific sanity already passed",
+    "B/C or A experiments complete",
+    "Historical training bitwise reconstructed",
+    "GPU availability guaranteed at launch"
+  ]
+}

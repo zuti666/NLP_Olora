@@ -1,0 +1,2757 @@
+{
+  "current_task_batch_fisher_proxy": {
+    "damping": null,
+    "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+    "floor": null,
+    "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+    "input_tensors_sha256": "4b9dad57992ebe2ca5868a0579a35c5549a0b562ee08abc435c3fd53624dbd3d",
+    "logical_batch_size": 128,
+    "logical_batches": [
+      {
+        "batch_mean_gradient_squared_trace": 14.266596792894628,
+        "index": 0,
+        "input_tensors_sha256": "10fd3f308cf15c2e974b6d4b224c64425478045da613d4fc6eab7f0ccec167f2",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 7.818408102197193,
+        "index": 1,
+        "input_tensors_sha256": "f2ad72419702c359cedd39e2da861611f0d3fa9e578d3156e5d431d635dcb3c8",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 16.77162185083709,
+        "index": 2,
+        "input_tensors_sha256": "ae6d8a634e895da953fdc5c19fc33b6367d6c7558fadd7ab9a59160cc422030a",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 3.035852674824348,
+        "index": 3,
+        "input_tensors_sha256": "602bf264813a9bd160c108de05be929e3c6d1b2ef91e53a8cd551fdfa83c6915",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 8.898130638290564,
+        "index": 4,
+        "input_tensors_sha256": "5a48c885678906109af682ffc6faeb442372288a2ad3616cf3ec801348488952",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 7.471982399988246,
+        "index": 5,
+        "input_tensors_sha256": "7c19d1e1a9dd5ec3a5aa71c09d52688977bb1119ef04631edff2172b5698b1c9",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 8.379148228051461,
+        "index": 6,
+        "input_tensors_sha256": "d1e5879dc5ee8c783c703f1b7ae3695ef914714bfa443eb112600255b3102818",
+        "samples": 128
+      },
+      {
+        "batch_mean_gradient_squared_trace": 9.617457623511674,
+        "index": 7,
+        "input_tensors_sha256": "19bd390e32df8145bd92276a3d93c829a2582b5139bbf353056f6589f059179a",
+        "samples": 101
+      }
+    ],
+    "loss": 0.09175508071827773,
+    "loss_scope": "new_local20",
+    "micro_batch_size": 8,
+    "normalization": "sample-weighted mean only",
+    "normalized": false,
+    "parameter_scope": "24 effective Q/V weights; excludes head",
+    "raw_trace": 9.530096316871987,
+    "regularizer": null,
+    "samples": 997,
+    "seconds": 11.98829529399518,
+    "source": "full current-task train; deterministic test transform; fixed dataset order"
+  },
+  "fisher": {
+    "new_local20": {
+      "damping": null,
+      "estimator": "mean of true-label per-example CE gradient outer products",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "input_tensor_records": [
+        {
+          "dataset_index": 2,
+          "label": 20,
+          "tensor_sha256": "020f3ea1c79145a8095dfb3d353b4d58a4b6219cd05f57ee083d1e3aaa1aebd9"
+        },
+        {
+          "dataset_index": 4,
+          "label": 20,
+          "tensor_sha256": "6df2003a22b57684301fe0324c649cd0b6c28d6ee95ece86cbbbb336217730fb"
+        },
+        {
+          "dataset_index": 8,
+          "label": 20,
+          "tensor_sha256": "111c0bb6a578e9ab19cb305b6c8b0f38ab5eb68b91574e4817dbe9da07ec357e"
+        },
+        {
+          "dataset_index": 9,
+          "label": 20,
+          "tensor_sha256": "9aed6ee7be8357372ca58d1f2708eb9b7dae44dbcf83313984576cac288058dd"
+        },
+        {
+          "dataset_index": 11,
+          "label": 20,
+          "tensor_sha256": "de5f10cf3c62ace89ab1d43c5ea2a31ef53681f084821baf767ae202dd8e362a"
+        },
+        {
+          "dataset_index": 21,
+          "label": 20,
+          "tensor_sha256": "282dc1d9e1be821cf6b6404e28318135f3a687b8b6d20eede02d5847bd4c3a5e"
+        },
+        {
+          "dataset_index": 28,
+          "label": 20,
+          "tensor_sha256": "28aecf8c260aab5c172d13207d290e3fd1d1520bbb2fdec05048158dcd8381b2"
+        },
+        {
+          "dataset_index": 39,
+          "label": 20,
+          "tensor_sha256": "889c1ba97e47292aac093d519d929a1544b442828070fe90930d2cd2f4cf5b08"
+        },
+        {
+          "dataset_index": 41,
+          "label": 20,
+          "tensor_sha256": "6ff85d0d5570102f9c7d2b0f8db8a3eed482b5ff48012d64108e2a91b34174c9"
+        },
+        {
+          "dataset_index": 45,
+          "label": 20,
+          "tensor_sha256": "01853f629097c9b81cfcce9dae98d8196bec4a1220bde83eabb1c44dc5052963"
+        },
+        {
+          "dataset_index": 49,
+          "label": 20,
+          "tensor_sha256": "1b31e29e2f6b0536a93709a016a797ac3cf22d2b145de0ce6eadd8804566052f"
+        },
+        {
+          "dataset_index": 50,
+          "label": 20,
+          "tensor_sha256": "0bbaf0671939ee7011d0d02a74dcf42a8ffbf8e54961523ce12f2e6daa26e2ce"
+        },
+        {
+          "dataset_index": 51,
+          "label": 20,
+          "tensor_sha256": "7965a17cab84e4bdade47459496b3a96f0aafad0919a0f7c5ff3f080e74d9e6d"
+        },
+        {
+          "dataset_index": 52,
+          "label": 20,
+          "tensor_sha256": "b007957a1aa1f718866ed94b7e16ce2f7ced2583bd24cf4ee54608683ee1f000"
+        },
+        {
+          "dataset_index": 56,
+          "label": 20,
+          "tensor_sha256": "78a3a19ee95a9105384cacb6a5bfdd89b03e894d093addef2241a8d2d321c8c5"
+        },
+        {
+          "dataset_index": 57,
+          "label": 20,
+          "tensor_sha256": "9b922ae88163cdd226d2b4cb655a8e3220947c2165a356b6e519dccc351f5bbb"
+        },
+        {
+          "dataset_index": 58,
+          "label": 20,
+          "tensor_sha256": "98380a6f2722bd835d4253f4c53e000b7971210874e17e9e1571523ec3b46753"
+        },
+        {
+          "dataset_index": 61,
+          "label": 20,
+          "tensor_sha256": "383f85f5dc83d3e4424879e3f810ddfc4bcf56c7183240d29f59973c97a69c87"
+        },
+        {
+          "dataset_index": 68,
+          "label": 20,
+          "tensor_sha256": "cb9e3852614109052acb3b3638323d66324bb06ec96f73617a0fade7d0625f2f"
+        },
+        {
+          "dataset_index": 72,
+          "label": 20,
+          "tensor_sha256": "b40d614c5aeee98831e0fa54627c1bd94c262fee6238db9a1c27e31ec63bb622"
+        },
+        {
+          "dataset_index": 79,
+          "label": 21,
+          "tensor_sha256": "8ca54912aa6ba92b6b23c0accc73baae9c67dceb04b295fa48f37a5cf292b8f6"
+        },
+        {
+          "dataset_index": 82,
+          "label": 21,
+          "tensor_sha256": "36f1ba7865fd1a9981233c3babcf4de1522d7f8ca9ed909de557c8fd0bc309c1"
+        },
+        {
+          "dataset_index": 84,
+          "label": 21,
+          "tensor_sha256": "a3b819bf3aab56db3a1a3dc3882bae79eb7fd1572cb8b9bd45bbcdf71cff1382"
+        },
+        {
+          "dataset_index": 92,
+          "label": 21,
+          "tensor_sha256": "14ae80b5b9804eb826e1fcd60a09d94f21e4d4e1b3e67663a9067aac937f5724"
+        },
+        {
+          "dataset_index": 95,
+          "label": 21,
+          "tensor_sha256": "62e29d6d131aececb3d7ba7aecbcd7d74465cdf79778cf159ac4589d108d3f0e"
+        },
+        {
+          "dataset_index": 97,
+          "label": 21,
+          "tensor_sha256": "27841d700c71ae7c39acceee2514c5da86b3f28b8ea7a701398b6600ffac66b0"
+        },
+        {
+          "dataset_index": 100,
+          "label": 21,
+          "tensor_sha256": "fc565a3e2782faa11170c3e4dc03257730beed2298676ab5c91041bb03605312"
+        },
+        {
+          "dataset_index": 101,
+          "label": 21,
+          "tensor_sha256": "d3f456234c40906438963d52814ab0a35835fe0a3bd31797b0694b6e39d2899e"
+        },
+        {
+          "dataset_index": 103,
+          "label": 21,
+          "tensor_sha256": "35007d163137340010ea8606c4cdf9ea4f621b679debb77f73627de00e3d6af5"
+        },
+        {
+          "dataset_index": 105,
+          "label": 21,
+          "tensor_sha256": "bf98fe595994e7a1163c8811b20828dac301ebec725bca9ad0eb2a78da52888f"
+        },
+        {
+          "dataset_index": 107,
+          "label": 21,
+          "tensor_sha256": "20f2f17a6f03d4d8dcb19e478103cb48452f6dd38cdb9b5fc7ed1a8a72cbeee4"
+        },
+        {
+          "dataset_index": 116,
+          "label": 21,
+          "tensor_sha256": "ae31b491386cb813994b4ecbee4f388cfeff8c5baada6a6c587c655579b68052"
+        },
+        {
+          "dataset_index": 120,
+          "label": 21,
+          "tensor_sha256": "e67a9e8cd0bbe2b34e82046d4d7f75a24306e584faee126d0bdcdb52732d0cf0"
+        },
+        {
+          "dataset_index": 125,
+          "label": 21,
+          "tensor_sha256": "89c67a33847d8aa08c0c60f261db488f6dbb3b1b4a8bfe629fba4b81dbcdea52"
+        },
+        {
+          "dataset_index": 126,
+          "label": 21,
+          "tensor_sha256": "ee0d47f6e83d286d35159031870740b9deeb50bf41b658e5776eeb6a9056a4c6"
+        },
+        {
+          "dataset_index": 134,
+          "label": 21,
+          "tensor_sha256": "22c47ad43f6d272335bc55ae40b2a2590a1bc8b91834699790354a37749b65b3"
+        },
+        {
+          "dataset_index": 137,
+          "label": 21,
+          "tensor_sha256": "83124b89c2149e1095a3c969d535e392951c0c61caf6279571bc7c643534bbaf"
+        },
+        {
+          "dataset_index": 138,
+          "label": 21,
+          "tensor_sha256": "f7b3119a0ebe0f9de351d69548fde3cb443cb17813fa31edf4e820fc44085852"
+        },
+        {
+          "dataset_index": 141,
+          "label": 21,
+          "tensor_sha256": "b0af24651c4f2a27f361438aafd0319545a9d37208c6136de74424164906b029"
+        },
+        {
+          "dataset_index": 146,
+          "label": 21,
+          "tensor_sha256": "514c96c56b108b7611634a870f34958966e31dca74dd1311f77960f2df84475b"
+        },
+        {
+          "dataset_index": 155,
+          "label": 21,
+          "tensor_sha256": "40ce27461cceccbf05d095a1aab5adc449bbe7a25a16492f611c85868132f2b6"
+        },
+        {
+          "dataset_index": 161,
+          "label": 22,
+          "tensor_sha256": "3c07b224cc0a92c6d9ecdaeb50b0d1eb8e1f30a53197c0960a02364f514b3241"
+        },
+        {
+          "dataset_index": 165,
+          "label": 22,
+          "tensor_sha256": "18316ee44185bf0071c0dd6ced912107f2fc257beae898cfe5a25a22e4c140ad"
+        },
+        {
+          "dataset_index": 167,
+          "label": 22,
+          "tensor_sha256": "b208651d68a5c17968008f2a7b76e81e9ffdc43a9237102b18dc552566c247b5"
+        },
+        {
+          "dataset_index": 168,
+          "label": 22,
+          "tensor_sha256": "68e33f358acb985c0202b37d7821095701518a2602b3424b4c99e3734905b9ce"
+        },
+        {
+          "dataset_index": 179,
+          "label": 22,
+          "tensor_sha256": "a23ecc7cbcfd98207b2e551532ca5224d139b9baeb1c57d6c0a2353bfd43647d"
+        },
+        {
+          "dataset_index": 181,
+          "label": 22,
+          "tensor_sha256": "ed2c03c65d4e882b20cbff59d25c9d09f71e16580afd44bf1aa675ea2e738c45"
+        },
+        {
+          "dataset_index": 183,
+          "label": 22,
+          "tensor_sha256": "568cc45a157c99ebf309b18cc53e787311ac82d9339a28d132759eafadc73396"
+        },
+        {
+          "dataset_index": 186,
+          "label": 22,
+          "tensor_sha256": "4e44a1040d57cae56da098e5a64703ef1dffcd110df97b130b48c69a93cffaab"
+        },
+        {
+          "dataset_index": 187,
+          "label": 22,
+          "tensor_sha256": "bde97f60f63f70a83d93e36cc3f8e23cfc3b01985f3e507424743d3f71a775d1"
+        },
+        {
+          "dataset_index": 188,
+          "label": 22,
+          "tensor_sha256": "18de2d861321a8ef4a3df9553550ae73e761ee13e9a078c9ccb625be2d27008b"
+        },
+        {
+          "dataset_index": 200,
+          "label": 23,
+          "tensor_sha256": "5c124289fd77095f26aecdda6398b2637c34b2d19b5aed777df133b6df709cca"
+        },
+        {
+          "dataset_index": 202,
+          "label": 23,
+          "tensor_sha256": "1ae3363b95dc2d8929cf81797c7f27ece515e3efee1686ddc0bd262d6f942ace"
+        },
+        {
+          "dataset_index": 203,
+          "label": 23,
+          "tensor_sha256": "938855b42255ae6407c2ac881b7c2c25f6c2789c0215e20054c4da9979d43fb7"
+        },
+        {
+          "dataset_index": 204,
+          "label": 23,
+          "tensor_sha256": "c303d4fd97650a19d414bb91b72c3441d3283743ff04bd2355a6e8f92d369c21"
+        },
+        {
+          "dataset_index": 211,
+          "label": 23,
+          "tensor_sha256": "d1568ef175b73b4aad0425b0537fc1cc4d60164d074c54adb87d70d3a5ab04ed"
+        },
+        {
+          "dataset_index": 214,
+          "label": 23,
+          "tensor_sha256": "9c37a2a8f2c47a7fde3cea12b134a19f45bb6eb52f7f952b6db68c49403d6e4a"
+        },
+        {
+          "dataset_index": 215,
+          "label": 23,
+          "tensor_sha256": "59f5c96970081645d164e1b06d56ad7996daf51699f59357161bf120b8cfb7a4"
+        },
+        {
+          "dataset_index": 222,
+          "label": 23,
+          "tensor_sha256": "4f569c925bb80b7e88a24f703689bc839397088d25e45a97ca6d55fcb0d167eb"
+        },
+        {
+          "dataset_index": 228,
+          "label": 23,
+          "tensor_sha256": "88a53e1149faea595584d4f689b8d169769fa02a723dd8ec34ff9df87eebb81b"
+        },
+        {
+          "dataset_index": 233,
+          "label": 23,
+          "tensor_sha256": "0add36751e70e6736a5c6621be9a34ded79b0542b567faacb853392b8562b105"
+        },
+        {
+          "dataset_index": 237,
+          "label": 23,
+          "tensor_sha256": "28bd461401fc0ab35588bba1712d31e1a2b4e324be81c87ffe5295e8f4b1e4c9"
+        },
+        {
+          "dataset_index": 248,
+          "label": 23,
+          "tensor_sha256": "a643dfbf1f8221eea219e1b0784b3405052fa4c5ff11cd885febe118d9fd4ce5"
+        },
+        {
+          "dataset_index": 249,
+          "label": 23,
+          "tensor_sha256": "ae0d36f489672332077c8c9c3ca0e82b523ef9bd8a08eb1d089e5eabe67928f1"
+        },
+        {
+          "dataset_index": 250,
+          "label": 24,
+          "tensor_sha256": "7dc770d642ded3382cb313958227c7255615408f295db0667a95aacd3a142639"
+        },
+        {
+          "dataset_index": 251,
+          "label": 24,
+          "tensor_sha256": "836eaf9079eb3f0bfc723c2c630c91c533039c71d69f6618b0ac913b363c723c"
+        },
+        {
+          "dataset_index": 256,
+          "label": 24,
+          "tensor_sha256": "f16b4f1588c626a97514c53f100b6423c1af1715d9da34c6daca2125eb90f5e3"
+        },
+        {
+          "dataset_index": 257,
+          "label": 24,
+          "tensor_sha256": "5498260dfc1e362f3cda123ceb6e61a659a245124ad6aa29f2c407da43f77104"
+        },
+        {
+          "dataset_index": 260,
+          "label": 24,
+          "tensor_sha256": "e306b0e2c369d8940288565848b99e0a06624e857144b08927120a142aa568c5"
+        },
+        {
+          "dataset_index": 263,
+          "label": 24,
+          "tensor_sha256": "a1c5c713ca760ef31ccb4bca45438cee843d16eae4837b9fd6b060d188369b22"
+        },
+        {
+          "dataset_index": 276,
+          "label": 24,
+          "tensor_sha256": "8a53b4fd10b27db9f9f23c3e42a10c585a11ecd5d99a8de4b82965065ca14e4f"
+        },
+        {
+          "dataset_index": 277,
+          "label": 24,
+          "tensor_sha256": "078865b3f4ddadee73c27baab75ed16023cbfc933c4d470aec596869e5b920f0"
+        },
+        {
+          "dataset_index": 278,
+          "label": 24,
+          "tensor_sha256": "a7a8b1c51bdfcdb8de3f87bea906696c2bbbe874304c67c109e17193ed31832e"
+        },
+        {
+          "dataset_index": 281,
+          "label": 24,
+          "tensor_sha256": "7c72b8d373eac2b3e45222233d9086e8ff53a94b7907f8f34d7d82b11f3dbab6"
+        },
+        {
+          "dataset_index": 285,
+          "label": 24,
+          "tensor_sha256": "84a23e85388b3773bb3fd61622e124612398e288f66d68d5bb201ae51c797928"
+        },
+        {
+          "dataset_index": 286,
+          "label": 24,
+          "tensor_sha256": "019dd9ba440c2bad9c12a454043000d6f9b4f14e8df8f7e1f7cdb71a7afc2b1f"
+        },
+        {
+          "dataset_index": 295,
+          "label": 24,
+          "tensor_sha256": "969b8f8d9f60de2e5b38b6776ff84dacbb2c53e06096e4e7381fcb220bc43427"
+        },
+        {
+          "dataset_index": 299,
+          "label": 24,
+          "tensor_sha256": "3e92feceb5d4e2f8eca11002a18a3382d2520ca87797baa6d4ba4c64d7c6ce36"
+        },
+        {
+          "dataset_index": 300,
+          "label": 24,
+          "tensor_sha256": "7652be93071b21bfc7c32f76087167231cdac424b0fcacd31d7dd65dc7e298af"
+        },
+        {
+          "dataset_index": 302,
+          "label": 24,
+          "tensor_sha256": "3a54d5960be75f848fefacb889229b68a3f0ecd39812300aa97b092d6a09d122"
+        },
+        {
+          "dataset_index": 303,
+          "label": 24,
+          "tensor_sha256": "32c5e29a2508a40a0ba5d28cf017bd2270aa222563dfb7b1c47808c444ed679d"
+        },
+        {
+          "dataset_index": 306,
+          "label": 24,
+          "tensor_sha256": "21d062215786cace816cd63bf60be208bc15b446c422b512afe273ef463edce3"
+        },
+        {
+          "dataset_index": 318,
+          "label": 24,
+          "tensor_sha256": "b9443b91ba5d0f5022bbf31293cc7cdbf2aa54be71444561ffa14542b4579d11"
+        },
+        {
+          "dataset_index": 323,
+          "label": 24,
+          "tensor_sha256": "1586f81b3f571c461d86c39a516eaae8781c000485b4792ccab902b8f72ec465"
+        },
+        {
+          "dataset_index": 326,
+          "label": 25,
+          "tensor_sha256": "ec8e06fefa75418a65493cbd21248b321977f0ddaa9ad884ceca7956aca1a837"
+        },
+        {
+          "dataset_index": 327,
+          "label": 25,
+          "tensor_sha256": "b3018da1e368d03ae33b681605fab74afc6057c9491a4867413f99392bd7c19e"
+        },
+        {
+          "dataset_index": 329,
+          "label": 25,
+          "tensor_sha256": "5c3a60a53af7ddab5d7aba9b9367e1be2bed293be396d707f1d1bbc9aa667066"
+        },
+        {
+          "dataset_index": 335,
+          "label": 25,
+          "tensor_sha256": "bd72a8dccca4e4ae35c7273b95799b853fe738c2bb441b741c9d6ec9fe3431a0"
+        },
+        {
+          "dataset_index": 341,
+          "label": 25,
+          "tensor_sha256": "ea207f253037148ec3ec01a7a82f4feb73fa4372d5e4ad6ff9b3bcf6e58c0d98"
+        },
+        {
+          "dataset_index": 351,
+          "label": 26,
+          "tensor_sha256": "a2050d495bf9d6f7049034be8cada2ab61969fc8f4a2cd9b482fef00d7ad95cd"
+        },
+        {
+          "dataset_index": 355,
+          "label": 26,
+          "tensor_sha256": "b105b819dcae7750b8198740a5578d0297c172804b028d70689874d2742f1b1f"
+        },
+        {
+          "dataset_index": 358,
+          "label": 26,
+          "tensor_sha256": "f3a90057875f49cc40d0bc200d06f90bc55451e9340ba826949b74fdab778c41"
+        },
+        {
+          "dataset_index": 360,
+          "label": 26,
+          "tensor_sha256": "2aff606e5ec5843815a8e102f9efb5cb051f7d1704b75a945f84da3c9e6fd85b"
+        },
+        {
+          "dataset_index": 361,
+          "label": 26,
+          "tensor_sha256": "cc87bf3f7f1b63919804b0c8bf5a2b270e83f051aaec91d79ff47549c48bbbcc"
+        },
+        {
+          "dataset_index": 362,
+          "label": 26,
+          "tensor_sha256": "93de6bd4a029f233ca1a18c112aa818950e81f24f00fb1452bc0d9c8c5618130"
+        },
+        {
+          "dataset_index": 378,
+          "label": 26,
+          "tensor_sha256": "c583c2359aa0115c940f32330293a7c6099bf63edfa1540e6d0e8cf762478590"
+        },
+        {
+          "dataset_index": 379,
+          "label": 26,
+          "tensor_sha256": "4c2cad52a1ce8f7fbdb1e5e90073dc7e35a9548efaf548d779cbede9011fc3c9"
+        },
+        {
+          "dataset_index": 382,
+          "label": 26,
+          "tensor_sha256": "06532e26c05e7ab96f4d78b18eaa5d9419666462ae74b04340016d1a01c79fa9"
+        },
+        {
+          "dataset_index": 384,
+          "label": 26,
+          "tensor_sha256": "589dd95dfeb377ab49bc1b9ba9c18685ad5421aed5545cf64384381116028bf9"
+        },
+        {
+          "dataset_index": 388,
+          "label": 26,
+          "tensor_sha256": "7b2c34fd8064c68edca4762a7e5b8be4aeafa8e581063e857fae93755a551914"
+        },
+        {
+          "dataset_index": 389,
+          "label": 26,
+          "tensor_sha256": "06954ad8a90ad088f4c262e3b75aad6ee7ad74504f83e2c2d96c673b0fbbd8ce"
+        },
+        {
+          "dataset_index": 392,
+          "label": 26,
+          "tensor_sha256": "94a9210c21760be7693181e936c95792079d09855d622e8693986942734a27f7"
+        },
+        {
+          "dataset_index": 397,
+          "label": 26,
+          "tensor_sha256": "6d5a6b8d90f5d9e89470ce676f623abace4819df4e7514128daa4fc8597bff93"
+        },
+        {
+          "dataset_index": 403,
+          "label": 26,
+          "tensor_sha256": "fe6c0202edb5905c8488ad3fc9ed74ac1dff021b62e5414c3e39fa9a8b51770f"
+        },
+        {
+          "dataset_index": 406,
+          "label": 26,
+          "tensor_sha256": "cc42e3ef2ba79c3685e193c765a8d7f97d85b54f62992cff7e9957d866ccaea6"
+        },
+        {
+          "dataset_index": 412,
+          "label": 26,
+          "tensor_sha256": "7b2a031f65a52987309b2b2f158055adc278463d128cb6f842dca81f5d3cf816"
+        },
+        {
+          "dataset_index": 416,
+          "label": 26,
+          "tensor_sha256": "e9b47276491b279813321376d905efdb93c3c942e62912c23d9550561fef34ea"
+        },
+        {
+          "dataset_index": 417,
+          "label": 26,
+          "tensor_sha256": "61eda5944421c288d29d7c6b5256d6096efbeb9c2313b8bc3422c245393007a1"
+        },
+        {
+          "dataset_index": 418,
+          "label": 27,
+          "tensor_sha256": "01b2ee71725f0fe0cc9163c095cf367ce1b617e409b66dbb053240d526344dfe"
+        },
+        {
+          "dataset_index": 422,
+          "label": 27,
+          "tensor_sha256": "f123bdb4aab6764e6d6cf2de833a8f4987c55e5ca330de1e28911b16b8f57baf"
+        },
+        {
+          "dataset_index": 423,
+          "label": 27,
+          "tensor_sha256": "9279e5ef1f89d46a16af51312a9fa68afe9d86e39fcaea39c546fb53fdc44237"
+        },
+        {
+          "dataset_index": 426,
+          "label": 27,
+          "tensor_sha256": "2af426729ef973484bdca5759dd40271d06d46e77849f75721f260c96d389893"
+        },
+        {
+          "dataset_index": 430,
+          "label": 27,
+          "tensor_sha256": "667a8dd6c97f2920bebd66499aea215c5769fecc391a4939e181efdb0a3efa15"
+        },
+        {
+          "dataset_index": 436,
+          "label": 27,
+          "tensor_sha256": "4a2b1ab7c9e74b48ede4dcc582067d5ef5fdbce6396a24b683cf3d01b2df4880"
+        },
+        {
+          "dataset_index": 441,
+          "label": 27,
+          "tensor_sha256": "54991b8c4e9576151b52b89cca137d99d89f6ccee5ffd7aae2debca7ba8496eb"
+        },
+        {
+          "dataset_index": 444,
+          "label": 27,
+          "tensor_sha256": "6bde5c1b5a12ee7739838bc2f16aea2414264a21e191f21ddab6b95181bc8c58"
+        },
+        {
+          "dataset_index": 449,
+          "label": 27,
+          "tensor_sha256": "6209e713d65bcbc8772d297a40f54e991160895c1d690db130e10a1f4a4bdbd0"
+        },
+        {
+          "dataset_index": 450,
+          "label": 27,
+          "tensor_sha256": "7ae82e38ce51791b73306d7c17bf460b8062290e7ef3225f1095d39db7b75090"
+        },
+        {
+          "dataset_index": 451,
+          "label": 27,
+          "tensor_sha256": "e8a56dd6249249499728389156dd9cc61bb7fb0cab50416e56e8160cebc94697"
+        },
+        {
+          "dataset_index": 456,
+          "label": 27,
+          "tensor_sha256": "67d91974d698212717d5cd91faf44dbabf5a8ea9ebef1c688d1a086fdc03dff1"
+        },
+        {
+          "dataset_index": 468,
+          "label": 27,
+          "tensor_sha256": "1ce79c43ad752e4e41ca3f881a20182afab280b794a7918f816139c960644587"
+        },
+        {
+          "dataset_index": 472,
+          "label": 27,
+          "tensor_sha256": "94de9e2126d5e6c173f1889d32003cb80773f0fd052bdb6628494f8231c193ae"
+        },
+        {
+          "dataset_index": 475,
+          "label": 27,
+          "tensor_sha256": "bb2df2db4e82a8b6148420ca4a4f5a2f13b0568cbd3fe27eb508147d2f6d0de5"
+        },
+        {
+          "dataset_index": 476,
+          "label": 27,
+          "tensor_sha256": "a9547c9a9e73b51ca7ee742247182abb3d1e7e86af1ef272ac06fcb509acb1f0"
+        },
+        {
+          "dataset_index": 484,
+          "label": 27,
+          "tensor_sha256": "8cfd3e09819203924f1618318b74a77c396476cb59534752a14c179d094de597"
+        },
+        {
+          "dataset_index": 486,
+          "label": 27,
+          "tensor_sha256": "700abbd9d3a6bd8bdb7fb11e1dcb4ce77fdbb088bad7b304975fbbf23be4aa34"
+        },
+        {
+          "dataset_index": 489,
+          "label": 27,
+          "tensor_sha256": "550c5d04254a1ea90d916b63936a8178fa28cc0332b653b10ef6438965827582"
+        },
+        {
+          "dataset_index": 490,
+          "label": 27,
+          "tensor_sha256": "574093be34ed879ddba4161c7b2d933e64ec2c7bcb8b05f07ccdf2f268560d0a"
+        },
+        {
+          "dataset_index": 494,
+          "label": 27,
+          "tensor_sha256": "55f27410bce2b775dc5d10524eabdc1ae2344bc5a59bfd2925b52dfba608bc39"
+        },
+        {
+          "dataset_index": 501,
+          "label": 28,
+          "tensor_sha256": "0621f1a6a0c7acf754d79ea46b02cc6c8837f1d504f7916389cbda4bb3d22458"
+        },
+        {
+          "dataset_index": 502,
+          "label": 28,
+          "tensor_sha256": "74df685538c76c441eb2b627f41cb3fd126c62cceda4c41900e993eba8d7a0f4"
+        },
+        {
+          "dataset_index": 506,
+          "label": 28,
+          "tensor_sha256": "898d26d0068cc0efb8c6134ea0c06ac9f7a38712bfbc33670a22082901204544"
+        },
+        {
+          "dataset_index": 508,
+          "label": 28,
+          "tensor_sha256": "e1b7733509c6abdb2208a362f471825a008ace042bf2ee64b3a03f96c6c26a86"
+        },
+        {
+          "dataset_index": 510,
+          "label": 28,
+          "tensor_sha256": "2f2a53ec0f44dc4b9644ab989bca1c87613ac0051af783b8ea2d2bcbcde418ec"
+        },
+        {
+          "dataset_index": 511,
+          "label": 28,
+          "tensor_sha256": "d703c6dcd687ff7f3d00f25307395438d70850e4b422646a3d9ae79750ba8591"
+        },
+        {
+          "dataset_index": 513,
+          "label": 28,
+          "tensor_sha256": "e8c56fdf26cb41cec8618f3d33a7fd387d6576b3f1ac338e15010136c9d0bb40"
+        },
+        {
+          "dataset_index": 514,
+          "label": 28,
+          "tensor_sha256": "9a98ca5527ac3878018d69f46cf0e53a23eabe2bdae851fab3f1542cb93da300"
+        },
+        {
+          "dataset_index": 524,
+          "label": 28,
+          "tensor_sha256": "2ce8f5b561c0451ed287669c1189d876ebdca4ef9c550a8f0ae3647d8fdbff0b"
+        },
+        {
+          "dataset_index": 527,
+          "label": 28,
+          "tensor_sha256": "f56e80a8f57c5b2956f9d9b5721412a1cf3d15ca7aaabb10d9a4ac03a0163ce5"
+        },
+        {
+          "dataset_index": 528,
+          "label": 28,
+          "tensor_sha256": "9db76e4d34532d64b80611e41db6b6935995fcda603a266a333c4824eb8bd8ab"
+        },
+        {
+          "dataset_index": 529,
+          "label": 28,
+          "tensor_sha256": "dca8d98dcce1e11a67b0a2cfbb70918f7978ee15bfa37979572f350b4a335dff"
+        },
+        {
+          "dataset_index": 538,
+          "label": 28,
+          "tensor_sha256": "ef409ccb1f6aeecf558717f91b11b30369be7d81048f3d058bfae90fbbfb601f"
+        },
+        {
+          "dataset_index": 540,
+          "label": 28,
+          "tensor_sha256": "71c3fcd5f7d49d5474479c1038fc6814b4e83271a1d8f9379d60496704e4ce74"
+        },
+        {
+          "dataset_index": 542,
+          "label": 28,
+          "tensor_sha256": "d3dded8fe358cd9a2fa151e4e25859a843ae966bd8d675285014f0900c676ab5"
+        },
+        {
+          "dataset_index": 545,
+          "label": 28,
+          "tensor_sha256": "79a7de7a382efaea1d2d893c70a62f7909cdbb47e34c717b2b6c244a5550eba0"
+        },
+        {
+          "dataset_index": 548,
+          "label": 28,
+          "tensor_sha256": "956b1e65375d8a93de5c0487c42416fbd0663ef7d13032d2d6bbcfbc87309132"
+        },
+        {
+          "dataset_index": 560,
+          "label": 28,
+          "tensor_sha256": "c651646dd0be0b1f1a9568c1c02efdab414b81363ebeb53c07253f4fbe92e0f0"
+        },
+        {
+          "dataset_index": 563,
+          "label": 28,
+          "tensor_sha256": "a44abf22e63d5bccf2c4c9b9ab0be4a01616abce03e7b8ac7060c9f5afe414a7"
+        },
+        {
+          "dataset_index": 567,
+          "label": 28,
+          "tensor_sha256": "c6ed3ca0eec2f6aa0d02135db7378b1d4ed81d4af6aa06c0d4bffa4220293608"
+        },
+        {
+          "dataset_index": 571,
+          "label": 28,
+          "tensor_sha256": "c27787bd9ff6ab76de271979706c44c63d2f9d4943b4faf1f6aa76cfc55d0485"
+        },
+        {
+          "dataset_index": 581,
+          "label": 29,
+          "tensor_sha256": "a074abca96da43e435868a2d63c4b486f9c206e1c1f3968938da9b43883b87de"
+        },
+        {
+          "dataset_index": 587,
+          "label": 29,
+          "tensor_sha256": "e8eb88a664b0047958ffd8117f337e63a120734d013dcec9a30331b13088d233"
+        },
+        {
+          "dataset_index": 592,
+          "label": 29,
+          "tensor_sha256": "8f61c21f03eab4a968581ef058165bab3df52292be39269fb684903834358488"
+        },
+        {
+          "dataset_index": 593,
+          "label": 29,
+          "tensor_sha256": "ae3fcc0fef8f75936a3cbb116de21898592605259c2e38ed2b353c7b55b05103"
+        },
+        {
+          "dataset_index": 594,
+          "label": 29,
+          "tensor_sha256": "c3a037404414177597470932924bf3279e73b0ea4ddf7963e6af37f896bc8821"
+        },
+        {
+          "dataset_index": 596,
+          "label": 29,
+          "tensor_sha256": "1ecf19541d542359bbca772ec7621400d37f427b6dbe46ed741d48790a0ae038"
+        },
+        {
+          "dataset_index": 597,
+          "label": 29,
+          "tensor_sha256": "c114837987b7e794c69916d5a7153d832cb488561b9f25b5b3092a0aa91496cd"
+        },
+        {
+          "dataset_index": 599,
+          "label": 29,
+          "tensor_sha256": "b114d49fba3095c61bf54f78d0b982d011fcf23a5c6a656d629d371258b75055"
+        },
+        {
+          "dataset_index": 600,
+          "label": 29,
+          "tensor_sha256": "5b089473ec80f88c4468e58eeae4c92aed228f8aa8b3c94e4f716b8e78030912"
+        },
+        {
+          "dataset_index": 605,
+          "label": 29,
+          "tensor_sha256": "82c7df70f1d97a9ce5aafc0746f9452520372b10edc47f5cd804e4f435c41aa3"
+        },
+        {
+          "dataset_index": 608,
+          "label": 29,
+          "tensor_sha256": "15ad7002706d2d5a7b4fd0d61e8717998c001a93a63608849b4d4f0dc8f9b7fd"
+        },
+        {
+          "dataset_index": 618,
+          "label": 29,
+          "tensor_sha256": "1bd1f0c5a8431bcdcfd8b6910471f6208d2c62b607fca5cf7a1cd3b1c6a5b3c8"
+        },
+        {
+          "dataset_index": 621,
+          "label": 29,
+          "tensor_sha256": "aea611298256f4f689bbc810ec825cc4953a30881d145699f2b6402c977ade7f"
+        },
+        {
+          "dataset_index": 625,
+          "label": 29,
+          "tensor_sha256": "f8777fbe655b7236e56a4960d85032264aaca6f979cc363bb818b8b2b72c7f96"
+        },
+        {
+          "dataset_index": 636,
+          "label": 30,
+          "tensor_sha256": "ce12e0f4556ad87604be22ba9da9c17a88f93714b9815610703b61feffe8332a"
+        },
+        {
+          "dataset_index": 641,
+          "label": 30,
+          "tensor_sha256": "ceefd32a1c8c88f70e81c290b62b98cc27251d1e0f5cef1489af37eadbb76aa4"
+        },
+        {
+          "dataset_index": 643,
+          "label": 30,
+          "tensor_sha256": "ff611a20e31e7ec932f0c54817accd911fb892902b2f34a4954386d0a147eb20"
+        },
+        {
+          "dataset_index": 647,
+          "label": 30,
+          "tensor_sha256": "105af304f5ad22f195eeca19af6afb26bc0fbb7738123a52493572322d3abb82"
+        },
+        {
+          "dataset_index": 648,
+          "label": 30,
+          "tensor_sha256": "24deae57aa9a5cdca24a71d0c763a39436574e29f5f49b853ad18465e978ef12"
+        },
+        {
+          "dataset_index": 650,
+          "label": 30,
+          "tensor_sha256": "3b0cc769021263c60645fddb412deae47fea7ed0e4a984f1bdda00a5a36f7a16"
+        },
+        {
+          "dataset_index": 653,
+          "label": 30,
+          "tensor_sha256": "417d120f0e75a0c6bf2a7c04889510d317d8d0f5de1056b324f43f6ecfc60833"
+        },
+        {
+          "dataset_index": 661,
+          "label": 30,
+          "tensor_sha256": "a5d68fb8048247de44dca1a6c1391be1edc254cccb8c13f64cf45aaa464e312c"
+        },
+        {
+          "dataset_index": 664,
+          "label": 30,
+          "tensor_sha256": "4d8e0eaa8613c7b3118b4f0f321153c040307eca4419c651980580554de46726"
+        },
+        {
+          "dataset_index": 670,
+          "label": 30,
+          "tensor_sha256": "eb4ab980f3f87afc3653e455fa5e839c9e185b1de39749be34dc7879e1f127d7"
+        },
+        {
+          "dataset_index": 681,
+          "label": 30,
+          "tensor_sha256": "167b010f87a8ae7b4c3386a83befeee00def215e40bab3fa8caa558c970b9ece"
+        },
+        {
+          "dataset_index": 690,
+          "label": 30,
+          "tensor_sha256": "cb864f8123b5272004496ad92cd222b75e492b214b8490c0368c0475e46a8728"
+        },
+        {
+          "dataset_index": 692,
+          "label": 30,
+          "tensor_sha256": "4a6cd5b3d18a688fffbb8cf5ff73dc744f23e43dd9c14ec104ea19c14f69b7c4"
+        },
+        {
+          "dataset_index": 694,
+          "label": 30,
+          "tensor_sha256": "dd09ce1c3ff8f3bc413a65e220aa1153bf4df314f5ec9947b66613ee11dad772"
+        },
+        {
+          "dataset_index": 700,
+          "label": 30,
+          "tensor_sha256": "9ec67d802521ecb3df0aa44514ea4cb2d75fbbfd413817eb6fd2e911adef11f5"
+        },
+        {
+          "dataset_index": 701,
+          "label": 30,
+          "tensor_sha256": "61757eb0fb05993d8c95bb958c0651b4f17d524864ef22965b0d79a849122a51"
+        },
+        {
+          "dataset_index": 702,
+          "label": 30,
+          "tensor_sha256": "db3d14a6eb4037672b77728189aa4562dbcc99bdfe9e83fef76b5d4e82685dbd"
+        },
+        {
+          "dataset_index": 707,
+          "label": 30,
+          "tensor_sha256": "9dfceb33877903bdeef1895c479f486fc654db99dbde05d8a3dcc38d7c593f1d"
+        },
+        {
+          "dataset_index": 709,
+          "label": 30,
+          "tensor_sha256": "82fe5db4931b4d4e2c86da429c82a411608572d2a34a74a876844bc24dcca5bf"
+        },
+        {
+          "dataset_index": 712,
+          "label": 31,
+          "tensor_sha256": "2caaecc65a86caa2fdd287314c508f55c1e96374835c5dcc232b138ad263128e"
+        },
+        {
+          "dataset_index": 714,
+          "label": 31,
+          "tensor_sha256": "5b1272813bc56a23b1a1a2ce27025acfe4bae493604aceae1b6248264d07955f"
+        },
+        {
+          "dataset_index": 715,
+          "label": 31,
+          "tensor_sha256": "8a83f10415350e44afaa4630284ebfb13c55d7987358c76c696f74e2690bf869"
+        },
+        {
+          "dataset_index": 717,
+          "label": 31,
+          "tensor_sha256": "6e44b5faa75ccc4c9e4c2d8e03d806f01db4a61677e9a4ba0b344cf2dca67e58"
+        },
+        {
+          "dataset_index": 723,
+          "label": 31,
+          "tensor_sha256": "5ab364ee438ef695d225568ed64ae41cfb066e3fe93ebbc899d98f88f2f2876a"
+        },
+        {
+          "dataset_index": 726,
+          "label": 31,
+          "tensor_sha256": "2b95790197f58f80cd7223a9473e749aa49d9e44314ff0b99c67f9990f308f7c"
+        },
+        {
+          "dataset_index": 740,
+          "label": 32,
+          "tensor_sha256": "7047599872af5764ec42a3ffaba1fdc4711fc7ac9109095e44a0827c27791c00"
+        },
+        {
+          "dataset_index": 744,
+          "label": 32,
+          "tensor_sha256": "fe398ebb04aa55cb6a3dc1ea899c20413411a779c9b3feb9fbf70e8df42b7f1b"
+        },
+        {
+          "dataset_index": 745,
+          "label": 32,
+          "tensor_sha256": "accc362a147ae9074b1dfb73c18ccc9b685184433561649a31702d38e5cecd98"
+        },
+        {
+          "dataset_index": 748,
+          "label": 32,
+          "tensor_sha256": "36aed51e724d518a11dbb28d4ee81854f28397bc0904c979808ca122e0c06196"
+        },
+        {
+          "dataset_index": 755,
+          "label": 32,
+          "tensor_sha256": "3b12fbfb9f13f36391f3457e7c1c866dadd1a27d012b0c3f6f022c6cd8daf437"
+        },
+        {
+          "dataset_index": 756,
+          "label": 32,
+          "tensor_sha256": "f3c9a8245db00e864ec76cdef58c93c12f4c1b8a9d39d4256dc30a93341c46da"
+        },
+        {
+          "dataset_index": 757,
+          "label": 32,
+          "tensor_sha256": "8501e02614e1c2428384aff9e27ce2b3ef225cc3eda15a498598b63b158cd83a"
+        },
+        {
+          "dataset_index": 762,
+          "label": 32,
+          "tensor_sha256": "f61c86f9fd129848588720d43b27b2af589c2d9c8c888cade97106d12344a90e"
+        },
+        {
+          "dataset_index": 764,
+          "label": 32,
+          "tensor_sha256": "2c962369452cfb064a5f5f8ba423a672fd4f26a0e7a335ae38beb2aa98b53709"
+        },
+        {
+          "dataset_index": 765,
+          "label": 32,
+          "tensor_sha256": "94ce8849cb193482e2f66f1df9f23dadbeb3e7f0ebed9d74831d6674c326eeb8"
+        },
+        {
+          "dataset_index": 778,
+          "label": 32,
+          "tensor_sha256": "474c29ec8cee57b4dd75280ec0bad3374c104fd3e03da5e50516f4367d09ab39"
+        },
+        {
+          "dataset_index": 787,
+          "label": 32,
+          "tensor_sha256": "08c2eaf61c35c8fcf8cbc7ab6238e2c201f7e26719c948c39b28c9dfded02262"
+        },
+        {
+          "dataset_index": 788,
+          "label": 32,
+          "tensor_sha256": "4427ba4a2432f82f7f1b5560bddfcb00ed8b18f5f753ebf54650ebce629cdbaf"
+        },
+        {
+          "dataset_index": 789,
+          "label": 32,
+          "tensor_sha256": "ded5d8c232cf85918815b3399f9721c07342fbb7c52396904e3b1568d5f7df4c"
+        },
+        {
+          "dataset_index": 790,
+          "label": 32,
+          "tensor_sha256": "6f54b77aa39394844b43496e959c02f8ab3f6ac4015cfde2b3d13d5f3ed2384e"
+        },
+        {
+          "dataset_index": 794,
+          "label": 33,
+          "tensor_sha256": "617ec472aac1b82752f66c90a6b11c526b7ff17865d95a2249d3c17e0eabdce9"
+        },
+        {
+          "dataset_index": 800,
+          "label": 33,
+          "tensor_sha256": "1df68baf4a3a7386194cbdcb0d2ebbb71ea954aaf5f51cd6392d49faea765369"
+        },
+        {
+          "dataset_index": 802,
+          "label": 33,
+          "tensor_sha256": "c14f9d7edc16af79a70018944bd2ae9040debee34c2bbcd20989ea9d154611fd"
+        },
+        {
+          "dataset_index": 806,
+          "label": 33,
+          "tensor_sha256": "c46f8159ccca56ae8f706d5c0714ff982a3e7d702ccdafc7d26f7ad4640eb0f7"
+        },
+        {
+          "dataset_index": 811,
+          "label": 33,
+          "tensor_sha256": "40c35a15b54ec1079d98a225645114a96c6daec7eda67b2349d0ea4b820879e2"
+        },
+        {
+          "dataset_index": 815,
+          "label": 33,
+          "tensor_sha256": "36e9b45832e7e01b3069973eb75b84f5127192719887e727c447fceaaba69031"
+        },
+        {
+          "dataset_index": 824,
+          "label": 33,
+          "tensor_sha256": "fc8e6b2ad1d9351bf5882348453b87593a6c56088d62d9d52b0d865bc5ba912e"
+        },
+        {
+          "dataset_index": 826,
+          "label": 33,
+          "tensor_sha256": "c5cbd17c99c1c6929278d24a80d12c597e93a5a66497e9f27b48ed51e11811ef"
+        },
+        {
+          "dataset_index": 828,
+          "label": 33,
+          "tensor_sha256": "1b5e28b4536db8bc565fcc60a9a3010c9f6803d402115c5c8f36900883e217bb"
+        },
+        {
+          "dataset_index": 829,
+          "label": 33,
+          "tensor_sha256": "260ca71e8e0a883d1903d74961258958b3c30d82907b499ef120114ca1980d09"
+        },
+        {
+          "dataset_index": 833,
+          "label": 33,
+          "tensor_sha256": "65d2ed3baca6338540880184551d3a329f336edd44f01f71ae9f0548132a92d4"
+        },
+        {
+          "dataset_index": 834,
+          "label": 33,
+          "tensor_sha256": "fb6009d65216ace1fc8698c68fad8e4970093404d8c069b2b501364393c83f21"
+        },
+        {
+          "dataset_index": 836,
+          "label": 33,
+          "tensor_sha256": "199490a1c1bf59b1e6e71d3e77308b7444c8872021f1eafc33c94f33ba964eea"
+        },
+        {
+          "dataset_index": 841,
+          "label": 33,
+          "tensor_sha256": "b2d07c4f601493c6024447d0f6f762da52afe2e8f42726046eec453a6e99076b"
+        },
+        {
+          "dataset_index": 843,
+          "label": 33,
+          "tensor_sha256": "474def92971049ceb7b5e8b7e5b719ae9a1f37f760709a1b4e4bbf84182b714d"
+        },
+        {
+          "dataset_index": 848,
+          "label": 33,
+          "tensor_sha256": "c31c9060b77dc5d9a4f53f2f5cc768368cd9b1b6afadb5947a35571a3346f667"
+        },
+        {
+          "dataset_index": 858,
+          "label": 33,
+          "tensor_sha256": "536e7420a66d8245ce2df827a567ea115237a7b9a033e3012b2157a7255aba7a"
+        },
+        {
+          "dataset_index": 860,
+          "label": 33,
+          "tensor_sha256": "ab92c0652e3574f887deb7d6a70313b7f9fef79af80ee6eee8b25cfe10cb7074"
+        },
+        {
+          "dataset_index": 863,
+          "label": 34,
+          "tensor_sha256": "3b9939643088301af86b002586d6702ed2d04a4ce19217cde8759bd2f9fc9cc0"
+        },
+        {
+          "dataset_index": 868,
+          "label": 34,
+          "tensor_sha256": "4eed25ddc122ed2ffdc552f70bd018bc9c40670435affde0e2ec791d117ad8a6"
+        },
+        {
+          "dataset_index": 873,
+          "label": 35,
+          "tensor_sha256": "d2178d85eefc486e2d95cab16b030375f8ba68608575b610d16324278ef67599"
+        },
+        {
+          "dataset_index": 876,
+          "label": 35,
+          "tensor_sha256": "876850e5cbcdf70b9d5a5814faecad5824e2bd935919804cce283da3bda5354c"
+        },
+        {
+          "dataset_index": 882,
+          "label": 35,
+          "tensor_sha256": "699465de5a7c13745ddf577d33d93985965a3308feec17ceaa78d4b773426461"
+        },
+        {
+          "dataset_index": 883,
+          "label": 35,
+          "tensor_sha256": "678b5ac893fd147b504438f7b50cce60292b7aed669169460a86f43057f0382e"
+        },
+        {
+          "dataset_index": 884,
+          "label": 35,
+          "tensor_sha256": "187e24fe37140472ca19b438589ad2926823eca5f06b7afaa61fe9ba2b0229b5"
+        },
+        {
+          "dataset_index": 890,
+          "label": 35,
+          "tensor_sha256": "dee369e98f243c7e93b83c17fb10fcb2b4c5bf0b181a8fe8e396b8fe5270c781"
+        },
+        {
+          "dataset_index": 895,
+          "label": 35,
+          "tensor_sha256": "c6ec1c3168e655f453d2664ecf6ea9730ddada5d7464d70652a11fb194599371"
+        },
+        {
+          "dataset_index": 901,
+          "label": 35,
+          "tensor_sha256": "fa74baeeedac775bc033e9197002a0d072017bc64f11590ff6d26574e9fc94be"
+        },
+        {
+          "dataset_index": 903,
+          "label": 35,
+          "tensor_sha256": "4c31296e5f31c5d6cdef10b6eebac804dc54bdd8d9d21468b14e109fc9f3fb87"
+        },
+        {
+          "dataset_index": 904,
+          "label": 35,
+          "tensor_sha256": "f168ab1a7dffb6c096c9c026103b3b8f97fbfcc114d1553764dabdef1f183454"
+        },
+        {
+          "dataset_index": 911,
+          "label": 35,
+          "tensor_sha256": "765841e3a0cbf7aba18290715dc164faab24a5d74ed25293cc9cf4593c405366"
+        },
+        {
+          "dataset_index": 914,
+          "label": 36,
+          "tensor_sha256": "a0147b58fcb7dad3e60c37ad363c9cd73df667e62e033603a3a0c76e12fbcbbb"
+        },
+        {
+          "dataset_index": 918,
+          "label": 36,
+          "tensor_sha256": "2249d88bc31b8b3d96ebed4f1dad4bc0b814f1b48263d96d840a50cb19f8d568"
+        },
+        {
+          "dataset_index": 925,
+          "label": 36,
+          "tensor_sha256": "3fd8f5c30c84adb8b40a89f44179cc58a51d9204406a586ab60d9e5dbf9529d0"
+        },
+        {
+          "dataset_index": 927,
+          "label": 36,
+          "tensor_sha256": "31f695d6a84db7a4421866c6276ec86b0deb4a45f4c828279cc301fbb9a15734"
+        },
+        {
+          "dataset_index": 929,
+          "label": 36,
+          "tensor_sha256": "623b22d07c516e15611b8dc9f88affab76100bd5b55b74686589a10f57ae2189"
+        },
+        {
+          "dataset_index": 935,
+          "label": 36,
+          "tensor_sha256": "b2b414d7dce96e8f3115e2403de5a4acd0be4a488173478e2f475a7e786e31df"
+        },
+        {
+          "dataset_index": 937,
+          "label": 36,
+          "tensor_sha256": "8fdcdba7e63ee23107b74cbd5668f669fbcc1301471ae7bc7aaec9511168e46a"
+        },
+        {
+          "dataset_index": 943,
+          "label": 37,
+          "tensor_sha256": "0f751e7b1b8059ce6cd83bddd061b120fae9e0c77b1724520b35499f4ba8af32"
+        },
+        {
+          "dataset_index": 945,
+          "label": 37,
+          "tensor_sha256": "aa24a8b065e6cd903de9ef6c4c8d9787e8674fc0e1340d713c8453f66484f528"
+        },
+        {
+          "dataset_index": 949,
+          "label": 37,
+          "tensor_sha256": "3ecbea8719fb33bc7c2421c7a1a5c75d3db21be6cc32cb1fe2e6f4990b48d60c"
+        },
+        {
+          "dataset_index": 954,
+          "label": 38,
+          "tensor_sha256": "dec971c2e4d92ca70264292c1bd0cbff8f116a791b3b9b34715b20b0a4d2bbf7"
+        },
+        {
+          "dataset_index": 959,
+          "label": 38,
+          "tensor_sha256": "48b83fb343114d0c0928d2dcd11391d31a4467e50f100bfba6f0d6804795e580"
+        },
+        {
+          "dataset_index": 967,
+          "label": 38,
+          "tensor_sha256": "eb348efd135406500a9fe0176c6eb68dd1aab37cefb551fa844818f50b05ec0b"
+        },
+        {
+          "dataset_index": 968,
+          "label": 38,
+          "tensor_sha256": "eee4bdabd238f7fac57cfe4e48c71dd5e20004af49a23d3510bb95a7103df010"
+        },
+        {
+          "dataset_index": 975,
+          "label": 39,
+          "tensor_sha256": "343d1e472b4eb5289654add9ed61e904b3ea00a0d36faa66b808247dcc097c17"
+        },
+        {
+          "dataset_index": 976,
+          "label": 39,
+          "tensor_sha256": "72e1147e2a3b45baaee0063b6c7f51886d6e801416a5afbaa63bd5dacbccdf3c"
+        },
+        {
+          "dataset_index": 980,
+          "label": 39,
+          "tensor_sha256": "a870fb182dcb5c650d9c8c0f48f084ebf2bfeba122ead73b52b7b97ca2ccb86d"
+        },
+        {
+          "dataset_index": 985,
+          "label": 39,
+          "tensor_sha256": "7ab0c6be99a3da5305093daad6a3db0306a0f8511c6f72083e779537df37d652"
+        },
+        {
+          "dataset_index": 992,
+          "label": 39,
+          "tensor_sha256": "74fd6609aea96c8f9958187de01fddb28a612699a66db8b018feb4d9b905ffec"
+        },
+        {
+          "dataset_index": 993,
+          "label": 39,
+          "tensor_sha256": "f49e489ac39dc60d9b664a9b47c07b94106d2b2c0ab05feaf96c92bb14a353c6"
+        },
+        {
+          "dataset_index": 996,
+          "label": 39,
+          "tensor_sha256": "b1ef8077b037c6502af210074248740e3847a436a322f077d9ee9ff9fe22a057"
+        }
+      ],
+      "input_tensors_sha256": "b8c48cd7a9ea849ab753893948e58a98012bd4b54f535f200ddd75382babbbc2",
+      "loss_scope": "new_local20",
+      "normalization": "sample mean only",
+      "normalized": false,
+      "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+      "q": {},
+      "raw_trace": 1039.888107090099,
+      "regularizer": null,
+      "samples": 256,
+      "seconds": 3.5673689479590394,
+      "subset_loss": 0.10313059952818548
+    },
+    "old_local20": {
+      "damping": null,
+      "estimator": "mean of true-label per-example CE gradient outer products",
+      "floor": null,
+      "gradient_batch_size": 8,
+      "input_tensor_records": [
+        {
+          "dataset_index": 2,
+          "label": 0,
+          "tensor_sha256": "e796736ba70b8f2503143c32b45af0432bf1c7926dce5650c3318c99ac0b65bd"
+        },
+        {
+          "dataset_index": 4,
+          "label": 0,
+          "tensor_sha256": "4b6ebd63e9bf27216511502d90f6003c9430b81a3fb79b7eef58fb8c082695fd"
+        },
+        {
+          "dataset_index": 14,
+          "label": 0,
+          "tensor_sha256": "0486d669767fb64f2fa05992af4de15fc5a8f4366cfa390d6ce01430ea4e69fe"
+        },
+        {
+          "dataset_index": 27,
+          "label": 0,
+          "tensor_sha256": "3539777960adb3fe9f221d5a2af83fcc88c3b499f98af085b50a869610724c1d"
+        },
+        {
+          "dataset_index": 28,
+          "label": 0,
+          "tensor_sha256": "07786b9cbce4dbf435c852c572e4f9a98e9c168e46ee4b2288cdf53d8a61d856"
+        },
+        {
+          "dataset_index": 30,
+          "label": 0,
+          "tensor_sha256": "60b1202db7062dddf9fd173fd0b76e1e82a0d02225d88086c6a15e2a06fb6045"
+        },
+        {
+          "dataset_index": 40,
+          "label": 0,
+          "tensor_sha256": "fdffc0e26cb0d8bfa74ad6d415643eed8b3d068d4ed7b49cf8b7a741b009be8b"
+        },
+        {
+          "dataset_index": 49,
+          "label": 0,
+          "tensor_sha256": "c14ac8865efe73cb89dcb881fc54afa4ef8f9798897e573617ee76f7d815587d"
+        },
+        {
+          "dataset_index": 54,
+          "label": 0,
+          "tensor_sha256": "99b33550f960cdf98096efe0ab35e08853d3f4c3c5af2bac514793ea6070c396"
+        },
+        {
+          "dataset_index": 57,
+          "label": 0,
+          "tensor_sha256": "4d71ae4d0600ca4f7a9d28a53bf66a084b8b3a25e10401f4050641f793711819"
+        },
+        {
+          "dataset_index": 58,
+          "label": 0,
+          "tensor_sha256": "b5a96cf8b37d7c2de018e19c7e2fb5ef439060bf5a8b0c01c3cf7cde700af1d2"
+        },
+        {
+          "dataset_index": 60,
+          "label": 0,
+          "tensor_sha256": "e26690d60037c4e8781a6b87cf4ea9d1243b7890eaf7007f6490fb663a713ff7"
+        },
+        {
+          "dataset_index": 61,
+          "label": 1,
+          "tensor_sha256": "8386abd437edee2bbc1b9e9234bca5d062ae8f308c1512bc183f2ce683fd9378"
+        },
+        {
+          "dataset_index": 65,
+          "label": 1,
+          "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+        },
+        {
+          "dataset_index": 68,
+          "label": 1,
+          "tensor_sha256": "0dc30930d59647c303939623b5939f6403f61ca803c638e8e3efe1886b292b77"
+        },
+        {
+          "dataset_index": 72,
+          "label": 1,
+          "tensor_sha256": "c463869bcd3f767523040190d28d5b323199d6ec9d58fbc29a4ea9358053bd58"
+        },
+        {
+          "dataset_index": 78,
+          "label": 1,
+          "tensor_sha256": "fa66d91ad58bb6a806ca114df9e02fd43b668ec720269d8f0595139e337d9cd5"
+        },
+        {
+          "dataset_index": 86,
+          "label": 1,
+          "tensor_sha256": "40e523d59e9c5a2fdcd2d77c95f03fb0bbf8f5814dcdc7d6884f41f3e8cdcd3e"
+        },
+        {
+          "dataset_index": 89,
+          "label": 1,
+          "tensor_sha256": "c2528880c042864151d69036f5cfbd92f8b806f41d8201a7b5c23046a12a4614"
+        },
+        {
+          "dataset_index": 92,
+          "label": 1,
+          "tensor_sha256": "3be2a97438e3fcee83bb13c54f5788ce6d7fe7e8e3c400b03cc400e833e10031"
+        },
+        {
+          "dataset_index": 100,
+          "label": 1,
+          "tensor_sha256": "fb7c105bf112a57e1f482f17d835f45832382209da901337336144a1021e5f47"
+        },
+        {
+          "dataset_index": 110,
+          "label": 1,
+          "tensor_sha256": "2c0a9946577cc92ec6cccd88b0a954a407c637500155665d696943ba82807535"
+        },
+        {
+          "dataset_index": 112,
+          "label": 1,
+          "tensor_sha256": "7613f932735b9cb6da81951bf2d3f97fb1728f13418d0c16434ce66c2eaf0cce"
+        },
+        {
+          "dataset_index": 117,
+          "label": 1,
+          "tensor_sha256": "c42c3e5d86d8d25ca814ba422718ce2102cebb588467051b5ab0102229ccf6f7"
+        },
+        {
+          "dataset_index": 127,
+          "label": 1,
+          "tensor_sha256": "7b1c54086958134b708f87493307bb7c23012236f588436cb6b42d04de082874"
+        },
+        {
+          "dataset_index": 129,
+          "label": 1,
+          "tensor_sha256": "e576ae8e22d6591b19fe8175af7e905ea7002c6acd0796faacef1d57b10c489e"
+        },
+        {
+          "dataset_index": 131,
+          "label": 1,
+          "tensor_sha256": "13dda77092b63c43b6ee574252cee78a556524f4e949ec24093363a12860f2e2"
+        },
+        {
+          "dataset_index": 140,
+          "label": 1,
+          "tensor_sha256": "46d8740ac6b1dc6eef20626a542d54ad77d25634dbc3bd1731a96fcc95bc2022"
+        },
+        {
+          "dataset_index": 141,
+          "label": 1,
+          "tensor_sha256": "684a55621caacce4d7f2f25fcac9bb654ed0ff7d7ef044463608337aef1a4fe2"
+        },
+        {
+          "dataset_index": 143,
+          "label": 2,
+          "tensor_sha256": "4c9321df3f79c17c47c6f42f2672a96740673745ddf9cd0c824f9ecfe1a22836"
+        },
+        {
+          "dataset_index": 148,
+          "label": 2,
+          "tensor_sha256": "7b3ae6530002add291ef0b36005db762f907d7791d3dee176258972643af4edf"
+        },
+        {
+          "dataset_index": 159,
+          "label": 2,
+          "tensor_sha256": "4c49f4159f6369145a31e77e33c52f2f0918801e493423cd383c31f2a04d3489"
+        },
+        {
+          "dataset_index": 163,
+          "label": 2,
+          "tensor_sha256": "b131fae19412d539a213a55a966c231bda2ff4fe443aa93653f084d6ac0296e8"
+        },
+        {
+          "dataset_index": 165,
+          "label": 2,
+          "tensor_sha256": "386a4963c8b43f4377e6a2e73d5ada4a4d548b1137d07bf6b458dd188e40e0a0"
+        },
+        {
+          "dataset_index": 167,
+          "label": 2,
+          "tensor_sha256": "2c6054b3e7b9bb07e6abe35af8e4f2cf7f77aa1d908b7da3aae0044655e9b943"
+        },
+        {
+          "dataset_index": 170,
+          "label": 2,
+          "tensor_sha256": "fae0e62414295a6e6f16398982edb938b01401b0445a6dece7b0d3daf2a9cf38"
+        },
+        {
+          "dataset_index": 172,
+          "label": 2,
+          "tensor_sha256": "5eb4b117b1db65e39dee9c049b04eb46515817a7b81ee06d21c1ae86dc4e174c"
+        },
+        {
+          "dataset_index": 175,
+          "label": 2,
+          "tensor_sha256": "9a0739576d220c9c50a71b8fe810f82cd6da51e355b47cdff41edc53de77b627"
+        },
+        {
+          "dataset_index": 177,
+          "label": 2,
+          "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+        },
+        {
+          "dataset_index": 180,
+          "label": 2,
+          "tensor_sha256": "1b0fe65e66db23b6764c0e0c6cef0198a3b7060a78d3ee0e85f3715e02694e74"
+        },
+        {
+          "dataset_index": 181,
+          "label": 2,
+          "tensor_sha256": "1d2c4b1d6c1698268b1246ca96ba5f2ac923216a22a69cc048d0bd988292b4af"
+        },
+        {
+          "dataset_index": 184,
+          "label": 2,
+          "tensor_sha256": "8cb05bb39306369f3d69f012b30b15187a8e8ad58b52c641da1617b00eaf79f3"
+        },
+        {
+          "dataset_index": 186,
+          "label": 2,
+          "tensor_sha256": "f720e3d94e69b970aed509b699f921d4b65bfba0e11c0918b12da8147fcbe18e"
+        },
+        {
+          "dataset_index": 196,
+          "label": 2,
+          "tensor_sha256": "9489f0501f5f0fe25b82e1504fc63b03cb805e99b6ad1ef5aadd82313d86ee2f"
+        },
+        {
+          "dataset_index": 197,
+          "label": 2,
+          "tensor_sha256": "339f5c80d0575c6d87c2edafef7df609978ad9f6e414844d8159f57e69dc3717"
+        },
+        {
+          "dataset_index": 202,
+          "label": 2,
+          "tensor_sha256": "04317709b52a36f4689914bae816ddcd6ccdecd0744a81732a61f0798cae00e0"
+        },
+        {
+          "dataset_index": 220,
+          "label": 2,
+          "tensor_sha256": "612392c78f5384a7f062bfc97e448ad324d3afe7e5b23cfc24c0b7a0106ad9b7"
+        },
+        {
+          "dataset_index": 231,
+          "label": 3,
+          "tensor_sha256": "4272c0e5c7bd6290efb942f435d6f84ba152049c4bc113b7684b8f94253817fc"
+        },
+        {
+          "dataset_index": 234,
+          "label": 3,
+          "tensor_sha256": "43f85a786b55dd0407372aca158a6ac5da724276bf6e7bce9a8ec28864b9d058"
+        },
+        {
+          "dataset_index": 242,
+          "label": 3,
+          "tensor_sha256": "4c212fd58d9c151099844b0e397a986502b809a65079898e550d6ba824af3d4a"
+        },
+        {
+          "dataset_index": 261,
+          "label": 3,
+          "tensor_sha256": "e2ec95c9f4855505ac80d6a6bc9b43c6dc40eada5096eafc765d320fb46ff86f"
+        },
+        {
+          "dataset_index": 265,
+          "label": 3,
+          "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+        },
+        {
+          "dataset_index": 266,
+          "label": 3,
+          "tensor_sha256": "890043bbb0ee854fa9c585ad1edbcb6b0fca6eb64adc40b8db0231e4e582687b"
+        },
+        {
+          "dataset_index": 269,
+          "label": 3,
+          "tensor_sha256": "c629f54c7effdfb941adc37ed574242742cd9665ae257af99cfb07ad02d55453"
+        },
+        {
+          "dataset_index": 273,
+          "label": 3,
+          "tensor_sha256": "9292b9625419037bd522bf5c49019bc7cca637c333106f34626fd0d92f5340dd"
+        },
+        {
+          "dataset_index": 279,
+          "label": 3,
+          "tensor_sha256": "3cf01e38bb0055902a7a3e174182e54dc9aae0fcc58ad54908a2aca8e38db00a"
+        },
+        {
+          "dataset_index": 281,
+          "label": 3,
+          "tensor_sha256": "116d6b8d9bf46f3c214d3380b7fd2adf53469db021dbb694fb825789455fdbee"
+        },
+        {
+          "dataset_index": 285,
+          "label": 3,
+          "tensor_sha256": "d4885dbe5c855295f76ce3e86b1b1ada5fe2dcbc30d65f59a747efd363419ca6"
+        },
+        {
+          "dataset_index": 288,
+          "label": 3,
+          "tensor_sha256": "92440fa586175a113955de5edf2e02557c8ee4d63a0d2a9885210d42e0da353a"
+        },
+        {
+          "dataset_index": 292,
+          "label": 3,
+          "tensor_sha256": "7c1fb22dd073b0777ed90b9f4a20ab132a8501ab46b33455735ea95c968d10ea"
+        },
+        {
+          "dataset_index": 295,
+          "label": 3,
+          "tensor_sha256": "6af8572a7b3011baa807a5f1b3707a1e6db8cf9ff377b981b98b8d7b98041aca"
+        },
+        {
+          "dataset_index": 296,
+          "label": 3,
+          "tensor_sha256": "219f4fe99ae99031ff0514a496acb248f35f65c10b4a4fb89414af26fd117ccb"
+        },
+        {
+          "dataset_index": 300,
+          "label": 3,
+          "tensor_sha256": "fc1a5145c8581de651c5eae81dea2a164a25065f1002eef89c01b82747087cc2"
+        },
+        {
+          "dataset_index": 307,
+          "label": 4,
+          "tensor_sha256": "e29e8228ce51f43960bb204125008420b9b55355b8704ffa212d7047c47b1ff7"
+        },
+        {
+          "dataset_index": 313,
+          "label": 4,
+          "tensor_sha256": "27b49170dc7fef4c6798a36d48edf289cc0e06af2fd5942fe056ecf40bf5135e"
+        },
+        {
+          "dataset_index": 318,
+          "label": 4,
+          "tensor_sha256": "8591ad26bbfaf2da40ded5d58100818eb60eaa5f2c343acff0ce1efb0c6a0eec"
+        },
+        {
+          "dataset_index": 322,
+          "label": 4,
+          "tensor_sha256": "30002ee95e38aa077175c0df17bd6d027cb806b2eab62ebd296529ae3fd8cead"
+        },
+        {
+          "dataset_index": 326,
+          "label": 4,
+          "tensor_sha256": "8381f865a4edd1c911eb16eced2f84130b3039193f48e48d7fcb1880de025f9f"
+        },
+        {
+          "dataset_index": 327,
+          "label": 4,
+          "tensor_sha256": "1783cc4cf44cebf1cce41a418f9bb19534b93639409b0f0a795ba7b6c11628c2"
+        },
+        {
+          "dataset_index": 332,
+          "label": 4,
+          "tensor_sha256": "0643ae75063fd20e0e510e2c6d26965f051a7fa2ea0da145400aa0c3177ad89d"
+        },
+        {
+          "dataset_index": 336,
+          "label": 4,
+          "tensor_sha256": "0c3a4111610dac4099d33bfaa1ffad2f35e3135fa22ff7ad969ccb33e371b928"
+        },
+        {
+          "dataset_index": 342,
+          "label": 4,
+          "tensor_sha256": "d6f4040a7ed9f9653ea4a2417c8b2e82192e54e56e626a79feb9a3661e74e7bd"
+        },
+        {
+          "dataset_index": 351,
+          "label": 4,
+          "tensor_sha256": "597af9236c28117a241edf56683ac00f88567ee7039dffd22979de679ad6193b"
+        },
+        {
+          "dataset_index": 367,
+          "label": 5,
+          "tensor_sha256": "fa925040dc6abc029b76c0aee663ea2a5e0692ab95afc56d9ec5c97a157e37d9"
+        },
+        {
+          "dataset_index": 369,
+          "label": 5,
+          "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+        },
+        {
+          "dataset_index": 371,
+          "label": 5,
+          "tensor_sha256": "26f205676733739d6c40581353fc61f76a753d97532eccb4a495c9cefaad97ad"
+        },
+        {
+          "dataset_index": 376,
+          "label": 5,
+          "tensor_sha256": "5e31858f3a96b3ddbb6d28daad57ae6190373da161eca7cabb7c5c721daf8e5c"
+        },
+        {
+          "dataset_index": 377,
+          "label": 5,
+          "tensor_sha256": "4ce759ddcaea1bd1d5ccc0272bde1c18012f9c712f8c34cf7277db4668e872fb"
+        },
+        {
+          "dataset_index": 381,
+          "label": 5,
+          "tensor_sha256": "cba67835831335eb74787398a6555dba6c7040a36023b5655dafa8606437999c"
+        },
+        {
+          "dataset_index": 383,
+          "label": 5,
+          "tensor_sha256": "0e34f4e2853e2bdb0199a9ac250d4b8d43e505b9edba44b1efaf58e49ee17ac3"
+        },
+        {
+          "dataset_index": 393,
+          "label": 5,
+          "tensor_sha256": "16422ab3d35d391924f7ec9243f66ee35885747eab75fcbaf71ecc873851c824"
+        },
+        {
+          "dataset_index": 394,
+          "label": 5,
+          "tensor_sha256": "a0c5419b2a22a0be1c4567cd8185db90b337aafd58a1594dcefce218bbb36897"
+        },
+        {
+          "dataset_index": 401,
+          "label": 5,
+          "tensor_sha256": "9709c686ce7213c854ce77475c56b038ff760c75491a1e26c5ad71e28bbfcab5"
+        },
+        {
+          "dataset_index": 406,
+          "label": 5,
+          "tensor_sha256": "8a98675be67a64c07ec425fa2750ab158739be007db0958732f425ea70e5c48d"
+        },
+        {
+          "dataset_index": 412,
+          "label": 5,
+          "tensor_sha256": "7ee2a72d85864bb74d72d221e28327b975af89ac15ccaee9b127a41f6e32359d"
+        },
+        {
+          "dataset_index": 417,
+          "label": 5,
+          "tensor_sha256": "9e177377484de1c5e5260736ab1bfb785b2764f35d88ecb7d990e8d0e678d8ba"
+        },
+        {
+          "dataset_index": 421,
+          "label": 6,
+          "tensor_sha256": "676520784c04e7dbab3331b22846429aeeed047302544c2c80097bd9fe511601"
+        },
+        {
+          "dataset_index": 426,
+          "label": 6,
+          "tensor_sha256": "2bb9c57421788fd69af23730798d96dfdf64e2831c989d1c727a9c8a30650a44"
+        },
+        {
+          "dataset_index": 443,
+          "label": 6,
+          "tensor_sha256": "615e7ab8a46d8598527a8cb8b4ec56e0e7966c9c89777de81299bed03fd57c66"
+        },
+        {
+          "dataset_index": 448,
+          "label": 6,
+          "tensor_sha256": "354b744efc714ca99d27fea19d7f29ef014670703264f9b4fe3068dcbe0afb44"
+        },
+        {
+          "dataset_index": 449,
+          "label": 6,
+          "tensor_sha256": "dabc11ef934e2339c1124877a51bd8946a2739cbfe33f9c514a58c8a354470b2"
+        },
+        {
+          "dataset_index": 453,
+          "label": 6,
+          "tensor_sha256": "172a8c269fea8c7f3110ede68526449492b01cb966cfd4399748739224b09288"
+        },
+        {
+          "dataset_index": 454,
+          "label": 6,
+          "tensor_sha256": "399e86a38b60fef94984e050c7b5b0fc651c7e3580e04b78ef665031af73c77d"
+        },
+        {
+          "dataset_index": 464,
+          "label": 6,
+          "tensor_sha256": "d984b2bc8bd520c454a923448085e57a865e96a7c84e5063e4d41a942c73de8e"
+        },
+        {
+          "dataset_index": 466,
+          "label": 6,
+          "tensor_sha256": "5777e3205a74b29ff7fdedbb8203a0a0412b8aac66b2581287d5940c8182cc1d"
+        },
+        {
+          "dataset_index": 469,
+          "label": 6,
+          "tensor_sha256": "046149219f017328baf9f3a5037b84ece5d6cbd491f01efd8cfd837cab7f7cc8"
+        },
+        {
+          "dataset_index": 475,
+          "label": 6,
+          "tensor_sha256": "a1c72a40c05ebe7ed8d6e75a18800f8da300a024cc80c08b37480cb32d0b53c3"
+        },
+        {
+          "dataset_index": 480,
+          "label": 7,
+          "tensor_sha256": "d4902ce8d08660beff07f1d514ffd16ce3294b70117e7037996b317439f88918"
+        },
+        {
+          "dataset_index": 487,
+          "label": 7,
+          "tensor_sha256": "4a697015d61e91de26781b2a99e42f1763734214d0055ce7cd176397aa08d3d7"
+        },
+        {
+          "dataset_index": 492,
+          "label": 7,
+          "tensor_sha256": "a601443dcd28e80448383180a81af8a2fd836c59b7a77c577fd8f1f4366ac724"
+        },
+        {
+          "dataset_index": 495,
+          "label": 7,
+          "tensor_sha256": "34e071572087c4fc310e223cabb90aeaf515b0c7058bccc5bf63d1fb3358cde4"
+        },
+        {
+          "dataset_index": 509,
+          "label": 7,
+          "tensor_sha256": "2c73292d067113ee286c6a87cf6dbdc83906e7646a8207e0aee0e66f6218458a"
+        },
+        {
+          "dataset_index": 512,
+          "label": 7,
+          "tensor_sha256": "1fc08515452364b2e3e96a27e5fd2b44389575acc32ce8a88d850a1ad16b7b30"
+        },
+        {
+          "dataset_index": 515,
+          "label": 7,
+          "tensor_sha256": "fc8834a0faa80dc7b6d1cc88e09c2d125bdcd712b3fc7d43c60eef6c21d21958"
+        },
+        {
+          "dataset_index": 517,
+          "label": 7,
+          "tensor_sha256": "868fbe948a3ce122b6292fe50953e1b86d4d67213a89257f2bece99e5269e1b9"
+        },
+        {
+          "dataset_index": 520,
+          "label": 7,
+          "tensor_sha256": "8df978cfe915458bdb1e5545e7df86630a87b4adc7969fd1b171466957d85168"
+        },
+        {
+          "dataset_index": 522,
+          "label": 7,
+          "tensor_sha256": "f237495ff36dd96c1851d93fb9ecb05925517456b170e36f3280bf5f22322527"
+        },
+        {
+          "dataset_index": 524,
+          "label": 7,
+          "tensor_sha256": "9185d2762434471711f084e08c28f51d84117fa5b01b4c921a293d97c79e6f82"
+        },
+        {
+          "dataset_index": 533,
+          "label": 8,
+          "tensor_sha256": "6b53d4375d2213a47b05abb34d4970491605f5e698e2a5a5d963804cd943720d"
+        },
+        {
+          "dataset_index": 536,
+          "label": 8,
+          "tensor_sha256": "106dcd3d45ad788f27674e67770341f49255b20761c43a613bb70d984b706dcc"
+        },
+        {
+          "dataset_index": 539,
+          "label": 8,
+          "tensor_sha256": "97b34c4509d1481d98c67bccb1f24b2c0f89075903351c5b6b2a414fe5c72ef1"
+        },
+        {
+          "dataset_index": 540,
+          "label": 8,
+          "tensor_sha256": "8f6349fc34b0c4cb18bd81889b96bc8dafc3e44d4a4f78e9eed5fc15ce0ba737"
+        },
+        {
+          "dataset_index": 545,
+          "label": 8,
+          "tensor_sha256": "2b952d51caf4a9d5b866811cbabb552a148b8f2ba9a14f108665bb026c1da1f2"
+        },
+        {
+          "dataset_index": 548,
+          "label": 8,
+          "tensor_sha256": "dc12bbf45c72e596376f75abff536f213e37c0abd254a9df91f04583af64c746"
+        },
+        {
+          "dataset_index": 556,
+          "label": 8,
+          "tensor_sha256": "85c127e686cc90b309afabc4c07b25837ce3a0c59834034f50204b99b4cba532"
+        },
+        {
+          "dataset_index": 563,
+          "label": 8,
+          "tensor_sha256": "61331b69d41abf2d95d5f503558f4fcc37d6a48e193ade4fade58482095f509b"
+        },
+        {
+          "dataset_index": 568,
+          "label": 8,
+          "tensor_sha256": "7312ff72c2781961d44a39e0f816edc2ca87b3798c350efe43f867fb78ed7e32"
+        },
+        {
+          "dataset_index": 573,
+          "label": 8,
+          "tensor_sha256": "d67bbd728d58dff540f51b4a893b106ef91196f563900ce1f575b2056ac5907e"
+        },
+        {
+          "dataset_index": 574,
+          "label": 8,
+          "tensor_sha256": "a103babc7d8094ebecd1c31da6c4791a2ec5a4fffe3ae2857672077c74884378"
+        },
+        {
+          "dataset_index": 575,
+          "label": 8,
+          "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+        },
+        {
+          "dataset_index": 576,
+          "label": 8,
+          "tensor_sha256": "e416f9514820a3b9c18be01e19fc5c322d72240b2b434732e79dfccc8abf8529"
+        },
+        {
+          "dataset_index": 581,
+          "label": 8,
+          "tensor_sha256": "960eeb2277a0e10aa18cef4db774f7a8b822040fed8b95fb115399eba78a295f"
+        },
+        {
+          "dataset_index": 586,
+          "label": 8,
+          "tensor_sha256": "195b2630dac6a5dad1ad42d7ee49ee121c3d648f0d7702e46b4a7bb394311993"
+        },
+        {
+          "dataset_index": 590,
+          "label": 8,
+          "tensor_sha256": "422591db0065d14e74e1b74dea7d7d6c9f0568b6297be2c717b9e6928c8f30fc"
+        },
+        {
+          "dataset_index": 612,
+          "label": 9,
+          "tensor_sha256": "983a4c7b8e45196ba82338690152a3faf16c0c1698fe98cb2f092f653334cd8b"
+        },
+        {
+          "dataset_index": 613,
+          "label": 9,
+          "tensor_sha256": "d31763caa29b2ebf6167a87443c6e4e6bd54a8621e9f89e049aacefc7eda364a"
+        },
+        {
+          "dataset_index": 620,
+          "label": 9,
+          "tensor_sha256": "7c9098a2337acf5d9f942e90f96df30f3a3819d4e7dd8c716ac05003529f6139"
+        },
+        {
+          "dataset_index": 621,
+          "label": 9,
+          "tensor_sha256": "5afd400361d1c28c25e86f3dd7e2b5960e0b574ce5b62758e45b88ca7b2bf813"
+        },
+        {
+          "dataset_index": 623,
+          "label": 9,
+          "tensor_sha256": "5399d633a2793eee1858db8e50684185ae1a5392612ccd8addc3dd77675207e0"
+        },
+        {
+          "dataset_index": 638,
+          "label": 9,
+          "tensor_sha256": "f9aed2fe54f8694de0fd5786acb5d4b3f1a8a462b0d548660ad141f8fada27ac"
+        },
+        {
+          "dataset_index": 647,
+          "label": 9,
+          "tensor_sha256": "03b11056708806cbd20569b22f36ff8579dd0a9b51f5d6dc6c36368c8bcc2c7e"
+        },
+        {
+          "dataset_index": 648,
+          "label": 9,
+          "tensor_sha256": "e694bfadaf42caf70c287de1988e5ff10476327260c8666fb2b2050637fc07e3"
+        },
+        {
+          "dataset_index": 651,
+          "label": 9,
+          "tensor_sha256": "5d2b4cf5f5362140b17ec9a44d93c18d8dd92640ac0d5c7dcf11fd26f4c887c8"
+        },
+        {
+          "dataset_index": 652,
+          "label": 9,
+          "tensor_sha256": "02650b853f77946d388124d5d8bb14758f693bfc6e63cef75f667c2bef5cb283"
+        },
+        {
+          "dataset_index": 657,
+          "label": 9,
+          "tensor_sha256": "28355cce0f09cc8c80124bfb28d1ac7a50c00244b88f0e1560a20fd7356b55f5"
+        },
+        {
+          "dataset_index": 668,
+          "label": 10,
+          "tensor_sha256": "959ff2cfac3eed0866ca96c3b5cd11ab09514386e871574f9dc03aa38b3f2586"
+        },
+        {
+          "dataset_index": 673,
+          "label": 10,
+          "tensor_sha256": "54a492be2a342b853698caabbcd1aed830c64ea2c2a021b83db8ee3645c8076e"
+        },
+        {
+          "dataset_index": 679,
+          "label": 10,
+          "tensor_sha256": "88b60dc0166f07faf72465966cd624c717d6b3185cdafb9715c1b7f97def9879"
+        },
+        {
+          "dataset_index": 690,
+          "label": 10,
+          "tensor_sha256": "8078bfa94be8d05f8ca4128bcb77157fcf790d16c827028ec03b65589efd67cb"
+        },
+        {
+          "dataset_index": 691,
+          "label": 10,
+          "tensor_sha256": "b23a00e57915a4b78f7834496eeb46da3224ff1b2a35df8fda32261027d42826"
+        },
+        {
+          "dataset_index": 692,
+          "label": 10,
+          "tensor_sha256": "affdd604b630e20ee4cd85d68069e4e9a25183d8dd80e62d3dcbc3a4e8966ad4"
+        },
+        {
+          "dataset_index": 698,
+          "label": 10,
+          "tensor_sha256": "f893d01a91cdecfa436a4f04b4c8874ad1974d5d09ee8e779e522a03e6f82236"
+        },
+        {
+          "dataset_index": 703,
+          "label": 10,
+          "tensor_sha256": "7e012350be4807958d0547d5e7c4dd5df86b2c12d531d1144d545d029d627c6a"
+        },
+        {
+          "dataset_index": 708,
+          "label": 10,
+          "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+        },
+        {
+          "dataset_index": 709,
+          "label": 10,
+          "tensor_sha256": "7c3b934290a682e94cae998dcbcf607a702e16e203bf2b7b9bfed7387074a2c4"
+        },
+        {
+          "dataset_index": 712,
+          "label": 10,
+          "tensor_sha256": "90f23948834927ee443601b964d7e2aabee5e8812a876a00022d3bc471ed53c4"
+        },
+        {
+          "dataset_index": 716,
+          "label": 10,
+          "tensor_sha256": "104f49f003b23c9b06085753c39762ab352b5910159b726eb9417ccbb7cde67a"
+        },
+        {
+          "dataset_index": 724,
+          "label": 10,
+          "tensor_sha256": "155898df823526875fdf5f4d3473597b97626be9e02cc25d2fd625ee55ab9a55"
+        },
+        {
+          "dataset_index": 726,
+          "label": 10,
+          "tensor_sha256": "21ca8f33f793bd375762d9a1eeb865c0f3a4429ea1abc1d4d7be19ed93990d3a"
+        },
+        {
+          "dataset_index": 733,
+          "label": 10,
+          "tensor_sha256": "5324f1a8941927b5a47ab54f8115e7c30134607132bef8ca20ffa81b5bf430d9"
+        },
+        {
+          "dataset_index": 737,
+          "label": 10,
+          "tensor_sha256": "890b4f757af9feae9a51044a8976fc4f477af3767ba624edcc787939833f52a4"
+        },
+        {
+          "dataset_index": 738,
+          "label": 10,
+          "tensor_sha256": "f4bea6e7bc966e14abb3e8b548d57eaaab47212e9479f6cd8205532cc3bea9a9"
+        },
+        {
+          "dataset_index": 760,
+          "label": 11,
+          "tensor_sha256": "1ea20898ed6cb2ebf9f670aa66476d3acc1cdcc11e5bfc38469804d15032f0a3"
+        },
+        {
+          "dataset_index": 761,
+          "label": 11,
+          "tensor_sha256": "466ce5c2bde27b18fd53eb9a3ceb1db405a2314b39339e2af4fa6e485496151a"
+        },
+        {
+          "dataset_index": 767,
+          "label": 11,
+          "tensor_sha256": "5bbd4911ac24c2165a9264ad7e2baf0e8ad770392854fb7cc083742aa6571cce"
+        },
+        {
+          "dataset_index": 768,
+          "label": 11,
+          "tensor_sha256": "b8689f3a15ddd1bcc19a87586fce1555107ab24e0c40825a1f9cb1fb8d675943"
+        },
+        {
+          "dataset_index": 769,
+          "label": 11,
+          "tensor_sha256": "971d0585f8fc2c9b8d17ee23ffa9c2606ff24ec62a506b64652a7fd61b518aaa"
+        },
+        {
+          "dataset_index": 771,
+          "label": 11,
+          "tensor_sha256": "f080608e1f2c8c6436ce4c135876424791ef9e2da7ba3bc82f02e94f91724d68"
+        },
+        {
+          "dataset_index": 776,
+          "label": 11,
+          "tensor_sha256": "d89dd9caebd57222e5791b4d1f2ef4b6013591a86a62a01a3f2c5b84374d3109"
+        },
+        {
+          "dataset_index": 779,
+          "label": 11,
+          "tensor_sha256": "836e90b9c89cbbacaa1b403c72376c4a493826781c5a8be2f06bca67e04e06ae"
+        },
+        {
+          "dataset_index": 780,
+          "label": 11,
+          "tensor_sha256": "0a9a9bb9a14316517872051ddd8d0e1c2b552075c58bc0195759999a5aa884ad"
+        },
+        {
+          "dataset_index": 785,
+          "label": 11,
+          "tensor_sha256": "45e9d9c6ef7279b7166fe4094423000d6c42d4901787a38a897eb3d4fcccf4b5"
+        },
+        {
+          "dataset_index": 786,
+          "label": 11,
+          "tensor_sha256": "d97b25bee4327508c3d26840d01a9ce0377f9f5dc085ae0e507a5e9608c97475"
+        },
+        {
+          "dataset_index": 798,
+          "label": 12,
+          "tensor_sha256": "d3c54791381877149dbc420ce32c2c9d8b3854a591d4354ad330bdef8fcdb7f6"
+        },
+        {
+          "dataset_index": 804,
+          "label": 12,
+          "tensor_sha256": "c862245c465aa5d6e6261fae5f167fbbfeb54c7e5af0a2682d609245af1f5e55"
+        },
+        {
+          "dataset_index": 810,
+          "label": 12,
+          "tensor_sha256": "7ea727f17034673fbb78d2d83ee4ec2404de4fdc9abae9f02bec13b00175fd26"
+        },
+        {
+          "dataset_index": 813,
+          "label": 12,
+          "tensor_sha256": "9ab21b7299ff9ecab925da5a9b5c97d2cf1c0853a0a40de586ff320dd0f26afc"
+        },
+        {
+          "dataset_index": 814,
+          "label": 12,
+          "tensor_sha256": "618247022b48aa2ff4181f6afeb6ba246d25ff03f89b5a29efde20d9a1cf0528"
+        },
+        {
+          "dataset_index": 820,
+          "label": 12,
+          "tensor_sha256": "9894c203800ea281da463104fcdec5cbdcc0af7795bfe57eff5b73e1991be007"
+        },
+        {
+          "dataset_index": 825,
+          "label": 12,
+          "tensor_sha256": "a5011d52fa8d4836b5c8f569c41d4cfee7427c8eb653276b4006605dcadf0421"
+        },
+        {
+          "dataset_index": 838,
+          "label": 12,
+          "tensor_sha256": "3b0f62e7e5df1a783fc3672469f70a16260c2ef6c033a16140a386af94e4d438"
+        },
+        {
+          "dataset_index": 839,
+          "label": 12,
+          "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+        },
+        {
+          "dataset_index": 840,
+          "label": 12,
+          "tensor_sha256": "b1efb52d8d3cfa537fdf160a4838efcf917e41345126c01c009e995f3e634652"
+        },
+        {
+          "dataset_index": 849,
+          "label": 12,
+          "tensor_sha256": "17e2e6328e586cf2dc7f91919a2572457717237fc90c3156e469722076e43802"
+        },
+        {
+          "dataset_index": 853,
+          "label": 12,
+          "tensor_sha256": "4adcb025c0945491623b6e63179d1dec888710f7166fb5b8ec32490fb2c54415"
+        },
+        {
+          "dataset_index": 854,
+          "label": 12,
+          "tensor_sha256": "6ed4a7a76fa83989b7c3dae7000b276d6103c11ab7ba644de1d51f460531c423"
+        },
+        {
+          "dataset_index": 859,
+          "label": 12,
+          "tensor_sha256": "040e98fe0fbc38a420e3c61b04a08a6698c52dd859dd4f4c861734f4281929ef"
+        },
+        {
+          "dataset_index": 871,
+          "label": 13,
+          "tensor_sha256": "a090a698360dacda32fbb04344914904c2cae13319b7bda664ede511c36b66f8"
+        },
+        {
+          "dataset_index": 876,
+          "label": 13,
+          "tensor_sha256": "1d6e68344c72eb69f49563d2754d309e030188ee4ca08127be25c9b972db6bab"
+        },
+        {
+          "dataset_index": 880,
+          "label": 13,
+          "tensor_sha256": "b0a6e146baee4326aa23848341cad51630558bf1eccd71c6d9de2bd990c701ba"
+        },
+        {
+          "dataset_index": 891,
+          "label": 13,
+          "tensor_sha256": "69815fd379ca5d31b1860c1db68ef4dd755bf4687dbeb4433d6064252ab7c934"
+        },
+        {
+          "dataset_index": 892,
+          "label": 13,
+          "tensor_sha256": "19b4af7b954c5fc1c20a5a49ac484df0c6062269319e8451c0c6c57c99e73668"
+        },
+        {
+          "dataset_index": 901,
+          "label": 13,
+          "tensor_sha256": "82570e44af120d03421418f7c7a7c2376e772e772242e099a9760e52b61813a3"
+        },
+        {
+          "dataset_index": 903,
+          "label": 13,
+          "tensor_sha256": "2bc7c6ba068d050d482dbdba72efe4caa795687e40da685ea929f296bc91d726"
+        },
+        {
+          "dataset_index": 912,
+          "label": 13,
+          "tensor_sha256": "93f187c54eb3b5f3ec89b3bbe1ca259c8b362234e6a528aea71416444b64bc6f"
+        },
+        {
+          "dataset_index": 916,
+          "label": 13,
+          "tensor_sha256": "4e358850ebfb2e93c7835f228922382aa5112e657790dd229f8898edadbfa0a4"
+        },
+        {
+          "dataset_index": 920,
+          "label": 13,
+          "tensor_sha256": "5c8410763294cd425793e893c9928173d460328b8ce00b92b649af7cdb758942"
+        },
+        {
+          "dataset_index": 921,
+          "label": 13,
+          "tensor_sha256": "e1b01165223c544bb7a44dfd5448f0bf224915f0b777c5622a34e0295d013149"
+        },
+        {
+          "dataset_index": 922,
+          "label": 14,
+          "tensor_sha256": "62e39f9998118cbd8bf6ca730e06ddc8a9dc7d494d63c71c161ac46b0f5c2a41"
+        },
+        {
+          "dataset_index": 926,
+          "label": 14,
+          "tensor_sha256": "6de8e30e9728defa3d3b6e8cfeefc12a51ee1bd793e01e384b1bb60cd962f189"
+        },
+        {
+          "dataset_index": 940,
+          "label": 14,
+          "tensor_sha256": "f3e9f4dc4948c182f07cdc149bfc8ecc3875161f1076e710671a5f2c0b23beaf"
+        },
+        {
+          "dataset_index": 944,
+          "label": 14,
+          "tensor_sha256": "6812ec6951548f32e75dbbee90ecc8fe94938044f17ba5ef855c9a2df9b4323f"
+        },
+        {
+          "dataset_index": 954,
+          "label": 14,
+          "tensor_sha256": "7fee89578acbb2d2940de423e6104fabadf20108ad9d10e286624e4b07c7bf23"
+        },
+        {
+          "dataset_index": 958,
+          "label": 14,
+          "tensor_sha256": "bef39ed71c4f51604025de6d444ae616f2c4f3fa9e6e132efb76ced9c0808f7c"
+        },
+        {
+          "dataset_index": 959,
+          "label": 14,
+          "tensor_sha256": "43a1ac3875013f5e5096e14e732a64410dea70a57fd3c81570efa9d37449ca07"
+        },
+        {
+          "dataset_index": 960,
+          "label": 14,
+          "tensor_sha256": "57994472d553ea599c921e14df119a2d25f047fa9746e7f693172b7f4c0c4533"
+        },
+        {
+          "dataset_index": 967,
+          "label": 14,
+          "tensor_sha256": "ea6a0ea0238e8d8fc879b72e5875ad3f2e3727e03b567476d3596ee7d4ab6625"
+        },
+        {
+          "dataset_index": 975,
+          "label": 14,
+          "tensor_sha256": "576e290a892aaa38912bdff390bec598e2b39db2c69ff7a8ff06e1056f92a5bc"
+        },
+        {
+          "dataset_index": 979,
+          "label": 14,
+          "tensor_sha256": "e5515e190407a9b6bcad86dea5565f2cc997c89fa598a62b20a9026606521f8c"
+        },
+        {
+          "dataset_index": 981,
+          "label": 14,
+          "tensor_sha256": "d24656f79193fc6b01326d1e0b45fbdb88927e10c63dac62ec1d908874756547"
+        },
+        {
+          "dataset_index": 985,
+          "label": 15,
+          "tensor_sha256": "49f71fe04684d920165466a0ab52d021288216f47012c0e5699342cf4f3623e9"
+        },
+        {
+          "dataset_index": 986,
+          "label": 15,
+          "tensor_sha256": "df1bcf1f2870d977c4417ad655cf0adf596dbe3df787620e9dd28705bddf4920"
+        },
+        {
+          "dataset_index": 988,
+          "label": 15,
+          "tensor_sha256": "3f41dc5d4df1f9c00aeaf78673d9e5aed75b06b749358cb3fa94a5b248596e71"
+        },
+        {
+          "dataset_index": 994,
+          "label": 15,
+          "tensor_sha256": "69fa98a0278a6be72455ddc42a901735b4c543d06c58bb91c617c322c7aa0003"
+        },
+        {
+          "dataset_index": 1002,
+          "label": 15,
+          "tensor_sha256": "847bcf4fc7815fb01bb09643ecaee5e6e5f966bcaaf9a9367d4d95b9ca8d127c"
+        },
+        {
+          "dataset_index": 1005,
+          "label": 15,
+          "tensor_sha256": "7674ba74fc26c105f5a68590a15f4f1a9af5917252afe891e3bb763a9aa917ee"
+        },
+        {
+          "dataset_index": 1006,
+          "label": 15,
+          "tensor_sha256": "b6dc724eab9c20c25fd80e718ac91e4e9175203ae985baba4d4009020dac6b7e"
+        },
+        {
+          "dataset_index": 1015,
+          "label": 15,
+          "tensor_sha256": "60d6813914cd191697fb12b9bd5683e1b1c2788a9cb7f5e12e1dcfdb758825fe"
+        },
+        {
+          "dataset_index": 1019,
+          "label": 15,
+          "tensor_sha256": "1738f69c34b1ff382cf3b18615d0e7a077d3dccd8a59f9f146dcb103e823ace9"
+        },
+        {
+          "dataset_index": 1023,
+          "label": 15,
+          "tensor_sha256": "76932441380451d7fdd110811acabe1541623cf68e69297c1463a80550c92ab6"
+        },
+        {
+          "dataset_index": 1033,
+          "label": 15,
+          "tensor_sha256": "e179b1eb258f53a025f04e8ff1c20669a1d31ced71f4139d0ff7f6365362cefe"
+        },
+        {
+          "dataset_index": 1036,
+          "label": 16,
+          "tensor_sha256": "e6ed66d41e6cd1a26192f04de1f2f48758f4e76f2401941f17e3dccda13d5ec3"
+        },
+        {
+          "dataset_index": 1053,
+          "label": 16,
+          "tensor_sha256": "337ba3b936b3b3178e2256722e9847077326f593fa7a87819a53f427fe6092fc"
+        },
+        {
+          "dataset_index": 1058,
+          "label": 16,
+          "tensor_sha256": "7635c1de6c709df83b319608690b313fc65fe7235abe657915d69e0e4c217066"
+        },
+        {
+          "dataset_index": 1060,
+          "label": 16,
+          "tensor_sha256": "cd129fc71064f682c64dfa4bb09a10e66e7c1465e87ac4eda3e6539402472be2"
+        },
+        {
+          "dataset_index": 1067,
+          "label": 16,
+          "tensor_sha256": "16f5330c32044e492b4e856ec33317d5bf9eb7c11a28a2f8b6f357414650c8c6"
+        },
+        {
+          "dataset_index": 1075,
+          "label": 16,
+          "tensor_sha256": "56a43bf36c236385c302684550b5175f9a54422aa5c1122943ee604527181e8b"
+        },
+        {
+          "dataset_index": 1077,
+          "label": 16,
+          "tensor_sha256": "60f925d40762e9edd3a7f0245719e29f7ef45be5a5ec443b21cff8ac70f3e8c2"
+        },
+        {
+          "dataset_index": 1084,
+          "label": 16,
+          "tensor_sha256": "012fbc688176218994ae34cc862c7f7474893edddf822e7270aba765a2fc8adb"
+        },
+        {
+          "dataset_index": 1092,
+          "label": 16,
+          "tensor_sha256": "615a00af987b4fd96057cca7be3b53a732d9d21b7495fb64b047ec4bd76167ec"
+        },
+        {
+          "dataset_index": 1094,
+          "label": 16,
+          "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+        },
+        {
+          "dataset_index": 1100,
+          "label": 16,
+          "tensor_sha256": "03d9ab37f718ec4bb53f9ba1017a9b2d9528bcb05ed93bd4203da0cc3e57e0f6"
+        },
+        {
+          "dataset_index": 1102,
+          "label": 16,
+          "tensor_sha256": "371b7445a1c7c7802f3e89a03189f5fff06d0df0f3fb85e0084665c00896da8c"
+        },
+        {
+          "dataset_index": 1104,
+          "label": 16,
+          "tensor_sha256": "fc7ae7dcf31597796a07b2640efa5f89973204bc3bd1413f5ba650a03e47e26b"
+        },
+        {
+          "dataset_index": 1105,
+          "label": 16,
+          "tensor_sha256": "69ea0a06cb16266fee0bd567212ba1a01b05f463d918e8e2b41cab3361f324db"
+        },
+        {
+          "dataset_index": 1107,
+          "label": 16,
+          "tensor_sha256": "882a7233b1c50f7f16cada13e113fba43d91a859e9a4c6e6771f738e8ec412af"
+        },
+        {
+          "dataset_index": 1112,
+          "label": 17,
+          "tensor_sha256": "c272b571c887b5e560897a72c13807cf13eb6939cb2b6140565d3777dfd8fe71"
+        },
+        {
+          "dataset_index": 1119,
+          "label": 17,
+          "tensor_sha256": "7bb1b039b90757c7f7dcaed21e62c6adad228f5c6883005a22848c583ac1c1d2"
+        },
+        {
+          "dataset_index": 1121,
+          "label": 17,
+          "tensor_sha256": "1153fb05fa5d55d84ee2f42be602c84d0500ba7712fea03845de4a42c34c6b09"
+        },
+        {
+          "dataset_index": 1127,
+          "label": 17,
+          "tensor_sha256": "9a10fda9cf2c825730f4dcb170aa6475bbec427ecd118fa7d7f76b420a45c05a"
+        },
+        {
+          "dataset_index": 1129,
+          "label": 17,
+          "tensor_sha256": "04719382801ebd4bc792580b1e8c765243e245b4b57e5d815816b49e6dadb8ea"
+        },
+        {
+          "dataset_index": 1131,
+          "label": 17,
+          "tensor_sha256": "8f8cb4f63dc4830568b14da84e7a4ec774c94b50c9d9a3b6c82c80c7385baa78"
+        },
+        {
+          "dataset_index": 1141,
+          "label": 17,
+          "tensor_sha256": "4e969441641bf845df723ec9e5386bd61b34ccc1f6398392223fee87e7637395"
+        },
+        {
+          "dataset_index": 1144,
+          "label": 17,
+          "tensor_sha256": "9d9de03f9bc680da64745bca0a30017285fdb839ae77c64d2158d191c7e1cc48"
+        },
+        {
+          "dataset_index": 1156,
+          "label": 18,
+          "tensor_sha256": "4588185c886e8c11fdb35c95302429afbe8fab7181723de47fd97f23d317cdf8"
+        },
+        {
+          "dataset_index": 1164,
+          "label": 18,
+          "tensor_sha256": "45369a7c547187841f0e8110cf51676d0ff559a53dcc1ddcfc7e15ddc2ce1f5f"
+        },
+        {
+          "dataset_index": 1166,
+          "label": 18,
+          "tensor_sha256": "7f918575b85d69acd2a425ae2a29d27d89c4eb7a446a892eaed80cc90bd0eeb0"
+        },
+        {
+          "dataset_index": 1168,
+          "label": 18,
+          "tensor_sha256": "53b99a4d702a200004f9d4c554980a3a11e2efcf252d25e18ef48a2f9e023d2b"
+        },
+        {
+          "dataset_index": 1175,
+          "label": 18,
+          "tensor_sha256": "a0bca3e49b3018901a1d1682273398ee04d7251633d3ff79319c56a34b782ea2"
+        },
+        {
+          "dataset_index": 1176,
+          "label": 18,
+          "tensor_sha256": "55f8e7aa57c880a36989b8ad9bd6c6ea48edfb93efb4c202f9ea8a43bf295f9c"
+        },
+        {
+          "dataset_index": 1181,
+          "label": 18,
+          "tensor_sha256": "b687ed7010aa85fbc8e0388d98cd076362c6a7a8e6cc0405076b37a2eb031792"
+        },
+        {
+          "dataset_index": 1182,
+          "label": 18,
+          "tensor_sha256": "39510e55aeac33263551dd686d324e042e21b89cc2d4b918751a8aef919ba21f"
+        },
+        {
+          "dataset_index": 1185,
+          "label": 18,
+          "tensor_sha256": "5a8bca14c81b8dbac5c1d40cd72142ec2f86073e087f29eea6816eda6276aafd"
+        },
+        {
+          "dataset_index": 1192,
+          "label": 18,
+          "tensor_sha256": "6e88d977a078251f0c9b3c92cb2f9d675e111fb0b139074776d16c5e91a00c3f"
+        },
+        {
+          "dataset_index": 1210,
+          "label": 19,
+          "tensor_sha256": "918a33b3d3fbd64851cc3ccd560da88511e8465d0a76d5aa07ef1a72efb2b218"
+        },
+        {
+          "dataset_index": 1220,
+          "label": 19,
+          "tensor_sha256": "4433ba4f875580ff3eb2007323bb8608edabdc693f8454bba3def08c53225487"
+        },
+        {
+          "dataset_index": 1221,
+          "label": 19,
+          "tensor_sha256": "16590ef2ea45fa97623427cdd9e413243e043acf2239a70df0bfa35a82e9d10e"
+        },
+        {
+          "dataset_index": 1230,
+          "label": 19,
+          "tensor_sha256": "4742bbba5ac7781e79a92af329a5754afb921bab5673f262c6de7b2f478f3103"
+        },
+        {
+          "dataset_index": 1232,
+          "label": 19,
+          "tensor_sha256": "51b393326796f07ceefc0b99e20717c9d92bf13d5f4d8d328d04e5c9d7a1affd"
+        },
+        {
+          "dataset_index": 1237,
+          "label": 19,
+          "tensor_sha256": "26d50ce3e335424596e22d0856642900157012f44139f7b61e0f5eeacf4cd67d"
+        },
+        {
+          "dataset_index": 1239,
+          "label": 19,
+          "tensor_sha256": "7dfc5fff2148619500a748a78c41ac2b0cf26e67bdee4e7fcec934d931fd0531"
+        },
+        {
+          "dataset_index": 1245,
+          "label": 19,
+          "tensor_sha256": "56e6023b3199fba3a8951f9bba6f735577c8d707a3f5821b60d49650f633630f"
+        },
+        {
+          "dataset_index": 1246,
+          "label": 19,
+          "tensor_sha256": "75f80b4eb9e02d4320de1ada225ce6d54f46ca861cfc72c9bf53028db6867155"
+        },
+        {
+          "dataset_index": 1253,
+          "label": 19,
+          "tensor_sha256": "1f64d27732eeed7426f0b425dcc0f3e70266b3f86b6f745f296152b00178b35e"
+        },
+        {
+          "dataset_index": 1255,
+          "label": 19,
+          "tensor_sha256": "46195baa4925d6183137f7fa07de97220dc5093d6ddcea41bdb16c52d35d2073"
+        },
+        {
+          "dataset_index": 1257,
+          "label": 19,
+          "tensor_sha256": "7cdbb0b9f0263244065cae5bb77fcab11b9147ae4a4ddbf852a24f57d9390104"
+        }
+      ],
+      "input_tensors_sha256": "a91f864d0323697b8989fc540e548c4294a2982fc2e04f620ecb8f62fc341acf",
+      "loss_scope": "old_local20",
+      "normalization": "sample mean only",
+      "normalized": false,
+      "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+      "q": {
+        "task0_to_task1_delta": 0.006138526209389619
+      },
+      "raw_trace": 926.5485474073447,
+      "regularizer": null,
+      "samples": 256,
+      "seconds": 3.7735009510070086,
+      "subset_loss": 0.0778796861283837,
+      "unit_displacement_sensitivity": 0.024721273334442007
+    }
+  },
+  "metrics": {
+    "new_test": {
+      "new_local20": {
+        "accuracy": 89.76377952755905,
+        "correct": 228,
+        "loss": 0.32028127499850556,
+        "loss_scope": "new_local20",
+        "samples": 254
+      },
+      "seen40": {
+        "accuracy": 81.49606299212599,
+        "correct": 207,
+        "loss": 0.6037744880756125,
+        "loss_scope": "seen40",
+        "samples": 254
+      }
+    },
+    "old_test": {
+      "old_local20": {
+        "accuracy": 88.27361563517915,
+        "correct": 271,
+        "loss": 0.35311087773147654,
+        "loss_scope": "old_local20",
+        "samples": 307
+      },
+      "seen40": {
+        "accuracy": 83.71335504885994,
+        "correct": 257,
+        "loss": 0.5379883890797298,
+        "loss_scope": "seen40",
+        "samples": 307
+      }
+    },
+    "old_train": {
+      "old_local20": {
+        "accuracy": 98.64972200158856,
+        "correct": 1242,
+        "loss": 0.06604039021307163,
+        "loss_scope": "old_local20",
+        "samples": 1259
+      },
+      "seen40": {
+        "accuracy": 96.50516282764099,
+        "correct": 1215,
+        "loss": 0.14818094785696853,
+        "loss_scope": "seen40",
+        "samples": 1259
+      }
+    }
+  },
+  "model_sha256_after": "50878ff574bc601e92357e887d96f87abfbc16e542091532270986fd81232d9f",
+  "model_sha256_before": "50878ff574bc601e92357e887d96f87abfbc16e542091532270986fd81232d9f",
+  "sanity": {
+    "native_to_effective_logits_max_absolute_error": 0.0,
+    "new_local20": {
+      "direction_dot_max_absolute_error": {},
+      "loss_scope": "new_local20",
+      "passed": true,
+      "samples": 2,
+      "trace_max_absolute_error": 0.0293563461773374,
+      "trace_max_relative_error": 5.849682953974846e-06
+    },
+    "old_local20": {
+      "direction_dot_max_absolute_error": {
+        "task0_to_task1_delta": 5.112034085873597e-07
+      },
+      "loss_scope": "old_local20",
+      "passed": true,
+      "samples": 2,
+      "trace_max_absolute_error": 0.00019796218469281257,
+      "trace_max_relative_error": 0.00018858291692239705
+    },
+    "training_batch_proxy_match": {
+      "absolute_difference": 9.89081581970197e-05,
+      "absolute_tolerance": 1e-06,
+      "offline_raw_trace": 9.530096316871987,
+      "passed": true,
+      "relative_tolerance": 0.001,
+      "training_raw_trace": 9.530195225030184
+    }
+  },
+  "seconds": 33.1120573389926,
+  "task_index": 1
+}

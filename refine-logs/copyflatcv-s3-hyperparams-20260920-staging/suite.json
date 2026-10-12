@@ -1,0 +1,100 @@
+{
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "execution_hostname": "cudahpc40.cvc.uab.es",
+  "allowed_gpus": [
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 3,
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/source",
+  "source_manifest": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/source_manifest.json",
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/140-1/datasets",
+    "OMP_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HOME": "/home-local/liying/.cache/huggingface",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "expected_tasks": 10,
+  "jobs": [
+    {
+      "id": "s3_center_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_center_s2.json",
+      "config_sha256": "2192fad2d451bf7254a7652550769d14c6ec3efec54083dcd0311481a2acc3e6",
+      "axis": "center",
+      "value": null,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_lambda0_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_lambda0_s2.json",
+      "config_sha256": "8a65057e295b4cad2f644e738fc980efdfa05857f4e3b6b3207d767de0212735",
+      "axis": "ewc_lambda",
+      "value": 0,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_lambda200_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_lambda200_s2.json",
+      "config_sha256": "2d9d4e63d33e1b74ab33b1bbf368d4be296052494a752b4290756f1caae5aa35",
+      "axis": "ewc_lambda",
+      "value": 200,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_lambda20000_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_lambda20000_s2.json",
+      "config_sha256": "d799f3e47b0965ad4a6f704ae61745150f526f0a292691bfc56d30bfee973819",
+      "axis": "ewc_lambda",
+      "value": 20000,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_strength0_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_strength0_s2.json",
+      "config_sha256": "a1232199ea18900efae78d14a624d7f2e05f45565d48e719ddf057edaf531e77",
+      "axis": "lambda_flat",
+      "value": 0,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_strength05_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_strength05_s2.json",
+      "config_sha256": "20fce9f2702052791a432603b777a2cd332238be63f6d12b45fdcbc4cc530e8a",
+      "axis": "lambda_flat",
+      "value": 0.5,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_radius01_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_radius01_s2.json",
+      "config_sha256": "9635633cb167d6cbb338017254bebf77f7055b6dc1d8876379f029f50b98ab1c",
+      "axis": "gam_grad_norm_rho",
+      "value": 0.1,
+      "seed": 2,
+      "depends_on": []
+    },
+    {
+      "id": "s3_radius05_s2",
+      "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-reference-hyperparams-20260920/configs/s3_radius05_s2.json",
+      "config_sha256": "4f3d8826198ca359f72d275d33c75eeac57d45ce08126d0ca4cc41cfc18e2148",
+      "axis": "gam_grad_norm_rho",
+      "value": 0.5,
+      "seed": 2,
+      "depends_on": []
+    }
+  ]
+}

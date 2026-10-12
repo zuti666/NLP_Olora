@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "blocking_findings": [],
+  "replayed_checks": 39,
+  "replayed_negative_cases": 13,
+  "canonical_queue_skip_roundtrip": true,
+  "canonical_wrong_decision_rejected": true,
+  "manifest_checks": {
+    "exact_frozen_signal_AAA_FAA": true,
+    "low_alignment_does_not_reject": true,
+    "all_four_second_response_arms_completed_before_effect_gate": true,
+    "paired_same_math_backend": true,
+    "absolute_effect_not_improvement_test": true,
+    "r1_native_UG_checkpoints_0_4_9": true,
+    "base10_second4_first4_lambda4_smoke_groups_and_full_dependencies": true,
+    "skipped_or_pending_numeric_results_omitted_not_zero": true
+  },
+  "implementation_sha256": {
+    "conditional_gate.py": "9fd504beace1c6d00dba47de4c16447f54a44ef723cf5ac1a0f91da5e487e010",
+    "collect_results.py": "3ea9dc1b7d1252ae6019e916c87311ac8ab8f1c15f76af307c4a868f90725064",
+    "check_gpu_smokes.py": "1dd347559a4d4d29ab0d7499cb549026f7049ffe81ddb4be1167f23678a71f53"
+  },
+  "suite_sha256": "a654828718f3743813b53a23da5039a76b863ae88fca8fdb72f63b4eb7e5069f",
+  "frozen_gates_sha256": "a5f3b368eed77776da8e4d640fbfd678ccab9c6b89acdf8610f25c0432cd00c9",
+  "queue_interface_sha256_at_review": "cedcdf6e284c740a7a446f8c5743e355c03f758bbd73b4873564870c2bfd9607",
+  "test_sha256": "12a8fc832dcf70e46df1867930de640555836562ec1e7fe1243970ac648dbbcc",
+  "scope": "Read-only static review plus CPU synthetic gates/receipts/tensors; no real-GPU smoke or queue launch.",
+  "scientific_limits": [
+    "Seed2 branch thresholds are exploratory pilot decisions, not significance or equivalence tests.",
+    "An absolute negative HVP effect may release the next investigation; it is not an improvement claim.",
+    "Explicit unsupported HVP may skip its conditional branch; low alignment alone never does.",
+    "The conditional tests stub full completion validation to isolate branch logic; separate actual-GAM/HVP validator CPU tests provide that layer."
+  ],
+  "line_references": {
+    "thresholds_and_paired_core": "conditional_gate.py:113",
+    "availability_not_alignment": "conditional_gate.py:140",
+    "all_four_and_same_math": "conditional_gate.py:158",
+    "canonical_skip_recomputation": "conditional_gate.py:197",
+    "absent_results_omission": "collect_results.py:30",
+    "smoke_groups_and_base_binding": "check_gpu_smokes.py:66"
+  },
+  "final_training_reverification": {
+    "status": "PASS",
+    "trainer_sha256": "970426f2e7b5f68fe7aa84fd33b00874ba6598082bd324dfcea1733400defaa5",
+    "reports": [
+      "review/FDHVP_VALIDATOR_CPU.json",
+      "review/FDHVP_TRAINER_CPU_INDEPENDENT.json",
+      "review/MAIN_BACKEND_CPU_INDEPENDENT.json"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+The decoder collator now uses pipeline version `decoder_token_ids_v2`. Prompt and label are tokenized separately with `add_special_tokens=False`, then concatenated as token IDs. Exactly one explicit BOS is added to the prompt and one EOS to the training target. Padding never decodes and re-tokenizes the sequence, so an `Answer:` suffix cannot merge with the first answer token. Only target IDs are retained in `labels`; prompt and padding labels are ignored. The local Llama model applies `loss_mask[:, :-1]` to shifted logits, so mask entries start one position before the first answer token and include the predictor of EOS. Inference inputs contain only the same prompt prefix and have zero loss mask.
+
+Source and target budgets are independent. Source truncation retains BOS and the prompt suffix, including `Answer:`; target truncation reserves EOS and preserves as many answer tokens as fit. This also fixes the old path that ultimately truncated the entire training sequence to the source budget and could remove target supervision. A target budget that removes every nonempty answer token is rejected. Mixed training/inference batches are rejected. `text_only`, class labels, and sample recording remain supported; sample recording decodes actual supervised targets rather than zeroed token IDs. Seq2seq behavior is unchanged. The legacy `uie_collator_OLoRA` decoder path shares the main implementation.
+
+Read-only proof against the historical retry2 frozen source and actual offline Llama-3.2-1B/3B tokenizers is in `TOKEN_BOUNDARY_REGRESSION.json`. Ten of twelve historical cases have a target mismatch (five affected labels in each model); Building is the normal control. Athlete's historical supervised target begins `th`, whereas the corrected target begins `Ath`. The old path has two BOS tokens; the new path has one. All twelve fixed cases have exact standalone target IDs and identical train/inference prompt prefixes. CUDA remained uninitialized. Historical frozen source and checkpoints were not modified.
+
+The 16 CPU regression tests in `tests/test_uie_collator_decoder.py` passed. They cover ten labels with both actual local tokenizers, batched padding, maximum padding, long source and target truncation, EOS handling, mixed-batch rejection, probe labels, display/sample logging, legacy decoder equivalence, unchanged seq2seq behavior, and the actual custom Llama forward/backward. The last test verifies that the first answer token receives loss at the final prompt logit and that gradients are present exactly at the supervised predictor positions.
+
+Reproduce without GPU or network:
+
+```bash
+env CUDA_VISIBLE_DEVICES= HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false /data/140-1/users/liying/conda_envs/nlora_req/bin/python -m unittest tests.test_uie_collator_decoder -v
+env CUDA_VISIBLE_DEVICES= HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false /data/140-1/users/liying/conda_envs/nlora_req/bin/python refine-logs/llama_g2_token_boundary_fix_20261012/check_token_boundary.py
+```
+
+This verifies token construction and loss alignment, not a new trained performance result. Corrected runs must retrain both baseline and G2 under this version; do not mix them with historical `decoder_string_concat_v1` results.

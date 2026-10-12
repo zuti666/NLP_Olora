@@ -1,0 +1,194 @@
+{
+  "review_date_utc": "2026-09-20T08:03:35.270622+00:00",
+  "reviewer": "independent baseline_audit agent (did not author implementation)",
+  "status": "CPU runtime and static integration review passed; actual GPU DDP/BF16 smoke pending",
+  "scope": [
+    "src/uie_trainer_treelora.py",
+    "TreeLoRA hooks in src/run_uie_lora.py",
+    "src/treelora.py integration with current local PEFT and UIE training loop"
+  ],
+  "source_sha256_at_report_time": {
+    "src/uie_trainer_treelora.py": "1b9d2417d99f8caf75f3e9e2b36336ca01a1878281b36380f3475abedda0c230",
+    "src/run_uie_lora.py": "df71687907665a3ba89ace1b0e7a67110a8b692cf68e9b4c7f82167b89d440fb",
+    "src/treelora.py": "6d7dc7e6d451a321ae4e750329bf47e6358c0c3491707a87528dd8fe3ec807e4"
+  },
+  "source_note": "Report-time hashes include subsequent reviewed guard fixes. The successful runtime preceded the later eval-only constructor relaxation; those guard changes were reviewed statically, not represented as GPU or repeated runtime evidence.",
+  "cpu_runtime": {
+    "python": "/data/140-1/users/liying/conda_envs/nlora_req/bin/python",
+    "environment": {
+      "python": "3.10.20",
+      "torch": "2.1.1+cu121",
+      "transformers": "4.28.0"
+    },
+    "device": "CPU",
+    "dtype": "float32",
+    "world_size": 1,
+    "model": "fresh random tiny transformers.LlamaForCausalLM; vocab32, hidden16, intermediate32, 2 layers, 4 attention heads; local PEFT rank2, alpha8, dropout0.1, save_loranew=True, r_sum=0",
+    "training": "Called actual TreeLoRATrainer.train() for two tasks, each 8 examples, BS1, GA2, 4 real transformers.AdamW optimizer steps; reg0.5. Finalized each task and saved model plus TreeLoRA sidecar. Reloaded a fresh base with the same base state before task2.",
+    "artifact_directory": "/data/115-2/users/liying/cache/tmp/tree-review-el7riyts",
+    "assertions": {
+      "both_tasks_completed": true,
+      "history_counts": [
+        1,
+        2
+      ],
+      "fixed_ranks": [
+        2,
+        2
+      ],
+      "r_sum": [
+        0,
+        0
+      ],
+      "task2_initial_hash_equals_task1_final": true,
+      "task2_regularizer_gradient_norm": 0.1346423625946045,
+      "eval_no_grad_compute_loss_did_not_increment_microbatches": true
+    },
+    "task_audits": [
+      {
+        "method": "TreeLoRA",
+        "upstream_commit": "1c7260c42b34e1961283797c742f08b9c3842501",
+        "task_id": 0,
+        "completed_tasks": 1,
+        "rank": 0,
+        "world_size": 1,
+        "train_microbatches": 8,
+        "optimizer_steps": 4,
+        "initial_parameter_sha256": "7d2f87362c8ea7d39e7f3bc2a3748aec6a3e6a71ebc4757d1599695cc5286434",
+        "final_parameter_sha256": "af81d65524f09f31853455c2aba7e4be87f59bbc28ff6c0da581c9ee5823ec47",
+        "parameter_hashes": [
+          "af81d65524f09f31853455c2aba7e4be87f59bbc28ff6c0da581c9ee5823ec47"
+        ],
+        "ranks_identical": true,
+        "parameters_finite": true,
+        "adapter_changed": true,
+        "max_reg_loss_abs": 0.0,
+        "max_reg_gradient_norm": 0.0,
+        "observed_forward_dtype": "torch.float32",
+        "fixed_rank": 2,
+        "accumulated_rank": 0,
+        "reg": 0.5,
+        "tree": {
+          "upstream_commit": "1c7260c42b34e1961283797c742f08b9c3842501",
+          "task_id": 1,
+          "history_count": 1,
+          "epoch_step": 7,
+          "epoch_microbatches": 8,
+          "microbatches_seen": 8,
+          "epochs_seen": 1,
+          "effective_reg": 0.4375,
+          "last_reg_loss": 0.0,
+          "last_task_loss": 3.4128098487854004,
+          "last_selected": null,
+          "selected_counts": null
+        },
+        "global_batch": 2,
+        "optimizer_class": "AdamW",
+        "optimizer_eps": 1e-06,
+        "optimizer_weight_decay": 0.0
+      },
+      {
+        "method": "TreeLoRA",
+        "upstream_commit": "1c7260c42b34e1961283797c742f08b9c3842501",
+        "task_id": 1,
+        "completed_tasks": 2,
+        "rank": 0,
+        "world_size": 1,
+        "train_microbatches": 8,
+        "optimizer_steps": 4,
+        "initial_parameter_sha256": "af81d65524f09f31853455c2aba7e4be87f59bbc28ff6c0da581c9ee5823ec47",
+        "final_parameter_sha256": "78b3df4a197a1512dfe7a599af559c2727347aa9f2847d040b6628c96c800cf4",
+        "parameter_hashes": [
+          "78b3df4a197a1512dfe7a599af559c2727347aa9f2847d040b6628c96c800cf4"
+        ],
+        "ranks_identical": true,
+        "parameters_finite": true,
+        "adapter_changed": true,
+        "max_reg_loss_abs": 1.493100881576538,
+        "max_reg_gradient_norm": 0.1346423625946045,
+        "observed_forward_dtype": "torch.float32",
+        "fixed_rank": 2,
+        "accumulated_rank": 0,
+        "reg": 0.5,
+        "tree": {
+          "upstream_commit": "1c7260c42b34e1961283797c742f08b9c3842501",
+          "task_id": 2,
+          "history_count": 2,
+          "epoch_step": 7,
+          "epoch_microbatches": 8,
+          "microbatches_seen": 16,
+          "epochs_seen": 2,
+          "effective_reg": 0.4375,
+          "last_reg_loss": 1.493100881576538,
+          "last_task_loss": 3.4127986431121826,
+          "last_selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected_counts": [
+            [
+              8.0,
+              8.0,
+              8.0,
+              8.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        "global_batch": 2,
+        "optimizer_class": "AdamW",
+        "optimizer_eps": 1e-06,
+        "optimizer_weight_decay": 0.0
+      }
+    ],
+    "failed_review_attempt_disclosed": "An initial manual compute_loss-only harness used a standalone optimizer without assigning trainer.optimizer; finish_treelora_task could not record optimizer metadata. This was a harness setup error. The successful evidence uses the actual trainer.train() loop and its optimizer."
+  },
+  "static_findings_resolved": [
+    {
+      "issue": "reg=0 returned CE without a current-stack regularizer dependency, while task2 audit tried autograd.grad on that stack",
+      "fix": "Trainer now requires positive treelora_reg and preserves upstream positive-reg task-history semantics. Planned reg is0.5."
+    },
+    {
+      "issue": "Constructor only rejected args.resume_from_checkpoint; automatic last_checkpoint could still be passed to trainer.train()",
+      "fix": "TreeLoRATrainer.train rejects automatic or explicit nonempty resume_from_checkpoint."
+    },
+    {
+      "issue": "Final completed_tasks=4 adapter was rejected by an eval-only constructor",
+      "fix": "Eval-only constructor allows completed_tasks4 and differing evaluation world size, loading rank0 history. Training still enforces matching world size and at most3 completed prior tasks."
+    }
+  ],
+  "static_conclusions": [
+    "Current normal and no_sync UIE training branches invoke TreeLoRA compute_loss once per microbatch. Task CE and TreeLoRA term are combined before common gradient-accumulation division; existing OLoRA/EWC branches do not match treelora.",
+    "Regularizer gradient audit targets the current stacked intermediate with retain_graph=True, so its diagnostic autograd.grad does not traverse leaf-parameter DDP accumulator hooks; actual optimizer gradients come from the subsequent combined-loss backward.",
+    "Current local PEFT save_loranew=True keeps loranew A/B separate and leaves r_sum0; local set_peft_model_state_dict restores both lora and loranew keys.",
+    "All DDP ranks finalize and gather their own TreeLoRA state; only the world-zero main hook writes adapter and sidecar, followed by a distributed barrier.",
+    "Continuation verifies parameter layout, saved adapter parameter hash and trajectory history task count; trainer rejects trainable non-loranew parameters.",
+    "Evaluation compute_loss leaves trajectory state unchanged when model is in eval/no_grad. This was also exercised in the CPU runtime."
+  ],
+  "remaining_runtime_gates": [
+    "Actual4-GPU NCCL gradient synchronization and native CUDA BF16 dispatch are not established by this CPU review.",
+    "Run3-task smoke for both real Llama1B and3B so the third task exercises a nontrivial tree branch.",
+    "Verify every rank finite and changed, identical final adapter hashes, actual BF16 forward dtype, stage-to-stage adapter hash chain, history increment and rank8/r_sum0.",
+    "Verify launch protocol physicalGPU0-3, BS1, GA16, globalbatch64, seed42 and data_seedNone with actual runtime artifacts."
+  ],
+  "reviewer_mutations": "No implementation files edited and no GPU work launched by reviewer. Only this requested review record and disposable CPU-test outputs were written."
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "verified_at_utc": "2026-10-02 12:53:36 UTC",
+  "verifier_role": "fresh documented-invocation verifier; not implementation author",
+  "read_inputs": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/RUN.md",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/ENVIRONMENT.md",
+    "/home-local/liying/.codex/skills/shared-references/compute-env-contract.md"
+  ],
+  "command": "PYTHONDONTWRITEBYTECODE=1 /home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/g012-two-stage-execution-20261002T122014Z/documented_check.py --gpu 2",
+  "working_directory": "/data/140-1/users/liying/O-LoRA",
+  "sandbox_permissions": "require_escalated",
+  "command_run_verbatim": true,
+  "requested_physical_gpu": 2,
+  "forbidden_physical_gpus": [0, 1],
+  "exit_code": 0,
+  "execution_wall_time_seconds": 1.648157212,
+  "queue_dry_run": {
+    "status": "valid",
+    "jobs": 51,
+    "formal": 24,
+    "smokes": 24,
+    "allowed_gpus": [2, 3, 4, 5, 6],
+    "max_parallel": 5
+  },
+  "kernel_dispatch_witness": {
+    "sentinel": "G012_ENV_WITNESS",
+    "shape": [32, 32],
+    "device": "NVIDIA RTX 6000 Ada Generation",
+    "dtype": "torch.float32",
+    "nonempty": true,
+    "finite_output": true,
+    "finite_gradient": true,
+    "tf32_matmul": false,
+    "tf32_cudnn": false
+  },
+  "stdout": "{\"status\": \"valid\", \"jobs\": 51, \"formal\": 24, \"smokes\": 24, \"allowed_gpus\": [2, 3, 4, 5, 6], \"max_parallel\": 5}\nG012_ENV_WITNESS {\"shape\": [32, 32], \"device\": \"NVIDIA RTX 6000 Ada Generation\", \"dtype\": \"torch.float32\", \"nonempty\": true, \"finite_output\": true, \"finite_gradient\": true, \"tf32_matmul\": false, \"tf32_cudnn\": false}\n",
+  "tier2_kernel_dispatch": "pass",
+  "tier3_agent_follows_doc": "pass",
+  "documentation_divergences_observed": [],
+  "verifier_actions": {
+    "package_changes": false,
+    "code_config_pin_or_doc_edits": false,
+    "training_launcher_invocations": false,
+    "other_job_termination": false,
+    "gpu0_or_gpu1_requests": false
+  },
+  "scope": "Fresh execution of the documented queue dry-run and seeded short CUDA witness only. Tier1 import, source/data integrity, training correctness, HVP acceptance, smoke training and full experiment results were not independently rechecked. The witness output reports device name but does not expose physical UUID or lease details."
+}

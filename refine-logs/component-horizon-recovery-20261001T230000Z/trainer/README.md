@@ -1,0 +1,22 @@
+# Native GAM component trainer
+
+Entry point: `component_horizon.py --source SOURCE --config CONFIG --output-dir FRESH_OUTPUT`.
+Optional smoke limits: `--max-tasks 2 --max-epochs 1 --max-batches 1`. All zero (the defaults) means ten tasks and 50 epochs per task. Smoke limits never shorten the cosine schedule: T_max is 50, with Task0 LR .04 to .004 and later-task LR .02 to .002.
+
+Config fields are `component_rule` (`u0`, `us`, `ug`, `uo`, `ufull`) and `component_scale` (`natural`, `matched`), one seed, and `gam_grad_norm_rho` (.25 main; 1 robustness). The rules are g0, g1, g0+(g3-g2), g2, g3. The frozen native trainer retains task expansion, task training, task evaluation, task-end checkpoint saving and after_task. All rules execute the same clean cache plus four native GAM closures. Direction replacement occurs after native decomposition and before the original clean projector.
+
+Matched reference is each candidate's own current state/batch projected g1, evaluated after native GAM unperturb. The nominal reference step is performed on cloned FP32 tensors; its actual effective displacement is the joint norm of unscaled LoRA BA differences and all seen FC weight/bias differences. This is not formation-run's independent S-trajectory reference. Raw-g1 and projected-g1 differences are separately recorded. US matched uses nominal eta and requires exact reference-after tensors. Other rules solve a bounded positive scalar and require measured actual relative norm error <= .001; a zero/nonfinite reference or failed match aborts. Native selected-gradient/projector and actual same-dtype SGD checks are hard gates. Native probe roundtrip displacement is a separate measurement.
+
+Data seeds are seed*100000 + task*1000 + epoch (epoch starts at one), with isolated sampler/augmentation RNG. Observational evaluation and counterfactual measurement restore modes/buffers/RNG. This differs from the historical ten-task global RNG protocol; fresh natural UFull supplies the corresponding raw-gradient control. Historical metrics are not claimed to be paired trajectories.
+
+Outputs:
+- `step_trace.jsonl`: per-step data identities, class slice, FC shape, five-forward/four-closure counts, nominal/scaled LR, actual projected-g1 target, actual effective displacement, root/matching diagnostics and self-spec gates.
+- `metrics.json`: every task/epoch training CE, local accuracy, LR, data count/digest and runtime.
+- `task_identities.json`: initial model/frozen-backbone hashes, inherited old FC-row checks, expanded-head hashes and data protocol.
+- `checkpoints/task_000` through `task_009`: four native cumulative LoRA/FC files, training_state.pt and manifest.json. `task_checkpoints.json` maps all reached tasks and representatives 0/4/9. Restore with learner.load_task_checkpoint(directory, task, data_manager); this is a cumulative single-adapter checkpoint, not a sequence of ten adapters.
+- `task_matrix.json`: native CNN task matrix, argmax over all seen classes, plus separately named task-macro and sample-weighted metrics. The original native logs/CL metrics also remain under `native/`.
+- `tasks.json`, `after_task_checks.json`, `effective_config.json`, `final_summary.json` provide actual dataset-derived step budgets and identity hashes. A successful summary has status=completed only after all requested lifecycles and step gates pass. Undefined Task0 BWT/forgetting and not-applicable natural-mode matching fields are null.
+
+Fisher estimators and snapshot hooks are forbidden. EWC lambda is zero, skip-task-Fisher is true, and Fisher state must remain empty. Native disabled merge hooks may be called; their parameter identities and values must remain exactly unchanged. Actual merge updates and Fisher estimation pass counts are zero.
+
+CPU validation: run `CUDA_VISIBLE_DEVICES='' python test_component_cpu.py --output CPU_AUDIT.json`. It exercises the actual frozen GAM and AST-extracted projector, 40 native tiny steps across all rule/mode combinations and 20/40-class heads, explicit BA-vs-Gram geometry, exact US natural/matched equality, nine rejected negative cases, source skip-Fisher after_task, and a synthetic two-task Controller lifecycle (one epoch and one batch per task). Synthetic accuracies are fixtures, not experiment results. Full ViT/data/checkpoint loading and the actual source's complete task0-to-task1 path still require the gated GPU smoke; no GPU job was launched by this implementation agent.

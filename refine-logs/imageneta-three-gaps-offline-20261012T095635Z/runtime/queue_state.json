@@ -1,0 +1,368 @@
+{
+  "status": "completed",
+  "jobs": {
+    "pilot_curvature_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:12:05Z",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_curvature_s2",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_001.pt",
+        "--pilot",
+        "--fp64-pilot-fallback"
+      ],
+      "process": {
+        "pid": 2323002,
+        "proc_starttime": "60452880"
+      },
+      "completed_at": "2026-10-12T10:12:56Z",
+      "report_sha256": "cc4b11f26ef3f017fe1d0069ac67facb1ea047f5513093c3d886b45c736a9d18",
+      "receipt_sha256": "651a6bef24330a830d08d7d16cae500d74e51e805e650b191e4eea673ff11b64",
+      "items": 1,
+      "scientific_outcome": "some_converged",
+      "accepted_matches": null
+    },
+    "pilot_matching_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:12:07Z",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_matching_s2",
+        "--pilot"
+      ],
+      "process": {
+        "pid": 2323029,
+        "proc_starttime": "60453106"
+      },
+      "completed_at": "2026-10-12T10:12:32Z",
+      "report_sha256": "a989accba760b563bec538a97f5511e7d987476d12fdb8e697e3041189f8f8ae",
+      "receipt_sha256": "0116304eb3d0af555c7fbf7a35c5787c1d2ba2a903006b4c16c41e16a8269848",
+      "items": 1,
+      "scientific_outcome": null,
+      "accepted_matches": 1
+    },
+    "pilot_evaluation_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:12:09Z",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/pilot_evaluation_s2",
+        "--pilot"
+      ],
+      "process": {
+        "pid": 2323118,
+        "proc_starttime": "60453342"
+      },
+      "completed_at": "2026-10-12T10:12:58Z",
+      "report_sha256": "d9d82f9a1ef963d55dec3badc94049a07a4491bf64d09aa275038217d8659a36",
+      "receipt_sha256": "542d920e29b08841163d3f97d2961ebb88bce5b21ed0891b56cb398bf82d7694",
+      "items": 2,
+      "scientific_outcome": null,
+      "accepted_matches": null
+    },
+    "formal_evaluation_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:13:00Z",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s2"
+      ],
+      "process": {
+        "pid": 2323618,
+        "proc_starttime": "60458434"
+      },
+      "completed_at": "2026-10-12T10:16:31Z",
+      "report_sha256": "efa9f42feaa924a49b9489f8592f4295d93772a4cd47b0ba4abd94d451c6831e",
+      "receipt_sha256": "39fb49e4121fe30996e17e8d2a9e3e1c2f10a685463ee184dd2bb88965d3719b",
+      "items": 10,
+      "scientific_outcome": null,
+      "accepted_matches": null
+    },
+    "formal_matching_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:12:34Z",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s2"
+      ],
+      "process": {
+        "pid": 2323383,
+        "proc_starttime": "60455807"
+      },
+      "completed_at": "2026-10-12T10:13:55Z",
+      "report_sha256": "173d2c52e9e34224479a5ad158318ece78a7d4bcdac76844422fe50dd6c821c7",
+      "receipt_sha256": "c3b42dd066c4117f4e461d7efead2e61bd9cba547d8eaa13a155549e47d42b1d",
+      "items": 8,
+      "scientific_outcome": null,
+      "accepted_matches": 8
+    },
+    "formal_curvature_s2": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:13:02Z",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "2",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s2",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_001.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_010.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s2/checkpoints/epoch_025.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s2/checkpoints/epoch_001.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s2/checkpoints/epoch_010.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s2/checkpoints/epoch_025.pt"
+      ],
+      "process": {
+        "pid": 2323640,
+        "proc_starttime": "60458642"
+      },
+      "completed_at": "2026-10-12T10:20:17Z",
+      "report_sha256": "82b7634b58290001e1118dea679eb984b56dac6c3bf729d8cdb8b757662c5071",
+      "receipt_sha256": "5adb4d24a4e9a01f01ed22d1c15a28d8457ab46ad4dfb5c0473c90b7b13dbd43",
+      "items": 12,
+      "scientific_outcome": "some_converged",
+      "accepted_matches": null
+    },
+    "formal_evaluation_s0": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:13:57Z",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "0",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s0"
+      ],
+      "process": {
+        "pid": 2323991,
+        "proc_starttime": "60464122"
+      },
+      "completed_at": "2026-10-12T10:17:36Z",
+      "report_sha256": "ebdd26c95b3c3c85b3fb0e925b519eecd2dd9d7d3d803c9b74f79b7901097cf9",
+      "receipt_sha256": "79f3e5c694b67957448669a2a56933e16ddd5694c2b6363759a9bfaf90260562",
+      "items": 10,
+      "scientific_outcome": null,
+      "accepted_matches": null
+    },
+    "formal_matching_s0": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:16:34Z",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "0",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s0"
+      ],
+      "process": {
+        "pid": 2324669,
+        "proc_starttime": "60479756"
+      },
+      "completed_at": "2026-10-12T10:17:50Z",
+      "report_sha256": "1f79cbebc11b2a1c078cb93e75c82f5747ee530b3457e7b488acc12ead1c1c49",
+      "receipt_sha256": "6f144143ad26871cf1785c41ce770a333de6d9ceb425a4715bd0ff9343fd4f7d",
+      "items": 8,
+      "scientific_outcome": null,
+      "accepted_matches": 8
+    },
+    "formal_curvature_s0": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:17:39Z",
+      "gpu": 5,
+      "gpu_uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "0",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s0",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s0/checkpoints/epoch_001.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s0/checkpoints/epoch_010.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s0/checkpoints/epoch_025.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s0/checkpoints/epoch_001.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s0/checkpoints/epoch_010.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s0/checkpoints/epoch_025.pt"
+      ],
+      "process": {
+        "pid": 2325009,
+        "proc_starttime": "60486248"
+      },
+      "completed_at": "2026-10-12T10:25:31Z",
+      "report_sha256": "866fc321029800a73f473fa43383811d75ca6bd3b0643d0d20f42c54de9ae574",
+      "receipt_sha256": "74a225fd4f0806fadd97e81aaf6de33b0615dd46d5002876598ca365480aaafb",
+      "items": 12,
+      "scientific_outcome": "some_converged",
+      "accepted_matches": null
+    },
+    "formal_evaluation_s1": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:17:53Z",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/checkpoint_eval.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "1",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_evaluation_s1"
+      ],
+      "process": {
+        "pid": 2325148,
+        "proc_starttime": "60487662"
+      },
+      "completed_at": "2026-10-12T10:21:22Z",
+      "report_sha256": "f3fd0ea48556f534c32b4997e16fb5fcbfd425534a5159e0dda7ebd2fef2ad70",
+      "receipt_sha256": "74c0e04aa6376a3b0e547d194a05c1142ec447835c5c77958a46350dd7063074",
+      "items": 10,
+      "scientific_outcome": null,
+      "accepted_matches": null
+    },
+    "formal_matching_s1": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:20:19Z",
+      "gpu": 6,
+      "gpu_uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/effective_match.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "1",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_matching_s1"
+      ],
+      "process": {
+        "pid": 2326324,
+        "proc_starttime": "60502292"
+      },
+      "completed_at": "2026-10-12T10:21:46Z",
+      "report_sha256": "d58e0708305a8403b69adb9b160bb8d66d26eb0fb810f7f04a9a64df450e8582",
+      "receipt_sha256": "aaf5a155cf0766d3c98f45fbd23f904134f9c852799be27cf760e89d50bbadfa",
+      "items": 8,
+      "scientific_outcome": null,
+      "accepted_matches": 8
+    },
+    "formal_curvature_s1": {
+      "status": "completed",
+      "started_at": "2026-10-12T10:21:24Z",
+      "gpu": 4,
+      "gpu_uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-three-gaps-offline-20261012T095635Z/curvature_diagnostics.py",
+        "--campaign",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z",
+        "--seed",
+        "1",
+        "--output-dir",
+        "/data/115-2/users/liying/cache/tmp/imageneta-three-gaps-offline-20261012T095635Z/outputs/formal_curvature_s1",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s1/checkpoints/epoch_001.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s1/checkpoints/epoch_010.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_S_s1/checkpoints/epoch_025.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s1/checkpoints/epoch_001.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s1/checkpoints/epoch_010.pt",
+        "--checkpoint",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-response-state-chain-gpu456-20261011T195426Z/outputs/formal_R_s1/checkpoints/epoch_025.pt"
+      ],
+      "process": {
+        "pid": 2326707,
+        "proc_starttime": "60508783"
+      },
+      "completed_at": "2026-10-12T10:28:26Z",
+      "report_sha256": "b82ed7e0b468c5e85b6082de1a76d5af04299cf0a1a4d89aaa7e02dce6e15ebb",
+      "receipt_sha256": "633709255a69ece23a68974f9177d01f60a33b1edd228ba5c2cb7066b1427f63",
+      "items": 12,
+      "scientific_outcome": "some_converged",
+      "accepted_matches": null
+    }
+  },
+  "suite_sha256": "a6cf961b7992ba6ba0307f737872e017d6db21d368fe4306e785959725a7bc94",
+  "updated_at": "2026-10-12T10:28:26Z",
+  "controller": {
+    "pid": 2322947,
+    "proc_starttime": "60452421"
+  },
+  "counts": {
+    "completed": 12
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "two_seed_four_way_smoke_pairing",
+  "kind": "pairing",
+  "phase": "pairing",
+  "smoke": false,
+  "gpu_required": false,
+  "depends_on": [
+    "smoke_OE01_SAM_s0",
+    "smoke_OE02_Backward_s0",
+    "smoke_OE03_Central_s0",
+    "smoke_OE04_CE_s0",
+    "smoke_OE01_SAM_s1",
+    "smoke_OE02_Backward_s1",
+    "smoke_OE03_Central_s1",
+    "smoke_OE04_CE_s1"
+  ],
+  "expected_tasks": 2,
+  "report_file": "smoke_pairing_report.json",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/two_seed_four_way_smoke_pairing",
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/verify_pairing.py",
+    "--run-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/outputs/two_seed_four_way_smoke_pairing"
+  ],
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-four-seed01-20261012T104100Z/runtime/jobs/two_seed_four_way_smoke_pairing/cuda_witness.json"
+}

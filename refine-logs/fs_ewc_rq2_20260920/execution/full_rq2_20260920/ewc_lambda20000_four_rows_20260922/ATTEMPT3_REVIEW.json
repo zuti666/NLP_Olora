@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "blocking_issues": [],
+  "reviewer": "/root/lambda20000_fisher",
+  "review_mode": "existing-agent independent delta review",
+  "generated_utc": "2026-09-22T09:34:38.912932+00:00",
+  "scope": "Bounded review of scalar/list seed parsing recovery and documented attempt3 CPU dry-run; no expanded scientific or GPU checks.",
+  "source_delta": {
+    "old_sha256": "9a30d2f69840445def89e89743d65e078b6d77da8f3ac65d75c1e13dad7ff352",
+    "new_sha256": "5e1a1549a7494c9e75959576757492941e8c8c96fa6f52df1b038da01c231e70",
+    "changes": [
+      "Added config_seed: accept one seed as integer or singleton list/tuple; reject invalid type/count and values outside 0,1,2.",
+      "Use config_seed in prepared_fisher_identity instead of cfg.seed[0].",
+      "Use config_seed in completion RNG-pairing lookup instead of cfg.seed[0]."
+    ],
+    "scientific_settings_unchanged": true,
+    "model_optimizer_data_fisher_lambda_and_evaluation_code_unchanged": true
+  },
+  "plan_delta": {
+    "attempt": {
+      "attempt2": "2: unchanged science; wait for own CUDA witness cleanup",
+      "attempt3": "3: rawF loader accepts original trainer scalar/list seed; scientific settings unchanged"
+    },
+    "run_dir": {
+      "attempt2": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/campaign_attempt2",
+      "attempt3": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/campaign_attempt3"
+    }
+  },
+  "plan_science_and_all_24_jobs_unchanged": true,
+  "gpu_policy_unchanged": {
+    "gpus": [
+      0,
+      1,
+      2,
+      5,
+      4,
+      6,
+      3
+    ],
+    "max_parallel": 6,
+    "poll_seconds": 900,
+    "all_gpu_gate": {
+      "required": false
+    }
+  },
+  "documented_dry_run": {
+    "command": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/campaign_runner.py --plan /data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/plan_attempt3.json",
+    "source": "SEED_INTERFACE_RECOVERY.md copied verbatim",
+    "exit_code": 0,
+    "dry_run": true,
+    "stages": 24,
+    "jobs": 24,
+    "max_parallel": 6,
+    "stdout_json": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/cpu_validation/ATTEMPT3_DRY_RUN.json"
+  },
+  "author_reported_regression": {
+    "source": "/root/lambda20000_train freeze message",
+    "independently_rerun_in_this_review": false,
+    "tests_passed": 4,
+    "seconds": 7.216,
+    "tests": [
+      "test_train.NativeSeedMutation (3 tests)",
+      "test_train.FourRowContract.test_all_four_arms_three_seeds"
+    ],
+    "includes_six_real_raw_payloads_scalar_list_identity_and_loading": true
+  },
+  "preserved_evidence": {
+    "attempt2_source_archived": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/attempt2_source/train.py",
+    "six_prepared_raw_fishers_not_modified_by_reviewer": true,
+    "all_four_smokes_must_pass_again_before_formal_training": true
+  },
+  "execution_safety": {
+    "gpu_started": false,
+    "execute_flag_used": false,
+    "training_or_preparation_invoked": false
+  },
+  "reviewed_file_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/attempt2_source/train.py": "9a30d2f69840445def89e89743d65e078b6d77da8f3ac65d75c1e13dad7ff352",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/train.py": "5e1a1549a7494c9e75959576757492941e8c8c96fa6f52df1b038da01c231e70",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/test_train.py": "9a876d3047e83effe41967f8813ac614ff20ee2539c47aca12a2e493c8c667be",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/plan_attempt2.json": "4380d2a6234e525f0085eec53b7f16702776bf492ca6bc1ffa31c62488cd6f97",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/plan_attempt3.json": "0e64306cbc7ebe43dfc91c4df8bc76e6bf2c68c2b466ff69e6b5c5463d95971c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/SEED_INTERFACE_RECOVERY.md": "2422fed384b83192ff92239a1cddf2c7bc2ed18cbdd982dcef2d0d68290381c2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/campaign_runner.py": "7e89f7c96ee82846d5e45120016fc588bca61d9157dfe6e6ca57d03cf1fc477b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/prepare_fisher.py": "81e41d54a709b43f31547ed8528cf673f7b79f502c0ec3fa85cbd4c15528fa4e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/report.py": "311adc316eecaf1e2fca4c3e57769fa99296e45a4732b600257bc6fb2ad0cb05",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/validate_smokes.py": "66d26c153169de3ec5a8d21fbe645b81f53c9c6636a16fdc5d8eb43407f5fc7d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/experiment_spec.json": "ab12c95d159c0499d0b1eef2fd5f1bab386f06c0dd463a849acbe9db50d31303",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/ewc_lambda20000_four_rows_20260922/SELECTION.json": "f1d54dbd717baf5e6c40c576c827a5cabd4417a416fcb5628a722e59433fc2a9"
+  }
+}

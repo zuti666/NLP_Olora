@@ -1,0 +1,91 @@
+{
+  "schema": "ReflectedProbeFreshLiteralDocCheck_v1",
+  "timestamp_utc": "2026-10-12T10:41:11.090845+00:00",
+  "reviewer": "fresh independent subagent /root/reflected_probe_fresh_review",
+  "status": "passed_cpu_documentation_only",
+  "exact_command": "python3 scripts_llama/run_two_point_probe_llama.py --config configs/two_point_probe_llama/inclora_probe_reverse_llama1b_order1_tokv2_rho005.json --seeds 0 --run-root /tmp/reflected_probe_docs_20261012 --dry-run",
+  "exit_code": 0,
+  "invocation_executed_verbatim": true,
+  "run_root_created": false,
+  "documented_plan": {
+    "model": "1B",
+    "mode": "reverse",
+    "order": 1,
+    "seeds": [
+      0
+    ],
+    "world_size": 4,
+    "global_batch": 64,
+    "formal_stages": 4,
+    "smoke_stages": 2,
+    "formal_updates": 514,
+    "decoder_pipeline_version": "decoder_token_ids_v2",
+    "optimizer": "transformers.AdamW",
+    "epsilon": 1e-06,
+    "weight_decay": 0,
+    "clip_grad_norm": 1,
+    "radius": 0.05
+  },
+  "divergences": [],
+  "canonical_environment_spec_sha256": "0715917e1ad74c80ae4defaf61a143c33d13857323b67d09ead666a792fa61b2",
+  "document_sha256": {
+    "ENVIRONMENT.md": "fc4a623261bf954dcaa42a467f8f017a552a133a93e04f5e57bc6d54aac10738",
+    "EXPERIMENT_PLAN.md": "3de9346837c8de4a46042470973e4ddf04e8f79aa652f82630cc127b23a6eced"
+  },
+  "followup_stdlib_plan_witness": {
+    "torch_imported": false,
+    "run_root_created": false,
+    "active_chains": 6,
+    "formal_stages": 24,
+    "smoke_stages": 12,
+    "formal_commits": 3084,
+    "ce_gradient_phases": 5140,
+    "replay_phases": 2056,
+    "all_mode_protocols_matched": true
+  },
+  "independent_nonlinear_cpu_witness": {
+    "status": "passed",
+    "modes": [
+      "sgd",
+      "sam",
+      "reverse"
+    ],
+    "ce_phases": [
+      1,
+      2,
+      2
+    ],
+    "commits_per_mode": 1,
+    "base_asserted_at_commit": true,
+    "exact_hf_adamw_parameter_match": true,
+    "final_clipping_once": true,
+    "cuda_initialized": false
+  },
+  "cuda_witness_performed": false,
+  "gpu_model_smoke_performed": false,
+  "gpu_training_started": false,
+  "gpu_acceptance_claimed": false,
+  "limits": "CPU documentation and focused formula checks only. Actual per-card CUDA/BF16 witnesses and six own-chain native model smokes remain mandatory controller gates.",
+  "final_source_review_status": "passed",
+  "final_reread_at_utc": "2026-10-12T10:46:51.289011+00:00",
+  "final_literal_dry_run_exit_code": 0,
+  "final_literal_invocation_verbatim": true,
+  "final_literal_run_root_created": false,
+  "reviewed_source_sha256": {
+    "src/optimer_reverse_probe.py": "a56921aeed9c159ca6e691acdbeca5eddd2e6c6ba51b3b39a9121c0fdbeb8133",
+    "src/uie_trainer_lora.py": "d362756d79596662c4ed6857e591887121a89361659f2534dd65c3ab7c128336",
+    "src/run_uie_lora.py": "b4f6cbbf951ac1b88b6f9a069a8b5ea29d6273ff12108d8cd204647036d3949b",
+    "scripts_llama/run_two_point_probe_llama.py": "e67a503d66d3e3f9d51f421eeb974d13b32ac3a3d3c21fcbbbb7426da52f05c6",
+    "scripts_llama/run_two_point_probe_queue.py": "6471e177a9726fb2b93349ee40f5858192703e7b01c1f897fddaeb7395ab282a",
+    "scripts_llama/collect_two_point_probe_results.py": "6a2fa06b6bcf5c84db7705f0742cf57d8c39ddeb69957079bde41d4ed78200d9",
+    "scripts_llama/run_g2_llama.py": "045c73d8e1aa51292bad699862c899bcc9cd2574d4d95f14884b3f1a47ff2ebb",
+    "scripts_llama/collect_g2_orders_results.py": "33e09eb23fb75feee9fad2c50d3b73d866f98a60db4c6e1e268a7c7bc23633b2",
+    "configs/two_point_probe_llama/inclora_probe_reverse_llama1b_order1_tokv2_rho005.json": "8ca2410d0446ff3dac0fbcbd5a1260fbddca79d4082b7a0ae289622c1766f3e5",
+    "configs/two_point_probe_llama/inclora_probe_reverse_llama3b_order1_tokv2_rho005.json": "8fad3c654f88443e5f8198c45f63a8a058acbf840dc762033f64322ac8dc705d",
+    "configs/two_point_probe_llama/inclora_probe_sam_llama1b_order1_tokv2_rho005.json": "892c4f248d38edf2e148049a35d8f85d220431d73a7c1ba2de4bc2e309e0111a",
+    "configs/two_point_probe_llama/inclora_probe_sam_llama3b_order1_tokv2_rho005.json": "eb76cf11b8cca117ce11c04eb6dae3b4e5a5c26b8a4df9bf4b15c036919b8c90",
+    "configs/two_point_probe_llama/inclora_probe_sgd_llama1b_order1_tokv2_rho005.json": "6810cc46eac42dd4aa54a210909ca9d43af30aec9330a712d39ee97a6a065893",
+    "configs/two_point_probe_llama/inclora_probe_sgd_llama3b_order1_tokv2_rho005.json": "3cb6cb24d03bfed3848fe4c4d60af7e3bd37ed65219c819d2da158c6ea1f9cd7"
+  },
+  "unresolved_substantive_defects": []
+}

@@ -1,0 +1,374 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-06T15:36:16.692160+00:00",
+  "auditor": "independent /root/seed01_increment_audit_1006",
+  "read_only_observation": true,
+  "host": "cudahpc40.cvc.uab.es",
+  "pid_namespace": "pid:[4026531836]",
+  "controller": {
+    "expected": {
+      "pid": 892664,
+      "proc_starttime": "10540281"
+    },
+    "exists": true,
+    "actual_starttime": "10540281",
+    "identity_matches": true,
+    "cmdline": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/run_queue.py --suite /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/suite.json ",
+    "children": "952310 952530"
+  },
+  "queue_status": "running",
+  "counts": {
+    "completed": 7,
+    "running": 2,
+    "pending": 4
+  },
+  "formal_training_started": 2,
+  "formal_expected_new": 6,
+  "smokes_passed": 6,
+  "pairing_passed": true,
+  "pairing_checks": {
+    "six_smokes": true,
+    "six_formal": true,
+    "complete_grid": true,
+    "budget": true,
+    "class_slices": true,
+    "seed0_same_initial_model": true,
+    "seed0_same_realized_inputs": true,
+    "seed1_same_initial_model": true,
+    "seed1_same_realized_inputs": true
+  },
+  "pairing_report_sha256": "db6e4c284d0c3120b664862af487e89804cbb3840587f60555e3c1068289bdf6",
+  "smoke_proof": [
+    {
+      "job": "smoke_sum12_r1_k10_s0",
+      "seed": 0,
+      "direction": "g1_plus_g2",
+      "gpu": 2,
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/smoke_sum12_r1_k10_s0/completed.json",
+      "summary_sha256": "4d4b00cd2aeab62bd240d285f28385657f29fb529a877585097ddaa11c34e274",
+      "updates": 2,
+      "ce_passes": 8,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    },
+    {
+      "job": "smoke_sum12_r1_k10_s1",
+      "seed": 1,
+      "direction": "g1_plus_g2",
+      "gpu": 3,
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/smoke_sum12_r1_k10_s1/completed.json",
+      "summary_sha256": "1ddb751281b043c5c94eb128b1bd1ce22ffb57ee16a665f64089110edff5c09f",
+      "updates": 2,
+      "ce_passes": 8,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    },
+    {
+      "job": "smoke_mean12_r1_k10_s0",
+      "seed": 0,
+      "direction": "half_g1_plus_g2",
+      "gpu": 2,
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/smoke_mean12_r1_k10_s0/completed.json",
+      "summary_sha256": "977452f327283fe1c2e7febf32c9bb9283a3a205d1980d85c68bc2b94592f28e",
+      "updates": 2,
+      "ce_passes": 8,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    },
+    {
+      "job": "smoke_mean12_r1_k10_s1",
+      "seed": 1,
+      "direction": "half_g1_plus_g2",
+      "gpu": 3,
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/smoke_mean12_r1_k10_s1/completed.json",
+      "summary_sha256": "134dd11440b432dc4bbf3c970b34c07f61614d5ba71d8e683bf243bfdd533307",
+      "updates": 2,
+      "ce_passes": 8,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    },
+    {
+      "job": "smoke_g1_d32_r1_k10_s0",
+      "seed": 0,
+      "direction": "g1_plus_d32",
+      "gpu": 2,
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/smoke_g1_d32_r1_k10_s0/completed.json",
+      "summary_sha256": "1f70cc1760a7f5862ad22d0060c209175f6d1135e57c38664533b0026d8679e7",
+      "updates": 2,
+      "ce_passes": 8,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    },
+    {
+      "job": "smoke_g1_d32_r1_k10_s1",
+      "seed": 1,
+      "direction": "g1_plus_d32",
+      "gpu": 3,
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/smoke_g1_d32_r1_k10_s1/completed.json",
+      "summary_sha256": "0382f2cfd0cd358b6adb46839754043c845817d1a5d927987bf9955012666f9f",
+      "updates": 2,
+      "ce_passes": 8,
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      }
+    }
+  ],
+  "formal_evidence": [
+    {
+      "job": "formal_sum12_r1_k10_s0",
+      "seed": 0,
+      "gpu": 2,
+      "gpu_uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "process": {
+        "expected": {
+          "pid": 952310,
+          "proc_starttime": "10553882"
+        },
+        "exists": true,
+        "actual_starttime": "10553882",
+        "identity_matches": true,
+        "cmdline": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/job_worker.py --job /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/formal_sum12_r1_k10_s0/job.json --lease-fd 4 --uuid-lease-fd 5 ",
+        "children": "952717"
+      },
+      "observed_steps": 10,
+      "last_task": 0,
+      "last_epoch": 1,
+      "last_train_ce": 1.2304561138153076,
+      "counters": {
+        "training_batches": 10,
+        "training_samples": 1259,
+        "training_ce_gradient_passes": 40,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 0,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 40,
+        "training_sgd_updates": 10,
+        "training_g3_gradient_passes": 10,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "g3_computed_unused": true,
+      "forbidden_modules_zero": true
+    },
+    {
+      "job": "formal_sum12_r1_k10_s1",
+      "seed": 1,
+      "gpu": 3,
+      "gpu_uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "process": {
+        "expected": {
+          "pid": 952530,
+          "proc_starttime": "10553890"
+        },
+        "exists": true,
+        "actual_starttime": "10553890",
+        "identity_matches": true,
+        "cmdline": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/job_worker.py --job /data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/formal_sum12_r1_k10_s1/job.json --lease-fd 6 --uuid-lease-fd 7 ",
+        "children": "953098"
+      },
+      "observed_steps": 10,
+      "last_task": 0,
+      "last_epoch": 1,
+      "last_train_ce": 1.4869436025619507,
+      "counters": {
+        "training_batches": 10,
+        "training_samples": 1259,
+        "training_ce_gradient_passes": 40,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 0,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 40,
+        "training_sgd_updates": 10,
+        "training_g3_gradient_passes": 10,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "cuda_witness": {
+        "status": "passed",
+        "seed": 2,
+        "device": "NVIDIA RTX 6000 Ada Generation",
+        "shape": [
+          64,
+          64
+        ],
+        "loss": 136.93104553222656,
+        "gradient_norm": 9.53636646270752,
+        "cuda_visible_devices": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+        "torch": "2.4.1+cu121",
+        "cuda": "12.1",
+        "tf32_matmul": false,
+        "tf32_cudnn": false
+      },
+      "g3_computed_unused": true,
+      "forbidden_modules_zero": true
+    }
+  ],
+  "gpu_observation": [
+    {
+      "index": 0,
+      "uuid": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "memory_used_mib": 12034,
+      "utilization_percent": 100
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-d59d54d6-e68a-ffb7-4b2b-5e8d69d4b78a",
+      "memory_used_mib": 12034,
+      "utilization_percent": 100
+    },
+    {
+      "index": 2,
+      "uuid": "GPU-fe4ca05a-b7fd-efa7-8192-201e24573825",
+      "memory_used_mib": 12034,
+      "utilization_percent": 100
+    },
+    {
+      "index": 3,
+      "uuid": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26",
+      "memory_used_mib": 12034,
+      "utilization_percent": 100
+    },
+    {
+      "index": 4,
+      "uuid": "GPU-135554e2-aa66-e230-7d2f-bb14d2efddc5",
+      "memory_used_mib": 12050,
+      "utilization_percent": 99
+    },
+    {
+      "index": 5,
+      "uuid": "GPU-6eac7f06-8173-e1a3-c938-239f6f6eb19e",
+      "memory_used_mib": 12050,
+      "utilization_percent": 100
+    },
+    {
+      "index": 6,
+      "uuid": "GPU-b74c0891-02cf-152f-704a-bd7edbd0b50a",
+      "memory_used_mib": 12038,
+      "utilization_percent": 100
+    }
+  ],
+  "allowed_gpus": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "formal_running_physical_gpus": [
+    2,
+    3
+  ],
+  "no_duplicate_seed2": true,
+  "seed2_policy": "Sum12 andD32 historicalseed2 reused; Mean12seed2 is existing separate half12 queue, not registered here.",
+  "new_campaign_pinned_files_verified": 41,
+  "source_files_verified": 190,
+  "no_final_results_yet": true,
+  "scope": "Startup evidence only; no train launch/kill/source changes and no endpoint performance claim."
+}

@@ -1,0 +1,1120 @@
+{
+  "scope": "Formal ImageNet-A; seven requested two-task arms",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "expected_main_cells": 21,
+  "validated_main_cells": 15,
+  "missing_main_cells": 6,
+  "this_script_launches_training": false,
+  "extension_root": null,
+  "extension_validation": [],
+  "definitions": {
+    "B1_batch_proxy": "Task-1 endpoint training batch-gradient delta-W Fisher proxy, before normalization; 1259 samples",
+    "d_QV_cont": "Frobenius norm of total effective Q/V weight change from Task 1 endpoint to Task 2 endpoint; excludes heads",
+    "BWT": "a21 minus common unrounded FP32 a11, computed per seed",
+    "missing": "not_run; never zero or an estimated result"
+  },
+  "aggregates": [
+    {
+      "arm": "vanilla",
+      "variant": "Vanilla LoRA",
+      "task1_objective": "C",
+      "task2_objective": "C",
+      "status": "complete",
+      "statistics": {
+        "a11": {
+          "mean": 87.07926167209556,
+          "sample_sd": 0.37612395386946523,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 31.440922431647778,
+          "sample_sd": 4.234577514196581,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 1451.9541283544181,
+          "sample_sd": 44.335688446051925,
+          "n": 3
+        },
+        "a21": {
+          "mean": 82.41,
+          "sample_sd": 1.1258330249197719,
+          "n": 3
+        },
+        "a22": {
+          "mean": 76.37666666666667,
+          "sample_sd": 0.3950105483823567,
+          "n": 3
+        },
+        "BWT": {
+          "mean": -4.669261672095549,
+          "sample_sd": 1.3536698258453013,
+          "n": 3
+        },
+        "average_accuracy": {
+          "mean": 79.39333333333333,
+          "sample_sd": 0.7411196484599011,
+          "n": 3
+        },
+        "d_QV_cont": {
+          "mean": 0.37750370228281294,
+          "sample_sd": 0.0162661027288464,
+          "n": 3
+        }
+      }
+    },
+    {
+      "arm": "shaping_only",
+      "variant": "Shaping only",
+      "task1_objective": "C+F",
+      "task2_objective": "C+F",
+      "status": "pending",
+      "statistics": {
+        "a11": {
+          "mean": 87.29641693811075,
+          "sample_sd": 0.564185930804202,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 21.932823071877163,
+          "sample_sd": 2.9819164100520155,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 634.5101321340791,
+          "sample_sd": 36.0677175578936,
+          "n": 3
+        },
+        "a21": null,
+        "a22": null,
+        "BWT": null,
+        "average_accuracy": null,
+        "d_QV_cont": null
+      }
+    },
+    {
+      "arm": "ewclora",
+      "variant": "EWCLoRA",
+      "task1_objective": "C",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "statistics": {
+        "a11": {
+          "mean": 87.07926167209556,
+          "sample_sd": 0.37612395386946523,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 31.440922431647778,
+          "sample_sd": 4.234577514196581,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 1451.9541283544181,
+          "sample_sd": 44.335688446051925,
+          "n": 3
+        },
+        "a21": {
+          "mean": 82.41,
+          "sample_sd": 0.8636550237218522,
+          "n": 3
+        },
+        "a22": {
+          "mean": 76.37666666666667,
+          "sample_sd": 0.3950105483823567,
+          "n": 3
+        },
+        "BWT": {
+          "mean": -4.669261672095549,
+          "sample_sd": 1.049929970059641,
+          "n": 3
+        },
+        "average_accuracy": {
+          "mean": 79.39333333333333,
+          "sample_sd": 0.5963709695594871,
+          "n": 3
+        },
+        "d_QV_cont": {
+          "mean": 0.37488615177905527,
+          "sample_sd": 0.01672711323765112,
+          "n": 3
+        }
+      }
+    },
+    {
+      "arm": "fs_ewclora",
+      "variant": "FS-EWCLoRA",
+      "task1_objective": "C+F",
+      "task2_objective": "C+F+P",
+      "status": "complete",
+      "statistics": {
+        "a11": {
+          "mean": 87.29641693811075,
+          "sample_sd": 0.564185930804202,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 21.932823071877163,
+          "sample_sd": 2.9819164100520155,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 634.5101321340791,
+          "sample_sd": 36.0677175578936,
+          "n": 3
+        },
+        "a21": {
+          "mean": 83.38666666666667,
+          "sample_sd": 0.32501282025995615,
+          "n": 3
+        },
+        "a22": {
+          "mean": 80.84,
+          "sample_sd": 0.8214621111165121,
+          "n": 3
+        },
+        "BWT": {
+          "mean": -3.909750271444082,
+          "sample_sd": 0.6485998526522379,
+          "n": 3
+        },
+        "average_accuracy": {
+          "mean": 82.11333333333333,
+          "sample_sd": 0.4018187817080398,
+          "n": 3
+        },
+        "d_QV_cont": {
+          "mean": 0.5008949790784771,
+          "sample_sd": 0.015867238196413783,
+          "n": 3
+        }
+      }
+    },
+    {
+      "arm": "task1_shaping_no_ewc",
+      "variant": "Task-1 shaping without EWC",
+      "task1_objective": "C+F",
+      "task2_objective": "C",
+      "status": "complete",
+      "statistics": {
+        "a11": {
+          "mean": 87.29641693811075,
+          "sample_sd": 0.564185930804202,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 21.932823071877163,
+          "sample_sd": 2.9819164100520155,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 634.5101321340791,
+          "sample_sd": 36.0677175578936,
+          "n": 3
+        },
+        "a21": {
+          "mean": 86.53666666666666,
+          "sample_sd": 0.8198983676854893,
+          "n": 3
+        },
+        "a22": {
+          "mean": 72.96333333333334,
+          "sample_sd": 1.3848224916332494,
+          "n": 3
+        },
+        "BWT": {
+          "mean": -0.7597502714440812,
+          "sample_sd": 1.3555237494452195,
+          "n": 3
+        },
+        "average_accuracy": {
+          "mean": 79.75,
+          "sample_sd": 1.0975768765785805,
+          "n": 3
+        },
+        "d_QV_cont": {
+          "mean": 0.358303912599329,
+          "sample_sd": 0.014667939988781482,
+          "n": 3
+        }
+      }
+    },
+    {
+      "arm": "task1_shaping",
+      "variant": "Task-1 shaping",
+      "task1_objective": "C+F",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "statistics": {
+        "a11": {
+          "mean": 87.29641693811075,
+          "sample_sd": 0.564185930804202,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 21.932823071877163,
+          "sample_sd": 2.9819164100520155,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 634.5101321340791,
+          "sample_sd": 36.0677175578936,
+          "n": 3
+        },
+        "a21": {
+          "mean": 86.64333333333333,
+          "sample_sd": 0.9750042734949094,
+          "n": 3
+        },
+        "a22": {
+          "mean": 72.96333333333334,
+          "sample_sd": 1.3848224916332494,
+          "n": 3
+        },
+        "BWT": {
+          "mean": -0.6530836047774121,
+          "sample_sd": 1.489993007700819,
+          "n": 3
+        },
+        "average_accuracy": {
+          "mean": 79.80333333333333,
+          "sample_sd": 1.178986146370405,
+          "n": 3
+        },
+        "d_QV_cont": {
+          "mean": 0.3570436707680912,
+          "sample_sd": 0.014750959865863672,
+          "n": 3
+        }
+      }
+    },
+    {
+      "arm": "task2_shaping",
+      "variant": "Task-2 shaping",
+      "task1_objective": "C",
+      "task2_objective": "C+F+P",
+      "status": "pending",
+      "statistics": {
+        "a11": {
+          "mean": 87.07926167209556,
+          "sample_sd": 0.37612395386946523,
+          "n": 3
+        },
+        "B1_batch_proxy": {
+          "mean": 31.440922431647778,
+          "sample_sd": 4.234577514196581,
+          "n": 3
+        },
+        "raw_trace_anchor_train256": {
+          "mean": 1451.9541283544181,
+          "sample_sd": 44.335688446051925,
+          "n": 3
+        },
+        "a21": null,
+        "a22": null,
+        "BWT": null,
+        "average_accuracy": null,
+        "d_QV_cont": null
+      }
+    }
+  ],
+  "individual": [
+    {
+      "arm": "vanilla",
+      "variant": "Vanilla LoRA",
+      "seed": 0,
+      "parent_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 0,
+      "task1_objective": "C",
+      "task2_objective": "C",
+      "status": "complete",
+      "a11": 87.29641693811075,
+      "B1_batch_proxy": 34.06988796591759,
+      "raw_trace_anchor_train256": 1499.9142375239746,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed0/imageneta/0/anchor_sgd_seed0/exp_run/20/anchor_sgd_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": 83.06,
+      "a22": 76.38,
+      "BWT": -4.23641693811075,
+      "average_accuracy": 79.72,
+      "d_QV_cont": 0.38129095597362905,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/A/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/A/summary.json"
+    },
+    {
+      "arm": "vanilla",
+      "variant": "Vanilla LoRA",
+      "seed": 1,
+      "parent_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 0,
+      "task1_objective": "C",
+      "task2_objective": "C",
+      "status": "complete",
+      "a11": 86.64495114006515,
+      "B1_batch_proxy": 26.555998250842094,
+      "raw_trace_anchor_train256": 1443.482916934704,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed1/imageneta/1/anchor_sgd_seed1/exp_run/20/anchor_sgd_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": 83.06,
+      "a22": 76.77,
+      "BWT": -3.5849511400651437,
+      "average_accuracy": 79.91499999999999,
+      "d_QV_cont": 0.3596780752460782,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/A/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/A/summary.json"
+    },
+    {
+      "arm": "vanilla",
+      "variant": "Vanilla LoRA",
+      "seed": 2,
+      "parent_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 0,
+      "task1_objective": "C",
+      "task2_objective": "C",
+      "status": "complete",
+      "a11": 87.29641693811075,
+      "B1_batch_proxy": 33.69688107818365,
+      "raw_trace_anchor_train256": 1412.465230604576,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed2/imageneta/2/anchor_sgd_seed2/exp_run/20/anchor_sgd_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": 81.11,
+      "a22": 75.98,
+      "BWT": -6.186416938110753,
+      "average_accuracy": 78.545,
+      "d_QV_cont": 0.3915420756287316,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/A/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/A/summary.json"
+    },
+    {
+      "arm": "shaping_only",
+      "variant": "Shaping only",
+      "seed": 0,
+      "parent_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 0,
+      "task1_objective": "C+F",
+      "task2_objective": "C+F",
+      "status": "not_run",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 24.82307168096304,
+      "raw_trace_anchor_train256": 652.771968647185,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": null,
+      "a22": null,
+      "BWT": null,
+      "average_accuracy": null,
+      "d_QV_cont": null
+    },
+    {
+      "arm": "shaping_only",
+      "variant": "Shaping only",
+      "seed": 1,
+      "parent_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 0,
+      "task1_objective": "C+F",
+      "task2_objective": "C+F",
+      "status": "not_run",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 18.866997465491295,
+      "raw_trace_anchor_train256": 657.7946306604772,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": null,
+      "a22": null,
+      "BWT": null,
+      "average_accuracy": null,
+      "d_QV_cont": null
+    },
+    {
+      "arm": "shaping_only",
+      "variant": "Shaping only",
+      "seed": 2,
+      "parent_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 0,
+      "task1_objective": "C+F",
+      "task2_objective": "C+F",
+      "status": "not_run",
+      "a11": 87.94788273615636,
+      "B1_batch_proxy": 22.10840006917715,
+      "raw_trace_anchor_train256": 592.9637970945749,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": null,
+      "a22": null,
+      "BWT": null,
+      "average_accuracy": null,
+      "d_QV_cont": null
+    },
+    {
+      "arm": "ewclora",
+      "variant": "EWCLoRA",
+      "seed": 0,
+      "parent_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 2000,
+      "task1_objective": "C",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "a11": 87.29641693811075,
+      "B1_batch_proxy": 34.06988796591759,
+      "raw_trace_anchor_train256": 1499.9142375239746,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed0/imageneta/0/anchor_sgd_seed0/exp_run/20/anchor_sgd_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": 83.06,
+      "a22": 76.38,
+      "BWT": -4.23641693811075,
+      "average_accuracy": 79.72,
+      "d_QV_cont": 0.3795160433263445,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/C/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/C/summary.json"
+    },
+    {
+      "arm": "ewclora",
+      "variant": "EWCLoRA",
+      "seed": 1,
+      "parent_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 2000,
+      "task1_objective": "C",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "a11": 86.64495114006515,
+      "B1_batch_proxy": 26.555998250842094,
+      "raw_trace_anchor_train256": 1443.482916934704,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed1/imageneta/1/anchor_sgd_seed1/exp_run/20/anchor_sgd_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": 82.74,
+      "a22": 76.77,
+      "BWT": -3.904951140065151,
+      "average_accuracy": 79.755,
+      "d_QV_cont": 0.3563317664996747,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/C/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/C/summary.json"
+    },
+    {
+      "arm": "ewclora",
+      "variant": "EWCLoRA",
+      "seed": 2,
+      "parent_method": "sgd",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 2000,
+      "task1_objective": "C",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "a11": 87.29641693811075,
+      "B1_batch_proxy": 33.69688107818365,
+      "raw_trace_anchor_train256": 1412.465230604576,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed2/imageneta/2/anchor_sgd_seed2/exp_run/20/anchor_sgd_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": 81.43,
+      "a22": 75.98,
+      "BWT": -5.866416938110746,
+      "average_accuracy": 78.70500000000001,
+      "d_QV_cont": 0.38881064551114664,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/C/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/C/summary.json"
+    },
+    {
+      "arm": "fs_ewclora",
+      "variant": "FS-EWCLoRA",
+      "seed": 0,
+      "parent_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 2000,
+      "task1_objective": "C+F",
+      "task2_objective": "C+F+P",
+      "status": "complete",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 24.82307168096304,
+      "raw_trace_anchor_train256": 652.771968647185,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": 83.71,
+      "a22": 81.1,
+      "BWT": -3.2606840390879483,
+      "average_accuracy": 82.405,
+      "d_QV_cont": 0.5020066160520025,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed0/imageneta/0/sequence_gam_seed0/exp_run/20/sequence_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/gam/trajectory_fisher/summary.json"
+    },
+    {
+      "arm": "fs_ewclora",
+      "variant": "FS-EWCLoRA",
+      "seed": 1,
+      "parent_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 2000,
+      "task1_objective": "C+F",
+      "task2_objective": "C+F+P",
+      "status": "complete",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 18.866997465491295,
+      "raw_trace_anchor_train256": 657.7946306604772,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": 83.06,
+      "a22": 81.5,
+      "BWT": -3.91068403908794,
+      "average_accuracy": 82.28,
+      "d_QV_cont": 0.48450115423324075,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed1/imageneta/1/sequence_gam_seed1/exp_run/20/sequence_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/gam/trajectory_fisher/summary.json"
+    },
+    {
+      "arm": "fs_ewclora",
+      "variant": "FS-EWCLoRA",
+      "seed": 2,
+      "parent_method": "gam",
+      "future_optimizer": "gam",
+      "ewc_lambda": 2000,
+      "task1_objective": "C+F",
+      "task2_objective": "C+F+P",
+      "status": "complete",
+      "a11": 87.94788273615636,
+      "B1_batch_proxy": 22.10840006917715,
+      "raw_trace_anchor_train256": 592.9637970945749,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": 83.39,
+      "a22": 79.92,
+      "BWT": -4.557882736156358,
+      "average_accuracy": 81.655,
+      "d_QV_cont": 0.516177166950188,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed2/imageneta/2/sequence_gam_seed2/exp_run/20/sequence_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/gam/trajectory_fisher/summary.json"
+    },
+    {
+      "arm": "task1_shaping_no_ewc",
+      "variant": "Task-1 shaping without EWC",
+      "seed": 0,
+      "parent_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 0,
+      "task1_objective": "C+F",
+      "task2_objective": "C",
+      "status": "complete",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 24.82307168096304,
+      "raw_trace_anchor_train256": 652.771968647185,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": 86.64,
+      "a22": 72.83,
+      "BWT": -0.33068403908794153,
+      "average_accuracy": 79.735,
+      "d_QV_cont": 0.3633816442622788,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/B/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/B/summary.json"
+    },
+    {
+      "arm": "task1_shaping_no_ewc",
+      "variant": "Task-1 shaping without EWC",
+      "seed": 1,
+      "parent_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 0,
+      "task1_objective": "C+F",
+      "task2_objective": "C",
+      "status": "complete",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 18.866997465491295,
+      "raw_trace_anchor_train256": 657.7946306604772,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": 87.3,
+      "a22": 74.41,
+      "BWT": 0.32931596091205506,
+      "average_accuracy": 80.85499999999999,
+      "d_QV_cont": 0.3417718003831225,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/B/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/B/summary.json"
+    },
+    {
+      "arm": "task1_shaping_no_ewc",
+      "variant": "Task-1 shaping without EWC",
+      "seed": 2,
+      "parent_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 0,
+      "task1_objective": "C+F",
+      "task2_objective": "C",
+      "status": "complete",
+      "a11": 87.94788273615636,
+      "B1_batch_proxy": 22.10840006917715,
+      "raw_trace_anchor_train256": 592.9637970945749,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": 85.67,
+      "a22": 71.65,
+      "BWT": -2.277882736156357,
+      "average_accuracy": 78.66,
+      "d_QV_cont": 0.36975829315258557,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/B/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/B/summary.json"
+    },
+    {
+      "arm": "task1_shaping",
+      "variant": "Task-1 shaping",
+      "seed": 0,
+      "parent_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 2000,
+      "task1_objective": "C+F",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 24.82307168096304,
+      "raw_trace_anchor_train256": 652.771968647185,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": 86.64,
+      "a22": 72.83,
+      "BWT": -0.33068403908794153,
+      "average_accuracy": 79.735,
+      "d_QV_cont": 0.36251472816794367,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/D/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/D/summary.json"
+    },
+    {
+      "arm": "task1_shaping",
+      "variant": "Task-1 shaping",
+      "seed": 1,
+      "parent_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 2000,
+      "task1_objective": "C+F",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "a11": 86.97068403908794,
+      "B1_batch_proxy": 18.866997465491295,
+      "raw_trace_anchor_train256": 657.7946306604772,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": 87.62,
+      "a22": 74.41,
+      "BWT": 0.6493159609120625,
+      "average_accuracy": 81.015,
+      "d_QV_cont": 0.3403388376774674,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/D/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/D/summary.json"
+    },
+    {
+      "arm": "task1_shaping",
+      "variant": "Task-1 shaping",
+      "seed": 2,
+      "parent_method": "gam",
+      "future_optimizer": "sgd",
+      "ewc_lambda": 2000,
+      "task1_objective": "C+F",
+      "task2_objective": "C+P",
+      "status": "complete",
+      "a11": 87.94788273615636,
+      "B1_batch_proxy": 22.10840006917715,
+      "raw_trace_anchor_train256": 592.9637970945749,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": 85.67,
+      "a22": 71.65,
+      "BWT": -2.277882736156357,
+      "average_accuracy": 78.66,
+      "d_QV_cont": 0.3682774464588624,
+      "result_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/D/summary.json",
+      "drift_source": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/D/summary.json"
+    },
+    {
+      "arm": "task2_shaping",
+      "variant": "Task-2 shaping",
+      "seed": 0,
+      "parent_method": "sgd",
+      "future_optimizer": "gam",
+      "ewc_lambda": 2000,
+      "task1_objective": "C",
+      "task2_objective": "C+F+P",
+      "status": "not_run",
+      "a11": 87.29641693811075,
+      "B1_batch_proxy": 34.06988796591759,
+      "raw_trace_anchor_train256": 1499.9142375239746,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed0/imageneta/0/anchor_sgd_seed0/exp_run/20/anchor_sgd_seed0_vit_base_patch16_224_cl_metrics.json",
+      "a21": null,
+      "a22": null,
+      "BWT": null,
+      "average_accuracy": null,
+      "d_QV_cont": null
+    },
+    {
+      "arm": "task2_shaping",
+      "variant": "Task-2 shaping",
+      "seed": 1,
+      "parent_method": "sgd",
+      "future_optimizer": "gam",
+      "ewc_lambda": 2000,
+      "task1_objective": "C",
+      "task2_objective": "C+F+P",
+      "status": "not_run",
+      "a11": 86.64495114006515,
+      "B1_batch_proxy": 26.555998250842094,
+      "raw_trace_anchor_train256": 1443.482916934704,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed1/imageneta/1/anchor_sgd_seed1/exp_run/20/anchor_sgd_seed1_vit_base_patch16_224_cl_metrics.json",
+      "a21": null,
+      "a22": null,
+      "BWT": null,
+      "average_accuracy": null,
+      "d_QV_cont": null
+    },
+    {
+      "arm": "task2_shaping",
+      "variant": "Task-2 shaping",
+      "seed": 2,
+      "parent_method": "sgd",
+      "future_optimizer": "gam",
+      "ewc_lambda": 2000,
+      "task1_objective": "C",
+      "task2_objective": "C+F+P",
+      "status": "not_run",
+      "a11": 87.29641693811075,
+      "B1_batch_proxy": 33.69688107818365,
+      "raw_trace_anchor_train256": 1412.465230604576,
+      "parent_checkpoint": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/checkpoints/task_00.pt",
+      "anchor_metrics": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed2/imageneta/2/anchor_sgd_seed2/exp_run/20/anchor_sgd_seed2_vit_base_patch16_224_cl_metrics.json",
+      "a21": null,
+      "a22": null,
+      "BWT": null,
+      "average_accuracy": null,
+      "d_QV_cont": null
+    }
+  ],
+  "paired_contrasts": [
+    {
+      "contrast": "fs_ewclora-ewclora",
+      "metric": "a21",
+      "mean": 0.9766666666666642,
+      "sample_sd": 0.8674291517659094,
+      "n": 3,
+      "seed0_delta": 0.6499999999999915,
+      "seed1_delta": 0.3200000000000074,
+      "seed2_delta": 1.9599999999999937,
+      "positive_count": 3
+    },
+    {
+      "contrast": "fs_ewclora-ewclora",
+      "metric": "a22",
+      "mean": 4.463333333333334,
+      "sample_sd": 0.4532475409015865,
+      "n": 3,
+      "seed0_delta": 4.719999999999999,
+      "seed1_delta": 4.730000000000004,
+      "seed2_delta": 3.9399999999999977,
+      "positive_count": 3
+    },
+    {
+      "contrast": "fs_ewclora-ewclora",
+      "metric": "BWT",
+      "mean": 0.7595114006514668,
+      "sample_sd": 0.6832922547828246,
+      "n": 3,
+      "seed0_delta": 0.9757328990228018,
+      "seed1_delta": -0.005732899022788729,
+      "seed2_delta": 1.3085342019543873,
+      "positive_count": 2
+    },
+    {
+      "contrast": "fs_ewclora-ewclora",
+      "metric": "average_accuracy",
+      "mean": 2.719999999999999,
+      "sample_sd": 0.21465087933664795,
+      "n": 3,
+      "seed0_delta": 2.6850000000000023,
+      "seed1_delta": 2.5250000000000057,
+      "seed2_delta": 2.9499999999999886,
+      "positive_count": 3
+    },
+    {
+      "contrast": "fs_ewclora-ewclora",
+      "metric": "d_QV_cont",
+      "mean": 0.1260088272994218,
+      "sample_sd": 0.003073228759151919,
+      "n": 3,
+      "seed0_delta": 0.122490572725658,
+      "seed1_delta": 0.12816938773356606,
+      "seed2_delta": 0.12736652143904137,
+      "positive_count": 3
+    },
+    {
+      "contrast": "fs_ewclora-task1_shaping",
+      "metric": "a21",
+      "mean": -3.25666666666667,
+      "sample_sd": 1.1745779383818398,
+      "n": 3,
+      "seed0_delta": -2.930000000000007,
+      "seed1_delta": -4.560000000000002,
+      "seed2_delta": -2.280000000000001,
+      "positive_count": 0
+    },
+    {
+      "contrast": "fs_ewclora-task1_shaping",
+      "metric": "a22",
+      "mean": 7.876666666666665,
+      "sample_sd": 0.6812733176437541,
+      "n": 3,
+      "seed0_delta": 8.269999999999996,
+      "seed1_delta": 7.090000000000003,
+      "seed2_delta": 8.269999999999996,
+      "positive_count": 3
+    },
+    {
+      "contrast": "fs_ewclora-task1_shaping",
+      "metric": "BWT",
+      "mean": -3.25666666666667,
+      "sample_sd": 1.1745779383818398,
+      "n": 3,
+      "seed0_delta": -2.930000000000007,
+      "seed1_delta": -4.560000000000002,
+      "seed2_delta": -2.280000000000001,
+      "positive_count": 0
+    },
+    {
+      "contrast": "fs_ewclora-task1_shaping",
+      "metric": "average_accuracy",
+      "mean": 2.3100000000000023,
+      "sample_sd": 0.9194699560072657,
+      "n": 3,
+      "seed0_delta": 2.6700000000000017,
+      "seed1_delta": 1.2650000000000006,
+      "seed2_delta": 2.9950000000000045,
+      "positive_count": 3
+    },
+    {
+      "contrast": "fs_ewclora-task1_shaping",
+      "metric": "d_QV_cont",
+      "mean": 0.14385130831038592,
+      "sample_sd": 0.00421253568346654,
+      "n": 3,
+      "seed0_delta": 0.1394918878840588,
+      "seed1_delta": 0.14416231655577333,
+      "seed2_delta": 0.1478997204913256,
+      "positive_count": 3
+    },
+    {
+      "contrast": "task1_shaping-ewclora",
+      "metric": "a21",
+      "mean": 4.233333333333334,
+      "sample_sd": 0.6500256405199265,
+      "n": 3,
+      "seed0_delta": 3.5799999999999983,
+      "seed1_delta": 4.88000000000001,
+      "seed2_delta": 4.239999999999995,
+      "positive_count": 3
+    },
+    {
+      "contrast": "task1_shaping-ewclora",
+      "metric": "a22",
+      "mean": -3.4133333333333318,
+      "sample_sd": 0.9920853457910424,
+      "n": 3,
+      "seed0_delta": -3.549999999999997,
+      "seed1_delta": -2.3599999999999994,
+      "seed2_delta": -4.329999999999998,
+      "positive_count": 0
+    },
+    {
+      "contrast": "task1_shaping-ewclora",
+      "metric": "BWT",
+      "mean": 4.016178067318137,
+      "sample_sd": 0.4922485240847301,
+      "n": 3,
+      "seed0_delta": 3.9057328990228086,
+      "seed1_delta": 4.5542671009772135,
+      "seed2_delta": 3.5885342019543884,
+      "positive_count": 3
+    },
+    {
+      "contrast": "task1_shaping-ewclora",
+      "metric": "average_accuracy",
+      "mean": 0.4099999999999966,
+      "sample_sd": 0.7367326516450939,
+      "n": 3,
+      "seed0_delta": 0.015000000000000568,
+      "seed1_delta": 1.2600000000000051,
+      "seed2_delta": -0.045000000000015916,
+      "positive_count": 2
+    },
+    {
+      "contrast": "task1_shaping-ewclora",
+      "metric": "d_QV_cont",
+      "mean": -0.0178424810109641,
+      "sample_sd": 0.0023841525610098224,
+      "n": 3,
+      "seed0_delta": -0.01700131515840081,
+      "seed1_delta": -0.015992928822207264,
+      "seed2_delta": -0.020533199052284234,
+      "positive_count": 0
+    },
+    {
+      "contrast": "task1_shaping_no_ewc-vanilla",
+      "metric": "a21",
+      "mean": 4.126666666666665,
+      "sample_sd": 0.49973326218427233,
+      "n": 3,
+      "seed0_delta": 3.5799999999999983,
+      "seed1_delta": 4.239999999999995,
+      "seed2_delta": 4.560000000000002,
+      "positive_count": 3
+    },
+    {
+      "contrast": "task1_shaping_no_ewc-vanilla",
+      "metric": "a22",
+      "mean": -3.4133333333333318,
+      "sample_sd": 0.9920853457910424,
+      "n": 3,
+      "seed0_delta": -3.549999999999997,
+      "seed1_delta": -2.3599999999999994,
+      "seed2_delta": -4.329999999999998,
+      "positive_count": 0
+    },
+    {
+      "contrast": "task1_shaping_no_ewc-vanilla",
+      "metric": "BWT",
+      "mean": 3.9095114006514677,
+      "sample_sd": 0.004350211341963561,
+      "n": 3,
+      "seed0_delta": 3.9057328990228086,
+      "seed1_delta": 3.9142671009771988,
+      "seed2_delta": 3.908534201954396,
+      "positive_count": 3
+    },
+    {
+      "contrast": "task1_shaping_no_ewc-vanilla",
+      "metric": "average_accuracy",
+      "mean": 0.3566666666666644,
+      "sample_sd": 0.5076498136839341,
+      "n": 3,
+      "seed0_delta": 0.015000000000000568,
+      "seed1_delta": 0.9399999999999977,
+      "seed2_delta": 0.11499999999999488,
+      "positive_count": 3
+    },
+    {
+      "contrast": "task1_shaping_no_ewc-vanilla",
+      "metric": "d_QV_cont",
+      "mean": -0.019199789683483997,
+      "sample_sd": 0.002237803916791882,
+      "n": 3,
+      "seed0_delta": -0.01790931171135024,
+      "seed1_delta": -0.017906274862955707,
+      "seed2_delta": -0.02178378247614604,
+      "positive_count": 0
+    },
+    {
+      "contrast": "task1_shaping-task1_shaping_no_ewc",
+      "metric": "a21",
+      "mean": 0.10666666666666913,
+      "sample_sd": 0.1847520861406845,
+      "n": 3,
+      "seed0_delta": 0.0,
+      "seed1_delta": 0.3200000000000074,
+      "seed2_delta": 0.0,
+      "positive_count": 1
+    },
+    {
+      "contrast": "task1_shaping-task1_shaping_no_ewc",
+      "metric": "a22",
+      "mean": 0.0,
+      "sample_sd": 0.0,
+      "n": 3,
+      "seed0_delta": 0.0,
+      "seed1_delta": 0.0,
+      "seed2_delta": 0.0,
+      "positive_count": 0
+    },
+    {
+      "contrast": "task1_shaping-task1_shaping_no_ewc",
+      "metric": "BWT",
+      "mean": 0.10666666666666913,
+      "sample_sd": 0.1847520861406845,
+      "n": 3,
+      "seed0_delta": 0.0,
+      "seed1_delta": 0.3200000000000074,
+      "seed2_delta": 0.0,
+      "positive_count": 1
+    },
+    {
+      "contrast": "task1_shaping-task1_shaping_no_ewc",
+      "metric": "average_accuracy",
+      "mean": 0.05333333333333693,
+      "sample_sd": 0.09237604307034636,
+      "n": 3,
+      "seed0_delta": 0.0,
+      "seed1_delta": 0.1600000000000108,
+      "seed2_delta": 0.0,
+      "positive_count": 1
+    },
+    {
+      "contrast": "task1_shaping-task1_shaping_no_ewc",
+      "metric": "d_QV_cont",
+      "mean": -0.001260241831237796,
+      "sample_sd": 0.0003414704534228926,
+      "n": 3,
+      "seed0_delta": -0.0008669160943351462,
+      "seed1_delta": -0.001432962705655072,
+      "seed2_delta": -0.0014808466937231701,
+      "positive_count": 0
+    }
+  ],
+  "source_sha256": {
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/final_report/individual.csv": "f3f917da1a17d9bd833a37d9dc98a4488dbdb4553a0065bd665311d768c8c5e5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/COMPLETE.json": "00c5f062c4a44d31a31f0d75a2847568c846654daef758b3a449851e5c2a0cdc",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/run_manifest.json": "5af85e1d037a19e83f2e85cbc101c9b90f79762958bf3a19365ca2e0f3329eec",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed0/imageneta/0/anchor_sgd_seed0/exp_run/20/anchor_sgd_seed0_vit_base_patch16_224_cl_metrics.json": "109c63c93591cc2c6a70994749887c961c27be270e1f5833856d6b1dd96cb102",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/COMPLETE.json": "fde1695db03d31ff884b66a26ee404e8db4cf693f99f3d41eb9b20a4ee3f3df2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/run_manifest.json": "278f8a4ed7a2ab11a6b3fc14ad4d5b08be3d5d7f055a79cb5921baad7b7e9740",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed1/imageneta/1/anchor_sgd_seed1/exp_run/20/anchor_sgd_seed1_vit_base_patch16_224_cl_metrics.json": "2e378dd332ddf58444728aee71191e3dba62233cac3f22617e04c27947759933",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/COMPLETE.json": "b6c037db068f76cb7c8f55201b1ac4321229b981dd4b1371b2b37c4b91675d97",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/run_manifest.json": "11bd44ccb498515d1572aa7abf9b62656e1b7847bffdad6ce8d757ca5bcf6c5c",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_sgd_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_sgd_seed2/imageneta/2/anchor_sgd_seed2/exp_run/20/anchor_sgd_seed2_vit_base_patch16_224_cl_metrics.json": "d1d52b8188063ccb97059e8ab5c7ffd8e720b9a444177b02811f56445b820a50",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/COMPLETE.json": "2fa0c501b0e4b7f6d9d957fa22cb5ffe9cb2952fef337c979bb06e66221f9e97",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/run_manifest.json": "57e80fc7e66c23b1adc0bc9a0016301dff257f5fa7852581d8ee008d498b55b4",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed0/imageneta/0/anchor_gam_seed0/exp_run/20/anchor_gam_seed0_vit_base_patch16_224_cl_metrics.json": "ca3beaf92de2db3cc07e6973d9203908742bf2ada17709855e0660da38b9eca0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/COMPLETE.json": "a80a6dd452af2b29b10b184b337505e7953130ee8f1d2c54b23dcfba9d3dc4e1",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/run_manifest.json": "98f74077ddeb9f52c581c06b0b89f09a43ad6f6ff53cc1ffb4a7e5d10bd8c61f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed1/imageneta/1/anchor_gam_seed1/exp_run/20/anchor_gam_seed1_vit_base_patch16_224_cl_metrics.json": "e8b31c275f85e9c47a8bca8ad5da157e3f7b8e303f8bc6962270afafb646c1d5",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/COMPLETE.json": "57d9018584cf5886f3414069a5c54cb7e1784324e00c311f74863e176e694565",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/run_manifest.json": "0e4390e8891e6151f6110f8aa0de91b18cc8c8aad73768325ed7867971bd328b",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/anchor_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/anchor_gam_seed2/imageneta/2/anchor_gam_seed2/exp_run/20/anchor_gam_seed2_vit_base_patch16_224_cl_metrics.json": "12c83373bb8ea3e0b15a14bff853e4bfb94f4a5ba8f68a4e3b68858203ed404f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/A/summary.json": "1a868f34e3613344a125976d4856ee320013d00e8b8db6ea6b6659833bda56de",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/A/summary.json": "9b3e9c592e7d1ebe4392529ecf790d0a91ca5cd6d48c3363085517f7e5f25741",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/A/summary.json": "2f4d7e3b88e196b764b97e06debdfc5b0543dcd9ba2beef78fda2ca725167779",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/C/summary.json": "f6f49430c8665bd258d1ef5ec74cc15dea47dcf4c892119fa289df444e3253e2",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/C/summary.json": "ed84e0c7c3c17cce9ee5f411a479e7ddf7acda1ee0ca67c48cd7ff352bf205ea",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/C/summary.json": "dc2e1a173d4a12bd5eb93cab7315d70b7ecb99859b2536cf1df1cc6fa348cdc8",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/COMPLETE.json": "e76ee146e612a56b2c3fef0de06b9042f976c8aea832fcca52912ea37e3b82ec",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/run_manifest.json": "a8cd36ae6d99e82f8cec4e79cd539ae8f3ed046e190248419bf837dc897d7565",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed0/imageneta/0/sequence_gam_seed0/exp_run/20/sequence_gam_seed0_vit_base_patch16_224_cl_metrics.json": "17235ae77f6b46ccbfd43c96cb7fbc2e9b9ffc121ced56be3398f5a250ac6917",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed0/gam/trajectory_fisher/summary.json": "adffbed2fbdc73830428d51037a0d3ee03b124fb682a4cdf68f8cf34c868ad69",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/COMPLETE.json": "38292238c5dc1c1bc1a06b78f32892af6b10f88918fe3a4c1a4400de9be30a7f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/run_manifest.json": "7a717b522cca9c94e9904127b97966cfde57faf06c15eea99ce7cda9edb94988",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed1/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed1/imageneta/1/sequence_gam_seed1/exp_run/20/sequence_gam_seed1_vit_base_patch16_224_cl_metrics.json": "12efebb726e33a29d64b2b7d681f9c4883c5d7b5682b39a066cc94ceb52d3917",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed1/gam/trajectory_fisher/summary.json": "b5f95fde61889da67460ba93170bd3de7e7bb746abf619d53872159fb82ba8b0",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/COMPLETE.json": "0055004a8f32d5d1ff5c9e46f78d82a9cec127f7ded242add244ee917b90d803",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/run_manifest.json": "2b44d9299c393669b043416773b3c20e026257bec1a83f02d8a84869286bec73",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_training/sequence_gam_seed2/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask/sequence_gam_seed2/imageneta/2/sequence_gam_seed2/exp_run/20/sequence_gam_seed2_vit_base_patch16_224_cl_metrics.json": "2f2ef2cda9129f5fa75ccf325e9cd03144f05d6d440dd497cd4838fb92590100",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_results/seed2/gam/trajectory_fisher/summary.json": "6e4a34d196f0b464165729d718a0538d03da82a8f6fce9af38c0a4c1c6b6b27d",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/B/summary.json": "159d2c5b82e8fdd056a00117006131964697dc9892a0986ffaec246d0c793fe6",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/B/summary.json": "eb08b5fa58398aed66db4ceb18a735b4b4b14c64d24cf18f306b4f7dec84c42f",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/B/summary.json": "ccfdc4e5b5cc69d8cce8df9ee0ced15a16250c98354a581f772d9e15996dc349",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed0/D/summary.json": "352d0ecf31e488be750a80eb779d7bd88eb358945dd56e82c54b840cbe7b052e",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed1/D/summary.json": "14a19d544c964657bd19cda21312ec4623a0c6fb0066c0317a9a392b5e4582c9",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/formal_tables/seed2/D/summary.json": "e7ded659f0b644550f0b4ea04b43feb82628a9c50c1779e529ffdef0cc4512aa"
+  }
+}

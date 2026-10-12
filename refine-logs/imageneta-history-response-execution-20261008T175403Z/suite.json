@@ -1,0 +1,182 @@
+{
+  "run_id": "imageneta-history-response-execution-20261008T175403Z",
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z",
+  "protocol": "cached_history_sgd_prediction_direct_response_exact_restore_rng_replay_v1",
+  "execution_hostname": "cudahpc40.cvc.uab.es",
+  "execution_pid_namespace": "pid:[4026531836]",
+  "python": "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+  "source_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/source_manifest.json",
+  "source_manifest_sha256": "e8a827ae67768a73a59106914477905d051da0646fcb0ffb7c3a13b23d337ab2",
+  "allowed_gpus": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "max_parallel": 2,
+  "poll_seconds": 15,
+  "gpu_lock_dir": "/tmp/olora_gamfs_gpu_locks",
+  "expected_tasks": 10,
+  "environment": {
+    "PYTHONHASHSEED": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/140-1/datasets",
+    "OMP_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HOME": "/home-local/liying/.cache/huggingface",
+    "TORCH_HOME": "/home-local/liying/.cache/torch",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/tmp/olora_hrf_20261008T175403Z",
+    "TMP": "/tmp/olora_hrf_20261008T175403Z",
+    "TEMP": "/tmp/olora_hrf_20261008T175403Z"
+  },
+  "jobs": [
+    {
+      "id": "smoke_history_fused_k10_s2",
+      "kind": "training",
+      "phase": "smoke",
+      "direction": "history_fused",
+      "history_weight": 0.5,
+      "seed": 2,
+      "smoke": true,
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/trainer/history_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/smoke_history_fused_k10_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/smoke_history_fused_k10_s2",
+        "--max-tasks",
+        "2",
+        "--max-epochs",
+        "2",
+        "--max-batches",
+        "2"
+      ],
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/smoke_history_fused_k10_s2",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/smoke_history_fused_k10_s2.json",
+      "config_sha256": "96062ebddc6e2bcdc1145143ae501cb2fed34b51b08e89301e67ceff06ef3381",
+      "expected_tasks": 2,
+      "expected_epochs_per_task": 2,
+      "expected_steps": 8,
+      "smoke_batches_per_epoch": 2,
+      "depends_on": []
+    },
+    {
+      "id": "smoke_future_only_k10_s2",
+      "kind": "training",
+      "phase": "smoke",
+      "direction": "future_only",
+      "history_weight": 0.0,
+      "seed": 2,
+      "smoke": true,
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/trainer/history_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/smoke_future_only_k10_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/smoke_future_only_k10_s2",
+        "--max-tasks",
+        "2",
+        "--max-epochs",
+        "2",
+        "--max-batches",
+        "2"
+      ],
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/smoke_future_only_k10_s2",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/smoke_future_only_k10_s2.json",
+      "config_sha256": "a8605645dedd8a2529f0958172b9dd32592085a8d3a97aaa27c34200f79606dd",
+      "expected_tasks": 2,
+      "expected_epochs_per_task": 2,
+      "expected_steps": 8,
+      "smoke_batches_per_epoch": 2,
+      "depends_on": []
+    },
+    {
+      "id": "smoke_pairing",
+      "kind": "pairing",
+      "phase": "gate",
+      "smoke": false,
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/smoke_pairing.py"
+      ],
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/gates/smoke_pairing",
+      "report_file": "smoke_pairing.json",
+      "expected_tasks": 2,
+      "depends_on": [
+        "smoke_history_fused_k10_s2",
+        "smoke_future_only_k10_s2"
+      ]
+    },
+    {
+      "id": "formal_history_fused_k10_s2",
+      "kind": "training",
+      "phase": "formal",
+      "direction": "history_fused",
+      "history_weight": 0.5,
+      "seed": 2,
+      "smoke": false,
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/trainer/history_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/formal_history_fused_k10_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/formal_history_fused_k10_s2"
+      ],
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/formal_history_fused_k10_s2",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/formal_history_fused_k10_s2.json",
+      "config_sha256": "0ccc8479d559ce9b000dbd24ddeb03ecf80ef94a4a010c2b13b1b06168dae025",
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "smoke_batches_per_epoch": null,
+      "depends_on": [
+        "smoke_pairing"
+      ]
+    },
+    {
+      "id": "formal_future_only_k10_s2",
+      "kind": "training",
+      "phase": "formal",
+      "direction": "future_only",
+      "history_weight": 0.0,
+      "seed": 2,
+      "smoke": false,
+      "command": [
+        "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/trainer/history_train.py",
+        "--source",
+        "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+        "--config",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/formal_future_only_k10_s2.json",
+        "--output-dir",
+        "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/formal_future_only_k10_s2"
+      ],
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/outputs/formal_future_only_k10_s2",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-history-response-execution-20261008T175403Z/configs/formal_future_only_k10_s2.json",
+      "config_sha256": "fd4f84ab6f8e756bdbcef7e9b8f96d806e8163fb2cfcf5303e6edf56b0c021e5",
+      "expected_tasks": 10,
+      "expected_epochs_per_task": 50,
+      "expected_steps": 2550,
+      "smoke_batches_per_epoch": null,
+      "depends_on": [
+        "smoke_pairing"
+      ]
+    }
+  ]
+}

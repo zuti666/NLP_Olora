@@ -1,0 +1,533 @@
+{
+  "audit_date": "2026-09-22",
+  "selection": "All complete eligible wrapper_lam2000 runs for CUB/Flowers in the bounded neighbor campaign; seeds 1 and 2 only. Not a variance for current selected seed-0 table.",
+  "source_summary": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/attempt2/metrics.json",
+  "source_summary_sha256": "300a862f2f98053ca325c78d88d0e9ca77bc61f9ca1aadb8881ac54a9f896749",
+  "variance_ddof": 1,
+  "accuracy_unit": "percentage points",
+  "variance_unit": "percentage points squared",
+  "current_table_included": false,
+  "do_not_mix_reason": "Candidate runs explicitly use ewc_preserve_fisher_rng=True, ewc_isolate_clean_rng=True, deterministic_loader_rng=True and pinned rngctl source snapshot. Old selected seed-0 runs lack these controls/version binding in logs; Flowers also lacks logged GAM radii. Protocol equivalence to current seed-0 row is not established.",
+  "groups": [
+    {
+      "dataset": "cub200",
+      "n": 2,
+      "seeds": [
+        1,
+        2
+      ],
+      "group_config_diff": {
+        "loader_seed": [
+          1,
+          2
+        ],
+        "prefix": [
+          "gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s1_run",
+          "gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s2_run"
+        ],
+        "seed": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "runs": [
+        {
+          "dataset": "cub200",
+          "method": "GAM-EWCLoRA",
+          "cohort": "rngctl_gapfill_20260917_wrapper_lam2000",
+          "seed": 1,
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/cub200/1/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s1_run/exp_run/20/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s1_run_vit_base_patch16_224_cl_metrics.json",
+          "source_sha256": "b17c8ae1b57bcfac3f8696d78e9f07140d25c1efa39d49b1241aad97f535c0f7",
+          "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/cub200/1/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s1_run/exp_run/20/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s1_run_vit_base_patch16_224.log",
+          "log_sha256": "0acf548184270b42c54f240a042d92d82b24cbe5bf722d2dd603370f10bd391f",
+          "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/configs/cub200_wrapper_lam2000_s1_run.json",
+          "config_sha256": "e944afbf981df08f750a1afd5ba9ed461d5cdf2d13b9e4e38384b930a115a71f",
+          "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/attempt2/receipts/cub200_wrapper_lam2000_s1_run.json",
+          "receipt_sha256": "0ea4460063cfb2c0ed2d57596db9bd1728dd59d1805835ac7612ef586021579e",
+          "source_snapshot_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code",
+          "source_snapshot_sha256": "47d16884bec5558fb2c1fbc13f692a04ecd1028bbb04bc057d638882a0b8199d",
+          "status": "complete",
+          "expected_tasks": 10,
+          "observed_tasks": 10,
+          "lower_triangle_finite": true,
+          "faa": 73.568,
+          "aaa_stage": 76.34208253968254,
+          "aa": [
+            91.77,
+            84.255,
+            73.39,
+            73.2825,
+            74.496,
+            74.60166666666667,
+            73.00571428571429,
+            73.4375,
+            71.61444444444444,
+            73.568
+          ],
+          "matrix_lower_triangle": [
+            [
+              91.77
+            ],
+            [
+              86.58,
+              81.93
+            ],
+            [
+              61.9,
+              69.33,
+              88.94
+            ],
+            [
+              61.9,
+              68.91,
+              84.68,
+              77.64
+            ],
+            [
+              58.87,
+              65.13,
+              82.55,
+              73.17,
+              92.76
+            ],
+            [
+              62.77,
+              61.76,
+              79.15,
+              72.36,
+              89.59,
+              81.98
+            ],
+            [
+              59.31,
+              58.82,
+              76.6,
+              72.36,
+              85.97,
+              81.53,
+              76.45
+            ],
+            [
+              57.58,
+              58.4,
+              74.89,
+              71.54,
+              88.24,
+              81.98,
+              72.73,
+              82.14
+            ],
+            [
+              53.25,
+              55.46,
+              74.04,
+              69.51,
+              86.43,
+              78.83,
+              71.07,
+              73.66,
+              82.28
+            ],
+            [
+              53.25,
+              56.72,
+              73.62,
+              70.73,
+              86.88,
+              78.38,
+              75.21,
+              75.89,
+              74.8,
+              90.2
+            ]
+          ]
+        },
+        {
+          "dataset": "cub200",
+          "method": "GAM-EWCLoRA",
+          "cohort": "rngctl_gapfill_20260917_wrapper_lam2000",
+          "seed": 2,
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/cub200/2/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s2_run/exp_run/20/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s2_run_vit_base_patch16_224_cl_metrics.json",
+          "source_sha256": "0e00f452b0838ffda10895c7a34254039c154db5d40935a0bf3c955104401bed",
+          "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/cub200/2/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s2_run/exp_run/20/gam_ewc_gapfill_20260917_cub200_wrapper_lam2000_s2_run_vit_base_patch16_224.log",
+          "log_sha256": "967cc3568b82709598ff799f86acb4a5d5506fea06d87d6c554573b814772ccc",
+          "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/configs/cub200_wrapper_lam2000_s2_run.json",
+          "config_sha256": "36a57faba44625502618ad47cdc22a337d0292bc734486b4fa13f6d02c82d36f",
+          "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/attempt2/receipts/cub200_wrapper_lam2000_s2_run.json",
+          "receipt_sha256": "b1ec30ee541e75c047bc4bdc20ffef94cc74aa3fde82e7851b73543833ca0864",
+          "source_snapshot_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code",
+          "source_snapshot_sha256": "47d16884bec5558fb2c1fbc13f692a04ecd1028bbb04bc057d638882a0b8199d",
+          "status": "complete",
+          "expected_tasks": 10,
+          "observed_tasks": 10,
+          "lower_triangle_finite": true,
+          "faa": 72.665,
+          "aaa_stage": 75.44549920634921,
+          "aa": [
+            91.77,
+            83.18,
+            74.25333333333333,
+            72.3275,
+            72.124,
+            72.72166666666666,
+            71.76571428571428,
+            72.98,
+            70.66777777777779,
+            72.665
+          ],
+          "matrix_lower_triangle": [
+            [
+              91.77
+            ],
+            [
+              84.85,
+              81.51
+            ],
+            [
+              63.64,
+              68.91,
+              90.21
+            ],
+            [
+              61.04,
+              65.13,
+              84.68,
+              78.46
+            ],
+            [
+              60.61,
+              61.76,
+              77.02,
+              70.73,
+              90.5
+            ],
+            [
+              63.2,
+              58.4,
+              76.17,
+              71.95,
+              87.33,
+              79.28
+            ],
+            [
+              59.31,
+              56.3,
+              72.34,
+              69.11,
+              85.97,
+              77.93,
+              81.4
+            ],
+            [
+              59.74,
+              56.72,
+              70.21,
+              71.95,
+              88.24,
+              79.28,
+              76.45,
+              81.25
+            ],
+            [
+              54.55,
+              55.46,
+              69.79,
+              66.67,
+              83.71,
+              75.68,
+              72.31,
+              76.34,
+              81.5
+            ],
+            [
+              56.71,
+              53.36,
+              68.94,
+              68.29,
+              84.62,
+              78.38,
+              77.27,
+              77.68,
+              72.83,
+              88.57
+            ]
+          ]
+        }
+      ],
+      "faa": {
+        "mean": 73.1165,
+        "sample_sd": 0.6385174234114465,
+        "sample_variance": 0.4077044999999924
+      },
+      "aaa_stage": {
+        "mean": 75.89379087301587,
+        "sample_sd": 0.6339801548988329,
+        "sample_variance": 0.40193083680554814
+      }
+    },
+    {
+      "dataset": "flowers",
+      "n": 2,
+      "seeds": [
+        1,
+        2
+      ],
+      "group_config_diff": {
+        "loader_seed": [
+          1,
+          2
+        ],
+        "prefix": [
+          "gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s1_run",
+          "gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s2_run"
+        ],
+        "seed": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "runs": [
+        {
+          "dataset": "flowers",
+          "method": "GAM-EWCLoRA",
+          "cohort": "rngctl_gapfill_20260917_wrapper_lam2000",
+          "seed": 1,
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/flowers/1/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s1_run/exp_run/10/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s1_run_vit_base_patch16_224_cl_metrics.json",
+          "source_sha256": "c3632858f8b1743d2b7eb0839ab8d222418181d28fcd937057ef06001ca90ef5",
+          "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/flowers/1/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s1_run/exp_run/10/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s1_run_vit_base_patch16_224.log",
+          "log_sha256": "5feb33edda0ad36ad47f62db9bb3701ed116e129ca67421baeb449ccc6a3db56",
+          "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/configs/flowers_wrapper_lam2000_s1_run.json",
+          "config_sha256": "0b0cc7113638e7b8602d250beedaaf54284702ce7cf180916ea7ba14d88016dd",
+          "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/attempt2/receipts/flowers_wrapper_lam2000_s1_run.json",
+          "receipt_sha256": "308b04366f1ce27a8e0b7722d1549bf2bf20cb9d4c55cba1585d2636150efd9d",
+          "source_snapshot_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code",
+          "source_snapshot_sha256": "47d16884bec5558fb2c1fbc13f692a04ecd1028bbb04bc057d638882a0b8199d",
+          "status": "complete",
+          "expected_tasks": 10,
+          "observed_tasks": 10,
+          "lower_triangle_finite": true,
+          "faa": 84.109,
+          "aaa_stage": 90.57713015873016,
+          "aa": [
+            97.37,
+            96.19999999999999,
+            93.87,
+            91.535,
+            89.51,
+            89.24333333333334,
+            88.11285714285714,
+            88.34,
+            87.48111111111112,
+            84.109
+          ],
+          "matrix_lower_triangle": [
+            [
+              97.37
+            ],
+            [
+              94.08,
+              98.32
+            ],
+            [
+              94.08,
+              97.77,
+              89.76
+            ],
+            [
+              91.01,
+              97.21,
+              87.66,
+              90.26
+            ],
+            [
+              88.6,
+              95.81,
+              86.61,
+              87.88,
+              88.65
+            ],
+            [
+              88.82,
+              95.53,
+              87.93,
+              89.18,
+              89.1,
+              84.9
+            ],
+            [
+              88.16,
+              94.41,
+              86.61,
+              85.93,
+              88.99,
+              84.56,
+              88.13
+            ],
+            [
+              87.28,
+              94.41,
+              83.99,
+              85.71,
+              88.42,
+              84.9,
+              88.57,
+              93.44
+            ],
+            [
+              86.84,
+              89.39,
+              80.58,
+              84.63,
+              86.04,
+              84.23,
+              88.79,
+              92.86,
+              93.97
+            ],
+            [
+              80.04,
+              89.11,
+              79.79,
+              83.55,
+              85.58,
+              78.36,
+              80.0,
+              92.52,
+              94.23,
+              77.91
+            ]
+          ]
+        },
+        {
+          "dataset": "flowers",
+          "method": "GAM-EWCLoRA",
+          "cohort": "rngctl_gapfill_20260917_wrapper_lam2000",
+          "seed": 2,
+          "source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/flowers/2/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s2_run/exp_run/10/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s2_run_vit_base_patch16_224_cl_metrics.json",
+          "source_sha256": "360e3e3a82d635aee50e372354e8a1301a58810763266b2a50411b616bdde43b",
+          "log": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/outputs/logs_inc_lora/ewclora_normfisher_gam/gam_gapfill20260917_wrapper_lam2000_run/flowers/2/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s2_run/exp_run/10/gam_ewc_gapfill_20260917_flowers_wrapper_lam2000_s2_run_vit_base_patch16_224.log",
+          "log_sha256": "9fd179402417bda2ddf75263696d4e68e12ac78e0de6de7da4a54c43a2c2bad0",
+          "config": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/configs/flowers_wrapper_lam2000_s2_run.json",
+          "config_sha256": "cda44e77de04b0a90ca5fd2290906b630faf0bf7eeab8f97a6586905876fb507",
+          "receipt": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-gapfill-launch-20260917/attempt2/receipts/flowers_wrapper_lam2000_s2_run.json",
+          "receipt_sha256": "67e6f056785ff5644d5dba789a6b580eb8153fe7453c3fe10bcfac98363671ad",
+          "source_snapshot_root": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-rngctl-20260916/code",
+          "source_snapshot_sha256": "47d16884bec5558fb2c1fbc13f692a04ecd1028bbb04bc057d638882a0b8199d",
+          "status": "complete",
+          "expected_tasks": 10,
+          "observed_tasks": 10,
+          "lower_triangle_finite": true,
+          "faa": 81.592,
+          "aaa_stage": 88.49482936507937,
+          "aa": [
+            96.49,
+            97.215,
+            95.79666666666667,
+            94.215,
+            86.768,
+            85.485,
+            81.80857142857143,
+            82.5625,
+            83.01555555555555,
+            81.592
+          ],
+          "matrix_lower_triangle": [
+            [
+              96.49
+            ],
+            [
+              95.83,
+              98.6
+            ],
+            [
+              95.18,
+              96.93,
+              95.28
+            ],
+            [
+              91.23,
+              96.09,
+              93.44,
+              96.1
+            ],
+            [
+              88.38,
+              95.25,
+              91.08,
+              81.6,
+              77.53
+            ],
+            [
+              85.31,
+              94.13,
+              89.5,
+              79.22,
+              76.16,
+              88.59
+            ],
+            [
+              82.46,
+              93.02,
+              87.93,
+              72.29,
+              75.37,
+              87.08,
+              74.51
+            ],
+            [
+              81.8,
+              92.46,
+              83.73,
+              73.59,
+              72.99,
+              84.73,
+              75.6,
+              95.6
+            ],
+            [
+              81.58,
+              91.9,
+              83.46,
+              71.86,
+              70.15,
+              83.89,
+              75.38,
+              95.6,
+              93.32
+            ],
+            [
+              78.95,
+              89.66,
+              82.94,
+              72.94,
+              68.67,
+              82.55,
+              69.67,
+              95.51,
+              93.58,
+              81.45
+            ]
+          ]
+        }
+      ],
+      "faa": {
+        "mean": 82.8505,
+        "sample_sd": 1.7797877682465373,
+        "sample_variance": 3.1676444999999895
+      },
+      "aaa_stage": {
+        "mean": 89.53597976190477,
+        "sample_sd": 1.472409011660602,
+        "sample_variance": 2.1679882976193503
+      }
+    }
+  ]
+}

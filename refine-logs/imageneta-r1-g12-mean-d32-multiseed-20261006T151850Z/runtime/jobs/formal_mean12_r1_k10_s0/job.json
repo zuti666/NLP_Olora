@@ -1,0 +1,35 @@
+{
+  "id": "formal_mean12_r1_k10_s0",
+  "kind": "training",
+  "phase": "formal",
+  "branch": "P",
+  "direction": "half_g1_plus_g2",
+  "mode": "natural",
+  "backend": "native",
+  "radius": 1.0,
+  "rho": 0.05,
+  "seed": 0,
+  "smoke": false,
+  "command": [
+    "/home-local/liying/.conda/envs/Pilot_new_local/bin/python",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/trainer/four_probe_train.py",
+    "--source",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/configs/formal_mean12_r1_k10_s0.json",
+    "--output-dir",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/outputs/formal_mean12_r1_k10_s0"
+  ],
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/configs/formal_mean12_r1_k10_s0.json",
+  "config_sha256": "8856ed6bbbb92cdf4b101501d2dd333f314f3913f352e1b748684a40e758b46a",
+  "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-half-g1-plus-g2-20261006T145451Z/configs/formal_halfsum12_r1_k10_s2.json",
+  "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/outputs/formal_mean12_r1_k10_s0",
+  "depends_on": [
+    "smoke_pairing_gate"
+  ],
+  "expected_tasks": 10,
+  "expected_epochs_per_task": 50,
+  "expected_steps": 2550,
+  "cwd": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-hparam-search-20260921/source",
+  "cuda_witness_output": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-r1-g12-mean-d32-multiseed-20261006T151850Z/runtime/jobs/formal_mean12_r1_k10_s0/cuda_witness.json"
+}

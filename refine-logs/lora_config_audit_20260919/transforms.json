@@ -1,0 +1,29 @@
+[
+  {
+    "function": "_build_cub_transforms",
+    "same_AST": true,
+    "historical_current_source": "/data/140-1/users/liying/Flatness_CV/utils/data.py",
+    "old_line": 509,
+    "frozen_cl_source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/utils/data.py",
+    "new_line": 513,
+    "code": "def _build_cub_transforms():\n    train_trsf = [transforms.Resize((256, 256), interpolation=InterpolationMode.BICUBIC), transforms.RandomCrop(224), transforms.RandomHorizontalFlip()]\n    test_trsf = [transforms.Resize((256, 256), interpolation=InterpolationMode.BICUBIC), transforms.CenterCrop(224)]\n    common_trsf = [transforms.ToTensor(), transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]\n    return (train_trsf, test_trsf, common_trsf)"
+  },
+  {
+    "function": "_build_aircraft_transforms",
+    "same_AST": true,
+    "historical_current_source": "/data/140-1/users/liying/Flatness_CV/utils/data.py",
+    "old_line": 528,
+    "frozen_cl_source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/utils/data.py",
+    "new_line": 532,
+    "code": "def _build_aircraft_transforms():\n    train_trsf = [transforms.Resize((256, 256), interpolation=InterpolationMode.BICUBIC), transforms.RandomCrop(224), transforms.RandomHorizontalFlip()]\n    test_trsf = [transforms.Resize((256, 256), interpolation=InterpolationMode.BICUBIC), transforms.CenterCrop(224)]\n    common_trsf = [transforms.ConvertImageDtype(torch.float32), transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))]\n    return (train_trsf, test_trsf, common_trsf)"
+  },
+  {
+    "function": "_build_cars196_transforms",
+    "same_AST": true,
+    "historical_current_source": "/data/140-1/users/liying/Flatness_CV/utils/data.py",
+    "old_line": 547,
+    "frozen_cl_source": "/data/140-1/users/liying/CopyFlatCV/refine-logs/gam-ewc-fine-gapfill-20260918-attempt2/code/utils/data.py",
+    "new_line": 551,
+    "code": "def _build_cars196_transforms():\n    train_trsf = [transforms.Resize(224, interpolation=InterpolationMode.BICUBIC), transforms.CenterCrop(224), transforms.RandomHorizontalFlip()]\n    test_trsf = [transforms.Resize(224, interpolation=InterpolationMode.BICUBIC), transforms.CenterCrop(224)]\n    common_trsf = [transforms.ToTensor(), transforms.Normalize(mean=(0.0, 0.0, 0.0), std=(1.0, 1.0, 1.0))]\n    return (train_trsf, test_trsf, common_trsf)"
+  }
+]

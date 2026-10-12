@@ -1,0 +1,79 @@
+{
+  "id": "seqlora_cub200_s1",
+  "group_id": "seqlora_cub200",
+  "method": "Vanilla LoRA",
+  "dataset": "cub200",
+  "seed": 1,
+  "stage": "formal",
+  "source_id": "baseline",
+  "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11",
+  "config": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/seqlora_cub200_s1.json",
+  "config_sha256": "25c423a14542b4fc99b982e4df3eb511c08e55497754096cdfcf6e0695145f51",
+  "expected_tasks": 10,
+  "command": [
+    "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+    "-m",
+    "src.main",
+    "--config",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/configs/formal/seqlora_cub200_s1.json"
+  ],
+  "depends_on": [
+    "smoke_seqlora_flowers_s0",
+    "seqlora_cub200_s0"
+  ],
+  "source_root": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/source_baselines_flatness_aug11",
+  "source_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/source_manifests/baseline.json",
+  "source_manifest_sha256": "f09b4f6a8b12472d0d1af8278246e3b6e6615a3a2e1789c460a3706dd758bd13",
+  "data_manifest": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/data_manifests/baseline_cub200.json",
+  "data_manifest_sha256": "5a5dc1b8f2f2fce6205b8251d51f414b3b6bb157b128699ba7e1ec90673ec81c",
+  "activation": "selected_20260922_fixed_protocol",
+  "status": "completed",
+  "pid": 3804655,
+  "started_unix": 1790294409.3047395,
+  "gpu_visible": "GPU-e5877974-a6a2-5864-0dde-aac439863d30",
+  "environment": {
+    "HF_HOME": "/data/115-2/users/liying/cache/huggingface",
+    "TORCH_HOME": "/data/115-2/users/liying/cache/torch",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "FLATNESS_CV_DATA_ROOT": "/data/115-2/users/liying/datasets",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "GPU-e5877974-a6a2-5864-0dde-aac439863d30",
+    "PYTHONHASHSEED": "1"
+  },
+  "python": "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+  "torch": "2.4.1+cu121",
+  "timm": "1.0.9",
+  "torchvision": "0.19.1+cu121",
+  "checkpoint_files": [
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors",
+      "sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b"
+    },
+    {
+      "path": "/data/115-2/users/liying/cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/refs/main",
+      "sha256": "d361dc67d2468ae8af964a388852c98df10fffe1947a1159153f8e1575fa9a35"
+    }
+  ],
+  "preflight_sha256": "1f1df204e927ef4c60ebb69dcc86e6e29f3d84141629b253c310e91d825bd6e1",
+  "suite_sha256": "71faec77b2d43a2224869c954cd6278ab63b949f86fc15291b9b6ebf31968baf",
+  "runtime_manifest_sha256": "7b8b839d739449df1b05743bb98b48bfb0633038afb9f32366189da8edf140ac",
+  "exit_code": 0,
+  "finished_unix": 1790300015.495132,
+  "metric_path": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/seqlora_cub200_s1/logs_inc_lora/seqlora/sgd/cub200/1/seed012_seqlora_cub200_s1/exp_run/20/seed012_seqlora_cub200_s1_vit_base_patch16_224_cl_metrics.json",
+  "metric_sha256": "7758b810dfad5c35bb727eb94cc05d194ebf70c2594a7fcad1d50230a65b864a",
+  "log": "/data/140-1/users/liying/O-LoRA/refine-logs/seed012_execution_20260922/baseline_ewc_preparation/outputs/formal/seqlora_cub200_s1/logs_inc_lora/seqlora/sgd/cub200/1/seed012_seqlora_cub200_s1/exp_run/20/seed012_seqlora_cub200_s1_vit_base_patch16_224.log",
+  "log_sha256": "1e65802e39a4c765f0d9f0bab698fd416d693a8c54aa742543a50b3f49983ca8",
+  "metrics": {
+    "tasks": 10,
+    "faa": 60.197,
+    "aaa_stage": 69.79790873015872
+  },
+  "peak_cuda_bytes": 11779091456,
+  "device_name": "Quadro RTX 6000"
+}

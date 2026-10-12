@@ -1,0 +1,962 @@
+{
+  "B1": 143.34715118223642,
+  "B2": 182.08616831341982,
+  "a11": 73.61563517915309,
+  "a21": 69.70684039087948,
+  "a22": 39.76377952755905,
+  "accuracy_CIL_percent": {
+    "BWT_percentage_points": -3.9087947882736103,
+    "a11": 73.61563517915309,
+    "a21": 69.70684039087948,
+    "a22": 39.76377952755905
+  },
+  "bwt": -3.9087947882736103,
+  "checkpoint_audit": {
+    "checkpoints": [
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/checkpoints/task_00.pt",
+        "sha256": "4c0edf29fe862c65cd91f85d605da35b94229aab4bbc788586ee344a6fda1b5b",
+        "state_tensors": 350
+      },
+      {
+        "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/checkpoints/task_01.pt",
+        "sha256": "3f38f997a9a8114d62ffdf697827eba6fd08d58e2d7d87b31a604c711cdbc36b",
+        "state_tensors": 350
+      }
+    ],
+    "coordinate": "12 layers x Q,V effective BA matrices; scale=1; excludes head",
+    "delta_norm": 0.048679424510887144,
+    "delta_sha256": "368c10225ee0412845239cb56fcd84960daf2d6857e25184fa63f3f177e45e44",
+    "delta_squared_norm": 0.0023696863707111603,
+    "effective_blocks": 24,
+    "effective_parameters": 14155776,
+    "effective_product_precision": "CPU FP32 BA; FP32 subtraction; float64 norm reduction",
+    "frozen_state_sha256": "91f7405a556f93933e3985de054132faf93493ba47c791d02c028812122d2997",
+    "frozen_tensors_equal": 300,
+    "old_head_bitwise_equal": true
+  },
+  "delta_norm": 0.048679424510887144,
+  "delta_squared_norm": 0.0023696863707111603,
+  "endpoints": [
+    {
+      "current_task_batch_fisher_proxy": {
+        "damping": null,
+        "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+        "floor": null,
+        "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+        "input_tensors_sha256": "c632cfd53d023b536c1bca32c0db98ed77a57b9492ec561d7dd3ae9115cbafe2",
+        "logical_batch_size": 128,
+        "logical_batches": [
+          {
+            "batch_mean_gradient_squared_trace": 125.39044983100952,
+            "index": 0,
+            "input_tensors_sha256": "c2f8e3cdd4ad0de7893c1e131b3a2cf449471e05f20f6a4a6df7c1522593f62e",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 193.08410899753693,
+            "index": 1,
+            "input_tensors_sha256": "62ff43f3a218df1f824a42b3db168dc971a105db25a26eabf6201f5598d79e59",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 173.2315307784264,
+            "index": 2,
+            "input_tensors_sha256": "9ed78b80db8f1822983fd57f5ecb9c2e133ee1078c1878cff2a2ea0c70de22df",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 122.22688819267972,
+            "index": 3,
+            "input_tensors_sha256": "d1569f98be01de2715a64305fc57ca07be31f5a9dfad27c727d6c891b2265be0",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 128.11390914102955,
+            "index": 4,
+            "input_tensors_sha256": "0a8c024bbf4cd9946025248f583d4f53937aac5af5e41bf4249204e614afca02",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 136.7931509531361,
+            "index": 5,
+            "input_tensors_sha256": "b2977ca53fe319cbf6e606be8d9a2dceba0f03a61f1d1ac0eafb7afc6d6e64a9",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 141.98605341022187,
+            "index": 6,
+            "input_tensors_sha256": "ad2b4e66c565b297e2114b7f80582763905367f0ad6d959fb0f8d05111848313",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 85.04079565186605,
+            "index": 7,
+            "input_tensors_sha256": "c14d06a557fbe4b00be9d28f1c31f6fb4077eea8838aa7537dfa036d4f1671e9",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 167.1415606897603,
+            "index": 8,
+            "input_tensors_sha256": "a756f7e78004d5f5d4a7f18b7d422a808d173add2c22c66c3e7df3016afd7950",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 163.8222620541157,
+            "index": 9,
+            "input_tensors_sha256": "8fb02fb9269e7cf7be59a49119f382eba6a57c1a3507e60c1bf59611344d94f7",
+            "samples": 107
+          }
+        ],
+        "loss": 0.8449761924049813,
+        "loss_scope": "old_local20",
+        "micro_batch_size": 8,
+        "normalization": "sample-weighted mean only",
+        "normalized": false,
+        "parameter_scope": "24 effective Q/V weights; excludes head",
+        "raw_trace": 143.34715118223642,
+        "regularizer": null,
+        "samples": 1259,
+        "seconds": 15.054097040032502,
+        "source": "full current-task train; deterministic test transform; fixed dataset order"
+      },
+      "fisher": {
+        "old_local20": {
+          "damping": null,
+          "estimator": "mean of true-label per-example CE gradient outer products",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "input_tensor_records": [
+            {
+              "dataset_index": 65,
+              "label": 1,
+              "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+            },
+            {
+              "dataset_index": 177,
+              "label": 2,
+              "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+            },
+            {
+              "dataset_index": 265,
+              "label": 3,
+              "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+            },
+            {
+              "dataset_index": 369,
+              "label": 5,
+              "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+            },
+            {
+              "dataset_index": 575,
+              "label": 8,
+              "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+            },
+            {
+              "dataset_index": 708,
+              "label": 10,
+              "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+            },
+            {
+              "dataset_index": 839,
+              "label": 12,
+              "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+            },
+            {
+              "dataset_index": 1094,
+              "label": 16,
+              "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+            }
+          ],
+          "input_tensors_sha256": "a543b4938a9ddf78826e06304220bfb29e75519c3c7edb23efe58124274049cd",
+          "loss_scope": "old_local20",
+          "normalization": "sample mean only",
+          "normalized": false,
+          "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+          "q": {
+            "task0_to_task1_delta": 3.448477122266769e-05
+          },
+          "raw_trace": 3290.9836888430846,
+          "regularizer": null,
+          "samples": 8,
+          "seconds": 0.3180982029880397,
+          "subset_loss": 0.49898508097976446,
+          "unit_displacement_sensitivity": 0.014552462152330544
+        }
+      },
+      "metrics": {
+        "old_test": {
+          "old_local20": {
+            "accuracy": 73.61563517915309,
+            "correct": 226,
+            "loss": 0.9897773304001614,
+            "loss_scope": "old_local20",
+            "samples": 307
+          }
+        },
+        "old_train": {
+          "old_local20": {
+            "accuracy": 78.07783955520254,
+            "correct": 983,
+            "loss": 0.8449761924049813,
+            "loss_scope": "old_local20",
+            "samples": 1259
+          }
+        }
+      },
+      "model_sha256_after": "ad881cdd41f27646a9ee0c382696df784f2cdd5c8a514ad50a1d89faf811cd46",
+      "model_sha256_before": "ad881cdd41f27646a9ee0c382696df784f2cdd5c8a514ad50a1d89faf811cd46",
+      "sanity": {
+        "native_to_effective_logits_max_absolute_error": 0.0,
+        "old_local20": {
+          "direction_dot_max_absolute_error": {
+            "task0_to_task1_delta": 1.901967943531216e-07
+          },
+          "loss_scope": "old_local20",
+          "passed": true,
+          "samples": 2,
+          "trace_max_absolute_error": 0.15221802235646464,
+          "trace_max_relative_error": 1.2386543768451238e-05
+        },
+        "training_batch_proxy_match": {
+          "absolute_difference": 0.0005609315059018627,
+          "absolute_tolerance": 1e-06,
+          "offline_raw_trace": 143.34715118223642,
+          "passed": true,
+          "relative_tolerance": 0.001,
+          "training_raw_trace": 143.34659025073051
+        }
+      },
+      "seconds": 28.132493143028114,
+      "task_index": 0
+    },
+    {
+      "current_task_batch_fisher_proxy": {
+        "damping": null,
+        "estimator": "(1/N) sum_b n_b ||(1/n_b) sum_i_in_b grad CE_i||^2",
+        "floor": null,
+        "input_hash_format": "sha256 of canonical per-image JSON lines in dataset order",
+        "input_tensors_sha256": "4b9dad57992ebe2ca5868a0579a35c5549a0b562ee08abc435c3fd53624dbd3d",
+        "logical_batch_size": 128,
+        "logical_batches": [
+          {
+            "batch_mean_gradient_squared_trace": 179.8637304941076,
+            "index": 0,
+            "input_tensors_sha256": "10fd3f308cf15c2e974b6d4b224c64425478045da613d4fc6eab7f0ccec167f2",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 179.7434570752612,
+            "index": 1,
+            "input_tensors_sha256": "f2ad72419702c359cedd39e2da861611f0d3fa9e578d3156e5d431d635dcb3c8",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 195.8522027606574,
+            "index": 2,
+            "input_tensors_sha256": "ae6d8a634e895da953fdc5c19fc33b6367d6c7558fadd7ab9a59160cc422030a",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 155.1918776342037,
+            "index": 3,
+            "input_tensors_sha256": "602bf264813a9bd160c108de05be929e3c6d1b2ef91e53a8cd551fdfa83c6915",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 164.5547956042807,
+            "index": 4,
+            "input_tensors_sha256": "5a48c885678906109af682ffc6faeb442372288a2ad3616cf3ec801348488952",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 137.78786689717458,
+            "index": 5,
+            "input_tensors_sha256": "7c19d1e1a9dd5ec3a5aa71c09d52688977bb1119ef04631edff2172b5698b1c9",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 213.20749777179418,
+            "index": 6,
+            "input_tensors_sha256": "d1e5879dc5ee8c783c703f1b7ae3695ef914714bfa443eb112600255b3102818",
+            "samples": 128
+          },
+          {
+            "batch_mean_gradient_squared_trace": 243.42699994140793,
+            "index": 7,
+            "input_tensors_sha256": "19bd390e32df8145bd92276a3d93c829a2582b5139bbf353056f6589f059179a",
+            "samples": 101
+          }
+        ],
+        "loss": 1.34644146048377,
+        "loss_scope": "new_local20",
+        "micro_batch_size": 8,
+        "normalization": "sample-weighted mean only",
+        "normalized": false,
+        "parameter_scope": "24 effective Q/V weights; excludes head",
+        "raw_trace": 182.08616831341982,
+        "regularizer": null,
+        "samples": 997,
+        "seconds": 12.19373674201779,
+        "source": "full current-task train; deterministic test transform; fixed dataset order"
+      },
+      "fisher": {
+        "new_local20": {
+          "damping": null,
+          "estimator": "mean of true-label per-example CE gradient outer products",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "input_tensor_records": [
+            {
+              "dataset_index": 28,
+              "label": 20,
+              "tensor_sha256": "28aecf8c260aab5c172d13207d290e3fd1d1520bbb2fdec05048158dcd8381b2"
+            },
+            {
+              "dataset_index": 79,
+              "label": 21,
+              "tensor_sha256": "8ca54912aa6ba92b6b23c0accc73baae9c67dceb04b295fa48f37a5cf292b8f6"
+            },
+            {
+              "dataset_index": 251,
+              "label": 24,
+              "tensor_sha256": "836eaf9079eb3f0bfc723c2c630c91c533039c71d69f6618b0ac913b363c723c"
+            },
+            {
+              "dataset_index": 382,
+              "label": 26,
+              "tensor_sha256": "06532e26c05e7ab96f4d78b18eaa5d9419666462ae74b04340016d1a01c79fa9"
+            },
+            {
+              "dataset_index": 490,
+              "label": 27,
+              "tensor_sha256": "574093be34ed879ddba4161c7b2d933e64ec2c7bcb8b05f07ccdf2f268560d0a"
+            },
+            {
+              "dataset_index": 545,
+              "label": 28,
+              "tensor_sha256": "79a7de7a382efaea1d2d893c70a62f7909cdbb47e34c717b2b6c244a5550eba0"
+            },
+            {
+              "dataset_index": 647,
+              "label": 30,
+              "tensor_sha256": "105af304f5ad22f195eeca19af6afb26bc0fbb7738123a52493572322d3abb82"
+            },
+            {
+              "dataset_index": 811,
+              "label": 33,
+              "tensor_sha256": "40c35a15b54ec1079d98a225645114a96c6daec7eda67b2349d0ea4b820879e2"
+            }
+          ],
+          "input_tensors_sha256": "05f0534f0a7d3e04a2a68b97955662f493025300cc8e600cfdcd8861a311cf47",
+          "loss_scope": "new_local20",
+          "normalization": "sample mean only",
+          "normalized": false,
+          "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+          "q": {},
+          "raw_trace": 3943.94777683096,
+          "regularizer": null,
+          "samples": 8,
+          "seconds": 0.2813546230318025,
+          "subset_loss": 1.3617120194248855
+        },
+        "old_local20": {
+          "damping": null,
+          "estimator": "mean of true-label per-example CE gradient outer products",
+          "floor": null,
+          "gradient_batch_size": 8,
+          "input_tensor_records": [
+            {
+              "dataset_index": 65,
+              "label": 1,
+              "tensor_sha256": "9016fd9b50ed05db456a6095980a4fda85093a22d22b1ac44003c869d823832e"
+            },
+            {
+              "dataset_index": 177,
+              "label": 2,
+              "tensor_sha256": "d05e1443b3050c1f54bc8f64b37c99d031782409cc9ba6e8ae7ffc4b8b7bc890"
+            },
+            {
+              "dataset_index": 265,
+              "label": 3,
+              "tensor_sha256": "034c7aada1a7af1ad9eae68e79208853d2965dac49135234aa3875cc0b964f55"
+            },
+            {
+              "dataset_index": 369,
+              "label": 5,
+              "tensor_sha256": "fc3983a598beb7591bcd6057d9eed8131da590ae422842f786363cae12da71ef"
+            },
+            {
+              "dataset_index": 575,
+              "label": 8,
+              "tensor_sha256": "41809f6482f57cf01d457b22f5a9e58ae047a5974f1c783efbe91154f28cccad"
+            },
+            {
+              "dataset_index": 708,
+              "label": 10,
+              "tensor_sha256": "c0e5edd830e0cf74d215f9da5375eae2b21b8d5d5cae8e874bf90ef48300f0b0"
+            },
+            {
+              "dataset_index": 839,
+              "label": 12,
+              "tensor_sha256": "781e73863b454196eeef5df2ec7a5bebc1afce93a1ddef8a5a7c92fcd0acf265"
+            },
+            {
+              "dataset_index": 1094,
+              "label": 16,
+              "tensor_sha256": "036b5767b8852fe9f87a9639c6f251bbffc9b653f6ae6da022f5541a063aea97"
+            }
+          ],
+          "input_tensors_sha256": "a543b4938a9ddf78826e06304220bfb29e75519c3c7edb23efe58124274049cd",
+          "loss_scope": "old_local20",
+          "normalization": "sample mean only",
+          "normalized": false,
+          "parameter_scope": "24 effective Q/V weight matrices; fixed backbone and classifier",
+          "q": {
+            "task0_to_task1_delta": 3.256961510935742e-05
+          },
+          "raw_trace": 3216.2310840549644,
+          "regularizer": null,
+          "samples": 8,
+          "seconds": 0.6328127789893188,
+          "subset_loss": 0.4969383457209915,
+          "unit_displacement_sensitivity": 0.013744272453904116
+        }
+      },
+      "metrics": {
+        "new_test": {
+          "new_local20": {
+            "accuracy": 58.267716535433074,
+            "correct": 148,
+            "loss": 1.504841778471362,
+            "loss_scope": "new_local20",
+            "samples": 254
+          },
+          "seen40": {
+            "accuracy": 39.76377952755905,
+            "correct": 101,
+            "loss": 2.271485787559682,
+            "loss_scope": "seen40",
+            "samples": 254
+          }
+        },
+        "old_test": {
+          "old_local20": {
+            "accuracy": 74.2671009771987,
+            "correct": 228,
+            "loss": 0.9848984492069007,
+            "loss_scope": "old_local20",
+            "samples": 307
+          },
+          "seen40": {
+            "accuracy": 69.70684039087948,
+            "correct": 214,
+            "loss": 1.3223415093089936,
+            "loss_scope": "seen40",
+            "samples": 307
+          }
+        },
+        "old_train": {
+          "old_local20": {
+            "accuracy": 78.23669579030977,
+            "correct": 985,
+            "loss": 0.8395094190098381,
+            "loss_scope": "old_local20",
+            "samples": 1259
+          },
+          "seen40": {
+            "accuracy": 72.27958697378872,
+            "correct": 910,
+            "loss": 1.1743457979945033,
+            "loss_scope": "seen40",
+            "samples": 1259
+          }
+        }
+      },
+      "model_sha256_after": "ad136325e73b259959348621203faaed7177135e8307ad8a23dd69208525a182",
+      "model_sha256_before": "ad136325e73b259959348621203faaed7177135e8307ad8a23dd69208525a182",
+      "sanity": {
+        "native_to_effective_logits_max_absolute_error": 0.0,
+        "new_local20": {
+          "direction_dot_max_absolute_error": {},
+          "loss_scope": "new_local20",
+          "passed": true,
+          "samples": 2,
+          "trace_max_absolute_error": 0.20389227674286303,
+          "trace_max_relative_error": 0.00013865167128903838
+        },
+        "old_local20": {
+          "direction_dot_max_absolute_error": {
+            "task0_to_task1_delta": 3.8861981190279477e-07
+          },
+          "loss_scope": "old_local20",
+          "passed": true,
+          "samples": 2,
+          "trace_max_absolute_error": 0.430898564403833,
+          "trace_max_relative_error": 3.56199371760964e-05
+        },
+        "training_batch_proxy_match": {
+          "absolute_difference": 7.17137217520758e-05,
+          "absolute_tolerance": 1e-06,
+          "offline_raw_trace": 182.08616831341982,
+          "passed": true,
+          "relative_tolerance": 0.001,
+          "training_raw_trace": 182.08609659969807
+        }
+      },
+      "seconds": 26.584996209014207,
+      "task_index": 1
+    }
+  ],
+  "fisher_raw_trace": {
+    "new_at_task1": 3943.94777683096,
+    "old_at_task0": 3290.9836888430846,
+    "old_at_task1": 3216.2310840549644
+  },
+  "inputs": {
+    "argv": [
+      "/data/140-1/users/liying/O-LoRA/scripts/imageneta_two_task_table/evaluate.py",
+      "--run-dir",
+      "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0",
+      "--device",
+      "cuda",
+      "--fisher-samples",
+      "8"
+    ],
+    "checkpoint_audit": {
+      "checkpoints": [
+        {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/checkpoints/task_00.pt",
+          "sha256": "4c0edf29fe862c65cd91f85d605da35b94229aab4bbc788586ee344a6fda1b5b",
+          "state_tensors": 350
+        },
+        {
+          "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/checkpoints/task_01.pt",
+          "sha256": "3f38f997a9a8114d62ffdf697827eba6fd08d58e2d7d87b31a604c711cdbc36b",
+          "state_tensors": 350
+        }
+      ],
+      "coordinate": "12 layers x Q,V effective BA matrices; scale=1; excludes head",
+      "delta_norm": 0.048679424510887144,
+      "delta_sha256": "368c10225ee0412845239cb56fcd84960daf2d6857e25184fa63f3f177e45e44",
+      "delta_squared_norm": 0.0023696863707111603,
+      "effective_blocks": 24,
+      "effective_parameters": 14155776,
+      "effective_product_precision": "CPU FP32 BA; FP32 subtraction; float64 norm reduction",
+      "frozen_state_sha256": "91f7405a556f93933e3985de054132faf93493ba47c791d02c028812122d2997",
+      "frozen_tensors_equal": 300,
+      "old_head_bitwise_equal": true
+    },
+    "code_sha256": {
+      "eval_common.py": "1943d9232011eca1d4279678f8facfe32a77b502a31713d00ba8689fc452ca62",
+      "evaluate.py": "ba85c7e871efd73211dff11ee53d537590f35bfce79a5ac6297859110cda7369"
+    },
+    "config": {
+      "all_or_inc": "inc",
+      "approximate_fisher_in_task": false,
+      "as1_norm_rho": 0.2,
+      "as1_rho": 0.05,
+      "attention_probe_eval": false,
+      "backbone_type": "vit_base_patch16_224",
+      "batch_size": 128,
+      "checkpoint_require_nonempty_fisher": true,
+      "class_shuffle": false,
+      "comparison_base_optimizer": "sgd",
+      "comparison_method": "ewc",
+      "compute_full_fisher": false,
+      "compute_nme_class_means": false,
+      "data_root": "/data/115-2/users/liying/datasets",
+      "dataset": "imageneta",
+      "delta_w_penalty": false,
+      "device": [
+        "0"
+      ],
+      "endpoint_eval": false,
+      "endpoint_weight_merge": false,
+      "epochs": 3,
+      "eval_num_workers": 4,
+      "ewc_dual_ascent": false,
+      "ewc_eta": 0.0,
+      "ewc_fisher_damping_alpha": 0.2,
+      "ewc_fisher_damping_beta": 0.2,
+      "ewc_fisher_norm_eps": 1e-12,
+      "ewc_fisher_source": "fit",
+      "ewc_gamma": 0.9,
+      "ewc_lambda": 2000.0,
+      "ewc_max_batches": 100,
+      "ewc_normalize_accumulated_fisher": true,
+      "ewc_normalize_fisher": true,
+      "ewc_preserve_fisher_rng": true,
+      "ewc_project_grad": false,
+      "ewc_skip_task_fisher": false,
+      "feature_cka_eval": false,
+      "feature_drift_eval": false,
+      "feature_drift_mode": "none",
+      "feature_flat_eval": false,
+      "feature_proto_eval": false,
+      "fisher_mode": "batch_empirical",
+      "fisher_split": false,
+      "fixed_memory": false,
+      "flat_eval": false,
+      "frozen_backbone_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage1_task0/task0_shared_lam2000_initlr0p04_lr0p02_e50/sgd/seed0/checkpoints/task_00.pt",
+      "gam_adaptive": false,
+      "gam_base_optimizer": "sgd",
+      "gam_grad_beta_1": 1.0,
+      "gam_grad_beta_2": 1.0,
+      "gam_grad_beta_3": 1.0,
+      "gam_grad_gamma": 0.1,
+      "gam_grad_norm_rho": 0.2,
+      "gam_grad_rho": 0.05,
+      "in_task_fisher_interval": 1,
+      "in_task_fisher_omega": 0.3,
+      "in_task_path_beta": 3.0,
+      "in_task_path_loss_max_batches": null,
+      "in_task_path_normalize_snapshots": false,
+      "in_task_path_start_ratio": 0.0,
+      "in_task_path_weighted": true,
+      "in_task_weight_checkpoint_interval": 1,
+      "in_task_weight_merge": true,
+      "in_task_weight_merge_omega": 0.3,
+      "in_task_weight_merge_start_task": 0,
+      "increment": 20,
+      "init_cls": 20,
+      "init_epoch": 3,
+      "init_lr": 0.04,
+      "init_momentum": 0,
+      "init_weight_decay": 0.0,
+      "lambda_flat": 0.0,
+      "linear_probe_softmax_joint_seen_eval": false,
+      "linear_probe_softmax_per_task_eval": false,
+      "lora_rank": 10,
+      "lrate": 0.02,
+      "max_train_tasks": 2,
+      "mechanism_eval": true,
+      "mechanism_grad_stats": true,
+      "memory_per_class": 0,
+      "memory_size": 0,
+      "model_name": "ewclora_normfisher_gam_intask_damp_weightmergethenfisher",
+      "momentum": 0,
+      "multi_fisher_eval": false,
+      "nb_tasks": 10,
+      "optimizer": "sgd",
+      "optimizer_tag_override": "table_ewc",
+      "optimizer_type": "sgd",
+      "optimizer_type_by_task": null,
+      "outputs_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/trainer_outputs",
+      "persistent_workers": false,
+      "prefix": "ewc_s0_task1",
+      "probe_flatness_eval": false,
+      "quality_and_fisher_transform": "deterministic_current_train",
+      "resume_from_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/checkpoints",
+      "resume_from_metrics_json": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/anchors/sgd/seed0/trainer_outputs/logs_inc_lora/ewclora_normfisher_gam_intask_damp_weightmergethenfisher/table_sgd/imageneta/0/sgd_s0_task0/exp_run/20/sgd_s0_task0_vit_base_patch16_224_cl_metrics.json",
+      "resume_from_task": 0,
+      "resume_require_experiment_identity": false,
+      "resume_require_fisher_state": true,
+      "resume_require_model_sidecars": false,
+      "rq2_rng_protocol": "imageneta_two_task_table_weighted_merge_v1",
+      "save_final_model": false,
+      "save_task_checkpoint_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/checkpoints",
+      "save_task_checkpoint_required": true,
+      "scheduler": "cosine",
+      "seed": [
+        0
+      ],
+      "snapshot_epochs": [
+        1,
+        2
+      ],
+      "source": "/data/140-1/users/liying/CopyFlatCV",
+      "stage0_optimizer": "sgd",
+      "stage1_optimizer": "sgd",
+      "table_run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0",
+      "task0_trajectory_eval": false,
+      "total_sessions": 10,
+      "train_num_workers": 4,
+      "training_fisher_microbatch_size": 128,
+      "trajectory_merge_policy": "all",
+      "weight_decay": 0.0,
+      "weight_merge": false
+    },
+    "data_manifest_sha256": "a35f002c980067b8885de2a9a36055fbc5dd2ddb3fde994661aeddacc9183420",
+    "data_root": "/data/115-2/users/liying/datasets",
+    "device": "cuda",
+    "precision": {
+      "autocast": false,
+      "cudnn_tf32": false,
+      "forward_backward": "FP32",
+      "matmul_tf32": false,
+      "reduction": "float64"
+    },
+    "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0",
+    "run_manifest_sha256": "c948dea15c59570b576d7a62392a9ebf37b9d60a407a13fef67d5759f7fe1040",
+    "source": "/data/140-1/users/liying/CopyFlatCV",
+    "source_sha256": {
+      "backbone/linears.py": "7b5bc385708c3f3677e027a80ff0b388d2521bceeace3678b9581eadc01124f7",
+      "backbone/lora.py": "995119b1aea75e27049ff6a20aeafac08daa2c212fd2d7c3eff517c1bf581446",
+      "utils/data.py": "e162c8d2d2f50c14b4481e3b153d489a53ff7647ca96fa668e43c48449b0e3f9",
+      "utils/data_manager.py": "8a1bc22828e80071990286b1eebc7c40ff478601f089a6c7316ad2eb19b119f6"
+    },
+    "torch": "2.4.1+cu121",
+    "trajectory_audit": [
+      {
+        "checkpoint_factor_sha256": "012cb95568921f70b2583ef2ece545864dda2c9b93ce0ad90085063440128e4d",
+        "classifier_unchanged_by_merge": true,
+        "current_fisher": {
+          "batch_size": 128,
+          "estimation_metrics": {
+            "fisher_estimator": "batch_empirical",
+            "fisher_estimator_display": "batch-gradient delta-W Fisher proxy",
+            "fisher_estimator_family": "batch_gradient_square_proxy",
+            "fisher_gradient_aggregation": "square_of_batch_mean_delta_w_gradients",
+            "fisher_is_per_sample_empirical": false,
+            "fisher_loss_reduction": "cross_entropy_mean",
+            "fisher_mode": "batch_empirical",
+            "fisher_num_samples": 1259,
+            "fisher_space": "delta_w"
+          },
+          "estimator": "batch_gradient_square_proxy",
+          "factor_sha256": "012cb95568921f70b2583ef2ece545864dda2c9b93ce0ad90085063440128e4d",
+          "normalized_trace": 1.0000000265426934,
+          "raw_trace": 143.34659025073051,
+          "source": "post_merge_current_train",
+          "task": 0
+        },
+        "current_fisher_json_sha256": "41ad6082ee11e01bde3d5fae41d2abe6cfaea9ad46d1ee48f52d90c31e0a5866",
+        "merge": {
+          "beta": 3.0,
+          "ce": [
+            1.4816229009173805,
+            0.9552124922383485
+          ],
+          "coordinate": "LoRA_A_B_factors; classifier excluded",
+          "enabled": true,
+          "epochs": [
+            1,
+            2
+          ],
+          "metrics": {
+            "in_task_path_beta": 3.0,
+            "in_task_path_fallback_to_last": 0.0,
+            "in_task_path_loss_max": 1.4816229009173805,
+            "in_task_path_loss_mean": 1.2184176965778644,
+            "in_task_path_loss_min": 0.9552124922383485,
+            "in_task_path_loss_valid": 1.0,
+            "in_task_path_min_epoch": 1.0,
+            "in_task_path_selected_first_epoch": 1.0,
+            "in_task_path_selected_last_epoch": 2.0,
+            "in_task_path_selected_snapshots": 2.0,
+            "in_task_path_start_ratio": 0.0,
+            "in_task_path_total_epochs": 3.0,
+            "in_task_path_total_snapshots": 2.0,
+            "in_task_path_weight_effective_n": 1.0174621351983302,
+            "in_task_path_weight_entropy": 0.01731142407787651,
+            "in_task_path_weight_max": 0.9975273768433089,
+            "in_task_path_weight_min": 0.0024726231566910006,
+            "in_task_path_weight_mode": "loss_softmax",
+            "in_task_path_weighted": 1.0,
+            "in_task_weight_checkpoint_interval": 1.0,
+            "in_task_weight_final_l2": 8.95181476086598,
+            "in_task_weight_merge_applied": 1.0,
+            "in_task_weight_merge_enabled": 1.0,
+            "in_task_weight_merge_first_epoch": 1.0,
+            "in_task_weight_merge_last_epoch": 2.0,
+            "in_task_weight_merge_numel": 368640.0,
+            "in_task_weight_merge_omega": 0.3,
+            "in_task_weight_merge_shift_l2": 0.011809424330601462,
+            "in_task_weight_merge_snapshots": 2.0,
+            "in_task_weight_merge_tensors": 48.0,
+            "in_task_weight_merged_l2": 8.951505511766529,
+            "in_task_weight_path_delta_l2": 0.03936474750770353,
+            "in_task_weight_path_l2": 8.950844310974945,
+            "in_task_weight_snapshot_tensors": 96.0,
+            "weight_checkpoint_interval": 1,
+            "weight_merge_applied": true,
+            "weight_merge_omega": 0.3,
+            "weight_merge_then_fisher": 1.0,
+            "weight_merge_then_fisher_fisher_snapshots_disabled": 1.0,
+            "weight_merge_then_fisher_fisher_source_post_merge": 1.0,
+            "weight_merge_then_fisher_path_weight_l2": 8.950844310974945,
+            "weight_merge_then_fisher_path_weight_numel": 368640.0,
+            "weight_merge_then_fisher_path_weight_tensors": 48.0,
+            "weight_merge_then_fisher_selected_weight_checkpoints": 2.0,
+            "weight_merge_then_fisher_weight_checkpoints": 2.0,
+            "weight_merge_theta_end_to_merge_l2": 0.011809424330601462,
+            "weight_merge_theta_end_to_path_l2": 0.03936474750770353,
+            "weight_merge_theta_path_to_merge_l2": 0.02755532325539247
+          },
+          "omega": 0.3,
+          "post_factor_sha256": "012cb95568921f70b2583ef2ece545864dda2c9b93ce0ad90085063440128e4d",
+          "pre_factor_sha256": "f578f2c185071daf07ed44343b8d2f83911fe372e6173dd30411b716a2b1cbe0",
+          "step_counts": {
+            "ce_backward_count": 30,
+            "ewc_penalty_max": 0.0,
+            "updates": 30
+          },
+          "task": 0,
+          "weight_formula": "softmax(-beta*(CE-mean(CE))/(population_std(CE)+eps))",
+          "weights": [
+            0.0024726231566910006,
+            0.9975273768433089
+          ]
+        },
+        "merge_json_sha256": "dd04269ba04f3d1e533efb0b98c7f39eb656bd967ba8c37c78b142531882910b",
+        "passed": true,
+        "pre_merge_endpoint_sha256": "a5608fc957140eb2a641def4193d9bed9d31375a95f68e1dabd97a8dd4813a42",
+        "snapshots": [
+          {
+            "epoch": 1,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/trajectory/task_00/epoch_01.pt",
+            "sha256": "5752874f078de08614e82c9dca99f0f613374f5acf80206fdcdb29ddb15ed29f"
+          },
+          {
+            "epoch": 2,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/trajectory/task_00/epoch_02.pt",
+            "sha256": "d5779cc0a281a7d9c3893974c906834bbe1fce2b1988f76a4ab767ec44e4dcad"
+          }
+        ],
+        "task": 0
+      },
+      {
+        "checkpoint_factor_sha256": "be00eeb5fd9aa18b2c70be4a59010f8eef427d80e7ac209c4cbae4ce96a69c86",
+        "classifier_unchanged_by_merge": true,
+        "current_fisher": {
+          "batch_size": 128,
+          "estimation_metrics": {
+            "fisher_estimator": "batch_empirical",
+            "fisher_estimator_display": "batch-gradient delta-W Fisher proxy",
+            "fisher_estimator_family": "batch_gradient_square_proxy",
+            "fisher_gradient_aggregation": "square_of_batch_mean_delta_w_gradients",
+            "fisher_is_per_sample_empirical": false,
+            "fisher_loss_reduction": "cross_entropy_mean",
+            "fisher_mode": "batch_empirical",
+            "fisher_num_samples": 997,
+            "fisher_space": "delta_w"
+          },
+          "estimator": "batch_gradient_square_proxy",
+          "factor_sha256": "be00eeb5fd9aa18b2c70be4a59010f8eef427d80e7ac209c4cbae4ce96a69c86",
+          "normalized_trace": 1.0000000299187377,
+          "raw_trace": 182.08609659969807,
+          "source": "post_merge_current_train",
+          "task": 1
+        },
+        "current_fisher_json_sha256": "a08421cf1982882d42e47e1522868477e61124c2b28f402bb67f497989ed45b3",
+        "merge": {
+          "beta": 3.0,
+          "ce": [
+            2.0423276331144926,
+            1.49174561471853
+          ],
+          "coordinate": "LoRA_A_B_factors; classifier excluded",
+          "enabled": true,
+          "epochs": [
+            1,
+            2
+          ],
+          "metrics": {
+            "in_task_path_beta": 3.0,
+            "in_task_path_fallback_to_last": 0.0,
+            "in_task_path_loss_max": 2.0423276331144926,
+            "in_task_path_loss_mean": 1.7670366239165114,
+            "in_task_path_loss_min": 1.49174561471853,
+            "in_task_path_loss_valid": 1.0,
+            "in_task_path_min_epoch": 1.0,
+            "in_task_path_selected_first_epoch": 1.0,
+            "in_task_path_selected_last_epoch": 2.0,
+            "in_task_path_selected_snapshots": 2.0,
+            "in_task_path_start_ratio": 0.0,
+            "in_task_path_total_epochs": 3.0,
+            "in_task_path_total_snapshots": 2.0,
+            "in_task_path_weight_effective_n": 1.017462135198315,
+            "in_task_path_weight_entropy": 0.017311424077861723,
+            "in_task_path_weight_max": 0.9975273768433114,
+            "in_task_path_weight_min": 0.0024726231566885317,
+            "in_task_path_weight_mode": "loss_softmax",
+            "in_task_path_weighted": 1.0,
+            "in_task_weight_checkpoint_interval": 1.0,
+            "in_task_weight_final_l2": 8.95302032452059,
+            "in_task_weight_merge_applied": 1.0,
+            "in_task_weight_merge_enabled": 1.0,
+            "in_task_weight_merge_first_epoch": 1.0,
+            "in_task_weight_merge_last_epoch": 2.0,
+            "in_task_weight_merge_numel": 368640.0,
+            "in_task_weight_merge_omega": 0.3,
+            "in_task_weight_merge_shift_l2": 0.004070736803589296,
+            "in_task_weight_merge_snapshots": 2.0,
+            "in_task_weight_merge_tensors": 48.0,
+            "in_task_weight_merged_l2": 8.95292692191445,
+            "in_task_weight_path_delta_l2": 0.013569123018427968,
+            "in_task_weight_path_l2": 8.952715889079844,
+            "in_task_weight_snapshot_tensors": 96.0,
+            "weight_checkpoint_interval": 1,
+            "weight_merge_applied": true,
+            "weight_merge_omega": 0.3,
+            "weight_merge_then_fisher": 1.0,
+            "weight_merge_then_fisher_fisher_snapshots_disabled": 1.0,
+            "weight_merge_then_fisher_fisher_source_post_merge": 1.0,
+            "weight_merge_then_fisher_path_weight_l2": 8.952715889079844,
+            "weight_merge_then_fisher_path_weight_numel": 368640.0,
+            "weight_merge_then_fisher_path_weight_tensors": 48.0,
+            "weight_merge_then_fisher_selected_weight_checkpoints": 2.0,
+            "weight_merge_then_fisher_weight_checkpoints": 2.0,
+            "weight_merge_theta_end_to_merge_l2": 0.004070736803589296,
+            "weight_merge_theta_end_to_path_l2": 0.013569123018427968,
+            "weight_merge_theta_path_to_merge_l2": 0.009498386112899578
+          },
+          "omega": 0.3,
+          "post_factor_sha256": "be00eeb5fd9aa18b2c70be4a59010f8eef427d80e7ac209c4cbae4ce96a69c86",
+          "pre_factor_sha256": "45b87da9d918d247da7d28df56a41b143e570c853aba55550296be8542995e5f",
+          "step_counts": {
+            "ce_backward_count": 24,
+            "ewc_penalty_max": 7.774387995596044e-07,
+            "updates": 24
+          },
+          "task": 1,
+          "weight_formula": "softmax(-beta*(CE-mean(CE))/(population_std(CE)+eps))",
+          "weights": [
+            0.0024726231566885317,
+            0.9975273768433114
+          ]
+        },
+        "merge_json_sha256": "9a80379dfd34f6fec03304ec3d4d5188d8290680a07bea12ad7de45b60fb12fe",
+        "passed": true,
+        "pre_merge_endpoint_sha256": "b810f1149a232eedd116d673b50ef4252676130991cb9f0b0f782221e3898975",
+        "snapshots": [
+          {
+            "epoch": 1,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/trajectory/task_01/epoch_01.pt",
+            "sha256": "5ec358eab22909a50595e48fa695825ca93368618e7db53201f3b9cd30d95549"
+          },
+          {
+            "epoch": 2,
+            "path": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta_two_task_table_20260920/smoke/runs/ewc/seed0/trajectory/task_01/epoch_02.pt",
+            "sha256": "f78878d2ef4cc376f7b54d35f76189b2d78bf74cd95278390531dd9fd5813e39"
+          }
+        ],
+        "task": 1
+      }
+    ]
+  },
+  "method": "ewc",
+  "new_trace_task1": 3943.94777683096,
+  "old_local20_loss_increment": {
+    "old_test": -0.004878881193260631,
+    "old_train": -0.005466773395143232
+  },
+  "old_test_loss_delta": -0.004878881193260631,
+  "old_trace_task0": 3290.9836888430846,
+  "old_trace_task1": 3216.2310840549644,
+  "old_train_loss_delta": -0.005466773395143232,
+  "protocol": "imageneta_two_task_continuous_qv_trajectory_mix_v1",
+  "r_eff": 0.048679424510887144,
+  "seconds": 62.834793964982964,
+  "seed": 0,
+  "smoke": true,
+  "status": "complete",
+  "units": {
+    "accuracy": "percent",
+    "bwt": "percentage points",
+    "loss": "CE nats per sample",
+    "r_eff": "effective Q/V Frobenius L2 norm; excludes classifier"
+  },
+  "variant": "ewc"
+}

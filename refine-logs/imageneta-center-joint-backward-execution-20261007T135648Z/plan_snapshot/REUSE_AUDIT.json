@@ -1,0 +1,82 @@
+{
+  "audit_at": "2026-10-07T13:48:11.369956+00:00",
+  "question": "Existing formal/queued/plan-only second-local center U=g0 +/- (g3_plus-g3_minus)/2, with positive fixed first-location geometry rho=.05 r=1?",
+  "scoped_conclusion": "No exact formal training, queued job, or existing plan-only configuration found in the searched metadata/code scope. Existing second-local opposite-side readings are isolated diagnostics, not centered updates.",
+  "search_roots": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs",
+    "/data/140-1/users/liying/CopyFlatCV/refine-logs",
+    "/data/140-1/users/liying/CopyFlatCV/GAM-EWC/results",
+    "/data/140-1/users/liying/Flatness_CV/refine-logs"
+  ],
+  "eligible_metadata_files": 17100,
+  "searched_methods": [
+    "rg --files filename inventory",
+    "bounded rg over metadata/config/queue/suite/plan and trainer code excluding source snapshots/large jsonl traces",
+    "inspection of actual central and second-probe direction executors",
+    "rg --no-ignore bounded metadata/code scan; no extra second-local centered match"
+  ],
+  "exact_second_local_formal_matches": [],
+  "exact_second_local_queued_matches": [],
+  "exact_second_local_plan_only_matches": [],
+  "related_completed": [
+    {
+      "job": "OE03_Central_s2",
+      "status": "completed",
+      "formula": "g0 + 0.5*(g1_plus - g1_minus), probes around theta0",
+      "r": null,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "tasks": 10,
+      "AAA": 62.99425039682539,
+      "FAA": 44.327,
+      "protocol": "odd_even_local_exact_restore_v1",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/configs/OE03_Central_s2.json",
+      "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE03_Central_s2/task_matrix.json",
+      "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/outputs/OE03_Central_s2/final_summary.json",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/runtime/jobs/OE03_Central_s2/completed.json",
+      "matrix_hash_verified": true,
+      "summary_hash_verified": true,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/odd-even-rho005-gpu123-20261003T185629Z/runtime/jobs/OE03_Central_s2/console.log"
+    },
+    {
+      "job": "G2-CD03_O_CD_natural_s2",
+      "status": "completed",
+      "formula": "q=0.5*(g1_plus-g1_minus); theta2=theta0+0.25*N(q); U=g2",
+      "r": 0.25,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "tasks": 10,
+      "AAA": 66.68632103174603,
+      "FAA": 50.007999999999996,
+      "protocol": "g2_central_location_exact_restore_v1",
+      "config": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/configs/G2-CD03_O_CD_natural_s2.json",
+      "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD03_O_CD_natural_s2/task_matrix.json",
+      "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/outputs/G2-CD03_O_CD_natural_s2/final_summary.json",
+      "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/runtime/jobs/G2-CD03_O_CD_natural_s2/completed.json",
+      "matrix_hash_verified": true,
+      "summary_hash_verified": true,
+      "log": "/data/140-1/users/liying/O-LoRA/refine-logs/g2-central-location-gpu01-20261003T105925Z/runtime/jobs/G2-CD03_O_CD_natural_s2/console.log"
+    }
+  ],
+  "related_plan_only": {
+    "path": "/data/140-1/users/liying/O-LoRA/refine-logs/local-cd-method-20261003T082009Z/EXPERIMENT_TRACKER.md",
+    "scope": "local center around theta0, not theta2",
+    "status": "plan_only, active suite 0 jobs"
+  },
+  "second_local_diagnostics": {
+    "code": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/trainer/direction_step.py:235",
+    "plan": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/EXPERIMENT_PLAN.md:37",
+    "example_data": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-second-probe-sign-deterministic-20261007T071400Z/outputs/B0_g0_probep1_residualp1_r1_k10_s2/side_diagnostics.jsonl",
+    "formula": "one selected-side training residual plus one opposite-side diagnostic residual",
+    "sgd_updates": 0,
+    "opposite_probe_per_task": 1,
+    "centered_U_used": false
+  },
+  "earlier_fisher_center": {
+    "code_review": "/data/140-1/users/liying/CopyFlatCV/refine-logs/imageneta-richardson-20260911/CENTRAL_CODE_REVIEW.md:13",
+    "formula": "g0+alpha*(norm(g0)+eps)*(g_plus-g_minus)/(2h) around theta0, clean EWC callback",
+    "scope": "different method/protocol; no GAM theta2 outer point"
+  }
+}

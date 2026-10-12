@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Controlled Task1 continuation from historical SGD+EWC and visual GAM+EWC Task0 anchors, with SGD+EWC used for both continuations (training seed 0). The class-incremental accuracies $a_{11},a_{21},a_{22}$ (\%) use all classes seen at the evaluation stage: old-task accuracy before and after continuation, and new-task accuracy after continuation, respectively. $a_{11}$ is the current FP32 anchor evaluation; $a_{21}$ and $a_{22}$ are from the continuation accuracy matrix. $D_0$ is signed old-task cross-entropy change relative to each anchor, measured separately with the fixed Task0 20-class head and deterministic preprocessing on 1,259 train and 307 test examples. Negative damage means loss decreased. Raw trace at Task0 averages squared per-example unscaled CE gradients over the same 256 old-task training examples in the ambient coordinates of 24 effective Q/V $BA$ matrices (scaling 1), without normalization, floor, or regularization. Displacement is the Euclidean/Frobenius norm in those effective-weight coordinates. The inherited EWC Fisher matrices may differ across anchors; this is not an isolated protection-matrix intervention. The new-task plasticity guard is retained: GAM-anchor $a_{22}$ differs by $-2.75$ percentage points from the SGD-anchor row.}
+\label{tab:rq2_controlled_continuation}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Task0 anchor & $a_{11}$ & $a_{21}$ & $a_{22}$ & $D_0^{\rm train}$ & $D_0^{\rm test}$ & $\mathrm{tr}(\widehat F_0)$ & $\|\Delta_1\|_2$ \\
+\midrule
+SGD+EWC & 85.6678 & 84.36 & 74.80 & +0.003674 & -0.019246 & 1465.497 & 0.374950 \\
+GAM+EWC & 87.6221 & 84.04 & 72.05 & -0.002157 & -0.013388 & 761.901 & 0.349876 \\
+\bottomrule
+\end{tabular}
+\end{table*}

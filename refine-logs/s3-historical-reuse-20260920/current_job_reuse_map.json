@@ -1,0 +1,1728 @@
+{
+  "created_utc": "2026-09-20T21:14:20.583042+00:00",
+  "reverse_index_path": "/data/140-1/users/liying/O-LoRA/refine-logs/s3-historical-reuse-20260920/reverse_index.json",
+  "reverse_index_sha256": "3b3e25668a13b3e464cea5e20b398ccafc4b5da3e7edac12bf34a6b9ac93662b",
+  "suite_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/suite.json",
+  "suite_sha256": "6a836e1134f52a6b9f43557707d04033a37ca4ac83adebb29b5d9f82e3be0707",
+  "current_jobs": 18,
+  "same_seed_science_equivalent_jobs": 4,
+  "not_historical_matched_jobs": 14,
+  "new_queue_completions_created": 0,
+  "queue_modified": false,
+  "matching_definition": "same seed, complete10x50, runtime-proven WeightMergeThenFisher branch, all current scientific fields equal after narrowly documented defaults; source/environment bitwise execution equivalence is NOT established",
+  "default_evidence": [
+    {
+      "field": "train_num_workers",
+      "value": 8,
+      "source": "source/models_LoRAbasedCL/seqlora.py:402,428",
+      "historical_revisions": [
+        "7c6aaf2",
+        "0a7ac7f"
+      ],
+      "note": "源码默认8；历史日志未显式覆盖。"
+    },
+    {
+      "field": "eval_num_workers",
+      "value": 8,
+      "source": "source/models_LoRAbasedCL/baseLoRA.py:897",
+      "historical_revisions": [
+        "7c6aaf2:427",
+        "0a7ac7f:427"
+      ],
+      "note": "旧源码相同默认8；Fisher split关闭。"
+    },
+    {
+      "field": "fisher_split",
+      "value": false,
+      "source": "source/models_LoRAbasedCL/seqlora.py:218-233",
+      "historical_revisions": [
+        "7c6aaf2",
+        "0a7ac7f"
+      ],
+      "note": "缺省false，候选4条亦未设置ratio/per_class隐式开启项。"
+    },
+    {
+      "field": "fisher_mode",
+      "value": "batch_empirical",
+      "source": "source/models_LoRAbasedCL/as1_normfisher_gam.py:129-130",
+      "note": "源代码默认；4条候选运行日志也明确打印batch_empirical。"
+    },
+    {
+      "field": "ewc_preserve_fisher_rng",
+      "value": false,
+      "source": "source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py:89-91",
+      "note": "历史实现没有隔离Fisher RNG；当前新增开关默认false，与历史执行语义相符。"
+    },
+    {
+      "field": "ewc_skip_task_fisher",
+      "value": false,
+      "source": "source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py:83",
+      "note": "历史任务后计算Fisher；当前新增开关默认false。"
+    },
+    {
+      "field": "compute_nme_class_means",
+      "value": true,
+      "source": "source/models_LoRAbasedCL/seqlora.py:459",
+      "note": "历史及当前均默认true，旧日志有NME结果；没有为加速关闭额外前向。"
+    },
+    {
+      "field": "data_root",
+      "value": "/data/140-1/datasets",
+      "source": "7c6aaf2:utils/data_manager.py:22; 0a7ac7f:utils/data_manager.py:22",
+      "note": "历史硬编码默认路径；当前显式相同路径，但历史数据内容没有哈希收据。"
+    },
+    {
+      "field": "approximate_fisher_in_task",
+      "value": "inactive legacy switch in WeightMergeThenFisher",
+      "source": "source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py",
+      "note": "仅在runtime确认WeightMergeThenFisher后允许忽略：无轨迹Fisher快照，weight checkpoint由独立逻辑控制。不能在June25旧父类上忽略。"
+    },
+    {
+      "field": "s3_boundary_capture",
+      "value": "observational sidecars",
+      "source": "source/utils/s3_mechanism_controls.py",
+      "note": "比较科学配置时忽略，但其新增产物不可用旧结果冒充；同样不能生成伪完成收据。"
+    }
+  ],
+  "jobs": [
+    {
+      "current_job_id": "s3_mech_a_nomerge_matched_s2",
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_nomerge_matched_s2.json",
+      "current_config_sha256": "23f83c09cd43f0fa59ab510acc0146313670fb89837d95981fe04c47451927fd",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "0d851fca5cf1",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_component_ablation_seed2/component_gam_gpu2.log",
+          "log_sha256": "dd15f09da8cb65ae08ee342ded98a7d75e7bfdb6707912967827b7518008ca94",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_c3_component_gam_s2.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/component_gam_sgd_initlr004_lr002_e50_rho005_f100_nomerge_alpha02/imageneta/2/s3_c3_component_gam_imageneta_t10c20_r10_sgd_s2/exp_run/20/s3_c3_component_gam_imageneta_t10c20_r10_sgd_s2_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "ec640491be622bc430ca5c34a020070b4d011b3ed6ee21b38dbd93623ac4418c",
+          "seed": "2",
+          "faa_macro": 52.29299999999999,
+          "aaa_macro": 67.09762698412699,
+          "sample_final": 59.78,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "973301ecce60f099d33ab44b972bfa03f48d8e86da9d3578584474492127e0df",
+          "current_config_differences": {
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": 0,
+              "current": 10
+            }
+          }
+        }
+      ],
+      "reason": "未见in_task_weight_merge_start_task=10且仍保存两次快照、执行质量CE的历史训练。Aoff跳过CE并改变RNG，不能替代。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_gam_half_direction_s2",
+      "axis": "gam_total_direction_scale",
+      "value": "half",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_gam_half_direction_s2.json",
+      "current_config_sha256": "6b0d242369abedf038d526a012d8da27e1e2e3795487184aa3b1beafa71e0a48",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "索引中完成ImageNet-A实验的GAM β1/β3均为1，未见完整GAM方向减半而EWC保持不变的实验。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_sgd_ewc_s2",
+      "axis": "gam_execution",
+      "value": "sgd_ewc",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_sgd_ewc_s2.json",
+      "current_config_sha256": "e23f0997e98bcd7579f710ba5fb2ffaf0baf48c0b496f1b1fa4638a1238a2b2a",
+      "reuse_class": "same_seed_scientific_equivalent",
+      "exact_same_seed_scientific_candidates": [
+        {
+          "id": "157a146d8602",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_component_ablation_seed2/component_merge_gpu6.log",
+          "log_sha256": "839f6a5c3afd81b751f877f556f094062646a08dde931c18323cd9717556e5bc",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_c3_component_merge_s2.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/component_merge_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_alpha02_wpathbeta30/imageneta/2/s3_c3_component_merge_imageneta_t10c20_r10_sgd_s2/exp_run/20/s3_c3_component_merge_imageneta_t10c20_r10_sgd_s2_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "d58a07b7a64174463527b892ae0657e6a758fbb02135e79cf981ac510c65efde",
+          "seed": "2",
+          "faa_macro": 40.126999999999995,
+          "aaa_macro": 60.85017222222222,
+          "sample_final": 47.0,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "79d921840b009cb46f445d906696957c9bba3c4e3c72e6158efd0f2e845a2971",
+          "current_config_differences": {}
+        }
+      ],
+      "related_different_control_candidates": [],
+      "reason": "同seed、相同科学配置与运行分支的历史结果已经存在；可复用性能及已有机制统计。新运行的增量是冻结源/环境收据与任务边界endpoint/path状态，不是首次覆盖该科学配置。",
+      "can_replace_historical_accuracy_table_cell": true,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "冻结源和环境哈希绑定的当次完成收据",
+        "新边界状态：融合前endpoint和epoch20/40路径LoRA因子",
+        "与新批次matched-no-merge对照一致的执行来源"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_center_s1",
+      "axis": "weight_fusion_primary",
+      "value": "center",
+      "seed": 1,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_center_s1.json",
+      "current_config_sha256": "e3692be855c79a1e2156a0e71b54e7c65374ca6ea71683aed5ca099aa45f0db0",
+      "reuse_class": "same_seed_scientific_equivalent",
+      "exact_same_seed_scientific_candidates": [
+        {
+          "id": "2384700caf47",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s1_gpu2.log",
+          "log_sha256": "62e55fa99eb94f64043a2c15c7afc5b0039aa2ef8a952fa38b826624eb87e985",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_damp_c3_alpha02_int20_s1.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/1/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s1/exp_run/20/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s1_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "e9e4d5ea260bd7d3229bbf2bf7e0d0442f72009c8402237c2deca135fc829ec2",
+          "seed": "1",
+          "faa_macro": 50.585,
+          "aaa_macro": 67.02925833333333,
+          "sample_final": 57.8,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "3f307d93cf5e2606b3867cb629d5ce9b3135dd1121041f7053fe5fb1f4cd05dc",
+          "current_config_differences": {}
+        }
+      ],
+      "related_different_control_candidates": [],
+      "reason": "同seed、相同科学配置与运行分支的历史结果已经存在；可复用性能及已有机制统计。新运行的增量是冻结源/环境收据与任务边界endpoint/path状态，不是首次覆盖该科学配置。",
+      "can_replace_historical_accuracy_table_cell": true,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "冻结源和环境哈希绑定的当次完成收据",
+        "新边界状态：融合前endpoint和epoch20/40路径LoRA因子",
+        "与新批次matched-no-merge对照一致的执行来源"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_a_nomerge_matched_s1",
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "seed": 1,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_nomerge_matched_s1.json",
+      "current_config_sha256": "48b29a10993b5824914558201c6c2b6708047b876f2b9026adc9527e9552eca0",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "4fe5579fa5de",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_gam_s1_smigpu7.log",
+          "log_sha256": "b6e919aa5665072b33bbccc05de07d7a65ddff633d80ddcb7e3f487bd11103c0",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_c3_component_gam_s1.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/component_gam_sgd_initlr004_lr002_e50_rho005_f100_nomerge_alpha02/imageneta/1/s3_c3_component_gam_imageneta_t10c20_r10_sgd_s1/exp_run/20/s3_c3_component_gam_imageneta_t10c20_r10_sgd_s1_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "51d5560917e8df311831ecf2b0189d276be339ae940e28eaa803e2127d0e74fc",
+          "seed": "1",
+          "faa_macro": 52.339,
+          "aaa_macro": 67.51793333333333,
+          "sample_final": 59.84,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "0dd1d366639f0ced1212b40975ff038032553c779d262fbce8675f0124eb5d75",
+          "current_config_differences": {
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": 0,
+              "current": 10
+            }
+          }
+        }
+      ],
+      "reason": "未见in_task_weight_merge_start_task=10且仍保存两次快照、执行质量CE的历史训练。Aoff跳过CE并改变RNG，不能替代。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_a_off_s2",
+      "axis": "weight_fusion_execution",
+      "value": "whole_module_off",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_off_s2.json",
+      "current_config_sha256": "f2f05379ecc6e0652a509c4071e994cb3bce0f7e11a11c76f95c1d68592b1898",
+      "reuse_class": "same_seed_scientific_equivalent",
+      "exact_same_seed_scientific_candidates": [
+        {
+          "id": "0d851fca5cf1",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_component_ablation_seed2/component_gam_gpu2.log",
+          "log_sha256": "dd15f09da8cb65ae08ee342ded98a7d75e7bfdb6707912967827b7518008ca94",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_c3_component_gam_s2.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/component_gam_sgd_initlr004_lr002_e50_rho005_f100_nomerge_alpha02/imageneta/2/s3_c3_component_gam_imageneta_t10c20_r10_sgd_s2/exp_run/20/s3_c3_component_gam_imageneta_t10c20_r10_sgd_s2_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "ec640491be622bc430ca5c34a020070b4d011b3ed6ee21b38dbd93623ac4418c",
+          "seed": "2",
+          "faa_macro": 52.29299999999999,
+          "aaa_macro": 67.09762698412699,
+          "sample_final": 59.78,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "973301ecce60f099d33ab44b972bfa03f48d8e86da9d3578584474492127e0df",
+          "current_config_differences": {}
+        }
+      ],
+      "related_different_control_candidates": [],
+      "reason": "同seed、相同科学配置与运行分支的历史结果已经存在；可复用性能及已有机制统计。新运行的增量是冻结源/环境收据与任务边界endpoint/path状态，不是首次覆盖该科学配置。",
+      "can_replace_historical_accuracy_table_cell": true,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "冻结源和环境哈希绑定的当次完成收据",
+        "新边界状态：融合前endpoint和epoch20/40路径LoRA因子",
+        "与新批次matched-no-merge对照一致的执行来源"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_center_s3",
+      "axis": "weight_fusion_primary",
+      "value": "center",
+      "seed": 3,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_center_s3.json",
+      "current_config_sha256": "34488edf20e3d484fcad4f7fc7916652cdc0e113d515f3984be64944bda62ae6",
+      "reuse_class": "same_seed_scientific_equivalent",
+      "exact_same_seed_scientific_candidates": [
+        {
+          "id": "7bbb9647f106",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s3_gpu4.log",
+          "log_sha256": "d9e5dc32aeb979b1c9568c6e32b85e653f8748488d4cb2ce4e376f95d0d952de",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_damp_c3_alpha02_int20_s3.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha02_sr00_wpathbeta30/imageneta/3/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s3/exp_run/20/s3_damp_c3_alpha02_int20_imageneta_t10c20_r10_sgd_s3_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "ee79afd35b418eadce11028513a4f678d155e886ede993893e56cb984e94ad8d",
+          "seed": "3",
+          "faa_macro": 51.968,
+          "aaa_macro": 67.52826626984127,
+          "sample_final": 59.97,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "8a28ba6dbb5c22e7cbfd1b3c6d8297eeb36af7ba1db564c51881e07aa9b8b00f",
+          "current_config_differences": {}
+        }
+      ],
+      "related_different_control_candidates": [],
+      "reason": "同seed、相同科学配置与运行分支的历史结果已经存在；可复用性能及已有机制统计。新运行的增量是冻结源/环境收据与任务边界endpoint/path状态，不是首次覆盖该科学配置。",
+      "can_replace_historical_accuracy_table_cell": true,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "冻结源和环境哈希绑定的当次完成收据",
+        "新边界状态：融合前endpoint和epoch20/40路径LoRA因子",
+        "与新批次matched-no-merge对照一致的执行来源"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_a_nomerge_matched_s3",
+      "axis": "weight_fusion_primary",
+      "value": "matched_no_merge",
+      "seed": 3,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_nomerge_matched_s3.json",
+      "current_config_sha256": "1b8314e8d84ae84f8ed717b8cceaedb1e7be097b7970dec42e589bff69f19294",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "未见in_task_weight_merge_start_task=10且仍保存两次快照、执行质量CE的历史训练。Aoff跳过CE并改变RNG，不能替代。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_fisher_endpoint_anchor_s2",
+      "axis": "fisher_anchor_location",
+      "value": "pre_merge_endpoint",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_endpoint_anchor_s2.json",
+      "current_config_sha256": "8839bf152e5d886e8aa487e05cb1526f3c927634029878bb738789799c7fe82c",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "b6e8267a73fa",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_damp_alpha02_lam4e4_gpu6.log",
+          "log_sha256": "40520d6924d502f42018ad9c54589622b19aee232c24aae85f6a44cafda97e39",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_damp_alpha02/imageneta/0/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "a37acb66dd519e4379ec7806506228f7ef62d576f30f97369cdc7588fbca8b6f",
+          "seed": "0",
+          "faa_macro": 50.489999999999995,
+          "aaa_macro": 66.66937976190476,
+          "sample_final": 58.26,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "e0b0f580df76b9bef6242c21353b5393622872d8e903c0731d90bd61f3cbb74f",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            },
+            "s3_fisher_location": {
+              "historical": "retained",
+              "current": "endpoint"
+            }
+          }
+        },
+        {
+          "id": "6857046f7920",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_damp_alpha01_lam4e4_gpu5.log",
+          "log_sha256": "cf2b8cffb249ba967c2edcafaa2b95b999964ebe6edc1a5eb2fc5f12d55e3114",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_damp_alpha01/imageneta/0/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "59b9d626358bf2870ede5184bea88905ab143b02ae933c8262a79f5c8a4f341c",
+          "seed": "0",
+          "faa_macro": 50.562,
+          "aaa_macro": 66.77140357142858,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "0b178269a519dae8137ad08587c0d1086b4e838629d067c5f5df98061c92fbc3",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.1,
+              "current": 0.2
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            },
+            "s3_fisher_location": {
+              "historical": "retained",
+              "current": "endpoint"
+            }
+          }
+        },
+        {
+          "id": "a8aacc45b442",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_equiv_lam4e4_gpu4.log",
+          "log_sha256": "be0db4727fa74630d0b9a3b89315bd06f4e772e1677a54a895791fcbe6a51e4f",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_equiv/imageneta/0/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "7c64b1ecd7024ad8172e14978584de15935b0a8fb502a8d1ec24987146eb8a1e",
+          "seed": "0",
+          "faa_macro": 50.546,
+          "aaa_macro": 66.70002976190476,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "905c14e931307bd7d5464892494d77f97a34404c371623add586a93ea08b092d",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "model_name": {
+              "historical": "ewclora_normfisher_gam_intask",
+              "current": "ewclora_normfisher_gam_intask_damp"
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_start_ratio": {
+              "historical": null,
+              "current": 0.0
+            },
+            "in_task_path_beta": {
+              "historical": null,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_loss_max_batches": {
+              "historical": null,
+              "current": 100
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": null,
+              "current": 0.2
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            },
+            "s3_fisher_location": {
+              "historical": "retained",
+              "current": "endpoint"
+            }
+          }
+        },
+        {
+          "id": "87a3ec9b9c2f",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_vs_endpoint_merge/s3_endpoint_wmerge_omega030_gpu4.log",
+          "log_sha256": "a9bc191b2565aa34b54dfb3e628655063ba930664ffb5b5ba7230abf448dd5a3",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_vs_endpoint_merge/tmp_s3_endpoint_wmerge_omega030.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask/gam_sgd_initlr004_lr002_e50_rho005_f100_endpoint_wmerge_omega030/imageneta/0/s3_endpoint_wmerge_omega030_imageneta_t10c20_r10_sgd_s0/exp_run/20/s3_endpoint_wmerge_omega030_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "5728dcaf6f22017b55132d976612732531536d0c1bfe3a20d59979f45ecfd73b",
+          "seed": "0",
+          "faa_macro": 49.637,
+          "aaa_macro": 65.97835476190477,
+          "sample_final": 57.47,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "1f1698db112d7535a94534a148842f51570e7cda8902fb9662b9785e4e0daed1",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "model_name": {
+              "historical": "ewclora_normfisher_gam_intask",
+              "current": "ewclora_normfisher_gam_intask_damp"
+            },
+            "in_task_path_start_ratio": {
+              "historical": null,
+              "current": 0.0
+            },
+            "in_task_path_beta": {
+              "historical": null,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_loss_max_batches": {
+              "historical": null,
+              "current": 100
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": null,
+              "current": 0.2
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "s3_fisher_location": {
+              "historical": "retained",
+              "current": "endpoint"
+            }
+          }
+        }
+      ],
+      "reason": "旧endpoint权重融合改变task-start/end权重，不是固定融合模型下只将Fisher估计移到premerge端点。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_a_uniform_s2",
+      "axis": "weight_fusion_weights",
+      "value": "uniform",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_uniform_s2.json",
+      "current_config_sha256": "ace649c7d6dcf2c89f7143443dbb2bffd11cf44801e2823a3518f10fe713cc7e",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "bbf373051336",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s6_ablation/s6_a2_wmergef_omega05_gpu1.log",
+          "log_sha256": "58269bd8a649f3d296313ce34842b379ec3931af63bb9329b11a82c12bc3c966",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s6_a2_wmergef_omega05.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam2000_wmergef_omega05_alpha02/imageneta/0/s6_a2_wmergef_omega05_imageneta_t10c20_r10_sgd_s0/exp_run/20/s6_a2_wmergef_omega05_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "fe7cfe60bc83cdf592a0f55202fd73f72e83ff0c37dca7a123d1fcea92698ef7",
+          "seed": "0",
+          "faa_macro": 50.648,
+          "aaa_macro": 66.58769761904762,
+          "sample_final": 58.59,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "c5beef9140c87681d6b1eb310a4dad27c955800bfcc25c1f679c7601df9bdffa",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            }
+          }
+        },
+        {
+          "id": "a8cf7ac1a0cf",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_step2d_damp_batchfisher_ablation/s2d_wmerge_damp_batchF_b0_sanity_gpu2.log",
+          "log_sha256": "162aa8c8123e5c8e650698938366c21b2e0026ec804def92f38ab1db5f0d4e15",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_step2d_damp_batchfisher_ablation/tmp_s2d_wmerge_damp_batchF_b0_sanity.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha00/imageneta/0/s2d_wmerge_damp_batchF_b0_sanity_imageneta_t10c20_r10_sgd_s0/exp_run/20/s2d_wmerge_damp_batchF_b0_sanity_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "89efaeb1a13623e0b52902d26d75f3ae2ef0f90bd497923186ad0c33875462a6",
+          "seed": "0",
+          "faa_macro": 52.11900000000001,
+          "aaa_macro": 67.94127261904762,
+          "sample_final": 60.17,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 20,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "2a41f5454cdb8295aad7c79bee5c74f37a6b320e5bf763dda0d513ed8119fa42",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.0,
+              "current": 0.2
+            }
+          }
+        },
+        {
+          "id": "1e72af72f2e8",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/s4a_B1_allpath_sr00_gpu2.log",
+          "log_sha256": "861b6f357966ea20fdd296f25e1bb82187d1781fcaf73f55260a3f2592e3581b",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/tmp_s4a_B1_allpath_sr00.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_B1_allpath_sr00_int10_omega10_damp1e3/imageneta/0/s4a_B1_allpath_sr00_imageneta_t10c20_r10_sgd_s0/exp_run/20/s4a_B1_allpath_sr00_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "a7b1f7c47e9fd4f62613a4eece993410c0c67df0762c57c88cc291162a94b2ca",
+          "seed": "0",
+          "faa_macro": 50.412,
+          "aaa_macro": 66.71610238095238,
+          "sample_final": 58.33,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "df693084595a3b03baa14fbdf7da7ccd462deacab7cfb353e370e17f2fa56272",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 1.0,
+              "current": 0.3
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.001,
+              "current": 0.2
+            }
+          }
+        },
+        {
+          "id": "2a55a4b9c3e5",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/s4a_B3_late_sr06_gpu4.log",
+          "log_sha256": "3e35e8221007d87356d5933ac5de9752b5fe40a4fe10074a94778034ce31e919",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/tmp_s4a_B3_late_sr06.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_B3_late_sr06_int10_omega10_damp1e3/imageneta/0/s4a_B3_late_sr06_imageneta_t10c20_r10_sgd_s0/exp_run/20/s4a_B3_late_sr06_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "ebafbd6c0efddb88c8b6796567e96f6644ca6a5fa5e92e1ef7ecfb2a76e4a833",
+          "seed": "0",
+          "faa_macro": 50.482,
+          "aaa_macro": 66.62215952380953,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "dc2d26b52807e613b26d2a47549df29e988cf62050409d44942ebb538232d713",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 1.0,
+              "current": 0.3
+            },
+            "in_task_path_start_ratio": {
+              "historical": 0.6,
+              "current": 0.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.001,
+              "current": 0.2
+            }
+          }
+        },
+        {
+          "id": "52ab431b9cec",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/s4a_B2_midlate_sr04_gpu3.log",
+          "log_sha256": "8e1117e7f98607e4270fcc17d2a515fa5165e9c7d665e8ba44d8df134567bbd3",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/tmp_s4a_B2_midlate_sr04.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_B2_midlate_sr04_int10_omega10_damp1e3/imageneta/0/s4a_B2_midlate_sr04_imageneta_t10c20_r10_sgd_s0/exp_run/20/s4a_B2_midlate_sr04_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "4838fb29577cb2bbb65cb74e935efe8713982496b3c330aacce456c1f6cee49c",
+          "seed": "0",
+          "faa_macro": 50.620999999999995,
+          "aaa_macro": 66.6330992063492,
+          "sample_final": 58.59,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "55c6215c0cfce3c9f11cd3513691fa244284debcbcd760a4563f3ad477ce6404",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 1.0,
+              "current": 0.3
+            },
+            "in_task_path_start_ratio": {
+              "historical": 0.4,
+              "current": 0.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.001,
+              "current": 0.2
+            }
+          }
+        }
+      ],
+      "reason": "历史快照加权/窗口有相关结果，但seed、omega、间隔、Fisher版本或额外CE执行预算不同。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_a_latest_s2",
+      "axis": "weight_fusion_weights",
+      "value": "latest_epoch40",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_a_latest_s2.json",
+      "current_config_sha256": "54ee56fd263274a8af1f458a10fde75178967c089632475de5f3217776eaf1de",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "813a4d4b3da8",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_step2d_damp_batchfisher_ablation/s2d_wmerge_damp_batchF_c2_alpha02_int10_sr06_gpu4.log",
+          "log_sha256": "bf38d5592dfe40e8304a289807505b3050b97de6c34890dd43ed14a096011165",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_step2d_damp_batchfisher_ablation/tmp_s2d_wmerge_damp_batchF_c2_alpha02_int10_sr06.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask10_wmerge_omega030_batchF_alpha02_sr06_wpathbeta30/imageneta/0/s2d_wmerge_damp_batchF_c2_alpha02_int10_sr06_imageneta_t10c20_r10_sgd_s0/exp_run/20/s2d_wmerge_damp_batchF_c2_alpha02_int10_sr06_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "cd5b4894c18cdeaaee1ae25f068cb8afbebdf743cc4bb83a36a0074a1fc3f1f2",
+          "seed": "0",
+          "faa_macro": 50.756,
+          "aaa_macro": 66.59231428571428,
+          "sample_final": 58.53,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 50,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "a208792044af02e107f1f8e068e518b28b568d2e96459ad03873f0477af670f5",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            }
+          }
+        },
+        {
+          "id": "2a55a4b9c3e5",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/s4a_B3_late_sr06_gpu4.log",
+          "log_sha256": "3e35e8221007d87356d5933ac5de9752b5fe40a4fe10074a94778034ce31e919",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s4a_wmergethenfisher_AB/tmp_s4a_B3_late_sr06.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_B3_late_sr06_int10_omega10_damp1e3/imageneta/0/s4a_B3_late_sr06_imageneta_t10c20_r10_sgd_s0/exp_run/20/s4a_B3_late_sr06_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "ebafbd6c0efddb88c8b6796567e96f6644ca6a5fa5e92e1ef7ecfb2a76e4a833",
+          "seed": "0",
+          "faa_macro": 50.482,
+          "aaa_macro": 66.62215952380953,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "dc2d26b52807e613b26d2a47549df29e988cf62050409d44942ebb538232d713",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 1.0,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.001,
+              "current": 0.2
+            }
+          }
+        }
+      ],
+      "reason": "历史快照加权/窗口有相关结果，但seed、omega、间隔、Fisher版本或额外CE执行预算不同。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_fisher_alpha0_s2",
+      "axis": "fisher_damping",
+      "value": "alpha0",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_alpha0_s2.json",
+      "current_config_sha256": "e321bdce9076852941cacbe9209dc749d749505d8aedd9985c93306bba337d3f",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "a8cf7ac1a0cf",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_step2d_damp_batchfisher_ablation/s2d_wmerge_damp_batchF_b0_sanity_gpu2.log",
+          "log_sha256": "162aa8c8123e5c8e650698938366c21b2e0026ec804def92f38ab1db5f0d4e15",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_step2d_damp_batchfisher_ablation/tmp_s2d_wmerge_damp_batchF_b0_sanity.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_intask20_wmerge_omega030_batchF_alpha00/imageneta/0/s2d_wmerge_damp_batchF_b0_sanity_imageneta_t10c20_r10_sgd_s0/exp_run/20/s2d_wmerge_damp_batchF_b0_sanity_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "89efaeb1a13623e0b52902d26d75f3ae2ef0f90bd497923186ad0c33875462a6",
+          "seed": "0",
+          "faa_macro": 52.11900000000001,
+          "aaa_macro": 67.94127261904762,
+          "sample_final": 60.17,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 20,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "2a41f5454cdb8295aad7c79bee5c74f37a6b320e5bf763dda0d513ed8119fa42",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            }
+          }
+        },
+        {
+          "id": "c74017562ae0",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_mechanism/mechanism_baseline_s2_v2_smigpu5.log",
+          "log_sha256": "221e5faca4ed39d84f256b2bf49b50433228b9ccbc96ba0a0eebd26a9c0be8b0",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_save/s3_c3_mechanism_baseline_nodamp_nomerge_s2.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/mechanism_baseline_gam_sgd_initlr004_lr002_e50_rho005_f100_nodamp_nomerge/imageneta/2/s3_c3_mechanism_baseline_nodamp_nomerge_imageneta_t10c20_r10_sgd_s2/exp_run/20/s3_c3_mechanism_baseline_nodamp_nomerge_imageneta_t10c20_r10_sgd_s2_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "eae6e557cd59e34d7b5d40ec73383d418e9cc9a292b72a4a97812bc646bb46fc",
+          "seed": "2",
+          "faa_macro": 52.073,
+          "aaa_macro": 67.57871547619048,
+          "sample_final": 59.25,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": true,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": true
+          },
+          "config_sha256": "32a6dba6dae9a74e4ecc3d593790543ddaebfd2ac1f0e0024d2bad62c440d379",
+          "current_config_differences": {
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            }
+          }
+        },
+        {
+          "id": "b6e8267a73fa",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_damp_alpha02_lam4e4_gpu6.log",
+          "log_sha256": "40520d6924d502f42018ad9c54589622b19aee232c24aae85f6a44cafda97e39",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_damp_alpha02/imageneta/0/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "a37acb66dd519e4379ec7806506228f7ef62d576f30f97369cdc7588fbca8b6f",
+          "seed": "0",
+          "faa_macro": 50.489999999999995,
+          "aaa_macro": 66.66937976190476,
+          "sample_final": 58.26,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "e0b0f580df76b9bef6242c21353b5393622872d8e903c0731d90bd61f3cbb74f",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.2,
+              "current": 0.0
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            }
+          }
+        },
+        {
+          "id": "6857046f7920",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_damp_alpha01_lam4e4_gpu5.log",
+          "log_sha256": "cf2b8cffb249ba967c2edcafaa2b95b999964ebe6edc1a5eb2fc5f12d55e3114",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_damp_alpha01/imageneta/0/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "59b9d626358bf2870ede5184bea88905ab143b02ae933c8262a79f5c8a4f341c",
+          "seed": "0",
+          "faa_macro": 50.562,
+          "aaa_macro": 66.77140357142858,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "0b178269a519dae8137ad08587c0d1086b4e838629d067c5f5df98061c92fbc3",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.1,
+              "current": 0.0
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            }
+          }
+        },
+        {
+          "id": "a8aacc45b442",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_equiv_lam4e4_gpu4.log",
+          "log_sha256": "be0db4727fa74630d0b9a3b89315bd06f4e772e1677a54a895791fcbe6a51e4f",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_equiv/imageneta/0/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "7c64b1ecd7024ad8172e14978584de15935b0a8fb502a8d1ec24987146eb8a1e",
+          "seed": "0",
+          "faa_macro": 50.546,
+          "aaa_macro": 66.70002976190476,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "905c14e931307bd7d5464892494d77f97a34404c371623add586a93ea08b092d",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "model_name": {
+              "historical": "ewclora_normfisher_gam_intask",
+              "current": "ewclora_normfisher_gam_intask_damp"
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_start_ratio": {
+              "historical": null,
+              "current": 0.0
+            },
+            "in_task_path_beta": {
+              "historical": null,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_loss_max_batches": {
+              "historical": null,
+              "current": 100
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": null,
+              "current": 0.0
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            }
+          }
+        }
+      ],
+      "reason": "已有旧背景阻尼结果，但不能替代当前seed2、lambda2000、Aon的单轴控制。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_fisher_alpha1_s2",
+      "axis": "fisher_damping",
+      "value": "alpha1_isotropic",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_alpha1_s2.json",
+      "current_config_sha256": "8ff95ac011b491ea36c2a4adda75e4db14cc83c6746cbce1a43f011548c69b2c",
+      "reuse_class": "related_different_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [
+        {
+          "id": "b6e8267a73fa",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_damp_alpha02_lam4e4_gpu6.log",
+          "log_sha256": "40520d6924d502f42018ad9c54589622b19aee232c24aae85f6a44cafda97e39",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_damp_alpha02/imageneta/0/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_damp_alpha02_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "a37acb66dd519e4379ec7806506228f7ef62d576f30f97369cdc7588fbca8b6f",
+          "seed": "0",
+          "faa_macro": 50.489999999999995,
+          "aaa_macro": 66.66937976190476,
+          "sample_final": 58.26,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "e0b0f580df76b9bef6242c21353b5393622872d8e903c0731d90bd61f3cbb74f",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.2,
+              "current": 1.0
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            }
+          }
+        },
+        {
+          "id": "6857046f7920",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_damp_alpha01_lam4e4_gpu5.log",
+          "log_sha256": "cf2b8cffb249ba967c2edcafaa2b95b999964ebe6edc1a5eb2fc5f12d55e3114",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask_damp/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_damp_alpha01/imageneta/0/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_damp_alpha01_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "59b9d626358bf2870ede5184bea88905ab143b02ae933c8262a79f5c8a4f341c",
+          "seed": "0",
+          "faa_macro": 50.562,
+          "aaa_macro": 66.77140357142858,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "0b178269a519dae8137ad08587c0d1086b4e838629d067c5f5df98061c92fbc3",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_beta": {
+              "historical": 0.0,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": false,
+              "current": true
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": 0.1,
+              "current": 1.0
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            }
+          }
+        },
+        {
+          "id": "a8aacc45b442",
+          "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s1h_endpoint_damp_ablation/s1h_endpoint_equiv_lam4e4_gpu4.log",
+          "log_sha256": "be0db4727fa74630d0b9a3b89315bd06f4e772e1677a54a895791fcbe6a51e4f",
+          "config_path": "/data/140-1/users/liying/CopyFlatCV/config_Expand/step_ablation/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002.yaml",
+          "metrics_path": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/step_ablation/logs_inc_lora/ewclora_normfisher_gam_intask/gam_sgd_initlr004_lr002_e50_rho005_f100_lam4e4_endpoint_equiv/imageneta/0/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0/exp_run/20/s1h_endpoint_equiv_lam4e4_e50_initlr004_lr002_imageneta_t10c20_r10_sgd_s0_vit_base_patch16_224_cl_metrics.json",
+          "metrics_sha256": "7c64b1ecd7024ad8172e14978584de15935b0a8fb502a8d1ec24987146eb8a1e",
+          "seed": "0",
+          "faa_macro": 50.546,
+          "aaa_macro": 66.70002976190476,
+          "sample_final": 58.39,
+          "status": "complete_verified",
+          "runtime_branch_signals": {
+            "weight_merge_then_fisher": false,
+            "raw_fisher_snapshot_messages": 0,
+            "current_fisher_source_post_merge": false
+          },
+          "config_sha256": "905c14e931307bd7d5464892494d77f97a34404c371623add586a93ea08b092d",
+          "current_config_differences": {
+            "seed": {
+              "historical": 0,
+              "current": [
+                2
+              ]
+            },
+            "model_name": {
+              "historical": "ewclora_normfisher_gam_intask",
+              "current": "ewclora_normfisher_gam_intask_damp"
+            },
+            "ewc_lambda": {
+              "historical": 40000,
+              "current": 2000
+            },
+            "in_task_fisher_interval": {
+              "historical": 10,
+              "current": 20
+            },
+            "in_task_fisher_omega": {
+              "historical": 0.5,
+              "current": 0.3
+            },
+            "in_task_path_start_ratio": {
+              "historical": null,
+              "current": 0.0
+            },
+            "in_task_path_beta": {
+              "historical": null,
+              "current": 3.0
+            },
+            "in_task_path_weighted": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_normalize_snapshots": {
+              "historical": null,
+              "current": true
+            },
+            "in_task_path_loss_max_batches": {
+              "historical": null,
+              "current": 100
+            },
+            "ewc_fisher_damping_alpha": {
+              "historical": null,
+              "current": 1.0
+            },
+            "in_task_weight_merge": {
+              "historical": false,
+              "current": true
+            },
+            "in_task_weight_merge_start_task": {
+              "historical": null,
+              "current": 0
+            }
+          }
+        }
+      ],
+      "reason": "未见alpha=1的trace匹配各向同性Fisher控制；旧alpha0/0.1/0.2只能提供相关背景。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_fisher_gamma0_s2",
+      "axis": "fisher_history",
+      "value": "gamma0_no_history",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_gamma0_s2.json",
+      "current_config_sha256": "0ba6da077ce1b306357306597d7f1467602f8bd19451b26b306083351426ace6",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "完成的相关EWC实验gamma均为0.9，未见gamma=0或1的相应历史消融。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_fisher_gamma1_s2",
+      "axis": "fisher_history",
+      "value": "gamma1_no_decay",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_gamma1_s2.json",
+      "current_config_sha256": "65a63ad67a215be181efd3223f68da230186607eba3e1b21d2e5fb5da4972c01",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "完成的相关EWC实验gamma均为0.9，未见gamma=0或1的相应历史消融。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_fisher_tasknorm_off_s2",
+      "axis": "fisher_task_normalization",
+      "value": "off",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_fisher_tasknorm_off_s2.json",
+      "current_config_sha256": "a79fa3a9d6667ce915078ba61ca8882b0223f96d88005f57375c1f28a20f50bb",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "未见同一S3分支中仅关闭任务Fisher归一化的完整实验；NCL/KFAC的不归一化配置是另一方法。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_gam_projection_off_s2",
+      "axis": "gam_projection",
+      "value": "off",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_gam_projection_off_s2.json",
+      "current_config_sha256": "fcfd9349114ec7571413e62452ebfaf648e220c7898b9bfe308e20975c2ca785",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "索引中完成ImageNet-A实验的GAM gamma均为0.1，未见gamma=0投影消融。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    },
+    {
+      "current_job_id": "s3_mech_gam_rho025_s2",
+      "axis": "gam_first_radius",
+      "value": "rho0.025",
+      "seed": 2,
+      "current_config_path": "/data/140-1/users/liying/CopyFlatCV/refine-logs/s3-mechanisms-20260920/configs/s3_mech_gam_rho025_s2.json",
+      "current_config_sha256": "57980741fa374c3ed9a7143871e10c4f9c8068967bcf7aeed47be12cb33c46f3",
+      "reuse_class": "no_matching_historical_control",
+      "exact_same_seed_scientific_candidates": [],
+      "related_different_control_candidates": [],
+      "reason": "索引中完成ImageNet-A实验的rho为0.05或其他方法的0.02，未见当前rho=0.025。",
+      "can_replace_historical_accuracy_table_cell": false,
+      "can_claim_new_frozen_queue_completion": false,
+      "can_replace_new_boundary_sidecars": false,
+      "cannot_replace": [
+        "该新控制的受控因果比较"
+      ],
+      "queue_action": "none; audit only; running/planned jobs unchanged"
+    }
+  ],
+  "historical_four_grid": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "runs": 12,
+    "reuse_scope": "完整GAM×A模块历史四格可复用；Aoff是模块整体删除而非CE/RNG匹配融合控制。",
+    "records": [
+      {
+        "id": "e2c8688e8c81",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_gam_s0_smigpu4.log",
+        "seed": "0",
+        "faa_macro": 50.369
+      },
+      {
+        "id": "26bfcf2c4583",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_merge_s0_smigpu5.log",
+        "seed": "0",
+        "faa_macro": 39.363
+      },
+      {
+        "id": "4fe5579fa5de",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_gam_s1_smigpu7.log",
+        "seed": "1",
+        "faa_macro": 52.339
+      },
+      {
+        "id": "1e06d0825be1",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_ewc_s0_smigpu2.log",
+        "seed": "0",
+        "faa_macro": 40.733999999999995
+      },
+      {
+        "id": "6a9d375bb6d3",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_ewc_s1_smigpu6.log",
+        "seed": "1",
+        "faa_macro": 40.225
+      },
+      {
+        "id": "629d8b36efd3",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_multiseed_verification/component_merge_s1_smigpu1.log",
+        "seed": "1",
+        "faa_macro": 41.386
+      },
+      {
+        "id": "0d851fca5cf1",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_component_ablation_seed2/component_gam_gpu2.log",
+        "seed": "2",
+        "faa_macro": 52.29299999999999
+      },
+      {
+        "id": "f6ddcd8c02d9",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_component_ablation_seed2/component_ewc_gpu1.log",
+        "seed": "2",
+        "faa_macro": 40.025
+      },
+      {
+        "id": "157a146d8602",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_component_ablation_seed2/component_merge_gpu6.log",
+        "seed": "2",
+        "faa_macro": 40.126999999999995
+      },
+      {
+        "id": "2384700caf47",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s1_gpu2.log",
+        "seed": "1",
+        "faa_macro": 50.585
+      },
+      {
+        "id": "65794959bbd7",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s2_gpu3.log",
+        "seed": "2",
+        "faa_macro": 53.311
+      },
+      {
+        "id": "05311153faa0",
+        "log_path": "/data/140-1/users/liying/CopyFlatCV/logs_try/logs_s3_damp_c3_multiseed/s3_damp_c3_alpha02_int20_s0_gpu1.log",
+        "seed": "0",
+        "faa_macro": 52.315999999999995
+      }
+    ]
+  },
+  "limitations": [
+    "未对新队列发停止、跳过、注册完成等操作。",
+    "4条等价候选减少的是纯性能重复需求；严格新冻结配对和新边界机制证据仍有新增价值。",
+    "历史center seed1/3不能替代新source冻结并与matched-no-merge同批控制的来源要求。",
+    "203+历史索引中任何损失NaN、未完成或协议不同记录均未提升为同配置已完成。"
+  ]
+}

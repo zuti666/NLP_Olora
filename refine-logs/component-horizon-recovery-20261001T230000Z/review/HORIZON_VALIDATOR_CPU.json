@@ -1,0 +1,128 @@
+{
+  "status": "passed",
+  "fixture_scope": "synthetic schema envelopes with actual CPU frozen-GAM step records; not ViT experiments",
+  "positive_cases": [
+    "u0_natural",
+    "u0_matched",
+    "us_natural",
+    "us_matched",
+    "ug_natural",
+    "ug_matched",
+    "uo_natural",
+    "uo_matched",
+    "ufull_natural",
+    "ufull_matched"
+  ],
+  "positive_count": 10,
+  "negative_cases_rejected": [
+    {
+      "case": "wrong_status",
+      "error": "ValueError('wrong horizon identity/completion')"
+    },
+    {
+      "case": "wrong_completed_tasks",
+      "error": "ValueError('wrong task/smoke count')"
+    },
+    {
+      "case": "missing_trace_row",
+      "error": "ValueError('incomplete trace/hash')"
+    },
+    {
+      "case": "wrong_row_lr",
+      "error": "ValueError('wrong native cosine LR')"
+    },
+    {
+      "case": "wrong_effective_config_lr",
+      "error": "ValueError('wrong native full schedule')"
+    },
+    {
+      "case": "wrong_native_beta",
+      "error": "ValueError('wrong native probe construction')"
+    },
+    {
+      "case": "projector_false",
+      "error": "ValueError('failed actual step specification')"
+    },
+    {
+      "case": "projector_not_bool",
+      "error": "ValueError('failed actual step specification')"
+    },
+    {
+      "case": "fisher_pass_performed",
+      "error": "ValueError('forbidden work performed')"
+    },
+    {
+      "case": "closure_count_wrong",
+      "error": "ValueError('wrong GAM execution count')"
+    },
+    {
+      "case": "nonfinite_trace_value",
+      "error": "ValueError('nonfinite observed value')"
+    },
+    {
+      "case": "zero_reference_target",
+      "error": "ValueError('invalid effective norm')"
+    },
+    {
+      "case": "us_not_nominal",
+      "error": "ValueError('nominal scalar identity violated')"
+    },
+    {
+      "case": "us_reference_after_not_exact",
+      "error": "ValueError('US no longer native baseline')"
+    },
+    {
+      "case": "wrong_step_order",
+      "error": "ValueError('wrong trace task/epoch/batch sequence')"
+    },
+    {
+      "case": "wrong_class_slice",
+      "error": "ValueError('wrong full-seen FC or loss slice')"
+    },
+    {
+      "case": "matched_error_exceeds_bound",
+      "error": "ValueError('unmatched candidate step')"
+    },
+    {
+      "case": "wrong_summary_reference_definition",
+      "error": "ValueError('wrong matching definition')"
+    },
+    {
+      "case": "wrong_row_reference_definition",
+      "error": "ValueError('wrong reference trajectory semantics')"
+    },
+    {
+      "case": "stale_trace_hash",
+      "error": "ValueError('incomplete trace/hash')"
+    },
+    {
+      "case": "stale_input_config_hash",
+      "error": "ValueError('schedule/input hash mismatch')"
+    },
+    {
+      "case": "wrong_source_gam_hash",
+      "error": "ValueError('wrong frozen GAM implementation')"
+    },
+    {
+      "case": "checkpoint_native_file_missing",
+      "error": "ValueError('incomplete native checkpoint')"
+    },
+    {
+      "case": "checkpoint_wrong_source",
+      "error": "ValueError('checkpoint source/class range mismatch')"
+    },
+    {
+      "case": "wrapper_sample_curve_disagrees_log",
+      "error": "ValueError('sample metric conflicts with native log')"
+    },
+    {
+      "case": "native_matrix_nan",
+      "error": "ValueError('Nonfinite lower triangle in CNN matrix row 1')"
+    }
+  ],
+  "negative_count": 26,
+  "unexpectedly_accepted": [],
+  "validator_sha256": "8a5e420e3b597c420d2e7bd3806178a0322807f6f139711d75bd49c14bcbfa34",
+  "common_sha256": "a8b750e65b599445d97476a455cbd9f9fec94aab87b2f9023e6e1d0d17c16042",
+  "fixture_sha256": "86d3606478919da89b8dbccd730e81f27ec6ba9bec5a2841815d1c531f00ec9d"
+}

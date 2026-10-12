@@ -1,0 +1,1935 @@
+{
+  "schema": "rq2_formal_stage_completion_v1",
+  "purpose": "Complete formal all-stage path sensitivity and training Fisher radii11..19; no training",
+  "gpus": [
+    0,
+    3
+  ],
+  "max_parallel": 2,
+  "run_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign",
+  "gpu_lock_dir": "/data/140-1/users/liying/O-LoRA/.cache/gpu_locks",
+  "start_after": {
+    "gpu_uuids": {
+      "0": "GPU-fd7e2955-3733-e30a-dff1-5da992423839",
+      "3": "GPU-9aa16f75-eb1c-c1a4-e900-f7b5afcddf26"
+    }
+  },
+  "code_files": [
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/campaign_runner.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/configs/seed0.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/configs/seed1.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/configs/seed2.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/diagnostic_full.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_formal_20260921/plot_b1.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_formal_20260921/plot_b2.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/figures_formal_20260921/plot_common.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/final_report/coverage.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed0.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed1.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed2.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/extension_spec.json",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/publish.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/publish_radius.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/queue_extension.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/rq2_common.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/base_vit.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/cllora_aligned.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/cllora_archived_vit.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/linears.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/lora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/lora_upload.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/net_ewclora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/prompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/resnet.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_adapter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_coda_promtpt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_dualprompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_ease.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_ewclora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_inflora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_l2p.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_lae.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_memo.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_mos.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_ssf.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vit_tuna.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/backbone/vpt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/eval_flat_feature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/eval_flatness_weight_Loss.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/eval_flat/param_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation/metrics.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation/probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_attention/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_attention/attention_probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_feature/eval_flat_feature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_feature/feature_drift.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_ood/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_ood/ood_eval.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/eval_ood.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/metrics.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_performance/probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/attn_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/curv_localization.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/eval_flatness_weight_Loss.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/eval_flatness_weight_Loss_save.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/eval_flatness_weight_Loss_upload.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/io_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/lanczos_iter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/loss_landscape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/loss_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/param_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/power_iter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/curvature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/drift.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/landscape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/sharpness_evaluation_core/probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/evaluation_weight_sharpness/visualize_attention.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/gpu_matmul.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWC.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWCon.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWConProbe_FisherShape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWConProbe_FisherShapeFactored.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWConProbe_GAMFactored.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/EWCon_Probe.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/FisherSAM-EWC-lambda-KFACFisherSAM.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/FisherSAM-EWC-lambda.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/as1_normfisher_gam_intask_damp.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/baseLearner.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/coda_prompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/dualprompt.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_merged_intask_euc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_mergedintask_multifisher_norm.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_mergedintask_multifisher_norm_weightmergethenfisher.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/ewc_gam_projected.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/finetune.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/finetune1.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/finetune_origin.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_CL/l2p.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_KFACFisherSAM.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/FisherSAM_EWCLoRA_lambda_project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_NCL-KFAC.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_NCL.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_norm.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_origin.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/GAM_EWCLoRA_lambda_project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/NCL-KFA.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_central.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_complementarity.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_decoupled.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_efficient.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_freshlora_merge_factor.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_kfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_multidirectional.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_fishershape_richardson.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher-project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_damp_weightmergethenfisher.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_euc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_gam_intask_lambda_project.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/as1_normfisher_sam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/baseLoRA.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/cllora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/cllora_aligned.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/eflora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/ewclora_youyue_fitArchitechture_gam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/inclora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/olora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/sdlora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/models_LoRAbasedCL/seqlora.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/ARWP_cos.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/c_flat.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/ekfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_central.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_efficient.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_multidirectional.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/fishershape_richardson.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/gam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/kfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/kfac_utils.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/natural_gradient.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/ogd_projected.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_fishersam_diagonal.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_fishersam_kfac.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_gam_filiter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_sam.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/optimer_sam_filiter.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/optimer_PerturabtionType/util.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/parse_eval_table.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/sharpness_evaluation_core/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/sharpness_evaluation_core/curvature.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/__main__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/main.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/trainer.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/src/trainer_allData.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/__init__.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/aggregate_multiseed_results.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/analyze_cl_logs.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/collect_imageneta_factorfs_excel.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/collect_imagenetr_factorfs_excel.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/config.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/data.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/data_manager.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/endpoint_region.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/endpoint_region_protocol.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/export_task0_trajectory.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/extract_cnn_accuracy_matrices.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/extract_fisher_compare.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/factory.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/fisher_complementarity.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/inc_net.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/kfac_ewc.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/lora_anchor_average.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/mechanism_eval.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/metrics_book.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_endpoint_sample_fisher_pareto.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_ewc_drift_analysis.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_ewc_lambda_sweep.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_fqa_linear_pdf.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_r_sweep.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/plot_task0_trajectory.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/random_reproduce.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_cl_metrics.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_ewc_lambda_sweep.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_fqa_validity.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/summarize_stage2_T.py",
+    "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/source/utils/toolkit.py"
+  ],
+  "stages": [
+    {
+      "id": "prior",
+      "depends_on": [],
+      "jobs": [
+        {
+          "id": "wait_prior",
+          "gpu": null,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/queue_extension.py",
+            "--wait-prior"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/prior_complete.json",
+          "receipt_require": {
+            "status": "complete"
+          }
+        }
+      ]
+    },
+    {
+      "id": "paths",
+      "depends_on": [
+        "prior"
+      ],
+      "jobs": [
+        {
+          "id": "path_seed0_sgd_t02",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "2"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/path_t02/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 0,
+            "target_task": 2,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_sgd_t02_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_gam_t02",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "2"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/path_t02/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 0,
+            "target_task": 2,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_gam_t02_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_sgd_t03",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "3"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/path_t03/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 0,
+            "target_task": 3,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_sgd_t03_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_gam_t03",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "3"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/path_t03/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 0,
+            "target_task": 3,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_gam_t03_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_sgd_t04",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "4"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/path_t04/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 0,
+            "target_task": 4,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_sgd_t04_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_gam_t04",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "4"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/path_t04/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 0,
+            "target_task": 4,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_gam_t04_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_sgd_t06",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "6"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/path_t06/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 0,
+            "target_task": 6,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_sgd_t06_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_gam_t06",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "6"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/path_t06/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 0,
+            "target_task": 6,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_gam_t06_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_sgd_t07",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "7"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/path_t07/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 0,
+            "target_task": 7,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_sgd_t07_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_gam_t07",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "7"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/path_t07/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 0,
+            "target_task": 7,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_gam_t07_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_sgd_t08",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "8"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/path_t08/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 0,
+            "target_task": 8,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_sgd_t08_env.json"
+          ]
+        },
+        {
+          "id": "path_seed0_gam_t08",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "8"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/path_t08/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 0,
+            "target_task": 8,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed0_gam_t08_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_sgd_t02",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "2"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/path_t02/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 1,
+            "target_task": 2,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_sgd_t02_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_gam_t02",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "2"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/path_t02/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 1,
+            "target_task": 2,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_gam_t02_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_sgd_t03",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "3"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/path_t03/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 1,
+            "target_task": 3,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_sgd_t03_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_gam_t03",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "3"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/path_t03/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 1,
+            "target_task": 3,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_gam_t03_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_sgd_t04",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "4"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/path_t04/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 1,
+            "target_task": 4,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_sgd_t04_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_gam_t04",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "4"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/path_t04/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 1,
+            "target_task": 4,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_gam_t04_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_sgd_t06",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "6"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/path_t06/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 1,
+            "target_task": 6,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_sgd_t06_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_gam_t06",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "6"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/path_t06/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 1,
+            "target_task": 6,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_gam_t06_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_sgd_t07",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "7"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/path_t07/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 1,
+            "target_task": 7,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_sgd_t07_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_gam_t07",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "7"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/path_t07/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 1,
+            "target_task": 7,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_gam_t07_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_sgd_t08",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "8"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/path_t08/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 1,
+            "target_task": 8,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_sgd_t08_env.json"
+          ]
+        },
+        {
+          "id": "path_seed1_gam_t08",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "8"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/path_t08/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 1,
+            "target_task": 8,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed1_gam_t08_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_sgd_t02",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "2"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/path_t02/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 2,
+            "target_task": 2,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_sgd_t02_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_gam_t02",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "2"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/path_t02/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 2,
+            "target_task": 2,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_gam_t02_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_sgd_t03",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "3"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/path_t03/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 2,
+            "target_task": 3,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_sgd_t03_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_gam_t03",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "3"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/path_t03/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 2,
+            "target_task": 3,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_gam_t03_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_sgd_t04",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "4"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/path_t04/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 2,
+            "target_task": 4,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_sgd_t04_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_gam_t04",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "4"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/path_t04/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 2,
+            "target_task": 4,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_gam_t04_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_sgd_t06",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "6"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/path_t06/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 2,
+            "target_task": 6,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_sgd_t06_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_gam_t06",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "6"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/path_t06/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 2,
+            "target_task": 6,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_gam_t06_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_sgd_t07",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "7"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/path_t07/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 2,
+            "target_task": 7,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_sgd_t07_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_gam_t07",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "7"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/path_t07/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 2,
+            "target_task": 7,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_gam_t07_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_sgd_t08",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "path",
+            "--path-task",
+            "8"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/path_t08/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "sgd",
+            "seed": 2,
+            "target_task": 8,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_sgd_t08_env.json"
+          ]
+        },
+        {
+          "id": "path_seed2_gam_t08",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/path_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "path",
+            "--path-task",
+            "8"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/path_t08/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "path",
+            "method": "gam",
+            "seed": 2,
+            "target_task": 8,
+            "samples": 1259,
+            "numerical_gate_passed": true
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/path_seed2_gam_t08_env.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publish_B2",
+      "depends_on": [
+        "paths"
+      ],
+      "jobs": [
+        {
+          "id": "publish_B2",
+          "gpu": null,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/publish.py",
+            "--execute"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/report/complete.json",
+          "receipt_require": {
+            "status": "complete"
+          }
+        }
+      ]
+    },
+    {
+      "id": "radii",
+      "depends_on": [
+        "publish_B2"
+      ],
+      "jobs": [
+        {
+          "id": "radius_seed0_sgd",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed0.json",
+            "--method",
+            "sgd",
+            "--job",
+            "sparse_train"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/sgd/sparse_train/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "sparse_train",
+            "method": "sgd",
+            "seed": 0,
+            "samples": 256
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/radius_seed0_sgd_env.json"
+          ]
+        },
+        {
+          "id": "radius_seed0_gam",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed0.json",
+            "--method",
+            "gam",
+            "--job",
+            "sparse_train"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed0/gam/sparse_train/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "sparse_train",
+            "method": "gam",
+            "seed": 0,
+            "samples": 256
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/radius_seed0_gam_env.json"
+          ]
+        },
+        {
+          "id": "radius_seed1_sgd",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed1.json",
+            "--method",
+            "sgd",
+            "--job",
+            "sparse_train"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/sgd/sparse_train/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "sparse_train",
+            "method": "sgd",
+            "seed": 1,
+            "samples": 256
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/radius_seed1_sgd_env.json"
+          ]
+        },
+        {
+          "id": "radius_seed1_gam",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed1.json",
+            "--method",
+            "gam",
+            "--job",
+            "sparse_train"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed1/gam/sparse_train/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "sparse_train",
+            "method": "gam",
+            "seed": 1,
+            "samples": 256
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/radius_seed1_gam_env.json"
+          ]
+        },
+        {
+          "id": "radius_seed2_sgd",
+          "gpu": 0,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed2.json",
+            "--method",
+            "sgd",
+            "--job",
+            "sparse_train"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/sgd/sparse_train/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "sparse_train",
+            "method": "sgd",
+            "seed": 2,
+            "samples": 256
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/radius_seed2_sgd_env.json"
+          ]
+        },
+        {
+          "id": "radius_seed2_gam",
+          "gpu": 3,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/diagnostic_extension.py",
+            "--config",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/configs/radius_seed2.json",
+            "--method",
+            "gam",
+            "--job",
+            "sparse_train"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/results/seed2/gam/sparse_train/extension_receipt.json",
+          "receipt_require": {
+            "status": "complete",
+            "job": "sparse_train",
+            "method": "gam",
+            "seed": 2,
+            "samples": 256
+          },
+          "preflight_command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/env_witness.py",
+            "--output",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/campaign/radius_seed2_gam_env.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publish_B1",
+      "depends_on": [
+        "radii"
+      ],
+      "jobs": [
+        {
+          "id": "publish_B1",
+          "gpu": null,
+          "command": [
+            "/data/115-2/users/liying/conda_storage/envs/Pilot_new/bin/python",
+            "-u",
+            "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/publish_radius.py",
+            "--execute"
+          ],
+          "cwd": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921",
+          "env": {
+            "TMPDIR": "/tmp",
+            "TMP": "/tmp",
+            "TEMP": "/tmp"
+          },
+          "receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/full_rq2_20260920/stage_path_completion_20260921/report/radius_complete.json",
+          "receipt_require": {
+            "status": "complete"
+          }
+        }
+      ]
+    }
+  ]
+}

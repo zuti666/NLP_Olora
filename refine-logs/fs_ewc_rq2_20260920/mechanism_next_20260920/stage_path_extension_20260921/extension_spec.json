@@ -1,0 +1,203 @@
+{
+  "schema": "rq2_stage_path_extension_spec_v1",
+  "status": "complete",
+  "executable_campaign_config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/campaign/plan.json",
+  "new_code_implemented": true,
+  "dataset": "ImageNet-A",
+  "preferred_scope": "extend_current_historical_seed0_C_plot",
+  "training_jobs_required": 0,
+  "new_measurement_jobs": 16,
+  "base_nodes": 9,
+  "refinement_nodes": [
+    17,
+    33
+  ],
+  "source_config": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/diagnostic_config_recovery1.json",
+  "subset_seed": 20260920,
+  "fisher_samples": 256,
+  "T_mapping": "total learned tasks = target task code + 1",
+  "T1_S_path": "undefined; omit or N/A",
+  "fixed_anchor_task": 0,
+  "fixed_head_classes": 20,
+  "path_kind": "separate straight chord Task0 to each target, not optimizer-step trajectory",
+  "required_code_changes": [
+    "separate entrypoint based on diagnostic_full.FullRunner",
+    "allow target task1..9",
+    "explicit path scope selector, included in protocol",
+    "scope-consistent origin/q/trace/damage-bound/result fields"
+  ],
+  "jobs": [
+    {
+      "method": "sgd",
+      "target_task_code": 1,
+      "display_T": 2,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_01.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 2,
+      "display_T": 3,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_02.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 3,
+      "display_T": 4,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_03.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 4,
+      "display_T": 5,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_04.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 5,
+      "display_T": 6,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_05.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 6,
+      "display_T": 7,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_06.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 7,
+      "display_T": 8,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_07.pt"
+    },
+    {
+      "method": "sgd",
+      "target_task_code": 8,
+      "display_T": 9,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/sgd/T10/seed0/checkpoints/task_08.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 1,
+      "display_T": 2,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_01.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 2,
+      "display_T": 3,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_02.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 3,
+      "display_T": 4,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_03.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 4,
+      "display_T": 5,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_04.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 5,
+      "display_T": 6,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_05.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 6,
+      "display_T": 7,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_06.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 7,
+      "display_T": 8,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_07.pt"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 8,
+      "display_T": 9,
+      "status": "complete",
+      "fisher_scope": "subset256",
+      "required_checkpoint": "/data/140-1/users/liying/CopyFlatCV/outputs_logs/sgd_gam_s1c/stage2_T_compare/Ttraj_fisher_lam2000_lr0p02_e50/gam/T10/seed0/checkpoints/task_08.pt"
+    }
+  ],
+  "reuse_existing": [
+    {
+      "method": "sgd",
+      "target_task_code": 9,
+      "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/sgd/path/summary.json"
+    },
+    {
+      "method": "gam",
+      "target_task_code": 9,
+      "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/execution/results_seed0_recovery1/gam/path/summary.json"
+    }
+  ],
+  "alternative_formal_scope": {
+    "fisher_samples": 1259,
+    "measured_targets": [
+      1,
+      5,
+      9
+    ],
+    "missing_targets": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8
+    ],
+    "missing_jobs_seed0": 12,
+    "missing_jobs_three_seeds": 36,
+    "must_rebuild_all_C_panels_from_same_formal_cohort": true
+  },
+  "plot_existing_formal_points_only": [
+    2,
+    6,
+    10
+  ],
+  "no_inferred_missing_points": true,
+  "authorized_gpus": [
+    0,
+    3
+  ],
+  "queue_status_file": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/campaign/pipeline_state.json",
+  "report": "/data/140-1/users/liying/O-LoRA/refine-logs/fs_ewc_rq2_20260920/mechanism_next_20260920/stage_path_extension_20260921/report",
+  "completed_utc": "2026-09-21T10:07:22.651901+00:00"
+}

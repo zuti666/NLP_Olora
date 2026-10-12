@@ -1,0 +1,2311 @@
+{
+  "audited_at_utc": "2026-10-06T14:54:49.844711+00:00",
+  "read_only_audit": true,
+  "formal_rows": [
+    {
+      "job": "formal_g0B_r025_k10_s2",
+      "campaign": "imageneta-g0B-no-g3-20261005T164542Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r025_k10_s2",
+      "radius": 0.25,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "P",
+      "direction": "g0_plus_B",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "three_probe_g0B_or_AC_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T18:39:53.084196+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 66.79669444444446,
+        "FAA_task_macro": 50.507999999999996,
+        "LA": 57.924,
+        "BWT": -8.24,
+        "forgetting": 8.24
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 70.233,
+        "FAA_sample_weighted": 57.74
+      },
+      "matrix": [
+        [
+          87.3
+        ],
+        [
+          84.04,
+          80.31
+        ],
+        [
+          80.78,
+          77.17,
+          71.32
+        ],
+        [
+          79.48,
+          75.59,
+          68.99,
+          73.94
+        ],
+        [
+          75.9,
+          75.98,
+          65.5,
+          68.48,
+          54.9
+        ],
+        [
+          75.9,
+          74.41,
+          65.89,
+          67.27,
+          42.16,
+          52.11
+        ],
+        [
+          72.96,
+          74.41,
+          65.12,
+          66.06,
+          42.16,
+          50.7,
+          40.96
+        ],
+        [
+          71.99,
+          71.26,
+          63.95,
+          64.85,
+          41.18,
+          50.7,
+          39.76,
+          37.65
+        ],
+        [
+          71.66,
+          69.69,
+          63.18,
+          63.64,
+          40.2,
+          47.89,
+          39.76,
+          35.29,
+          35.56
+        ],
+        [
+          72.64,
+          70.08,
+          63.18,
+          61.21,
+          39.22,
+          46.48,
+          37.35,
+          35.29,
+          34.44,
+          45.19
+        ]
+      ],
+      "stage_task_macro_curve": [
+        87.3,
+        82.17500000000001,
+        76.42333333333333,
+        74.5,
+        68.152,
+        62.95666666666667,
+        58.910000000000004,
+        55.1675,
+        51.87444444444444,
+        50.507999999999996
+      ],
+      "final_task_accuracies": [
+        72.64,
+        70.08,
+        63.18,
+        61.21,
+        39.22,
+        46.48,
+        37.35,
+        35.29,
+        34.44,
+        45.19
+      ],
+      "acquisition_diagonal": [
+        87.3,
+        80.31,
+        71.32,
+        73.94,
+        54.9,
+        52.11,
+        40.96,
+        37.65,
+        35.56,
+        45.19
+      ],
+      "gradients_per_step": 3,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 7650,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 7650,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 0,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 2550
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "three_base_probes": true,
+        "g3_omitted": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "9888aa10128c8a3a984a6ebd2a43b5b3c1f9f77351ccb714ed044d3c353355a7",
+        "trace_sha256": "8e97a7a45476e1f3503e851bab8db6faeb5b3c3b63f2bcb42b0847171b602159",
+        "matrix_sha256": "a9ee152827640ba5fa9d6dd21737da4aa6f7565736e8cc766e3d7924a6b15a21",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.25,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "1cae1f88f83843869d5a34f5354ed85775b548fce640c304a09f9f3c0e225188",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "P",
+        "update_direction": "g0_plus_B",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 0.25,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 2550,
+      "max_projection_relative_error": 3.7026633635705046e-08,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1": {
+          "parameter_norm_min": 0.04999999434377193,
+          "parameter_norm_max": 0.050000006947783754
+        },
+        "phi2": {
+          "parameter_norm_min": 0.24999997892036532,
+          "parameter_norm_max": 0.250000021326734
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r025_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r025_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r025_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/runtime/jobs/formal_g0B_r025_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r025_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_g0B_r1_k10_s2",
+      "campaign": "imageneta-g0B-no-g3-20261005T164542Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r1_k10_s2",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "P",
+      "direction": "g0_plus_B",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "three_probe_g0B_or_AC_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T18:39:22.593708+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 67.92825912698413,
+        "FAA_task_macro": 53.458000000000006,
+        "LA": 58.872,
+        "BWT": -6.015555555555554,
+        "forgetting": 6.347777777777779
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 71.31300000000002,
+        "FAA_sample_weighted": 60.76
+      },
+      "matrix": [
+        [
+          85.99
+        ],
+        [
+          81.11,
+          83.07
+        ],
+        [
+          79.8,
+          84.25,
+          73.26
+        ],
+        [
+          77.52,
+          84.65,
+          70.16,
+          76.97
+        ],
+        [
+          71.34,
+          80.31,
+          67.05,
+          71.52,
+          56.86
+        ],
+        [
+          72.31,
+          77.17,
+          68.22,
+          68.48,
+          50.0,
+          46.48
+        ],
+        [
+          70.03,
+          76.38,
+          67.05,
+          67.88,
+          48.04,
+          45.07,
+          40.96
+        ],
+        [
+          71.34,
+          75.59,
+          65.12,
+          67.27,
+          45.1,
+          47.89,
+          38.55,
+          37.65
+        ],
+        [
+          70.36,
+          74.02,
+          65.89,
+          64.85,
+          45.1,
+          43.66,
+          37.35,
+          37.65,
+          35.56
+        ],
+        [
+          71.34,
+          78.35,
+          65.5,
+          65.45,
+          45.1,
+          45.07,
+          39.76,
+          37.65,
+          34.44,
+          51.92
+        ]
+      ],
+      "stage_task_macro_curve": [
+        85.99,
+        82.09,
+        79.10333333333334,
+        77.325,
+        69.416,
+        63.77666666666667,
+        59.34428571428571,
+        56.06375,
+        52.715555555555554,
+        53.458000000000006
+      ],
+      "final_task_accuracies": [
+        71.34,
+        78.35,
+        65.5,
+        65.45,
+        45.1,
+        45.07,
+        39.76,
+        37.65,
+        34.44,
+        51.92
+      ],
+      "acquisition_diagonal": [
+        85.99,
+        83.07,
+        73.26,
+        76.97,
+        56.86,
+        46.48,
+        40.96,
+        37.65,
+        35.56,
+        51.92
+      ],
+      "gradients_per_step": 3,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 7650,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 7650,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 0,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 2550
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "three_base_probes": true,
+        "g3_omitted": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "484ff29298e7c7baeb580140023cfc056799f9a6f22a6aabf8088779659e2f00",
+        "trace_sha256": "d28a586ab0a19aa0a2e728824c8e88be3ec0fc0d2da005ba4b39c3f79e44fa69",
+        "matrix_sha256": "430dd8973af852e6eb2047f1a2de521f5d4afe2568da082e861ac5d974175612",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "4ad197eb608d59e916b27a04c889db46bcd558c5a8819b1d6946827e90de330f",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "P",
+        "update_direction": "g0_plus_B",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 1.0,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 2550,
+      "max_projection_relative_error": 2.983165282062823e-08,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1": {
+          "parameter_norm_min": 0.04999999338027326,
+          "parameter_norm_max": 0.0500000064916256
+        },
+        "phi2": {
+          "parameter_norm_min": 0.9999999116038948,
+          "parameter_norm_max": 1.0000000825041837
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r1_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r1_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r1_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/runtime/jobs/formal_g0B_r1_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/outputs/formal_g0B_r1_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_g1_d32_r025_k10_s2",
+      "campaign": "imageneta-g1-plus-g3-minus-g2-20261005T170708Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2",
+      "radius": 0.25,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "P",
+      "direction": "g1_plus_second_difference",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "four_probe_g1_plus_second_difference_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T20:43:23.809091+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 65.29671547619049,
+        "FAA_task_macro": 48.660000000000004,
+        "LA": 54.718999999999994,
+        "BWT": -6.73222222222222,
+        "forgetting": 6.8666666666666645
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.088,
+        "FAA_sample_weighted": 56.42
+      },
+      "matrix": [
+        [
+          84.69
+        ],
+        [
+          83.06,
+          79.92
+        ],
+        [
+          82.08,
+          77.95,
+          69.38
+        ],
+        [
+          79.15,
+          75.59,
+          67.83,
+          71.52
+        ],
+        [
+          77.85,
+          74.02,
+          65.89,
+          67.27,
+          52.94
+        ],
+        [
+          75.57,
+          71.65,
+          63.95,
+          64.24,
+          41.18,
+          46.48
+        ],
+        [
+          75.57,
+          71.26,
+          63.95,
+          63.64,
+          43.14,
+          46.48,
+          36.14
+        ],
+        [
+          74.59,
+          68.9,
+          62.79,
+          63.64,
+          40.2,
+          46.48,
+          34.94,
+          35.29
+        ],
+        [
+          72.64,
+          66.54,
+          61.24,
+          60.61,
+          37.25,
+          43.66,
+          37.35,
+          32.94,
+          33.33
+        ],
+        [
+          73.29,
+          68.5,
+          61.63,
+          61.82,
+          39.22,
+          42.25,
+          34.94,
+          34.12,
+          33.33,
+          37.5
+        ]
+      ],
+      "stage_task_macro_curve": [
+        84.69,
+        81.49000000000001,
+        76.47,
+        73.52250000000001,
+        67.594,
+        60.51166666666666,
+        57.16857142857143,
+        53.35375,
+        49.50666666666667,
+        48.660000000000004
+      ],
+      "final_task_accuracies": [
+        73.29,
+        68.5,
+        61.63,
+        61.82,
+        39.22,
+        42.25,
+        34.94,
+        34.12,
+        33.33,
+        37.5
+      ],
+      "acquisition_diagonal": [
+        84.69,
+        79.92,
+        69.38,
+        71.52,
+        52.94,
+        46.48,
+        36.14,
+        35.29,
+        33.33,
+        37.5
+      ],
+      "gradients_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "778112e859f6ffb4297c0cb36345c911193150de37a6297cf73c22848535bff8",
+        "trace_sha256": "048c25e6807437f41cac405eef959a8eae75587dd15e978e40fb994e5a0f8023",
+        "matrix_sha256": "a37426148a646c832b52a96713656937275ad36e25205047b819248455b9c49a",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.25,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "cf946576642d6880d462ef1f0e5a12c3020c56ee02f445fc461d28bdd0a24770",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "P",
+        "update_direction": "g1_plus_second_difference",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 0.25,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 0,
+      "max_projection_relative_error": null,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1": {
+          "parameter_norm_min": 0.04999999395415761,
+          "parameter_norm_max": 0.05000000589479407
+        },
+        "phi2": {
+          "parameter_norm_min": 0.24999997800915585,
+          "parameter_norm_max": 0.25000002244880504
+        },
+        "phi3": {
+          "parameter_norm_min": 0.257413215750919,
+          "parameter_norm_max": 0.29922760360345063
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/runtime/jobs/formal_g1_d32_r025_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r025_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_g1_d32_r1_k10_s2",
+      "campaign": "imageneta-g1-plus-g3-minus-g2-20261005T170708Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "P",
+      "direction": "g1_plus_second_difference",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "four_probe_g1_plus_second_difference_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T20:43:34.124604+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 65.5488126984127,
+        "FAA_task_macro": 48.089,
+        "LA": 54.818,
+        "BWT": -7.476666666666663,
+        "forgetting": 7.476666666666663
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.433,
+        "FAA_sample_weighted": 55.96
+      },
+      "matrix": [
+        [
+          85.67
+        ],
+        [
+          83.71,
+          79.92
+        ],
+        [
+          83.06,
+          77.95,
+          70.16
+        ],
+        [
+          80.78,
+          74.8,
+          67.83,
+          71.52
+        ],
+        [
+          77.85,
+          73.23,
+          65.5,
+          67.88,
+          52.94
+        ],
+        [
+          77.2,
+          72.44,
+          63.18,
+          65.45,
+          44.12,
+          46.48
+        ],
+        [
+          76.87,
+          72.44,
+          63.18,
+          63.03,
+          43.14,
+          45.07,
+          38.55
+        ],
+        [
+          74.59,
+          70.47,
+          63.18,
+          62.42,
+          39.22,
+          43.66,
+          37.35,
+          35.29
+        ],
+        [
+          73.62,
+          68.11,
+          61.63,
+          61.21,
+          39.22,
+          40.85,
+          36.14,
+          32.94,
+          31.11
+        ],
+        [
+          73.29,
+          68.9,
+          60.85,
+          60.0,
+          40.2,
+          40.85,
+          36.14,
+          34.12,
+          30.0,
+          36.54
+        ]
+      ],
+      "stage_task_macro_curve": [
+        85.67,
+        81.815,
+        77.05666666666667,
+        73.7325,
+        67.47999999999999,
+        61.47833333333333,
+        57.46857142857142,
+        53.2725,
+        49.425555555555555,
+        48.089
+      ],
+      "final_task_accuracies": [
+        73.29,
+        68.9,
+        60.85,
+        60.0,
+        40.2,
+        40.85,
+        36.14,
+        34.12,
+        30.0,
+        36.54
+      ],
+      "acquisition_diagonal": [
+        85.67,
+        79.92,
+        70.16,
+        71.52,
+        52.94,
+        46.48,
+        38.55,
+        35.29,
+        31.11,
+        36.54
+      ],
+      "gradients_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 0,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_outer_probe": true,
+        "opposite_probe_omitted": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "c7a0d30e44a307b65447e802d7345f1a08925336709786bc90787c8f1cb2a4c5",
+        "trace_sha256": "cc06c3ccb74128b70f053e281995b248c3cecbf13d7d9f52a96df568d9714de4",
+        "matrix_sha256": "6be78e598907e88aa337fea2515b19ab624039ad2c74581432e26459df3efd65",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "4f1cc59fc316424793a10b7d02126ed0d3df1b59870a9e258c7ef2193a6cb810",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "P",
+        "update_direction": "g1_plus_second_difference",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 1.0,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 0,
+      "max_projection_relative_error": null,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1": {
+          "parameter_norm_min": 0.04999999414224693,
+          "parameter_norm_max": 0.05000000701613284
+        },
+        "phi2": {
+          "parameter_norm_min": 0.9999999164868655,
+          "parameter_norm_max": 1.0000000853773632
+        },
+        "phi3": {
+          "parameter_norm_min": 0.9972901108969403,
+          "parameter_norm_max": 1.0456653705297008
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/runtime/jobs/formal_g1_d32_r1_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/outputs/formal_g1_d32_r1_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_C_g1minus_g2_r025_k10_s2",
+      "campaign": "imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r025_k10_s2",
+      "radius": 0.25,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "C",
+      "direction": "g1_minus_plus_g2",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "four_probe_cd_g1_minus_plus_g2_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T20:46:23.070986+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 66.46201150793651,
+        "FAA_task_macro": 50.479,
+        "LA": 57.641,
+        "BWT": -7.957777777777778,
+        "forgetting": 7.957777777777778
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.881,
+        "FAA_sample_weighted": 57.47
+      },
+      "matrix": [
+        [
+          86.97
+        ],
+        [
+          83.39,
+          79.13
+        ],
+        [
+          80.78,
+          75.98,
+          71.32
+        ],
+        [
+          78.83,
+          76.38,
+          68.99,
+          75.76
+        ],
+        [
+          74.59,
+          73.62,
+          65.5,
+          69.09,
+          52.94
+        ],
+        [
+          75.57,
+          75.2,
+          66.28,
+          69.7,
+          42.16,
+          52.11
+        ],
+        [
+          73.29,
+          75.2,
+          65.12,
+          64.85,
+          42.16,
+          49.3,
+          40.96
+        ],
+        [
+          71.01,
+          70.47,
+          63.57,
+          63.03,
+          41.18,
+          50.7,
+          39.76,
+          36.47
+        ],
+        [
+          71.01,
+          69.29,
+          63.18,
+          61.82,
+          39.22,
+          46.48,
+          37.35,
+          35.29,
+          35.56
+        ],
+        [
+          71.99,
+          68.11,
+          63.18,
+          62.42,
+          39.22,
+          46.48,
+          37.35,
+          35.29,
+          35.56,
+          45.19
+        ]
+      ],
+      "stage_task_macro_curve": [
+        86.97,
+        81.25999999999999,
+        76.02666666666666,
+        74.99,
+        67.148,
+        63.50333333333333,
+        58.69714285714286,
+        54.52375,
+        51.02222222222222,
+        50.479
+      ],
+      "final_task_accuracies": [
+        71.99,
+        68.11,
+        63.18,
+        62.42,
+        39.22,
+        46.48,
+        37.35,
+        35.29,
+        35.56,
+        45.19
+      ],
+      "acquisition_diagonal": [
+        86.97,
+        79.13,
+        71.32,
+        75.76,
+        52.94,
+        52.11,
+        40.96,
+        36.47,
+        35.56,
+        45.19
+      ],
+      "gradients_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 0,
+        "training_first_plus_gradient_passes": 2550,
+        "training_first_minus_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 2550,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_omitted": true,
+        "negative_g1_sum": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "4ad7c549ba4fe29b06bff349a6ae41d322901b8b9f4a219b6786e2c75b721a3b",
+        "trace_sha256": "65e8e40d465415b7abbed3abdc3924f013311d6002a09f249420cbbf26636976",
+        "matrix_sha256": "3d3b1ab81f6a3bbafc9102b86ebe80d5877b87006b909035e5a8ab28c20202d8",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.25,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "dfc8311caecc4bace36d9b17eabe0ad72a8d0c9b9d259663021d5b2ccdcb7c55",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "C",
+        "update_direction": "g1_minus_plus_g2",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 0.25,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 0,
+      "max_projection_relative_error": null,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1_plus": {
+          "parameter_norm_min": 0.04999999408920911,
+          "parameter_norm_max": 0.050000005486794015
+        },
+        "phi1_minus": {
+          "parameter_norm_min": 0.04999999410924954,
+          "parameter_norm_max": 0.05000000579154051
+        },
+        "phi2": {
+          "parameter_norm_min": 0.24999997812495098,
+          "parameter_norm_max": 0.2500000218967335
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r025_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r025_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r025_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/runtime/jobs/formal_C_g1minus_g2_r025_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r025_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_C_g1minus_g2_r1_k10_s2",
+      "campaign": "imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r1_k10_s2",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "C",
+      "direction": "g1_minus_plus_g2",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "four_probe_cd_g1_minus_plus_g2_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T20:46:33.581440+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 67.62774087301588,
+        "FAA_task_macro": 51.461,
+        "LA": 58.499,
+        "BWT": -7.819999999999998,
+        "forgetting": 7.976666666666666
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 71.40200000000002,
+        "FAA_sample_weighted": 59.71
+      },
+      "matrix": [
+        [
+          86.64
+        ],
+        [
+          84.36,
+          83.46
+        ],
+        [
+          82.08,
+          82.68,
+          71.71
+        ],
+        [
+          79.8,
+          79.13,
+          70.16,
+          72.73
+        ],
+        [
+          75.24,
+          79.92,
+          68.6,
+          69.09,
+          54.9
+        ],
+        [
+          70.03,
+          73.62,
+          65.89,
+          61.21,
+          45.1,
+          46.48
+        ],
+        [
+          75.57,
+          78.35,
+          67.05,
+          65.45,
+          46.08,
+          47.89,
+          42.17
+        ],
+        [
+          75.24,
+          77.17,
+          65.5,
+          65.45,
+          42.16,
+          47.89,
+          36.14,
+          38.82
+        ],
+        [
+          73.62,
+          75.2,
+          65.5,
+          65.45,
+          43.14,
+          43.66,
+          37.35,
+          38.82,
+          40.0
+        ],
+        [
+          74.59,
+          74.41,
+          65.89,
+          66.06,
+          41.18,
+          42.25,
+          30.12,
+          36.47,
+          35.56,
+          48.08
+        ]
+      ],
+      "stage_task_macro_curve": [
+        86.64,
+        83.91,
+        78.82333333333334,
+        75.455,
+        69.55,
+        60.38833333333333,
+        60.36571428571428,
+        56.04625,
+        53.63777777777778,
+        51.461
+      ],
+      "final_task_accuracies": [
+        74.59,
+        74.41,
+        65.89,
+        66.06,
+        41.18,
+        42.25,
+        30.12,
+        36.47,
+        35.56,
+        48.08
+      ],
+      "acquisition_diagonal": [
+        86.64,
+        83.46,
+        71.71,
+        72.73,
+        54.9,
+        46.48,
+        42.17,
+        38.82,
+        40.0,
+        48.08
+      ],
+      "gradients_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 0,
+        "training_first_plus_gradient_passes": 2550,
+        "training_first_minus_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 2550,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_omitted": true,
+        "negative_g1_sum": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "f8e7313fe0a2e78a021a10657b21f5d3e157fa73e14bc6a14cfd1e8505211215",
+        "trace_sha256": "f668f8fa44885901c774753feaa077a6900634d510685f1a82e20845ded917ed",
+        "matrix_sha256": "342e8e0a9cc186d792a978a3381b5f94d11e621128c5afbc20e1988d9b09be36",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "d3c5703d7e3a888f30e43b1725aa0e3be1ce9b3b1f8aa21ed8ecba1691ddefdc",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "C",
+        "update_direction": "g1_minus_plus_g2",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 1.0,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 0,
+      "max_projection_relative_error": null,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1_plus": {
+          "parameter_norm_min": 0.04999999359052438,
+          "parameter_norm_max": 0.05000000674377011
+        },
+        "phi1_minus": {
+          "parameter_norm_min": 0.04999999390025654,
+          "parameter_norm_max": 0.0500000070034547
+        },
+        "phi2": {
+          "parameter_norm_min": 0.9999999084880022,
+          "parameter_norm_max": 1.0000001007486554
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r1_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r1_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r1_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/runtime/jobs/formal_C_g1minus_g2_r1_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_C_g1minus_g2_r1_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_D_g1minus_g2_r025_k10_s2",
+      "campaign": "imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r025_k10_s2",
+      "radius": 0.25,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "D",
+      "direction": "g1_minus_plus_g2",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "four_probe_cd_g1_minus_plus_g2_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T22:46:56.981698+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 58.766372222222216,
+        "FAA_task_macro": 41.123000000000005,
+        "LA": 52.156000000000006,
+        "BWT": -12.258888888888889,
+        "forgetting": 12.258888888888889
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 62.41600000000001,
+        "FAA_sample_weighted": 48.52
+      },
+      "matrix": [
+        [
+          86.64
+        ],
+        [
+          77.52,
+          77.56
+        ],
+        [
+          74.92,
+          74.02,
+          67.83
+        ],
+        [
+          73.94,
+          67.72,
+          62.02,
+          69.09
+        ],
+        [
+          66.12,
+          64.17,
+          58.53,
+          57.58,
+          41.18
+        ],
+        [
+          68.73,
+          64.96,
+          55.43,
+          54.55,
+          34.31,
+          43.66
+        ],
+        [
+          71.34,
+          62.6,
+          53.1,
+          53.94,
+          37.25,
+          36.62,
+          28.92
+        ],
+        [
+          67.1,
+          61.02,
+          50.39,
+          48.48,
+          32.35,
+          29.58,
+          22.89,
+          30.59
+        ],
+        [
+          60.91,
+          55.51,
+          46.9,
+          44.85,
+          31.37,
+          22.54,
+          24.1,
+          27.06,
+          36.67
+        ],
+        [
+          69.06,
+          58.66,
+          50.39,
+          47.27,
+          31.37,
+          29.58,
+          24.1,
+          24.71,
+          36.67,
+          39.42
+        ]
+      ],
+      "stage_task_macro_curve": [
+        86.64,
+        77.53999999999999,
+        72.25666666666666,
+        68.1925,
+        57.516,
+        53.60666666666666,
+        49.11,
+        42.8,
+        38.87888888888889,
+        41.123000000000005
+      ],
+      "final_task_accuracies": [
+        69.06,
+        58.66,
+        50.39,
+        47.27,
+        31.37,
+        29.58,
+        24.1,
+        24.71,
+        36.67,
+        39.42
+      ],
+      "acquisition_diagonal": [
+        86.64,
+        77.56,
+        67.83,
+        69.09,
+        41.18,
+        43.66,
+        28.92,
+        30.59,
+        36.67,
+        39.42
+      ],
+      "gradients_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 0,
+        "training_first_plus_gradient_passes": 2550,
+        "training_first_minus_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 2550,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_omitted": true,
+        "negative_g1_sum": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "592e9f401b000c608a4db0cda8707c6057a84ac05965763d7cf6e88faa379ba6",
+        "trace_sha256": "78fa25fbd61d572a9f95dd5f1caa106dd9da8bff13b90641845250abc92b8ca5",
+        "matrix_sha256": "40d15e1db933d7c8c2ea35c858338409937a871b0af8486e1c41dd7ff25d06ba",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 0.25,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "321ec4e780f248eb192c86fdfebc70556aa19c0c66a175dcf2ea2a8402e2ae61",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "D",
+        "update_direction": "g1_minus_plus_g2",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 0.25,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 0,
+      "max_projection_relative_error": null,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1_plus": {
+          "parameter_norm_min": 0.049999993921289954,
+          "parameter_norm_max": 0.05000000594773254
+        },
+        "phi1_minus": {
+          "parameter_norm_min": 0.04999999408546413,
+          "parameter_norm_max": 0.05000000610903138
+        },
+        "phi2": {
+          "parameter_norm_min": 0.24999997858084447,
+          "parameter_norm_max": 0.25000002126879717
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r025_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r025_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r025_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/runtime/jobs/formal_D_g1minus_g2_r025_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r025_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/validate_job.py"
+      }
+    },
+    {
+      "job": "formal_D_g1minus_g2_r1_k10_s2",
+      "campaign": "imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "run_root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "output_dir": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r1_k10_s2",
+      "radius": 1.0,
+      "rho": 0.05,
+      "seed": 2,
+      "rank": 10,
+      "branch": "D",
+      "direction": "g1_minus_plus_g2",
+      "mode": "natural",
+      "backend": "native",
+      "protocol": "four_probe_cd_g1_minus_plus_g2_exact_restore_rng_replay_v1",
+      "status": "completed",
+      "queue_job_status": "completed",
+      "returncode": 0,
+      "completed_at_utc": "2026-10-05T22:46:57.533553+00:00",
+      "completed_tasks": 10,
+      "epochs_per_task": 50,
+      "completed_epochs": 500,
+      "completed_steps": 2550,
+      "metrics": {
+        "AAA_task_macro": 64.8689634920635,
+        "FAA_task_macro": 48.709,
+        "LA": 54.108000000000004,
+        "BWT": -5.998888888888888,
+        "forgetting": 5.998888888888888
+      },
+      "sample_weighted_metrics": {
+        "AAA_sample_weighted": 69.14600000000002,
+        "FAA_sample_weighted": 57.34
+      },
+      "matrix": [
+        [
+          86.97
+        ],
+        [
+          82.74,
+          76.77
+        ],
+        [
+          82.08,
+          75.59,
+          69.77
+        ],
+        [
+          79.8,
+          74.8,
+          66.67,
+          72.12
+        ],
+        [
+          79.15,
+          72.05,
+          64.34,
+          66.67,
+          48.04
+        ],
+        [
+          78.18,
+          72.05,
+          63.18,
+          64.24,
+          45.1,
+          40.85
+        ],
+        [
+          77.52,
+          71.65,
+          62.4,
+          63.64,
+          46.08,
+          36.62,
+          36.14
+        ],
+        [
+          76.55,
+          70.08,
+          62.02,
+          63.64,
+          42.16,
+          38.03,
+          33.73,
+          35.29
+        ],
+        [
+          75.9,
+          68.9,
+          60.08,
+          58.18,
+          40.2,
+          29.58,
+          33.73,
+          32.94,
+          36.67
+        ],
+        [
+          77.2,
+          70.87,
+          61.63,
+          60.61,
+          40.2,
+          32.39,
+          34.94,
+          34.12,
+          36.67,
+          38.46
+        ]
+      ],
+      "stage_task_macro_curve": [
+        86.97,
+        79.755,
+        75.81333333333333,
+        73.3475,
+        66.05,
+        60.6,
+        56.292857142857144,
+        52.6875,
+        48.464444444444446,
+        48.709
+      ],
+      "final_task_accuracies": [
+        77.2,
+        70.87,
+        61.63,
+        60.61,
+        40.2,
+        32.39,
+        34.94,
+        34.12,
+        36.67,
+        38.46
+      ],
+      "acquisition_diagonal": [
+        86.97,
+        76.77,
+        69.77,
+        72.12,
+        48.04,
+        40.85,
+        36.14,
+        35.29,
+        36.67,
+        38.46
+      ],
+      "gradients_per_step": 4,
+      "counters": {
+        "training_batches": 2550,
+        "training_samples": 299050,
+        "training_ce_gradient_passes": 10200,
+        "fisher_estimation_passes": 0,
+        "weight_merge_updates": 0,
+        "forbidden_work_attempts": 0,
+        "disabled_merge_hook_calls": 20,
+        "training_hvp_passes": 0,
+        "training_hvp_reference_gradient_passes": 0,
+        "training_create_graph_passes": 0,
+        "training_forward_count": 10200,
+        "training_sgd_updates": 2550,
+        "training_g3_gradient_passes": 0,
+        "training_first_plus_gradient_passes": 2550,
+        "training_first_minus_gradient_passes": 2550,
+        "training_opposite_g1_gradient_passes": 2550,
+        "training_global_projection_calls": 0
+      },
+      "checks": {
+        "finite": true,
+        "all_steps_self_spec": true,
+        "exact_snapshot_restore": true,
+        "four_probes": true,
+        "g3_omitted": true,
+        "negative_g1_sum": true,
+        "natural_sgd_exact": true,
+        "fisher_empty_all_tasks": true,
+        "actual_weight_merges_zero": true
+      },
+      "validation": {
+        "summary_sha256": "e7984dbd80e480835d046ba830a4a3a66cf1b91a88f35cf1570e4f140336fc9b",
+        "trace_sha256": "dacf7e6153c9b6e49d5ef39992bc785aee7c3061ebb49b6d7c0afdb206020ae1",
+        "matrix_sha256": "374379262503a407b7e4deb51f23247972ab3c80599e3fc73628e40fd05d967e",
+        "updates": 2550,
+        "tasks": 10,
+        "metric_recomputation": true
+      },
+      "config_hash_match": true,
+      "config": {
+        "dataset": "imageneta",
+        "class_shuffle": false,
+        "init_cls": 20,
+        "increment": 20,
+        "nb_classes": 200,
+        "nb_tasks": 10,
+        "lora_rank": 10,
+        "seed": 2,
+        "gam_grad_rho": 0.05,
+        "gam_grad_norm_rho": 1.0,
+        "init_epoch": 50,
+        "epochs": 50,
+        "batch_size": 128,
+        "optimizer": "sgd",
+        "init_lr": 0.04,
+        "lrate": 0.02,
+        "init_momentum": 0.0,
+        "momentum": 0.0,
+        "init_weight_decay": 0.0,
+        "weight_decay": 0.0,
+        "scheduler": "cosine",
+        "cosine_min_lr_ratio": 0.1,
+        "memory_size": 0,
+        "lambda_flat": 1.0,
+        "ewc_lambda": 0.0,
+        "ewc_skip_task_fisher": true,
+        "approximate_fisher_in_task": false,
+        "in_task_weight_merge": false,
+        "task_endpoint_weight_merge": false,
+        "ewc_fisher_damping_alpha": 0.0,
+        "ewc_normalize_fisher": false,
+        "gam_grad_gamma": 0.0,
+        "use_sgv": false,
+        "sgv_lambda": 0.0,
+        "attention_backend": "native"
+      },
+      "effective_config_sha256": "f3b272743b81edc53d22a2bcef7a4bd7de1b33f1576819f31aa6a48d5c05440a",
+      "initial_identity": {
+        "task": 0,
+        "seed": 2,
+        "probe_branch": "D",
+        "update_direction": "g1_minus_plus_g2",
+        "attention_backend": "native",
+        "rho": 0.05,
+        "radius": 1.0,
+        "class_slice": [
+          0,
+          20
+        ],
+        "fc_shape": [
+          20,
+          768
+        ],
+        "old_fc_rows_inherited_exact": true,
+        "new_fc_rows_sha256": {
+          "weight": "e5bbcfdfe58c62dbccd9f54d95a7dcd70e0945235aad0225d0ec8e929bb1e984",
+          "bias": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+        },
+        "task_initial_parameter_sha256": "6841f123c958fdb87dfa9805e8ccc2384c3de96079f27a61ff10cfc77a53ad6a",
+        "frozen_origin_sha256": "a7f33477fdb7d1f0e811cc606d5d24d2225065947fd3e657cd64f12ee7f0d231",
+        "data_seed_rule": "seed*100000+task*1000+epoch",
+        "forward_rng_rule": "replay R0 at each point; advance to R1 from g0 once"
+      },
+      "data_and_lr_sequence_sha256": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+      "projection_steps": 0,
+      "max_projection_relative_error": null,
+      "actual_probe_parameter_norm_ranges": {
+        "phi1_plus": {
+          "parameter_norm_min": 0.049999994253414344,
+          "parameter_norm_max": 0.050000005640550994
+        },
+        "phi1_minus": {
+          "parameter_norm_min": 0.04999999473301775,
+          "parameter_norm_max": 0.05000000613356212
+        },
+        "phi2": {
+          "parameter_norm_min": 0.9999999147170158,
+          "parameter_norm_max": 1.00000008745893
+        }
+      },
+      "source_paths": {
+        "summary": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r1_k10_s2/final_summary.json",
+        "matrix": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r1_k10_s2/task_matrix.json",
+        "config": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r1_k10_s2/effective_config.json",
+        "exit_receipt": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/runtime/jobs/formal_D_g1minus_g2_r1_k10_s2/exit.json",
+        "step_trace": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/outputs/formal_D_g1minus_g2_r1_k10_s2/step_trace.jsonl",
+        "direction_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/trainer/direction_step.py",
+        "validation_implementation": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z/validate_job.py"
+      }
+    }
+  ],
+  "campaigns": [
+    {
+      "root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g0B-no-g3-20261005T164542Z",
+      "queue_status": "completed",
+      "counts_from_jobs": {
+        "completed": 7
+      },
+      "formal_count": 2,
+      "formal_completed": 2,
+      "pin_count": 30,
+      "pin_errors": [],
+      "source_file_count": 190,
+      "source_errors": [],
+      "suite_sha256": "bd94e4ee7cfe9c4bd5daf6d98bb7314af924233b6b1dc575cdf907921b376d4c"
+    },
+    {
+      "root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-g1-plus-g3-minus-g2-20261005T170708Z",
+      "queue_status": "completed",
+      "counts_from_jobs": {
+        "completed": 5
+      },
+      "formal_count": 2,
+      "formal_completed": 2,
+      "pin_count": 28,
+      "pin_errors": [],
+      "source_file_count": 190,
+      "source_errors": [],
+      "suite_sha256": "3b772098649de63e33aa6d00264d5d41c99e9966d91ea33be25012d99165149d"
+    },
+    {
+      "root": "/data/140-1/users/liying/O-LoRA/refine-logs/imageneta-cd-g1minus-plus-g2-gpu01-20261005T184209Z",
+      "queue_status": "completed",
+      "counts_from_jobs": {
+        "completed": 9
+      },
+      "formal_count": 4,
+      "formal_completed": 4,
+      "pin_count": 33,
+      "pin_errors": [],
+      "source_file_count": 190,
+      "source_errors": [],
+      "suite_sha256": "cda76411bf78b354aff08786dc1e416e44c94cce283845897f646f83d9437794"
+    }
+  ],
+  "formulas": {
+    "g0_plus_B": {
+      "g1": "gradient at phi+rho*N(g0)",
+      "q": "g1_plus−g0",
+      "phi2": "phi+r*N(q), from original base",
+      "c21": "g2−g1_plus",
+      "alpha": "<g1_plus,c21>/(||g1_plus||²+1e−12)",
+      "B": "g1_plus+perp_g1(c21)=g2−alpha*g1_plus",
+      "U": "g0+B=g0+g2−alpha*g1_plus",
+      "projection": "global all trainable LoRA factors and all seen FC, FP64 reduction",
+      "probes_per_update": 3,
+      "g3_omitted": true
+    },
+    "g1_plus_second_difference": {
+      "q": "g1_plus−g0",
+      "phi2": "phi+r*N(q), from original base",
+      "phi3": "phi2+rho*N(g2)",
+      "U": "g1_plus+(g3−g2)",
+      "probes_per_update": 4,
+      "projection": false
+    },
+    "C_g1_minus_plus_g2": {
+      "q": "g0−g1_minus",
+      "phi2": "phi+r*N(q), from original base",
+      "U": "g1_minus+g2C",
+      "probes_per_update": 4,
+      "g3_omitted": true,
+      "first_side_probes": "both plus and minus computed",
+      "projection": false
+    },
+    "D_g1_minus_plus_g2": {
+      "q": "g1_minus−g0",
+      "phi2": "phi+r*N(q), from original base",
+      "U": "g1_minus+g2D",
+      "probes_per_update": 4,
+      "g3_omitted": true,
+      "first_side_probes": "both plus and minus computed",
+      "projection": false
+    }
+  },
+  "deduplication": {
+    "old_B": "old B-only =g1_plus+perp_g1(g2−g1_plus); new g0+B adds a copy of g0. Not same experiment.",
+    "historical_baselines": "Not included among eight new independent formal rows",
+    "excluded_predecessor": "imageneta-cd-g1minus-plus-g2-20261005T182936Z pending predecessor not counted"
+  },
+  "metrics_definition": "AAA mean of stage means; FAA final row mean; LA mean diagonal; BWT mean final−diagonal oldtasks; forgetting mean max-time−final oldtasks, includes final time in max",
+  "formal_count": 8,
+  "formal_all_validated": true,
+  "all_run_pins_match": true,
+  "all_source_pins_match": true,
+  "data_and_lr_sequence_same_all_8": true,
+  "sequence_hashes": {
+    "formal_g0B_r025_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_g0B_r1_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_g1_d32_r025_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_g1_d32_r1_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_C_g1minus_g2_r025_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_C_g1minus_g2_r1_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_D_g1minus_g2_r025_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322",
+    "formal_D_g1minus_g2_r1_k10_s2": "a9d484f9c7eef2abc0cb458967a43d99c4b83def3f2fbcb0e2659516e0a22322"
+  }
+}

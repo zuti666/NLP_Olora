@@ -1,0 +1,13 @@
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/methodcolors_v2/llama_1b_taskwise_orders_methodcolors_v2.pdf}
+\caption{Task-wise normalized exact-match accuracy with Llama-3.2-1B across three task orders. Colors identify methods, with FS-EWCLoRA (the implemented GAM-EWC branch) highlighted in red. Four line styles identify datasets: solid for DBPedia, dashed for Amazon, dotted for Yahoo, and dash-dot for AGNews. Curves begin when a dataset is first learned; a short stroke centered at stage 4 represents a single observation for the last-learned dataset, not an interval, interpolation, or uncertainty estimate. Each observation uses 7,600 examples. One seed is available per method: 42 for SeqLoRA, IncLoRA, TreeLoRA and EWCLoRA, and 1993 for FS-EWCLoRA. Nominal global batch is 64; SeqLoRA and IncLoRA use DDP8/GA8, while TreeLoRA, EWCLoRA and FS-EWCLoRA use DDP4/GA16. Optimizer defaults and adapter budgets also differ, as documented in the implementation details. Updated OLoRA results lack a matching source and are omitted.}
+\label{fig:llama1b_taskwise_methodcolors_v2}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/llama_taskwise_orders_20260920/methodcolors_v2/llama_3b_taskwise_orders_methodcolors_v2.pdf}
+\caption{Task-wise normalized exact-match accuracy with Llama-3.2-3B across three task orders. Colors identify methods, with FS-EWCLoRA (the implemented GAM-EWC branch) highlighted in red. Four line styles identify datasets: solid for DBPedia, dashed for Amazon, dotted for Yahoo, and dash-dot for AGNews. Curves begin when a dataset is first learned; a short stroke centered at stage 4 represents a single observation for the last-learned dataset, not an interval, interpolation, or uncertainty estimate. Each observation uses 7,600 examples. One seed is available per method: 42 for SeqLoRA, IncLoRA, OLoRA and TreeLoRA, and 1993 for EWCLoRA and FS-EWCLoRA. Nominal global batch is 64; TreeLoRA uses DDP4/GA16 and other methods use DDP8/GA8. Optimizer defaults and adapter budgets also differ, as documented in the implementation details.}
+\label{fig:llama3b_taskwise_methodcolors_v2}
+\end{figure*}
